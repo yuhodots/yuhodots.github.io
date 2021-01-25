@@ -5,6 +5,13 @@ import "./Header.scss";
 
 const Header = ({ siteTitle, siteDescription, type }) => {
     const isMain = type === "main";
+    const isCategory = type === "category";
+    const isAbout = type === "about";
+    const clikedStyle = {
+        opacity: '1',
+        textDecoration: 'underline'
+    }
+    console.log(type);
     return (
         <header className={!isMain ? "simple" : null}>
             <div className="header-inner">
@@ -14,14 +21,16 @@ const Header = ({ siteTitle, siteDescription, type }) => {
                 <div className="description">{siteDescription}</div>
                 <ul>
                     <li>
-                        <a href="https://github.com/yuhodots" target="_blank">
-                            <i className="fab fa-github-alt" />
-                        </a>
+                        <a href="/" style={isMain ? clikedStyle : {}}>Home</a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/im.uho/" target="_blank">
-                            <i className="fab fa-instagram" />
-                        </a>
+                        <a href="/category" style={isCategory ? clikedStyle : {}}>Category</a>
+                    </li>
+                    <li>
+                        <a href="/about" style={isAbout ? clikedStyle : {}}>About</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/yuhodots">GitHub</a>
                     </li>
                 </ul>
             </div>

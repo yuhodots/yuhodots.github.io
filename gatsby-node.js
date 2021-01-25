@@ -9,14 +9,32 @@ const path = require("path");
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
-    const PostTemplate = path.resolve("src/pages/post.js");
     const IndexTemplate = path.resolve("src/pages/index.js");
+    const PostTemplate = path.resolve("src/pages/post.js");
+    const CategoryTemplate = path.resolve("src/pages/category.js");
+    const AboutTemplate = path.resolve("src/pages/about.js");
+    
 
     createPage({
         path: "/",
         component: IndexTemplate,
         context: {}
     });
+    
+    // Category
+    createPage({
+        path: "/category",
+        component: CategoryTemplate,
+        context: {}
+    });
+
+    // About
+    createPage({
+        path: "/about",
+        component: AboutTemplate,
+        context: {}
+    });
+
     return graphql(`
         {
             allMarkdownRemark(

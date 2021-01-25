@@ -15,14 +15,17 @@ header {
         justify-content: center;
         align-items: flex-start;
         ul {
-            display: flex;
+            position: relative; 
+	        top: 8px;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: bold;
             li {
                 display: inline;
                 margin-bottom: 0;
                 & + li {
-                    margin-left: 15px;
+                    margin-left: 18px;
                 }
                 a {
                     opacity: 0.4;
