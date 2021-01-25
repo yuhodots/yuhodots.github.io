@@ -1,0 +1,10 @@
+@import "../../../public/stylesheets/variables";
+
+.post-list-container {
+    max-width: $app-max-width;
+    margin: auto;
+    padding-top: 20px;
+    .post-list:first-child {
+         margin-top: 15px;
+    }
+}

@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+.post-item {
+    margin-bottom: 25px;
+    display: block;
+    a {
+        display: flex;
+        justify-content: space-between;
+        h2 {
+            line-height: 1.4;
+            font-size: 23px;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 16px;
+            letter-spacing: -0.7px;
+            color: var(--post-item-description-color);
+        }
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 7px;
+            margin-left: 15px;
+            margin-top: 30px;
+        }
+        &:hover,
+        &:active {
+            h2 {
+                color: var(--post-item-hover-color);
+                transition: 0.3s;
+            }
+            img {
+                transform: scale(1.15);
+                transition: 0.3s;
+            }
+        }
+    }
+}
+
+/* Tablet, Desktop Device */
+@media all and (min-width: 768px) {
+    .post-item-container {
+        padding: 15px;
+        margin-bottom: 0;
+    }
+}

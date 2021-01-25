@@ -1,0 +1,10 @@
+@import "../../public/stylesheets/variables";
+
+@media all and (max-width: 768px) {
+    .layout {
+        padding: 0 20px;
+    }
+    .layout_post {
+        margin-top: $simple-header-height;
+    }
+}
