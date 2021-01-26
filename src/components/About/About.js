@@ -2,10 +2,13 @@ import React from "react";
 
 import "./About.scss";
 
-const About = () => {
+const About = ({ html }) => {
     return (
         <div className="about-container">
-            <h2>About</h2>
+            <div
+                className="about-content"
+                dangerouslySetInnerHTML={{ __html: html }}
+            />
         </div>
     );
 };

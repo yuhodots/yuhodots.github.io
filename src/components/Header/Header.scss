@@ -16,16 +16,16 @@ header {
         align-items: flex-start;
         ul {
             position: relative; 
-	        top: 8px;
+	        top: 10px;
             justify-content: center;
-            margin-top: 30px;
-            font-size: 16px;
+            margin-top: 25px;
+            font-size: 15px;
             font-weight: bold;
             li {
                 display: inline;
                 margin-bottom: 0;
                 & + li {
-                    margin-left: 18px;
+                    margin-left: 16px;
                 }
                 a {
                     opacity: 0.4;
@@ -47,11 +47,17 @@ header {
         cursor: default;
     }
     .description {
+        margin-left: 2px;
         font-size: 15px;
         letter-spacing: -0.5px;
         cursor: default;
         font-style: italic;
         font-family: georgia, serif;
+        .emoticon{
+            display: inline;
+            font-style: normal;
+            margin-left: 5px;
+        }
     }
 }
 

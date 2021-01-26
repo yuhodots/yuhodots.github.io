@@ -9,7 +9,8 @@ const Header = ({ siteTitle, siteDescription, type }) => {
     const isAbout = type === "about";
     const clikedStyle = {
         opacity: '1',
-        textDecoration: 'underline'
+        borderBottom: '4px solid hsla(0,0%,100%,.35)',
+        paddingBottom: '2.5px'
     }
     console.log(type);
     return (
@@ -18,7 +19,9 @@ const Header = ({ siteTitle, siteDescription, type }) => {
                 <h1>
                     <Link to="/">{siteTitle}</Link>
                 </h1>
-                <div className="description">{siteDescription}</div>
+                <div className="description">{siteDescription} 
+                    <div className="emoticon">📚</div> 
+                </div>
                 <ul>
                     <li>
                         <a href="/" style={isMain ? clikedStyle : {}}>Home</a>

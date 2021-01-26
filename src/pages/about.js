@@ -1,14 +1,32 @@
 import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "components/layout";
 import About from "../components/About"
 
-const IndexTemplate = () => {
+const AboutTemplate = () => {
+    const { allMarkdownRemark: { edges: data } }= useStaticQuery(graphql`
+      {
+        allMarkdownRemark(
+          filter: {
+            frontmatter: {
+              title: { eq:"about" }
+            }
+          }
+        ) {
+          edges {
+            node {
+              html
+            }
+          }
+        }
+      }
+    `);
     return (
         <Layout type="about">
-            <About/>
+            <About html={data[0].node.html}/>
         </Layout>
     );
 };
 
-export default IndexTemplate;
+export default AboutTemplate;
