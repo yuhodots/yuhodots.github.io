@@ -6,18 +6,44 @@ const CategoryList = ({
     categories,
     selectedCategory,
     setSelectedCategory,
-    categoryOrder
+    upperCategory
 }) => {
     return (
         <div className="category-list">
             <div className="category-title"></div>
-            {categoryOrder.map(category => (
+            {upperCategory['MachineLearning'].map(category => (
                 <span 
                     className={ `category-item ${category === selectedCategory && "selected"}` } 
                     key={ `category_${category}` }
                     onClick={() => setSelectedCategory(category)}
                 >
-                    <span className="category-post-count"> {categories[category]} </span>
+                    <span className="category-post-count" style={{background:'#dae9d6'}}> 
+                        {categories[category]} 
+                    </span>
+                    <span> {category} </span>
+                </span>
+            ))}
+            {upperCategory['Web'].map(category => (
+                <span 
+                    className={ `category-item ${category === selectedCategory && "selected"}` } 
+                    key={ `category_${category}` }
+                    onClick={() => setSelectedCategory(category)}
+                >
+                    <span className="category-post-count" style={{background:'#F0E5DE'}}> 
+                        {categories[category]} 
+                    </span>
+                    <span> {category} </span>
+                </span>
+            ))}
+            {upperCategory['Archive'].map(category => (
+                <span 
+                    className={ `category-item ${category === selectedCategory && "selected"}` } 
+                    key={ `category_${category}` }
+                    onClick={() => setSelectedCategory(category)}
+                >
+                    <span className="category-post-count" style={{background:'#d9e1e8'}}> 
+                        {categories[category]} 
+                    </span>
                     <span> {category} </span>
                 </span>
             ))}

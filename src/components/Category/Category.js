@@ -8,13 +8,18 @@ const Category = ({ categories, posts }) => {
     const [selectedCategory, setSelectedCategory] = useState(
         sortedCategories[0]
     );
+    const upperCategory = {
+        'MachineLearning':['Deep Learning', 'Data Science'],
+        'Web':['FrontEnd', 'BackEnd', 'Server'],
+        'Archive':['Branding', 'Cheat Sheet'],
+    }
     return (
         <div className="category">
             <CategoryList
                 categories={categories}
-                categoryOrder={sortedCategories}
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
+                upperCategory={upperCategory}
             />
             <SelectedCategory
                 posts={posts}
