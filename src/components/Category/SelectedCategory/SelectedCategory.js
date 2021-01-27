@@ -12,7 +12,6 @@ const SelectedCategory = ({ selectedCategory, posts }) => {
 
     return (
         <div className="category-post-list">
-            <h3 className="category-name">{selectedCategory}</h3>
             {posts
                 .filter(post => post.category === selectedCategory)
                 .map(post => (

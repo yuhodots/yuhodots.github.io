@@ -10,18 +10,15 @@ const CategoryList = ({
 }) => {
     return (
         <div className="category-list">
-            <h1 className="category-title">Category</h1>
+            <div className="category-title"></div>
             {categoryOrder.map(category => (
-                <span
-                    className={`category-item ${category === selectedCategory &&
-                        "selected"}`}
-                    key={`category_${category}`}
+                <span 
+                    className={ `category-item ${category === selectedCategory && "selected"}` } 
+                    key={ `category_${category}` }
                     onClick={() => setSelectedCategory(category)}
                 >
-                    <span>{category}</span>
-                    <span className="category-post-count">
-                        {categories[category]}
-                    </span>
+                    <span className="category-post-count"> {categories[category]} </span>
+                    <span> {category} </span>
                 </span>
             ))}
         </div>

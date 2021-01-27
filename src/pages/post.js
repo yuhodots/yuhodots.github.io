@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import '../../node_modules/katex/dist/katex.min.css';
 
 import Layout from "components/layout";
 import Post from "components/Post";

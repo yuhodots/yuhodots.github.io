@@ -1,6 +1,6 @@
 .category-title {
-    margin-top: 40px;
-    font-size: 30px;
+    margin-top: 50px;
+    font-size: 15px;
     margin-bottom: 20px;
 }
 
@@ -12,8 +12,8 @@
     display: inline-block;
     letter-spacing: -0.5px;
     background: var(--border-color);
-    padding: 0 7px;
-    margin: 3px 5px;
+    padding: 0 7px 0 0;
+    margin: 3px 5px 3px 0px;
     border-radius: 7px;
     font-size: 15px;
     cursor: pointer;
@@ -29,15 +29,15 @@
 .category-post-count {
     background: #fff;
     padding: 0 5px;
-    border-radius: 5px;
-    margin-left: 5px;
+    border-radius: 2px;
+    color: white;
 }
 
 @media all and (min-width: 768px) {
     .category-list {
         line-height: 1.9;
         display: inline-block;
-        width: 30%;
+        width: 23%;
         vertical-align: top;
     }
 
@@ -54,6 +54,6 @@
 
     .category-post-count {
         background: var(--border-color);
-        margin-left: 10px;
+        margin-right: 10px;
     }
 }

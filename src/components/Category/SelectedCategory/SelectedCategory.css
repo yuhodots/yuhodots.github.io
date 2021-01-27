@@ -1,5 +1,5 @@
 .category-post-list {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .category-name {
@@ -26,14 +26,14 @@
     letter-spacing: -0.8px;
     color: rgb(146,148,150);
     line-height: 1.7;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 @media all and (min-width: 768px) {
     .category-post-list {
         vertical-align: top;
         display: inline-block;
-        width: 70%;
+        width: 77%;
         padding: 30px;
         box-shadow: 0 0 10px rgba(0,0,0,.1);
         border-radius: 15px;
