@@ -1,2 +1,458 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 30 Jan 2021 11:20:17 GMT</lastBuildDate><item><title><![CDATA[Posting test]]></title><description><![CDATA[none]]></description><link>https://yuhodots.github.io/posts/data_science/test/</link><guid isPermaLink="false">https://yuhodots.github.io/posts/data_science/test/</guid><pubDate>Sat, 30 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Posting test&lt;/h2&gt;
-&lt;p&gt;내용을 추가해주세요&lt;/p&gt;</content:encoded></item></channel></rss>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 30 Jan 2021 16:57:48 GMT</lastBuildDate><item><title><![CDATA[앞으로의 블로그 방향성]]></title><description><![CDATA[짧은 글을 통해 지금까지의 블로그 활동을 돌아보고, 앞으로의 방향성을 다시 잡아보려 합니다 🧐. 블로그를 처음 개설한 게 벌써 1년 4개월 전입니다. 당시에는 웹 개발에 흥미가 있었고 이를 진로로 희망하진 않았지만, 최소 1년 정도는 꾸준히 공부하고 싶다는 생각을 했습니다.]]></description><link>https://yuhodots.github.io/branding/20-09-29/</link><guid isPermaLink="false">https://yuhodots.github.io/branding/20-09-29/</guid><pubDate>Tue, 29 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;짧은 글을 통해 지금까지의 블로그 활동을 돌아보고, 앞으로의 방향성을 다시 잡아보려 합니다 🧐&lt;/p&gt;
+&lt;p&gt;블로그를 처음 개설한 게 벌써 1년 4개월 전입니다. 당시에는 웹 개발에 흥미가 있었고 이를 진로로 희망하진 않았지만, 최소 1년 정도는 꾸준히 공부하고 싶다는 생각을 했습니다. 그래서 웹 개발 기초 강의를 수강한 뒤 정리하는 목적으로써 블로그를 개설 하였고 초창기 포스팅은 강의 내용을 따라 적거나 정리하는 글이 대부분이었습니다. 아무래도 이때는 블로그에 글이 별로 없었기 때문에, 스스로 동기부여를 위해서 글의 질보다는 양을 중요시하면서 포스팅을 했던 기억이 있습니다. 그리고 시간이 지나 어느 정도 게시글이 쌓이기 시작한 때에서야 공부한 내용 중에 오랫동안 기억하고 싶은 내용들을 위주로 포스팅했습니다. &lt;/p&gt;
+&lt;p&gt;그렇게 1년 정도 블로그 활동을 하면서 이제는 웹 개발에서 머신러닝 이론 쪽으로 관심사가 옮겨 갔고, 블로그에 포스팅하는 목적과 성향이 처음과는 달라졌다고 느낍니다. 지금까지는 하나의 프로젝트를 완성하기 위한 웹 기술이나 테크닉을 포스팅하는 느낌이었다면 이제는 대학원🥕에 진학하여 연구할 분야에 대한 이론적 내용을 정리하는 방향으로 바꿔 나갈 생각입니다.&lt;/p&gt;
+&lt;p&gt; 그래서 기초 수학이나 머신러닝 이론에 관련된 내용 위주로 채워나갈 예정이며, 새롭게 알게 된 개념이나 토픽 보다는 공부한 내용 중에 두세 번을 읽어봐도 쉽게 이해가 되지 않던 내용이나 혹은 공부한 내용 중에 2년, 3년이 지나도 기억하고 싶은 내용 위주로만 포스팅을 하려고 합니다. (그렇기에 여전히 다른 사람에게 설명하기 위한 글 이라기보다는 개인적으로 공부하기 위한 목적이 큽니다) 하나의 포스팅을 작성하기 위해 최소 5시간 혹은 그 이상의 시간을 들이려 하고 포스팅 주기는 짧으면 2주, 길면 한 달에 하나 정도로 생각하고 있습니다. &lt;/p&gt;
+&lt;p&gt;블로그의 첫 글을 쓸 때만 해도 3달 이상만 꾸준히 해도 성공이라는 생각을 했었는데 그보다는 나름 길게 한 것 같아서 이제는 약간의 안도감(?)이 들고, 남은 대학원 2년 간 꾸준히 포스팅 하는 것을 목표로 블로그를 운영해보도록 하겠습니다. 화이팅! 💪&lt;/p&gt;</content:encoded></item><item><title><![CDATA[1년간 진행한 유잇다 프로젝트 마무리]]></title><description><![CDATA[2019년 2월에 교내 인액터스 친구들과 시작한 프로젝트를 2020년 6월이 되어서 마무리하게 되었습니다. 막 프로젝트를 마무리하게 된 이 시점에서 1년 반 동안의 기록을 아래에 적어보려고 합니다.]]></description><link>https://yuhodots.github.io/branding/20-06-09/</link><guid isPermaLink="false">https://yuhodots.github.io/branding/20-06-09/</guid><pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;2019년 2월에 교내 인액터스 친구들과 시작한 프로젝트를 2020년 6월이 되어서 마무리하게 되었습니다. 막 프로젝트를 마무리하게 된 이 시점에서 1년 반 동안의 기록을 아래에 적어보려고 합니다.&lt;/p&gt;
+&lt;h3&gt;프로젝트의 시작&lt;/h3&gt;
+&lt;p&gt; 저희 프로젝트의 이름은 &apos;유잇다&apos;입니다. 제가 현재 재학중인 유니스트의 학생들을 저희의 웹 서비스를 통해 연결해보겠다는 의미에서 제작된 이름입니다.  &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5cf4a45735024a9ada2ff62e292b0a88/21b4d/20-06-09-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.42105263157894%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB20lEQVQoz22TWY/TQAzH+/2/CBKPgMQDghViDyoKXZbVNqVJj6SZw5M5kmqf/3hm0nahPFie2OOfj3EmSkkEq9C7rLPIJL1j+3jOd7J/ubWYLjxcl+/4McZ3ApNgxXhxBLijVikgOOKzPoFj0HNoIZVBsbFsF8nmTAvLMokfR1AMcFaDZAm1X6CqCujmOzyVCZoDBSwnEk0JKWpOqBIs+jzbJ/FCbCOW7brckqUddFtAbGeoVzfYr2fJ3xkFIsmVSJCqEyjFdmMxHVdoGehG4LlljcETSJQoiymq1YwBDQN1Ho09jyWBUoVZX7R81ANDSa3QPr6H/PkWSiw5KZ1mHGyecawqih3bPgGPsOOLHbzGZldgfn2F6uYN2vo+BbzcApseYo+O6gT3zlwCDeXsvVnharbDu7sa6+Vn7H7fgpp7BN9hCJYBEd7yaBSGoefzHl4v/gamVrkyR1uIzRRN9ZXlhkFzGPEEb7ZpvsEbHIKG1B1aZfFsvmEQHxHo6RIYA1TzALWbMbjildm+2FGdNMlsk0qh5U04dA/wwaWV+qfl8dX0OrXTezpBzgnjQ+iUrJd33FENyytkiw+g+ev/VaguICefHf8cekQQ1zBqg+bXJ9CPV3DlFx5Jgz+8BHvzyuCdbAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/5cf4a45735024a9ada2ff62e292b0a88/15813/20-06-09-1.webp 190w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/1cdb2/20-06-09-1.webp 380w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/9046c/20-06-09-1.webp 760w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/c89f9/20-06-09-1.webp 1140w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/af3f0/20-06-09-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/5cf4a45735024a9ada2ff62e292b0a88/a2d4f/20-06-09-1.png 190w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/3f520/20-06-09-1.png 380w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/3c051/20-06-09-1.png 760w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/b5cea/20-06-09-1.png 1140w,
+/static/5cf4a45735024a9ada2ff62e292b0a88/21b4d/20-06-09-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/5cf4a45735024a9ada2ff62e292b0a88/3c051/20-06-09-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 유니스트는 대부분의 학생들이 기숙사에 입주하여 살고있는 학교입니다. 캠퍼스는 산 속에 위치하고 있어 공기가 좋고 조용해서 공부하기엔 좋은 학교지만, 걸어서 갈 수 있는 마트나 외부 음식점이 거의 없는 것은 물론, 시내를 나가려면 버스로 40분 정도가 걸릴 정도로 외부와 단절이 되어있는 학교입니다. &lt;/p&gt;
+&lt;p&gt;음식이나 생필품을 구매할 곳이 마땅히 없으니 어쩔 수 없이 택배나 편의점에 의존하는 비합리적 소비가 자주 이루어집니다. 이를 해결하고자 학생들은 교내 페이스북 그룹을 통해서 중고 서적과 물품을 구매하거나 배달 음식을 같이 주문하고, 택시 카풀을 자주 하곤 합니다. 하지만 페이스북 그룹을 통해 이루어지는 거래나 소통은 직관적이지 않으며, 게시글이 시간순으로 출력되지 않는 점이나 한 화면에 하나의 게시글만 보이는 점 등, 몇 가지 불편한 점이 존재했습니다.&lt;/p&gt;
+&lt;p&gt;그래서 저희 팀은 학생들이 페이스북에서 유용하게 사용하던 서비스들의 문제점을 개선하고 이를 독립된 웹/앱에서 직관적인 UI로 제공해 보자는 생각에 이 프로젝트를 시작하게 되었습니다. &lt;/p&gt;
+&lt;h3&gt;베타 서비스&lt;/h3&gt;
+&lt;p&gt; &lt;del&gt;이 &lt;a href=&quot;https://uitda.net/&quot;&gt;링크&lt;/a&gt;를 통해 직접 유잇다 웹 서비스를 확인하실 수 있습니다.&lt;/del&gt; (AWS 프리티어가 2020년 7월 까지인지라 지금은 막혀있습니다)&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9ae5844ba3d27158e21668bf5ea3fa61/21b4d/20-06-09-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.26315789473685%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC6ElEQVQoz12Q70tTYRTH9w/0onpj0Q+KeiOBEBK+8AfVmyyhX2LpNHMx3XLppiaaOkRTKMxfuCRYOU1f+GNa6rbrpsUisS2c6NRNt6UTRa/zXrfd67y/dp8eXSD0hfNwnvOczznPOYIbnSBjENzqAQkdILETJHSBqglWbQmpp7mOGb5zFnTNAc0s6JkL5+vCcR9BkgYkakBydzhPGxSEGB4P7JE07/JuIPouna73u/nnpGV6xu7QDg3lSqSPMzKk0rya6sqJb6b6+po8SW5WZlbFK7nJZBAAjvXjPoYFXo9F/PB0a3WyfliL6A1Wi0X9oe1K9OWTx4+dPXUiNSVpAhmUZafFx8REX7wkEt4xGbQCPkwRASwcBpteW5Xi1uf34lHdV6ipqSmNRh137er5M1EXzkXdv504hgyVClPy78XmPIqX5DyYMI0KAAA8z8MTx/HR4cHfVottxma1Wp1O58BAf8ELWWFhvkIue/emFmYr5XnN9bK2hqLXyqIfZuMBDHFoDMNMTZrX19cJgtjdDXAc53CtON2rHMtQNBPmwbZvx/xrdhPFfFiA3KdwfDcCgwhMknt+v39nB0PRrSBBUBSFYTu+A23DiizLkkQwGAjgOLaNohiGH8HwDWbTNM2x3H5of//AZ+AVFqUORdORwEEE6j+YC4VCJEHCJtDgt2mKIv9pj2FYSEGPIMlgIMhxYb8/cASTe6RzyTG/uLjocM7Y7W6vZ2V1bdntsdvtNptt2e2CM2+iKLrt20LRzS30cGaej2x7ZXW1vLJC9uxJrrRAKBI3tjbW11UXlRRLxE9Lsu8qKyX9fQOqpvZB7RCiGxnV6dwej4CGayQICP+ZX1DeTKxLTqq6Hl8WG9P+XCIvEAvTUioLUxuLU5Uvs7r7euuq3458GTYgyJjR5Ha7BaifWFrbYGhmYd5RJBI1lMqbyhXFmenNtTUqVYuiQFJbmt5SI6ooKzSaxlWfOo3jJgTR6/UGl8v1FxhSRAyYLC8YAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/9ae5844ba3d27158e21668bf5ea3fa61/15813/20-06-09-2.webp 190w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/1cdb2/20-06-09-2.webp 380w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/9046c/20-06-09-2.webp 760w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/c89f9/20-06-09-2.webp 1140w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/af3f0/20-06-09-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/9ae5844ba3d27158e21668bf5ea3fa61/a2d4f/20-06-09-2.png 190w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/3f520/20-06-09-2.png 380w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/3c051/20-06-09-2.png 760w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/b5cea/20-06-09-2.png 1140w,
+/static/9ae5844ba3d27158e21668bf5ea3fa61/21b4d/20-06-09-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/9ae5844ba3d27158e21668bf5ea3fa61/3c051/20-06-09-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 서비스는 크게 &apos;유니마켓 / 네트워킹 / 택시카풀&apos;로 이루어져 있습니다. 유니마켓 카테고리에서는 학생들 사이에 물건 판매, 중고물품 거래가 이루어집니다. 판매자는 자신의 남는 생활용품, 사이즈가 맞지 않는 옷, 전공 서적 등 잉여물품을 판매하여 소득을 창출 할 수 있으며 구매자는 저렴한 가격에 제품을 구매하여 절약을 할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c8b77ac6ea4c4e0c46943b89aa54f42f/8cae4/20-06-09-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 64.73684210526316%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACq0lEQVQoz01RXUgUURSefuix3iqQQOgheuklkEDMZAuqzc22NY0wNCMzy/RB29AH6Qd/+lEpXbQEYRPaCpEUfaqHag2zzEoiEbVdZ8ed2d3ZmZ2fO3Pnzmxn1kA/mDvn3Hu/c873Xcog1opgpdPp4PRSluNJ9oHWXTsfbdna7XC09T+sunBwr+9e0+0r1bXu3LG3L84UlbpcHqfTc9ZdMjkZpICmKgqs7z/82b6ncUe2d9PmSooqycmpG3hcXJC1rbLgkGvf7hvF+zvamhxHXSePOx1HHIfz8gOvA5Rl4BgX1XQ884vOzat2n2ssLbtz7ERDzc2e0UBL74PLzzq9zzsujfib+3y+88VFrXebW25dq6u5Oj4+SlkWVmRR1w1ikp/fP7MsreuKQXSY5ffc/Pz8IkhSkE7MNJ+IzX6bkiRZVZGOsSAI9thrQAiJKSnBJzkuJooprGOkIUlK8Qk+EU8gTcMYq0iDlGM5SZL4ZHKNbBtmZGBZdmyapkGIipAiK1BUVVUNgDTgKIoCKVIRz/PrnbFhQJ5IxHkbSR2mV5RUKgXNgWgYBGPDLgSfphFCBFFcJ4MMzT7W1Mw53NB0HYyEnx3pOM5xoeUlJhyiQ8sroaVwOLShM9Yng19EQYSYmCb0WY1FRSEGOizLhM1Xg776Co+vvelpq7e2rPDlQM9GMl5cWIiuRuPxuCgKpmVxHMswNPjHsiw2yJvB3vqLp4f62v2++94Kt9/XSf23K6MZJpVlGXSCKeAZKJcygFpwJzDQVeXOL/cUXi8vaSg/NdTfRSFi0UnRdoMQ20kFnsN2Vcu4YmZAiAHVf3wNDvu7J8ZGZqY+DU+8+zg9S+lWWlA1C0QaBowXiTA0vRKJRGSwWkoxDBPjYvAIUFdWER0J/w2FOYaeY8lCHP8D5sF4L2fBQDsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/c8b77ac6ea4c4e0c46943b89aa54f42f/15813/20-06-09-3.webp 190w,
+/static/c8b77ac6ea4c4e0c46943b89aa54f42f/1cdb2/20-06-09-3.webp 380w,
+/static/c8b77ac6ea4c4e0c46943b89aa54f42f/9046c/20-06-09-3.webp 760w,
+/static/c8b77ac6ea4c4e0c46943b89aa54f42f/71a33/20-06-09-3.webp 1109w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/c8b77ac6ea4c4e0c46943b89aa54f42f/a2d4f/20-06-09-3.png 190w,
+/static/c8b77ac6ea4c4e0c46943b89aa54f42f/3f520/20-06-09-3.png 380w,
+/static/c8b77ac6ea4c4e0c46943b89aa54f42f/3c051/20-06-09-3.png 760w,
+/static/c8b77ac6ea4c4e0c46943b89aa54f42f/8cae4/20-06-09-3.png 1109w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/c8b77ac6ea4c4e0c46943b89aa54f42f/3c051/20-06-09-3.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 네트워킹 카테고리는 학생들의 연결고리 역할을 합니다. 배달음식 주문, 구매 대행 부탁, 연구실 피실험자 모집, 스터디원 모집 등 다양한 퀘스트와 보상을 함께 제시하여 학생들이 교내 물적, 인적 자원을 최대로 활용할 수 있도록 돕습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e4e0b717bbd88e4f717a51dd574f888f/21b4d/20-06-09-4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 67.89473684210526%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsTAAALEwEAmpwYAAACBUlEQVQ4y5VUyW7bMBD1//9H721P/YH2VqApEAGpq9iJXS9yJJuiuJN6nSG9yAF6KIGnIUXyzZtFmillMAwabBla24zpmq2UtzPlDu2R9bZAn3lm/HAhwXkPY/ilossDPK0ZSimEEMCDbYyRbATGiFZGfH7w+PTDoREOVhOhcx71co2fj7/yJU+H0ziieqrRHFp03RGb7R7z+iXvp0RcI2OEcQGLrcD6oGgeyTkRWuuxWq/x+6miUxbO9EhBoX6eo2t3ULJF0/zB82JObANiGOCsJKUezllIcYQeBKn2JWRJj8RuaZxOR6xel+RJ5vWYSG0q4Qqn8OHhO6r9hnUixIDudIIQgogGGFtyPRvoYbVCMoKSq3N+OFfsxJMNcUSvI96kx0tn0PQOvUkl785lXM6WoigKU50Q2wpRt+c8JcKYlZBOVNuA1zbmvVUX8ZEKsTkW5ZcRqFhnQqoyFSa/JJKUbgoXB4/lG18sVeUUtDKg2gQIHbMzLmDpgDtCR2JibglWdrHfao+vNYedMljxqgv48uixF4XwqvCOkBLK/RAyUboqpGOZhB1cwEpzKsbiRIg+V/sW8lBC5r5ikqmNqYDnF0Tai+coHLXKdr/LlZ7k0FDv2RzyVOGUZIqrM1IXibBpdvR56ncKfbgeTtme5/9EUcit0vcy12DSNubuo/9fTH8kjL9CLkBuUSUgBwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/e4e0b717bbd88e4f717a51dd574f888f/15813/20-06-09-4.webp 190w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/1cdb2/20-06-09-4.webp 380w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/9046c/20-06-09-4.webp 760w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/c89f9/20-06-09-4.webp 1140w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/af3f0/20-06-09-4.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/e4e0b717bbd88e4f717a51dd574f888f/a2d4f/20-06-09-4.png 190w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/3f520/20-06-09-4.png 380w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/3c051/20-06-09-4.png 760w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/b5cea/20-06-09-4.png 1140w,
+/static/e4e0b717bbd88e4f717a51dd574f888f/21b4d/20-06-09-4.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/e4e0b717bbd88e4f717a51dd574f888f/3c051/20-06-09-4.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 택시카풀 카테고리에서는 같은 방향으로 이동하는 학생들의 카풀이 이루어집니다. 지리적 요건 때문에 많은 학생들의 교외 이동경로가 거의 일치합니다. 그렇기 때문에 같은 방향으로 이동하는 학생들이 많고, 이런 학생들이 카풀을 통해 저렴한 가격에 택시 승차를 할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e4a4393fe51c5ec1c53639b029314722/21b4d/20-06-09-5.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.315789473684205%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAABR0lEQVQoz6VSS07DQAzNmdlzCq4BEidgwZoFB0BdICHUJulM5v9LH7arlIBKBWIkxxPPvGc/ezofE1xIaPMBM4BcCqzz2CuFca+g9ATnAwLdu2Q+RPEdg9s843WzwdPjA1LKMNZh1w/Y7noM417+mZRB5yxG8t7Lnc5YD163d/e4ur7B+3ZAKRWlVlgimiYjgJmStnY03vOdnBIiEfYTJUsVgfadJdZK4FE7PL/sCNCkdPYsexhGaoHD5zrIl1U1wjHhW68QcqVqqUIuMwpBxaFlIeeDSNLZe+4fgVLOyLmQL+IjVcfxQC3TWsORZ/nd0nCuhnvFUjj2vWdL7ItxfHV2IuSM2gYYF0XOcrgGnx2IPypYJxVCljMog4lIF8JLU13A55KeCLVWsMbIBH9D+JOdCHkAgYyn+29C3kzGyvPg6a7l/JXwA6BqUnyVNEzYAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/e4a4393fe51c5ec1c53639b029314722/15813/20-06-09-5.webp 190w,
+/static/e4a4393fe51c5ec1c53639b029314722/1cdb2/20-06-09-5.webp 380w,
+/static/e4a4393fe51c5ec1c53639b029314722/9046c/20-06-09-5.webp 760w,
+/static/e4a4393fe51c5ec1c53639b029314722/c89f9/20-06-09-5.webp 1140w,
+/static/e4a4393fe51c5ec1c53639b029314722/af3f0/20-06-09-5.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/e4a4393fe51c5ec1c53639b029314722/a2d4f/20-06-09-5.png 190w,
+/static/e4a4393fe51c5ec1c53639b029314722/3f520/20-06-09-5.png 380w,
+/static/e4a4393fe51c5ec1c53639b029314722/3c051/20-06-09-5.png 760w,
+/static/e4a4393fe51c5ec1c53639b029314722/b5cea/20-06-09-5.png 1140w,
+/static/e4a4393fe51c5ec1c53639b029314722/21b4d/20-06-09-5.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/e4a4393fe51c5ec1c53639b029314722/3c051/20-06-09-5.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 이 외에도 글 관리, 피드백 보내기 같은 페이지도 구현하여 기본적인 웹 서비스의 형태를 갖추도록 개발하였습니다. &lt;/p&gt;
+&lt;h3&gt;백엔드 개발 기록&lt;/h3&gt;
+&lt;p&gt; 팀원 총 세 명이서 개발을 하였고, 한 명은 프론트엔드, 나머지 두 명은 백엔드와 서버, DB를 맡아서 개발하였습니다. 저는 이 중에서 백엔드와 서버 작업을 했습니다. 전체적인 개발 스펙은 아래와 같습니다. (프론트엔드에 대해선 빠진 부분이 있을 수 있습니다.)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Framework: React (frontend), Node-Express.js (backend)&lt;/li&gt;
+&lt;li&gt;Library &amp;#x26; Modules: FullCalendar, ant.design, socket.io, Passport.js-outlook, S3-multer... etc.&lt;/li&gt;
+&lt;li&gt;Database: MySQL, Sequilize.js (backend)&lt;/li&gt;
+&lt;li&gt;Server: AWS EC2 with Nginx, AWS S3, AWS route53&lt;/li&gt;
+&lt;li&gt;Postman, Github&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 프로젝트를 시작한건 2019년 2월이지만 당시에는 HTML, CSS가 뭔지도 몰랐기 때문에 실제로는 9월 정도가 되어서야 본격적으로 작업을 시작했습니다. 학교 수업과 병행하여 HTML, CSS를 공부하기 시작했고, 이 둘을 모두 공부한 뒤에는 javascript와 Node.js를 공부했습니다. 아마 Node.js까지 공부를 하고나니 5월이 지나있었던 걸로 기억합니다. 그리고 7월 즈음에는 Express와 AWS까지 공부를 완료 했습니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/183117ce162c87c267ffe5173fb41cc8/573d3/20-06-09-6.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 90.52631578947368%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAABYlAAAWJQFJUiTwAAABeklEQVQ4y52UiXLCMAxE+f/PzEEuAiQhB0lA7fPMUlMc6NQzwrJjSyutl519j6qqLM9zK4rCzuczW3a/34Omb1tjx8/pdLIsy1zg4/Foy7JsXviUaKeDXddZWZbOSMC6aRrng7ptW1vX9W0ih1DONE0OJaUT9HA4uL2+720YBhvH0eZ5dkGpgFn+7Xb7QejDvlwuj2B1XTtUzKDEaId8zmCgJ/FLQAYo6KNKB/F+v3c+hLHG8EkEgGDJWtAzDis7iEjAZXp6vV5dUhD5Zb6wrE0uqDQZwVQqM0lpBaVifCfJU8k+bDL7TfdJ8GffnkjBoS9Jklgcx87/z3j0UGQAXabHLcS+/elhc5CmQ4AIoU/s6VHjh1gNSg80XASZFCFGmWEVX2tfgi8BtYkKeG8oJU1Ti6LIJUApJBGzIP2t6SBCPQmxqNf/iYRgyZKdSJG0pBq+qQ0k0p9EEKEvOymDYCiG8qUUTP9EvnY3A9JD+gUajJ7J174U8a7kLzi4fFXfATHGAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/183117ce162c87c267ffe5173fb41cc8/15813/20-06-09-6.webp 190w,
+/static/183117ce162c87c267ffe5173fb41cc8/1cdb2/20-06-09-6.webp 380w,
+/static/183117ce162c87c267ffe5173fb41cc8/9046c/20-06-09-6.webp 760w,
+/static/183117ce162c87c267ffe5173fb41cc8/c89f9/20-06-09-6.webp 1140w,
+/static/183117ce162c87c267ffe5173fb41cc8/7afe4/20-06-09-6.webp 1520w,
+/static/183117ce162c87c267ffe5173fb41cc8/44758/20-06-09-6.webp 1650w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/183117ce162c87c267ffe5173fb41cc8/a2d4f/20-06-09-6.png 190w,
+/static/183117ce162c87c267ffe5173fb41cc8/3f520/20-06-09-6.png 380w,
+/static/183117ce162c87c267ffe5173fb41cc8/3c051/20-06-09-6.png 760w,
+/static/183117ce162c87c267ffe5173fb41cc8/b5cea/20-06-09-6.png 1140w,
+/static/183117ce162c87c267ffe5173fb41cc8/891d5/20-06-09-6.png 1520w,
+/static/183117ce162c87c267ffe5173fb41cc8/573d3/20-06-09-6.png 1650w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/183117ce162c87c267ffe5173fb41cc8/3c051/20-06-09-6.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 9월부터는 실제로 서비스를 위한 코드를 작성하기 시작했고, 작업한 내용과 작업 할 내용들은 위의 사진처럼 개인 마크다운 파일에 날짜 별로 기록하며 팀원들과 피드백을 주고받았습니다. 작업을 하면서 막히는 부분들에 대해서는 그때그때 공부하면서 해결했습니다. 9월 이전까지는 세 팀원이 모두 같은 내용에 대해서 공부했다면, 9월 이후부터는 프론트엔드, 백엔드로 나누어서 각자 맡은 작업을 중점적으로 공부하고 개발했습니다.&lt;/p&gt;
+&lt;p&gt;프로젝트의 완료 시점까지 특별한 로드맵을 설정해 둔게 아니라 그때마다 요구되는 내용에 대해서 공부했기 때문에, 이런식으로 공부하고 개발하고를 계속해서 반복하다 보니 지금의 웹 서비스가 완성되었습니다. 이런 과정을 거치다보니까 해야할 일이 무엇인지 알고 스스로 목표를 설정하는게 중요하구나라는 생각이 들었습니다. 그리고 혼자 공부하는 것 보다 같이 공부하는게 더 빠르고 정확하게 공부하는 방법이라는걸 많이 체감했습니다.&lt;/p&gt;
+&lt;h3&gt;후기&lt;/h3&gt;
+&lt;p&gt; 프로젝트를 처음 기획하는 단계에서는 고파스나 스누라이프 같은 교내 웹 커뮤니티 사이트를 만들려고했습니다. 이후 회의를 거치면서 1년이라는 기간 내에 우리가 어느 정도까지 구현할 수 있는지에 대해 객관적으로 판단해보고, 이 수준에서 가장 최선의 효과를 낼 수 있는 서비스가 무엇일까를 고민하는 과정에서 지금의 웹 서비스 형태가 되었습니다. &lt;/p&gt;
+&lt;p&gt; 단순히 프로젝트를 넘어서 비즈니스 모델까지 구상하는 시간도 가졌었는데, 이 서비스가 웹 뿐만 아니라 앱의 형태로도 제작된다면 충분히 좋은 서비스로 발전할 수 있다는 생각이 들었습니다. 같은 집단에 속해있는 구성원 간의 중고거래, 구인구직, 카풀은 충분히 니즈가 존재할 것이라는 생각이 들었고, 유니스트 뿐만이 아닌 여러 대학이나 회사같은 집단으로 확대될 수 있겠다고 생각했습니다. 다만, 그러기에는 제가 웹/앱이 아닌 다른 분야에 더 관심이 있었기 때문에 현실적으로는 웹을 끝내는 것을 목표로 잡았습니다. (같이 개발을 진행한 친구는 앱까지 끝내는 것을 목표로 잡고 더 진행해볼 계획이라고 합니다.)&lt;/p&gt;
+&lt;p&gt;  개인적인 관점에서는 실제로 서비스되는 코드를 작성해보고 싶다는 마음에 프로젝트를 시작했습니다. 그래서 프로젝트 활동에서 얻고싶었던 것도 실제로 서비스되는 코드를 작성하는 경험과 서비스에 대한 피드백을 유저들에게 받는 경험이었습니다. 이 관점에서는 개인적인 목표를 많이 달성했다고 봅니다.&lt;/p&gt;
+&lt;p&gt; 프로젝트가 마무리 된 이 시점에선 대학원을 위한 공부를 열심히 하려 합니다. 1년 간의 과정 속에서 웹 프로그래밍 지식이 많이 늘기도 했지만, 그 외에도 하나를 꾸준히 끌고가는 자세나 공부를 어떤 방식으로 해야하는지 같은 점을 많이 배울 수 있었습니다. 그래서 지금 당장은 이런 자세를 가지고 관심있는 공부를 파고들 생각입니다.&lt;/p&gt;
+&lt;p&gt; 혹여나 다음 번에 또 웹 개발을 하게 된다면 부가적으로 공부해보고 싶은 것들을 아래에 적고 글을 마칩니다&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;serverless, socket-chatting, Typescript, 동기/비동기와 RESTful API에 대한 완벽한 이해, mongoDB, 미들웨어의 활용&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[얼마 전 겪은 '502 : Bad Gateway' 오류와 느낀점]]></title><description><![CDATA[한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.]]></description><link>https://yuhodots.github.io/branding/19-08-13/</link><guid isPermaLink="false">https://yuhodots.github.io/branding/19-08-13/</guid><pubDate>Tue, 13 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2470d587cdc78fba9297730ec52edb98/60b3a/19-08-13-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 23.684210526315788%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAXElEQVQY041PQQrAIAzr/7/omODBq4feamtEYTsU3QwEQtOWhFprWHEg54xwBaSUEOONUsqcmxl2dzRMT1V9da0VzAwRmdr7noQDPIlPQLvovv7J3qz8l2r1+AsdzLWLvNPhhw0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/2470d587cdc78fba9297730ec52edb98/15813/19-08-13-1.webp 190w,
+/static/2470d587cdc78fba9297730ec52edb98/1cdb2/19-08-13-1.webp 380w,
+/static/2470d587cdc78fba9297730ec52edb98/9046c/19-08-13-1.webp 760w,
+/static/2470d587cdc78fba9297730ec52edb98/c89f9/19-08-13-1.webp 1140w,
+/static/2470d587cdc78fba9297730ec52edb98/58f5f/19-08-13-1.webp 1179w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/2470d587cdc78fba9297730ec52edb98/a2d4f/19-08-13-1.png 190w,
+/static/2470d587cdc78fba9297730ec52edb98/3f520/19-08-13-1.png 380w,
+/static/2470d587cdc78fba9297730ec52edb98/3c051/19-08-13-1.png 760w,
+/static/2470d587cdc78fba9297730ec52edb98/b5cea/19-08-13-1.png 1140w,
+/static/2470d587cdc78fba9297730ec52edb98/60b3a/19-08-13-1.png 1179w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/2470d587cdc78fba9297730ec52edb98/3c051/19-08-13-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt; &lt;/p&gt;
+&lt;p&gt; 처음 nginx 설정을 하기 전에도 출력되었던 화면이어서 하루 정도면 해결할 수 있는 문제라고 생각하고 pm2, nginx의 에러로그를 하나하나 편-안한 마음으로 살펴보았습니다. 하지만 하루종일 노트북을 두들겨 봐도 에러는 결국 해결되지 않았습니다. 다음 날에도 에러를 수정하려고 로그에 대해 구글링을 해봤지만 적당한 해결책을 찾을 수 없었고, 하나의 에러를 해결하면 또 다른 에러로그가 발견되는 상황이 반복되었습니다.&lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;[추측1] MySQL DB서버의 연결에 문제가 생겼을 것이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 제일 처음에 확인한 건 pm2의 에러로그입니다. pm2 log 명령어를 통해 로그를 확인해 보았더니 &lt;em&gt;&quot;Connection lost: The server closed the connection&quot;&lt;/em&gt;라는 로그를 발견할 수 있었습니다. 그래서 MySQL DB서버가 종료되었거나 연결이 끊겨서 생기는 에러라는 생각을 하게되었고, &lt;a href=&quot;https://uhou.tistory.com/125?category=834081&quot;&gt;이 방법&lt;/a&gt;을 이용해서 DB서버와 연결이 끊어져 있으면 다시 연결을 시도하는 코드를 프로젝트 내에 추가했습니다. &lt;/p&gt;
+&lt;p&gt; 그런데도 502: Bad Gateway 오류는 계속 발생하였고 조금 더 찾아보니 이는 DB서버와 연결문제와 관련된 것이 아니라는 걸 알게 되어서 다른 원인을 추측하기 시작했습니다. &lt;/p&gt;
+ &lt;br&gt;
+&lt;p&gt;&lt;strong&gt;[추측2] 얼마 전 발급받은 SSL인증과 관련해서 nginx 설정을 잘못했을 것이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 에러가 발생하기 직전에 제가 프로젝트에 추가한 내용이 SSL- HTTPS 인증이었기 때문에 그 다음으로 의심해 본 것이 nginx 설정이었습니다. 원래 SSL 인증을 받고 https접속을 받기 위해서는 nginx에 설정을 추가하는 작업이 필요한데 저는 그 작업을 하지 않았습니다. 까먹어서 안 한건 아니고, ACM으로 인증서를 발급받고 ELB로 https접속을 받는 경우에는 nginx에 설정을 추가 할 필요가 없다고 들었기 때문입니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;tail -f /var/log/nginx/error.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/dff742eb665b150f6ef376a49265efce/d9ed5/19-08-13-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 6.842105263157896%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAABCAYAAADeko4lAAAACXBIWXMAABYlAAAWJQFJUiTwAAAANElEQVQI112IsQ0AMAjDOkJAwAn8/2QqGDp0sBzndDerihGxzszdg5nR3dc/IkIAVNX3TV+XgBbzsZUk+QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/dff742eb665b150f6ef376a49265efce/15813/19-08-13-2.webp 190w,
+/static/dff742eb665b150f6ef376a49265efce/1cdb2/19-08-13-2.webp 380w,
+/static/dff742eb665b150f6ef376a49265efce/9046c/19-08-13-2.webp 760w,
+/static/dff742eb665b150f6ef376a49265efce/c89f9/19-08-13-2.webp 1140w,
+/static/dff742eb665b150f6ef376a49265efce/7afe4/19-08-13-2.webp 1520w,
+/static/dff742eb665b150f6ef376a49265efce/d3d72/19-08-13-2.webp 2880w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/dff742eb665b150f6ef376a49265efce/a2d4f/19-08-13-2.png 190w,
+/static/dff742eb665b150f6ef376a49265efce/3f520/19-08-13-2.png 380w,
+/static/dff742eb665b150f6ef376a49265efce/3c051/19-08-13-2.png 760w,
+/static/dff742eb665b150f6ef376a49265efce/b5cea/19-08-13-2.png 1140w,
+/static/dff742eb665b150f6ef376a49265efce/891d5/19-08-13-2.png 1520w,
+/static/dff742eb665b150f6ef376a49265efce/d9ed5/19-08-13-2.png 2880w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/dff742eb665b150f6ef376a49265efce/3c051/19-08-13-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt; &lt;/p&gt;
+&lt;p&gt; 위 명령어를 통해 nginx의 에러로그를 확인하니 &lt;em&gt;&quot;connect() failed (111: Connection refused) while connecting to upstream...&quot;&lt;/em&gt; 라는 로그가 출력되었습니다. 이와 관련해서는 원인도 매우 다양하기 때문에 Stackoverflow를 참고해서 거의 할 수 있는 방법은 모두 따라해보았습니다. 하지만 그래도 502:Bad Gateway 문제는 해결되지 않았고 이번에는 AWS ELB를 의심해보기 시작했습니다.&lt;/p&gt;
+&lt;p&gt; 아 그리고 이 과정을 통해서, &apos;ACM으로 인증서를 발급받고 ELB로 https접속을 받는 경우에는 nginx에 설정을 추가 할 필요가 없다&apos;는 게 맞는 말이라는 걸 알게 되었습니다!&lt;/p&gt;
+ &lt;br&gt;
+&lt;p&gt;&lt;strong&gt;[추측3] EC2 ELB에서 오류가 발생하였을 것이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; nginx 에러로그를 살펴보다가 이번에는 &apos;GET / HTTP / 1.1..&apos; 이 부분에 집중해서 &apos;어떤 HTTP 요청을 제대로 못받는 건가?&apos;라고 생각하게 되었습니다. 마침 AWS에서는 Classic Load Balancer(ELB) 를 사용하는 도중에 발생하는 HTTP 502에러에 대해 에러의 원인과 해결방법을 &lt;a href=&quot;https://aws.amazon.com/ko/premiumsupport/knowledge-center/load-balancer-http-502-errors&quot;&gt;이 링크&lt;/a&gt;에서 알려주고 있었고, 저 또한 이 중에 제 에러를 해결 할 방법이 있을 것이라고 생각하기 시작했습니다. &lt;/p&gt;
+&lt;p&gt; 하지만 저는 AWS의 로드 밸런서를 그저 https연결을 위한 도구로만 사용하였고 진짜 로드밸런서의 역할로는 사용해 본 적이 없기 때문에 생각보다 내용을 이해하기가 너무 어려웠습니다. 그래서 그냥 서버 컴퓨터 내 파일과 ELB를 모두 지우고 처음부터 다시 생성해 보자는 결론에 도달합니다,,&lt;/p&gt;
+ &lt;br&gt;
+&lt;p&gt;&lt;strong&gt;[추측4] Git과 관련하여, 서버의 원격저장소 내 파일에 오류가 생겼을 것이다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 서버 컴퓨터 내 파일을 모두 지우는 도중에 문득 한 가지 의심이 더 생겨났습니다. 거의 서버 컴퓨터를 처음 생성할 때 부터 Git 과 관련하여 발생하던 오류가 있었는데 이게 문제의 원인일 수도 있게다는 생각이었습니다. 사실 이전에도 매일같이 출력되던 에러였지만 웹 사이트가 이상하게 작동하던 적은 단 한번도 없었기 때문에 신경을 안 쓰고 있었습니다. 그래도 혹시나 하는 마음에 서버 컴퓨터 내 git repository 를 깔끔하게 삭제하고 git clone을 통해 디렉토리를 다시 생성하였습니다.&lt;/p&gt;
+&lt;p&gt; 오우.. 그랬더니 nginx, git, DB와 관련된 모든 에러들이 깔끔하게 사라지고 웹 사이트가 너무나 정상적으로 작동했습니다. 알고보니 제가 Git의 동작 원리를 대충 알고있는 상태에서 서버 컴퓨터 내에서 명령어를 작성하다가 repository 내 파일 일부가 변경되서 발생한 문제였습니다. &lt;/p&gt;
+&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;[결론] 에러를 해결하면서 느낀 점&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 이렇게 포스팅을 하게 된 이유는, 이번에 겪은 일을 글로 적어두지 않으면 다음번에 또 이런 비슷한 오류를 만나게 될 것 같다는 생각 때문입니다. 그리고 이번 일을 계기로 작은 에러가 나더라도 일단 그 에러를 해결한 뒤에 다음 단계로 넘어가야 겠다는 생각이 많이 들었습니다. 처음에는 아무것도 아닌 것 같았던 Git 에러가 나비효과처럼 커져서 nginx, 그리고 또 다른 곳의 에러로 이어질 수 있으니까요 :(&lt;/p&gt;
+&lt;p&gt; 또, 서버 컴퓨터 내 파일들을 함부로 수정하거나 추가하지 말자는 생각도 들었습니다. 제가 현재 진행하고 있는 프로젝트가 아직은 아주 복잡한 단계는 아니기 때문에 서버 컴퓨터 내 수정할 내용이 생기면 서버 컴퓨터 내에서 직접 작업을 진행하곤 했습니다. 근데 이러면 에러가 발생했을 때 뒤로 되돌리기도 힘들고 어디서, 언제 에러가 났는지도 찾기 힘들기 때문에 이번에도 더 고생을 한 것 같습니다. 이제는 로컬에서 작업을 모두 끝내고, 서버 컴퓨터는 이렇게 작업한 결과를 pull만 하는 형태로 좀 더 서버 컴퓨터를 조심히 다뤄야 겠다고 느꼈습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[블로그를 하면 좋은 이유]]></title><description><![CDATA[블로그를 시작하고 얼마 안 된 것 같은데 벌써 8월이 되었습니다. 블로그를 처음 시작할 때 공부한 내용을 열심히 포스팅 하겠다는 다짐은 했지만서도 두 세달 정도 포스팅을 하다보면 질려서 포스팅 횟수가 현저히 적어지지 않을까 생각을 했었습니다. 근데 아직까지도 자주 게시글을 작성하는 걸 보면 생각보다는 꾸준히 하고 있다는 생각이 스스로 드네요.]]></description><link>https://yuhodots.github.io/branding/19-08-12/</link><guid isPermaLink="false">https://yuhodots.github.io/branding/19-08-12/</guid><pubDate>Mon, 12 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;블로그를 시작하고 얼마 안 된 것 같은데 벌써 8월이 되었습니다. 블로그를 처음 시작할 때 공부한 내용을 열심히 포스팅 하겠다는 다짐은 했지만서도 두 세달 정도 포스팅을 하다보면 질려서 포스팅 횟수가 현저히 적어지지 않을까 생각을 했었습니다. 근데 아직까지도 자주 게시글을 작성하는 걸 보면 생각보다는 꾸준히 하고 있다는 생각이 스스로 드네요.&lt;/p&gt;
+&lt;p&gt; 사실 4달이라는 기간이 다른 블로거 분들이 블로그를 운영해 온 기간과 비교하면 엄청 짧은 기간이긴 하지만, 저는 이렇게 오래 할거라고 생각하지 못했으니 제 기준에서는 길게 한거라고 치고(^ㅁ^;) 그동안 블로그 포스팅을 하면서 들은 개인적인 생각에 대해서 적어보려 합니다. 음 굳이 이런 글을 적는 이유 첫 번째는 예전의 저와 같이 개발 블로그를 해야하나 말아야하나 고민하는 분들에게 &apos;일단 시작 해 보세요!&apos;라고 추천해 주기 위함이고, 두 번째는 나중에 블로그 운영이 귀찮아졌을 때 이 글을 읽으면서 다시 나아갈 힘을 얻기 위함이라고 말할 수 있을 것 같습니다. 굳이 따지자면 두 번째 이유가 더 큰 것 같은.. &lt;/p&gt;
+&lt;p&gt; 일단 제 블로그를 한 줄로 요약해보자면 그냥 &apos;온라인 필기노트&apos;입니다. 요즘 올리는 글은 그래도 구글링을 통해 알게 된 내용과 스스로 공부한 내용을 총합해서 내용을 이해한 뒤에 글로 설명할 수 있는 실력이 되면 이를 게시글로 설명하는 방식이지만, 이전에 올리던 글들은 그저 인터넷 강의에 대한 필기가 전부였습니다. 그럼에도 개발자가 블로그를 하는 것이 매우 좋다고 생각을 하고, 이렇게 생각하는 이유는 아래와 같습니다. (개인적인 생각이니 흘려 들으셔도 됩니다.)&lt;/p&gt;
+&lt;/br&gt;
+&lt;h4&gt;좋은 동기가 됩니다.&lt;/h4&gt;
+&lt;p&gt; 공부한 내용을 머리로만 기억하고 글로 작성하지 않으면 나중에 뒤 돌아 봤을 때 남는게 없다는 느낌이 자주 들었습니다. 하지만 블로그에 포스팅을 하면 공부한 내용이 하나 둘 쌓이고 점차 게시글이 많아지는 것이 눈에 보이면서 이전보다 만족감이 늘어났습니다. 가끔은 공부를 위한 공부를 한게 아니라 포스팅을 위한 공부를 한 적도 있는 만큼 공부에 좋은 동기 또는 원동력으로 작용한다고 느꼈고, 글이 하나 둘 늘어날 때 마다 나름의 애착(?)도 생겨서 절대 유령블로그로 만들지 말자라는 다짐도 하게 되었습니다.&lt;/p&gt;
+&lt;p&gt; 사람이 어떤 목표를 잡더라도 작심삼일병이 도져 몇 일 지나고 나면 금새 까먹거나 그 목표를 져버리곤하는데, 블로그는 이 목표를 다시 상기시켜줘서 제가 게을러지는 것을 막아주는 역할을 아주 잘 수행해주고 있습니다. &lt;/p&gt;
+&lt;/br&gt;
+&lt;h4&gt;대충 이해하고 넘어가는 내용이 적어집니다.&lt;/h4&gt;
+&lt;p&gt; 웹 백엔드 개발 공부를 하면서 중요하다고 느낀게, &apos;내 코드에 당장 에러가 없다고 해서 쉽게 다음 단계로 넘어가면 안 된다&apos;는 것입니다. 저는 현재 아주 기초적인 백엔드 내용을 지나서 이전보다는 심화된 내용을 공부하고 있는 단계입니다. 이 단계에서는 공부를 하면 할 수록 이전 내용을 얼마나 제대로 이해했는지가 중요해지고 이전 내용을 제대로 이해하지 못하면 코드가 왜 에러를 뱉는지 찾을 수 없다는 것을 절실히 느끼고 있습니다. &lt;/p&gt;
+&lt;p&gt; 블로그에 공부한 내용을 포스팅하려면 아무리 쉬운 내용이라고 하더라도 생각을 글로 변환하기 위해서 기본적으로 3회독 정도를 하게됩니다. 확실히 여러 번 똑같은 내용을 확인하면 한 번만 보았을 때는 놓치고 지나가는 부분도 다시 확인하게 되고, 내가 작성하는 게시글의 내용에 대한 이해도가 현저히 증가하는 것을 느끼실 수 있을 겁니다. 결국엔 누군가에게 설명을 하는 그 자체가 지식을 정확하고 견고하게 만들어 줍니다.&lt;/p&gt;
+&lt;/br&gt;
+&lt;h4&gt;오히려 시간이 절약됩니다&lt;/h4&gt;
+&lt;p&gt; 프로젝트를 하다보면 생각보다 간단한 내용인데도 기억나지 않는 것들이 많습니다. 아예 기억이 나지 않는 것이 아니더라도 코드의 정확성을 위해서 이전의 내용을 다시 확인해야 하는 경우도 빈번히 발생합니다. 개발 블로그를 운영하면 이런 내용을 빠르게 다시 회상하거나 찾아 볼 수 있습니다. 글을 포스팅하는 시간은 많이 소요되지만 실제 개발을 진행하는 시간까지 고려해서 계산을 해 보면 저의 경우에는 오히려 블로그 포스팅을 함으로써 더 빠르게 개발을 진행 할 수 있었습니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[재미있게 읽은 자료들]]></title><description><![CDATA[우연한 기회로 (대부분 인터넷 서핑을 하다가🏄‍♂️) 접했지만 생각보다 흥미롭게 본 자료들입니다. 제가 각 시기에 무얼 보고 어떤 생각을 했는지 회상하기 위한 포스팅이며 재미있게 읽은 자료들이 늘어날 때 마다 목록을 추가 할 예정입니다.]]></description><link>https://yuhodots.github.io/branding/19-07-01/</link><guid isPermaLink="false">https://yuhodots.github.io/branding/19-07-01/</guid><pubDate>Mon, 01 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;우연한 기회로 (대부분 인터넷 서핑을 하다가🏄‍♂️) 접했지만 생각보다 흥미롭게 본 자료들입니다. 제가 각 시기에 무얼 보고 어떤 생각을 했는지 회상하기 위한 포스팅이며 재미있게 읽은 자료들이 늘어날 때 마다 목록을 추가 할 예정입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;유발 하라리 &apos;21세기를 위한 21가지 제언&apos; (2019.07)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.theteams.kr/teams/120/post/63992&quot;&gt;브랜딩에 관한 이야기&lt;/a&gt; (2019.07)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=SESuctdE9vM&quot;&gt;프로그래밍을 배워야하는 이유는?&lt;/a&gt; (2019.08)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dv7powwD-tQ&quot;&gt;일론 머스크, 인류의 미래를 생각하는 현실판 아이언 맨&lt;/a&gt; (2019.10)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=TQsrWa_mGCE&quot;&gt;조던 피터슨, 하버드 학생들에게 해주고 싶은 이야기&lt;/a&gt; (2019.12)&lt;/li&gt;
+&lt;li&gt;유발 하라리 &apos;사피엔스&apos; 리딩북 (2019.12)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCQ2DWm5Md16Dc3xRwwhVE7Q&quot;&gt;유튜브 채널 EO&lt;/a&gt; (2019 ~20)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=1utzfa-a5AY&quot;&gt;스티브잡스 스탠포드 연설&lt;/a&gt; (2020.08)&lt;/li&gt;
+&lt;li&gt;조던 피터슨 &apos;12가지 인생의 법칙&apos; (2020.10)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://gradschoolstory.net/&quot;&gt;대학원생 때 알았더라면 좋았을 것들&lt;/a&gt; (2020.10)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0008/&quot;&gt;Style Guide for Python Code (PEP 8)&lt;/a&gt;, &lt;a href=&quot;https://b.luavis.kr/python/python-convention&quot;&gt;이수겸님의 한글번역&lt;/a&gt; (2020.10)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://horizon.kias.re.kr/15780/&quot;&gt;임성빈 교수님, 수학도가 인공지능 연구에 기여하는 방법&lt;/a&gt; (2020.10)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.reddit.com/r/MachineLearning/comments/k28qgr/d_why_you_shouldnt_get_your_phd/?utm_source=share&amp;#x26;utm_medium=web2x&amp;#x26;context=3&quot;&gt;Why you shouldn&apos;t get your Ph.D&lt;/a&gt; (2020.11)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.reddit.com/r/MachineLearning/comments/k2pd9n/d_why_you_should_get_your_phd/?utm_source=share&amp;#x26;utm_medium=web2x&amp;#x26;context=3&quot;&gt;Why you should get your Ph.D&lt;/a&gt; (2020.12)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/better-programming/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d&quot;&gt;Numpy Illustrated: The Visual Guide to Numpy&lt;/a&gt; (2020.12)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 아래는 제게 수학에 대한 접근과 관점을 한 단계 성장시켜준 자료들입니다. 상당히 퀄리티가 있는 글과 영상이기에 제목을 보고 관심이 생기는 분들은 꼭 한번 들어가서 확인해보시는 것을 추천드립니다 👍 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.facebook.com/dgtgrade/posts/1598044216921105&quot;&gt;남세동님, High dimensional data와 Data point&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=euH9C61ywEM&quot;&gt;공돌이의 수학노트님, 베이즈 정리의 의미&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;#x26;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&quot;&gt;3blue1brown, Essence of Linear Algebra&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item></channel></rss>
