@@ -1,9 +1,9 @@
 ---
-title: "Title"
+title: "title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/posts/data_science/"
+path: "/datascience/example/"
 description: "none"
 category: "Data Science"
 ---

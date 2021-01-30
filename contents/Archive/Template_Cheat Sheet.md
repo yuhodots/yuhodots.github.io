@@ -1,9 +1,9 @@
 ---
-title: "Title"
+title: "title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/posts/Template_Cheat_Sheet/"
+path: "/cheatsheet/example/"
 description: "none"
 category: "Cheat Sheet"
 ---
