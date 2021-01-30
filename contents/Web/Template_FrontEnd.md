@@ -3,7 +3,7 @@ title: "Title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/archive/frontend/"
+path: "/posts/frontend/"
 description: "none"
 category: "FrontEnd"
 ---

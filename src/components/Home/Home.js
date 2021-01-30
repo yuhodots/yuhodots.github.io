@@ -5,9 +5,6 @@ import "./Home.scss";
 
 const Home = ({ posts }) => {
     const [keyword, setKeyword] = useState("");
-    const onChange = ({ target }) => {
-        setKeyword(target.value);
-    };
     return (
         <div className="post-list-container">
             <ul className="post-list">

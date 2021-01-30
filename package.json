@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "yuhodots.github.io",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Yuho Jeong's blog",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "yuho <yuho8437@unist.ac.kr>",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "gatsby": "^2.31.1",
@@ -34,6 +34,7 @@
     "sass": "^1.32.5"
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "prettier": "2.2.1"
   },
   "keywords": [
@@ -43,17 +44,16 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "node_modules/.bin/eslint *.js src/**/*.js --fix",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\" && npm run lint",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "repository": {
+    "test": "echo \"Write tests! -> https://gwatsby.dev/unit-testing\" && exit 1",
+    "deploy": "npm run clean && gatsby build && cd public && rm *.map && cd .. && gh-pages -b master -d public"
+},
+"repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  }
+    "url": "https://github.com/yuhodots/gatsby-blog"
+}
 }

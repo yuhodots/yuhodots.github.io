@@ -9,10 +9,10 @@ const path = require("path");
 
 exports.createPages = ({ actions, graphql }) => {
     const { createPage } = actions;
-    const IndexTemplate = path.resolve("src/pages/index.js");
-    const PostTemplate = path.resolve("src/pages/post.js");
-    const CategoryTemplate = path.resolve("src/pages/category.js");
-    const AboutTemplate = path.resolve("src/pages/about.js");
+    const IndexTemplate = path.resolve("src/templates/index.js");
+    const PostTemplate = path.resolve("src/templates/post.js");
+    const CategoryTemplate = path.resolve("src/templates/category.js");
+    const AboutTemplate = path.resolve("src/templates/about.js");
     
 
     createPage({

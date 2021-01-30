@@ -3,7 +3,7 @@ title: "Title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/archive/cheat_sheet/"
+path: "/posts/Template_Cheat_Sheet/"
 description: "none"
 category: "Cheat Sheet"
 ---

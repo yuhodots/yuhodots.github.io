@@ -3,7 +3,7 @@ title: "Title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/archive/branding/"
+path: "/posts/Template_Branding/"
 description: "none"
 category: "Branding"
 ---

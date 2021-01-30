@@ -3,7 +3,7 @@ title: "Title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/archive/deep_learning/"
+path: "/posts/deep_learning/"
 description: "none"
 category: "Deep Learning"
 ---

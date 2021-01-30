@@ -3,7 +3,7 @@ title: "Title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/archive/data_science/"
+path: "/posts/data_science/"
 description: "none"
 category: "Data Science"
 ---
