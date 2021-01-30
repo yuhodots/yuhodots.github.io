@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import PostItem from "./PostItem";
+import Item from "./Item";
 
-import "./PostList.scss";
+import "./Home.scss";
 
-const PostList = ({ posts }) => {
+const Home = ({ posts }) => {
     const [keyword, setKeyword] = useState("");
     const onChange = ({ target }) => {
         setKeyword(target.value);
@@ -21,7 +21,7 @@ const PostList = ({ posts }) => {
                         );
                     })
                     .map((post, idx) => (
-                        <PostItem
+                        <Item
                             item={post.node.frontmatter}
                             key={`post-list-${idx}`}
                         />
@@ -31,4 +31,4 @@ const PostList = ({ posts }) => {
     );
 };
 
-export default PostList;
+export default Home;

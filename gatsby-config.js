@@ -34,7 +34,7 @@ module.exports = {
           },
           "gatsby-remark-relative-images",
           { resolve: "gatsby-remark-images",
-            options: { maxWidth: 800, withWebp: true } },
+            options: { maxWidth: 760, withWebp: true } },
           { resolve: "gatsby-remark-prismjs",
             options: {} }
         ]
@@ -128,7 +128,7 @@ module.exports = {
         background_color: "#663399",
         theme_color: "#663399",
         display: "minimal-ui",
-        icon: "public/profile.jpg"
+        icon: "images/profile.jpg"
       }
     }
   ]

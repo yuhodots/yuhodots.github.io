@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./Header";
 
 import "@fortawesome/fontawesome-free/css/all.css";
-import "../../public/stylesheets/asset.scss";
+import "../../stylesheets/asset.scss";
 import "./layout.scss";
 
 const Layout = ({ children, type }) => {

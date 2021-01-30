@@ -1,11 +1,13 @@
+
 .post-info {
     font-family: 'Montserrat', sans-serif;
+    margin-bottom: 3px;
     .date {
-        font-size: 13px;
+        font-size: 12px;
     }
     .category {
         margin-right: 10px;
-        font-size: 11px;
+        font-size: 10px;
         background: var(--post-info-category-bg);
         padding: 1px 7px;
         font-weight: bold;
