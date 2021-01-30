@@ -6,13 +6,17 @@
         font-size: 12px;
     }
     .category {
-        margin-right: 10px;
-        font-size: 10px;
-        background: var(--post-info-category-bg);
-        padding: 1px 7px;
+        font-size: 12px;
+        color: var(--post-info-category-bg);
         font-weight: bold;
-        border-radius: 8px;
         text-transform: uppercase;
+    }
+    .middle {
+        display: inline-block;
+        width: 1px;
+        height: 9px;
+        margin: 0 8px;
+        background-color: #AAAAAA;
     }
 }
 
