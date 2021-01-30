@@ -8,7 +8,6 @@ const siteMetadata = {
 };
 
 module.exports = {
-  pathPrefix: "/gatsby-blog/",
   siteMetadata,
   plugins: [
     "gatsby-plugin-react-helmet",
