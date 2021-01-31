@@ -4,16 +4,15 @@ import { Link } from "gatsby";
 import PostInfo from "../Post/PostInfo";
 
 import "./Item.scss";
+import images from "../../../images";
 
 function importAll(r) {
     return r.keys().map(r);
 }
-  
-const images = importAll(require.context('../../../images', false, /\.(png|jpe?g|svg)$/));
 
 const Item = ({ item }) => {
-    const { title, description, path, date, category } = item;
-    const thumbnail_path = images[category.toLowerCase()];
+    const { title, description, path, date, category, thumbnail } = item;
+    const thumbnail_path = images[thumbnail];
     console.log(images)
     return (
         <li className="post-item">

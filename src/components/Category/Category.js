@@ -11,7 +11,7 @@ const Category = ({ categories, posts }) => {
     const upperCategory = {
         'MachineLearning':['Deep Learning', 'Data Science'],
         'Web':['FrontEnd', 'BackEnd', 'Server'],
-        'Archive':['Branding', 'Cheat Sheet'],
+        'Archive':['Cheat Sheet', 'Diary'],
     }
     return (
         <div className="category">

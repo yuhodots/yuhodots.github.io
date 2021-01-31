@@ -27,6 +27,7 @@ const IndexTemplate = () => {
                             path
                             date
                             category
+                            thumbnail
                         }
                     }
                 }

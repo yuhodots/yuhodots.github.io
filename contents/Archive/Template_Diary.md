@@ -3,12 +3,12 @@ title: "title"
 date: "2000-01-01"
 template: "post"
 draft: true
-path: "/branding/example/"
+path: "/diary/example/"
 description: "none"
-category: "Branding"
+category: "Diary"
 ---
 
-## Template for Branding
+## Template for Diary
 
 내용을 추가해주세요
 
