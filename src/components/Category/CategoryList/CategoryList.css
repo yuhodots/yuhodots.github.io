@@ -57,3 +57,10 @@
         margin-right: 10px;
     }
 }
+
+/* Mobile Device */
+@media all and (max-width: 768px) {
+    .category-list {
+        padding-top: 50px;
+    }
+}

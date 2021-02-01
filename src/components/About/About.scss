@@ -6,3 +6,10 @@
     padding-top: 60px;
     padding-bottom: 40px;
 }
+
+/* Mobile Device */
+@media all and (max-width: 768px) {
+    .about-content {
+        padding-top: 50px;
+    }
+}

@@ -17,13 +17,6 @@
             letter-spacing: -0.7px;
             color: var(--post-item-description-color);
         }
-        img {
-            width: 100px;
-            height: 100px;
-            border-radius: 7px;
-            margin-left: 15px;
-            margin-top: 30px;
-        }
         &:hover,
         &:active {
             h2 {
@@ -43,5 +36,20 @@
     .post-item-container {
         padding: 15px;
         margin-bottom: 0;
+    }
+    img {
+        width: 120px;
+        height: 120px;
+        border-radius: 7px;
+        margin-left: 15px;
+        margin-top: 30px;
+    }
+}
+
+/* Mobile Device */
+@media all and (max-width: 768px) {
+    img {
+        width: 0px;
+        height: 0px;
     }
 }
