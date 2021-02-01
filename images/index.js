@@ -4,7 +4,6 @@ import datascience from "./datascience.png";
 import deeplearning from "./deeplearning.png";
 import express from "./express.png";
 import linux from "./linux.png";
-import matlab from "./matlab.jpg";
 import nginx from "./nginx.png";
 import react from "./react.png";
 
@@ -15,7 +14,6 @@ export default {
     deeplearning,
     express,
     linux,
-    matlab,
     nginx,
     react,
 };
