@@ -44,15 +44,19 @@
     p {
         line-height: 30px;
         margin-bottom: 1rem;
+        span{
+            .gatsby-resp-image-wrapper{
+                margin: 30px 0 35px 0;
+                box-shadow: 0px 3px 12px 0px rgb(0 0 0 / 20%);
+                border-radius: 7px;
+            }
+        }
     }
     h2 {
         padding-bottom: .3em;
         border-bottom: 1px solid #eaecef;
         margin: 30px 0 15px 0;
         font-size: 25px;
-        @media (prefers-color-scheme: dark) {
-            border-bottom: 1px solid #3f4040;
-        }
     }
     h3 {
         margin: 35px 0 20px 0;
@@ -67,7 +71,7 @@
     }
     h5{
         font-size: 16px;
-        margin: 20px 0 15px 0;
+        margin: 18px 0 18px 0;
     }
     a {
         text-decoration: none;
@@ -109,13 +113,10 @@
         padding: 0 2px 0 0;
     }
     code[class*="language-text"] {
-        color: #fe4365;
-        @media (prefers-color-scheme: dark) {
-            color: #cc3551;
-        }
+        color: #cc3551;
     }
     ol {
-        margin: 20px 0 20px 20px;
+        margin: 20px 0 20px 25px;
     }
     ul {
         margin: 20px 0 20px 20px;
@@ -157,13 +158,13 @@ info {
 /* Tablet, Desktop Device */
 @media all and (min-width: 768px) {
     .post-content blockquote {
-        margin: 20px 0 20px 15px;
+        margin: 20px 0;
     }
     .post-content blockquote p {
         font-size: 16px;
     }
     .post-content ol {
-        margin: 20px 0 20px 20px;
+        margin: 20px 0 20px 25px;
     }
     .post-content li {
         margin-bottom: 10px;
