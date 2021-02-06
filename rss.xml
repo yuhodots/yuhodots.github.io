@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 01 Feb 2021 16:12:04 GMT</lastBuildDate><item><title><![CDATA[데이터의 분포를 고려한 거리 계산, Mahalanobis distance]]></title><description><![CDATA[Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/datascience/21-01-24/</link><guid isPermaLink="false">https://yuhodots.github.io/datascience/21-01-24/</guid><pubDate>Sat, 23 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다. &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 06 Feb 2021 00:26:31 GMT</lastBuildDate><item><title><![CDATA[데이터의 분포를 고려한 거리 계산, Mahalanobis distance]]></title><description><![CDATA[Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/datascience/21-01-24/</link><guid isPermaLink="false">https://yuhodots.github.io/datascience/21-01-24/</guid><pubDate>Sat, 23 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다. &lt;/p&gt;
 &lt;h3&gt;Inverse matrix&lt;/h3&gt;
 &lt;p&gt;어떤 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;D_a&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.02778em;&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.151392em;&quot;&gt;&lt;span style=&quot;top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 데이터 분포에 대하여 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;A&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 행렬을 곱하면, 선형 대수에서 가장 기본적 형태인 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;AD_a = B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.02778em;&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.151392em;&quot;&gt;&lt;span style=&quot;top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.05017em;&quot;&gt;B&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 식으로 표현됩니다. 이미지 왼쪽은 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;D_a&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.02778em;&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.151392em;&quot;&gt;&lt;span style=&quot;top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 즉, 데이터 분포를 나타낸 것이고, 오른쪽은 이 데이터 분포에 어떤 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;A&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 선형변환을 가한 결과(&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.05017em;&quot;&gt;B&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;)입니다.&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -846,7 +846,7 @@ M834 80h400000v40h-400000z&apos;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/span&gt;&lt;/
 &lt;ul&gt;
 &lt;li&gt;Ian Goodfellow, Yoshua Bengio, and Aaron Courville, Deep Learning (The MIT Press), Chapter 3.13&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zJmbkp9TCXY&quot;&gt;Terry TaeWoong Um님 유튜브 채널﻿&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[1년간 진행한 유잇다 프로젝트 마무리]]></title><description><![CDATA[2019년 2월에 교내 인액터스 친구들과 시작한 프로젝트를 2020년 6월이 되어서 마무리하게 되었습니다. 막 프로젝트를 마무리하게 된 이 시점에서 1년 반 동안의 기록을 아래에 적어보려고 합니다.]]></description><link>https://yuhodots.github.io/diary/20-06-09/</link><guid isPermaLink="false">https://yuhodots.github.io/diary/20-06-09/</guid><pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;2019년 2월에 교내 인액터스 친구들과 시작한 프로젝트를 2020년 6월이 되어서 마무리하게 되었습니다. 막 프로젝트를 마무리하게 된 이 시점에서 1년 반 동안의 기록을 아래에 적어보려고 합니다.&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[1년간 진행한 유잇다 프로젝트 마무리]]></title><description><![CDATA[2019년 2월에 교내 인액터스 친구들과 시작한 프로젝트를 2020년 6월이 되어서 마무리하게 되었습니다. 막 프로젝트를 마무리하게 된 이 시점에서 1년 반 동안의 기록을 아래에 적어보려고 합니다. 저희 프로젝트의 이름은 '유잇다'입니다. 제가 현재 재학중인 유니스트의 학생들을 저희의 웹 서비스를 통해 연결해보겠다는 의미에서 제작된 이름입니다.]]></description><link>https://yuhodots.github.io/diary/20-06-09/</link><guid isPermaLink="false">https://yuhodots.github.io/diary/20-06-09/</guid><pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;2019년 2월에 교내 인액터스 친구들과 시작한 프로젝트를 2020년 6월이 되어서 마무리하게 되었습니다. 막 프로젝트를 마무리하게 된 이 시점에서 1년 반 동안의 기록을 아래에 적어보려고 합니다.&lt;/p&gt;
 &lt;h3&gt;프로젝트의 시작&lt;/h3&gt;
 &lt;p&gt; 저희 프로젝트의 이름은 &apos;유잇다&apos;입니다. 제가 현재 재학중인 유니스트의 학생들을 저희의 웹 서비스를 통해 연결해보겠다는 의미에서 제작된 이름입니다.  &lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -1813,7 +1813,12 @@ train &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; tf&lt;span cla
 &lt;h3&gt;Reference&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Example: 김성훈 교수님의 &lt;a href=&quot;https://hunkim.github.io/ml/&quot;&gt;모두를 위한 딥러닝/머신러닝&lt;/a&gt;, Simple Linear Regression 실습 코드 참고&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[매트랩(MATLAB) Cheat Sheet]]></title><description><![CDATA[이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다. 일반적으로는 좌측에 디렉토리, 중앙에 스크립트, 우측에 작업공간 (변수와 값), 하단에 명령 창으로 이루어져 있습니다.]]></description><link>https://yuhodots.github.io/cheatsheet/19-09-17/</link><guid isPermaLink="false">https://yuhodots.github.io/cheatsheet/19-09-17/</guid><pubDate>Tue, 17 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Nginx로 React 배포하기 (공유)]]></title><description><![CDATA[저는 현재 프론트엔드 라이브러리로 React를 사용하고 있으며, 웹 서버로는 Nginx를 사용하고 있습니다. 이번에 이를 서비스하기 위해 Nginx로 React를 배포하는 방법에 대해 찾아보다가 발견한 좋은 포스팅을 아래에 링크로 공유합니다. ]]></description><link>https://yuhodots.github.io/server/19-11-07/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-11-07/</guid><pubDate>Thu, 07 Nov 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;저는 현재 프론트엔드 라이브러리로 React를 사용하고 있으며, 웹 서버로는 Nginx를 사용하고 있습니다. 아직은 서버 컴퓨터에서 작성한 코드를 서비스하지 않은 상태였는데, 이번에 이를 서비스하기 위해 Nginx로 React를 배포하는 방법에 대해 찾아보았고 이와 관련하여 잘 포스팅 된 내용들을 아래에 링크로 공유합니다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://codechacha.com/ko/deploy-react-with-nginx/&quot;&gt;https://codechacha.com/ko/deploy-react-with-nginx/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.naver.com/PostView.nhn?blogId=dilrong&amp;#x26;logNo=221497936351&quot;&gt;https://blog.naver.com/PostView.nhn?blogId=dilrong&amp;#x26;logNo=221497936351&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; npm run build를 통해 React 앱을 빌드하고, 이후 nginx의 config 파일을 수정하는 과정에 대해 설명해주셨습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[매트랩(MATLAB) Cheat Sheet]]></title><description><![CDATA[이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다. 일반적으로는 좌측에 디렉토리, 중앙에 스크립트, 우측에 작업공간 (변수와 값), 하단에 명령 창으로 이루어져 있습니다.]]></description><link>https://yuhodots.github.io/cheatsheet/19-09-17/</link><guid isPermaLink="false">https://yuhodots.github.io/cheatsheet/19-09-17/</guid><pubDate>Tue, 17 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;Setting&lt;/h3&gt;
@@ -2004,7 +2009,37 @@ fprintf(&amp;#39;Y equals %f and Z equals %f\n&amp;#39;,Y,Z);&lt;/code&gt;&lt;/p
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://kyun2.tistory.com/72&quot;&gt;Mac 아나콘다 파이썬 설치하기 - kyun2world님&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.tensorflow.org/install/pip?hl=ko&quot;&gt;pip를 이용하여 TensorFlow 설치 - TensorFlow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[얼마 전 겪은 '502 : Bad Gateway' 오류와 느낀점]]></title><description><![CDATA[한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.]]></description><link>https://yuhodots.github.io/diary/19-08-13/</link><guid isPermaLink="false">https://yuhodots.github.io/diary/19-08-13/</guid><pubDate>Tue, 13 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.&lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Nginx 설정을 통한 https 리다이렉션]]></title><description><![CDATA[이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/server/19-08-14/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-14/</guid><pubDate>Wed, 14 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 node.js가 아니라, nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다. 본 포스팅은 아래의 조건을 충족한 분들을 위한 포스팅입니다. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;SSL인증서를 발급 받았음&lt;/li&gt;
+&lt;li&gt;AWS ELB를 이용해 인증서를 웹 사이트 도메인에 적용하였음&lt;/li&gt;
+&lt;li&gt;Node.js의 프록시 서버로 Nginx를 사용하고 있음&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;HTTPS redirection&lt;/h3&gt;
+&lt;p&gt; Classic Load Balancer는 아래의 X-Forwarded 헤더를 지원합니다. 저는 이 중 X-Forwarded-Proto 헤더를 이용하겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;X-Forwarded-For : HTTP 또는 HTTPS 로드 밸런서를 사용할 때 클라이언트의 IP를 식별하는데 도움을 줌&lt;/li&gt;
+&lt;li&gt;X-Forwarded-Proto : 클라이언트가 로드 밸런서 연결에 사용한 프로토콜(HTTP 또는 HTTPS)을 식별하는데 도움을 줌&lt;/li&gt;
+&lt;li&gt;X-Forwarded-Port : 클라이언트가 로드 밸런서 연결에 사용한 대상 포트를 식별하는 데 도움을 줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; HTTPS redirection을 위해서는 nginx 환경설정 파일을 수정해야 합니다. nginx 환경설정은 /etc/nginx/ 디렉토리의 &lt;strong&gt;nginx.conf&lt;/strong&gt;  파일이나, /etc/nginx/sites-enabled 디렉토리의 &lt;strong&gt;default&lt;/strong&gt; 파일을 수정하면 됩니다. (저의 경우에는 /etc/nginx/sites-enabled 디렉토리의 &lt;strong&gt;default&lt;/strong&gt; 파일을 수정하였습니다.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    if ($http_x_forwarded_proto = &amp;#39;http&amp;#39;){
+        return 301 https://$host$request_uri;
+    }
+    ...    
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; AWS에서는 Nginx 뿐만 아니라, Apache, IIS 서버에 대한 &lt;a href=&quot;https://aws.amazon.com/ko/premiumsupport/knowledge-center/redirect-http-https-elb/&quot;&gt;HTTPS redirection 방법&lt;/a&gt;에 대해 친절하게 설명 해 주고 있습니다. 저 또한 이 링크를 참고하였습니다.&lt;/p&gt;
+&lt;p&gt; 위의 코드에서 우리가 주목할 것은 if문 밖에 없습니다. if문 내 &lt;code class=&quot;language-text&quot;&gt;($http_x_forwarded_proto = &amp;#39;http&amp;#39;)&lt;/code&gt; 조건은 &lt;strong&gt;클라이언트가 HTTP로 연결&lt;/strong&gt;을 시도하였다는 의미입니다. 이 경우에는 &lt;code class=&quot;language-text&quot;&gt;return 301 https://...&lt;/code&gt; 명령이 실행되면서 &lt;strong&gt;클라이언트의 연결을 HTTPS 로 redirection&lt;/strong&gt; 합니다. &lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;return 301 https://$host$request_uri&lt;/code&gt; 를 상세히 살펴보면 아래와 같습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;301: HTTP 응답 상태 코드 301은 영구적인 URL 리다이렉션을 의미합니다. &lt;/li&gt;
+&lt;li&gt;$host: 서버의 도메인 주소를 의미합니다.&lt;/li&gt;
+&lt;li&gt;$request_uri: 클라이언트가 요청한 url를 의미합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; if문 두 줄을 nginx 환경설정에 추가함으로써 손 쉽게 HTTPS redirection을 구현 할 수 있었습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[얼마 전 겪은 '502 : Bad Gateway' 오류와 느낀점]]></title><description><![CDATA[한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.]]></description><link>https://yuhodots.github.io/diary/19-08-13/</link><guid isPermaLink="false">https://yuhodots.github.io/diary/19-08-13/</guid><pubDate>Tue, 13 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
@@ -2132,7 +2167,822 @@ fprintf(&amp;#39;Y equals %f and Z equals %f\n&amp;#39;,Y,Z);&lt;/code&gt;&lt;/p
 &lt;p&gt; 블로그에 공부한 내용을 포스팅하려면 아무리 쉬운 내용이라고 하더라도 생각을 글로 변환하기 위해서 기본적으로 3회독 정도를 하게됩니다. 확실히 여러 번 똑같은 내용을 확인하면 한 번만 보았을 때는 놓치고 지나가는 부분도 다시 확인하게 되고, 내가 작성하는 게시글의 내용에 대한 이해도가 현저히 증가하는 것을 느끼실 수 있을 겁니다. 결국엔 누군가에게 설명을 하는 그 자체가 지식을 정확하고 견고하게 만들어 줍니다.&lt;/p&gt;
 &lt;/br&gt;
 &lt;h4&gt;오히려 시간이 절약됩니다&lt;/h4&gt;
-&lt;p&gt; 프로젝트를 하다보면 생각보다 간단한 내용인데도 기억나지 않는 것들이 많습니다. 아예 기억이 나지 않는 것이 아니더라도 코드의 정확성을 위해서 이전의 내용을 다시 확인해야 하는 경우도 빈번히 발생합니다. 개발 블로그를 운영하면 이런 내용을 빠르게 다시 회상하거나 찾아 볼 수 있습니다. 글을 포스팅하는 시간은 많이 소요되지만 실제 개발을 진행하는 시간까지 고려해서 계산을 해 보면 저의 경우에는 오히려 블로그 포스팅을 함으로써 더 빠르게 개발을 진행 할 수 있었습니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[재미있게 읽은 자료들]]></title><description><![CDATA[우연한 기회로 (대부분 인터넷 서핑을 하다가🏄‍♂️) 접했지만 생각보다 흥미롭게 본 자료들입니다. 제가 각 시기에 무얼 보고 어떤 생각을 했는지 회상하기 위한 포스팅이며 재미있게 읽은 자료들이 늘어날 때 마다 목록을 추가 할 예정입니다.]]></description><link>https://yuhodots.github.io/diary/19-07-01/</link><guid isPermaLink="false">https://yuhodots.github.io/diary/19-07-01/</guid><pubDate>Mon, 01 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;우연한 기회로 (대부분 인터넷 서핑을 하다가🏄‍♂️) 접했지만 생각보다 흥미롭게 본 자료들입니다. 제가 각 시기에 무얼 보고 어떤 생각을 했는지 회상하기 위한 포스팅이며 재미있게 읽은 자료들이 늘어날 때 마다 목록을 추가 할 예정입니다. 몇 개는 아직 안 읽은 것들도 있긴한데, 음.. 언젠간 읽겠죠..?&lt;/p&gt;
+&lt;p&gt; 프로젝트를 하다보면 생각보다 간단한 내용인데도 기억나지 않는 것들이 많습니다. 아예 기억이 나지 않는 것이 아니더라도 코드의 정확성을 위해서 이전의 내용을 다시 확인해야 하는 경우도 빈번히 발생합니다. 개발 블로그를 운영하면 이런 내용을 빠르게 다시 회상하거나 찾아 볼 수 있습니다. 글을 포스팅하는 시간은 많이 소요되지만 실제 개발을 진행하는 시간까지 고려해서 계산을 해 보면 저의 경우에는 오히려 블로그 포스팅을 함으로써 더 빠르게 개발을 진행 할 수 있었습니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[AWS Certificate Manager란?]]></title><description><![CDATA[https에 붙는 's'는 Secure Socket Layer를 의미하는데 이를 줄여서 SSL이나 TLS(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다.]]></description><link>https://yuhodots.github.io/server/19-08-05/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-05/</guid><pubDate>Mon, 05 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;여러 웹 사이트를 돌아다니다 보면 어떤 사이트는 url주소가 http로 시작하고, 어떤 사이트는 https로 시작하는 것을 확인 할 수 있습니다. 이는 사용자와 서버가 주고받는 정보에 대해 데이터 무결성의 차이 때문인데 이 차이 때문에 https가 http보다 훨씬 안전한 접속이라는 것이 보장됩니다.&lt;/p&gt;
+&lt;p&gt; https에 붙는 &apos;s&apos;는 Secure Socket Layer를 의미하는데 이를 줄여서 &lt;strong&gt;SSL&lt;/strong&gt;이나 &lt;strong&gt;TLS&lt;/strong&gt;(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다. AWS의 ACM에서는, AWS 기반 웹 사이트 및 애플리케이션에 대한 공인 SSL/TLS 인증서를 생성 및 관리하는 복잡한 과정을 처리할 수 있습니다. 이번 포스팅에서 ACM에 대해서 알아보기 전에 SSL/TLS에 대한 정의 먼저 살펴보도록 합시다.&lt;/p&gt;
+&lt;h3&gt;TLS (전송 계층 보안)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;아래 내용은 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&quot;&gt;위키피디아&lt;/a&gt;의 설명입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 전송 계층 보안(Transport Layer Security, TLS)은 통신 보안을 제공하기 위해 설계된 암호 규약이다. 이 규약은 인터넷 같이 TCP/IP 네트워크를 사용하는 통신에 적용되며, 통신 과정에서 전송계층 종단간 보안과 데이터 무결성을 확보해준다. 이 규약은 웹 브라우징, 전자 메일, 인스턴트 메신저 같은 응용 부분에 적용되고 있다. 국제 인터넷 표준화 기구(IETF)에 의해 현재 구식(deprecate)으로 간주되어 있다. 최종 갱신은 RFC 5246이고, 최종 갱신 버전은 넷스케이프에서 만든 SSL 표준을 바탕으로 했다.&lt;/p&gt;
+&lt;p&gt;우선 첫 단계에서 서버와 클라이언트는 암호 스위트를 교환한다. 이 단계에서 키 교환과 인증에 사용될 암호화 방법, 메시지 인증 코드(MAC)가 결정된다. 키 교환과 인증 알고리즘은 공개키 방법을 사용하거나 미리 공유된 키(TLS-PSK)를 사용할 수도 있다. 메시지 인증 코드들은 HMAC 해시 함수로 만든다. SSL에서는 비표준 무작위 함수를 사용한다.&lt;/p&gt;
+&lt;p&gt;SSL 규약은 처음에 넷스케이프가 만들었다. 1.0 버전은 공개 된 적이 없고, 2.0 버전이 1995년 2월에 이르러서야 릴리스가 된다. 그러나 이 버전은 많은 보안 결함 때문에 3.0 버전으로 곧바로 이어진다. 3.0은 1996년 릴리스 된다. 결국 3.0 버전은 TLS 버전 1.0의 기초가 되고, IETF에서 1999년 1월에 RFC 2246 표준 규약으로 정의하게 된다.&lt;/p&gt;
+&lt;h3&gt;ACM (AWS Certificate Manager)&lt;/h3&gt;
+&lt;p&gt; HTTPS 인증은 인증서 발급기관에서 사이트 인증을 통해 인증서를 발급 해 주는 형태로 이루어집니다. 무료로 몇 개월 간 개인 웹 사이트에 인증서를 발급해 주는 기관도 존재하고 그게 아니라면 유료로 인증서를 발급 받는 방법도 있는데, 자신이 AWS를 사용하고 있다면 ACM을 통해 무료로 인증서를 발급받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;아마존에서는 다음과 같은 서비스를 제공한다고 합니다. 저는 이 중 ACM 인증서를 사용하려고 합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ACM에서 제공하는 공인 인증서(ACM 인증서) 또는 ACM으로 가져온 인증서를 사용할 수 있습니다. ACM 인증서는 도메인 이름과 도메인 내의 여러 이름을 보호할 수 있습니다. 또한 ACM을 사용하여 원하는 만큼의 하위 도메인을 보호할 수 있는 와일드카드 SSL 인증서를 생성할 수도 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; ACM은 X.509 버전 3 인증서를 생성합니다. 각 인증서는 13개월 동안 유효하며 다음 확장이 포함됩니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;기본 제약&lt;/strong&gt; - 인증서의 주체가 인증 기관(CA)인지 여부를 지정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;기관 키 식별자&lt;/strong&gt; - 인증서에 서명하는 데 사용되는 프라이빗 키에 해당하는 퍼블릭 키를 식별할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;주체 키 식별자&lt;/strong&gt; - 특정 퍼블릭 키가 포함된 인증서를 식별할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;키 사용&lt;/strong&gt; - 인증서에 포함된 퍼블릭 키의 용도를 정의합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;확장 키 사용&lt;/strong&gt; - &lt;strong&gt;키 사용&lt;/strong&gt; 확장에 지정된 용도에 추가하여 퍼블릭 키를 사용할 수 있는 하나 이상의 용도를 지정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CRL 배포 지점&lt;/strong&gt; - CRL 정보를 얻을 수 있는 위치를 지정합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;콘솔을 통한 공인 인증서 요청&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c6f66/19-08-05-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.368421052631575%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABbUlEQVQoz32S3U7CQBCF+/omRhMTb3wFEuONMRpFIKCAemMppT+BCklLoaXF0rSUluPuxIVi1Em+7M7sOTuzTSXP8/Abvu8TqyjG+cUJbu+vkSZrqv3l4UiO46CMbdtwXReWZUFRFOi6jnqjhtfXF2iahn6/f6D96Ze4UTAajWjlpna7jUajQbRaLTSbLdpXH6rodrswTRNlr0DilwjG4zEmkzEMQ6dpOHxCWRmgr2owDYPywUAj7Ye19wqkzWYDwXTqQNNN+OEKPPI8R1EUBN+LnK+y3MNsETFfjvIdEr5jy4SKquP96QapWsF/4TguTo+PsHo7Y1l2cCZtt1tkWcZuzyD3VDzX7hBZHaRpSh2pGdPwyXiN74fDIa4uK5jrdWzWKauvScvPaMIoihAEIWOOydSEFwZYLALEcbzrzJ+5XC4RhiGtth8zEpYH9LskSbKfcGcqPtExHxEljvgQ1LWsEVFTFxjO4oMa130BsySfsm2dbLkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/15813/19-08-05-1.webp 190w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/1cdb2/19-08-05-1.webp 380w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/9046c/19-08-05-1.webp 760w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c89f9/19-08-05-1.webp 1140w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/7afe4/19-08-05-1.webp 1520w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/338c0/19-08-05-1.webp 2722w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/a2d4f/19-08-05-1.png 190w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3f520/19-08-05-1.png 380w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3c051/19-08-05-1.png 760w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/b5cea/19-08-05-1.png 1140w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/891d5/19-08-05-1.png 1520w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c6f66/19-08-05-1.png 2722w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3c051/19-08-05-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ACM 콘솔에 로그인하여 인증서 프로비저닝 시작하기 버튼을 클릭합니다. 그리고 &apos;공인인증서 요청&apos;을 클릭합니다. &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;자신의 웹 사이트 도메인 이름을 입력합니다.&lt;/p&gt;
+&lt;p&gt;www.example.com 같은 FQDN(Fully Qualified Domain Name)이나 example.com 같은 베어 또는 apex 도메인 이름을 사용할 수 있습니다. 맨 왼쪽에서 별표(*)를 와일드카드로 사용하여 동일한 도메인 내에서 여러 사이트 이름을 보호할 수도 있습니다. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;도메인 DNS 구성을 수정할 권한을 가지고 있거나 얻을 수 있는 경우에는 &apos;DNS 검증&apos;을 선택하고, 그렇지 않을 경우 &apos;이메일 검증&apos;을 선택합니다. (저는 DNS 검증을 선택했습니다.)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;strong&gt;DNS검증 방법&lt;/strong&gt;에 대해 설명하도록 하겠습니다. ACM은 CNAME(Canonical Name) 레코드를 사용하여 도메인에 대한 사용자의 소유권이나 제어 권한을 확인합니다. ACM은 사용자에게 DNS 데이터베이스에 삽입할 CNAME 레코드를 제공하는데, 생성된 각 레코드에는 이름과 값이 포함되어 있습니다. 값은 ACM에 소유권이 있고 ACM이 인증서를 자동 갱신하는 데 사용하는 도메인을 가리키는 별칭입니다. DNS 데이터베이스에 CNAME 레코드를 한 번만 추가하면 검증이 완료됩니다.&lt;/p&gt;
+&lt;p&gt; 만약 DNS공급자가 Amazon Route 53라면 아래 버튼을 통해 손쉽게 레코드를 생성할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/21b4d/19-08-05-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 11.052631578947368%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVQI11XMuQqAMBBFUf//pywNbgFRUBGxikVmErekfWoaY3GZKR4naWeJVApkXY6iF2CjQJqhtQ4xM4wx4ca/tfZpA9kT+3HBex9KFtWhHirIsUIzlc94BdEHEtEPjOEX5Ah0zuEGptKU7Ahi8hEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/15813/19-08-05-2.webp 190w,
+/static/1490026b20599b5a5899d64ed7dfc6af/1cdb2/19-08-05-2.webp 380w,
+/static/1490026b20599b5a5899d64ed7dfc6af/9046c/19-08-05-2.webp 760w,
+/static/1490026b20599b5a5899d64ed7dfc6af/c89f9/19-08-05-2.webp 1140w,
+/static/1490026b20599b5a5899d64ed7dfc6af/af3f0/19-08-05-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/a2d4f/19-08-05-2.png 190w,
+/static/1490026b20599b5a5899d64ed7dfc6af/3f520/19-08-05-2.png 380w,
+/static/1490026b20599b5a5899d64ed7dfc6af/3c051/19-08-05-2.png 760w,
+/static/1490026b20599b5a5899d64ed7dfc6af/b5cea/19-08-05-2.png 1140w,
+/static/1490026b20599b5a5899d64ed7dfc6af/21b4d/19-08-05-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/3c051/19-08-05-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; DNS 구성을 업데이트한 후 &apos;계속&apos;을 선택하면 ACM에 모든 인증서가 포함된 테이블 보기가 표시됩니다. 요청한 인증서와 그 상태가 표시됩니다. DNS 공급자가 레코드 업데이트를 전파한 후 ACM이 도메인 이름을 검증하고 인증서를 발급할 때까지 최대 몇 시간이 소요될 수 있습니다. 이 시간 동안 ACM은 &apos;검증 보류&apos;로 검증 상태를 표시합니다. 도메인 이름을 검증한 후 ACM은 &apos;성공&apos;으로 검증 상태를 변경합니다. AWS가 인증서를 발급하고 나면 ACM은 인증 상태를 &apos;Issued&apos;로 변경합니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[ELB를 이용하여 SSL인증서 적용하기]]></title><description><![CDATA[ 저번 AWS ACM 포스팅에서는 Route53과 AWS EC2를 사용하고 있는 내 서버에 ACM을 통해 SSL 인증서를 발급받는 방법을 알아보았습니다. 이번 포스팅에서는 발급받은 SSL인증서를 ELB라는 것을 이용해서 비교적 쉽게 서버에 적용하는 방법을 알아보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/server/19-08-05-2/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-05-2/</guid><pubDate>Mon, 05 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; 저번 AWS ACM 포스팅에서는 Route53과 AWS EC2를 사용하고 있는 내 서버에 ACM을 통해 SSL 인증서를 발급받는 방법을 알아보았습니다. 이번 포스팅에서는 발급받은 SSL인증서를 ELB라는 것을 이용해서 비교적 쉽게 서버에 적용하는 방법을 알아보도록 하겠습니다.&lt;/p&gt;
+&lt;h3&gt;ELB란 무엇인가?&lt;/h3&gt;
+&lt;p&gt; ELB는 &lt;strong&gt;Elastic Load Balancing&lt;/strong&gt;의 약자입니다. Load Balancing은 둘 혹은 셋 이상의 서버에게 작업을 나누는 것을 의미합니다. 이로써 가용성 및 응답시간을 최적화 시킬 수 있다는 장점을 가집니다. 또한 애플리케이션에 대한 요청의 전체적인 흐름을 방해하지 않고 필요에 따라 로드 밸런서에서 컴퓨팅 리소스를 추가 및 제거할 수도 있습니다. 아래의 서버 확장 방법 중 &lt;strong&gt;스케일 아웃&lt;/strong&gt;의 경우에는 각 서버에 걸리는 부하를 균등하게 해주는 ‘로드밸런싱’이 필수적입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;스케일 아웃: 서버 컴퓨터를 여러 대로 증가시켜 시스템을 확장하는 방법&lt;/li&gt;
+&lt;li&gt;스케일 업: 서버 컴퓨터의 CPU, RAM 등을 고성능으로 업 그레이드 하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; AWS는 Application Load Balancer, Network Load Balancer, Classic Load Balancer의 세 가지 유형의 로드 밸런서를 지원합니다. 이 세가지 제품의 비교는 &lt;a href=&quot;https://aws.amazon.com/ko/elasticloadbalancing/features/#compare&quot;&gt;이 링크&lt;/a&gt;에서 확인 할 수 있습니다. &lt;/p&gt;
+&lt;h3&gt;ELB 생성하기&lt;/h3&gt;
+&lt;p&gt; 이전 포스팅의 방법대로 ACM 인증서를 생성했다고 가정하고 설명을 진행하겠습니다. 일단 EC2 콘솔에 접속한 뒤 왼쪽 메뉴에서 &lt;strong&gt;&apos;로드 밸런서 - 로드 밸런서 생성&apos;&lt;/strong&gt; 버튼을 클릭하면 아래와 같은 화면이 나옵니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5dca457448e2b3a09b01bd3b5306b3f9/21b4d/19-08-05-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 38.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABiklEQVQoz02S3W7aQBCF/f4P0av2DVo1atNwE1FSmgCtk5Qg/wGtUxN717GxjQ3+MrsKESONzpw5Z9dj7ThZ8g+d/ofDDvaSdFK39Me6by23+Krt93tMHA4Hm73UJk3Xefd1ztn1ks/jkE8/Aj4MHhhMV1y6f3l/MefjVWA1g4Zf3sZMbn5yfv6N4XDIeDwWHPFF+P2fOc7wV8CVG3Jx7TES/P474M6PeYgSjDZyo1ctsnwufd/3mM1muK7LdDLhVnA2nbJerXCqQqOU4i54ZPOUUZc59bagqbZSa7Isw/ViQWV5U5Vsq4qy3KK1IlqvBDVFUVDXNY4hSmkGN0vW8RN5LmJZyoHSGlOVM5iseNxklpuLiuKZLFWkacx0MSJTGzn3TCUfchaLBWEYENkM5Xd8MaYkSYLn+aKFLKOQKIqEe3biSiYx0ymdkxdbdruWtm3pug6naRpaKXTRsGs72zSvaMY3pkbMuhTPiXYa8shv0fc9zrHYH3qLx3U4NZ1qBo/rYlem79/S8BeDTleviLsy+QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/5dca457448e2b3a09b01bd3b5306b3f9/15813/19-08-05-3.webp 190w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/1cdb2/19-08-05-3.webp 380w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/9046c/19-08-05-3.webp 760w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/c89f9/19-08-05-3.webp 1140w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/af3f0/19-08-05-3.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/5dca457448e2b3a09b01bd3b5306b3f9/a2d4f/19-08-05-3.png 190w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/3f520/19-08-05-3.png 380w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/3c051/19-08-05-3.png 760w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/b5cea/19-08-05-3.png 1140w,
+/static/5dca457448e2b3a09b01bd3b5306b3f9/21b4d/19-08-05-3.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/5dca457448e2b3a09b01bd3b5306b3f9/3c051/19-08-05-3.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 여기서 &lt;strong&gt;Classic Load Balancer 생성&lt;/strong&gt; 버튼을 클릭합니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2f2491408d171153d7c4e6c4c5a3e207/21b4d/19-08-05-4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 27.368421052631582%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyUlEQVQY041Qyw6DIBDk/7+r1x6bNPVgtK3RggK+eIhOWYxN01M3mbAzLLuzMM452raFlBKtECn/hVIKwzBgHMcPDv59TtMEJmKTLLvhxQXujyeapo4F++U8z1iWBSEE/BuMGuV5AWM9rNsf+yV8Gq3rmk7ih3bkvxrVsrouUBZXyK5G3/fQWqGq8rQqcULXdSjLMrpv0vqk0WbEtdYJpNG3MSXPEPwEM1+wbVuc5mDNOZoPke9reO9TsTEGzrmkWWuTKwpyRkHD3k+KgXqEd3ZYAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/2f2491408d171153d7c4e6c4c5a3e207/15813/19-08-05-4.webp 190w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/1cdb2/19-08-05-4.webp 380w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/9046c/19-08-05-4.webp 760w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/c89f9/19-08-05-4.webp 1140w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/af3f0/19-08-05-4.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/2f2491408d171153d7c4e6c4c5a3e207/a2d4f/19-08-05-4.png 190w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/3f520/19-08-05-4.png 380w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/3c051/19-08-05-4.png 760w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/b5cea/19-08-05-4.png 1140w,
+/static/2f2491408d171153d7c4e6c4c5a3e207/21b4d/19-08-05-4.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/2f2491408d171153d7c4e6c4c5a3e207/3c051/19-08-05-4.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 1단계에서는 HTTPS 로드 밸런서 프로토콜을 추가하고, 로드 밸런서 이름에는 자신이 원하는 로드밸런서 이름을 설정합니다. 다음으로 가면 2단계에서는 보안그룹을 할당해야 하는데 여기서는 자신이 서버 컴퓨터에 사용하는 보안그룹을 할당하시면 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/abffe88f44e89c34460fe257fce9d31e/21b4d/19-08-05-5.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 40%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNklEQVQoz5VRi07DMAzs//8c2tDQXgWNVbC+aJM0j6ZJDzvdYEJICEsX27V9ubjZ6XRCURRo2xbeR8QIhABMdDAC+2ki/BJf60vMszMyKSWUkpBSoO9f0DZP6Lsd9CBgtIYxmuLhO9ZLbI1Jub3WlXZw44QMZNYHlK3E+XLEa7FCJ3KEeQYJhpsi7BhST/JXGBo21GD9DGr9smymrFcW57LD5nDGw+MBq02OzY6wf0ZxafAhDRqhCQOafkHdKcrpuxrh6VLmYWRNXadn+HHE5f0N+/0OeX7EdrvFer1CXVWYvIe1NvWMDOeSd6MnspCIeH+JcKC3N+0HhBCpiZce43KjoyfxEJMx3I2IvVt2dq8uEUY6yrJCRUo0LduTGv5rXBS0CjUY/MeyG/NPSwpJFa/jXsFf+AQNpWzsjMbzbQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/abffe88f44e89c34460fe257fce9d31e/15813/19-08-05-5.webp 190w,
+/static/abffe88f44e89c34460fe257fce9d31e/1cdb2/19-08-05-5.webp 380w,
+/static/abffe88f44e89c34460fe257fce9d31e/9046c/19-08-05-5.webp 760w,
+/static/abffe88f44e89c34460fe257fce9d31e/c89f9/19-08-05-5.webp 1140w,
+/static/abffe88f44e89c34460fe257fce9d31e/af3f0/19-08-05-5.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/abffe88f44e89c34460fe257fce9d31e/a2d4f/19-08-05-5.png 190w,
+/static/abffe88f44e89c34460fe257fce9d31e/3f520/19-08-05-5.png 380w,
+/static/abffe88f44e89c34460fe257fce9d31e/3c051/19-08-05-5.png 760w,
+/static/abffe88f44e89c34460fe257fce9d31e/b5cea/19-08-05-5.png 1140w,
+/static/abffe88f44e89c34460fe257fce9d31e/21b4d/19-08-05-5.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/abffe88f44e89c34460fe257fce9d31e/3c051/19-08-05-5.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 3단계는 사용 할 인증서를 선택하는 단계입니다. 우리는 ACM으로 인증서를 생성하였기 때문에 &lt;strong&gt;ACM 인증서 선택&lt;/strong&gt;을 체크하고 다음단계로 넘어갑니다. &lt;/p&gt;
+&lt;p&gt; 4단계에서는 원하는 상태구성을 자유롭게 설정하시면 되고, 5단계에서는 사용할 인스턴스를 선택하시면 됩니다. 그리고 태그 추가 및 검토를 하면 Classic Load Balancer가 성공적으로 생성됩니다. 로드 밸런서의 상태가 아래와 같이 In service 이면 정상 동작하는 것입니다.&lt;/p&gt;
+&lt;h3&gt;도메인에 ELB 연결&lt;/h3&gt;
+&lt;p&gt; ELB를 생성했다면 이를 우리의 웹 사이트 도메인과 연결해야 합니다. Route53의 호스팅영역에 들어가서 자신이 사용하고 있는 도메인을 클릭합니다. 그리고 &lt;strong&gt;레코드 세트 생성&lt;/strong&gt; 버튼을 클릭하면 아래와 같은 화면이 나타납니다.  &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/9a2e167e97d9df1ed39e825cbf7e380c/21b4d/19-08-05-6.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 38.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxElEQVQoz52QSQ7DIAxFuf/xuumuVaV0goQhEIYk5BfTZh+K9EAI+xmb3V4G3Kw/Mk7nKy63O+IK+JQLWxNM2YSnMLDTAuszeC9htAKtbcu0HQdF+HgPEGKAHHr0vYAxBt4HODfBTQ2U+BAiWPC+CDzGcawyOpdlKQW3ZnLOYDHGKrHWYp7n2io9tMr2vCrsuq5Kd9G/i3KZlBJaa6ylTWqVCnwJZSbHobmnlMA451VIP1RKge6D0hDaYSpDpjFQ4BEo9gP2uHEEuzq4owAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/9a2e167e97d9df1ed39e825cbf7e380c/15813/19-08-05-6.webp 190w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/1cdb2/19-08-05-6.webp 380w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/9046c/19-08-05-6.webp 760w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/c89f9/19-08-05-6.webp 1140w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/af3f0/19-08-05-6.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/9a2e167e97d9df1ed39e825cbf7e380c/a2d4f/19-08-05-6.png 190w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/3f520/19-08-05-6.png 380w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/3c051/19-08-05-6.png 760w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/b5cea/19-08-05-6.png 1140w,
+/static/9a2e167e97d9df1ed39e825cbf7e380c/21b4d/19-08-05-6.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/9a2e167e97d9df1ed39e825cbf7e380c/3c051/19-08-05-6.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 여기서 &lt;strong&gt;별칭을 &apos;예&apos;로 선택&lt;/strong&gt;하면 우리가 생성한 ELB를 선택 할 수 있습니다. 우리가 생성한 ELB 를 선택한 뒤 생성 버튼을 클릭합니다. 그리고 5분 정도 뒤에 도메인으로 접속해서 https가 제대로 접속되는지 확인하면 끝 입니다!&lt;/p&gt;
+&lt;p&gt; 혹여나 접속이 제대로 되지 않는 분 들은 서버 컴퓨터에 적용되어있는 &lt;strong&gt;EC2 내 보안그룹&lt;/strong&gt;을 확인 해 보시길 바랍니다. 아래 처럼 HTTPS 접속이 허용되어 있어야 HTTPS 주소로 접속이 가능합니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a1a9d94155c0a583a4d7133ebbd6117d/21b4d/19-08-05-7.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 29.47368421052632%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA60lEQVQY011Qy26EMBDj/3+tPVTqDUQpIN4kQMjyBnc9q6BVD9Z44ozHiReGIYIggO/7aJoGwzCg7/sb7B3ez532zrXW8NI0RZIkyLJMTMuyRBRFiONYOCu1PM+lJ6qqkp73iqK4Qc3TWkGpFtaOsmnfdxhjsK6rcJoRXddhWRZs2yYaoZRC27YCa+0roTH2OVA+I4+Y5xnXdWEcRxkmr+taNnMJzY7jkEWs7pk0nqZJqtd3P0jTL5jhF4+HFRMO88J5nmLG5zG9S+3A1DRxhq+Ewwe0+sQyf9+GFJmG3P0XU/PMmTEhl/xP+Af1JcfXJHdkcgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/a1a9d94155c0a583a4d7133ebbd6117d/15813/19-08-05-7.webp 190w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/1cdb2/19-08-05-7.webp 380w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/9046c/19-08-05-7.webp 760w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/c89f9/19-08-05-7.webp 1140w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/af3f0/19-08-05-7.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/a1a9d94155c0a583a4d7133ebbd6117d/a2d4f/19-08-05-7.png 190w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/3f520/19-08-05-7.png 380w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/3c051/19-08-05-7.png 760w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/b5cea/19-08-05-7.png 1140w,
+/static/a1a9d94155c0a583a4d7133ebbd6117d/21b4d/19-08-05-7.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/a1a9d94155c0a583a4d7133ebbd6117d/3c051/19-08-05-7.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;HTTP 접속을 HTTPS 로 변경하기&lt;/h3&gt;
+&lt;p&gt; HTTP접속을 HTTPS로 리다이렉트하는 코드를 작성하기 위해서는 먼저 연결에 사용한 프로토콜이 무엇이었는지 식별해야 합니다. AWS의 &lt;a href=&quot;https://docs.aws.amazon.com/ko_kr/elasticloadbalancing/latest/classic/x-forwarded-headers.html&quot;&gt;ELB 사용설명서&lt;/a&gt;를 참고하면 ELB의 Classic Load Balancer는 아래와 같은 X-Forwarded 헤더를 지원한다고 합니다. 저는 이 중 X-Forwarded-Proto 헤더를 이용하겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;X-Forwarded-For : HTTP 또는 HTTPS 로드 밸런서를 사용할 때 클라이언트의 IP를 식별하는데 도움을 줌&lt;/li&gt;
+&lt;li&gt;X-Forwarded-Proto : 클라이언트가 로드 밸런서 연결에 사용한 프로토콜(HTTP 또는 HTTPS)을 식별하는데 도움을 줌&lt;/li&gt;
+&lt;li&gt;X-Forwarded-Port : 클라이언트가 로드 밸런서 연결에 사용한 대상 포트를 식별하는 데 도움을 줍니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; X-Forwarded 헤더를 이용하기 위해서 저는 Express의 request 객체 내 기본으로 내장된 &lt;code class=&quot;language-text&quot;&gt;get()&lt;/code&gt; 메소드를 활용해보도록 하겠습니다. request 객체에 대한 &lt;a href=&quot;https://expressjs.com/ko/api.html#req.get&quot;&gt;Express 사용설명서&lt;/a&gt;를 참고하여 아래와 같이 코드를 작성해 보았습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; xForwarded &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;X-Forwarded-Proto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;xForwarded &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    	res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;https://&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Host&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 만약 우리가  &lt;code class=&quot;language-text&quot;&gt;http://example.com/home&lt;/code&gt; 으로 접속하면 xForwarded에는 http가 담기게 되고, 그렇기 때문에 if 문이 실행되어  &lt;code class=&quot;language-text&quot;&gt;https://example.com/home&lt;/code&gt; 으로 리다이렉트 됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js에서의 S3 SDK 사용]]></title><description><![CDATA[S3는 아마존 웹 서비스에서 제공하는 서비스 중 하나입니다. 풀어서 보면 Simplet Sotrage Service라는 의미를 가지고 있습니다. 즉, 어떠한 정보를 저장하는 서비스라는 말인데 그냥 쉽게 생각하면 파일을 저장하는 서비스라고 말할 수 있습니다.]]></description><link>https://yuhodots.github.io/server/19-07-29/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-07-29/</guid><pubDate>Mon, 29 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 egoing님 &lt;a href=&quot;:https://www.opentutorials.org/course/2717/11344&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; S3는 아마존 웹 서비스에서 제공하는 서비스 중 하나입니다. 풀어서 보면 Simplet Sotrage Service라는 의미를 가지고 있습니다. 즉, 어떠한 정보를 저장하는 서비스라는 말인데 그냥 쉽게 생각하면 파일을 저장하는 서비스라고 말할 수 있습니다. 물론 서버 컴퓨터에 파일을 직접 저장하는 방법도 있지만, S3를 사용하면 아주 많은 것들을 신경 쓰지 않고도 많은 양의 파일을 아주 안전하게 보관할 수 있다는 장점이 있습니다.&lt;/p&gt;
+&lt;h3&gt;S3를 사용하는 이유&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;내구성&lt;/strong&gt;: S3는 중요한 데이터를 저장 할 수 있고, 99.999999999%의 객체 내구성을 보장합니다. 데이터가 여러 시설과 각 시설의 여러 디바이스에 중복 저장됩니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;저렴한 비용&lt;/strong&gt;: S3를 사용하면 매우 저렴한 비용으로 대용량의 데이터를 저장할 수 있습니다. 사용하는 만큼 비용을 지불하면 되기 때문에 서비스의 비용 진입 장벽이 낮다고 말할 수 있습니다. 또한 접근 빈도에 따라 다른 방법으로 저장하여 비용을 절약합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;보안&lt;/strong&gt;: SSL을 통한 데이터 전송과 데이터 업로드 후 자동 암호화를 지원합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;확장 가능&lt;/strong&gt;: S3의 서버가 마비되거나 죽을 것이라는 걱정을 할 필요가 없어집니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;이벤트 알림 전송&lt;/strong&gt;: 다른 서비스의 트리거 역할로도 활용이 가능합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 위의 장점들 때문에 S3를 사용하며, 이와 더불어 S3를 사용하면 생기는 이점에는 콘텐츠 저장 및 배포, 빅 데이터 분석, 그리고 재해 복구 등이 있습니다. &lt;/p&gt;
+&lt;h3&gt;기본 조작&lt;/h3&gt;
+&lt;p&gt; 아마존 웹 서비스 콘솔에서 S3를 조작 해 봅시다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4bf225284e5d9dc19c9c26570c1470df/21b4d/19-07-29-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 20%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyklEQVQY042OTUvDQBCG8/8PLYi3xFiqxEaw0V/gXTwJevUkSG2bNdnvzfZxu3oRLw48w/u+zAxTDMNIjBOPT8/MyiXVqqO6WnN2ZLWmTr5uOxbXd5y3t1mXzQ2nTcfJomVeXiSWzKpL5nVDIZVKByPHOkwBguG/dUiPpJ51/MkKIQRKyWzexRv3Lw/04wfWOIwxWGtxzhNC+IVPGGP5HIa0r9Ba56yQcmSzE1gfkU7xutuwlYq98gmX6bWnN+EPIrHX33Nb6dB+4gvy2CZjiNkcVwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/4bf225284e5d9dc19c9c26570c1470df/15813/19-07-29-1.webp 190w,
+/static/4bf225284e5d9dc19c9c26570c1470df/1cdb2/19-07-29-1.webp 380w,
+/static/4bf225284e5d9dc19c9c26570c1470df/9046c/19-07-29-1.webp 760w,
+/static/4bf225284e5d9dc19c9c26570c1470df/c89f9/19-07-29-1.webp 1140w,
+/static/4bf225284e5d9dc19c9c26570c1470df/af3f0/19-07-29-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/4bf225284e5d9dc19c9c26570c1470df/a2d4f/19-07-29-1.png 190w,
+/static/4bf225284e5d9dc19c9c26570c1470df/3f520/19-07-29-1.png 380w,
+/static/4bf225284e5d9dc19c9c26570c1470df/3c051/19-07-29-1.png 760w,
+/static/4bf225284e5d9dc19c9c26570c1470df/b5cea/19-07-29-1.png 1140w,
+/static/4bf225284e5d9dc19c9c26570c1470df/21b4d/19-07-29-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/4bf225284e5d9dc19c9c26570c1470df/3c051/19-07-29-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; S3 콘솔에서 버킷만들기를 클릭하여 버킷을 생성합니다. &apos;버킷&apos;은 파일을 저장할 수 있는 공간 또는 저장 장치라고 생각하시면 됩니다. 여기서 주의할 점은 aws내 전체의 버킷과 중복되지 않는 고유 DNS 호환 이름을 설정해야 합니다. 자 그러면 아래와 같이 버킷이 생성되고 우리는 이 버킷에 파일을 업로드 할 수 있게 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/341cf01809f5fa3b14a29693aed08347/21b4d/19-07-29-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 26.31578947368421%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA3klEQVQY05WOwWvCMBTG+/8fxw52h4EobigMdvPqTcSLlx08DGG2SJOqaZO0SZN8e9EqngYL/PK9F9778iVd18EaAyBg+73D8/AdL28fSMczDEZTpJNrnY6nl/en1wkWyzWcd5BaQzfNHUUkq53A/Ivjc8OwPUiE4CGNx18nBMA5D0+FbloUjOEsKlgKl5y0RSZa5ERRG5TKgquohOy1r7lsiWt/pL1H4p6yDok0DkzdjCwYLUTyY42srJCR5idJWuGHC+xLQX19n7sRw9QtJYxXEX/vzXhv/F+iRwz3C6Y9d/dj0lNFAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/341cf01809f5fa3b14a29693aed08347/15813/19-07-29-2.webp 190w,
+/static/341cf01809f5fa3b14a29693aed08347/1cdb2/19-07-29-2.webp 380w,
+/static/341cf01809f5fa3b14a29693aed08347/9046c/19-07-29-2.webp 760w,
+/static/341cf01809f5fa3b14a29693aed08347/c89f9/19-07-29-2.webp 1140w,
+/static/341cf01809f5fa3b14a29693aed08347/af3f0/19-07-29-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/341cf01809f5fa3b14a29693aed08347/a2d4f/19-07-29-2.png 190w,
+/static/341cf01809f5fa3b14a29693aed08347/3f520/19-07-29-2.png 380w,
+/static/341cf01809f5fa3b14a29693aed08347/3c051/19-07-29-2.png 760w,
+/static/341cf01809f5fa3b14a29693aed08347/b5cea/19-07-29-2.png 1140w,
+/static/341cf01809f5fa3b14a29693aed08347/21b4d/19-07-29-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/341cf01809f5fa3b14a29693aed08347/3c051/19-07-29-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/386b9e35ee82a69e50c67ed8d51a7d13/b0f48/19-07-29-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.05263157894737%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABcElEQVQY03XPW0sbYRCH8f2AHtAKjVjwzjZatbVFkihVA1rwGGOuNbYeUqMiXhQpgm0MgWpBi4KoeIjGBBPXbHaN0d1kn768F0VEB378h7kYZhTTMjHv7wGbg5M4w+Mz+L+G8U+GGJ2YxfdlDl8whE/0ATH3jAUZWY6ymTSIHF8RPVH5Hb+WNgQlly+Q0QxJ1XSutZyU1TRyuk7+tiAZ+Vuw7vh+qNIaSeOKqTh/pGhYSVIWjlM+H6dy4QxlI2GwvKcS3s3wN2VgWkUKZlFcXJJXP67IfgLPt5/0Lq7jDf+iY3aNF4GV/xT1psBpOsuFlieRvREpPEzhXNU5SmbQ7oosrcWoeuumptlDdZOLl+86cbS4cTS7ZCp/EjpT25eEdjIEty6fkGZS5PR2ioV9nf7FiFzmeP+Jpp5BWrxD1H3o5tXHHmrbulBs26ZUKkm2/TzLsuTLq7FNKpzt1IqFzu4BXvf6efM5QGPfGPXuPv4BeoiMgEhMfsoAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/386b9e35ee82a69e50c67ed8d51a7d13/15813/19-07-29-3.webp 190w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/1cdb2/19-07-29-3.webp 380w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/9046c/19-07-29-3.webp 760w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/c89f9/19-07-29-3.webp 1140w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/7afe4/19-07-29-3.webp 1520w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/205ae/19-07-29-3.webp 2690w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/386b9e35ee82a69e50c67ed8d51a7d13/a2d4f/19-07-29-3.png 190w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/3f520/19-07-29-3.png 380w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/3c051/19-07-29-3.png 760w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/b5cea/19-07-29-3.png 1140w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/891d5/19-07-29-3.png 1520w,
+/static/386b9e35ee82a69e50c67ed8d51a7d13/b0f48/19-07-29-3.png 2690w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/386b9e35ee82a69e50c67ed8d51a7d13/3c051/19-07-29-3.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 위 처럼 업로드 버튼을 눌러 파일을 업로드 할 수도 있지만, 서버 내 미들웨어가 사용자의 요청을 받아 S3에 저장하도록 지시하는 방법 또한 사용이 가능합니다. 그리고 그 파일에 대한 정보는 S3 내에서 url링크의 형태로도 확인이 가능합니다.&lt;/p&gt;
+&lt;h3&gt;업로드&lt;/h3&gt;
+&lt;p&gt; 먼저 AWS SDK를 모듈의 형태로 가져오고 지역 설정을 서울(ap-northeast-2)로 설정하겠습니다. Express에 내장되어있는 File System(fs) 모듈 또한 필요하기 때문에 미리 로드 해 주었습니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;AWS&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;aws-sdk&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; fs &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;fs&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token constant&quot;&gt;AWS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;region &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ap-northeast-2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 그리고 아래와 같이 코드를 작성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; s3 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AWS&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;S3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; param &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Bucket&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;example.net&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Key&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;exp.png&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;ACL&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;public-read&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Body&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;bigfile.png&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;ContentType&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;image/png&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;param&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;err&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;err&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Bucket&lt;/strong&gt;: 사용할 S3 버킷의 이름을 작성합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;key&lt;/strong&gt;: S3에 저장 될 파일의 이름을 작성합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ACL&lt;/strong&gt;: 소유자만 쓰기가 가능하지만, 모든 사람이 읽을 수 있도록 public-read 권한 설정을 하였습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Body&lt;/strong&gt;: 전송하는 방법에 대한 부분입니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ContentType&lt;/strong&gt;: 업로드한 파일의 타입을 정의합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; Body파트는 Buffer, String_value, streamObject 세 가지 방법 중 하나를 선택하면 되는데 이 중 streamObject가 권장되는 방법입니다. 그래서 위 처럼 fs모듈 내 &lt;code class=&quot;language-text&quot;&gt;createReadStream&lt;/code&gt; 함수를 호출해서 bigfile이라는 파일을 조각조각 내서 담는 것을 실행한 뒤에, 이를 S3에 무리없이 전송하게 됩니다. &lt;/p&gt;
+&lt;p&gt;파일 업로드 메소드에는 &lt;code class=&quot;language-text&quot;&gt;upload&lt;/code&gt;뿐 아니라 &lt;code class=&quot;language-text&quot;&gt;putObject&lt;/code&gt;라는 메소드 또한 존재합니다. 하지만 &lt;code class=&quot;language-text&quot;&gt;putObject&lt;/code&gt; 메소드에는 업로드 된 파일의 주소가 data에 담기지 않기 때문에, 이 주소가 필요 할 때에는 위 처럼 &lt;code class=&quot;language-text&quot;&gt;upload&lt;/code&gt;메소드를 사용 해 주시면 됩니다. &lt;/p&gt;
+&lt;h3&gt;목록&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listObjects&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Bucket&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;example.net&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;success&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;handlePage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; name &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Contents&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Contents&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasNextPage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;nextPage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;success&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; handlePage&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 위의 코드는 S3내 파일의 이름을 콘솔에 표시하는 소스코드입니다. 하나하나 살펴보도록 합시다.  &lt;/p&gt;
+&lt;p&gt; 일단 &lt;code class=&quot;language-text&quot;&gt;listObjects&lt;/code&gt; 메소드를 사용하고, 인자로는 자신이 사용할 버킷을 객체의 형태로 전달 해 줍니다. (저는 example.net이라는 버킷을 사용한다고 가정하였습니다.) 그리고 &lt;strong&gt;이벤트 방식&lt;/strong&gt;인 &lt;code class=&quot;language-text&quot;&gt;.on(&amp;#39;success&amp;#39;, function ...)&lt;/code&gt; 형태의 코드를 작성합니다. 이는 &lt;code class=&quot;language-text&quot;&gt;listObjects&lt;/code&gt; 메소드를 통해 정보를 가져오는데 성공했다면 &lt;strong&gt;success 뒤의 콜백함수를 실행&lt;/strong&gt;한다는 의미입니다. &lt;/p&gt;
+&lt;p&gt; 그리고 정보를 한 번에 모두 가져오면 너무 많은 양이 한 번에 유입 될 수도 있기 때문에 페이징을 통해 순차적으로 정보를 가져오는데, 먼저 &lt;code class=&quot;language-text&quot;&gt;response.hasNextPage()&lt;/code&gt;를 통해 다음 페이지에 정보가 있는지 확인하고 정보가 있다면 &lt;code class=&quot;language-text&quot;&gt;response.nextPage().on(&amp;#39;success&amp;#39;, handlePage).send()&lt;/code&gt;를 통해 다음 페이지의 정보를 가져옵니다. 근데 여기서 인자로 &lt;code class=&quot;language-text&quot;&gt;handlePage&lt;/code&gt; 그 자체를 주었기 때문에 이는 &lt;strong&gt;재귀함수&lt;/strong&gt;의 형태를 띄고 있다는 것을 알 수 있습니다. &lt;/p&gt;
+&lt;p&gt; 마지막으로 &lt;code class=&quot;language-text&quot;&gt;response.data.Contents&lt;/code&gt;는 S3에 업로드 한 파일의 정보가 담기는 곳입니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/06d4c7ffcd5f8f247b8642237120cf78/21b4d/19-07-29-4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 28.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABAklEQVQY031R2W6EQAzjKEdZWO4BhvtaYFW1D1X7/3/mJoN43D5YjqKJx060ZV4xjzOe+xPLtCBPc4VGNhB5gUKUKAkF1XGUwPd86Jr+Etq27piGGcd2qKGxH1GTWFVUCnVVIwojWG8WTMM8hzTtNR7LRoLTKVBKfH58QRJ77x5u5CbwA9yDENE9QkIO2WWWZEgJIhfE6ek+jGFbNgmuG/q2V5HZHcdrm07Vbd0q7rsBHfX402vQsV24jkvsKOaeqZuX4ADmPBM02ENWEhntUbmgnn/zYejG/1Ev7I8DI0VmZyz28/2rXCVxgjRO1YFEVqgD8Rv+gCMyeDXc5z3zW3b9B6AxkaqaRGheAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/06d4c7ffcd5f8f247b8642237120cf78/15813/19-07-29-4.webp 190w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/1cdb2/19-07-29-4.webp 380w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/9046c/19-07-29-4.webp 760w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/c89f9/19-07-29-4.webp 1140w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/af3f0/19-07-29-4.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/06d4c7ffcd5f8f247b8642237120cf78/a2d4f/19-07-29-4.png 190w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/3f520/19-07-29-4.png 380w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/3c051/19-07-29-4.png 760w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/b5cea/19-07-29-4.png 1140w,
+/static/06d4c7ffcd5f8f247b8642237120cf78/21b4d/19-07-29-4.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/06d4c7ffcd5f8f247b8642237120cf78/3c051/19-07-29-4.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;response.data.Contents&lt;/code&gt; 에는 우리가 S3에 업로드 한 파일의 정보가 객체의 형태로 담겨있기 때문에 나중에 이를 웹 애플리케이션에 유용하게 적용 가능합니다. &lt;/p&gt;
+&lt;h3&gt;다운로드&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; file &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;fs&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createWriteStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;logo.png&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; params &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Bucket&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;example.net&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Key&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;logo.png&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getObject&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;params&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;file&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 기본적인 다운로드 방법으로는 Streaming requests 방법이 있습니다. 앞서 언급했듯이 데이터를 우리가 사용할 때 이 데이터의 용량이 굉장히 크면 우리의 컴퓨터가 마비가 될 우려가 있습니다. 때문에 파일을 통째로 사용하기 보다는 부분 부분 사용하는 것이 안정적이고 효율적이기 때문에 이 때 사용하는 방법이 Streaming 입니다. &lt;/p&gt;
+&lt;p&gt; 우리는 현재 S3에 있는 정보를 읽어서, 그 읽은 정보를 우리의 컴퓨터 안에 다운로드 혹은 write 하는 중입니다. 그렇기 때문에 &lt;code class=&quot;language-text&quot;&gt;createWriteStream&lt;/code&gt;의 입력값으로 우리가 다운로드 받고 싶은 파일 이름을 넣어주고 file이라는 변수에 담아줍니다. 그리고 우리가 S3에서 읽어올 정보를 params에 담아 &lt;code class=&quot;language-text&quot;&gt;s3.getObject(params).createReadStream()&lt;/code&gt;로 읽어주고 이를 &lt;code class=&quot;language-text&quot;&gt;pipe(file)&lt;/code&gt;로 연결해줍니다. &lt;/p&gt;
+&lt;h3&gt;활용하기&lt;/h3&gt;
+&lt;p&gt;Nodejs에 S3를 활용하기 위해서 일단 아래와 같이 필요한 모듈을 로드 해 줍시다. Express에 기본적으로 파일 업로드에 대한 기능이 내장되어 있지 않기 때문에 이를 구현하기 위해 &lt;strong&gt;formidable&lt;/strong&gt;이라는 모듈을 로드 해 주었습니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; express &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;express&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; formidable &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;formidable&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;AWS&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;aws-sdk&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token constant&quot;&gt;AWS&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;region &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ap-northeast-2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 그리고 파일을 업로드 하기 위한 form을 만들어 줍니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/form&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; output &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;
+&amp;lt;html&gt;
+&amp;lt;body&gt;
+    &amp;lt;form enctype=&quot;multipart/form-data&quot; method=&quot;post&quot; action=&quot;upload_receiver&quot;&gt;
+        &amp;lt;input type=&quot;file&quot; name=&quot;userfile&quot;&gt;
+        &amp;lt;input type=&quot;submit&quot;&gt;
+    &amp;lt;/form&gt;
+&amp;lt;/body&gt;
+&amp;lt;/html&gt;
+    &lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;output&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; upload_receiver라는 경로로 post방식으로 파일을 전송하였으니 이번에는 받는 쪽 코드를 아래에 작성하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/upload_receiver&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; form &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;formidable&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;IncomingForm&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+   form&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;err&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; fields&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; files&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; s3 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AWS&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;S3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+       &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; params &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            Bucket&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;example.net&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            Key&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;files&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;userfile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token constant&quot;&gt;ACL&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;public-read&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            Body&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;fs&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;files&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;userfile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+       &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+       s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;params&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;err&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; result&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;err&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Fail&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+                result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&amp;lt;img src=&quot;&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Location&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&amp;lt;html&gt;&amp;lt;body&gt;&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;result&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&amp;lt;/body&gt;&amp;lt;/html&gt;&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+       &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 전체 코드는 &lt;a href=&quot;https://www.opentutorials.org/course/2717/11797&quot;&gt;여기&lt;/a&gt;에 있습니다. 코드를 실행 했을 때 S3서버 컴퓨터에 잘 업로드가 된다면 성공입니다 😊&lt;/p&gt;</content:encoded></item><item><title><![CDATA[EC2 인스턴스와 github private repository 연동시키기]]></title><description><![CDATA[ 자신이 제작하고 있는 웹 애플리케이션을 버전 관리 시스템으로 관리하고 싶다면, 자신이 사용하는 컴퓨터의 원하는 디렉토리 내에서 git clone명령어를 사용하여 github와 연동이 가능합니다.]]></description><link>https://yuhodots.github.io/server/19-07-11/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-07-11/</guid><pubDate>Thu, 11 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; 자신이 제작하고 있는 웹 애플리케이션을 버전 관리 시스템으로 관리하고 싶다면, 자신이 사용하는 컴퓨터의 원하는 디렉토리 내에서 git clone명령어를 사용하여 github와 연동이 가능합니다. 하지만 만약에 이 컴퓨터가 내 로컬 컴퓨터가 아니라 AWS EC2 인스턴스 같은 서버 컴퓨터이고, 또한 내 repository가 다른사람에게는 공개되지 않은 private이라면 어떻게 해야할까요?&lt;/p&gt;
+&lt;p&gt; 현재 저는 서버 컴퓨터로 AWS EC2 우분투 인스턴스를 사용하고 있기 때문에 이와 관련한 방법을 알려드리겠습니다. 저와 다른 환경인 분들도 계시겠지만 내용은 거의 비슷하다고 생각하고 참고하시면 좋을 것 같습니다.  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;내 인스턴스 내에서 &lt;strong&gt;ssh key-pair를 생성&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;이 &lt;a href=&quot;http://%20https//docs.gitlab.com/ee/ssh/#generating-a-new-ssh-key-pair&quot;&gt;링크&lt;/a&gt;의 내용을 참고해서 key-pair를 생성하면 되는데, 저는 &lt;code class=&quot;language-text&quot;&gt;ssh-keygen -o -t rsa -b 4096 -C &amp;quot;email@example.com&amp;quot;&lt;/code&gt; 명령어를 사용하여 생성하였습니다. 뒤에 이메일은 공동작업 시 자신을 표현 할 수 있도록 원하는 이메일을 적어주시면 됩니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;홈 디렉토리에 &lt;strong&gt;/.ssh/id_rsa.pub 파일이 생성되었는지 확인&lt;/strong&gt;합니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;cd /home/&amp;lt;your-user-name&amp;gt;/.ssh&lt;/code&gt; 후에 &lt;code class=&quot;language-text&quot;&gt;ls -a&lt;/code&gt; 명령어를 통해 id_rsa.pub이 존재하는 지 확인하는 방법도 있습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;cat id_rsa.pub&lt;/code&gt; 명령어를 사용하여 내 public key를 표출 한 뒤에 이를 ctrl+c로 복사해줍니다.&lt;/li&gt;
+&lt;li&gt;Github의 내 repositoy로 이동 후 setting - deploy key 카테고리에 복사 해 둔 내 &lt;strong&gt;ssh public key를 등록&lt;/strong&gt;합니다.&lt;/li&gt;
+&lt;li&gt;내 인스턴스 내에서 &lt;code class=&quot;language-text&quot;&gt;git clone &amp;#39;아래 사진의 오른쪽 아래 부분 링크&amp;#39;&lt;/code&gt; 명령어를 실행합니다. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/434d27bd757b8728a93b1fbac413ef11/21b4d/19-07-11.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.526315789473685%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABH0lEQVQY022RSU7EMBBFc/9zIFa9gxY3YFggQIAEghaLljqJp9jxkNiJ8yn3sGiEpW9L5XLVq++qtw51y6G0QcslmFBI04xlATJtJ5XlfKAcASE7NIwfTs6welzh4v4SVy/XqLi22DYCTFlwHaD9BDtm0nKmnmLlrrMDFRJoGYMmiGXJSDnChAHaOVRCe8h+QogHir9kOR/i1nk0NMlE9KHfQPNn9PIVRr6RPuDNJ+aoUGnq2NmEec5UbPlXZQ0D5RFRnicI8YXd9ha6vYOoH9DUTzDdO+LIULWyjBr3j/I/xU7+Fa93dYsYI7yXcI5hCHyvNApSofeowpCgiHA6EpYRz0fOR8IR2vRIiXzsDDh9nlIG35sfrNc35Kumph6/1CnMYPbwqTwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/434d27bd757b8728a93b1fbac413ef11/15813/19-07-11.webp 190w,
+/static/434d27bd757b8728a93b1fbac413ef11/1cdb2/19-07-11.webp 380w,
+/static/434d27bd757b8728a93b1fbac413ef11/9046c/19-07-11.webp 760w,
+/static/434d27bd757b8728a93b1fbac413ef11/c89f9/19-07-11.webp 1140w,
+/static/434d27bd757b8728a93b1fbac413ef11/af3f0/19-07-11.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/434d27bd757b8728a93b1fbac413ef11/a2d4f/19-07-11.png 190w,
+/static/434d27bd757b8728a93b1fbac413ef11/3f520/19-07-11.png 380w,
+/static/434d27bd757b8728a93b1fbac413ef11/3c051/19-07-11.png 760w,
+/static/434d27bd757b8728a93b1fbac413ef11/b5cea/19-07-11.png 1140w,
+/static/434d27bd757b8728a93b1fbac413ef11/21b4d/19-07-11.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/434d27bd757b8728a93b1fbac413ef11/3c051/19-07-11.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 위의 작업을 순차적으로 모두 진행하면, 내 인스턴스에서 private repository 연동이 완료됩니다 👊&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Nginx 환경설정]]></title><description><![CDATA[ nginx가 어떻게 동작하는지에 대한 설정은 conf라는 확장자 명을 가진 설정파일 내에 기술되어 있습니다. 컴파일을 통해서 설치한 경우라면 /usr/local/nginx/conf 에, apt-get을 이용해서 우분투에 설치한 경우는 /etc/nginx에 위치한다고 합니다.]]></description><link>https://yuhodots.github.io/server/19-07-10-2/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-07-10-2/</guid><pubDate>Wed, 10 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;nignx환경설정에 대한 내용은 opentutorials egoing님의 2013년 &lt;a href=&quot;https://opentutorials.org/module/384/4526&quot;&gt;자료&lt;/a&gt;를 참고하였습니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; nginx가 어떻게 동작하는지에 대한 설정은 conf라는 확장자 명을 가진 설정파일 내에 기술되어 있습니다. 컴파일을 통해서 설치한 경우라면 /usr/local/nginx/conf 에, &lt;code class=&quot;language-text&quot;&gt;apt-get&lt;/code&gt;을 이용해서 우분투에 설치한 경우는 /etc/nginx에 위치한다고 합니다. 환경에 따라서 저장되는 디렉토리가 다를 수 있기 때문에 &lt;code class=&quot;language-text&quot;&gt;sudo find / -name nginx.conf&lt;/code&gt; 명령어로 쉽게 찾을 수 있습니다. 그리고 아래는 설정 파일들의 역할입니다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nginx.conf : 메인 설정 파일&lt;/li&gt;
+&lt;li&gt;fcgi.conf : FastCGI 환경설정 파일&lt;/li&gt;
+&lt;li&gt;sites-enabled : 활성화된 사이트들의 설정 파일들이 위치. 아파치에서는 Virtual host의 설정에 해당 (존재하지 않을수도 있음)&lt;/li&gt;
+&lt;li&gt;sites-available : 비활성화된 사이트들의 설정 파일들이 위치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 이 중 메인 설정 파일인 nginx.conf의 구조를 파악 해 보겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;user www-data&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+worker_processes  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+pid /run/nginx.pid&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+events &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    worker_connections  &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+http &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
+    include       mime.types&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    server &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        listen       &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        location / &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            root   html&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            index  index.html index.htm&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h5&gt;[1] Core 모듈&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;user&lt;/strong&gt;: nginx는 마스터프로세스와 워커프로세스로 나뉘는데, user 지시어를 통해 이 워커프로세스의 권한을 지정 할 수 있습니다. 그리고 워커프로세스가 실질적인 웹 서버의 역할을 수행합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;worker_processes&lt;/strong&gt;: 프로세스의 실행 가능한 수를 나타냅니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pid&lt;/strong&gt;: 마스터프로세스의 ID 정보가 저장되는 공간입니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;[2] Events 블록&lt;/h5&gt;
+&lt;p&gt;이벤트 블록은 네트워크의 비동기 이벤트 처리 방식에 대한 옵션 설정 값을 가집니다. worker_connections는 하나의 프로세스가 처리할 수 있는 접속 수를 의미합니다. &lt;/p&gt;
+&lt;h5&gt;[3] Http 블록&lt;/h5&gt;
+&lt;p&gt; server, location의 루트 블록이라고 할 수 있고, 여기서 설정된 값을 하위 블록들이 상속합니다. http 블록은 여러개를 사용할 수 있지만 관리상의 이슈로 한번만 사용하는 것을 권장합니다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;keepalive_timeout&lt;/strong&gt;: 클라이언트에서 커넥션을 유지하는 시간을 의미합니다. 요청도 없으면서 불필요한 커넥션을 유지할 수 있기 때문에 10초 정도로 줄여주거나 낮은 값을 설정하는 것이 좋습니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;server_tokens off&lt;/strong&gt;: Nginx의 버전을 숨길 수 있는 기능입니다. 주석을 제거하여 보안 이슈를 방지하는 것이 좋습니다. &lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[AWS EC2 리소스에 대한 액세스 제어]]></title><description><![CDATA[ AWS의 EC2 인스턴스를 서버 컴퓨터로 사용하는 경우에, 혼자 개발을 진행하는 것이 아니라 여럿이 한 가지 프로젝트 개발을 진행하고 있다면 그 인스턴스에 서버를 관리하는 팀원 모두가 접근이 가능해야 합니다.]]></description><link>https://yuhodots.github.io/server/19-07-10/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-07-10/</guid><pubDate>Wed, 10 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;이 글은 ‘AWS’ 공식 홈페이지의 &lt;a href=&quot;https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/WindowsGuide/UsingIAM.html&quot;&gt;AWS 사용설명서&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; AWS의 EC2 인스턴스를 서버 컴퓨터로 사용하는 경우에, 혼자 개발을 진행하는 것이 아니라 여럿이 한 가지 프로젝트 개발을 진행하고 있다면 그 인스턴스에 서버를 관리하는 팀원 모두가 접근이 가능해야 합니다. 하지만 처음 인스턴스를 생성할 때는 한 명의 유저에게 key-pair파일을 제공하기 때문에, 다른 팀원들과는 어떻게 공동작업을 할 수 있는지 궁금해졌고 이렇게 포스팅을 하게 되었습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 보안 자격 증명은 AWS의 서비스에서 사용자를 식별하고 Amazon EC2 리소스와 같은 AWS 리소스의 무제한 사용을 허가하는 데 사용됩니다. Amazon EC2 및 AWS Identity and Access Management(IAM)의 기능을 사용하면 보안 자격 증명을 공유하지 않고도 다른 사용자, 서비스 및 애플리케이션에 Amazon EC2 리소스 사용을 허가할 수 있습니다. IAM을 사용하여 다른 사용자가 AWS 계정의 리소스를 사용하는 방법을 제어하고 보안 그룹을 사용하여 Amazon EC2 인스턴스에 대한 액세스를 제어할 수 있습니다. Amazon EC2 리소스의 전체 사용 또는 제한 사용을 허가할 수 있습니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 아마존 웹 서비스의 공식 홈페이지 사용설명서에는 이 내용이 잘 설명 되어 있습니다. 잘 설명되어 있는 내용을 제 맘대로 축약해서 설명하자면 우리는 &lt;strong&gt;보안그룹, AMI&amp;#x26;EBS, IAM&lt;/strong&gt; 이렇게 세 가지 파트에 대한 설정을 진행해야 합니다.&lt;/p&gt;
+&lt;p&gt; 첫 번째로 &lt;strong&gt;보안그룹&lt;/strong&gt;에 대한 설정입니다. 우리는 인스턴스를 시작할 때 하나 이상의 보안 그룹을 할당합니다. 이 때 보안 그룹은 인스턴스에 도달하도록 허용되는 트래픽을 제어하는 방화벽 역할을 하기 때문에,공동 작업자가 이 인스턴스에 접근할 수 있도록 보안그룹 내 규칙을 수정 해 주셔야 합니다. (&apos;내 인스턴스를 우클릭 - 네트워크 - 보안그룹 변경&apos;을 통해 인스턴스의 보안그룹을 변경 할 수 있습니다.)&lt;/p&gt;
+&lt;p&gt; 두 번째로는 &lt;strong&gt;AMI&amp;#x26;EBS&lt;/strong&gt;에 대한 설정입니다. 일단 두 서비스에 대한 설명은 다음과 같습니다. Amazon 머신 이미지(AMI)는 소프트웨어 구성이 기재된 템플릿을 말 합니다(예: 운영 체제, 애플리케이션 서버, 애플리케이션). 그래서 AMI를 먼저 생성 한 이후에 이와 동일한 환경을 갖는 다양한 인스턴스들을 손쉽게 생성이 가능합니다. 그리고 Amazon Elastic Block Store(EBS)는 EC2 인스턴스에 사용할 영구 블록 스토리지 볼륨을 제공하며, 각 Amazon EBS 볼륨이 가용 영역 내에 자동으로 복제되어 구성요소 장애로부터 보호해주고, 고가용성 및 내구성을 제공한다는 게 아마존의 설명입니다. AMI에 액세스할 수 있는 AWS 계정 제어는 LaunchPermission 속성으로, Amazon EBS 스냅샷을 사용할 수 있는 AWS 계정을 제어는 createVolumePermission 속성으로 가능하다고 합니다. &lt;/p&gt;
+&lt;p&gt;세 번째로는 &lt;strong&gt;IAM&lt;/strong&gt;에 대한 설정입니다. 아래의 항목들을 제어하고 싶으면 IAM을 확인하시면 됩니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS 계정에 속하는 사용자 및 그룹 생성&lt;/li&gt;
+&lt;li&gt;AWS 계정 사용자 각각에 고유한 보안 자격 증명 할당&lt;/li&gt;
+&lt;li&gt;작업 수행 시 각 사용자의 AWS 리소스 사용 권한 제어&lt;/li&gt;
+&lt;li&gt;다른 AWS 계정의 사용자와 AWS 리소스 공유&lt;/li&gt;
+&lt;li&gt;AWS 계정에 적용할 규칙 생성 및 규칙을 관리할 사용자나 서비스 규정&lt;/li&gt;
+&lt;li&gt;엔터프라이즈의 기존 자격 증명을 사용해 AWS 리소스를 사용하는 작업 권한 허용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 위의 출처링크를 확인 하면 자세한 순서가 기재 되어 있지만 이번에도 제 맘대로 축약해서 설명을 해보보겠습니다.&lt;/p&gt;
+&lt;p&gt;먼저, IAM 콘솔 &lt;a href=&quot;https://console.aws.amazon.com/iam/&quot;&gt;링크&lt;/a&gt;에 접속해서, &lt;strong&gt;그룹-새그룹 생성&lt;/strong&gt;을 클릭합니다. 그리고 &lt;strong&gt;그룹이름 설정&lt;/strong&gt;, 그룹 사용자에 대한 &lt;strong&gt;권한 설정 (정책 연결)&lt;/strong&gt;을 완료 하면 새 그룹이 생성됩니다. 그리고 생성된 이 그룹에 &lt;strong&gt;사용자 추가&lt;/strong&gt;를 선택 한 뒤 액세스 유형 설정, 콘솔 암호 설정, 권한 부여 등의 단계를 거치면 IAM그룹과 사용자 생성이 완료됩니다.&lt;/p&gt;
+&lt;p&gt;저의 경우에는 그룹이름을 admin으로 설정하고, 그룹 정책을 AdministratorAccess으로 설정하였습니다. 이와 관련하여 잘 정리된 &lt;a href=&quot;https://www.44bits.io/ko/post/first_actions_for_setting_secure_account#%EA%B7%B8%EB%A3%B9%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EA%B6%8C%ED%95%9C-%ED%95%A0%EB%8B%B9&quot;&gt;포스팅&lt;/a&gt;을 발견하여 공유합니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js와 Apache, Nginx를 같이 사용해야 할까?]]></title><description><![CDATA[Node.js와 apache, nginx를 연동하여 사용하는 개발자들은 apache, nginx를 리버스 프록시 서버의 역할로 연동하여 사용한다고 합니다. 저는 먼저 프록시 서버를 이용하는 이유에 대해서 조사 해 보았습니다. Proxy는 프록시 서버를 통해서 다른 네트워크에 간접적으로 접속할 수 있도록 해줍니다.]]></description><link>https://yuhodots.github.io/server/19-07-09/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-07-09/</guid><pubDate>Tue, 09 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; 처음 node.js를 배우게 된 계기는 자바스크립트 언어를 사용하여 프론트엔드, 백엔드, 그리고 서버 구축까지 모두 할 수 있다는 장점 때문이었습니다. 그래서 서버를 구축하는 과정에 있어서도 당연히 Node.js 만으로 안정적으로 서버를 구축 할 수 있겠다고 생각하였는데 서버 관련 공부를 하면 할 수록 Node.js 만으로 서버를 구축하면 위험할 수 있다는 인터넷 글들을 접하곤 했습니다. 웹 프로그래밍 공부를 시작한지 반 년 밖에 되지 않은 저로써는 어떤 방법이 지금의 내 상황에 적절한지에 대해 고민을 하게 되었고, 일단은 다양한 사람들의 의견을 모두 정리한 뒤에 내 상황에 맞게 선택 해야겠다는 생각이 들어 이렇게 포스팅으로 정리를 하게 되었습니다.  &lt;/p&gt;
+&lt;p&gt; 포스팅 내용과 관련되어 있는 기본적인 단어를 아래에 정리 해 보았습니다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;웹 서버: 클라이언트가 서버에 페이지 요청을 하면 요청을 받아 &lt;strong&gt;정적 컨텐츠&lt;/strong&gt;를 제공. 클라이언트의 요청에 대해 가장 앞에서 처리한다.&lt;/li&gt;
+&lt;li&gt;WAS: 주로 &lt;strong&gt;동적 콘텐츠&lt;/strong&gt;를 제공하기 위해 만들어진 Web Application Server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;리버스 프록시&lt;/strong&gt;: 내부 어플리케이션과 외부 클라이언트 사이에 자리잡아서 클라이언트의 요청을 적절한 서버로 보내주는 역할을 한다. 많은 어플리케이션들이 자체적으로 가지지 못한 로드 밸런싱, 보안, 가속화 기능 등 기능을 갖고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Node.js와 Apache, Nginx를 같이 사용해야 할까?&lt;/h3&gt;
+&lt;p&gt; Node.js와 apache, nginx를 연동하여 사용하는 개발자들은 apache, nginx를 리버스 프록시 서버의 역할로 연동하여 사용한다고 합니다. 저는 먼저 프록시 서버를 이용하는 이유에 대해서 조사 해 보았습니다. Proxy는 프록시 서버를 통해서 다른 네트워크에 간접적으로 접속할 수 있도록 해줍니다. 일단 프록시 서버를 도입하면, 익명의 사용자가 서버에 접근할 때 직접적이지 않고 한 단계를 더 거쳐야 하므로 &lt;strong&gt;보안적으로 우세&lt;/strong&gt;합니다. 또한, 사용자의 요청을 cache의 형태로 가지고 있기 때문에 동일한 요청이 오면 더욱 빠르게 응답을 해줘 &lt;strong&gt;속도도 우세&lt;/strong&gt;하며, 불필요한 &lt;strong&gt;리소스 낭비&lt;/strong&gt;를 막습니다. 이외에도 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%A0%91%EA%B7%BC_%EC%A0%9C%EC%96%B4_%EB%AA%A9%EB%A1%9D&quot;&gt;ACL&lt;/a&gt;과 &lt;strong&gt;접근자 레포팅&lt;/strong&gt; 등 다양한 측면에서 장점을 가지고 있다고 합니다. 쉽게 말하면 &apos;보안에 강하고, 성능과 비용 측면에서도 이득&apos;을 볼 수 있습니다.&lt;/p&gt;
+&lt;p&gt; 특히 프록시 서버 중 리버스 프록시는 사용자가 실제 서버의 정보를 알지 못한다는 장점이 있습니다. 포워드 프록시는 클라이언트에서 요청을 실제 서버에 요청하여 데이터를 가져오지만, 리버스 프록시는 클라이언트 요청을 리버스 프록시 서버가 받아 배후의 사용자가 알지 못하는 서버에서 데이터를 가져오게 됩니다. &lt;strong&gt;Node Express에서 사용하는 실제 포트&lt;/strong&gt;를 &lt;strong&gt;Nginx의 80포트 Proxy서버로 숨김&lt;/strong&gt;으로써 보안을 강화 할 수 있게 된다고 합니다.&lt;/p&gt;
+&lt;p&gt; 얕게 알게 된 정도이지만 생각을 적어보자면, 학습이나 실습용으로 여러 사용자가 이용하지 않는 자신이나 소수의 사람들만 사용하는 저용량 웹 애플리케이션을 만들기 위해서는 그저 Node.js만 사용해도 상관없을 것 같고, 여러 사용자가 접속해서 그 사용자들이 데이터를 생성하고 수정하는 정도의 웹 어플리케이션이라면 혹시 모를 보안 이슈를 위해서 리버스 프록시를 node.js와 연동하여 서버를 구축하는게 좋을 것 같다는 생각이 듭니다. (제 생각과 관련해서 보완/수정 해 줄 내용이 있다면 댓글 부탁드립니다!)&lt;/p&gt;
+&lt;p&gt; 물론 요즘은 node의 보안 수준이 어느정도 높아져서 node만으로 서버를 운영하기에 충분하다는 의견도 있습니다만, node.js로 서버를 구축하는 경우에는 그에 알맞은 보안 방법을 찾아서 최신 버전을 항상 서버에 적용하는 것을 잊지 말아야 합니다. 그리고 apache와 nginx는 어떤 차이가 있는지에 대해서는 &lt;a href=&quot;https://taetaetae.github.io/2018/06/27/apache-vs-nginx/&quot;&gt;여기&lt;/a&gt;에 잘 설명되어 있어서, 저는 이 분의 글을 참고하여 공부하였습니다.&lt;/p&gt;
+&lt;h3&gt;Node.js - nginx 연동 방법&lt;/h3&gt;
+&lt;p&gt; 이에 대해서는 쉽고 깔끔하게 정리 해 준 포스팅들이 많이 있어서 아래에 링크를 걸어보았습니다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cheese10yun.github.io/Node-AWS-Nginx/&quot;&gt;AWS EC2 Nginx Node.js 설정&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://velog.io/@jakeseo_me/Node%EC%97%90%EC%84%9C-NGINX%EB%A5%BC-%EB%A6%AC%EB%B2%84%EC%8A%A4-%ED%94%84%EB%A1%9D%EC%8B%9C%EB%A1%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EB%B2%88%EC%97%AD&quot;&gt;Node js에 관한 것 아무거나 3편, Node에서 NGINX를 리버스 프록시로 사용하기 (번역)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://junojunho.com/front-end/aws-nginx-express&quot;&gt;주노준호 블로그: AWS EC2 + NginX + Nodejs Express&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 저는 서버구축 실습을 위해 &apos;&lt;a href=&quot;https://cheese10yun.github.io/Node-AWS-Nginx/&quot;&gt;윤 블로그&lt;/a&gt;&apos;님의 포스팅을 참고하였습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[재미있게 읽은 자료들]]></title><description><![CDATA[우연한 기회로 (대부분 인터넷 서핑을 하다가🏄‍♂️) 접했지만 생각보다 흥미롭게 본 자료들입니다. 제가 각 시기에 무얼 보고 어떤 생각을 했는지 회상하기 위한 포스팅이며 재미있게 읽은 자료들이 늘어날 때 마다 목록을 추가 할 예정입니다.]]></description><link>https://yuhodots.github.io/diary/19-07-01/</link><guid isPermaLink="false">https://yuhodots.github.io/diary/19-07-01/</guid><pubDate>Mon, 01 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;우연한 기회로 (대부분 인터넷 서핑을 하다가🏄‍♂️) 접했지만 생각보다 흥미롭게 본 자료들입니다. 제가 각 시기에 무얼 보고 어떤 생각을 했는지 회상하기 위한 포스팅이며 재미있게 읽은 자료들이 늘어날 때 마다 목록을 추가 할 예정입니다. 몇 개는 아직 안 읽은 것들도 있긴한데, 음.. 언젠간 읽겠죠..?&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;유발 하라리 &apos;21세기를 위한 21가지 제언&apos; (2019.07)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.theteams.kr/teams/120/post/63992&quot;&gt;브랜딩에 관한 이야기&lt;/a&gt; (2019.07)&lt;/li&gt;
