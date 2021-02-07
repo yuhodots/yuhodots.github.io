@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 06 Feb 2021 00:30:57 GMT</lastBuildDate><item><title><![CDATA[데이터의 분포를 고려한 거리 계산, Mahalanobis distance]]></title><description><![CDATA[Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/datascience/21-01-24/</link><guid isPermaLink="false">https://yuhodots.github.io/datascience/21-01-24/</guid><pubDate>Sat, 23 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다. &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 07 Feb 2021 03:16:26 GMT</lastBuildDate><item><title><![CDATA[데이터의 분포를 고려한 거리 계산, Mahalanobis distance]]></title><description><![CDATA[Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/datascience/21-01-24/</link><guid isPermaLink="false">https://yuhodots.github.io/datascience/21-01-24/</guid><pubDate>Sat, 23 Jan 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다. &lt;/p&gt;
 &lt;h3&gt;Inverse matrix&lt;/h3&gt;
 &lt;p&gt;어떤 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;D_a&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.02778em;&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.151392em;&quot;&gt;&lt;span style=&quot;top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 데이터 분포에 대하여 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;A&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 행렬을 곱하면, 선형 대수에서 가장 기본적 형태인 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;AD_a = B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.02778em;&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.151392em;&quot;&gt;&lt;span style=&quot;top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mrel&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mspace&quot; style=&quot;margin-right:0.2777777777777778em;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.05017em;&quot;&gt;B&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 식으로 표현됩니다. 이미지 왼쪽은 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;D_a&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.83333em;vertical-align:-0.15em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord&quot;&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.02778em;&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;msupsub&quot;&gt;&lt;span class=&quot;vlist-t vlist-t2&quot;&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.151392em;&quot;&gt;&lt;span style=&quot;top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;&quot;&gt;&lt;span class=&quot;pstrut&quot; style=&quot;height:2.7em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;sizing reset-size6 size3 mtight&quot;&gt;&lt;span class=&quot;mord mathnormal mtight&quot;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-s&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;vlist-r&quot;&gt;&lt;span class=&quot;vlist&quot; style=&quot;height:0.15em;&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 즉, 데이터 분포를 나타낸 것이고, 오른쪽은 이 데이터 분포에 어떤 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;A&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;A&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 선형변환을 가한 결과(&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;B&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.68333em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.05017em;&quot;&gt;B&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;)입니다.&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -1818,7 +1818,105 @@ train &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; tf&lt;span cla
 &lt;li&gt;&lt;a href=&quot;https://codechacha.com/ko/deploy-react-with-nginx/&quot;&gt;https://codechacha.com/ko/deploy-react-with-nginx/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://blog.naver.com/PostView.nhn?blogId=dilrong&amp;#x26;logNo=221497936351&quot;&gt;https://blog.naver.com/PostView.nhn?blogId=dilrong&amp;#x26;logNo=221497936351&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt; npm run build를 통해 React 앱을 빌드하고, 이후 nginx의 config 파일을 수정하는 과정에 대해 설명해주셨습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[매트랩(MATLAB) Cheat Sheet]]></title><description><![CDATA[이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다. 일반적으로는 좌측에 디렉토리, 중앙에 스크립트, 우측에 작업공간 (변수와 값), 하단에 명령 창으로 이루어져 있습니다.]]></description><link>https://yuhodots.github.io/cheatsheet/19-09-17/</link><guid isPermaLink="false">https://yuhodots.github.io/cheatsheet/19-09-17/</guid><pubDate>Tue, 17 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt; npm run build를 통해 React 앱을 빌드하고, 이후 nginx의 config 파일을 수정하는 과정에 대해 설명해주셨습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React 프로젝트 구조 파악하기]]></title><description><![CDATA[직접 프로젝트를 만들어보기 전에 다른 사람의 프로젝트 디렉토리 구조를 확인하여 어떤 식으로 디렉토리를 구성해야하는지 감을 잡아보도록 하겠습니다. 저의 경우에는 저보다 먼저 리액트를 공부한 친구의 디렉토리 구조를 참고하였습니다.]]></description><link>https://yuhodots.github.io/frontend/19-09-18/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-09-18/</guid><pubDate>Wed, 18 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;직접 프로젝트를 만들어보기 전에 다른 사람의 프로젝트 디렉토리 구조를 확인하여 어떤 식으로 디렉토리를 구성해야하는지 감을 잡아보도록 하겠습니다. 저의 경우에는 저보다 먼저 리액트를 공부한 친구의 디렉토리 구조를 참고하였으며, 디렉토리 구조는 사람마다 차이가 있기 때문에 참고만 하시길 바랍니다.&lt;/p&gt;
+&lt;h3&gt;React 프로젝트&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 594px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/348127727b5a5277fa405b6079e50c88/5fd3e/19-09-18-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.68421052631579%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA3ElEQVQoz5WSaw6DIBCEvYkvtIK1iVVAfDWW3v9KU3aTmjRpUv2xLCTwZWaHqChKNM0Nzo3w/gWlaiRJiizLuYQoQHc+/V9FtBCkbVsYY3G9NmF/R9f13Mvychi2A+u6DoAO87yg7zWmacayrHyuKnkeSKoItG1PVhbHCdtN0+zL8hHwrtAYw7alVD8vnp6h1oZhFEiei71IKfWjKiOlBAaXB8uWZ+e9xzA4jOPEya/rA9ba4wqlFOi1CLPT4eEQgphZLc2UUqYvRQ5OAa2lckHhxMFQwqSWgGeDeQOb+wtU567OggAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/348127727b5a5277fa405b6079e50c88/15813/19-09-18-1.webp 190w,
+/static/348127727b5a5277fa405b6079e50c88/1cdb2/19-09-18-1.webp 380w,
+/static/348127727b5a5277fa405b6079e50c88/bc223/19-09-18-1.webp 594w&quot;
+              sizes=&quot;(max-width: 594px) 100vw, 594px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/348127727b5a5277fa405b6079e50c88/a2d4f/19-09-18-1.png 190w,
+/static/348127727b5a5277fa405b6079e50c88/3f520/19-09-18-1.png 380w,
+/static/348127727b5a5277fa405b6079e50c88/5fd3e/19-09-18-1.png 594w&quot;
+            sizes=&quot;(max-width: 594px) 100vw, 594px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/348127727b5a5277fa405b6079e50c88/5fd3e/19-09-18-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;build&lt;/strong&gt;: npm run build 커맨드를 통해 생성된 react 배포 폴더&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;node_modules&lt;/strong&gt;: npm install 을 통해 설치된 모듈들이 위치하는 폴더&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;public&lt;/strong&gt;: static 자원이 위치하는 폴더&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;src&lt;/strong&gt;: components / containers / pages / store 등이 위치하는 폴더&lt;/li&gt;
+&lt;li&gt;package: version, dependencies, proxy 등의 정보가 들어있는 파일&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 이 중 프론트엔드 작업이 주로 진행되는 src 폴더는 아래에서 더 자세히 살펴보겠습니다.&lt;/p&gt;
+&lt;h3&gt;src 폴더&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 600px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/58f1a5274d570478c4b07c51d28182e4/0a47e/19-09-18-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.42105263157894%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA+ElEQVQoz52SzY6DMAyE+yoFwpKQdhuCyQ8V6r7/Q3njaRdV2kvDwbLkw6eZ8Zy0Nuz9zCFEPp8bbpq27Ba76xQr1e/7kzn1/RdbeylQD/A0eZ5nwmitq2A70JgRgJRyURo4xsTLEnBv264eOI4WoJQSb9vGj8cPVEsEhywLUBQK9HZzPAya5V6j7B9wXe9QJsCjD3kBhxL+peQWkaEc/3KrhQFoTM9uUkwUkaFzT8tHYABaq3imDsCcM/ooEbwDq54iwCWoou4Oy0S0F1zm3f4nYAC970qhCeqkf0QLSu7cxNfrd71CAYplAUqpc17L11d8XupUA/wFCwhivao6iQMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/58f1a5274d570478c4b07c51d28182e4/15813/19-09-18-2.webp 190w,
+/static/58f1a5274d570478c4b07c51d28182e4/1cdb2/19-09-18-2.webp 380w,
+/static/58f1a5274d570478c4b07c51d28182e4/e88ff/19-09-18-2.webp 600w&quot;
+              sizes=&quot;(max-width: 600px) 100vw, 600px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/58f1a5274d570478c4b07c51d28182e4/a2d4f/19-09-18-2.png 190w,
+/static/58f1a5274d570478c4b07c51d28182e4/3f520/19-09-18-2.png 380w,
+/static/58f1a5274d570478c4b07c51d28182e4/0a47e/19-09-18-2.png 600w&quot;
+            sizes=&quot;(max-width: 600px) 100vw, 600px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/58f1a5274d570478c4b07c51d28182e4/0a47e/19-09-18-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;components&lt;/strong&gt;: 컴포넌트 파일들이 위치하는 폴더&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;containers&lt;/strong&gt;: 컨테이너 파일들이 위치하는 폴더, 주로 state를 props로 매핑하는 코드들이 위치&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pages&lt;/strong&gt;: Routing을 위한 페이지 파일들이 위치하는 폴더&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;store&lt;/strong&gt;: redux 작업을 위한 폴더, 내부에 &lt;strong&gt;actions, reducers&lt;/strong&gt; 폴더 존재&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[매트랩(MATLAB) Cheat Sheet]]></title><description><![CDATA[이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다. 일반적으로는 좌측에 디렉토리, 중앙에 스크립트, 우측에 작업공간 (변수와 값), 하단에 명령 창으로 이루어져 있습니다.]]></description><link>https://yuhodots.github.io/cheatsheet/19-09-17/</link><guid isPermaLink="false">https://yuhodots.github.io/cheatsheet/19-09-17/</guid><pubDate>Tue, 17 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;Setting&lt;/h3&gt;
@@ -1971,6 +2069,213 @@ fprintf(&amp;#39;Y equals %f and Z equals %f\n&amp;#39;,Y,Z);&lt;/code&gt;&lt;/p
 &lt;li&gt;&lt;strong&gt;meshgrid&lt;/strong&gt;: z값이 포함된 3차원 그래프를 그리기 위해 그에 해당하는 x와 y값을 각각 바둑판 형식으로 표현한 것&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;mesh&lt;/strong&gt;: x, y, z 값을 갖는 3차원 그래프 출력&lt;/li&gt;
 &lt;li&gt;contour: 3차원 그래프를 2차원의 등고선 그래프 형태로 출력&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[React Lifecycle]]></title><description><![CDATA[리액트의 컴포넌트는 우리가 모니터링하고 조작할수 있는 세 단계의 주요 라이프 사이클을 가지고 있습니다. 이번 포스팅에서는 리액트의 라이프사이클인 Mounting, Updating, Unmounting에 대해 공부해보도록 하겠습니다.들어가기 앞서 기본적으로 알고있어야 하는 DOM에 대해 알아봅시다.]]></description><link>https://yuhodots.github.io/frontend/19-09-15/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-09-15/</guid><pubDate>Sun, 15 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;리액트의 컴포넌트는 우리가 모니터링하고 조작할수 있는 세 단계의 주요 라이프 사이클을 가지고 있습니다. 이번 포스팅에서는 리액트의 라이프사이클인 &lt;strong&gt;Mounting, Updating, Unmounting&lt;/strong&gt;에 대해 공부해보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt; 들어가기 앞서 기본적으로 알고있어야 하는 &lt;strong&gt;DOM&lt;/strong&gt;에 대해 알아봅시다. DOM은 &lt;strong&gt;Document Object Model&lt;/strong&gt;의 약자로 HTML, XML 문서의 프로그래밍 interface를 의미합니다. 그렇다고 해서 내가 작성한 html 코드가 DOM과 동일하다는 것을 의미하지는 않고, 브라우저의 개발자 툴에서 확인한 코드가 DOM이 됩니다. 웹 브라우저에 표출되는 내용은 html 코드 내용에서 자바스크립트와 같은 스크립팅 언어에 의해 변경될 수 있기 때문입니다. &lt;/p&gt;
+&lt;h3&gt;Mounting&lt;/h3&gt;
+&lt;p&gt; &lt;strong&gt;mount&lt;/strong&gt;라는 단어는 컴퓨터공학 분야에서 &apos;설치&apos; 또는 &apos;장착&apos;이라는 뜻으로 많이 사용된다고 합니다. &lt;a href=&quot;https://www.w3schools.com/react/react_lifecycle.asp&quot;&gt;w3school&lt;/a&gt;에서는 mounting에 대해 &apos;putting elements into the DOM&apos; 즉, DOM에 요소를 삽입하는 것이라고 설명하고 있습니다. 쉽게 생각해서 React elements가 DOM에 노출되는 것, 혹은 더 쉽게 컴포넌트를 생성하는 것을 mounting이라고 생각하시면 될것 같습니다. React에는 아래와 같이 컴포넌트를 마운팅할 때 실행되는 4가지의 built-in 메소드가 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;constructor()&lt;/li&gt;
+&lt;li&gt;render()&lt;/li&gt;
+&lt;li&gt;componentDidMount()&lt;/li&gt;
+&lt;li&gt;getDerivedStateFromProps()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 컴포넌트가 렌더되기 전에 호출되는 &lt;code class=&quot;language-text&quot;&gt;componentWillMount()&lt;/code&gt; 라는 메소드도 존재했으나 이제는 필요하지 않게 되어 v16.3 이후부터는 사용되지 않거나, 사용되더라도 &lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillMount()&lt;/code&gt; 라는 이름으로 사용되니 참고만 하시길 바랍니다. 아래의 순서대로 실행되며 자세한 사용법은 &lt;a href=&quot;https://www.w3schools.com/react/react_lifecycle.asp&quot;&gt;w3school&lt;/a&gt;을 참고하시길 바랍니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;컴포넌트가 새로 만들어질 때마다 컴포넌트 생성자 함수 constructor()가 호출됩니다.&lt;/li&gt;
+&lt;li&gt;render()가 호출됩니다.&lt;/li&gt;
+&lt;li&gt;componentDidMount()가 호출됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Updating&lt;/h4&gt;
+&lt;p&gt; 마운팅 이후에는 &lt;strong&gt;props 혹은 state의 변화&lt;/strong&gt; 같은 컴포넌트의 업데이트가 진행될 수 있습니다. React에는 아래와 같이 컴포넌트가 업데이트 될 때 실행되는 5가지의 built-in 메소드가 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;getDerivedStateFromProps(): props로 받아온 값을 state로 동기화 하는 경우 사용합니다.&lt;/li&gt;
+&lt;li&gt;shouldComponentUpdate(): 리액트가 re-rendering을 해야하는 지에 대한 여부를 Boolean 값으로 리턴합니다.&lt;/li&gt;
+&lt;li&gt;render()&lt;/li&gt;
+&lt;li&gt;getSnapshotBeforeUpdate(): render 이후, 실제 DOM 변화 이전에 실행되는 메소드입니다. &lt;/li&gt;
+&lt;li&gt;componentDidUpdate(): DOM 변화 이후에 실행되는 메소드입니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;componentWillReceiveProps()&lt;/code&gt; 라는 메소드는 v16.3 이후부터 &lt;code class=&quot;language-text&quot;&gt;UNSAFE_componentWillReceiveProps()&lt;/code&gt; 로 변경되었고, &lt;code class=&quot;language-text&quot;&gt;getDerivedStateFromProps()&lt;/code&gt; 의 경우에는 마운팅과 업데이팅 두 경우 모두에서 호출된다는 점을 참고하시길 바랍니다. 메소드는 아래의 순서로 실행되며 자세한 사용법은 &lt;a href=&quot;https://www.w3schools.com/react/react_lifecycle.asp&quot;&gt;w3school&lt;/a&gt;을 참고하시길 바랍니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;render()가 호출됩니다.&lt;/li&gt;
+&lt;li&gt;getSnapshotBeforeUpdate()가 호출됩니다. &lt;/li&gt;
+&lt;li&gt;DOM에 변화가 생깁니다.&lt;/li&gt;
+&lt;li&gt;componentDidUpdate()가 호출됩니다. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Unmounting&lt;/h4&gt;
+&lt;p&gt; 그 다음의 라이프사이클은 Unmounting입니다. 컴포넌트가 DOM에서 제거되거나 리액트로서 언마운트 될 때 호출되며, 오직 한 개의 built-in 메소드가 존재합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;componentWillUnmount()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Reference&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@changmoomoon/react-v16-3-%EC%9D%B4%ED%9B%84-lifecycle-api-%EC%B4%9D-%EC%A0%95%EB%A6%AC-16-3v%EB%B6%80%ED%84%B0-deprecated%EB%90%9C-api%EB%8F%84-%ED%8F%AC%ED%95%A8-37456f843efd&quot;&gt;React v16.3 이후 lifecycle API 총 정리(16.3v부터 deprecated된 API도 포함)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.w3schools.com/react/react_lifecycle.asp&quot;&gt;w3school.com - React Lifecycle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://velopert.com/3631&quot;&gt;velopert - 누구든지 하는 리액트 5편: Lifecycle API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://velog.io/@godori/DOM%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80&quot;&gt;velog.io/@godori/DOM이란 무엇인가?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[React의 기본, 컴포넌트]]></title><description><![CDATA[create-react-app 모듈을 글로벌로 설치합니다. create-react-app 명령어로 프로젝트를 생성합니다. 앱을 실행하고 localhost:3000에서 제대로 동작하는지 확인합니다. React에서 가장 기초가 되는 개념은 컴포넌트입니다.]]></description><link>https://yuhodots.github.io/frontend/19-09-14/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-09-14/</guid><pubDate>Sat, 14 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;프로젝트 생성&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;create-react-app 모듈을 글로벌로 설치합니다&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install -g create-react-app&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;create-react-app 명령어로 프로젝트를 생성합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;create-react-app 원하는이름&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;앱을 실행하고 localhost:3000에서 제대로 동작하는지 확인합니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;컴포넌트 기본&lt;/h3&gt;
+&lt;p&gt; React에서 가장 기초가 되는 개념은 &lt;strong&gt;컴포넌트&lt;/strong&gt; 입니다. React는 &apos;컴포넌트 기반 라이브러리&apos;라고 소개되곤 하는데요, 이는 웹 페이지를 HTML 코드 하나로 생각하는게 아니라 여러 부분을 컴포넌트라는 단위로 분할해서 처리한다는 것을 의미합니다.  &lt;/p&gt;
+&lt;p&gt; 먼저 컴포넌트가 어떻게 생겼는지부터 느껴봅시다! 아래 코드는 제가 react 프로젝트 내 src/App.js 파일에 작성한 코드입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Compo &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Compo&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Compoent test&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7d6c1463025228ed4503ab140bd91cdc/f79fa/19-09-14-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 26.842105263157894%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAhUlEQVQY06WMywrCMBAA8y+KxR5ELK2tVkVQEH/cttDEv6gQcso1ZGwQQUTEx8Cws3tYkWQFszQnzDRfMk0y5osV6+2O/eFIUW76e0kUTxiMxgyj+K3iVFXUdUPdNNy7lQqpzqheqdRt/1ChtebSdRhjCG2t5R+E955nnXM/+/Jh4LG/4QoSWFCiC3+ojgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/7d6c1463025228ed4503ab140bd91cdc/15813/19-09-14-1.webp 190w,
+/static/7d6c1463025228ed4503ab140bd91cdc/1cdb2/19-09-14-1.webp 380w,
+/static/7d6c1463025228ed4503ab140bd91cdc/9046c/19-09-14-1.webp 760w,
+/static/7d6c1463025228ed4503ab140bd91cdc/e8e7c/19-09-14-1.webp 940w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/7d6c1463025228ed4503ab140bd91cdc/a2d4f/19-09-14-1.png 190w,
+/static/7d6c1463025228ed4503ab140bd91cdc/3f520/19-09-14-1.png 380w,
+/static/7d6c1463025228ed4503ab140bd91cdc/3c051/19-09-14-1.png 760w,
+/static/7d6c1463025228ed4503ab140bd91cdc/f79fa/19-09-14-1.png 940w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/7d6c1463025228ed4503ab140bd91cdc/3c051/19-09-14-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 이 코드에는 App이라는 컴포넌트와, Compo라는 컴포넌트, 이렇게 두 개의 컴포넌트가 존재합니다. 그냥 딱 훑어 보았을 때 두 컴포넌트가 가지고있는 공통점을 찾아볼까요?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;class - extends React.Component&lt;/strong&gt;의 형태를 띄고 있습니다.&lt;/li&gt;
+&lt;li&gt;class 안에 &lt;strong&gt;render&lt;/strong&gt; 메소드를 호출하고 있습니다.&lt;/li&gt;
+&lt;li&gt;render 안에 &lt;strong&gt;return&lt;/strong&gt;을 호출하고 있습니다.&lt;/li&gt;
+&lt;li&gt;return 안에는 &lt;strong&gt;container element&lt;/strong&gt; &lt;code class=&quot;language-text&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;로 감싸져 있는 무언가가 있습니다. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;컴포넌트 변수 선언&lt;/h3&gt;
+&lt;p&gt; 위의 기본적인 컴포넌트 형태에서 조금만 더 내용을 추가한 예시를 살펴봅시다. 저는 return 내 html 내용에 변수를 삽입하고 싶었고, 아래와 같은 코드를 작성하였습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Compo &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Compo&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; text &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Compoent test!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;text&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; Compo 클래스에 보면 let text.. 라는 내용이 있습니다. ES6 에서는 변수를 선언할 때 &lt;strong&gt;block scope&lt;/strong&gt;인 &lt;strong&gt;let&lt;/strong&gt;을 사용하는 것을 권장합니다. 그래서 let을 사용하여 &apos;Component test!&apos;라는 변수를 먼저 선언해줬습니다. 그리고 변수를 return 내 html 코드에 사용하고 싶으면 위와 같이 &lt;strong&gt;중괄호 { }&lt;/strong&gt; 를 사용하시면 됩니다. &lt;/p&gt;
+&lt;h3&gt;props, props 타입 &amp;#x26; state&lt;/h3&gt;
+&lt;p&gt; 컴포넌트 내 데이터를 처리하는 방법 중 가장 대표적인 것이 props와 state입니다. Props는 컴포넌트 내부의 &lt;strong&gt;변하지 않는 데이터&lt;/strong&gt;를 처리할 때 사용하며, State는 &lt;strong&gt;변하는 동적인 데이터&lt;/strong&gt;를 처리할 때 사용합니다. props의 타입을 검증해서 에러 발생을 줄이거나, 에러 로그를 띄울수 있도 있습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;this.props.이름&lt;/strong&gt;: &lt;code class=&quot;language-text&quot;&gt;&amp;lt;Compo 이름 = &amp;quot;value&amp;quot;/&amp;gt;&lt;/code&gt; 의 형태로 사용합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;this.props.children&lt;/strong&gt;: &lt;code class=&quot;language-text&quot;&gt;&amp;lt;Cmpo&amp;gt; value &amp;lt;/Compo&amp;gt;&lt;/code&gt; 의 형태로 사용합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;defaultProps (기본값 설정)&lt;/strong&gt;: 컴포넌트 설정이 끝난 후 &lt;code class=&quot;language-text&quot;&gt;Comp.defaultProps = { 이름 : value }&lt;/code&gt; 의 형태로 사용합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Compo test&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Hello world!&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Children test &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;Compo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Compo&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;propsName&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;test&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;chiledren&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;children&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;propTypes&lt;/strong&gt;: 컴포넌트 설정이 끝난 후 &lt;code class=&quot;language-text&quot;&gt;Comp.propTypes = { 이름 : 타입 }&lt;/code&gt; 의 형태로 사용합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;Comp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;propTypes &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	value&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PropTypes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;string&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	secondeValue&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PropTypes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;number
+	thirdValue&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PropTypes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;any&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;isRequired
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;this.state&lt;/strong&gt; (렌더링 전): state는 초기값 설정이 필수입니다. constructor 안에서 &lt;code class=&quot;language-text&quot;&gt;this.state = { }&lt;/code&gt;으로 설정을 해주셔야 합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;this.setState&lt;/strong&gt; (렌더링 후): state 값을 수정할 때는 &lt;code class=&quot;language-text&quot;&gt;this.setState({ ... })&lt;/code&gt;을 사용합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/little-big-programming/react%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EB%A5%BC-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90-92c923011818&quot;&gt;React의 기본, 컴포넌트를 알아보자&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/wasd/%EA%B8%B0%EC%B4%88%EB%B6%80%ED%84%B0-%EB%B0%B0%EC%9A%B0%EB%8A%94-react-js-1531b18f7bb2&quot;&gt;기초부터 배우는 react, Part1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://velopert.com/3629&quot;&gt;velopert - 누구든지 하는 리액트 4편: props와 state&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[mac에서 anaconda를 이용하여 TensonFlow 가상환경 만들기]]></title><description><![CDATA[파이썬은 기본적으로 pip라는 패키지 관리 시스템만을 가지고 있어서 원하는 환경 조성을 위해 다른 패키지와 요소들을 수동으로 추가, 삭제해줘야 합니다. 하지만 아나콘다를 사용하면 가상환경을 만들고 그 가상환경 속에 원하는 패키지를 쉽게 설치 삭제할 수 있습니다.]]></description><link>https://yuhodots.github.io/deeplearning/19-09-01/</link><guid isPermaLink="false">https://yuhodots.github.io/deeplearning/19-09-01/</guid><pubDate>Sun, 01 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;텐서플로우 실습을 위해서 mac에 아나콘다를 설치 후, 주피터 노트북과 텐서플로우가 설치된 가상환경을 만들어 보도록 하겠습니다. &lt;/p&gt;
 &lt;p&gt;파이썬은 기본적으로 pip라는 패키지 관리 시스템만을 가지고 있어서 원하는 환경 조성을 위해 다른 패키지와 요소들을 수동으로 추가, 삭제해줘야 합니다. 하지만 아나콘다를 사용하면 아나콘다에 가상환경을 만들고 그 가상환경 속에 원하는 패키지를 쉽게 설치 삭제할 수 있어서 독립적인 가상 개발환경을 조성할 수 있게 됩니다.&lt;/p&gt;
 &lt;h3&gt;Anaconda 설치&lt;/h3&gt;
@@ -2009,7 +2314,549 @@ fprintf(&amp;#39;Y equals %f and Z equals %f\n&amp;#39;,Y,Z);&lt;/code&gt;&lt;/p
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://kyun2.tistory.com/72&quot;&gt;Mac 아나콘다 파이썬 설치하기 - kyun2world님&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.tensorflow.org/install/pip?hl=ko&quot;&gt;pip를 이용하여 TensorFlow 설치 - TensorFlow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Nginx 설정을 통한 https 리다이렉션]]></title><description><![CDATA[이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/server/19-08-14/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-14/</guid><pubDate>Wed, 14 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 node.js가 아니라, nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다. 본 포스팅은 아래의 조건을 충족한 분들을 위한 포스팅입니다. &lt;/p&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Script로 FullCalendar Events 띄우기]]></title><description><![CDATA[ 일단 자세한 사용법을 익히기 전에 FullCalendar를 화면에 띄워보는것부터 시작합시다. Scrpit 태그를 통해 FullCalendar를 띄우는 방법을 설명하고 있으니, ES6 빌드 시스템으로 띄우고 싶으신 분은 이곳을 참고하시길 바랍니다.]]></description><link>https://yuhodots.github.io/frontend/19-08-28/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-28/</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;FullCalendar 띄우기&lt;/h3&gt;
+&lt;p&gt; 일단 자세한 사용법을 익히기 전에 FullCalendar를 화면에 띄워보는것부터 시작합시다. &lt;strong&gt;Scrpit 태그를 통해 FullCalendar를 띄우는 방법&lt;/strong&gt;을 설명하고 있으니, ES6 빌드 시스템으로 띄우고 싶으신 분은 &lt;a href=&quot;https://fullcalendar.io/docs/initialize-es6&quot;&gt;여기&lt;/a&gt;를 참고하시길 바랍니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;npm install --save @fullcalendar/core @fullcalendar/daygrid&lt;/code&gt;로 fullcalendar를 다운로드합니다.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;html 파일을 하나 만들고 &lt;a href=&quot;https://fullcalendar.io/docs/initialize-globals&quot;&gt;테스트 코드&lt;/a&gt;를 붙여넣어 줍니다. 이 때 href 주소를 알맞게 설정해 주셔야 합니다.&lt;/p&gt;
+&lt;p&gt;제 경우에는 html파일을 node&lt;em&gt;modules 폴더 밖에 생성했기 때문에href=&apos;./node&lt;/em&gt;modules/@fullcalendar/core/main.css&apos; 이런식으로 수정하였습니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;생성한 html파일을 브라우저를 통해 열어보면 다음과 같이 캘린더가 출력됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d91c0181faf14310fa2f7863c1f242e8/21b4d/19-08-28-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 83.15789473684211%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABp0lEQVQ4y61Uu07DQBD0H9JRUdFR8TlUUCEaKmhSUeQHAgEUQhkRRThyEuJHzu/Bc3is2AoBIU463Xg12Zvd2YszHA4xGAwwHo/R7/exWq3AVZZl69wVe3h+wdnFFc4vr3FwdILD41M48/kck8kEQRBgsVggDENLzvMcWZZZnKap3VyMKT57d3H/OMLT6BXXNz3c9u7g8Daq4hnHMWazmU222WzgeR6KosByuYTruhDX933LiaIIuS5NYmqHwx9IkUoh1voJ53lhFZe1epuQm4RdmKRunKcE6Ju4SchljME2JoGbpQsnSdL0lBwuxhQn1xFZ7u1z9zfYKpQSSafjPPlN17/KSa0JUkW+VEktT0eZlbjd/Cpp3YayNkBq1B71V7hRyJGRQmIpNCZCkRtkaYQkNvUspq1+akYZa0yh9G1sExYlwsBDFk8RRxOYzaJJwku7pjDmdA1ROU35WYjUTKv9hixZt0ru8rmbkjX9xOv1ujaCpvgVrhSZsOJ8NM3XE6VRMqhlyn+MTEuhXoEmvov1alSisP5EhHeOzXf96eJdI7TXlL/gTwqzMsmpwuS4AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/d91c0181faf14310fa2f7863c1f242e8/15813/19-08-28-1.webp 190w,
+/static/d91c0181faf14310fa2f7863c1f242e8/1cdb2/19-08-28-1.webp 380w,
+/static/d91c0181faf14310fa2f7863c1f242e8/9046c/19-08-28-1.webp 760w,
+/static/d91c0181faf14310fa2f7863c1f242e8/c89f9/19-08-28-1.webp 1140w,
+/static/d91c0181faf14310fa2f7863c1f242e8/af3f0/19-08-28-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/d91c0181faf14310fa2f7863c1f242e8/a2d4f/19-08-28-1.png 190w,
+/static/d91c0181faf14310fa2f7863c1f242e8/3f520/19-08-28-1.png 380w,
+/static/d91c0181faf14310fa2f7863c1f242e8/3c051/19-08-28-1.png 760w,
+/static/d91c0181faf14310fa2f7863c1f242e8/b5cea/19-08-28-1.png 1140w,
+/static/d91c0181faf14310fa2f7863c1f242e8/21b4d/19-08-28-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/d91c0181faf14310fa2f7863c1f242e8/3c051/19-08-28-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;플러그인&lt;/h3&gt;
+&lt;p&gt; 기본적인 세팅 말고 더 다양한 기능을 제공받고 싶다면, 플러그인을 설치한 뒤 &lt;em&gt;&apos;plugins&apos;&lt;/em&gt; array 내 원하는 플러그인을 추가하시면 됩니다. &lt;a href=&quot;https://fullcalendar.io/docs/plugin-index&quot;&gt;이곳&lt;/a&gt;에서 fullcalendar에서 제공하는 플러그인 목록을 확인하실 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;npm install --save @fullcalendar/&amp;#39;플러그인 이름&amp;#39;&lt;/code&gt;의 형태로 플러그인을 설치한 뒤 html 파일에 아래와 같은 소스코드를 추가합니다. (저는 일단 dateClick 기능을 위해서 interaction, dayGrid 플러그인을 추가하였습니다.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;./node_modules/@fullcalendar/core/main.js&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;./node_modules/@fullcalendar/daygrid/main.js&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;script src&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;./node_modules/@fullcalendar/interaction/main.js&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; calendar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FullCalendar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Calendar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;calendarEl&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  plugins&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;dayGrid&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;interaction&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token function-variable function&quot;&gt;dateClick&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Clicked on: &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; info&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dateStr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 이 결과로, 날짜 칸을 마우스로 클릭하면 alert창이 출력됩니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/32a2e21fc21b5e26ff8b9180fbcd17b7/21b4d/19-08-28-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 83.6842105263158%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAACF0lEQVQ4y51Sy2pTURS9/6ADIelDJ9o82lKtGh8oOHXoRMFpJ0IHFfwGlTx8gqGIOPELajtwIhk4CJJ5BUupodhBSMlN7iPnJsuzzmWf3oTU14Z997rnsc/ae22n0WigVqthZ+c7Ks+e4/yFS7hx8xYKV64jk53HXCaPc3M5G49wFjOzZ7C69giv3n7A7bsruLfyEE6v10Oz2QRtc3ML+YUlXC5cw/LFgvF5/Z/NLSCXX4yjdsal5as4m1lEufICP/YPsPXpM77UG3CiKEKr1TIJNzY+4sTJU5iaPo1UegbpqVmktKfHPJWexv21Ku48eI3q+jtzN/B9/R3CGQ6HENve/obHT56iVKqgWCqjWCwfxSTWsarLfPnmPer1r+Yu05CcMxgMwKT9fh//a0qpmGUQxAlpYRiaF+ie55lDxOyxrPu6LJ7nRTqJBEFoyfCeZUgT/CePS5yMLUNmJwtap9Mxyfnvuq5pNll0u12zT6Y8T+OabwSBqWZElCSeZNw+jqGYGRsu8CX2TTAZKkWGhxgoF6Hf1qw6lqGwIlP2U9hahiwpKVDMQF/22lD+HsLeLsKgbfajSFllRTy5NzI2wpYb8bo+FLhQwU+E3r4e3kObRJRlTCa3opBuUhQmNiOkGy2vTxKFQkjJZmyOE2W0+fjtqCSjLVmGV8rnOn0cy1kRkDGJnUkvShvG8d9UYxkKC8HywL9gxl8kmsj3ZBeGcgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/32a2e21fc21b5e26ff8b9180fbcd17b7/15813/19-08-28-2.webp 190w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/1cdb2/19-08-28-2.webp 380w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/9046c/19-08-28-2.webp 760w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/c89f9/19-08-28-2.webp 1140w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/af3f0/19-08-28-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/32a2e21fc21b5e26ff8b9180fbcd17b7/a2d4f/19-08-28-2.png 190w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/3f520/19-08-28-2.png 380w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/3c051/19-08-28-2.png 760w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/b5cea/19-08-28-2.png 1140w,
+/static/32a2e21fc21b5e26ff8b9180fbcd17b7/21b4d/19-08-28-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/32a2e21fc21b5e26ff8b9180fbcd17b7/3c051/19-08-28-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Handler&lt;/h3&gt;
+&lt;p&gt; 왜 alert창이 출력되었는지를 이해하기 위해서는 Handler를 알아야합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; calendar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FullCalendar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Calendar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;calendarEl&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        plugins&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dayGrid&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;interaction&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token function-variable function&quot;&gt;dateClick&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Clicked on: &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; info&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dateStr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 핸들러는 일종의 옵션이지만, 특별한 일이 발생할 때마다 호출되는 함수를 말합니다. 위의 코드에서 &lt;code class=&quot;language-text&quot;&gt;dateClick: function(info){…}&lt;/code&gt; 파트가 핸들러이기 때문에 dateClick 이벤트가 발생했을 때 그에 알맞은 함수가 실행된 것입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;calendar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dateClick&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;clicked on &apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; info&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;dateStr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;이와 같이 on, off 메소드를 활용하여 동적으로 핸들러를 추가하는 방법 또한 존재합니다. 핸들러 뿐만 아니라 FullCallendar 내 메소드로도 캘린더를 제어할 수 있으니 &lt;a href=&quot;https://fullcalendar.io/docs/Calendar-prev&quot;&gt;참고&lt;/a&gt;하시기 바랍니다.&lt;/p&gt;
+&lt;h3&gt;Event 옵션&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; calendar &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FullCalendar&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Calendar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;calendarEl&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+plugins&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;dayGrid&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;interaction&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+events&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		id&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Test1&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		start&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-08-22&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		end&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-08-24&apos;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		id&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Test2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		start&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-08-21&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		end&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-08-23&apos;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; events 라는 옵션을 추가하고, 객체 array 형태로 이벤트를 입력했습니다. 그리고 캘린더를 확인해봅시다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f49bedffdfaf4e58a7d1ea483b4a0dac/21b4d/19-08-28-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 82.10526315789475%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAABlUlEQVQ4y61TTU/DMAzNP+bA/5mExB/gwBWJHXYAaYJpOwyB0NZpaFqr0XZt0zTJI87mkm6MDwlLkV9t13b8HBHHMaIoQp7n2G63XpMopVBVlcdlWfrDmHwk5J8vlnidRegP7jB8nECQo65raK39ybIMTdN4W1EU3kZJqJgxxmMppY8hba1BKIKCSKy1rfEvmDTlIK2dFvxB16BuGJOdDmEf7HzUFWO2h/9Rx4IrsTHE/HPYCWNKzrFsp+Rth+zgYE7ImHxhEi50iEWYnRMSIXxlKR32ibVjlUhwJKodaSGhjEU43K/wdxLGs247pBXh69FqaN+hxipJ8bQsMJ5leHh+w3SxwuhlgcytEYmsPveSVkuc6sTs7etM4XaywWCaonczx1lvhPOLMS77S1zdr3E9TKAa0+2QKQ/pJ7vWjghVt0VkuXFzTNxrWiFJc6SlRvxeuITN8QyZCMY8x9rvGzwpTIRxhYzeM96olpTO2vz2GGPbNTLWdl5K58q8Joc7yWPYjeAYH8b+uDan3u8pu+DO/ut8AKsX6BsoidnLAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/f49bedffdfaf4e58a7d1ea483b4a0dac/15813/19-08-28-3.webp 190w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/1cdb2/19-08-28-3.webp 380w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/9046c/19-08-28-3.webp 760w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/c89f9/19-08-28-3.webp 1140w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/af3f0/19-08-28-3.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/f49bedffdfaf4e58a7d1ea483b4a0dac/a2d4f/19-08-28-3.png 190w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/3f520/19-08-28-3.png 380w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/3c051/19-08-28-3.png 760w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/b5cea/19-08-28-3.png 1140w,
+/static/f49bedffdfaf4e58a7d1ea483b4a0dac/21b4d/19-08-28-3.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/f49bedffdfaf4e58a7d1ea483b4a0dac/3c051/19-08-28-3.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 이렇게 캘린더에서 잘 출력되는 것을 확인할 수 있습니다. events 객체에 어떤 key와 value를 적어야 하는지에 대한 설명은 이 &lt;a href=&quot;https://fullcalendar.io/docs/event-object&quot;&gt;링크&lt;/a&gt;를 참고하시면 됩니다.&lt;/p&gt;
+&lt;h3&gt;getEventById 메소드&lt;/h3&gt;
+&lt;p&gt; events에 대한 정보는 getEventById메소드를 통해 가져올 수 있습니다. 인자로 원하는 Id에 대한 정보를 넣어주시면 됩니다. 한번 위의 소스코드 상태에서 &lt;code class=&quot;language-text&quot;&gt;console.log( calendar.getEventById(1))&lt;/code&gt; 를 실행 해 보겠습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3ceba0e38a372cd616fd66552da9d0f4/21b4d/19-08-28-4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 38.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA0UlEQVQoz5WRiQrDIBBE/f9/LLSlbRqNmkRzmWPqWAKhdxcGV7M8ZiciO0n0Q8CyLE9ibftXtZ2z1kKonYaVJcZxfDv8rbZz4rqTuB5zGGPgnEvy3qPv+78dUkIdClSmTgC6nKYpaZ7nn4CPJfQpOvMuQQhcxfurXD9lnYBqr1HkGnVdo2matDLPdeW/MyzOBt55hBDQtS3CMCBEh13XYYh9E/Ns4zvvnOEbe4qbPDnkytklg5ISldYoC2ZqoJSCjWee33+Y5reyTHCCCF9j2QJvaTZ0HxRDs7EAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/3ceba0e38a372cd616fd66552da9d0f4/15813/19-08-28-4.webp 190w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/1cdb2/19-08-28-4.webp 380w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/9046c/19-08-28-4.webp 760w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/c89f9/19-08-28-4.webp 1140w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/af3f0/19-08-28-4.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/3ceba0e38a372cd616fd66552da9d0f4/a2d4f/19-08-28-4.png 190w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/3f520/19-08-28-4.png 380w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/3c051/19-08-28-4.png 760w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/b5cea/19-08-28-4.png 1140w,
+/static/3ceba0e38a372cd616fd66552da9d0f4/21b4d/19-08-28-4.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/3ceba0e38a372cd616fd66552da9d0f4/3c051/19-08-28-4.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;이렇게 &apos;id : 1&apos; 값을 가진 events 데이터에 대한 정보가 출력된 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;h3&gt;참고자료&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://fullcalendar.io/&quot;&gt;FullCalendar 공식 홈페이지&lt;/a&gt;&lt;a href=&quot;https://fullcalendar.io/#demos&quot;&gt;Demo 확인&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://fullcalendar.io/#demos&quot;&gt;
+&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React로 FullCalendar Events 띄우기]]></title><description><![CDATA[React를 사용해야하기 때문에 설치를 해 줍시다. 그리고 React 프로젝트를 원하는 디렉토리에 생성합니다. 프로젝트가 제대로 작동하는지 확인하기 위해서 App.js 파일이 위치한 디렉토리의 터미널에서 npm start를 수행합니다.]]></description><link>https://yuhodots.github.io/frontend/19-08-28-2/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-28-2/</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;React 설치, React 프로젝트 생성&lt;/h3&gt;
+&lt;p&gt; React를 사용해야하기 때문에 설치를 해 줍시다. 그리고 React 프로젝트를 원하는 디렉토리에 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install -g create-react-app
+create-react-app &amp;#39;원하는 디렉토리&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 프로젝트가 제대로 작동하는지 확인하기 위해서 App.js 파일이 위치한 디렉토리의 터미널에서 npm start를 수행합니다. 웹 브라우저 주소창에 localhost:3000 을 입력했을 때 react의 마크가 빙글빙글 돌고있으면 성공입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;cd &amp;#39;프로젝트를 생성한 디렉토리&amp;#39;
+npm start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;React 프로젝트에 FullCalendar모듈 설치&lt;/h3&gt;
+&lt;p&gt; FullCalendar를 react를 통해서 출력하기 위해서 아래 명령어를 통해 모듈을 설치합니다. 프로젝트의 node_modules 디렉토리 내 @fullcalendar라는 디렉토리와 파일들이 설치되면 성공입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;App.js에 FullCalendar 로드&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; FullCalendar &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/react&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/daygrid&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;main.css 파일이 위치한 경로&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar 
+          defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt; 
+          plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 프로젝트 내 다른파일들은 건드리지 않고 App.js 파일만 위와 같이 수정해봅시다. 그러면 FullCalendar가 잘 출력되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/21b4d/19-08-28-2-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 82.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABjklEQVQ4y6VUy0rEQBCcb/ILvHn14hf4Q4IXwYvg1+zCXkVUcA8RYSNr3u9JmZpYcdyNrLANQyo9ne7qrpmY5XKJ1Wrl1mKxQJIk8K3v+1lM+4xiXN3c4fr2HmcXlzg5PYcJwxBBEKCqKkRRhO1264LLskSWZQ6naYo4jh2mryiKyb8JPxDFCR4en/H08gqT57n7uGka9xGD+E6m3GMh+du2dT4mrOva7XVdN6zW4aEFGLVhrT3Y5iHMpyEzAj6FWZ2V5WcxLrLwMfeJyVjxhoA2Uh8xW2MgAxSo5HOYBISNWlUCYfmZ0MeK8Qv52DA7jS24wX4rLD/bIRsaBRGm2uyESRgjQuYYEebMlGUxseISE7H1GZLVLkOdx0mUn/n8f267M1Tro8quih2cDXzFlVCK/4X3EqbxGrZ5R5a8De2Ve6KwNR/PicIRTaK0VYC6WKOrNzhWoPHYVBFsl6Iqk6k6GWnguq8MJnOdUYqlm6Jb0493ecxue/w62HNYM97F/n/AqKK13VRRSebwofUFMs0z8WSAdhYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/15813/19-08-28-2-1.webp 190w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/1cdb2/19-08-28-2-1.webp 380w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/9046c/19-08-28-2-1.webp 760w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/c89f9/19-08-28-2-1.webp 1140w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/af3f0/19-08-28-2-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/a2d4f/19-08-28-2-1.png 190w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/3f520/19-08-28-2-1.png 380w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/3c051/19-08-28-2-1.png 760w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/b5cea/19-08-28-2-1.png 1140w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/21b4d/19-08-28-2-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/3c051/19-08-28-2-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;React에 대해 공부를 많이 한 편은 아니어서 세부적으로 어떻게 작동하는지는 설명 드리지는 못하지만 제가 이해한 만큼만 설명 드리겠습니다. 아래는 FullCalendar에 대한 설명입니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;import를 통해 이전에 설치한 FullCalendar와 dayGridPlugin 정보를 가져옵니다.&lt;/li&gt;
+&lt;li&gt;App 컴포넌트 내 FullCalendar 컴포넌트를 넣습니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;FullCalendar를 넣은 App에 대한 설명입니다. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;기본적으로 react 프로젝트를 생성하면 src 디렉토리 내 App.js 파일의 App이라는 컴포넌트를 index.js에서 렌더합니다.&lt;/li&gt;
+&lt;li&gt;렌더한 내용은 public 디렉토리 내 index.html의, root라는 id값을 가진 div에 전달됩니다.&lt;/li&gt;
+&lt;li&gt;결과적으로 localhost:3000에서는 App 컴포넌트에 담긴 FullCalendar 컴포넌트가 출력됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;React로 Events 띄우기&lt;/h3&gt;
+&lt;p&gt; Script로 Events를 띄우는 방법과 거의 똑같다고 보시면 됩니다. 이전 포스팅에서 React를 이용한 FullCalendar 출력을 성공하셨다면, FullCalendar 컴포넌트에 props로서 events 값을 그저 전달해주기만 하면 전달한 내용에 따라 캘린더에 events가 출력되는 것을 확인할 수 있습니다. 컴포넌트 코드 예시는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar
+  defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt;
+  plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;calendarPlugins&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  weekends&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  events&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;event 1&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; date&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-04-01&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;event 2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; date&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-04-02&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Back-End에서 JSON정보 전달하기&lt;/h3&gt;
+&lt;p&gt; 저는 Node-Express 프레임워크를 활용해서 JSON 정보를 전달하였습니다. 아래는 Express 프로젝트의 index.js 라우터 코드입니다. DB 서버에 cal_events라는 테이블을 생성해서 이 테이블에서 정보를 가져오도록 했습니다. (db를 require하는 과정에 대해서는 따로 설명하지 않겠습니다. 글이 너무 길어질 것 같아서,,)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; express &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;express&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; router &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; express&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; db &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;../config/db&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+router&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/test&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;SELECT * FROM cal_events&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;error&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; events&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; error&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; router&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; /test라는 url에 get요청이 들어오면 DB내 cal_events 테이블에 대한 정보를 res.json을 통해 응답하였습니다.&lt;/p&gt;
+&lt;h3&gt;React에서 JSON정보 받기&lt;/h3&gt;
+&lt;p&gt; Back-End에서 받은 정보를 받기 위해서는 일단 React를 Back-End서버의 프록시 서버로 설정해야합니다. React 프로젝트 내 package.json에 다음과 같은 내용을 추가해줍니다. (각자 Back-End서버의 포트번호를 알맞게 수정해서 적어주시길 바랍니다. 저는 3003번 포트를 이용하였습니다.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;quot;proxy&amp;quot;:&amp;quot;http://localhost:3003/&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 코드가 그렇게 짧지는 않기때문에 나눠서 설명하도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; FullCalendar &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/react&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/daygrid&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; axios &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;axios&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;main.css의 경로&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; App.js의 앞부분이자 모듈을 import하는 부분입니다. 이전 포스팅에서 달라진 내용은 &lt;code class=&quot;language-text&quot;&gt;import axios from &amp;#39;axios&amp;#39;&lt;/code&gt; 입니다. Back-End에서 보낸 데이터를 React가 받기위해서 사용됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+  state &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_getEvents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function-variable function&quot;&gt;_getEvents&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; events &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_axiosEvents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      events
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;token function-variable function&quot;&gt;_axiosEvents&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; axios&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/test&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;events &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; 
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar 
+          defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt; 
+          plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+          events&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;loading&apos;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;_axiosEvents&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;_getEvents, componentDidMount&lt;/code&gt; 순으로 코드 순서와 &apos;반대로&apos; 설명하겠습니다. (*소스코드는 저와 같이 공부 중인 친구가 작성했습니다.)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;: 컴포넌트 내 state 값에 events 정보가 담겼는지 확인하고, 담겼다면 FullCalendar 컴포넌트를 출력하고 그렇지 않다면 loading을 출력합니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;_axiosEvents&lt;/code&gt;: axios의 get 메소드를 통해 Back-End의 /test url에 정보를 요청하고, 그에 따른 res.data 응답을 리턴합니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;_getEvents&lt;/code&gt;: _axiosEvents이 응답을 받을 때 까지 기다리고, 응답을 받는다면 setState 메소드를 호출하여 state 값에 events라는 데이터를 넣어줍니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;: 위의 모든 과정은 componentDidMount에 의해, 컴포넌트가 만들어지고 첫 렌더링을 모두 끝낸 후 실행됩니다.&lt;/li&gt;
+&lt;li&gt;결과적으로 state에는 Back-End에서 전송한 JSON 데이터가 events라는 이름으로 담깁니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 아래는 events가 FullCalendar에 정상적으로 출력된 화면입니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/21b4d/19-08-28-2-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 84.21052631578947%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAACcklEQVQ4y4VTO28TQRC+30OJqBBUNCgtFPAHKOjpoaGhQzSAaHgoUkJBaYQCksGhQMLIyCigEOeCg313fuzd+m7vtf6Y2fOerSgOI+3td7M7s9+8nEsbN3HhyjXcvnMXT59v4eGTF0iUgpV2u41Go4FOp4Nms4mdnfcIw7A+v3f/Ac6dv4jLV69j48YtOPsHLr5++47jgYfxZIqee4T5fI6iKDCbzczueR6CYER6jTQhXVY9mKYphnTWO3TxY+8X2fbhiOkU0+kEWmuMgsAYK2IYEJ5MJsiyDL7vm/84LfDTDdA9GCKcKWIqjFN+SIgpSnrcYQYsZVlCEzOLrazi38MYrz75ePZhiP3BzOi0iaa6o/UcDjOwIeZ5bjDvvJg1681jhHO6C2JDH4PLUht9madGx+IwZRY2ZOcs1qHFbMTCqSgJ86OMbUStroftzx7efAng8KFdLKfhsxZ9MJI5Dn0FN1BwpJR1xSxOksRUmCWOY/PPEkVRHYUQok6RSmbLkHGGnGS7/g4Wi4oSjKn0xRyhTDAWssJRbJhZtjbPYSQhpEKSlRBhZPLO+WXmXDjj8PXuMTZbPrZ3B9hq/cXLjx7etn3oRbuwUbHAe39CPH7Xx6NGH11X1AyrXlyEnKiUDObI8gIqzSqc5ShyvkStlKWwvZpS/vheQe3CudSLittcGoZ2LvmClFFlqCSk6EHnA0SiT2FXo8ZFs0XhMPkhdsIFrB0uk2qTTx1fEqu0j1wdUdOO17bTabhubKatlB16Ra0Q0lCktMs6JC6QnRpmZaaE/tmOz/nfsVNg87HEqOdzVW9lHXasI96rtYo1Tp7/D/8D5BAbDc26Xn0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/15813/19-08-28-2-2.webp 190w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/1cdb2/19-08-28-2-2.webp 380w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/9046c/19-08-28-2-2.webp 760w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/c89f9/19-08-28-2-2.webp 1140w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/af3f0/19-08-28-2-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/a2d4f/19-08-28-2-2.png 190w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/3f520/19-08-28-2-2.png 380w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/3c051/19-08-28-2-2.png 760w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/b5cea/19-08-28-2-2.png 1140w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/21b4d/19-08-28-2-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/3c051/19-08-28-2-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 제가 설명을 적으면서도 참 어렵다는 생각이 드네요 허허허&lt;/p&gt;</content:encoded></item><item><title><![CDATA[ECMAScript, TypeScript, React란 무엇인가?]]></title><description><![CDATA[프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다. 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다. ECMA스크립트는 Ecma 인터내셔널의 ECMA-262 기술 규격에 정의된 표준화된 스크립트 프로그래밍 언어이다.]]></description><link>https://yuhodots.github.io/frontend/19-08-16/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-16/</guid><pubDate>Fri, 16 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다.&lt;/p&gt;
+&lt;h3&gt;ECMAScript&lt;/h3&gt;
+&lt;p&gt; 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; ECMA스크립트는 Ecma 인터내셔널의 ECMA-262 기술 규격에 정의된 표준화된 스크립트 프로그래밍 언어이다. 1996년 3월, 넷스케이프에서 넷스케이프 네비게이터 2.0을 출시하면서 자바스크립트를 지원하기 시작했다. 넷스케이프는 표준화를 위해 자바스크립트 기술 규격을 Ecma 인터내셔널에 제출하였고, 이 규격에 대한 작업은 ECMA-262의 이름으로 1996년 11월부터 시작됐다. ECMA-262의 초판은 ECMA 일반 회의에서 1997년 6월 채택됐다.&lt;/p&gt;
+&lt;p&gt; ECMA스크립트는 ECMA-262에 의해 표준화된 언어의 이름이다. 자바스크립트와 J스크립트는 모두 ECMA스크립트와의 호환을 목표로 하면서, ECMA 규격에 포함되지 않는 확장 기능을 제공한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ecma 인터내셔널&lt;/strong&gt;은 정보와 통신 시스템을 위한 국제적 표준화 기구를 말합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ECMA-262&lt;/strong&gt;는 Ecma 인터내셔널에서 Script language에 대한 표준을 정의한 명세서를 말합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;스크립트 프로그래밍 언어&lt;/strong&gt;는 소스 코드를 컴파일하지 않고도 실행할 수 있는 프로그래밍 언어를 말합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 즉, Ecma 인터내셔널에서 만든, ECMA-262 표준에 의해 정의된, 스크립트 프로그래밍 언어를 &lt;strong&gt;ECMAScript&lt;/strong&gt;라고 합니다. 그리고 우리에게 익숙한 JavaScript는 ECMASciprt 표준을 바탕으로 구현된 범용 스크립트 언어입니다.&lt;/p&gt;
+&lt;h3&gt;TypeScript&lt;/h3&gt;
+&lt;p&gt; 위키피디아에서는 TypeScript를 아래와 같이 설명하고 있습니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 타입스크립트(TypeScript)는 자바스크립트의 슈퍼셋인 오픈소스 프로그래밍 언어이다. 마이크로소프트에서 개발, 유지하고 있으며 엄격한 문법을 지원한다. 클라이언트 사이드와 서버 사이드를 위한 개발에 사용할 수 있다.&lt;/p&gt;
+&lt;p&gt; 타입스크립트는 자바스크립트 엔진을 사용하면서 커다란 애플리케이션을 개발할 수 있게 설계된 언어이다. 자바스크립트의 슈퍼셋이기 때문에 자바스크립트로 작성된 프로그램이 타입스크립트 프로그램으로도 동작한다. 타입스크립트에서 자신이 원하는 타입을 정의하고 프로그래밍을 하면 자바스크립트로 컴파일되어 실행할 수 있다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 간단히 말하면 TypeScript는 JavaScript를 확장한 언어입니다. 그렇기에 자바스크립트의 특성을 따르며 최신 ECMA 표준을 따르고 있습니다. 다만 자바스크립트는 인터프리터 언어인데 반하여, TypeScript는 컴파일 언어로 코드 수준에서 미리 타입을 체크 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 445px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b4ea5e4175b7ea1105895f131e9614cc/e66bf/19-08-16.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 100%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAAsTAAALEwEAmpwYAAACaUlEQVQ4y21Uy2rbUBDVZ4dCaChuN+kqFLwJXQTXwbS7QDcBU6+cBuzEqR+xHINfkqyr9/vt9khju0a2GMSVdM+cOWfmivt76kqSxPc813EQnudFUbTZbI63caXnIAh0VWXrtSyKa0GgYJKkMua5binFfzA+mIYBDENIkrJeI1RZpgXeyIKgKQqKOgF2LCtnkGVDVXVF0RjTGcOdwPsUKCqO4y2YKlnM53+enwnzNh4vZzNptVrN5ygEUcJDQpZlW2ZkGvX7X66uPlUq78/PP1YqiG83Nx8uLt6dnb3xPJLuhSiFHbZpbsFQgle/ms0fjUa/1xOXS5CD+fHhYfDyQloY1XyQIk1TDrT04Xe7/dhuj4dDfjQSFgsAXMtKkyRLU0hDnVEYGprGChUgh/mc7/u5k6L4Ohi8Doe9pyeQgxkNC8MQ3pba4ziOXLTD0HUOCdBJ8OT2KgqsxsLSdWyq1WrVarVer1Mj93jLMMAPsRxmiMAkCYFH17axt9vttlqtTqdTGqRcaeE5hzE8bkYcRdikKgrP85PJBGN3CEYVoNU1jcPcHnqIWIsinMQmLGez2XQ6RTfCIDChxbKowwA7tp23CgUc4nPm3QzRBV/yydM03GHkpgCDNQe7rou5PZwBGJGXl2WoMElTEDZubz9fXn69vpYlCecMibZDQhrYTjlNBVVOXwFu3t9/bzR+3t0htaaqZMr2YCS7Udnj4ce+PRgPxzR928bYSIIA5vKpgk6IJ+epc3gMfD8tHIriGFNBNZ/+GcBJ27JINvU8X6AWnGoYpuslI7njnwvU+q6LrTAC5KgfXSGRpesfEAtWxFnB2fAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/b4ea5e4175b7ea1105895f131e9614cc/15813/19-08-16.webp 190w,
+/static/b4ea5e4175b7ea1105895f131e9614cc/1cdb2/19-08-16.webp 380w,
+/static/b4ea5e4175b7ea1105895f131e9614cc/75680/19-08-16.webp 445w&quot;
+              sizes=&quot;(max-width: 445px) 100vw, 445px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/b4ea5e4175b7ea1105895f131e9614cc/a2d4f/19-08-16.png 190w,
+/static/b4ea5e4175b7ea1105895f131e9614cc/3f520/19-08-16.png 380w,
+/static/b4ea5e4175b7ea1105895f131e9614cc/e66bf/19-08-16.png 445w&quot;
+            sizes=&quot;(max-width: 445px) 100vw, 445px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/b4ea5e4175b7ea1105895f131e9614cc/e66bf/19-08-16.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 그렇기에 &lt;strong&gt;type을 지정&lt;/strong&gt;하는 것이 TypeScript의 가장 큰 특징이라고 말할 수 있습니다. 원래는 var만을 사용하는 JavaScript와 달리 TypeScript는 string, number, let 등을 사용함으로써 코드의 안정성을 높입니다. 이로 인해 대규모 애플리케이션 구현에 대한 자바스크립트의 불편함을 TypeScript가 대체할 수 있게 되었습니다. &lt;/p&gt;
+&lt;h3&gt;React.js&lt;/h3&gt;
+&lt;p&gt; React는 &lt;strong&gt;자바스크립트 라이브러리&lt;/strong&gt;의 하나로서 사용자 인터페이스를 만들기 위해 사용됩니다. 페이스북과 개별 개발자 및 기업들 공동체에 의해 유지보수되고 있습니다. 현재 프론트엔트 파트에서 가장 보편적으로 사용되고 있는 라이브러리라고 말할 수 있으며, &lt;strong&gt;컴포넌트&lt;/strong&gt;를 기반으로 한다는 것이 React의 특징입니다.&lt;/p&gt;
+&lt;p&gt; 프론트엔드 개발을 할 때 HTML, CSS만 이용해서 웹 페이지를 만들 수 있기는 합니다. 하지만 이런 웹 페이지는 단순한 정적화면에 불과하며, 사용자가 행하는 이벤트에 따라 동적으로 작동하지 못한다는 단점을 가지고있습니다. 이럴 때 필요한 것이 React이고 이를 통해 사용자와 상호작용하는 동적 UI를 보다 쉽게 제작할 수 있게 됩니다. &lt;/p&gt;
+&lt;p&gt; 이 외에 프론트엔드 개발을 돕는 &lt;strong&gt;Vue.js, Angular&lt;/strong&gt; 같은 라이브러리나 프레임워크에 대해서는 &lt;a href=&quot;https://d2.naver.com/helloworld/3259111&quot;&gt;네이버 D2블로그&lt;/a&gt;에서 잘 설명해주고 있으니 참고하시면 좋을 것 같습니다. 또한 라이브러리와 프레임워크의 개념에 대한 차이점은 &lt;a href=&quot;https://webclub.tistory.com/458&quot;&gt;이 블로그&lt;/a&gt;(Kim jaehee님의 WEBCLUB) 에서 잘 설명해주고 있으니 참고하시길 바랍니다. &lt;/p&gt;
+&lt;p&gt;저는 간단하게 프레임 워크는 &apos;일을 하는 작업공간&apos;, 라이브러리는 &apos;필요한 것을 하나씩 뽑아쓰는 코드 도서관&apos; 정도로 기억해두고 있습니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Nginx 설정을 통한 https 리다이렉션]]></title><description><![CDATA[이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/server/19-08-14/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-14/</guid><pubDate>Wed, 14 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 node.js가 아니라, nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다. 본 포스팅은 아래의 조건을 충족한 분들을 위한 포스팅입니다. &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;SSL인증서를 발급 받았음&lt;/li&gt;
 &lt;li&gt;AWS ELB를 이용해 인증서를 웹 사이트 도메인에 적용하였음&lt;/li&gt;
@@ -3099,4 +3946,276 @@ http &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
 &lt;i&gt;m7코드: R, b3, 5, b7&lt;/i&gt;&lt;/br&gt;
 &lt;i&gt;m7b5코드: R, b3, b5, b7&lt;/i&gt;&lt;/br&gt;
 &lt;i&gt;dim7코드: R, b3, b5, bb7&lt;/i&gt;&lt;/br&gt;&lt;/center&gt;
-&lt;p&gt;&lt;/br&gt;4도 화음(7도가 들어간 화음)이 아닌, 메이저(M), 마이너(m)코드를 잡는 법도 어렵지 않습니다. 1옥타브가 8도 차이라는 것을 이용해서, 7도 음에서 반음 올려주면 됩니다.&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;&lt;/br&gt;4도 화음(7도가 들어간 화음)이 아닌, 메이저(M), 마이너(m)코드를 잡는 법도 어렵지 않습니다. 1옥타브가 8도 차이라는 것을 이용해서, 7도 음에서 반음 올려주면 됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js 기초]]></title><description><![CDATA[ WEB은 크게 웹 브라우저와 웹서버로 나누어 볼 수 있습니다. 웹 브라우저에 주소를 입력해서 서버에 요청을 하면, 웹 서버는 주소에 따른 요청을 찾아서 응답해주는 관계에 있습니다. Node.js는 기본적으로 웹 서버를 내장하고 있기 때문에 웹 서버의 역할로서 활용할 수도 있습니다.]]></description><link>https://yuhodots.github.io/backend/19-05-07/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-05-07/</guid><pubDate>Tue, 07 May 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3332/21032&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; WEB은 크게 웹 브라우저와 웹서버로 나누어 볼 수 있습니다. 웹 브라우저에 주소를 입력해서 서버에 요청을 하면, 웹 서버는 주소에 따른 요청을 찾아서 응답해주는 관계에 있습니다. 아파치를 통해 웹 서버를 구동시킬 수도 있지만, Node.js는 기본적으로 웹 서버를 내장하고 있기 때문에 웹 서버의 역할로서 활용할 수도 있습니다. &lt;/p&gt;
+&lt;h3&gt;웹 서버로서의 Node.js&lt;/h3&gt;
+&lt;p&gt;서버를 구동시킬 수 있는 파일을 만들어봅시다. 일단은 코드 내용에 대해서 이해는 하지 않으셔도 됩니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 545px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4fe41cb424c5ce220f26a943d78cf999/3ddad/19-05-07-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 55.263157894736835%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB6ElEQVQoz31S23ajMBDLpzQJmIsNGGxuBgy0Tdqz//8/WuE2afdlH3w8jBmNNKOTUgK5VqgXh7d9QtNUUKtH87bDLxX2tWAuR5KceV4geMfJlefC+PKMk/SCNLvidADKmoB+wuJH2LbG9vGOdp0xvHvYzaPoLeppgBpaNKOFtxc4E2FoIqz2jKlNoWsZmp2KMkWWR8hlAjdP2DYH1zfY3zd47zBOFrPvkUmBTCXISUDJC2R+DSfE8howDpZPwJToriPQ6jAMFW43Mhly+FmiMRJxfIYQlCtegtQkvQYA8X3/SC4SpKFbjL4p0dgSNenXRqEgm7KIYUzCnIDWMWrOU5LtAyDNHvcX8KnSOeXGSPkxKoVP02HlrO4fO3bXQrcVuhul32fs2ys2v1B+9AvwBywwbEyB/Jgh2fSjQWtKFFpCmgolAeu2hdEtUjaNBYuCxPNT5iN+MlwWFtUZZUdw91fM9x12X9Hf3oJ1us8/XMwKv45YuTDBwmM5aRYFZWFkvxlaSjoeBBNu7jAvPTS3bNcJhm/qsAutoulTS8YFF1fSYqou0NkKgzOh/glYUZ5uFDdbs3sUpKk8Q57FwVcJt3qYWhzb/Y5DjlKP9/DPb8mq/DLl7MmEBtZjS/tQattxDP8O/n/nAfoXGD9SD/7N/7IAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/4fe41cb424c5ce220f26a943d78cf999/15813/19-05-07-1.webp 190w,
+/static/4fe41cb424c5ce220f26a943d78cf999/1cdb2/19-05-07-1.webp 380w,
+/static/4fe41cb424c5ce220f26a943d78cf999/6305f/19-05-07-1.webp 545w&quot;
+              sizes=&quot;(max-width: 545px) 100vw, 545px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/4fe41cb424c5ce220f26a943d78cf999/a2d4f/19-05-07-1.png 190w,
+/static/4fe41cb424c5ce220f26a943d78cf999/3f520/19-05-07-1.png 380w,
+/static/4fe41cb424c5ce220f26a943d78cf999/3ddad/19-05-07-1.png 545w&quot;
+            sizes=&quot;(max-width: 545px) 100vw, 545px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/4fe41cb424c5ce220f26a943d78cf999/3ddad/19-05-07-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 394px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/cc097/19-05-07-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.578947368421055%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABLUlEQVQoz32QbW+CMBSF+f9/ad+XTLMly+ZLpqAghQr2tgWzoJWelQobxsWbPLkvbU/ObVAIjnw3R5YyCCHRhbXWM9RDDPXFGCilIKX8RWntz4JSlmDxHHG0hTiQH7atvRO+EbxcBcmLEYjI9b2gIA4WvYPtGLSu7x6PY5gZ59A7c6LKI52o7B1SjiR6Q5owZIwhz3MUvHzo0JiRQ+9O/jks6gbLtHSiEVar0AlyNKczureD4LXu+7EgSb+uGK9MdEC6nmGfZ9iGa5ScD356bpa+ptag1hJ1pXB0dHWl+pUz92/TMMbT6xbPXyU+uMHiYLEQY9BjsXT5c3/GNCK8hAITx3QjMXF9dyeoThYxNZglEqviG7sjEGs30/gHi6TqcotInDybDjr7OnF3fgDiYmUsOFJRWgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/15813/19-05-07-2.webp 190w,
+/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/1cdb2/19-05-07-2.webp 380w,
+/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/47f09/19-05-07-2.webp 394w&quot;
+              sizes=&quot;(max-width: 394px) 100vw, 394px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/a2d4f/19-05-07-2.png 190w,
+/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/3f520/19-05-07-2.png 380w,
+/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/cc097/19-05-07-2.png 394w&quot;
+            sizes=&quot;(max-width: 394px) 100vw, 394px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/b0b1bf9bfd4467c8ab902f7134fd9dfd/cc097/19-05-07-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 그리고 window는 cmd에 들어가서, mac은 terminal에 들어가서 각자 main.js가 들어있는 폴더로 디렉토리를 설정하고, 그 뒤에는 node main.js 명령어를 통해 main.js 파일을 실행시켜 줍시다. 그러면 서버가 실행되게 됩니다. 이 작업을 모두 거친 후에 크롬 주소창에 localhost:3000을 입력해서 서버가 잘 구동되는지 확인해 봅시다.  &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 462px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/211962a6fb06207bbd717d84a01be718/e389b/19-05-07-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.736842105263165%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABBUlEQVQoz6WT4U7DIBDHeWjjG5j4IuoLGJ/C2A9d1GVmrLq284tQ2gO6An8pZlHjnLEj+SfHXe4Hxx2s6wjGWAyDQ9MojPtq84qyKMDnC5SrAvXzC6Rs0JKGivFDYtaOsB7eDyDqoI2BkBIyAt8WT5BLjoavQEKC4sGkdZT5Vcx7wNoArT1G+9jFbq57nJ9pnJwS8tmQnM4FhLBHMbbX/0VsvfZ4uHfIsgFKhQT8K+kg8OOiPaRwqGoXy/4O/XfJY5IQCnm+Rb35fMQpsASMqWkk5o9b8KUDLxyMDZOhbGfEaUGrPFQbUlMmA2d5jourS9xlt7tijyuZiFBWZfwlzY9mTIG+A+RdXE1A3OcUAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/211962a6fb06207bbd717d84a01be718/15813/19-05-07-3.webp 190w,
+/static/211962a6fb06207bbd717d84a01be718/1cdb2/19-05-07-3.webp 380w,
+/static/211962a6fb06207bbd717d84a01be718/c589b/19-05-07-3.webp 462w&quot;
+              sizes=&quot;(max-width: 462px) 100vw, 462px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/211962a6fb06207bbd717d84a01be718/a2d4f/19-05-07-3.png 190w,
+/static/211962a6fb06207bbd717d84a01be718/3f520/19-05-07-3.png 380w,
+/static/211962a6fb06207bbd717d84a01be718/e389b/19-05-07-3.png 462w&quot;
+            sizes=&quot;(max-width: 462px) 100vw, 462px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/211962a6fb06207bbd717d84a01be718/e389b/19-05-07-3.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 이렇게 node.js가 웹 서버의 기능을 한다는 것을 확인 할 수 있습니다.&lt;/p&gt;
+&lt;h3&gt;Template literals&lt;/h3&gt;
+&lt;p&gt; 프로그래밍에서 문자열을 표현할 때 우리는 주로 작은따옴표(&apos; &apos;)와 큰따옴표(&quot; &quot;)를 활용하곤 합니다. 그렇기 때문에 대부분의 프로그래밍 언어에서는 문자열 사이사이에 내가 원하는 변수의 값을 넣어주기 위해서는 플러스나 마이너스 연산자, 혹은 반점을 활용하는 등 중간에 문자열을 끊어주게 됩니다.&lt;/p&gt;
+&lt;p&gt;하지만 자바스크립트에서는 문자열을 중간에 끊어주지 않아도 문자열 사이에 내가 원하는 변수 값을 넣어줄 수 있도록 &apos;template literal&apos;이라는 편리한 기능이 존재합니다. 심지어 이 기능은 &apos;\n&apos;을 사용하지 않고 그저 엔터만으로도 줄바꿈을 실행시킬 수 있습니다.&lt;/p&gt;
+&lt;p&gt;이 기능을 사용하기 위해서는 키보드의 물결표시(~)와 함께 존재하는 &lt;strong&gt;그레이브 액센트(`)&lt;/strong&gt;를 입력해야 합니다. 기존에 작은따옴표 혹은 큰따옴표를 입력해주던 것 대신에 그저 그레이브액센트를 사용해주면 됩니다. 개인적으로는 &apos;\n&apos; 대신 그냥 엔터를 입력할 수 있다는 점이 신기했었는데, 다른 분들도 template literal을 활용해서 편리하게 코드를 작성하시면 좋을 것 같습니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[JavaScript 기초 (script, event, console)]]></title><description><![CDATA[웹 프로그래밍에서 JavaScript의 중요한 측면은 ‘사용자와 상호작용을 한다는 점'입니다. 웹 브라우저는 한 번 화면에 출력이 되면 자기 자신을 바꿀 수 있는 능력이 없습니다. 하지만 JavaScript를 이용하면 이런 단점을 어느정도 보완할 수 있게 됩니다.]]></description><link>https://yuhodots.github.io/frontend/19-04-27/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-04-27/</guid><pubDate>Sat, 27 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3083&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;웹 프로그래밍에서 JavaScript의 중요한 측면은 ‘사용자와 상호작용을 한다는 점&apos;입니다. 웹 브라우저는 한 번 화면에 출력이 되면 자기 자신을 바꿀 수 있는 능력이 없습니다. 하지만 JavaScript를 이용하면 이런 단점을 어느정도 보완할 수 있게 됩니다. JavaScript는 HTML 코드를 제어하고 이를 통해 웹 페이지를 훨씬 동적으로 디자인할 수 있게 만들어 줍니다. &lt;/p&gt;
+&lt;p&gt;오늘은 JavaScript를 본격적으로 배워보기에 앞서서, 꼭 알고 가야 할 세가지 토픽에 대해 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;h3&gt;Script태그&lt;/h3&gt;
+&lt;p&gt; 기본적으로 JavaScript는 HTML의 위에서 작동하는 언어입니다. 하지만 이 둘은 완전히 다른 문법으로 작성됩니다. 그렇다면 겉보기에는 매우 달라 보이는 이 둘을 어떻게 하면 적절하게 접목시킬 수 있을까요? 바로 &lt;code class=&quot;language-text&quot;&gt;Script&lt;/code&gt; 태그를 활용하면 됩니다.&lt;/p&gt;
+&lt;p&gt;이를 위해 HTML코드로 JavaScript가 시작된다는 것을 알려주어야 합니다. 컴퓨터는 &lt;code class=&quot;language-text&quot;&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 태그를 사용한 지점부터 태그가 끝나는 지점까지 작성된 코드를 JavaScript로 인식하게 됩니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 541px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f533a28e8dffc18131c8dc77b1e0e6ec/9d576/19-04-27-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.315789473684205%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB/klEQVQoz3WSO28TQRSF94cQcLyveXpffoXFhoBo0tAgWkpicIRRCn4T+RmJQDaJFSkRi0u3SYq4Jax9uDt+4Mgw0tXMSjvfnHPutbIfGYbDIfqDAc7Ohvj29QTD83MU6+P+O5TsB6hpiSbn8HkZQrpQ2ofvl015jKo4s3lZ4/EYlxcXyLIMo9EIp9/7yH6ODLDX2ce2s4VIMbR0BS2lUREeXL8EJglAxYUNKR3anTlwNpvhf6v3vgPbeUiX5z/XKwp7PEKaCLSeMbSbEjtNhTSVqFaFUWoVF6dr0DzPkU/zhcIOyvaWeT0IBHZ1iLZUpJgj5AyJ54ExG463bewzbsM6HfRxfHyCoy9HmNzeGtB0Ol1ZNgoJmFQk9mSMeqjBQ4YgFKjEAjHFoQq7lG8Bt66vrnBzfUM5XmIymdwDHnY/mLyEcOGybWhqxisV4HX6BGm7icbjKhpxiEgL44IR1Lq7+3UvtyLTZa6HB12y84iAjrGjaa9JhqdJDdFOAyzWEI0ESULK44ickMI8/20UFbWE/QUewPVKZlQ8UhhSjm/iGt7uPsfLehVVxRdW5/mZDNeVbSjszhUWL3PlIg0DtGoRfDpzikHwRXYEWs3hOmBTYddkmIQKL4KYuhwgEP7qsr+mbEPhvzL8/KkHTjMopQfNHHikpmjOOmDZ3eX3H5dNB0eRHrNMAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/f533a28e8dffc18131c8dc77b1e0e6ec/15813/19-04-27-1.webp 190w,
+/static/f533a28e8dffc18131c8dc77b1e0e6ec/1cdb2/19-04-27-1.webp 380w,
+/static/f533a28e8dffc18131c8dc77b1e0e6ec/fd5d3/19-04-27-1.webp 541w&quot;
+              sizes=&quot;(max-width: 541px) 100vw, 541px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/f533a28e8dffc18131c8dc77b1e0e6ec/a2d4f/19-04-27-1.png 190w,
+/static/f533a28e8dffc18131c8dc77b1e0e6ec/3f520/19-04-27-1.png 380w,
+/static/f533a28e8dffc18131c8dc77b1e0e6ec/9d576/19-04-27-1.png 541w&quot;
+            sizes=&quot;(max-width: 541px) 100vw, 541px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/f533a28e8dffc18131c8dc77b1e0e6ec/9d576/19-04-27-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;위의 예시에서는 &lt;code class=&quot;language-text&quot;&gt;document.write(1+1)&lt;/code&gt;부분을 JavaScript코드로 인식하게 됩니다&lt;/p&gt;
+&lt;h3&gt;이벤트 (Event)&lt;/h3&gt;
+&lt;p&gt;자바스크립트가 사용자와 상호작용하는데 핵심적인 내용으로 또 ‘이벤트’라는 것이 있습니다. 예를 들어, hi라고 적힌 버튼을 한 번 만들어 봅시다. 그리고 버튼을 누르면 경고창이 뜨게 해 봅시다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 495px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0579032bd1f506b92b3385034e1a68b4/a4d88/19-04-27-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 10.526315789473683%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAeUlEQVQI1y2MWw6DMAwEe5a6AeLEpoKEh6AflXr/K00j2o/VakeruR1mfHSkmJIGIY2CecDHcLVmIf+ZWSDZb2d/oB6vmHe492gK3Pp4b8eBdzSqdswvoayR80xsm+KTMB/C0tg89TwXYdobW5tkK/heqSVSl9ykA18CfT0slj99qwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/0579032bd1f506b92b3385034e1a68b4/15813/19-04-27-2.webp 190w,
+/static/0579032bd1f506b92b3385034e1a68b4/1cdb2/19-04-27-2.webp 380w,
+/static/0579032bd1f506b92b3385034e1a68b4/19998/19-04-27-2.webp 495w&quot;
+              sizes=&quot;(max-width: 495px) 100vw, 495px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/0579032bd1f506b92b3385034e1a68b4/a2d4f/19-04-27-2.png 190w,
+/static/0579032bd1f506b92b3385034e1a68b4/3f520/19-04-27-2.png 380w,
+/static/0579032bd1f506b92b3385034e1a68b4/a4d88/19-04-27-2.png 495w&quot;
+            sizes=&quot;(max-width: 495px) 100vw, 495px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/0579032bd1f506b92b3385034e1a68b4/a4d88/19-04-27-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 715px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d4a56a3dc63c88a2dbef0e1933b92594/d0c0e/19-04-27-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 18.947368421052634%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAeklEQVQY042OQQoCMQxFe3/wNILHcOMBxqVubGcxbdNO+iQOOqWg+OEvkh/ej1NVTK21j021VoL3hDDjg2dd97te27ztSim4b0ALJWcsN3ifj1ZtWN8L2LeOH/6r47lyOBWmu+BG2HsWEWKMpJR+OufEdFu4XBcec+QJ0O06PAPDfQsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/d4a56a3dc63c88a2dbef0e1933b92594/15813/19-04-27-3.webp 190w,
+/static/d4a56a3dc63c88a2dbef0e1933b92594/1cdb2/19-04-27-3.webp 380w,
+/static/d4a56a3dc63c88a2dbef0e1933b92594/cb533/19-04-27-3.webp 715w&quot;
+              sizes=&quot;(max-width: 715px) 100vw, 715px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/d4a56a3dc63c88a2dbef0e1933b92594/a2d4f/19-04-27-3.png 190w,
+/static/d4a56a3dc63c88a2dbef0e1933b92594/3f520/19-04-27-3.png 380w,
+/static/d4a56a3dc63c88a2dbef0e1933b92594/d0c0e/19-04-27-3.png 715w&quot;
+            sizes=&quot;(max-width: 715px) 100vw, 715px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/d4a56a3dc63c88a2dbef0e1933b92594/d0c0e/19-04-27-3.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 코드를 살펴보면 &lt;code class=&quot;language-text&quot;&gt;onclick&lt;/code&gt;이라는 속성이 있습니다. &lt;code class=&quot;language-text&quot;&gt;onclick&lt;/code&gt;이라는 속성에는 반드시 JavaScript가 와야 하는데 이 속성 값에 대해서는 웹 브라우저가 기억하고 있다가, 사용자가 클릭이라는 이벤트를 줬을 때 속성값에 따라 자바스크립트 코드가 실행됩니다.&lt;/p&gt;
+&lt;p&gt; 이처럼 웹 브라우저 상에서 일어나는 일들을 사건(event)이라고 합니다. 위의 예시처럼 &lt;code class=&quot;language-text&quot;&gt;onclick&lt;/code&gt; 또한 이벤트 중 하나이죠. 사실 모든 이벤트를 고려한다면 무한한 이벤트들이 있겠지만, 프로그래머들은 그 중에서 자주 사용되는 기념할 만한 이벤트들을 따로 정리해 두었습니다. 대략 10개에서 20개 정도의 이벤트가 있는데, 우리가 이를 잘 활용한다면 사용자와 상호작용하는 웹페이지를 만들 수 있습니다. 어떤 이벤트들이 있는지 찾고 싶을 때는 구글링 하시는 것을 추천 드립니다.&lt;/p&gt;
+&lt;h3&gt;콘솔 (Console)&lt;/h3&gt;
+&lt;p&gt; 지금까지 우리는 JavaScript를 실행하기 위해서 파일을 만들어서 실행시켜 보았습니다. 하지만 아주 간단한 내용을 실행시켜보고 싶을 때는 콘솔(console)을 이용해서 쉽게 코드를 실행시켜 볼 수 있습니다. 크롬의 경우에는 웹페이지의 빈 공간을 우클릭 후 ‘검사’를 누르거나, 아니면 ‘Ctrl + Shift + J’단축키를 사용해서 콘솔을 켤 수 있습니다.&lt;/p&gt;
+&lt;p&gt; 콘솔에서 실행시키는 JavaScript 코드는 현재 켜져 있는 웹페이지를 대상으로 작동하기 때문에 은근히 유용하게 사용할 수 있는 경우가 많습니다. 예를 들어 페이스북 아무 게시글이나 들어가서 ‘크롬 개발자 도구 – Elements’를 켜봅시다. 그리고 수많은 댓글 데이터 중 랜덤으로 몇 개의 데이터를 랜덤으로 추출하는 코드를 console에 입력하게 되면, 수 천개의 댓글 중 랜덤으로 몇 명을 쉽게 추첨할 수 있게 됩니다.&lt;/p&gt;</content:encoded></item></channel></rss>
