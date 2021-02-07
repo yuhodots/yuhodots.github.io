@@ -6,6 +6,8 @@ import express from "./express.png";
 import linux from "./linux.png";
 import nginx from "./nginx.png";
 import react from "./react.png";
+import javascript from "./javascript.png"
+import nodejs from "./nodejs.png"
 
 export default {
     aws,
@@ -16,4 +18,6 @@ export default {
     linux,
     nginx,
     react,
+    javascript,
+    nodejs
 };

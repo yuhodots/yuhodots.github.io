@@ -35,8 +35,6 @@
         vertical-align: top;
         display: inline-block;
         width: 77%;
-        padding: 30px;
-        box-shadow: 0 0 10px rgba(0,0,0,.1);
-        border-radius: 15px;
+        padding: 10px 0px 0px 15px;
     }
 }
