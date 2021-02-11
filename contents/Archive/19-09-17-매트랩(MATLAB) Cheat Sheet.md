@@ -4,7 +4,7 @@ date: "2019-09-17"
 template: "post"
 draft: false
 path: "/cheatsheet/19-09-17/"
-description: "이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다. 일반적으로는 좌측에 디렉토리, 중앙에 스크립트, 우측에 작업공간 (변수와 값), 하단에 명령 창으로 이루어져 있습니다."
+description: "이 글은 제가 작년에 수강한 수치해석 과목의 orientation 수업 내용을 바탕으로 정리되었습니다. 일반적으로는 좌측에 디렉토리, 중앙에 스크립트, 우측에 작업공간 (변수와 값), 하단에 명령 창으로 이루어져 있습니다. 맥의 경우에는 ctrl이 아니라 command 버튼을 눌러야 합니다."
 category: "Cheat Sheet"
 ---
 

@@ -28,7 +28,7 @@ thumbnail: "react"
 2. render()가 호출됩니다.
 3. componentDidMount()가 호출됩니다.
 
-#### Updating
+### Updating
 
  마운팅 이후에는 **props 혹은 state의 변화** 같은 컴포넌트의 업데이트가 진행될 수 있습니다. React에는 아래와 같이 컴포넌트가 업데이트 될 때 실행되는 5가지의 built-in 메소드가 있습니다.
 
@@ -45,13 +45,13 @@ thumbnail: "react"
 3. DOM에 변화가 생깁니다.
 4. componentDidUpdate()가 호출됩니다. 
 
-#### Unmounting
+### Unmounting
 
  그 다음의 라이프사이클은 Unmounting입니다. 컴포넌트가 DOM에서 제거되거나 리액트로서 언마운트 될 때 호출되며, 오직 한 개의 built-in 메소드가 존재합니다.
 
 - componentWillUnmount()
 
-#### Reference
+### Reference
 
 - [React v16.3 이후 lifecycle API 총 정리(16.3v부터 deprecated된 API도 포함)](https://medium.com/@changmoomoon/react-v16-3-이후-lifecycle-api-총-정리-16-3v부터-deprecated된-api도-포함-37456f843efd)
 - [w3school.com - React Lifecycle](https://www.w3schools.com/react/react_lifecycle.asp)

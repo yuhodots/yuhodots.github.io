@@ -77,7 +77,7 @@ FullCalendar를 넣은 App에 대한 설명입니다.
 
 ### React로 Events 띄우기
 
- Script로 Events를 띄우는 방법과 거의 똑같다고 보시면 됩니다. 이전 포스팅에서 React를 이용한 FullCalendar 출력을 성공하셨다면, FullCalendar 컴포넌트에 props로서 events 값을 그저 전달해주기만 하면 전달한 내용에 따라 캘린더에 events가 출력되는 것을 확인할 수 있습니다. 컴포넌트 코드 예시는 아래와 같습니다.
+ Script로 Events를 띄우는 방법과 거의 똑같다고 보시면 됩니다. FullCalendar 컴포넌트에 props로서 events 값을 그저 전달해주기만 하면 전달한 내용에 따라 캘린더에 events가 출력되는 것을 확인할 수 있습니다. 컴포넌트 코드 예시는 아래와 같습니다.
 
 ```javascript
 <FullCalendar

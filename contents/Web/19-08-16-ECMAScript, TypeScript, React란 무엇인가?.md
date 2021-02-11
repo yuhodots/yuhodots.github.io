@@ -36,7 +36,7 @@ thumbnail: 'javascript'
 
  간단히 말하면 TypeScript는 JavaScript를 확장한 언어입니다. 그렇기에 자바스크립트의 특성을 따르며 최신 ECMA 표준을 따르고 있습니다. 다만 자바스크립트는 인터프리터 언어인데 반하여, TypeScript는 컴파일 언어로 코드 수준에서 미리 타입을 체크 합니다.
 
-![img](../img/19-08-16.png)
+![img](https://miro.medium.com/max/445/1*tOpeQXW36hEFiV8THpYUzA.png)
 
 
 
