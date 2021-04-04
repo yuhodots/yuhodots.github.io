@@ -8,6 +8,8 @@ import nginx from "./nginx.png";
 import react from "./react.png";
 import javascript from "./javascript.png"
 import nodejs from "./nodejs.png"
+import ICLR from "./ICLR.jpg"
+import NIPS from "./NIPS.png"
 
 export default {
     aws,
@@ -19,5 +21,7 @@ export default {
     nginx,
     react,
     javascript,
-    nodejs
+    nodejs,
+    ICLR,
+    NIPS
 };

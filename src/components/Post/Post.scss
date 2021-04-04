@@ -47,7 +47,6 @@
         span{
             .gatsby-resp-image-wrapper{
                 margin: 30px 0 35px 0;
-                box-shadow: 0px 3px 12px 0px rgb(0 0 0 / 20%);
                 border-radius: 7px;
             }
         }
@@ -109,11 +108,11 @@
         }
     }
     code[class*="language-text"] {
-        background: transparent;
-        padding: 0 2px 0 0;
-    }
-    code[class*="language-text"] {
+        background: #f1f3f4;
         color: #cc3551;
+        direction: ltr!important;
+        padding: 1px 4px;
+        text-align: left!important;
     }
     ol {
         margin: 20px 0 20px 25px;
@@ -126,7 +125,7 @@
     }
     .gatsby-resp-image-wrapper{
         margin: 30px 0 35px 0;
-        box-shadow: 0px 3px 12px 0px rgb(0 0 0 / 20%);
+
         border-radius: 7px;
     }
     .katex-html{
