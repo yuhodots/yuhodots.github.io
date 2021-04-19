@@ -2,7 +2,7 @@ const siteMetadata = {
   title: "Yuho Jeong",
   description: "Archive of my graduate studies",
   author: "@yuhodots",
-  disqusShortname: "YuhoJeong",
+  disqusShortname: "yuhodots",
   url: "https://yuhodots.github.io",
   siteUrl: "https://yuhodots.github.io"
 };
@@ -14,6 +14,24 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-sass",
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "G-T7DDYNCDL6",
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "https://yuhodots.github.io/",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+          shortname: `yuhodots`
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: { 

@@ -19,7 +19,7 @@ thumbnail: "NIPS"
 
 이러한 기존 supervised learning의 문제점을 극복하기 위해서 데이터의 일부만 labeling하는 semi-supervised learning이나 label 되지 않은 데이터를 학습에 이용하는 unsupervised learning 연구가 다양하게 진행되고 있으며, self-supervised learning 또한 데이터를 labeling하지 않고 학습에 사용하는 연구의 한 갈래입니다.
 
-Label이 없는 데이터를 사용한다는 점에서 self-supervised learning을 unsupervised learning에 속하는 분야라고 말하는 사람도 있는 반면, self-supervised learning이 스스로 supervision을 주어서 loss를 뽑아내고 학습하는 방식이기 때문에 supervision이 전혀 없는 unsupervised learning에 속한다고 보는 것은 잘못되었다고 말하는 사람도 있습니다. 
+Label이 없는 데이터를 사용한다는 점에서 self-supervised learning이 unsupervised learning 연구의 일부분으로 여겨지곤 합니다. 다만, 일반적인 unsupervised learning에서는 클러스터링이나 차원 축소같은 방법을 다루는 것에 비해 self-supervised learning은 스스로 supervision을 주어서 loss를 뽑아내고 학습하는 방식이기 때문에 supervision이 전혀 없는 unsupervised learning과는 차이점을 갖습니다.
 
 ![img](../img/BYOL1.png)
 
@@ -94,16 +94,19 @@ $$
 $$
 이 때 online network와 target network에 가해준 data augmentation 방법이 다르기 때문에, 저자들은 data augmentation 조합을 서로 교환하여 loss를 한 번 더 계산하는 과정을 통해 loss를 symmetrize했다고 합니다. 이렇게 구한 $\mathcal L^{BYOL}_{\theta, \xi}$ 는 online network의 parameter $\theta$를 업데이트하는데 사용됩니다.
 $$
-\mathcal L^{BYOL}_{\theta, \xi} = \mathcal L_{\theta, \xi} + \tilde{\mathcal L}_{\theta, \xi} \\
+\mathcal L^{BYOL}_{\theta, \xi} = \mathcal L_{\theta, \xi} + \tilde{\mathcal L}_{\theta, \xi} 
+$$
+$$
 \theta \gets \text{optimizer}(\theta, \nabla_{\theta}\mathcal L^{BYOL}_{\theta, \xi}, \eta)
 $$
+
 Target network의 parameter $\xi$는 exponential moving average(EMA)식을 통해 업데이트합니다. 과거 모델들 parameter의 가중평균으로 parameter $\xi$를 update하며, 여기서 $\tau$는 0.996에서 시작해서 학습이 진행될수록 1에 가까워집니다.
 $$
 \xi \gets \tau \xi + (1-\tau)\theta
 $$
 
 $$
-\tau \triangleq 1 - (1-\tau_{base})\cdot\frac{\text{cos}(\frac{\pi k}{K})+1}{2}
+\tau_{base} = 0.996, \tau \triangleq 1 - (1-\tau_{base})\cdot\frac{\text{cos}(\frac{\pi k}{K})+1}{2}
 $$
 
 위와 같은 형태의 식을 parameter $\xi$와 $\theta$에 각각 가중치를 둔 평균을 새로운 $\xi$로 사용한다고 해서 weighted average라고 부르기도 하고, 가중 평균을 teacher network로 여겨 학습한다는 점에서 mean teacher라고 부르기도 합니다. MoCo 논문에서의 momentum update $\theta_t = \alpha\theta_{t-1} + (1-\alpha)\theta_t$ 와는 $\tau$가 constant가 아닌 cosine annealing된 변화하는 값이라는 점만 차이를 가집니다.
@@ -118,7 +121,7 @@ Target network가 teacher의 역할을 수행하면서 모델이 학습한다는
 
 ### Experiment
 
-최종 평가 단계에서는 오직 online network의 encoder $f_\theta$만을 따로 떼어 내 downstream task에 대한 성능을 평가하게 됩니다. 다른 self-supervised learning 알고리즘들 처럼 ImageNet dataset에 대한 linear evluation과 dataset transfer, task transfer 등의 실험을 진행하였습니다. 
+최종 평가 단계에서는 오직 online network의 encoder $f_\theta$만을 따로 떼어 내 downstream task에 대한 성능을 평가하게 됩니다. 다른 self-supervised learning 알고리즘들 처럼 ImageNet dataset에 대한 linear evaluation과 dataset transfer, task transfer 등의 실험을 진행하였습니다. 
 
 ![img](../img/BYOL7.png)
 
