@@ -45,13 +45,11 @@ Accumulated running statistics을 사용하는 batch normalization의 경우엔 
 
 또한 MAML은 각 레이어에서 single set의 bias를 학습합니다. 이는 network를 통과하는 feature의 분포가 모두 동일하다는 것을 가정하지만 이는 올바른 가정이 아닙니다.
 
-##### 해결책: Per-Step Batch Normalization Running Statistics(BNRS) & Per-Step BatchNormalization Weights and Biases(BNWB)
+##### 해결책: Per-Step Batch Normalization Running Statistics (BNRS) & Per-Step BatchNormalization Weights and Biases (BNWB)
 
-가장 간단한 대안은 inner loop의 입력값들에 대해서 running batch statistics를 사용하는 것입니다. 하지만 이는optimization과 시간적 측면에 있어서 몇 가지 이슈를 가집니다.
+가장 간단한 대안은 inner loop의 입력값들에 대해서 running batch statistics를 사용하는 것입니다. 하지만 이는 최적화와 시간적 측면에 있어서 몇 가지 이슈를 가집니다.
 
-더 나은 방법은 inner loop step 마다 다른 running mean과 running standard deviation을 가지고 running statisics를 각각 업데이트 하는 것입니다. 이런 per-step batch normalization 방법을 사용하면 최적화 속도와 일반화 성능을 높일 수 있습니다. 
-
-Bias 또한 per-step 마다 다르게 학습합니다. 
+더 나은 방법은 inner loop step 마다 다른 running mean과 running standard deviation을 가지고 running statisics를 각각 업데이트 하는 것입니다. 이런 per-step batch normalization 방법을 사용하면 최적화 속도와 일반화 성능을 높일 수 있습니다. Bias 또한 per-step 마다 다르게 학습합니다. 
 
 ##### 문제점 4. Shared Inner Loop Learning Rate
 
