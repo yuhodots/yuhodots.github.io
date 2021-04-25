@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDisqusComments from "react-disqus-comments";
+import Utterances from "./Utterances";
 import { useStaticQuery, graphql } from "gatsby";
 import "./Comment.scss";
 
@@ -26,12 +26,7 @@ const Comment = ({ title, path }) => {
     if (!disqusShortname) return;
     return (
         <div style={{ marginTop: 20 }}>
-            <ReactDisqusComments
-                shortname={disqusShortname}
-                identifier={title}
-                title={title}
-                url={url.concat(path)}
-            />
+            <Utterances repo='wwlee94/wwlee94.github.io' theme='github-light' />
         </div>
     );
 };
