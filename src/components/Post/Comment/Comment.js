@@ -26,7 +26,7 @@ const Comment = ({ title, path }) => {
     if (!disqusShortname) return;
     return (
         <div style={{ marginTop: 20 }}>
-            <Utterances repo='wwlee94/wwlee94.github.io' theme='github-light' />
+            <Utterances repo='yuhodots/yuhodots.github.io' theme='github-light' />
         </div>
     );
 };
