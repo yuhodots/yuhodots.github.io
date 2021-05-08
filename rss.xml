@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 May 2021 01:43:20 GMT</lastBuildDate><item><title><![CDATA[Today I Learned]]></title><description><![CDATA[새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 다른 테크 블로그들의 TIL 처럼 매일매일 공부한 내용을 기록하기보다는 그냥 제 맘대로 아무때나 업데이트 할 생각입니다! 나중에는 카테고리 별로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요. (최근에 작성한 내용들이 상단에 위치하도록 배열하였습니다)]]></description><link>https://yuhodots.github.io/cheatsheet/21-04-25/</link><guid isPermaLink="false">https://yuhodots.github.io/cheatsheet/21-04-25/</guid><pubDate>Sun, 25 Apr 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;공부하면서 알게 된 것들 중에서 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Archive of my graduate studies]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 08 May 2021 05:55:05 GMT</lastBuildDate><item><title><![CDATA[Today I Learned]]></title><description><![CDATA[새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 다른 테크 블로그들의 TIL 처럼 매일매일 공부한 내용을 기록하기보다는 그냥 제 맘대로 아무때나 업데이트 할 생각입니다! 나중에는 카테고리 별로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요. (최근에 작성한 내용들이 상단에 위치하도록 배열하였습니다)]]></description><link>https://yuhodots.github.io/cheatsheet/21-04-25/</link><guid isPermaLink="false">https://yuhodots.github.io/cheatsheet/21-04-25/</guid><pubDate>Sun, 25 Apr 2021 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;공부하면서 알게 된 것들 중에서 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다.&lt;/p&gt;
 &lt;p&gt;다른 테크 블로그들의 TIL 처럼 매일매일 공부 내용을 기록하기보다는 그냥 제 맘대로 아무때나 업데이트 할 생각입니다! 나중에는 충분한 카테고리로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요 ☺️ &lt;/p&gt;
 &lt;p&gt;추가적으로, &lt;a href=&quot;https://www.notion.so/Career-at-VoyagerX-833e2878660a4a7590b6946c0da8b151&quot;&gt;보이저엑스 인턴 채용 질문&lt;/a&gt;을 간단하게 하나씩 채워가고 있습니다. 어쩌다가 발견하게 되었는데 제대로 알고 있다고 자신할 수 있는 내용이 그렇게 많지 않더라고요 💦&lt;/p&gt;
 &lt;blockquote&gt;
@@ -118,16 +118,19 @@
 &lt;p&gt;Derivative-Order Annealing(DA)는 컴퓨팅 비용과 일반화 성능의 균형을 맞추기 위해 제안되었고, 50 epoch만 1차 미분항을 사용하고 그 다음부터는 2차 미분항을 사용하자는 아이디어입니다. &lt;/p&gt;
 &lt;p&gt;저자들은 DA를 사용하였을 때 gradient exploding과 diminishing gradient가 없어지는 실험적 결과를 얻었으며 심지어 2차 미분항만 사용했을 때 보다 안정적인 학습이 가능했다고 말합니다.&lt;/p&gt;
 &lt;h5&gt;문제점 3. Absence of Batch Normlaization Statistic Accumulation &amp;#x26; Shared (accross step) Batch Normalization Bias&lt;/h5&gt;
-&lt;p&gt;Accumulated running statistics을 사용하는 batch normalization의 경우엔 최종적으로 gloabl mean과 globla standard deviation으로 수렴합니다. MAML은 accumulated running statistics를 사용하는 것이 아닌 현재 batch의 statistics를 사용합니다. Parameter가 다양한 task에 대한 mean과 standard deviation에 적응해야하므로 batch normalization이 효과적이지 않습니다.&lt;/p&gt;
-&lt;p&gt;또한 MAML은 각 레이어에서 single set의 bias를 학습합니다. 이는 network를 통과하는 feature의 분포가 모두 동일하다는 것을 가정하지만 이는 올바른 가정이 아닙니다.&lt;/p&gt;
+&lt;p&gt;Running statistics을 사용하는 일반적인 batch normalization의 경우엔 최종적으로 gloabl mean과 global standard deviation으로 수렴한다고 가정합니다. MAML은 running statistics를 사용하는 것이 아닌 현재 batch의 statistics를 사용합니다. 파라미터가 다양한 task에 대한 mean과 standard deviation에 적응해야하므로 batch normalization이 효과적이지 않습니다.&lt;/p&gt;
+&lt;p&gt;또한 MAML은 각 레이어에서 single set의 bias를 학습합니다. 이는 네트워크를 통과하는 feature의 분포가 모두 동일하다는 것을 가정하지만 이는 올바른 가정이 아닙니다.&lt;/p&gt;
 &lt;h5&gt;해결책: Per-Step Batch Normalization Running Statistics (BNRS) &amp;#x26; Per-Step BatchNormalization Weights and Biases (BNWB)&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 파트는 완벽히 이해하지 못했다고 생각이 들어 수정 중에 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;가장 간단한 대안은 inner loop의 입력값들에 대해서 running batch statistics를 사용하는 것입니다. 하지만 이는 최적화와 시간적 측면에 있어서 몇 가지 이슈를 가집니다.&lt;/p&gt;
 &lt;p&gt;더 나은 방법은 inner loop step 마다 다른 running mean과 running standard deviation을 가지고 running statisics를 각각 업데이트 하는 것입니다. 이런 per-step batch normalization 방법을 사용하면 최적화 속도와 일반화 성능을 높일 수 있습니다. Bias 또한 per-step 마다 다르게 학습합니다. &lt;/p&gt;
 &lt;h5&gt;문제점 4. Shared Inner Loop Learning Rate&lt;/h5&gt;
 &lt;p&gt;모든 gradient에 대해 inner loop step에서 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;라는 동일한 learning rate를 사용하는 것은 많은 하이퍼파라미터 탐색이 요구되며 일반화 성능도 좋지 않습니다. &lt;/p&gt;
 &lt;h5&gt;해결책: Learning Per-Layer Per-step Learning Rates and Gradient Direction (LSLR)&lt;/h5&gt;
-&lt;p&gt;Data fitting 보다 generalization 성능을 강화하기 위해 사용할 수 있는 요소 중 하나가 &apos;learn a learning rate&apos;을 하는 것입니다. 관련 선행 연구 중에 Meta-SGD라는 연구가 있는데, &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;값이 constant가 아니라 gradient의 개수와 동일한 크기의 learnable parameter이며 gradient와 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;를 element-wise product를 하는 알고리즘입니다.&lt;/p&gt;
-&lt;p&gt;다만 이 경우는 parameter의 양이 배로 많아지기 때문에 많은 메모리와 계산이 요구됩니다. 따라서 대안으로써 하나의 gradient 마다 learning rate를 설정해주기 보다는 layer마다의 learning rate를 다르게 사용하는 방법도 있습니다. 저자들은 L개의 레이어와 N개의 스텝마다 모두 다른 learning rate를 사용하도록 설정하여 추가적으로 LN개의 파라미터를 추가하였습니다.&lt;/p&gt;
+&lt;p&gt;Data fitting 보다는 일반화 성능을 강화하기 위해 사용할 수 있는 요소 중 하나가 &apos;learn a learning rate&apos;을 하는 것입니다. 관련 선행 연구 중에 Meta-SGD라는 연구가 있는데, &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;값이 constant가 아니라 gradient의 개수와 동일한 크기의 학습 가능한 파라미터 형태이며 gradient와 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;\alpha&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:0.43056em;vertical-align:0em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot; style=&quot;margin-right:0.0037em;&quot;&gt;α&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;를 element-wise product를 하는 알고리즘입니다.&lt;/p&gt;
+&lt;p&gt;다만 이 경우는 파라미터의 양이 배로 많아지기 때문에 많은 메모리와 계산이 요구됩니다. 따라서 대안으로써 하나의 gradient 마다 learning rate를 설정해주기 보다는 레이어마다의 learning rate를 다르게 사용하는 방법도 있습니다. 저자들은 L개의 레이어와 N개의 스텝마다 모두 다른 learning rate를 사용하도록 설정하여 추가적으로 LN개의 파라미터를 추가하였습니다.&lt;/p&gt;
 &lt;h5&gt;문제점 5. Fxied Outer Loop Learning Rate&lt;/h5&gt;
 &lt;p&gt;MAML은 static outer loop learning rate를 사용합니다.&lt;/p&gt;
 &lt;h5&gt;해결책: Cosine Anealing of Meta-Optimizer Learing Rate (CA)&lt;/h5&gt;
@@ -4424,7 +4427,49 @@ events&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class
 &lt;li&gt;&lt;a href=&quot;https://fullcalendar.io/&quot;&gt;FullCalendar 공식 홈페이지&lt;/a&gt;&lt;a href=&quot;https://fullcalendar.io/#demos&quot;&gt;Demo 확인&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://fullcalendar.io/#demos&quot;&gt;
-&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Connection lost: The server closed the connection 에러 해결하기]]></title><description><![CDATA[Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 'Error: Connection lost: The server closed the connection.' 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.]]></description><link>https://yuhodots.github.io/backend/19-08-19/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 &apos;Error: Connection lost: The server closed the connection.&apos; 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.&lt;/p&gt;
+&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[req 객체와 res 객체, 그리고 res.send와 res.json의 비교]]></title><description><![CDATA[node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 Express 공식 홈페이지를 참고하여 정리 해 보았습니다. req.body는 POST 정보를 가집니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. ]]></description><link>https://yuhodots.github.io/backend/19-08-19-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19-2/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 &lt;a href=&quot;https://expressjs.com/ko/4x/api.html#express&quot;&gt;Express 공식 홈페이지&lt;/a&gt;를 참고하여 정리 해 보았습니다.&lt;/p&gt;
+&lt;h3&gt;req 객체&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;req.body :&lt;/strong&gt; &lt;strong&gt;POST&lt;/strong&gt; 정보를 가집니다. 파싱을 위해서 body-parser와 같은 패키지가 필요합니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;req.query :&lt;/strong&gt; &lt;strong&gt;GET&lt;/strong&gt; 정보를 가집니다. 즉, url로 전송된 쿼리 스트링 파라미터를 담고 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;req.params :&lt;/strong&gt; 내가 이름 붙인 라우트 파라미터 정보를 가집니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;req.headers :&lt;/strong&gt; HTTP의 Header 정보를 가집니다.&lt;/li&gt;
+&lt;li&gt;이 외에도 req.route, req.cookies, req.acceptedLanguages, req.url, req.protocol, req.host, req.ip 등이 존재합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;res 객체&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;res.send :&lt;/strong&gt; 다양한 유형의 응답을 전송합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.redirect :&lt;/strong&gt; 브라우저를 리다이렉트 합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.render :&lt;/strong&gt; 설정된 템플릿 엔진을 사용해서 views를 렌더링합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.json :&lt;/strong&gt; JSON 응답을 전송합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.end :&lt;/strong&gt; 응답 프로세스를 종료합니다.&lt;/li&gt;
+&lt;li&gt;이 외에도 res.set, res.status, res.type, res.sendFile, res.links, res.cookie 등이 존재합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;res.send / res.json / res.end 비교&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 파트는 이 &lt;a href=&quot;https://blog.fullstacktraining.com/res-json-vs-res-send-vs-res-end-in-express/&quot;&gt;자료&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;res.send&lt;/h4&gt;
+&lt;p&gt; res.send([body])의 body에는 Buffer, String, Object, Array가 올 수 있습니다. 그리고 response Header에는 Body의 &lt;strong&gt;Content-Type&lt;/strong&gt;이 자동으로 정의됩니다. 아래의 예시를 살펴보겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Minsu&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; key는 name, value는 &apos;Minsu&apos;라는 object를 body에 넣어서 response 응답을 전달하면, response Header 내 Content-Type은 자동으로 json(JavaScript Object Notation)으로 정의됩니다. 참고로 이 response Header는 response 객체 내 &lt;strong&gt;set메소드&lt;/strong&gt;로 제어가 가능합니다. 간단한 예로 res.set(&apos;Content-Type&apos;, &apos;text/html&apos;); 같은 형태를 들 수 있습니다.&lt;/p&gt;
+&lt;h4&gt;res.json&lt;/h4&gt;
+&lt;p&gt; res.json은 JSON을 응답으로 보냅니다. 여기서 res.send도 Object를 응답으로 보낼 수 있으니까 res.json이 굳이 필요할까 라는 의문이 들 수 있는데, res.json은 JSON 정보를 전달하는데 더 특화된 기능을 가지고 있습니다. 일단 이를 이해하기 위해서는 Object와 JSON은 비슷하게 생기긴 했지만 확연한 차이점을 가지고 있다는 점을 알고계셔야 합니다. &lt;/p&gt;
+&lt;p&gt;  JSON은 String, Number, Object, Array, Boolean, Null을 지원하지만, Function, Date, Undefined 등과 같은 타입은 지원하지 않습니다. 그렇기 때문에 우리가 { x: [10, undefined, function(){}, Symbol(&apos;&apos;)] } 같은 파라미터를 입력하면 undefined, function(){}, Symbol(&quot;) 는 JSON이 지원하지 않는 타입이기에 JSON이 지원하는 타입으로 바꾸는 작업이 요구됩니다. 이는 &lt;strong&gt;JSON.stringfy() 메소드&lt;/strong&gt;를 통해 구현할 수 있습니다. &lt;/p&gt;
+&lt;p&gt; res.json을 사용하면 JSON.stringfy() 메소드를 호출하여 파라미터를 JSON string 형태로 먼저 변환 한 뒤, res.send()를 호출하여 응답을 내보냅니다. JSON.stringfy() 메소드는 replacer와 spaces라는 두 가지 파라미터를 가질 수 있는데 이를 Express에서는 아래와 같은 옵션을 통해 제어 가능합니다. (JSON.stringfy()에 대한 설명은 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify&quot;&gt;Mozilla&lt;/a&gt;에서 참고하시길 바랍니다.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json replacer&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; replacer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json spaces&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;res.end&lt;/h4&gt;
+&lt;p&gt; res.end는 위에서 언급한 것 처럼 응답 프로세스를 종료하는 데 사용됩니다. 그렇다면 res.end()를 굳이 코드 내 명시해줘야 할까요? 이에 대한 대답은 &apos;맞다&apos;가 될 수도 있고 &apos;아니다&apos;가 될 수도 있습니다. 데이터를 제공하지 않고 응답을 끝내려면 res.end()를 사용할 수 있습니다. 예를 들어 아래와 같이 404오류 페이지에 활용 될 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;404&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 하지만 응답 데이터를 res.json이나 res.send 같은 형태로 전송하는 경우에는 이들이 일부 데이터를 보낸 뒤에 자동으로 응답 종료처리를 하기 때문에 굳이 res.end()를 호출 할 필요가 없습니다. &lt;/p&gt;
+&lt;h3&gt;express() 함수&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;express.json()&lt;/strong&gt; : 들어오는 request를 JSON 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.static()&lt;/strong&gt; : 정적 파일을 제공하며, serve-static를 기반으로 합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.Router()&lt;/strong&gt; : 새 router 객체를 생성합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.urlencoded()&lt;/strong&gt; : 들어오는 request를 urlencoded 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Connection lost: The server closed the connection 에러 해결하기]]></title><description><![CDATA[Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 'Error: Connection lost: The server closed the connection.' 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.]]></description><link>https://yuhodots.github.io/backend/19-08-19/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 &apos;Error: Connection lost: The server closed the connection.&apos; 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.&lt;/p&gt;
 &lt;h3&gt;Error의 원인&lt;/h3&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -4503,49 +4548,7 @@ events&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class
 
 &lt;span class=&quot;token function&quot;&gt;handleDisconnect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/20210522/nodejs-mysql-error-connection-lost-the-server-closed-the-connection&quot;&gt;stackoverflow에서 발견한 해결방법&lt;/a&gt;을 바탕으로 위와 같은 소스코드를 작성하였습니다. mysql모듈을 로드하고 createConnection메소드를 이용해서 연결한 DB서버의 정보를 입력하는 것 까지는 기존과 동일합니다. 주의해서 볼 내용은 아래의 &lt;code class=&quot;language-text&quot;&gt;handleDisconnection&lt;/code&gt; 함수 파트입니다.&lt;/p&gt;
-&lt;p&gt; 먼저 &lt;code class=&quot;language-text&quot;&gt;db.connect&lt;/code&gt;를 통해 db서버에 연결을 시도합니다. 그리고 &lt;code class=&quot;language-text&quot;&gt;db.on&lt;/code&gt;을 이용해서 DB서버와의 연결이 끊어졌는지 확인하고 연결이 끊어졌다면 &lt;code class=&quot;language-text&quot;&gt;return handleDisconnect()&lt;/code&gt; 코드를 통해 &lt;code class=&quot;language-text&quot;&gt;handleDisconnect&lt;/code&gt; 함수를 호출하여 다시 연결을 시도합니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[req 객체와 res 객체, 그리고 res.send와 res.json의 비교]]></title><description><![CDATA[node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 Express 공식 홈페이지를 참고하여 정리 해 보았습니다. req.body는 POST 정보를 가집니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. ]]></description><link>https://yuhodots.github.io/backend/19-08-19-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19-2/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 &lt;a href=&quot;https://expressjs.com/ko/4x/api.html#express&quot;&gt;Express 공식 홈페이지&lt;/a&gt;를 참고하여 정리 해 보았습니다.&lt;/p&gt;
-&lt;h3&gt;req 객체&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;req.body :&lt;/strong&gt; &lt;strong&gt;POST&lt;/strong&gt; 정보를 가집니다. 파싱을 위해서 body-parser와 같은 패키지가 필요합니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;req.query :&lt;/strong&gt; &lt;strong&gt;GET&lt;/strong&gt; 정보를 가집니다. 즉, url로 전송된 쿼리 스트링 파라미터를 담고 있습니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;req.params :&lt;/strong&gt; 내가 이름 붙인 라우트 파라미터 정보를 가집니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;req.headers :&lt;/strong&gt; HTTP의 Header 정보를 가집니다.&lt;/li&gt;
-&lt;li&gt;이 외에도 req.route, req.cookies, req.acceptedLanguages, req.url, req.protocol, req.host, req.ip 등이 존재합니다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;res 객체&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;res.send :&lt;/strong&gt; 다양한 유형의 응답을 전송합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.redirect :&lt;/strong&gt; 브라우저를 리다이렉트 합니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.render :&lt;/strong&gt; 설정된 템플릿 엔진을 사용해서 views를 렌더링합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.json :&lt;/strong&gt; JSON 응답을 전송합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.end :&lt;/strong&gt; 응답 프로세스를 종료합니다.&lt;/li&gt;
-&lt;li&gt;이 외에도 res.set, res.status, res.type, res.sendFile, res.links, res.cookie 등이 존재합니다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;res.send / res.json / res.end 비교&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;이 파트는 이 &lt;a href=&quot;https://blog.fullstacktraining.com/res-json-vs-res-send-vs-res-end-in-express/&quot;&gt;자료&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4&gt;res.send&lt;/h4&gt;
-&lt;p&gt; res.send([body])의 body에는 Buffer, String, Object, Array가 올 수 있습니다. 그리고 response Header에는 Body의 &lt;strong&gt;Content-Type&lt;/strong&gt;이 자동으로 정의됩니다. 아래의 예시를 살펴보겠습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Minsu&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; key는 name, value는 &apos;Minsu&apos;라는 object를 body에 넣어서 response 응답을 전달하면, response Header 내 Content-Type은 자동으로 json(JavaScript Object Notation)으로 정의됩니다. 참고로 이 response Header는 response 객체 내 &lt;strong&gt;set메소드&lt;/strong&gt;로 제어가 가능합니다. 간단한 예로 res.set(&apos;Content-Type&apos;, &apos;text/html&apos;); 같은 형태를 들 수 있습니다.&lt;/p&gt;
-&lt;h4&gt;res.json&lt;/h4&gt;
-&lt;p&gt; res.json은 JSON을 응답으로 보냅니다. 여기서 res.send도 Object를 응답으로 보낼 수 있으니까 res.json이 굳이 필요할까 라는 의문이 들 수 있는데, res.json은 JSON 정보를 전달하는데 더 특화된 기능을 가지고 있습니다. 일단 이를 이해하기 위해서는 Object와 JSON은 비슷하게 생기긴 했지만 확연한 차이점을 가지고 있다는 점을 알고계셔야 합니다. &lt;/p&gt;
-&lt;p&gt;  JSON은 String, Number, Object, Array, Boolean, Null을 지원하지만, Function, Date, Undefined 등과 같은 타입은 지원하지 않습니다. 그렇기 때문에 우리가 { x: [10, undefined, function(){}, Symbol(&apos;&apos;)] } 같은 파라미터를 입력하면 undefined, function(){}, Symbol(&quot;) 는 JSON이 지원하지 않는 타입이기에 JSON이 지원하는 타입으로 바꾸는 작업이 요구됩니다. 이는 &lt;strong&gt;JSON.stringfy() 메소드&lt;/strong&gt;를 통해 구현할 수 있습니다. &lt;/p&gt;
-&lt;p&gt; res.json을 사용하면 JSON.stringfy() 메소드를 호출하여 파라미터를 JSON string 형태로 먼저 변환 한 뒤, res.send()를 호출하여 응답을 내보냅니다. JSON.stringfy() 메소드는 replacer와 spaces라는 두 가지 파라미터를 가질 수 있는데 이를 Express에서는 아래와 같은 옵션을 통해 제어 가능합니다. (JSON.stringfy()에 대한 설명은 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify&quot;&gt;Mozilla&lt;/a&gt;에서 참고하시길 바랍니다.)&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json replacer&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; replacer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json spaces&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;res.end&lt;/h4&gt;
-&lt;p&gt; res.end는 위에서 언급한 것 처럼 응답 프로세스를 종료하는 데 사용됩니다. 그렇다면 res.end()를 굳이 코드 내 명시해줘야 할까요? 이에 대한 대답은 &apos;맞다&apos;가 될 수도 있고 &apos;아니다&apos;가 될 수도 있습니다. 데이터를 제공하지 않고 응답을 끝내려면 res.end()를 사용할 수 있습니다. 예를 들어 아래와 같이 404오류 페이지에 활용 될 수 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;404&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 하지만 응답 데이터를 res.json이나 res.send 같은 형태로 전송하는 경우에는 이들이 일부 데이터를 보낸 뒤에 자동으로 응답 종료처리를 하기 때문에 굳이 res.end()를 호출 할 필요가 없습니다. &lt;/p&gt;
-&lt;h3&gt;express() 함수&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;express.json()&lt;/strong&gt; : 들어오는 request를 JSON 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;express.static()&lt;/strong&gt; : 정적 파일을 제공하며, serve-static를 기반으로 합니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;express.Router()&lt;/strong&gt; : 새 router 객체를 생성합니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;express.urlencoded()&lt;/strong&gt; : 들어오는 request를 urlencoded 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[ECMAScript, TypeScript, React란 무엇인가?]]></title><description><![CDATA[프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다. 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다. ECMA스크립트는 Ecma 인터내셔널의 ECMA-262 기술 규격에 정의된 표준화된 스크립트 프로그래밍 언어이다.]]></description><link>https://yuhodots.github.io/frontend/19-08-16/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-16/</guid><pubDate>Fri, 16 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다.&lt;/p&gt;
+&lt;p&gt; 먼저 &lt;code class=&quot;language-text&quot;&gt;db.connect&lt;/code&gt;를 통해 db서버에 연결을 시도합니다. 그리고 &lt;code class=&quot;language-text&quot;&gt;db.on&lt;/code&gt;을 이용해서 DB서버와의 연결이 끊어졌는지 확인하고 연결이 끊어졌다면 &lt;code class=&quot;language-text&quot;&gt;return handleDisconnect()&lt;/code&gt; 코드를 통해 &lt;code class=&quot;language-text&quot;&gt;handleDisconnect&lt;/code&gt; 함수를 호출하여 다시 연결을 시도합니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[ECMAScript, TypeScript, React란 무엇인가?]]></title><description><![CDATA[프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다. 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다. ECMA스크립트는 Ecma 인터내셔널의 ECMA-262 기술 규격에 정의된 표준화된 스크립트 프로그래밍 언어이다.]]></description><link>https://yuhodots.github.io/frontend/19-08-16/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-16/</guid><pubDate>Fri, 16 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다.&lt;/p&gt;
 &lt;h3&gt;ECMAScript&lt;/h3&gt;
 &lt;p&gt; 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4729,134 +4732,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
 &lt;p&gt; 블로그에 공부한 내용을 포스팅하려면 아무리 쉬운 내용이라고 하더라도 생각을 글로 변환하기 위해서 기본적으로 3회독 정도를 하게됩니다. 확실히 여러 번 똑같은 내용을 확인하면 한 번만 보았을 때는 놓치고 지나가는 부분도 다시 확인하게 되고, 내가 작성하는 게시글의 내용에 대한 이해도가 현저히 증가하는 것을 느끼실 수 있을 겁니다. 결국엔 누군가에게 설명을 하는 그 자체가 지식을 정확하고 견고하게 만들어 줍니다.&lt;/p&gt;
 &lt;/br&gt;
 &lt;h4&gt;오히려 시간이 절약됩니다&lt;/h4&gt;
-&lt;p&gt; 프로젝트를 하다보면 생각보다 간단한 내용인데도 기억나지 않는 것들이 많습니다. 아예 기억이 나지 않는 것이 아니더라도 코드의 정확성을 위해서 이전의 내용을 다시 확인해야 하는 경우도 빈번히 발생합니다. 개발 블로그를 운영하면 이런 내용을 빠르게 다시 회상하거나 찾아 볼 수 있습니다. 글을 포스팅하는 시간은 많이 소요되지만 실제 개발을 진행하는 시간까지 고려해서 계산을 해 보면 저의 경우에는 오히려 블로그 포스팅을 함으로써 더 빠르게 개발을 진행 할 수 있었습니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[AWS Certificate Manager란?]]></title><description><![CDATA[https에 붙는 's'는 Secure Socket Layer를 의미하는데 이를 줄여서 SSL이나 TLS(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다.]]></description><link>https://yuhodots.github.io/server/19-08-05/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-05/</guid><pubDate>Mon, 05 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;여러 웹 사이트를 돌아다니다 보면 어떤 사이트는 url주소가 http로 시작하고, 어떤 사이트는 https로 시작하는 것을 확인 할 수 있습니다. 이는 사용자와 서버가 주고받는 정보에 대해 데이터 무결성의 차이 때문인데 이 차이 때문에 https가 http보다 훨씬 안전한 접속이라는 것이 보장됩니다.&lt;/p&gt;
-&lt;p&gt; https에 붙는 &apos;s&apos;는 Secure Socket Layer를 의미하는데 이를 줄여서 &lt;strong&gt;SSL&lt;/strong&gt;이나 &lt;strong&gt;TLS&lt;/strong&gt;(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다. AWS의 ACM에서는, AWS 기반 웹 사이트 및 애플리케이션에 대한 공인 SSL/TLS 인증서를 생성 및 관리하는 복잡한 과정을 처리할 수 있습니다. 이번 포스팅에서 ACM에 대해서 알아보기 전에 SSL/TLS에 대한 정의 먼저 살펴보도록 합시다.&lt;/p&gt;
-&lt;h3&gt;TLS (전송 계층 보안)&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;아래 내용은 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&quot;&gt;위키피디아&lt;/a&gt;의 설명입니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt; 전송 계층 보안(Transport Layer Security, TLS)은 통신 보안을 제공하기 위해 설계된 암호 규약이다. 이 규약은 인터넷 같이 TCP/IP 네트워크를 사용하는 통신에 적용되며, 통신 과정에서 전송계층 종단간 보안과 데이터 무결성을 확보해준다. 이 규약은 웹 브라우징, 전자 메일, 인스턴트 메신저 같은 응용 부분에 적용되고 있다. 국제 인터넷 표준화 기구(IETF)에 의해 현재 구식(deprecate)으로 간주되어 있다. 최종 갱신은 RFC 5246이고, 최종 갱신 버전은 넷스케이프에서 만든 SSL 표준을 바탕으로 했다.&lt;/p&gt;
-&lt;p&gt;우선 첫 단계에서 서버와 클라이언트는 암호 스위트를 교환한다. 이 단계에서 키 교환과 인증에 사용될 암호화 방법, 메시지 인증 코드(MAC)가 결정된다. 키 교환과 인증 알고리즘은 공개키 방법을 사용하거나 미리 공유된 키(TLS-PSK)를 사용할 수도 있다. 메시지 인증 코드들은 HMAC 해시 함수로 만든다. SSL에서는 비표준 무작위 함수를 사용한다.&lt;/p&gt;
-&lt;p&gt;SSL 규약은 처음에 넷스케이프가 만들었다. 1.0 버전은 공개 된 적이 없고, 2.0 버전이 1995년 2월에 이르러서야 릴리스가 된다. 그러나 이 버전은 많은 보안 결함 때문에 3.0 버전으로 곧바로 이어진다. 3.0은 1996년 릴리스 된다. 결국 3.0 버전은 TLS 버전 1.0의 기초가 되고, IETF에서 1999년 1월에 RFC 2246 표준 규약으로 정의하게 된다.&lt;/p&gt;
-&lt;h3&gt;ACM (AWS Certificate Manager)&lt;/h3&gt;
-&lt;p&gt; HTTPS 인증은 인증서 발급기관에서 사이트 인증을 통해 인증서를 발급 해 주는 형태로 이루어집니다. 무료로 몇 개월 간 개인 웹 사이트에 인증서를 발급해 주는 기관도 존재하고 그게 아니라면 유료로 인증서를 발급 받는 방법도 있는데, 자신이 AWS를 사용하고 있다면 ACM을 통해 무료로 인증서를 발급받을 수 있습니다.&lt;/p&gt;
-&lt;p&gt;아마존에서는 다음과 같은 서비스를 제공한다고 합니다. 저는 이 중 ACM 인증서를 사용하려고 합니다.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ACM에서 제공하는 공인 인증서(ACM 인증서) 또는 ACM으로 가져온 인증서를 사용할 수 있습니다. ACM 인증서는 도메인 이름과 도메인 내의 여러 이름을 보호할 수 있습니다. 또한 ACM을 사용하여 원하는 만큼의 하위 도메인을 보호할 수 있는 와일드카드 SSL 인증서를 생성할 수도 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt; ACM은 X.509 버전 3 인증서를 생성합니다. 각 인증서는 13개월 동안 유효하며 다음 확장이 포함됩니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;기본 제약&lt;/strong&gt; - 인증서의 주체가 인증 기관(CA)인지 여부를 지정합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;기관 키 식별자&lt;/strong&gt; - 인증서에 서명하는 데 사용되는 프라이빗 키에 해당하는 퍼블릭 키를 식별할 수 있습니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;주체 키 식별자&lt;/strong&gt; - 특정 퍼블릭 키가 포함된 인증서를 식별할 수 있습니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;키 사용&lt;/strong&gt; - 인증서에 포함된 퍼블릭 키의 용도를 정의합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;확장 키 사용&lt;/strong&gt; - &lt;strong&gt;키 사용&lt;/strong&gt; 확장에 지정된 용도에 추가하여 퍼블릭 키를 사용할 수 있는 하나 이상의 용도를 지정합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CRL 배포 지점&lt;/strong&gt; - CRL 정보를 얻을 수 있는 위치를 지정합니다.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;콘솔을 통한 공인 인증서 요청&lt;/h3&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c6f66/19-08-05-1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 47.368421052631575%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABbUlEQVQoz32S3U7CQBCF+/omRhMTb3wFEuONMRpFIKCAemMppT+BCklLoaXF0rSUluPuxIVi1Em+7M7sOTuzTSXP8/Abvu8TqyjG+cUJbu+vkSZrqv3l4UiO46CMbdtwXReWZUFRFOi6jnqjhtfXF2iahn6/f6D96Ze4UTAajWjlpna7jUajQbRaLTSbLdpXH6rodrswTRNlr0DilwjG4zEmkzEMQ6dpOHxCWRmgr2owDYPywUAj7Ye19wqkzWYDwXTqQNNN+OEKPPI8R1EUBN+LnK+y3MNsETFfjvIdEr5jy4SKquP96QapWsF/4TguTo+PsHo7Y1l2cCZtt1tkWcZuzyD3VDzX7hBZHaRpSh2pGdPwyXiN74fDIa4uK5jrdWzWKauvScvPaMIoihAEIWOOydSEFwZYLALEcbzrzJ+5XC4RhiGtth8zEpYH9LskSbKfcGcqPtExHxEljvgQ1LWsEVFTFxjO4oMa130BsySfsm2dbLkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/15813/19-08-05-1.webp 190w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/1cdb2/19-08-05-1.webp 380w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/9046c/19-08-05-1.webp 760w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c89f9/19-08-05-1.webp 1140w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/7afe4/19-08-05-1.webp 1520w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/338c0/19-08-05-1.webp 2722w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/a2d4f/19-08-05-1.png 190w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3f520/19-08-05-1.png 380w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3c051/19-08-05-1.png 760w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/b5cea/19-08-05-1.png 1140w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/891d5/19-08-05-1.png 1520w,
-/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c6f66/19-08-05-1.png 2722w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3c051/19-08-05-1.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;ACM 콘솔에 로그인하여 인증서 프로비저닝 시작하기 버튼을 클릭합니다. 그리고 &apos;공인인증서 요청&apos;을 클릭합니다. &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;자신의 웹 사이트 도메인 이름을 입력합니다.&lt;/p&gt;
-&lt;p&gt;www.example.com 같은 FQDN(Fully Qualified Domain Name)이나 example.com 같은 베어 또는 apex 도메인 이름을 사용할 수 있습니다. 맨 왼쪽에서 별표(*)를 와일드카드로 사용하여 동일한 도메인 내에서 여러 사이트 이름을 보호할 수도 있습니다. &lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;도메인 DNS 구성을 수정할 권한을 가지고 있거나 얻을 수 있는 경우에는 &apos;DNS 검증&apos;을 선택하고, 그렇지 않을 경우 &apos;이메일 검증&apos;을 선택합니다. (저는 DNS 검증을 선택했습니다.)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt; &lt;strong&gt;DNS검증 방법&lt;/strong&gt;에 대해 설명하도록 하겠습니다. ACM은 CNAME(Canonical Name) 레코드를 사용하여 도메인에 대한 사용자의 소유권이나 제어 권한을 확인합니다. ACM은 사용자에게 DNS 데이터베이스에 삽입할 CNAME 레코드를 제공하는데, 생성된 각 레코드에는 이름과 값이 포함되어 있습니다. 값은 ACM에 소유권이 있고 ACM이 인증서를 자동 갱신하는 데 사용하는 도메인을 가리키는 별칭입니다. DNS 데이터베이스에 CNAME 레코드를 한 번만 추가하면 검증이 완료됩니다.&lt;/p&gt;
-&lt;p&gt; 만약 DNS공급자가 Amazon Route 53라면 아래 버튼을 통해 손쉽게 레코드를 생성할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/21b4d/19-08-05-2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 11.052631578947368%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVQI11XMuQqAMBBFUf//pywNbgFRUBGxikVmErekfWoaY3GZKR4naWeJVApkXY6iF2CjQJqhtQ4xM4wx4ca/tfZpA9kT+3HBex9KFtWhHirIsUIzlc94BdEHEtEPjOEX5Ah0zuEGptKU7Ahi8hEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/15813/19-08-05-2.webp 190w,
-/static/1490026b20599b5a5899d64ed7dfc6af/1cdb2/19-08-05-2.webp 380w,
-/static/1490026b20599b5a5899d64ed7dfc6af/9046c/19-08-05-2.webp 760w,
-/static/1490026b20599b5a5899d64ed7dfc6af/c89f9/19-08-05-2.webp 1140w,
-/static/1490026b20599b5a5899d64ed7dfc6af/af3f0/19-08-05-2.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/a2d4f/19-08-05-2.png 190w,
-/static/1490026b20599b5a5899d64ed7dfc6af/3f520/19-08-05-2.png 380w,
-/static/1490026b20599b5a5899d64ed7dfc6af/3c051/19-08-05-2.png 760w,
-/static/1490026b20599b5a5899d64ed7dfc6af/b5cea/19-08-05-2.png 1140w,
-/static/1490026b20599b5a5899d64ed7dfc6af/21b4d/19-08-05-2.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/3c051/19-08-05-2.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt; DNS 구성을 업데이트한 후 &apos;계속&apos;을 선택하면 ACM에 모든 인증서가 포함된 테이블 보기가 표시됩니다. 요청한 인증서와 그 상태가 표시됩니다. DNS 공급자가 레코드 업데이트를 전파한 후 ACM이 도메인 이름을 검증하고 인증서를 발급할 때까지 최대 몇 시간이 소요될 수 있습니다. 이 시간 동안 ACM은 &apos;검증 보류&apos;로 검증 상태를 표시합니다. 도메인 이름을 검증한 후 ACM은 &apos;성공&apos;으로 검증 상태를 변경합니다. AWS가 인증서를 발급하고 나면 ACM은 인증 상태를 &apos;Issued&apos;로 변경합니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[ELB를 이용하여 SSL인증서 적용하기]]></title><description><![CDATA[ 저번 AWS ACM 포스팅에서는 Route53과 AWS EC2를 사용하고 있는 내 서버에 ACM을 통해 SSL 인증서를 발급받는 방법을 알아보았습니다. 이번 포스팅에서는 발급받은 SSL인증서를 ELB라는 것을 이용해서 비교적 쉽게 서버에 적용하는 방법을 알아보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/server/19-08-05-2/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-05-2/</guid><pubDate>Mon, 05 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; 저번 AWS ACM 포스팅에서는 Route53과 AWS EC2를 사용하고 있는 내 서버에 ACM을 통해 SSL 인증서를 발급받는 방법을 알아보았습니다. 이번 포스팅에서는 발급받은 SSL인증서를 ELB라는 것을 이용해서 비교적 쉽게 서버에 적용하는 방법을 알아보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt; 프로젝트를 하다보면 생각보다 간단한 내용인데도 기억나지 않는 것들이 많습니다. 아예 기억이 나지 않는 것이 아니더라도 코드의 정확성을 위해서 이전의 내용을 다시 확인해야 하는 경우도 빈번히 발생합니다. 개발 블로그를 운영하면 이런 내용을 빠르게 다시 회상하거나 찾아 볼 수 있습니다. 글을 포스팅하는 시간은 많이 소요되지만 실제 개발을 진행하는 시간까지 고려해서 계산을 해 보면 저의 경우에는 오히려 블로그 포스팅을 함으로써 더 빠르게 개발을 진행 할 수 있었습니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[ELB를 이용하여 SSL인증서 적용하기]]></title><description><![CDATA[ 저번 AWS ACM 포스팅에서는 Route53과 AWS EC2를 사용하고 있는 내 서버에 ACM을 통해 SSL 인증서를 발급받는 방법을 알아보았습니다. 이번 포스팅에서는 발급받은 SSL인증서를 ELB라는 것을 이용해서 비교적 쉽게 서버에 적용하는 방법을 알아보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/server/19-08-05-2/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-05-2/</guid><pubDate>Mon, 05 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; 저번 AWS ACM 포스팅에서는 Route53과 AWS EC2를 사용하고 있는 내 서버에 ACM을 통해 SSL 인증서를 발급받는 방법을 알아보았습니다. 이번 포스팅에서는 발급받은 SSL인증서를 ELB라는 것을 이용해서 비교적 쉽게 서버에 적용하는 방법을 알아보도록 하겠습니다.&lt;/p&gt;
 &lt;h3&gt;ELB란 무엇인가?&lt;/h3&gt;
 &lt;p&gt; ELB는 &lt;strong&gt;Elastic Load Balancing&lt;/strong&gt;의 약자입니다. Load Balancing은 둘 혹은 셋 이상의 서버에게 작업을 나누는 것을 의미합니다. 이로써 가용성 및 응답시간을 최적화 시킬 수 있다는 장점을 가집니다. 또한 애플리케이션에 대한 요청의 전체적인 흐름을 방해하지 않고 필요에 따라 로드 밸런서에서 컴퓨팅 리소스를 추가 및 제거할 수도 있습니다. 아래의 서버 확장 방법 중 &lt;strong&gt;스케일 아웃&lt;/strong&gt;의 경우에는 각 서버에 걸리는 부하를 균등하게 해주는 ‘로드밸런싱’이 필수적입니다.&lt;/p&gt;
 &lt;ul&gt;
@@ -5115,7 +4991,134 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
     	res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;https://&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Host&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 만약 우리가  &lt;code class=&quot;language-text&quot;&gt;http://example.com/home&lt;/code&gt; 으로 접속하면 xForwarded에는 http가 담기게 되고, 그렇기 때문에 if 문이 실행되어  &lt;code class=&quot;language-text&quot;&gt;https://example.com/home&lt;/code&gt; 으로 리다이렉트 됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[MySQL을 활용한 글 작성과 인증]]></title><description><![CDATA[로그인을 올바르게 한 사용자만이 글을 작성 할 수 있고, 소유자만이 글을 수정 및 삭제를 할 수 있도록 Node-Express와 MySQL을 활용하여 구현 해 보도록 합시다. 저는 request 객체에 user라는 값이 담겼는지 확인하는 함수와 로그인 유저와 글 생성 저자가 같은지 판단하는 함수를 만들었습니다.]]></description><link>https://yuhodots.github.io/backend/19-08-01/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-01/</guid><pubDate>Thu, 01 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;로그인을 올바르게 한 사용자만이 글을 작성 할 수 있고, 그 글에 대한 소유자만이 글을 수정 및 삭제를 할 수 있도록 Node-Express와 MySQL을 활용하여 구현 해 보도록 합시다.&lt;/p&gt;
+&lt;p&gt; 만약 우리가  &lt;code class=&quot;language-text&quot;&gt;http://example.com/home&lt;/code&gt; 으로 접속하면 xForwarded에는 http가 담기게 되고, 그렇기 때문에 if 문이 실행되어  &lt;code class=&quot;language-text&quot;&gt;https://example.com/home&lt;/code&gt; 으로 리다이렉트 됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[AWS Certificate Manager란?]]></title><description><![CDATA[https에 붙는 's'는 Secure Socket Layer를 의미하는데 이를 줄여서 SSL이나 TLS(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다.]]></description><link>https://yuhodots.github.io/server/19-08-05/</link><guid isPermaLink="false">https://yuhodots.github.io/server/19-08-05/</guid><pubDate>Mon, 05 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;여러 웹 사이트를 돌아다니다 보면 어떤 사이트는 url주소가 http로 시작하고, 어떤 사이트는 https로 시작하는 것을 확인 할 수 있습니다. 이는 사용자와 서버가 주고받는 정보에 대해 데이터 무결성의 차이 때문인데 이 차이 때문에 https가 http보다 훨씬 안전한 접속이라는 것이 보장됩니다.&lt;/p&gt;
+&lt;p&gt; https에 붙는 &apos;s&apos;는 Secure Socket Layer를 의미하는데 이를 줄여서 &lt;strong&gt;SSL&lt;/strong&gt;이나 &lt;strong&gt;TLS&lt;/strong&gt;(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다. AWS의 ACM에서는, AWS 기반 웹 사이트 및 애플리케이션에 대한 공인 SSL/TLS 인증서를 생성 및 관리하는 복잡한 과정을 처리할 수 있습니다. 이번 포스팅에서 ACM에 대해서 알아보기 전에 SSL/TLS에 대한 정의 먼저 살펴보도록 합시다.&lt;/p&gt;
+&lt;h3&gt;TLS (전송 계층 보안)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;아래 내용은 &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EA%B3%84%EC%B8%B5_%EB%B3%B4%EC%95%88&quot;&gt;위키피디아&lt;/a&gt;의 설명입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 전송 계층 보안(Transport Layer Security, TLS)은 통신 보안을 제공하기 위해 설계된 암호 규약이다. 이 규약은 인터넷 같이 TCP/IP 네트워크를 사용하는 통신에 적용되며, 통신 과정에서 전송계층 종단간 보안과 데이터 무결성을 확보해준다. 이 규약은 웹 브라우징, 전자 메일, 인스턴트 메신저 같은 응용 부분에 적용되고 있다. 국제 인터넷 표준화 기구(IETF)에 의해 현재 구식(deprecate)으로 간주되어 있다. 최종 갱신은 RFC 5246이고, 최종 갱신 버전은 넷스케이프에서 만든 SSL 표준을 바탕으로 했다.&lt;/p&gt;
+&lt;p&gt;우선 첫 단계에서 서버와 클라이언트는 암호 스위트를 교환한다. 이 단계에서 키 교환과 인증에 사용될 암호화 방법, 메시지 인증 코드(MAC)가 결정된다. 키 교환과 인증 알고리즘은 공개키 방법을 사용하거나 미리 공유된 키(TLS-PSK)를 사용할 수도 있다. 메시지 인증 코드들은 HMAC 해시 함수로 만든다. SSL에서는 비표준 무작위 함수를 사용한다.&lt;/p&gt;
+&lt;p&gt;SSL 규약은 처음에 넷스케이프가 만들었다. 1.0 버전은 공개 된 적이 없고, 2.0 버전이 1995년 2월에 이르러서야 릴리스가 된다. 그러나 이 버전은 많은 보안 결함 때문에 3.0 버전으로 곧바로 이어진다. 3.0은 1996년 릴리스 된다. 결국 3.0 버전은 TLS 버전 1.0의 기초가 되고, IETF에서 1999년 1월에 RFC 2246 표준 규약으로 정의하게 된다.&lt;/p&gt;
+&lt;h3&gt;ACM (AWS Certificate Manager)&lt;/h3&gt;
+&lt;p&gt; HTTPS 인증은 인증서 발급기관에서 사이트 인증을 통해 인증서를 발급 해 주는 형태로 이루어집니다. 무료로 몇 개월 간 개인 웹 사이트에 인증서를 발급해 주는 기관도 존재하고 그게 아니라면 유료로 인증서를 발급 받는 방법도 있는데, 자신이 AWS를 사용하고 있다면 ACM을 통해 무료로 인증서를 발급받을 수 있습니다.&lt;/p&gt;
+&lt;p&gt;아마존에서는 다음과 같은 서비스를 제공한다고 합니다. 저는 이 중 ACM 인증서를 사용하려고 합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ACM에서 제공하는 공인 인증서(ACM 인증서) 또는 ACM으로 가져온 인증서를 사용할 수 있습니다. ACM 인증서는 도메인 이름과 도메인 내의 여러 이름을 보호할 수 있습니다. 또한 ACM을 사용하여 원하는 만큼의 하위 도메인을 보호할 수 있는 와일드카드 SSL 인증서를 생성할 수도 있습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; ACM은 X.509 버전 3 인증서를 생성합니다. 각 인증서는 13개월 동안 유효하며 다음 확장이 포함됩니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;기본 제약&lt;/strong&gt; - 인증서의 주체가 인증 기관(CA)인지 여부를 지정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;기관 키 식별자&lt;/strong&gt; - 인증서에 서명하는 데 사용되는 프라이빗 키에 해당하는 퍼블릭 키를 식별할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;주체 키 식별자&lt;/strong&gt; - 특정 퍼블릭 키가 포함된 인증서를 식별할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;키 사용&lt;/strong&gt; - 인증서에 포함된 퍼블릭 키의 용도를 정의합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;확장 키 사용&lt;/strong&gt; - &lt;strong&gt;키 사용&lt;/strong&gt; 확장에 지정된 용도에 추가하여 퍼블릭 키를 사용할 수 있는 하나 이상의 용도를 지정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CRL 배포 지점&lt;/strong&gt; - CRL 정보를 얻을 수 있는 위치를 지정합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;콘솔을 통한 공인 인증서 요청&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c6f66/19-08-05-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 47.368421052631575%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABbUlEQVQoz32S3U7CQBCF+/omRhMTb3wFEuONMRpFIKCAemMppT+BCklLoaXF0rSUluPuxIVi1Em+7M7sOTuzTSXP8/Abvu8TqyjG+cUJbu+vkSZrqv3l4UiO46CMbdtwXReWZUFRFOi6jnqjhtfXF2iahn6/f6D96Ze4UTAajWjlpna7jUajQbRaLTSbLdpXH6rodrswTRNlr0DilwjG4zEmkzEMQ6dpOHxCWRmgr2owDYPywUAj7Ye19wqkzWYDwXTqQNNN+OEKPPI8R1EUBN+LnK+y3MNsETFfjvIdEr5jy4SKquP96QapWsF/4TguTo+PsHo7Y1l2cCZtt1tkWcZuzyD3VDzX7hBZHaRpSh2pGdPwyXiN74fDIa4uK5jrdWzWKauvScvPaMIoihAEIWOOydSEFwZYLALEcbzrzJ+5XC4RhiGtth8zEpYH9LskSbKfcGcqPtExHxEljvgQ1LWsEVFTFxjO4oMa130BsySfsm2dbLkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/15813/19-08-05-1.webp 190w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/1cdb2/19-08-05-1.webp 380w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/9046c/19-08-05-1.webp 760w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c89f9/19-08-05-1.webp 1140w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/7afe4/19-08-05-1.webp 1520w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/338c0/19-08-05-1.webp 2722w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/a2d4f/19-08-05-1.png 190w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3f520/19-08-05-1.png 380w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3c051/19-08-05-1.png 760w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/b5cea/19-08-05-1.png 1140w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/891d5/19-08-05-1.png 1520w,
+/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/c6f66/19-08-05-1.png 2722w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/8eb4ed6a9e4a09dfc3aaf1265a38c38b/3c051/19-08-05-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;ACM 콘솔에 로그인하여 인증서 프로비저닝 시작하기 버튼을 클릭합니다. 그리고 &apos;공인인증서 요청&apos;을 클릭합니다. &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;자신의 웹 사이트 도메인 이름을 입력합니다.&lt;/p&gt;
+&lt;p&gt;www.example.com 같은 FQDN(Fully Qualified Domain Name)이나 example.com 같은 베어 또는 apex 도메인 이름을 사용할 수 있습니다. 맨 왼쪽에서 별표(*)를 와일드카드로 사용하여 동일한 도메인 내에서 여러 사이트 이름을 보호할 수도 있습니다. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;도메인 DNS 구성을 수정할 권한을 가지고 있거나 얻을 수 있는 경우에는 &apos;DNS 검증&apos;을 선택하고, 그렇지 않을 경우 &apos;이메일 검증&apos;을 선택합니다. (저는 DNS 검증을 선택했습니다.)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;strong&gt;DNS검증 방법&lt;/strong&gt;에 대해 설명하도록 하겠습니다. ACM은 CNAME(Canonical Name) 레코드를 사용하여 도메인에 대한 사용자의 소유권이나 제어 권한을 확인합니다. ACM은 사용자에게 DNS 데이터베이스에 삽입할 CNAME 레코드를 제공하는데, 생성된 각 레코드에는 이름과 값이 포함되어 있습니다. 값은 ACM에 소유권이 있고 ACM이 인증서를 자동 갱신하는 데 사용하는 도메인을 가리키는 별칭입니다. DNS 데이터베이스에 CNAME 레코드를 한 번만 추가하면 검증이 완료됩니다.&lt;/p&gt;
+&lt;p&gt; 만약 DNS공급자가 Amazon Route 53라면 아래 버튼을 통해 손쉽게 레코드를 생성할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/21b4d/19-08-05-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 11.052631578947368%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAaElEQVQI11XMuQqAMBBFUf//pywNbgFRUBGxikVmErekfWoaY3GZKR4naWeJVApkXY6iF2CjQJqhtQ4xM4wx4ca/tfZpA9kT+3HBex9KFtWhHirIsUIzlc94BdEHEtEPjOEX5Ah0zuEGptKU7Ahi8hEAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/15813/19-08-05-2.webp 190w,
+/static/1490026b20599b5a5899d64ed7dfc6af/1cdb2/19-08-05-2.webp 380w,
+/static/1490026b20599b5a5899d64ed7dfc6af/9046c/19-08-05-2.webp 760w,
+/static/1490026b20599b5a5899d64ed7dfc6af/c89f9/19-08-05-2.webp 1140w,
+/static/1490026b20599b5a5899d64ed7dfc6af/af3f0/19-08-05-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/a2d4f/19-08-05-2.png 190w,
+/static/1490026b20599b5a5899d64ed7dfc6af/3f520/19-08-05-2.png 380w,
+/static/1490026b20599b5a5899d64ed7dfc6af/3c051/19-08-05-2.png 760w,
+/static/1490026b20599b5a5899d64ed7dfc6af/b5cea/19-08-05-2.png 1140w,
+/static/1490026b20599b5a5899d64ed7dfc6af/21b4d/19-08-05-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/1490026b20599b5a5899d64ed7dfc6af/3c051/19-08-05-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; DNS 구성을 업데이트한 후 &apos;계속&apos;을 선택하면 ACM에 모든 인증서가 포함된 테이블 보기가 표시됩니다. 요청한 인증서와 그 상태가 표시됩니다. DNS 공급자가 레코드 업데이트를 전파한 후 ACM이 도메인 이름을 검증하고 인증서를 발급할 때까지 최대 몇 시간이 소요될 수 있습니다. 이 시간 동안 ACM은 &apos;검증 보류&apos;로 검증 상태를 표시합니다. 도메인 이름을 검증한 후 ACM은 &apos;성공&apos;으로 검증 상태를 변경합니다. AWS가 인증서를 발급하고 나면 ACM은 인증 상태를 &apos;Issued&apos;로 변경합니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[MySQL을 활용한 글 작성과 인증]]></title><description><![CDATA[로그인을 올바르게 한 사용자만이 글을 작성 할 수 있고, 소유자만이 글을 수정 및 삭제를 할 수 있도록 Node-Express와 MySQL을 활용하여 구현 해 보도록 합시다. 저는 request 객체에 user라는 값이 담겼는지 확인하는 함수와 로그인 유저와 글 생성 저자가 같은지 판단하는 함수를 만들었습니다.]]></description><link>https://yuhodots.github.io/backend/19-08-01/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-01/</guid><pubDate>Thu, 01 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;로그인을 올바르게 한 사용자만이 글을 작성 할 수 있고, 그 글에 대한 소유자만이 글을 수정 및 삭제를 할 수 있도록 Node-Express와 MySQL을 활용하여 구현 해 보도록 합시다.&lt;/p&gt;
 &lt;h3&gt;user 확인 모듈 생성&lt;/h3&gt;
 &lt;p&gt;저는 auth.js라는 파일을 만들어서 request 객체에 user라는 값이 담겼는지 확인하는 isOwner메소드와 로그인 유저와 글 생성 저자가 같은지 판단하는 sameOwner메소드가 담긴 모듈을 만들었습니다. &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -6380,6 +6383,170 @@ passport&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
 &lt;li&gt;&lt;a href=&quot;https://www.facebook.com/dgtgrade/posts/1598044216921105&quot;&gt;남세동님, High dimensional data와 Data point&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=euH9C61ywEM&quot;&gt;공돌이의 수학노트님, 베이즈 정리의 의미&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=fNk_zzaMoSs&amp;#x26;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&quot;&gt;3blue1brown, Essence of Linear Algebra&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Cookie와 HTTP]]></title><description><![CDATA[Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt; 이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3385&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt; 크롬 개발자도구를 켜서 networks에 들어가 보도록 하겠습니다. 그리고 새로고침 버튼을 누르면 아래와 같은 화면이 출력됩니다. (웹 페이지마다 다릅니다.) 여기에 출력되는 정보들은 클라이언트와 서버간에 주고받고있는 정보들을 의미합니다. 이렇게 서로 주고받는 정보를 확인하는 것은 웹과 관련된 작업을 하는데 있어서 굉장히 중요한 테크닉이 될 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABrklEQVQoz1VSi5KkIAz0///vrmZ3nFFRAfHFQ8V3b2Cutuqo6oKQpBM6JFVd45UxSClRliWEbAgK6bsAqzjquiLU4JzHmDzPoZRCVVXxjjEGrTWstdCjQiJbDd46NJ0FFw2ynCErSnw/UzoXEELinWUoCkbJJe1UiArn5At2IO+6jkgNxlEjUcTuFgu7zFjXDW6aYJ3DsizxvCz+Y3varYsxhroJ98G/7zu8X7Gs5J8ckmCcu8d9XwDuX9zX//Z1nQjrE/dv3R/feR6/+YkaLHozo9MBE0bnkdcNKtmjFC0YVxF51WCwHrIzKKK/i3hVEs+iRjdOkScJyQVvKbkDIwTSpjfQ0wrRjggFuRqQlRLOHxGVbGPMSAQPJqAoZ17P6EtyEjlMLgifZXmc6DD08KRpT2Jba6LwTdPEpx37RgMY0fc9nDFIS4ZRDyTbTnpuSL6+U6SvjCYsMU0ztm2jAB2H0rYdai6ITOHx9aSBrDQAT7GCYqmreUZBT7bGxbyAJHyP9PWGcxMJf1EXJwxVDol9P8RvI4nwz99HTAikgghDQe+XqO/kZhwHdXgc+AEvnKm7/SBNWAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/15813/19-06-28-1.webp 190w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/1cdb2/19-06-28-1.webp 380w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/9046c/19-06-28-1.webp 760w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/c89f9/19-06-28-1.webp 1140w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/af3f0/19-06-28-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/a2d4f/19-06-28-1.png 190w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/3f520/19-06-28-1.png 380w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png 760w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/b5cea/19-06-28-1.png 1140w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 이 중 하나를 클릭하여 header탭에 들어가 보면 이 정보에 대한 자세한 내용 또한 확인이 가능합니다.&lt;/p&gt;
+&lt;h3&gt;Cookie 생성&lt;/h3&gt;
+&lt;p&gt; 쿠키는 HTTP 프로토콜에 속해있는 기술입니다. mozila재단에서 만든 쿠키에 대한 사용 설명서를 읽어보면 쿠키는 &lt;strong&gt;session management&lt;/strong&gt;( 인증), &lt;strong&gt;personality&lt;/strong&gt;(개인화), &lt;strong&gt;tracking&lt;/strong&gt;(트래킹) 이렇게 세 가지 목적을 가지고 있다고 합니다. 그렇다면 쿠키는 어떻게 생성할 수 있는지 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies&quot;&gt;예제&lt;/a&gt;와 함께 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+
+[page content]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 기본적인 형태는 &lt;code class=&quot;language-text&quot;&gt;Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;&lt;/code&gt; 입니다. 위의 예제에서 3번 째 줄은 &apos;yummy cookie&apos;라는 쿠키의 쿠키값이 &apos;choco&apos;라는 의미이고 4번 째 줄은 &apos;tasty_cookie&apos;쿠키의 쿠키값은 &apos;strawberry&apos;라는 의미이며 위의 코드는 이 두개의 쿠키를 생성하는 응답 메세지입니다. &lt;/p&gt;
+&lt;p&gt;그럼 다음으로는 nodejs를 이용해서 쿠키를 생성 해 보도록 하겠습니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+     response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드를 사용하면 &lt;strong&gt;응답하는 메세지를 조작&lt;/strong&gt;할 수 있습니다. 우리가 응답하는 메세지를 조작할 수 있다면, 이 응답 메세지에 Set-Cookie: 라는 메세지를 추가할 수 있게 되며 결국 쿠키를 생성하는 응답메세지를 최종적으로 생성할 수 있게 됩니다. &lt;/p&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드의 첫번 째 인자로는 status code가 들어가고 두번 째 인자로는 객체가 들어가도록 약속이 되어있습니다. 그런데 여기서 복수의 쿠키를 전달해야 할 때는 인자로 배열의 형태로 전해주도록 약속되어 있습니다. 자 그러면 이제는 위의 코드를 실행시킨 뒤에는 아래와 같이 코드를 다시 바꿔봅시다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// response.writeHead(200, {&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;//     &apos;Set-Cookie&apos;:[&apos;yummy_cookie=choco&apos;, &apos;tasty_cookie=strawberry&apos;]&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// });&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 이번에는 응답하는 메세지를 조작하지 않고 쿠키 값을 전달해주지 않았습니다. 하지만 크롬 개발자도구를 들어가서 파일의 헤더정보를 확인해 보면 request header에 이미 쿠키값이 심어져 있는 것을 볼 수 있습니다! 그리고 응답 헤더에서는 더 이상 쿠키를 전달하지 않는 것 또한 확인이 가능합니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 20.52631578947369%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVQY012O247DIBBD8/8/uNtqq0ZRCyTcL4GQVHEH1L7sSEdjjMby8Hu5YBxHcM7BGIOUEorQSnUthICYJZ58gSIvBA/vPzjX3452o3lDKQXrmtF2rRXGWozTA4vUyGWD0gY+JISUEWKC84E8C6l03w/GuzaWAkPEgH+TKPx6o8azgqWgv/uE+/QEE9RSLJil+WgJaRyU9Uiloh4ntv2F4TxPfGnTWvxcbz3IuEhHHnHdkHKlwx2BtLah42KG9an/5+0gdrwBrScwYXfcIO0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/15813/19-06-28-2.webp 190w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/1cdb2/19-06-28-2.webp 380w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/9046c/19-06-28-2.webp 760w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/c89f9/19-06-28-2.webp 1140w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/af3f0/19-06-28-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/a2d4f/19-06-28-2.png 190w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3f520/19-06-28-2.png 380w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png 760w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/b5cea/19-06-28-2.png 1140w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Cookie 읽기&lt;/h3&gt;
+&lt;p&gt; 생성한 쿠키를 다시 웹 브라우저가 웹 서버에게 요청 했을 때, 그것을 웹 애플리케이션 내에서 어떻게 알아 낼 수 있는지에 대해 알아봅시다. 예시 코드를 통해 설명을 진행하도록 하겠습니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookie &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cookie&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cookie&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 여기서 중요한 부분은 if문 입니다. &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;는 request header의 쿠키에 대한 정보를 담고있습니다. 만약 여기에 정보가 하나라도 들어있다면 if문의 statement인 &lt;code class=&quot;language-text&quot;&gt;cookies = cookie.parse(request.headers.cookie)&lt;/code&gt; 코드가 실행되는데 &lt;code class=&quot;language-text&quot;&gt;cookie.parse&lt;/code&gt;코드는 &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;의 객체화 해주고 이를 cookies라는 객체 변수에 담아준 것입니다.&lt;/p&gt;
+&lt;p&gt; 쿠키에 대한 정보를 객체에 담아주면, 객체에 담긴 키 값을 활용하여 쿠키 값을 우리 웹 애플리케이션에서 사용할 수 있습니다. &lt;code class=&quot;language-text&quot;&gt;cookies.yummy_cookie&lt;/code&gt;를 소스코드에 입력하면 choco라는 값을 사용하겠다는 의미처럼요&lt;/p&gt;
+&lt;h3&gt;HTTP request message&lt;/h3&gt;
+&lt;p&gt; 웹 브라우저에서 웹 서버에 접속할 때, 크롬 개발자도구의 네트워크의 헤더에서 Request header에 적혀있는 정보들이 무엇을 의미하는지 알아보기 위해 구글에 http request header format라고 검색을 해 봅시다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&quot;&gt;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;구글에서 http request message에 대해서 알기 쉽게 설명된 이미지를 찾았습니다. 먼저 제일 첫 부분에는 request line이 위치합니다. 그리고 그 아래에는 request header가 위치하며 이 둘을 합쳐서 request message header 라고 합니다. 그리고 한 줄을 띄운 그 아래의 메세지는 request message body입니다. &lt;/p&gt;
+&lt;p&gt; request line의 GET은 웹 브라우저와 웹 서버가 어떤 방식으로 소통할 지 나타내는 메소드입니다. 그 다음 /doc/test.html은 우리가 웹서버에 요청하고 있는 정보를 의미합니다. 마지막으로 HTTP/1.1은 현재 사용하고 있는 HTTP의 버전이 1.1임을 나타냅니다.  &lt;/p&gt;
+&lt;p&gt;아래는 request header에 대한 설명입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;host&lt;/strong&gt;는 우리가 요청하는 웹 서버의 주소를 나타냅니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;user-agent&lt;/strong&gt;는 웹 브라우저의 다른 표현입니다. 지금 서버에 요청을 보내고 있는 웹 브라우저가 누구인가에 대한 정보를 나타냅니다. &lt;strong&gt;Accept-encoding&lt;/strong&gt;은 정보를 압축해서 전달할 때 어떤 방식으로 압축 인코딩을 처리할 수 있는지를 나타냅니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If-modified-since&lt;/strong&gt;는 내가 받은 파일이 마지막으로 언제 다운로드 된 것인지 나타내며, 웹 서버는 이 정보를 확인하여 업데이트가 필요 없는 경우엔 정보를 굳이 보내지 않아도 되기 떄문에 속도를 향상시키는데 사용할 수 있습니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;HTTP response message&lt;/h3&gt;
+&lt;p&gt; 이번에는 Response header에 적혀있는 정보들이 무엇을 의미하는지 알아보도록 하겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&quot;&gt;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 제일 첫 줄은 status에 대한 정보가 출력됩니다. 차례대로 version, status code, phrase를 의미합니다. 예를 들어보면 &apos;HTTP/1.1 200 0k&apos;이런 형태입니다.&lt;/p&gt;
+&lt;p&gt;아래는 response header에 대한 설명입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;content-type&lt;/strong&gt;은 웹 브라우저가 서버에게 받은 파일을 어떤 형식으로 인식하여 해석할 지를 결정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;content-length&lt;/strong&gt;는 받은 정보가 몇 바이트인지를 나타냅니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;content-encoding&lt;/strong&gt;은 어떤 방식을 통해 압축을 풀어 정보를 읽어들일지 결정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;last-modified&lt;/strong&gt;는 마지막으로 언제 수정된 정보인지를 알려줍니다.  &lt;/li&gt;
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Express-Session]]></title><description><![CDATA[ 쿠키가 등장하면서 웹이 이전의 통신 내용을 기억할 수 있게 되었습니다. 덕분에 개인화나 인증에 대한 발판이 만들어 졌지만 쿠키를 이용해서 인증을 이용하는 것은 매우 위험한 일입니다. 그래서 인증 기능을 구현할 때 쿠키가 아닌 다른 방법이 필요하게 되었고 session이 생겨났습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28-2/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3400/21836&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -6560,171 +6727,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
         &lt;/picture&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;세션 저장소에는 위처럼 파일 형태로 데이터가 저장됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Cookie와 HTTP]]></title><description><![CDATA[Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt; 이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3385&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt; Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.&lt;/p&gt;
-&lt;p&gt; 크롬 개발자도구를 켜서 networks에 들어가 보도록 하겠습니다. 그리고 새로고침 버튼을 누르면 아래와 같은 화면이 출력됩니다. (웹 페이지마다 다릅니다.) 여기에 출력되는 정보들은 클라이언트와 서버간에 주고받고있는 정보들을 의미합니다. 이렇게 서로 주고받는 정보를 확인하는 것은 웹과 관련된 작업을 하는데 있어서 굉장히 중요한 테크닉이 될 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 42.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABrklEQVQoz1VSi5KkIAz0///vrmZ3nFFRAfHFQ8V3b2Cutuqo6oKQpBM6JFVd45UxSClRliWEbAgK6bsAqzjquiLU4JzHmDzPoZRCVVXxjjEGrTWstdCjQiJbDd46NJ0FFw2ynCErSnw/UzoXEELinWUoCkbJJe1UiArn5At2IO+6jkgNxlEjUcTuFgu7zFjXDW6aYJ3DsizxvCz+Y3varYsxhroJ98G/7zu8X7Gs5J8ckmCcu8d9XwDuX9zX//Z1nQjrE/dv3R/feR6/+YkaLHozo9MBE0bnkdcNKtmjFC0YVxF51WCwHrIzKKK/i3hVEs+iRjdOkScJyQVvKbkDIwTSpjfQ0wrRjggFuRqQlRLOHxGVbGPMSAQPJqAoZ17P6EtyEjlMLgifZXmc6DD08KRpT2Jba6LwTdPEpx37RgMY0fc9nDFIS4ZRDyTbTnpuSL6+U6SvjCYsMU0ztm2jAB2H0rYdai6ITOHx9aSBrDQAT7GCYqmreUZBT7bGxbyAJHyP9PWGcxMJf1EXJwxVDol9P8RvI4nwz99HTAikgghDQe+XqO/kZhwHdXgc+AEvnKm7/SBNWAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/15813/19-06-28-1.webp 190w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/1cdb2/19-06-28-1.webp 380w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/9046c/19-06-28-1.webp 760w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/c89f9/19-06-28-1.webp 1140w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/af3f0/19-06-28-1.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/a2d4f/19-06-28-1.png 190w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/3f520/19-06-28-1.png 380w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png 760w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/b5cea/19-06-28-1.png 1140w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt; 이 중 하나를 클릭하여 header탭에 들어가 보면 이 정보에 대한 자세한 내용 또한 확인이 가능합니다.&lt;/p&gt;
-&lt;h3&gt;Cookie 생성&lt;/h3&gt;
-&lt;p&gt; 쿠키는 HTTP 프로토콜에 속해있는 기술입니다. mozila재단에서 만든 쿠키에 대한 사용 설명서를 읽어보면 쿠키는 &lt;strong&gt;session management&lt;/strong&gt;( 인증), &lt;strong&gt;personality&lt;/strong&gt;(개인화), &lt;strong&gt;tracking&lt;/strong&gt;(트래킹) 이렇게 세 가지 목적을 가지고 있다고 합니다. 그렇다면 쿠키는 어떻게 생성할 수 있는지 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies&quot;&gt;예제&lt;/a&gt;와 함께 살펴보도록 하겠습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;HTTP/1.0 200 OK
-Content-type: text/html
-Set-Cookie: yummy_cookie=choco
-Set-Cookie: tasty_cookie=strawberry
-
-[page content]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 기본적인 형태는 &lt;code class=&quot;language-text&quot;&gt;Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;&lt;/code&gt; 입니다. 위의 예제에서 3번 째 줄은 &apos;yummy cookie&apos;라는 쿠키의 쿠키값이 &apos;choco&apos;라는 의미이고 4번 째 줄은 &apos;tasty_cookie&apos;쿠키의 쿠키값은 &apos;strawberry&apos;라는 의미이며 위의 코드는 이 두개의 쿠키를 생성하는 응답 메세지입니다. &lt;/p&gt;
-&lt;p&gt;그럼 다음으로는 nodejs를 이용해서 쿠키를 생성 해 보도록 하겠습니다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-     response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드를 사용하면 &lt;strong&gt;응답하는 메세지를 조작&lt;/strong&gt;할 수 있습니다. 우리가 응답하는 메세지를 조작할 수 있다면, 이 응답 메세지에 Set-Cookie: 라는 메세지를 추가할 수 있게 되며 결국 쿠키를 생성하는 응답메세지를 최종적으로 생성할 수 있게 됩니다. &lt;/p&gt;
-&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드의 첫번 째 인자로는 status code가 들어가고 두번 째 인자로는 객체가 들어가도록 약속이 되어있습니다. 그런데 여기서 복수의 쿠키를 전달해야 할 때는 인자로 배열의 형태로 전해주도록 약속되어 있습니다. 자 그러면 이제는 위의 코드를 실행시킨 뒤에는 아래와 같이 코드를 다시 바꿔봅시다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// response.writeHead(200, {&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;//     &apos;Set-Cookie&apos;:[&apos;yummy_cookie=choco&apos;, &apos;tasty_cookie=strawberry&apos;]&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// });&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 이번에는 응답하는 메세지를 조작하지 않고 쿠키 값을 전달해주지 않았습니다. 하지만 크롬 개발자도구를 들어가서 파일의 헤더정보를 확인해 보면 request header에 이미 쿠키값이 심어져 있는 것을 볼 수 있습니다! 그리고 응답 헤더에서는 더 이상 쿠키를 전달하지 않는 것 또한 확인이 가능합니다. &lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 20.52631578947369%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVQY012O247DIBBD8/8/uNtqq0ZRCyTcL4GQVHEH1L7sSEdjjMby8Hu5YBxHcM7BGIOUEorQSnUthICYJZ58gSIvBA/vPzjX3452o3lDKQXrmtF2rRXGWozTA4vUyGWD0gY+JISUEWKC84E8C6l03w/GuzaWAkPEgH+TKPx6o8azgqWgv/uE+/QEE9RSLJil+WgJaRyU9Uiloh4ntv2F4TxPfGnTWvxcbz3IuEhHHnHdkHKlwx2BtLah42KG9an/5+0gdrwBrScwYXfcIO0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/15813/19-06-28-2.webp 190w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/1cdb2/19-06-28-2.webp 380w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/9046c/19-06-28-2.webp 760w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/c89f9/19-06-28-2.webp 1140w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/af3f0/19-06-28-2.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/a2d4f/19-06-28-2.png 190w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3f520/19-06-28-2.png 380w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png 760w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/b5cea/19-06-28-2.png 1140w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;h3&gt;Cookie 읽기&lt;/h3&gt;
-&lt;p&gt; 생성한 쿠키를 다시 웹 브라우저가 웹 서버에게 요청 했을 때, 그것을 웹 애플리케이션 내에서 어떻게 알아 낼 수 있는지에 대해 알아봅시다. 예시 코드를 통해 설명을 진행하도록 하겠습니다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookie &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cookie&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cookie&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 여기서 중요한 부분은 if문 입니다. &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;는 request header의 쿠키에 대한 정보를 담고있습니다. 만약 여기에 정보가 하나라도 들어있다면 if문의 statement인 &lt;code class=&quot;language-text&quot;&gt;cookies = cookie.parse(request.headers.cookie)&lt;/code&gt; 코드가 실행되는데 &lt;code class=&quot;language-text&quot;&gt;cookie.parse&lt;/code&gt;코드는 &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;의 객체화 해주고 이를 cookies라는 객체 변수에 담아준 것입니다.&lt;/p&gt;
-&lt;p&gt; 쿠키에 대한 정보를 객체에 담아주면, 객체에 담긴 키 값을 활용하여 쿠키 값을 우리 웹 애플리케이션에서 사용할 수 있습니다. &lt;code class=&quot;language-text&quot;&gt;cookies.yummy_cookie&lt;/code&gt;를 소스코드에 입력하면 choco라는 값을 사용하겠다는 의미처럼요&lt;/p&gt;
-&lt;h3&gt;HTTP request message&lt;/h3&gt;
-&lt;p&gt; 웹 브라우저에서 웹 서버에 접속할 때, 크롬 개발자도구의 네트워크의 헤더에서 Request header에 적혀있는 정보들이 무엇을 의미하는지 알아보기 위해 구글에 http request header format라고 검색을 해 봅시다. &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&quot;&gt;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;구글에서 http request message에 대해서 알기 쉽게 설명된 이미지를 찾았습니다. 먼저 제일 첫 부분에는 request line이 위치합니다. 그리고 그 아래에는 request header가 위치하며 이 둘을 합쳐서 request message header 라고 합니다. 그리고 한 줄을 띄운 그 아래의 메세지는 request message body입니다. &lt;/p&gt;
-&lt;p&gt; request line의 GET은 웹 브라우저와 웹 서버가 어떤 방식으로 소통할 지 나타내는 메소드입니다. 그 다음 /doc/test.html은 우리가 웹서버에 요청하고 있는 정보를 의미합니다. 마지막으로 HTTP/1.1은 현재 사용하고 있는 HTTP의 버전이 1.1임을 나타냅니다.  &lt;/p&gt;
-&lt;p&gt;아래는 request header에 대한 설명입니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;host&lt;/strong&gt;는 우리가 요청하는 웹 서버의 주소를 나타냅니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;user-agent&lt;/strong&gt;는 웹 브라우저의 다른 표현입니다. 지금 서버에 요청을 보내고 있는 웹 브라우저가 누구인가에 대한 정보를 나타냅니다. &lt;strong&gt;Accept-encoding&lt;/strong&gt;은 정보를 압축해서 전달할 때 어떤 방식으로 압축 인코딩을 처리할 수 있는지를 나타냅니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;If-modified-since&lt;/strong&gt;는 내가 받은 파일이 마지막으로 언제 다운로드 된 것인지 나타내며, 웹 서버는 이 정보를 확인하여 업데이트가 필요 없는 경우엔 정보를 굳이 보내지 않아도 되기 떄문에 속도를 향상시키는데 사용할 수 있습니다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;HTTP response message&lt;/h3&gt;
-&lt;p&gt; 이번에는 Response header에 적혀있는 정보들이 무엇을 의미하는지 알아보도록 하겠습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&quot;&gt;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 제일 첫 줄은 status에 대한 정보가 출력됩니다. 차례대로 version, status code, phrase를 의미합니다. 예를 들어보면 &apos;HTTP/1.1 200 0k&apos;이런 형태입니다.&lt;/p&gt;
-&lt;p&gt;아래는 response header에 대한 설명입니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;content-type&lt;/strong&gt;은 웹 브라우저가 서버에게 받은 파일을 어떤 형식으로 인식하여 해석할 지를 결정합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;content-length&lt;/strong&gt;는 받은 정보가 몇 바이트인지를 나타냅니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;content-encoding&lt;/strong&gt;은 어떤 방식을 통해 압축을 풀어 정보를 읽어들일지 결정합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;last-modified&lt;/strong&gt;는 마지막으로 언제 수정된 정보인지를 알려줍니다.  &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Express 미들웨어]]></title><description><![CDATA[ Express에서 중요한 기능 두 가지를 꼽으라고 하면 하나는 Route이고 하나는 미들웨어 입니다. 다른 사람이 만든 부품을 내 웹 페이지 구현을 위해 사용하는 방법 중 하나가 미들웨어입니다. Express홈페이지에 들어가면 다양한 미들웨어를 확인 할 수 있습니다. ]]></description><link>https://yuhodots.github.io/backend/19-06-27/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-27/</guid><pubDate>Thu, 27 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;세션 저장소에는 위처럼 파일 형태로 데이터가 저장됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Express 미들웨어]]></title><description><![CDATA[ Express에서 중요한 기능 두 가지를 꼽으라고 하면 하나는 Route이고 하나는 미들웨어 입니다. 다른 사람이 만든 부품을 내 웹 페이지 구현을 위해 사용하는 방법 중 하나가 미들웨어입니다. Express홈페이지에 들어가면 다양한 미들웨어를 확인 할 수 있습니다. ]]></description><link>https://yuhodots.github.io/backend/19-06-27/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-27/</guid><pubDate>Thu, 27 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3370/21378&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; Express에서 중요한 기능 두 가지를 꼽으라고 하면 하나는 Route이고 하나는 미들웨어 입니다. 다른 사람이 만든 부품을 내 웹 페이지 구현을 위해 사용하는 방법 중 하나가 미들웨어입니다. &lt;a href=&quot;https://expressjs.com/ko/resources/middleware.html&quot;&gt;Express홈페이지&lt;/a&gt;에 들어가면 다양한 미들웨어들을 확인 할 수 있습니다. &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4&quot;&gt;위키피디아&lt;/a&gt;에서 말하는 미들웨어의 정의는 다음과 같습니다. &lt;/p&gt;
