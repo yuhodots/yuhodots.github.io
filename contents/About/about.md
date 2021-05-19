@@ -29,7 +29,7 @@ category: "about"
 
 - [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) MS (2021.03 ~), Intern (2020.07 ~ 2021.02)
 - [Autonomous System Lab](https://sites.google.com/site/aslunist/news) Intern (2019.12 ~ 2020.02)
-- BackEnd development in online thrift store 'Uitda' (2019.02 ~ 2020.06)
+- BackEnd development in online thrift store '[Uitda](https://github.com/yuhodots/uitda)' (2019.02 ~ 2020.06)
 
 ### Course Projects
 

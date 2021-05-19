@@ -69,7 +69,7 @@
         border: 0;
     }
     h5{
-        font-size: 16px;
+        font-size: 17px;
         margin: 18px 0 18px 0;
     }
     a {
@@ -137,6 +137,18 @@
         }
     }
 }
+.footnotes{
+    hr{
+        margin: 0;
+        background-color: white;
+    }
+    p{
+        display: inline;
+    }
+    .footnote-backref{
+        display: inline;
+    }
+}
 
 info {
     margin-bottom: 30px;
@@ -148,6 +160,7 @@ info {
     text-align: center;
     font-size: 16px;
 }
+
 
 /* Mobile Device */
 @media all and (max-width: 768px) {

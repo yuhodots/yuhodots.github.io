@@ -10,7 +10,7 @@ category: "Cheat Sheet"
 
 공부하면서 알게 된 것들 중에서 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다.
 
-다른 테크 블로그들의 TIL 처럼 매일매일 공부 내용을 기록하기보다는 그냥 제 맘대로 아무때나 업데이트 할 생각입니다! 나중에는 충분한 카테고리로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요 ☺️ 
+다른 테크 블로그들의 TIL 처럼 매일매일 공부 내용을 기록하기보다는 그냥 제 맘대로 아무 때나, 아무 내용을 업데이트 할 생각입니다! 나중에는 충분한 카테고리로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요 ☺️ 
 
 추가적으로, [보이저엑스 인턴 채용 질문](https://www.notion.so/Career-at-VoyagerX-833e2878660a4a7590b6946c0da8b151)을 간단하게 하나씩 채워가고 있습니다. 어쩌다가 발견하게 되었는데 제대로 알고 있다고 자신할 수 있는 내용이 그렇게 많지 않더라고요 💦
 
@@ -50,15 +50,35 @@ cent, acc = tf.map_fn(lambda inputs: self.get_loss_single(inputs, weights),
 
 모델 그래프를 빌드하는 함수에서 for loop를 많이 사용하면 이게 그대로 모델 training 단계에서도 매번 for loop가 적용되어 모델의 학습이 느려지겠구나라고 생각했었는데 곰곰히 생각해보니까 아니더라구요. 
 
-빌드하는 단계에서는 for loop가 여러 번 돌더라도, 그래프의 각 노드들이 연결되고 난 뒤에는 빌드 된 그래프 구조 자체가 중요하지, 빌드 단계에서의 for loop는 관련이 없게 된다는 것을 문득 깨달았습니다. 
-
-꽤나 오랫동안 아무렇지 않게 착각하고 있었어서 이 곳에 기록합니다. 시간날 때 한 번 간단한 구조에 대해서 for loop를 사용한 모델과, map\_fn을 사용한 모델이 학습 상에서 큰 차이가 있는지 확인 해 봐야겠습니다 🧐 (그럼 map\_fn은 어떤 경우에 메리트를 가질까..?!?)
+빌드하는 단계에서는 for loop가 여러 번 돌더라도, 그래프의 각 노드들이 연결되고 난 뒤에는 빌드 된 그래프 구조 자체가 중요하지, 빌드 단계에서의 for loop는 관련이 없게 됩니다. 꽤나 오랫동안 아무렇지 않게 착각하고 있었어서 이 곳에 기록합니다. 그럼 map\_fn은 특히 어떤 경우에 메리트를 가질까 궁금하긴 하네요 🧐
 
 ##### 🗓 2021.05.02
 
-TensorFlow 1.15로 코드를 짜다가 `softmax_cross_entropy_with_logits`는 loss에 대한 2nd-order 계산을 지원하지만 `sparse_softmax_cross_entropy_with_logits`는 loss에 대한 2nd-order 계산을 지원하지 않는다는걸 알게 되었습니다. 이 둘의 차이는 label이 one-hot 형태로 주어지냐 아니냐의 차이밖에 없는데 이런 결과를 나타냈다는게 이상해서 찾아보다가 이미 tensorflow repository에 [관련 이슈](https://github.com/tensorflow/tensorflow/issues/5876)가 올라왔던 것을 발견했습니다.
+TensorFlow 1.15로 코드를 짜다가 `softmax_cross_entropy_with_logits`는 loss에 대한 2nd-order 계산을 지원하지만 `sparse_softmax_cross_entropy_with_logits`는 loss에 대한 2nd-order 계산을 지원하지 않는다는걸 알게 되었습니다. 이 둘의 차이는 label이 one-hot 형태로 주어지냐 아니냐의 차이밖에 없는데 이런 결과를 나타냈다는게 이상해서 찾아보다가 tensorflow repository에 [관련 이슈](https://github.com/tensorflow/tensorflow/issues/5876)가 올라왔던 것을 발견했습니다.
 
-이슈를 읽어보니 일부 indexing 작업에 대한 도함수 계산이 아직 제대로 구현되지 않았거나, 몇 가지 operation에 대해서 2차 미분 계산이 개발자들도 아직 해결하지 못한 오류를 가진다고 말하고 있었습니다(구체적인 원인은 모르겠습니다). 이슈를 보면서, 0.2 버전에서 1.15 까지 개발이 진행되면서도 TensorFlow 팀이 지속적으로 해결하지 못하고 있는 문제점이 있다는 것이 신기했습니다.
+요약하자면 일부 indexing 작업에 대한 도함수 계산이 아직 제대로 구현되지 않았거나, 몇 가지 operation에 대해서 2차 미분 계산이 개발자들도 아직 해결하지 못한 오류를 가진다고 말하고 있습니다(구체적인 원인은 모르겠습니다). 0.2 버전에서 1.15 까지 개발이 진행되면서도 TensorFlow 팀이 지속적으로 해결하지 못하고 있는 문제점이 있다는 것이 신기했습니다.
+
+##### 🗓 2021.05.11
+
+`tf.contrib.layers.batch_norm` 함수를 사용할 때 `is_traning` 아규먼트 설정에 주의해야 합니다. Batch normalization을 사용할 때 학습 상황인지 테스트 상황인지에 따라서 mean과 variance로 사용하는 statistics의 출처가 달라지기 때문에 `is_traning`를 잘못 설정한다면 정확도는 높게 나오더라도 그 실험이 잘못된 결과일 수 있습니다.
+
+`is_training`이 True인 경우에는 moving_mean 텐서와 moving_variance 텐서에 statistics of the moments(미니 배치 평균과 분산)을 exponential moving average 식에 따라 축적합니다. BN 계산에는 미니배치의 평균과 분산을 사용합니다.  `is_training`이 False인 경우에는 그동안 축적하였던 moving_mean 텐서와 moving_variance 텐서 값을 가져와 BN 계산에 사용합니다. 
+
+Few-shot learning setting에서 support set과 query set에 대해서 둘 다 `is_training`을 True로 설정하면 이는 transductive setting이 됩니다. 즉 query를 추정하기 위해서 support 뿐만 아니라 query 분포의 정보까지 사용하겠다는 것을 의미합니다. Few-shot learning에서는 대부분 transductive setting이 non-transductive에 비해 3%정도의 성능 향상을 보이기 때문에 본인의 실험 상황에 알맞게 아규먼트 값을 설정해야 합니다. 
+
+`tf.contrib.layers.group_norm` 같은 instance-based normalization 방식은 미니배치에 대한 running statistics를 사용하지 않기 때문에 `is_tranable` 파라미터가 존재하지 않습니다.
+
+### Deep Learning
+
+##### 🗓 2021.05.10
+
+[PR-317: MLP-Mixer: An all-MLP Architecture for Vision](https://www.youtube.com/watch?v=KQmZlxdnnuY) 영상을 통해 CNN과 MLP가 별로 다르지 않다는 것을 알았습니다. 영상에서 이진원님은 CNN weight이 Fully-Conneted weight과 다른 점 두 가지가 weight sharing과 locally connected라고 설명하고 있습니다. 시각화된 자료만 봐도 이렇게 간단하게 이해되는 내용인데 왜 지금까지 깨닫지 못했을까라는 생각이 들었고, CNN에 몇 개의(사실은 엄청 많은 양이지만) weight을 추가하는 것만으로도 Fully-Connected와 완전히 동일한 구조로 만들수 있다는 것을 이해했습니다.
+
+##### 🗓 2021.05.00
+
+모수추정 방법중 하나인 method of moment: https://en.wikipedia.org/wiki/Method_of_moments_(statistics)
+
+moment를 사용하는 이유: https://en.wikipedia.org/wiki/Moment_%28mathematics%29
 
 ### Computer Science & Engineering
 
