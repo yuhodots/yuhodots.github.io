@@ -1,5 +1,5 @@
 ---
-title: "Meta-learning 세팅에서의 Normalization"
+title: "Meta-learning 세팅에서의 normalization"
 date: "2021-05-19"
 template: "post"
 draft: false

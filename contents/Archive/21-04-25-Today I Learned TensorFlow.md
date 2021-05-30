@@ -1,32 +1,14 @@
 ---
-title: "Today I Learned"
+title: "Today I Learned: TensorFlow"
 date: "2021-04-25"
 template: "post"
-draft: false
-path: "/cheatsheet/21-04-25/"
+draft: true
+path: "/cheatsheet/21-04-25-2/"
 description: "새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 다른 테크 블로그들의 TIL 처럼 매일매일 공부한 내용을 기록하기보다는 그냥 제 맘대로 아무때나 업데이트 할 생각입니다! 나중에는 카테고리 별로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요. (최근에 작성한 내용들이 상단에 위치하도록 배열하였습니다)"
 category: "Cheat Sheet"
 ---
 
-공부하면서 알게 된 것들 중에서 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다.
-
-다른 테크 블로그들의 TIL 처럼 매일매일 공부 내용을 기록하기보다는 그냥 제 맘대로 아무 때나, 아무 내용을 업데이트 할 생각입니다! 나중에는 충분한 카테고리로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요 ☺️ 
-
-추가적으로, [보이저엑스 인턴 채용 질문](https://www.notion.so/Career-at-VoyagerX-833e2878660a4a7590b6946c0da8b151)을 간단하게 하나씩 채워가고 있습니다. 어쩌다가 발견하게 되었는데 제대로 알고 있다고 자신할 수 있는 내용이 그렇게 많지 않더라고요 💦
-
 > 최근에 작성한 내용들이 하단에 위치하도록 배열하였습니다.
-
-### Python
-
-##### 🗓 2021.04.25
-
-[파이썬 도큐먼트](https://docs.python.org/3/reference/simple_stmts.html#future)의 `future` 문에 대한 설명을 읽었습니다. `future` 문은 미래 버전 파이썬의 기능들을 쉽게 마이그레이션(하나의 운영환경에서 다른 운영환경으로 옮기는 것)하기 위해 만들어졌습니다. import 뒤에 따라오는 new feature가 만약 파이썬 3의 기능이라고 하더라도 파이썬 2 버전에서 사용 가능하게 됩니다.
-
-```python
-from __future__ import print_function
-```
-
-### TensorFlow
 
 ##### 🗓 2021.04.25
 
@@ -68,82 +50,4 @@ Few-shot learning setting에서 support set과 query set에 대해서 둘 다 `i
 
 `tf.contrib.layers.group_norm` 같은 instance-based normalization 방식은 미니배치에 대한 running statistics를 사용하지 않기 때문에 `is_tranable` 파라미터가 존재하지 않습니다.
 
-### Deep Learning
-
-##### 🗓 2021.05.10
-
-[PR-317: MLP-Mixer: An all-MLP Architecture for Vision](https://www.youtube.com/watch?v=KQmZlxdnnuY) 영상을 통해 CNN과 MLP가 별로 다르지 않다는 것을 알았습니다. 영상에서 이진원님은 CNN weight이 Fully-Conneted weight과 다른 점 두 가지가 weight sharing과 locally connected라고 설명하고 있습니다. 시각화된 자료만 봐도 이렇게 간단하게 이해되는 내용인데 왜 지금까지 깨닫지 못했을까라는 생각이 들었고, CNN에 몇 개의(사실은 엄청 많은 양이지만) weight을 추가하는 것만으로도 Fully-Connected와 완전히 동일한 구조로 만들수 있다는 것을 이해했습니다.
-
-##### 🗓 2021.05.00
-
-모수추정 방법중 하나인 method of moment: https://en.wikipedia.org/wiki/Method_of_moments_(statistics)
-
-moment를 사용하는 이유: https://en.wikipedia.org/wiki/Moment_%28mathematics%29
-
-### Computer Science & Engineering
-
-##### 🗓 2021.00.00
-
-PNG와 JPG의 차이점은?
-
-https://www.howtogeek.com/howto/30941/whats-the-difference-between-jpg-png-and-gif/
-
-https://undsgn.com/jpg-vs-png/
-
-시간 날 때 읽고 간단 요약만 하기
-
-##### 🗓 2021.00.00
-
- Dynamic Programming이란?
-
-##### 🗓 2021.00.00
-
-Virtual Memory란?
-
-##### 🗓 2021.00.00
-
-Semaphore란?
-
-##### 🗓 2021.00.00
-
-Cache란?
-
-##### 🗓 2021.00.00
-
-Garbage Collection이란?
-
-##### 🗓 2021.00.00
-
-Database Index 추가의 장단점은?
-
-##### 🗓 2021.00.00
-
-NoSQL의 장단점은?
-
-##### 🗓 2021.00.00
-
-공유기의 원리는?
-
-##### 🗓 2021.00.00
-
-HTTP/2의 특성은?
-
-##### 🗓 2021.00.00
-
-비대칭 암호화란?
-
-##### 🗓 2021.00.00
-
-Node.js의 특징은?
-
-##### 🗓 2021.00.00
-
-HDD, SSD, DRAM 각각의 성능은?
-
-##### 🗓 2021.00.00
-
-Memory Leak 디버깅은?
-
-##### 🗓 2021.00.00
-
-GIT의 장점은?
+### References
