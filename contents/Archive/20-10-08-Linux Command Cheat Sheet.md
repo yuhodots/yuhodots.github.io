@@ -84,6 +84,13 @@ thumbnail: "linux"
 - 계정 삭제: *`userdel 계정이름`* (-r 옵션을 사용하면 홈 디렉토리도 삭제됨)
 - 현재 시스템에 로그인된 유저 확인: *`w`*
 
+### 로그 확인
+
+- 입력한 명령어 확인: *`history`* (경로: ~/.bash_history)
+- 로그인 로그 확인: *`lastlog`* (경로: /usr/bin/lastlog)
+- 로그인, 재부팅 로그 확인: *`last`* (경로: /usr/bin/last)
+- 로그 파일이 모여있는 디렉토리: /var/log
+
 ### 그 외
 
 - 명령어 앞에 sudo 붙이는 것을 잊었을 때: *`sudo !!`*
@@ -97,4 +104,5 @@ thumbnail: "linux"
 - [양햄찌가 만드는 세상 - 텍스트 필터 명령어1 (문자열 패턴 검색 grep 옵션, 정규표현식)](https://jhnyang.tistory.com/67) ('파일 관리' 파트)
 - [nota's story - 리눅스 tar, gz 압축 및 해제](https://nota.tistory.com/53) ('파일 관리' 파트)
 - [15 Essential Linux Command Line Tips and Tricks](https://medium.com/better-programming/15-essential-linux-command-line-tips-and-tricks-95e2bfa2890f) ('그 외' 파트)
+- [https://shaeod.tistory.com - [리눅스 명령어] lastlog - 접속 로그 보기](https://shaeod.tistory.com/734) ('로그 확인' 파트)
 
