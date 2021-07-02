@@ -43,6 +43,7 @@
 <p>요약하자면 일부 indexing 작업에 대한 도함수 계산이 아직 제대로 구현되지 않았거나, 몇 가지 operation에 대해서 2차 미분 계산이 개발자들도 아직 해결하지 못한 오류를 가진다고 말하고 있습니다(구체적인 원인은 모르겠습니다). 0.2 버전에서 1.15 까지 개발이 진행되면서도 TensorFlow 팀이 지속적으로 해결하지 못하고 있는 문제점이 있다는 것이 신기했습니다.</p>
 <h5>🤖 Deep Learning / 2021.05.10</h5>
 <p><a href="https://www.youtube.com/watch?v=KQmZlxdnnuY">PR-317: MLP-Mixer: An all-MLP Architecture for Vision</a> 영상을 통해 CNN과 MLP가 별로 다르지 않다는 것을 알았습니다. 영상에서 이진원님은 CNN weight이 Fully-Conneted weight과 다른 점 두 가지가 weight sharing과 locally connected라고 설명하고 있습니다. 시각화된 자료만 봐도 이렇게 간단하게 이해되는 내용인데 왜 지금까지 깨닫지 못했을까라는 생각이 들었고, CNN에 몇 개의(사실은 엄청 많은 양이지만) weight을 추가하는 것만으로도 Fully-Connected와 완전히 동일한 구조로 만들수 있다는 것을 이해했습니다.</p>
+<p>저희 학과 딥러닝 원론 과목 시험에 해당 내용이 완전히 동일하게 출제되어서 바로 답을 적을 수 있었습니다. 운이 좋았네요😄 (2021.07.01 comment)</p>
 <h5>🧩 TensorFlow / 2021.05.11</h5>
 <p><code class="language-text">tf.contrib.layers.batch_norm</code> 함수를 사용할 때 <code class="language-text">is_traning</code> 아규먼트 설정에 주의해야 합니다. Batch normalization을 사용할 때 학습 상황인지 테스트 상황인지에 따라서 mean과 variance로 사용하는 statistics의 출처가 달라지기 때문에 <code class="language-text">is_traning</code>를 잘못 설정한다면 정확도는 높게 나오더라도 그 실험이 잘못된 결과일 수 있습니다.</p>
 <p><code class="language-text">is_training</code>이 True인 경우에는 moving<em>mean 텐서와 moving</em>variance 텐서에 statistics of the moments(미니 배치 평균과 분산)을 exponential moving average 식에 따라 축적합니다. BN 계산에는 미니배치의 평균과 분산을 사용합니다.  <code class="language-text">is_training</code>이 False인 경우에는 그동안 축적하였던 moving<em>mean 텐서와 moving</em>variance 텐서 값을 가져와 BN 계산에 사용합니다. </p>
@@ -72,10 +73,10 @@ y <span class="token operator">+=</span> <span class="token number">3</span>
 <span class="token comment"># results: x = 1, y = 4</span></code></pre></div>
 <p>두 번째 라인까지는 x와 y가 1이라는 동일한 <strong><em>객체</em></strong>를 가리키고 있습니다. 세 번째에서 y의 값을 변경하는 순간 y는 4를, x는 1을 가리키게 됩니다.</p>
 <p>C/C++같은 언어 관점에서 보면 <code class="language-text">y=x</code>가 실행하는 순간 값을 복사하는 것으로 이해할 수 있지만, 파이썬은 <code class="language-text">y=x</code>가 호출되는 시점에는 동일한 객체를 가리키다가 immutable 타입인 y를 변경했을 때 변경됩니다.</p>
-<h5>🤖 Deep Learning / 2021.07.01 (작성중)</h5>
-<p>L1 regularizer를 사용하면 dimenstion reduction의 효과가 있다. </p>
-<p>변수를 sparse하게 해주는 효과가 있다. </p>
-<p>왜지...? </p>
+<h5>🤖 Deep Learning / 2021.07.01</h5>
+<p>L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 <a href="https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network">slide</a><sup id="fnref-8"><a href="#fn-8" class="footnote-ref">8</a></sup>  6 페이지의 그림이 이를 직관적으로 설명해주고 있습니다. </p>
+<p>슬라이드에 따르면 L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 됩니다. 이를 regularizer로 사용한다는 것은 weight 값 내에 0에 가까운 값이 많아진다는 것을 의미하고(절편이라는 것은 어떤 한 축의 값이 0이라는 것을 의미하므로), 이 때에 0에 충분히 가까운(일정 값 이하의) weight을 0으로 만들면 솔루션이 sparse해집니다.</p>
+<p>이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다. (혹시 틀린 점이 있으면 지적 부탁드립니다)</p>
 <h3>References</h3>
 <div class="footnotes">
 <hr>
@@ -103,6 +104,14 @@ y <span class="token operator">+=</span> <span class="token number">3</span>
 <li id="fn- 6">
 <p>얕은 복사(shallow copy)와 깊은 복사(deep copy). (2018년 3월 13일). 파이썬 - 기본을 갈고 닦자!, WikiDocs. 2021년 5월 24일에 확인 <a href="https://wikidocs.net/16038">https://wikidocs.net/16038</a></p>
 <a href="#fnref-%206" class="footnote-backref">↩</a>
+</li>
+<li id="fn-7">
+<p>JinWon Lee - PR-317: MLP-Mixer: An all-MLP Architecture for Vision. <a href="https://www.youtube.com/watch?v=KQmZlxdnnuY">https://www.youtube.com/watch?v=KQmZlxdnnuY</a></p>
+<a href="#fnref-7" class="footnote-backref">↩</a>
+</li>
+<li id="fn-8">
+<p>JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). <a href="https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network">https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network</a></p>
+<a href="#fnref-8" class="footnote-backref">↩</a>
 </li>
 </ol>
 </div></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2021<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/cheatsheet/21-04-25/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2966d4d8fea208fd6f8f.js"],"app":["/app-4f6d40f40352fe8e5f2d.js"],"component---src-pages-404-js":["/component---src-pages-404-js-9c04155390b493ad90ef.js"],"component---src-templates-about-js":["/component---src-templates-about-js-929704438c6710790706.js"],"component---src-templates-category-js":["/component---src-templates-category-js-2c2538fbf969461b4ebd.js"],"component---src-templates-index-js":["/component---src-templates-index-js-c3a52c0c3fa99e192df7.js"],"component---src-templates-post-js":["/component---src-templates-post-js-933be5b779def2693774.js"]};/*]]>*/</script><script src="/polyfill-2966d4d8fea208fd6f8f.js" nomodule=""></script><script src="/component---src-templates-post-js-933be5b779def2693774.js" async=""></script><script src="/9a83efd0f2f53a11fc9fd4ead3c578a48e734387-3e8e9ec6e62d82a5a2d0.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-4f6d40f40352fe8e5f2d.js" async=""></script><script src="/framework-741ade27086b2708e961.js" async=""></script><script src="/webpack-runtime-9938c54187243b447ace.js" async=""></script></body></html>
