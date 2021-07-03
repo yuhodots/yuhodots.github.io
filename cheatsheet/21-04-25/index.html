@@ -74,9 +74,10 @@ y <span class="token operator">+=</span> <span class="token number">3</span>
 <p>두 번째 라인까지는 x와 y가 1이라는 동일한 <strong><em>객체</em></strong>를 가리키고 있습니다. 세 번째에서 y의 값을 변경하는 순간 y는 4를, x는 1을 가리키게 됩니다.</p>
 <p>C/C++같은 언어 관점에서 보면 <code class="language-text">y=x</code>가 실행하는 순간 값을 복사하는 것으로 이해할 수 있지만, 파이썬은 <code class="language-text">y=x</code>가 호출되는 시점에는 동일한 객체를 가리키다가 immutable 타입인 y를 변경했을 때 변경됩니다.</p>
 <h5>🤖 Deep Learning / 2021.07.01</h5>
-<p>L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 <a href="https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network">slide</a><sup id="fnref-8"><a href="#fn-8" class="footnote-ref">8</a></sup>  6 페이지의 그림이 이를 직관적으로 설명해주고 있습니다. </p>
+<p>L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 <a href="https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network">slide</a><sup id="fnref-8"><a href="#fn-8" class="footnote-ref">8</a></sup>  6 페이지의 그림이 이를 설명해주고 있습니다. </p>
 <p>슬라이드에 따르면 L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 됩니다. 이를 regularizer로 사용한다는 것은 weight 값 내에 0에 가까운 값이 많아진다는 것을 의미하고(절편이라는 것은 어떤 한 축의 값이 0이라는 것을 의미하므로), 이 때에 0에 충분히 가까운(일정 값 이하의) weight을 0으로 만들면 솔루션이 sparse해집니다.</p>
-<p>이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다. (혹시 틀린 점이 있으면 지적 부탁드립니다)</p>
+<p>이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다.</p>
+<p>다만 'L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 된다'는 내용은 왜 그렇게 되는지 아직 이해가 되지 않네요. 좀 더 찾아보고 내용을 업데이트 하겠습니다.</p>
 <h3>References</h3>
 <div class="footnotes">
 <hr>
