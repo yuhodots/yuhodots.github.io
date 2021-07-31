@@ -46,5 +46,6 @@ category: "about"
 
 ### Teaching Assistant
 
-- 해군교육사령부, 교관양성 교육 - 합성곱 신경망 파트 실습 TA (2021.06.05)
-- UNIST AI Innovation Park, AI 노바투스 아카데미아 - 인공지능 기초 파트 실습 TA (2021.02)
+- 해군교육사령부, 교관양성 교육 - 합성곱 신경망 파트 실습 강의 (2021.06.07)
+- UNIST AI Innovation Park, AI 노바투스 아카데미아 1기, 2기 - 인공지능 기초 파트 실습 강의 (2021.02, 2021.07)
+

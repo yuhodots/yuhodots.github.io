@@ -107,11 +107,33 @@ C/C++같은 언어 관점에서 보면 `y=x`가 실행하는 순간 값을 복�
 
 ##### 🤖 Deep Learning / 2021.07.01
 
-L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 [slide](https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network)[^8]  6 페이지의 그림이 이를 직관적으로 설명해주고 있습니다. 
+L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 [slide](https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network)[^8]  6 페이지의 그림이 이를 설명해주고 있습니다. 
 
 슬라이드에 따르면 L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 됩니다. 이를 regularizer로 사용한다는 것은 weight 값 내에 0에 가까운 값이 많아진다는 것을 의미하고(절편이라는 것은 어떤 한 축의 값이 0이라는 것을 의미하므로), 이 때에 0에 충분히 가까운(일정 값 이하의) weight을 0으로 만들면 솔루션이 sparse해집니다.
 
-이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다. (혹시 틀린 점이 있으면 지적 부탁드립니다)
+이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다.
+
+다만 'L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 된다'는 내용은 왜 그렇게 되는지 아직 이해가 되지 않네요. 좀 더 찾아보고 내용을 업데이트 하겠습니다.
+
+##### 🤖 Deep Learning / 2021.07.31
+
+공돌이의 수학정리노트 블로그의 ROC curve 포스팅[^9]을 읽고 간단하게 정리하였습니다. Recall에서 '검출율'이라는 워딩은 다크프로그래머님의 precision, recall의 이해 포스팅[^10]에서 참고하였습니다. Precision과 Recall의 예시는 오렐리앙 제롱의 핸즈온 머신러닝 책[^11]을 참고하였습니다.
+
+- Positive/Negative: 판별자가 '그렇다'라고 판별 시 Positive, '그렇지 않다'라고 판별 시 Negative
+- True/False: 실제로 판단이 맞는 경우 True, 판단이 틀린 경우 False
+- TPR/FPR: 판별자가 '그렇다'라고 판별 한 것이 맞는 경우의 비율은 TPR(True Positive Rate), 판별자가 '그렇다'라고 판별 한 것이 틀린 경우의 비율은 FPR(Fasle Positive Rate)
+- ROC curve: TPR과 FPR을 통해 이진분류기의 성능을 표현한 그래프
+  - 현의 휨: 이진 분류기의 성능이 좋을수록 curve가 좌상단으로 휨
+  - 현 위의 점: 이진 분류기의 성능은 변하지 않을 때(휜 정도는 그대로이니까), threshold를 바꿔줌에 따라 나타나는 TPR, FPR 값 plot
+- Precision(정밀도) = $\frac{TP}{TP + FP}$: 검출(분류기가 '그렇다'고 판별)한 것 중에서, 판단이 맞는 비율
+  - 분류기가 **Positive라고 예측했지만 이것이 False일 때 위험**이 수반되는 경우에 사용
+  - 예시: 어린아이에게 안전한 동영상을 걸러내는 분류기를 훈련시키는 경우. 재현율은 높으나 정말 나쁜 동영상이 몇 개 노출되는 것 보다, 좋은 동영상이 많이 제외되더라도 안전한 것들만 노출시키는 분류기를 선호
+- Recall(재현율, 검출율) = $\frac{TP}{TP + FN}$: 실제 양성인 경우 중에서, 검출(분류기가 '그렇다'고 판별)한 비율
+  - **검출하는 것 자체가 중요**한 경우. False Positive가 많더라도 괜찮은 경우
+  - 예시: 감시카메라로 좀도둑을 잡아내는 분류기를 훈련시키는 경우. 정확도가 30%정도이더라도 재현율이 99%라면, 거의 모든 좀도둑을 잡을 수 있음
+- Precision-Recall Trade-off: 분류 결정 임계값(decision threshold)을 낮추면, 분류기가 Positive라고 응답하는 수가 증가한다는 것을 의미하며, 따라서 이 경우엔 recall이 높아지고 precision이 낮아짐. 반대로 분류 결정 임계값을 높이면, recall이 낮아지고 precision이 높아짐
+- F1 score = $2 \frac{\text{precision}\cdot\text{recall}}{\text{precision}+ \text{recall}}$: precision과 recall 성능을 하나의 숫자로 표현하는 방법. precision과 recall의 조화평균.
+  - precision과 recall 성능이 비슷한 분류기에서는 F1 score가 높음. 하지만 상황에 따라 중요한 척도가 다르기 때문에, F1 score가 높다고 해서 항상 좋은 것은 아님
 
 ### References
 
@@ -124,3 +146,6 @@ L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을
 [^7]: JinWon Lee - PR-317: MLP-Mixer: An all-MLP Architecture for Vision. https://www.youtube.com/watch?v=KQmZlxdnnuY
 [^8]: JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network
 
+[^9]: ROC curve. (2020년 08월 05일). 공돌이의 수학정리노트. https://angeloyeo.github.io/2020/08/05/ROC.html
+[^10]: precision, recall의 이해. (2017년 01월 02일). 다크 프로그래머.https://darkpgmr.tistory.com/162
+[^11]: Géron, Aurélien. Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems. O'Reilly Media, 2019.
