@@ -78,6 +78,41 @@ y <span class="token operator">+=</span> <span class="token number">3</span>
 <p>슬라이드에 따르면 L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 됩니다. 이를 regularizer로 사용한다는 것은 weight 값 내에 0에 가까운 값이 많아진다는 것을 의미하고(절편이라는 것은 어떤 한 축의 값이 0이라는 것을 의미하므로), 이 때에 0에 충분히 가까운(일정 값 이하의) weight을 0으로 만들면 솔루션이 sparse해집니다.</p>
 <p>이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다.</p>
 <p>다만 'L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 된다'는 내용은 왜 그렇게 되는지 아직 이해가 되지 않네요. 좀 더 찾아보고 내용을 업데이트 하겠습니다.</p>
+<h5>🤖 Deep Learning / 2021.07.31</h5>
+<p>공돌이의 수학정리노트 블로그의 ROC curve 포스팅<sup id="fnref-9"><a href="#fn-9" class="footnote-ref">9</a></sup>을 읽고 간단하게 정리하였습니다. Recall에서 '검출율'이라는 워딩은 다크프로그래머님의 precision, recall의 이해 포스팅<sup id="fnref-10"><a href="#fn-10" class="footnote-ref">10</a></sup>에서 참고하였습니다. Precision과 Recall의 예시는 오렐리앙 제롱의 핸즈온 머신러닝 책<sup id="fnref-11"><a href="#fn-11" class="footnote-ref">11</a></sup>을 참고하였습니다.</p>
+<ul>
+<li>Positive/Negative: 판별자가 '그렇다'라고 판별 시 Positive, '그렇지 않다'라고 판별 시 Negative</li>
+<li>True/False: 실제로 판단이 맞는 경우 True, 판단이 틀린 경우 False</li>
+<li>TPR/FPR: 판별자가 '그렇다'라고 판별 한 것이 맞는 경우의 비율은 TPR(True Positive Rate), 판별자가 '그렇다'라고 판별 한 것이 틀린 경우의 비율은 FPR(Fasle Positive Rate)</li>
+<li>
+<p>ROC curve: TPR과 FPR을 통해 이진분류기의 성능을 표현한 그래프</p>
+<ul>
+<li>현의 휨: 이진 분류기의 성능이 좋을수록 curve가 좌상단으로 휨</li>
+<li>현 위의 점: 이진 분류기의 성능은 변하지 않을 때(휜 정도는 그대로이니까), threshold를 바꿔줌에 따라 나타나는 TPR, FPR 값 plot</li>
+</ul>
+</li>
+<li>
+<p>Precision(정밀도) = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TP}{TP + FP}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.275662em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>: 검출(분류기가 '그렇다'고 판별)한 것 중에서, 판단이 맞는 비율</p>
+<ul>
+<li>분류기가 <strong>Positive라고 예측했지만 이것이 False일 때 위험</strong>이 수반되는 경우에 사용</li>
+<li>예시: 어린아이에게 안전한 동영상을 걸러내는 분류기를 훈련시키는 경우. 재현율은 높으나 정말 나쁜 동영상이 몇 개 노출되는 것 보다, 좋은 동영상이 많이 제외되더라도 안전한 것들만 노출시키는 분류기를 선호</li>
+</ul>
+</li>
+<li>
+<p>Recall(재현율, 검출율) = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TP}{TP + FN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.275662em;vertical-align:-0.403331em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">F</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.403331em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>: 실제 양성인 경우 중에서, 검출(분류기가 '그렇다'고 판별)한 비율</p>
+<ul>
+<li><strong>검출하는 것 자체가 중요</strong>한 경우. False Positive가 많더라도 괜찮은 경우</li>
+<li>예시: 감시카메라로 좀도둑을 잡아내는 분류기를 훈련시키는 경우. 정확도가 30%정도이더라도 재현율이 99%라면, 거의 모든 좀도둑을 잡을 수 있음</li>
+</ul>
+</li>
+<li>Precision-Recall Trade-off: 분류 결정 임계값(decision threshold)을 낮추면, 분류기가 Positive라고 응답하는 수가 증가한다는 것을 의미하며, 따라서 이 경우엔 recall이 높아지고 precision이 낮아짐. 반대로 분류 결정 임계값을 높이면, recall이 낮아지고 precision이 높아짐</li>
+<li>
+<p>F1 score = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mfrac><mrow><mtext>precision</mtext><mo>⋅</mo><mtext>recall</mtext></mrow><mrow><mtext>precision</mtext><mo>+</mo><mtext>recall</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">2 \frac{\text{precision}\cdot\text{recall}}{\text{precision}+ \text{recall}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4133239999999998em;vertical-align:-0.481108em;"></span><span class="mord">2</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322159999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">precision</span></span><span class="mbin mtight">+</span><span class="mord text mtight"><span class="mord mtight">recall</span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">precision</span></span><span class="mbin mtight">⋅</span><span class="mord text mtight"><span class="mord mtight">recall</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>: precision과 recall 성능을 하나의 숫자로 표현하는 방법. precision과 recall의 조화평균.</p>
+<ul>
+<li>precision과 recall 성능이 비슷한 분류기에서는 F1 score가 높음. 하지만 상황에 따라 중요한 척도가 다르기 때문에, F1 score가 높다고 해서 항상 좋은 것은 아님</li>
+</ul>
+</li>
+</ul>
 <h3>References</h3>
 <div class="footnotes">
 <hr>
@@ -113,6 +148,18 @@ y <span class="token operator">+=</span> <span class="token number">3</span>
 <li id="fn-8">
 <p>JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). <a href="https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network">https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network</a></p>
 <a href="#fnref-8" class="footnote-backref">↩</a>
+</li>
+<li id="fn-9">
+<p>ROC curve. (2020년 08월 05일). 공돌이의 수학정리노트. <a href="https://angeloyeo.github.io/2020/08/05/ROC.html">https://angeloyeo.github.io/2020/08/05/ROC.html</a></p>
+<a href="#fnref-9" class="footnote-backref">↩</a>
+</li>
+<li id="fn-10">
+<p>precision, recall의 이해. (2017년 01월 02일). 다크 프로그래머.<a href="https://darkpgmr.tistory.com/162">https://darkpgmr.tistory.com/162</a></p>
+<a href="#fnref-10" class="footnote-backref">↩</a>
+</li>
+<li id="fn-11">
+<p>Géron, Aurélien. Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems. O'Reilly Media, 2019.</p>
+<a href="#fnref-11" class="footnote-backref">↩</a>
 </li>
 </ol>
 </div></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2021<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/cheatsheet/21-04-25/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2966d4d8fea208fd6f8f.js"],"app":["/app-4f6d40f40352fe8e5f2d.js"],"component---src-pages-404-js":["/component---src-pages-404-js-9c04155390b493ad90ef.js"],"component---src-templates-about-js":["/component---src-templates-about-js-929704438c6710790706.js"],"component---src-templates-category-js":["/component---src-templates-category-js-2c2538fbf969461b4ebd.js"],"component---src-templates-index-js":["/component---src-templates-index-js-c3a52c0c3fa99e192df7.js"],"component---src-templates-post-js":["/component---src-templates-post-js-933be5b779def2693774.js"]};/*]]>*/</script><script src="/polyfill-2966d4d8fea208fd6f8f.js" nomodule=""></script><script src="/component---src-templates-post-js-933be5b779def2693774.js" async=""></script><script src="/9a83efd0f2f53a11fc9fd4ead3c578a48e734387-3e8e9ec6e62d82a5a2d0.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-4f6d40f40352fe8e5f2d.js" async=""></script><script src="/framework-741ade27086b2708e961.js" async=""></script><script src="/webpack-runtime-9938c54187243b447ace.js" async=""></script></body></html>
