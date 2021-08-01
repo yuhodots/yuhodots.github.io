@@ -24,7 +24,7 @@
 </blockquote>
 <h3>Introduction</h3>
 <p>사람은 일생 동안 여러 환경 속에서 다양한 지식과 능력을 습득하고, 해당 지식과 능력을 매번 더 나은 방향으로 수정하고, 이전에 겪지 못한 상황에 마주하더라도 지금까지 배운 것을 바탕으로 빠르게 적응하곤 합니다. 이러한 능력이나 학습 과정을 lifelong learning이라고 합니다.</p>
-<p>하지만 사람에 비해 현재의 인공지능은 lifelong learning 능력이 부족합니다. Continual lifelong learning 연구들은 <strong>이미 학습한 task에 대해서는 다시 접근할 수 없다</strong>는 것을 기본 전제로 하는데, 만약 이런 문제 상황에서 새로운 task에 대해 모델을 아주 단순히 fine-tuning 한다면, 인공지능 모델이 이전에 배운 지식에 대해 심각하게 잊어버리곤 합니다. 이러한 현상을 <strong>catastrophic forgetting</strong>이라고 말하며, continual lifelong learning 연구에서는 이러한 catastrophic forgetting의 방지 즉, '현재 task를 학습하면서 이전에 배운 task를 잊지 않는 것'을 핵심 주제로 다룹니다. </p>
+<p>하지만 사람에 비해 현재의 인공지능은 lifelong 능력이 부족합니다. Continual lifelong learning 연구들은 <strong>이미 학습한 task에 대해서는 다시 접근할 수 없다</strong>는 것을 기본 전제로 하는데, 만약 이런 문제 상황에서 새로운 task에 대해 모델을 아주 단순히 fine-tuning 한다면, 인공지능 모델이 이전에 배운 지식에 대해 심각하게 잊어버리곤 합니다. 이러한 현상을 <strong>catastrophic forgetting</strong>이라고 말하며, continual lifelong learning 연구에서는 이러한 catastrophic forgetting의 방지 즉, '현재 task를 학습하면서 이전에 배운 task를 잊지 않는 것'을 핵심 주제로 다룹니다. </p>
 <p>인공지능에게 continual lifelong learning 능력을 부여하는 것은 사람과 비슷한 인공지능을 만든다는 점 이외에도 몇 가지 중요성을 가집니다. 가장 간단한 예시로 autonomous agent를 생각해볼 수 있습니다. Autonomous agent는 외부 환경과 상호작용을 주고 받으면서 새로운 지식을 계속해서 학습해야 합니다. 한 번의 학습이 완료되더라도, 아예 처음 마주하는 새로운 환경에 대해서 기존 지식을 활용하여 새로운 지식을 습득하고, 새로운 지식을 기반으로 기존 지식을 보완하는 것이 자연스럽습니다. </p>
 <p>Agent가 아닌 일반적인 머신러닝 모델에 대해서도 continual lifelong learning은 아래와 같은 장점을 갖습니다.</p>
 <ul>
@@ -65,15 +65,14 @@
 <li><strong>Task</strong>: classes들의 집합. 다른 tasks의 classes와는 disjoint 해야 함</li>
 <li><strong>Session</strong>: Learner는 오직 해당 session의 single task에 해당하는 데이터만 접근이 가능함. 다만 exemplar-based method에 대해서는 일정 memory 공간 만큼 다른 session의 데이터 사용을 허가. 해당 학습 session에서는 현재 task의 학습 데이터를 여러 차례 처리(학습/iteration)하는 것이 허용됨. 이는 일부 online learning 세팅에서 데이터 샘플을 오직 한 번 밖에 보지 못한다는 설정과는 차이를 가짐</li>
 <li>
-<p>Cross-entropy 계산</p>
+<p>Cross-entropy 계산: Exemplar-based 방식에 대해서는 (1)이 자연스러우나, exemplar-free 방식에서는 (2)가 forgetting 방지에 도움</p>
 <ol>
 <li>현재 session의 데이터 샘플에 대한 corss-entropy를, 모든 class candidate를 대상으로 계산한 뒤 역전파</li>
 <li>현재 session의 데이터 샘플에 대한 corss-entropy를, 현재 session의 novel class candidate를 대상으로만 계산 후 역전파</li>
-<li>Exemplar-based 방식에 대해서는 (1)을 사용하는 것이 자연스러우나, exemplar-free 방식에서는 (2)를 사용하는 것이 forgetting 방지에 도움</li>
 </ol>
 </li>
 <li>Datasets: CIFAR-100, Oxford Flowers, MIT Indoor Scenes, CUB-200-2011 Birds, Stanford Cars, FGVC Aircraft, Stanford Actions, VGGFace2, ImageNet dataset (and reduced ImageNet-subset) 등 사용</li>
-<li>Metrics: 일반적으로 average accuracy 사용 (모든 class의 비율을 동일하게 고려하는 accuracy)</li>
+<li>Metrics: 일반적으로 모든 class의 비율을 동일하게 고려하는 accuracy인 average accuracy 사용 </li>
 <li>
 <p>Experimental scenarios (CIFAR-100를 예시로 들겠습니다)</p>
 <ol>
@@ -93,7 +92,7 @@
 <p>이런 문제들을 해결하기 위해서 다음과 같은 연구들이 진행되고 있습니다. </p>
 <ol>
 <li><strong>Regularization-based</strong>: new tasks를 학습하는 동안, previous tasks에 중요했던 요소들의 변화를 최소화 하는 방법</li>
-<li><strong>Exemplar-based</strong>: previous tasks를 잊지 않기 위해서, previous tasks의 이미지 혹은 특징 벡터를 소량 저장하여 new tasks를 학습할 때 같이 제공하는 방법</li>
+<li><strong>Exemplar-based</strong>: previous tasks를 잊지 않기 위해서 previous tasks의 이미지 혹은 특징 벡터를 소량 저장하여 new tasks를 학습할 때 같이 제공하는 방법</li>
 <li><strong>Bias-correction method</strong>: task-recency bias 문제를 중점적으로 해결하는 방법</li>
 </ol>
 <center><span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; ">
@@ -143,7 +142,7 @@
 </ul>
 </li>
 </ul>
-<p>이 외에, 실제 데이터를 exemplar로써 저장하는 것이 아니라 가상의 이미지를 생성해서 사용하는 방법을 pseudo-rehearsal이라고 합니다. 다만 대부분의 pseudo-rehearsal를 사용한 논문들이 MNIST와 같이 상대적으로 낮은 복잡도를 갖는 데이터 셋을 가지고 평가했기 때문에 더 복잡한 도메인으로 스케일 업이 가능하냐는 의문점을 가집니다.</p>
+<p>실제 데이터를 exemplar로써 저장하는 것이 아니라 가상의 이미지를 생성해서 사용하는 방법은 pseudo-rehearsal이라고 합니다. 다만 대부분의 pseudo-rehearsal를 사용한 논문들이 MNIST와 같이 상대적으로 낮은 복잡도를 갖는 데이터 셋을 가지고 평가했기 때문에 더 복잡한 도메인으로 스케일 업이 가능하냐는 의문점을 가집니다.</p>
 <h5>Bias-correction approaches</h5>
 <p>Bias-correction approaches는 task-receny bias 문제를 해결하고자 하는 전략입니다. task-receny bias는 네트워크가 가장 최근에 배운 task에 biased되는 현상을 말하며, 이런 현상은 학습이 끝나는 시점에 심해집니다. 실제로 classifier를 분석해보아도 new class에 대해 큰 norm값을 가지며, 어떤 입력이 들어오던지 가장 최근 task 내 class로 예측하는 경향이 있습니다.</p>
 <center><span class="gatsby-resp-image-wrapper" style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; ">
@@ -168,15 +167,15 @@
 <h5>Others</h5>
 <p>새로운 task가 추가될 때 마다 network의 구조를 변경 및 추가하여 학습하는 방법도 존재합니다. </p>
 <p>Progressive Neural Network<sup id="fnref-5"><a href="#fn-5" class="footnote-ref">5</a></sup>의 경우에는 새로운 task가 추가될 때 마다 병렬적으로 레이어를 추가하는 방법(lateral connection)을 통해, previous task를 학습한 weight은 변경하지 않으면서도 새로운 task를 학습할 수 있는 알고리즘을 제안하였습니다. 다만 이 방법은 previous task에 대한 weight을 freeze 하기 때문에 backward knowledge transfer가 일어나지는 않습니다.</p>
-<p>Dynamically Expandable Network<sup id="fnref-6"><a href="#fn-6" class="footnote-ref">6</a></sup>의 경우에는 새로운 task가 추가될 때 마다, 미리 정의된 규칙을 바탕으로 동적으로 네트워크의 구조를 변경합니다. PNN과는 달리 기존 layer의 weight을 변경하기도 하고(selevtive retraining), 새로운 task에 대한 loss가 너무 크다면 PNN 처럼 병렬적으로 layer를 추가하기도 하고(dynamic expansion), 기존 layer의 weight이 너무 많이 바뀌었다면 복제해서 새로운 hidden unit으로 만들어주기도 합니다(split and duplication).</p>
+<p>Dynamically Expandable Network<sup id="fnref-6"><a href="#fn-6" class="footnote-ref">6</a></sup>의 경우에는 새로운 task가 추가될 때 마다 미리 정의된 규칙을 바탕으로 동적으로 네트워크의 구조를 변경합니다. PNN과는 달리 기존 layer의 weight을 변경하기도 하고(selevtive retraining), 새로운 task에 대한 loss가 너무 크다면 PNN 처럼 병렬적으로 layer를 추가하기도 하고(dynamic expansion), 기존 layer의 weight이 너무 많이 바뀌었다면 복제해서 새로운 hidden unit으로 만들어주기도 합니다(split and duplication).</p>
 <h3>Conclusion</h3>
 <ul>
 <li>Exemplar-free 방법 중에서는 data regularization 방법이 weight regularization 방법보다 좋았다고 합니다.</li>
 <li>Exemplar-free method를 exemplar rehearsal method와 비교해 보았을 때 성능 상으로는 견주기는 힘들지만, 메모리 세팅에 있어서 자유도가 높기 때문에 별도로 나누어 비교를 하는 것이 좋다고 합니다.</li>
 <li>Exemplar로 finetuning 하는 것은 여러 복잡한 방법들보다 훨씬 간단하고 성능도 좋았다고 합니다.</li>
 <li>Weight regularization에 exemplars 방법을 결합한 것이 data regularization보다 좋은 경우들도 있었다고 합니다.</li>
-<li>Herding은 longer sequences of tasks에 대해서는 random 방식보다 좋았지만, short sequences of tasks에서는 그렇지 않았다고 합니다.</li>
-<li>네트워크 구조는 class-IL 성능에 큰 영향을 미치며, 특히 skip-connection의 유무가 큰 영향을 미쳤다고 합니다.</li>
+<li>Herding은 longer sequences of tasks에 대해서는 random 방식보다 좋았지만 short sequences of tasks에서는 그렇지 않았다고 합니다.</li>
+<li>네트워크 구조는 class-IL 성능에 큰 영향을 미치며 특히 skip-connection의 유무가 큰 영향을 미쳤다고 합니다.</li>
 </ul>
 <h3>References</h3>
 <div class="footnotes">
