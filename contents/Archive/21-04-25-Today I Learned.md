@@ -135,6 +135,13 @@ L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을
 - F1 score = $2 \frac{\text{precision}\cdot\text{recall}}{\text{precision}+ \text{recall}}$: precision과 recall 성능을 하나의 숫자로 표현하는 방법. precision과 recall의 조화평균.
   - precision과 recall 성능이 비슷한 분류기에서는 F1 score가 높음. 하지만 상황에 따라 중요한 척도가 다르기 때문에, F1 score가 높다고 해서 항상 좋은 것은 아님
 
+##### 🥧 Python / 2021.08.05
+
+최근에 알게된 유용한 Pycharm 단축키를 정리합니다.
+
+- 변수/함수가 사용된 위치 찾기: `Find Usages`, `Alt + F7` (`Option + F7`)
+- 변수/함수 선언부 찾기: `Ctrl + 클릭` (`Command + 클릭`)
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
