@@ -1,0 +1,42 @@
+  
+.table-of-contents {
+    padding-top: 168px;
+    margin-top: 200px;
+    color: gray;
+    width: calc((100vw - 720px) / 2 - 50px);
+    display: none;
+    @media screen and (min-width: 1200px) {
+        position: sticky;
+        top: 70px;
+        display: block;
+        max-width: 360px;
+        margin-right: 20px;
+        overflow: auto;
+        word-break: break-word;
+        max-height: calc(100vh - 200px);
+        font-size: 15px;
+    }
+    .title {
+        font-size: 15px;
+        margin-bottom: 15px;
+        margin-left: 20px;
+    }
+    .contents {
+        ul {
+            list-style: none;
+            margin-left: 20px;
+            margin-bottom: 0px;
+        }
+    ul > li {
+        line-height: 1.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    ul > li a.isCurrent {
+        font-size: 15px;
+        color: gray;
+        font-weight: 600;
+    }
+  }
+}

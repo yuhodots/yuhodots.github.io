@@ -46,11 +46,24 @@ module.exports = {
               strict: `ignore`
             }
           },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              className: `anchor-header`,
+              maintainCase: false, 
+              removeAccents: true,
+              elements: ['h2', 'h3', 'h4', 'h5'], 
+            },
+          },
           "gatsby-remark-relative-images",
-          { resolve: "gatsby-remark-images",
-            options: { maxWidth: 760, withWebp: true } },
-          { resolve: "gatsby-remark-prismjs",
-            options: {} }
+          { 
+            resolve: "gatsby-remark-images",
+            options: { maxWidth: 760, withWebp: true } 
+          },
+          { 
+            resolve: "gatsby-remark-prismjs",
+            options: {} 
+          }
         ]
       }
     },

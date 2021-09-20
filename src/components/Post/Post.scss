@@ -82,12 +82,15 @@
     blockquote {
         margin: 20px 0;
         p {
+            border-left: 4px solid #bbbbbb;
+            padding: 10px;
+            font-size: 15.675px;
+            background: #f0f0f0;
+            font-weight: 400;
             color: var(--post-content-blockquote);
-            border-left: 4px solid var(--post-content-blockquote);
             padding-left: 20px;
             line-height: 1.6;
             text-align: initial;
-            font-size: 16px;
         }
     }
     code[class*="language-"],

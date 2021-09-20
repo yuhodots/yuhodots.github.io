@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import Comment from "./Comment";
 import PostInfo from "./PostInfo";
+import TableOfContents from "./TableOfContents";
 
 import "./Post.scss";
 
-const Post = ({ title, date, category, html, path }) => {
+const Post = ({ title, date, category, html, tocItems, path }) => {
     const [showTopButton, setShowTopButton] = useState(false);
     const onScroll = () => {
         setShowTopButton(window.scrollY > 100);

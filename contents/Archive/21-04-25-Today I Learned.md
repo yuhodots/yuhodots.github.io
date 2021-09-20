@@ -107,11 +107,13 @@ C/C++같은 언어 관점에서 보면 `y=x`가 실행하는 순간 값을 복�
 
 ##### 🤖 Deep Learning / 2021.07.01
 
+/* *제대로 이해하지 못했다고 생각하여 수정 중입니다* */
+
 L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 [slide](https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network)[^8]  6 페이지의 그림이 이를 직관적으로 설명해주고 있습니다. 
 
 슬라이드에 따르면 L1-norm이 특정 값이 되도록 hard-constraint를 주면 높은 확률로 솔루션이 절편에서 나오게 됩니다. 이를 regularizer로 사용한다는 것은 weight 값 내에 0에 가까운 값이 많아진다는 것을 의미하고(절편이라는 것은 어떤 한 축의 값이 0이라는 것을 의미하므로), 이 때에 0에 충분히 가까운(일정 값 이하의) weight을 0으로 만들면 솔루션이 sparse해집니다.
 
-이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다. (혹시 틀린 점이 있으면 지적 부탁드립니다)
+이 경우에 input X와 weight W를 행렬곱 연산을 하게되면, weight 내 0값 들에 의해서 원래 W의 출력 dimension보다 더 작은 dimension으로 몰리게 되기 때문에, 따라서 L1 regularizer를 사용하면 dimension reduction의 효과가 있다고 이해했습니다.
 
 ##### 🥧 Python / 2021.08.05
 
@@ -119,6 +121,21 @@ L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을
 
 - 변수/함수가 사용된 위치 찾기: `Find Usages`, `Alt + F7` (`Option + F7`)
 - 변수/함수 선언부 찾기: `Ctrl + 클릭` (`Command + 클릭`)
+
+##### 👨‍💻 CSE / 2021.08.25
+
+FLOPS[^8] (FLoating point Operations Per Second)는 '1초 당 부동소수점 연산량'을 의미합니다. 컴퓨터의 성능을 나타낼 때 주로 사용됩니다. 슈퍼 컴퓨터의 성능을 나타낼 경우에는 테라플롭스 TFLOPS(1×1012 플롭스)가 주로 쓰이며 PFLOPS는 페타플롭스를 의미합니다.
+
+FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 약자인데, 이는 '부동소수점 연산량'을 의미합니다. FLOPs 같은 경우에는 딥러닝 커뮤니티에서 모델의 크기, 모델의 연산량을 나타내는데 사용됩니다.
+
+##### 🤖 Deep Learning / 2021.09.20
+
+[PyTorch 공식 문서](https://pytorch.org/docs/stable/generated/torch.unsqueeze.html#torch.unsqueeze)를 참고하여 가장 기본적인 torch Tensor 기능들을 정리합니다.
+
+- squeeze: 차원이 1인 차원을 제거하는 함수입니다. 따로 옵션을 주지 않으면 차원이 1인 모든 차원을 제거합니다.
+- unsqueeze: 특정 위치에 1인 차원을 추가하는 함수힙니다.
+- view: 텐서의 shape을 변경해주는 함수입니다.
+- contiguous: view, expand, transpose 등의 tensor 연산은 연산 전후 메모리 주소가 동일하여 원본 값 자체가 변하는데, 이를 방지하기 위해서 contiguous 사용 시 다른 메모리 주소에 같은 데이터를 담을 수 있습니다.
 
 ### References
 
@@ -130,4 +147,6 @@ L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을
 [^ 6]: 얕은 복사(shallow copy)와 깊은 복사(deep copy). (2018년 3월 13일). 파이썬 - 기본을 갈고 닦자!, WikiDocs. 2021년 5월 24일에 확인 https://wikidocs.net/16038
 [^7]: JinWon Lee - PR-317: MLP-Mixer: An all-MLP Architecture for Vision. https://www.youtube.com/watch?v=KQmZlxdnnuY
 [^8]: JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network
+
+[^9]: 플롭스. (2021년 2월 3일). *위키백과,* . 13:21, 2021년 8월 25일에 확인 [https://ko.wikipedia.org/w/index.php?title=%ED%94%8C%EB%A1%AD%EC%8A%A4&oldid=28682165](https://ko.wikipedia.org/w/index.php?title=플롭스&oldid=28682165)
 
