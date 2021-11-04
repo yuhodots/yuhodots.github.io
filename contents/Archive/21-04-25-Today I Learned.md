@@ -22,7 +22,7 @@ category: "Cheat Sheet"
 from __future__ import print_function
 ```
 
-##### 🧩 TensorFlow / 2021.04.25 
+##### 🧩 ML library / 2021.04.25 
 
 [텐서플로우 공식문서](https://www.tensorflow.org/versions/r1.15/api_docs/python/tf/map_fn)의 `tf.map_fn` 함수에 대한 설명을 읽었습니다. dimension 0에서 unpack된 elems이라는 tensor list의 요소들을 fn에 map합니다. 
 
@@ -40,25 +40,23 @@ cent, acc = tf.map_fn(lambda inputs: self.get_loss_single(inputs, weights),
 				 	 parallel_iterations=self.metabatch)
 ```
 
-##### 🧩 TensorFlow / 2021.04.27
+##### 🧩  ML library / 2021.04.27
 
 모델 그래프를 빌드하는 함수에서 for loop를 많이 사용하면 이게 그대로 모델 training 단계에서도 매번 for loop가 적용되어 모델의 학습이 느려지겠구나라고 생각했었는데 곰곰히 생각해보니까 아니더라구요. 
 
 빌드하는 단계에서는 for loop가 여러 번 돌더라도, 그래프의 각 노드들이 연결되고 난 뒤에는 빌드 된 그래프 구조 자체가 중요하지, 빌드 단계에서의 for loop는 관련이 없게 됩니다. 꽤나 오랫동안 아무렇지 않게 착각하고 있었어서 이 곳에 기록합니다. 그럼 map\_fn은 특히 어떤 경우에 메리트를 가질까 궁금하긴 하네요 🧐
 
-##### 🧩 TensorFlow / 2021.05.02
+##### 🧩  ML library / 2021.05.02
 
 TensorFlow 1.15로 코드를 짜다가 `softmax_cross_entropy_with_logits`는 loss에 대한 2nd-order 계산을 지원하지만 `sparse_softmax_cross_entropy_with_logits`는 loss에 대한 2nd-order 계산을 지원하지 않는다는걸 알게 되었습니다. 이 둘의 차이는 label이 one-hot 형태로 주어지냐 아니냐의 차이밖에 없는데 이런 결과를 나타냈다는게 이상해서 찾아보다가 tensorflow repository에 [관련 이슈](https://github.com/tensorflow/tensorflow/issues/5876)가 올라왔던 것을 발견했습니다.
 
 요약하자면 일부 indexing 작업에 대한 도함수 계산이 아직 제대로 구현되지 않았거나, 몇 가지 operation에 대해서 2차 미분 계산이 개발자들도 아직 해결하지 못한 오류를 가진다고 말하고 있습니다(구체적인 원인은 모르겠습니다). 0.2 버전에서 1.15 까지 개발이 진행되면서도 TensorFlow 팀이 지속적으로 해결하지 못하고 있는 문제점이 있다는 것이 신기했습니다.
 
-##### 🤖 Deep Learning / 2021.05.10
+##### 🤖 ML & DL / 2021.05.10
 
 [PR-317: MLP-Mixer: An all-MLP Architecture for Vision](https://www.youtube.com/watch?v=KQmZlxdnnuY) 영상을 통해 CNN과 MLP가 별로 다르지 않다는 것을 알았습니다. 영상에서 이진원님은 CNN weight이 Fully-Conneted weight과 다른 점 두 가지가 weight sharing과 locally connected라고 설명하고 있습니다. 시각화된 자료만 봐도 이렇게 간단하게 이해되는 내용인데 왜 지금까지 깨닫지 못했을까라는 생각이 들었고, CNN에 몇 개의(사실은 엄청 많은 양이지만) weight을 추가하는 것만으로도 Fully-Connected와 완전히 동일한 구조로 만들수 있다는 것을 이해했습니다.
 
-저희 학과 딥러닝 원론 과목 시험에 해당 내용이 완전히 동일하게 출제되어서 바로 답을 적을 수 있었습니다. 운이 좋았네요😄 (2021.07.01 comment)
-
-##### 🧩 TensorFlow / 2021.05.11
+##### 🧩  ML library / 2021.05.11
 
 `tf.contrib.layers.batch_norm` 함수를 사용할 때 `is_traning` 아규먼트 설정에 주의해야 합니다. Batch normalization을 사용할 때 학습 상황인지 테스트 상황인지에 따라서 mean과 variance로 사용하는 statistics의 출처가 달라지기 때문에 `is_traning`를 잘못 설정한다면 정확도는 높게 나오더라도 그 실험이 잘못된 결과일 수 있습니다.
 
@@ -68,13 +66,13 @@ Few-shot learning setting에서 support set과 query set에 대해서 둘 다 `i
 
 `tf.contrib.layers.group_norm` 같은 instance-based normalization 방식은 미니배치에 대한 running statistics를 사용하지 않기 때문에 `is_tranable` 파라미터가 존재하지 않습니다.
 
-##### 🤖 Deep Learning / 2021.05.14
+##### 🤖 ML & DL / 2021.05.14
 
 Moment[^1]는 물리학에서 특정 물리량과 distance의 곱을 통해 물리량이 공간상 어떻게 위치하는지를 나타내며 Force, Torque, Angular momentum 등을 예로 들 수 있습니다. Moment of mass에 대해서 zeroth moment는 total mass, 1st moment는 center of mass, 2nd moment는 moment of inertia를 의미합니다.
 
 수학에서는 함수의 특징을 나타내기위해 moment라는 워딩을 사용합니다. 함수가 확률분포 형태인 경우 first moment는 확률 분포의 기댓값을 의미하며, 이를 moments about zero라고도 말합니다. 또한 second central moment로는 variance, third standardized moment는 skewness(비대칭도),  fourth standardized moment는 kurtosis(첨도, 뾰족한 정도) 등이 있습니다.
 
-##### 👨‍💻 CSE / 2021.05.24
+##### 👨‍💻 CS / 2021.05.24
 
 [API](https://ko.wikipedia.org/wiki/API)(Application Programming Interfaces)[^2]는 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 말합니다. 외부와 새로운 연결들을 구축할 필요 없이 내부 기능들이 서로 잘 통합되어 있으며, API를 사용하면 해당 API의 자세한 작동원리와 구현방식은 알지 못해도, 제품/서비스간에 커뮤니케이션이 가능합니다.
 
@@ -105,9 +103,11 @@ y += 3
 
 C/C++같은 언어 관점에서 보면 `y=x`가 실행하는 순간 값을 복사하는 것으로 이해할 수 있지만, 파이썬은 `y=x`가 호출되는 시점에는 동일한 객체를 가리키다가 immutable 타입인 y를 변경했을 때 변경됩니다.
 
-##### 🤖 Deep Learning / 2021.07.01
+##### 🤖 ML & DL / 2021.07.01
 
 /* *제대로 이해하지 못했다고 생각하여 수정 중입니다* */
+
+- To Do: 해당 내용에 대한 설명이 PRML에 나와있으니 읽어보기
 
 L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을 알게 되었습니다. 직접 수식을 써보면서 확인을 한 것은 아니지만, 제가 참고한 [slide](https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network)[^8]  6 페이지의 그림이 이를 직관적으로 설명해주고 있습니다. 
 
@@ -122,20 +122,31 @@ L1 regularizer를 사용하면 dimension reduction의 효과가 있다는 것을
 - 변수/함수가 사용된 위치 찾기: `Find Usages`, `Alt + F7` (`Option + F7`)
 - 변수/함수 선언부 찾기: `Ctrl + 클릭` (`Command + 클릭`)
 
-##### 👨‍💻 CSE / 2021.08.25
+##### 👨‍💻 CS / 2021.08.25
 
-FLOPS[^8] (FLoating point Operations Per Second)는 '1초 당 부동소수점 연산량'을 의미합니다. 컴퓨터의 성능을 나타낼 때 주로 사용됩니다. 슈퍼 컴퓨터의 성능을 나타낼 경우에는 테라플롭스 TFLOPS(1×1012 플롭스)가 주로 쓰이며 PFLOPS는 페타플롭스를 의미합니다.
+FLOPS[^9] (FLoating point Operations Per Second)는 '1초 당 부동소수점 연산량'을 의미합니다. 컴퓨터의 성능을 나타낼 때 주로 사용됩니다. 슈퍼 컴퓨터의 성능을 나타낼 경우에는 테라플롭스 TFLOPS(1×1012 플롭스)가 주로 쓰이며 PFLOPS는 페타플롭스를 의미합니다.
 
 FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 약자인데, 이는 '부동소수점 연산량'을 의미합니다. FLOPs 같은 경우에는 딥러닝 커뮤니티에서 모델의 크기, 모델의 연산량을 나타내는데 사용됩니다.
 
-##### 🤖 Deep Learning / 2021.09.20
+##### 🧩 ML library / 2021.09.20
 
 [PyTorch 공식 문서](https://pytorch.org/docs/stable/generated/torch.unsqueeze.html#torch.unsqueeze)를 참고하여 가장 기본적인 torch Tensor 기능들을 정리합니다.
 
 - squeeze: 차원이 1인 차원을 제거하는 함수입니다. 따로 옵션을 주지 않으면 차원이 1인 모든 차원을 제거합니다.
 - unsqueeze: 특정 위치에 1인 차원을 추가하는 함수힙니다.
 - view: 텐서의 shape을 변경해주는 함수입니다.
-- contiguous: view, expand, transpose 등의 tensor 연산은 연산 전후 메모리 주소가 동일하여 원본 값 자체가 변하는데, 이를 방지하기 위해서 contiguous 사용 시 다른 메모리 주소에 같은 데이터를 담을 수 있습니다.
+
+##### 🥧 Python / 2021.09.30
+
+[Python 공식 문서](https://docs.python.org/ko/3/tutorial/modules.html)를 참고하여 모듈과 모듈성에 대해 정리합니다.
+
+프로그램의 유지/보수를 위해 여러 개의 파일로 나누고 싶거나, 함수를 여러 프로그램에 복사하지 않고도 사용하고 싶은 경우에, 파이썬은 정의들을 파일에 넣고 사용할 수 있는 방법을 제공합니다. 그런 파일을 모듈[^10]이라고 부릅니다. 즉, 다른 파이썬 프로그램에서 불러와 사용할 수 있도록 만든 또 다른 파이썬 파일을 모듈이라고 합니다.
+
+##### 🤖 ML & DL / 2021.11.04
+
+Random process와 Gaussain process에 대해서 정리합니다.
+
+...정리하려고 했으나 정말 잘 정리된 글이 있어 공유합니다: https://enginius.tistory.com/489
 
 ### References
 
@@ -149,4 +160,6 @@ FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 
 [^8]: JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network
 
 [^9]: 플롭스. (2021년 2월 3일). *위키백과,* . 13:21, 2021년 8월 25일에 확인 [https://ko.wikipedia.org/w/index.php?title=%ED%94%8C%EB%A1%AD%EC%8A%A4&oldid=28682165](https://ko.wikipedia.org/w/index.php?title=플롭스&oldid=28682165)
+[^10]: 6. 모듈. (2021년 9월 30일). Python 3.9.7 문서, https://docs.python.org/ko/3/tutorial/modules.html
+[^11]: 모듈성 (프로그래밍). (2019년 4월 16일). 위키백과, . 15:08, 2021년 9월 30일에 확인 https://ko.wikipedia.org/w/index.php?title=%EB%AA%A8%EB%93%88%EC%84%B1_(%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)&oldid=24041546
 
