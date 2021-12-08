@@ -165,8 +165,8 @@ FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 
 $$
 f(x)=
 \begin{cases}
-d(x, \partial\ohm) & \mbox{if } x \in \ohm \\
--d(x, \partial\ohm) & \mbox{if } x \in \ohm^c
+d(x, \partial \Omega) & \text{if } x \in \Omega \\
+-d(x, \partial \Omega) & \text{if } x \in \Omega^c
 \end{cases}
 $$
 
