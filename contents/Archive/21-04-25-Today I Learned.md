@@ -162,7 +162,13 @@ FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 
 
 - If $\Omega$ is a subset of a metric space and $b$ is the boundary of $\Omega$ the signed distance function $f$ is defined by
 
-![img](../img/21-11-14-1.png)
+$$
+f(x)=
+\begin{cases}
+d(x, \partial\ohm) & \mbox{if } x \in \ohm \\
+-d(x, \partial\ohm) & \mbox{if } x \in \ohm^c
+\end{cases}
+$$
 
 SDF는 어떤 boundary까지의 거리를 표현하는 함수입니다. 만약 어떤 점 $x$가 boundary 안 쪽에 위치하게 되면 function 값은 양수를 갖게 되며, 이 점이 boundary와 점점 가깝게 이동할 수록 function 값은 0에 가까워 지다가, boundary에 위치하는 경우에는 0이 됩니다. 반대로 $x$가 boundary 바깥 쪽에 위치하는 경우에는 function 값이 음수를 갖습니다.
 
@@ -183,6 +189,17 @@ Implicit Neural Representation은 이미지나 3D 데이터를 pixel, voxel 단�
 [이 곳](https://www.itl.nist.gov/div898/handbook/eda/section3/eda361.htm)[^14]을 참고하니 continuous probability function은 continuous interval의 무한 points에 대해 정의되기 때문에 single point의 확률은 언제나 0이며, 따라서 continuous probability function에서 확률은 특정 interval에 대해서 측정하고 single point에 대해선 측정하지 않는다고 합니다.
 
 어찌보면 간단한 것이었지만 자세히 생각해보지는 않아서 헷갈렸던 듯 합니다. 추가적으로, 그러면 어떻게 0이 모여 1이 되는 것 인지까지 궁금해지면서 수학을 당장 근본부터 다시 공부해야하나 싶었지만, 시간은 한정되어 있고 할 일은 많으니 길게 보고 천천히 공부하자는 결론으로 돌아왔습니다 🥲
+
+##### 🧩 ML library
+
+*2021.12.08*
+
+PyTorch에 특정 weight만 freeze하는 기능이 구현되어 있는지 살펴보았습니다.
+
+Layer 단위로 freezing 하는 경우에는 `required_grad=False`를 사용해서 구현했었는데, layer 내 특정 weight만 골라서 freeze하는 기능은 따로 본 적이 없는 것 같아 찾아보다가 [해당 링크](https://discuss.pytorch.org/t/how-do-i-freeze-the-specific-weights-in-a-layer/104722/2)를 읽게 되었습니다. 작성자 분이 설명하기로는 아래와 같은 두 가지 임시방편이 있다고 합니다.
+
+- `.step()`를 호출하기 전에 freeze 하고자하는 weight에 대해서 `grad=0` 할당. 다만 momentum, weight decay를 사용하는 optimizer의 경우엔 `grad=0`이더라도 `.step()` 호출 시 weight을 변형하기 때문에 원하는대로 동작하지 않을 수 있음
+- Freeze하고 싶은 weight을 미리 copy 해두고 `.step()` 을 호출하여 weight을 업데이트한 뒤에, 복사했던 weight을 업데이트된 weight에 덮어씌우기
 
 ### References
 

@@ -41,8 +41,7 @@ category: "about"
 
 ### Skills
 
-- C/C++, Python3, MATLAB
-- BackEnd (Node.js, RDBMS)
+- Python, C, MATLAB, BackEnd(Node.js, RDBMS)
 
 ### Teaching Assistant
 
