@@ -36,10 +36,6 @@ thumbnail: 'javascript'
 
  간단히 말하면 TypeScript는 JavaScript를 확장한 언어입니다. 그렇기에 자바스크립트의 특성을 따르며 최신 ECMA 표준을 따르고 있습니다. 다만 자바스크립트는 인터프리터 언어인데 반하여, TypeScript는 컴파일 언어로 코드 수준에서 미리 타입을 체크 합니다.
 
-![img](https://miro.medium.com/max/445/1*tOpeQXW36hEFiV8THpYUzA.png)
-
-
-
  그렇기에 **type을 지정**하는 것이 TypeScript의 가장 큰 특징이라고 말할 수 있습니다. 원래는 var만을 사용하는 JavaScript와 달리 TypeScript는 string, number, let 등을 사용함으로써 코드의 안정성을 높입니다. 이로 인해 대규모 애플리케이션 구현에 대한 자바스크립트의 불편함을 TypeScript가 대체할 수 있게 되었습니다. 
 
 ### React.js

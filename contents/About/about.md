@@ -23,28 +23,33 @@ category: "about"
 ### Contact
 
 - Email: yuho8437@unist.ac.kr
-- Instagram: https://www.instagram.com/im.uho/
+- SNS: https://www.instagram.com/im.uho/
+- LinkedIn: https://www.linkedin.com/in/yuho-jeong-b9423a19b/
+- Study Group: https://cse-study.github.io/home/ (Feel free to join!)
 
-### Experiences
+### Experience
 
-- [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) MS (2021.03 ~), Intern (2020.07 ~ 2021.02)
-- [Autonomous System Lab](https://sites.google.com/site/aslunist/news) Intern (2019.12 ~ 2020.02)
-- BackEnd development in online thrift store '[Uitda](https://github.com/yuhodots/uitda)' (2019.02 ~ 2020.06)
+- M.S. in Artifical Intelligence at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0), UNIST (2021.03 ~ 2023.02)
+- Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
+- B.S. in Mechanical Aerospace Engineering & Computer Science Engineering, UNIST (2016.03 ~ 2021.02) 
+- Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
+- Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
-### Course Projects
+### Project
 
-- [Hand pose estimation network](https://github.com/yuhodots/handpose) (Computer Vision, 2020)
-- [COVID19 fatality rate correlation analysis](https://yuhodots.github.io/covid-correlation/) (Information Visualization, 2020)
-- [MAV simulations](https://github.com/yuhodots/mav-simulation) (UAV Flight Control and Simulation, 2020)
-- [PintOS project](https://github.com/yuhodots/pintos) (Operating System, 2019)
-- [CA code generator / UGV & UAV control simulation](https://github.com/yuhodots/uav-control) (UAV Navigation and Flight Computers, 2019)
-
-### Skills
-
-- Python, C, MATLAB, BackEnd(Node.js, RDBMS)
+- Personal project / MLOps: Design ML pipeline for continual learning task with GCP (2022.04 ~ 2022.07)
+- Personal project / Web: BackEnd development at online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
+- Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 
 ### Teaching Assistant
 
 - 해군교육사령부, 교관양성 교육 - 합성곱 신경망 파트 실습 TA (2021.06.05)
 - UNIST AI Innovation Park, AI 노바투스 아카데미아 - 인공지능 기초 파트 실습 TA (2021.02, 2021.07)
 
+### Skill
+
+- Python, MATLAB, C, BackEnd(Django, Node.js)
+
+### Publication
+
+- To be updated
