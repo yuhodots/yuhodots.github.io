@@ -211,6 +211,19 @@ Layer 단위로 freezing 하는 경우에는 `required_grad=False`를 사용해�
 - Hard triplets: $d(a,n) < d(a, p)$
 - Semi-hard triplets: $d(a, p) < d(a, n) < d(a,p) + \text{margin}$
 
+##### 🧩 ML library
+
+*2022.02.28*
+
+Random seed를 고정할 때 가장 먼저 고려하면 좋을 것들을 기록하였습니다.
+
+```python
+random.seed(args.seed)
+np.random.seed(args.seed)
+torch.manual_seed(args.seed)
+torch.cuda.manual_seed_all(args.seed)
+```
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

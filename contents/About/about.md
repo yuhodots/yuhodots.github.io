@@ -25,7 +25,7 @@ category: "about"
 - Email: yuho8437@unist.ac.kr
 - SNS: https://www.instagram.com/im.uho/
 - LinkedIn: https://www.linkedin.com/in/yuho-jeong-b9423a19b/
-- Study Group: https://cse-study.github.io/home/ (Feel free to join!)
+- Study Group: https://cse-study.github.io/home/
 
 ### Experience
 

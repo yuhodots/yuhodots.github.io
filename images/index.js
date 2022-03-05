@@ -10,6 +10,7 @@ import javascript from "./javascript.png"
 import nodejs from "./nodejs.png"
 import ICLR from "./ICLR.jpg"
 import NIPS from "./NIPS.png"
+import CVPR from "./CVPR.png"
 
 export default {
     aws,
@@ -23,5 +24,6 @@ export default {
     javascript,
     nodejs,
     ICLR,
-    NIPS
+    NIPS,
+    CVPR
 };
