@@ -35,21 +35,20 @@ category: "about"
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
-### Project
+### Projects
 
 - Personal project / MLOps: Design ML pipeline for continual learning task with GCP (2022.04 ~ 2022.07)
 - Personal project / Web: BackEnd development at online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 
-### Teaching Assistant
+### Talks
 
+- CoreAI Seminar, "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections." (2022.03.04) [[video](https://www.youtube.com/watch?v=lkEPEszRR04)]
 - 해군교육사령부, 교관양성 교육 - 합성곱 신경망 파트 실습 TA (2021.06.05)
+- CoreAI Seminar, "Bootstrap Your Own Latent." (2021.04.02) [[slides](https://slack-files.com/T017E9YJDU0-F01TUCCPNV6-54c6e3fb59)]
+- CoreAI Seminar, "Learning to Propagate Labels: Transductive Propagation Network for Few-shot Learning." (2021.03.06) [[slides](https://slack-files.com/T017E9YJDU0-F01PZ1RKUQP-9675e49bb9)]
 - UNIST AI Innovation Park, AI 노바투스 아카데미아 - 인공지능 기초 파트 실습 TA (2021.02, 2021.07)
 
-### Skill
+### Skills
 
 - Python, MATLAB, C, BackEnd(Django, Node.js)
-
-### Publication
-
-- To be updated
