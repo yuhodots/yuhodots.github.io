@@ -39,11 +39,9 @@ Self-supervised learning을 위해서는 먼저 label 되지 않은 데이터에
 
 ![img](../img/BYOL2.png)
 
-하나의 이미지에 서로 다른 data augmentation을 가한 뒤 각 이미지를 encoder에 전달하면 representation vector가 2개 출력됩니다. 하나는 anchor, 또 다른 하나는 poitive pair의 representation이라고 말 한다면, encoder가 anchor와 positive pair representation 사이의 유사도가 높도록, 다른 이미지(negative pairs) representation에 대해서는 유사도가 낮도록 학습되어야 하는 것이 contrastive learning의 로직입니다. 관련해서 아래의 토픽들을 찾아보시면 좋습니다.
+하나의 이미지에 서로 다른 data augmentation을 가한 뒤 각 이미지를 encoder에 전달하면 representation vector가 2개 출력됩니다. 하나는 anchor, 또 다른 하나는 poitive pair의 representation이라고 말 한다면, encoder가 anchor와 positive pair representation 사이의 유사도가 높도록, 다른 이미지(negative pairs) representation에 대해서는 유사도가 낮도록 학습되어야 하는 것이 contrastive learning의 로직입니다. 관련해서 아래의 논문들을 찾아보시면 좋습니다.
 
-- `NPID (CVPR 2018)` - Memory bank, Noise-Contrastive Estimation
-- `MoCo (CVPR 2020)` - Memory queue, Momentum encoding
-- `SimCLR (ICML 2020)` - Batch size
+- `NPID (CVPR 2018)`, `MoCo (CVPR 2020)`, `SimCLR (ICML 2020)`
 
 하지만 contrastive learning 알고리즘은 data augmentation 방법에 따라 성능의 차이가 크고 negative pair도 잘 선택해줘야 하는 문제들이 있어 새로운 방식의 연구도 진행되고 있으며, 이번 포스팅에서 살펴볼 BYOL이 대표적인 예입니다.
 
@@ -111,14 +109,6 @@ $$
 
 위와 같은 형태의 식을 parameter $\xi$와 $\theta$에 각각 가중치를 둔 평균을 새로운 $\xi$로 사용한다고 해서 weighted average라고 부르기도 하고, 가중 평균을 teacher network로 여겨 학습한다는 점에서 mean teacher라고 부르기도 합니다. MoCo 논문에서의 momentum update $\theta_t = \alpha\theta_{t-1} + (1-\alpha)\theta_t$ 와는 $\tau$가 constant가 아닌 cosine annealing된 변화하는 값이라는 점만 차이를 가집니다.
 
-##### Comment
-
-Exponential moving average를 사용하면 과거 parameter들이 현재 모델(Online network)을 가르치는 teacher(Target network)의 역할을 수행하게 됩니다. 이와 관련해서는 [Hoya님의 블로그 포스팅](https://hoya012.github.io/blog/byol/)에서 '과거의 내가 오늘의 스승이 된다'라는 비유가 참 재미있었습니다.
-
-Target network가 teacher의 역할을 수행하면서 모델이 학습한다는 그 로직 자체는 받아들일 수 있었지만, 그럼에도 대체 random initailize 되었던 모델에서 어떤 정보를 학습한 것일까 라는 의문은 쉽게 풀리지 않았습니다. 그래서 BYOL 논문 설명 영상을 찾아보다가 발견한 [Yannic Kilcher](https://www.youtube.com/channel/UCZHmQk67mSJgfCCTn7xBfew)님의 설명 또한 흥미로웠습니다. 
-
-짧게 요약을 해보자면, augmentation에 의해서 이미지의 pixel은 바뀌지만 이미지의 의미(semantic)는 변하지 않으니, BYOL은 이미지에 어떤 알 수 없는 augmentation이 가해지더라도 pixel의 변화는 무시하고 내재된 semantic을 알아보도록 feature extractor를 학습하는다는 의견이었습니다. BYOL의 전체 식에서 projector를 없애면 $q(f_\theta(A(x))) = f_\xi(A'(x))$로 간단화 할 수 있는데(A는 augmentation을 의미합니다), 이 식에서 $q$는 $E_{A'}[f(A(x))]$를 최대화하는 역할을 맡게됩니다. 
-
 ### Experiment
 
 최종 평가 단계에서는 오직 online network의 encoder $f_\theta$만을 따로 떼어 내 downstream task에 대한 성능을 평가하게 됩니다. 다른 self-supervised learning 알고리즘들 처럼 ImageNet dataset에 대한 linear evaluation과 dataset transfer, task transfer 등의 실험을 진행하였습니다. 
@@ -133,7 +123,7 @@ Target network가 teacher의 역할을 수행하면서 모델이 학습한다는
 
 ### Conclusion
 
-논문에서 저자들은 BYOL이 negative pairs가 없는데도 모델이 collapse하지 않는 이유에 대해 predictor의 존재와, exponetial moving average를 아주 조심스럽게 변경해준 점, 그리고 target network의 parameter $\xi$가 loss의 gradient 방향으로 업데이트 되지 않는다는 점을 근거로 들었습니다. 하지만 정확한 이유는 저자들 또한 아직 모르는 듯한 느낌을 받았습니다.
+논문에서 저자들은 BYOL이 negative pairs가 없는데도 모델이 collapse하지 않는 이유에 대해 predictor의 존재와, exponetial moving average를 아주 조심스럽게 변경해준 점, 그리고 target network의 parameter $\xi$가 loss의 gradient 방향으로 업데이트 되지 않는다는 점을 근거로 들었습니다. 하지만 정확한 이유는 저자들 또한 아직 모르는 듯 했습니다.
 
 BYOL은 ImageNet dataset에 대해서 ResNet-50, batch-size 4096의 경우 512 Cloud TPU로 8시간 학습시켰다고 합니다. 왜 이렇게나 엄청난 computation이 요구되었나 곰곰히 생각해봤는데, 일단 image augmentation을 통해 기존 ImageNet dataset의 크기가 몇 배나 늘어났을 것이고 또한 기존 encoder에 추가적으로 predictor와 target network가 추가된 점, epoch이 1000이나 되는 점들이 이런 엄청난 computation을 만들어 냈을거라 추측해보았습니다. 그래서 BYOL의 연구 결과를 다른 분야에 접목시키려 할 때, encoder의 parameter를 그대로 가져다가 쓰는 것은 가능하겠으나 아이디어 자체를 연구 단계에서 활용할 수 있을지에 대해서는 의문이 들었습니다.
 

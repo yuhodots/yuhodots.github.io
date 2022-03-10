@@ -35,9 +35,9 @@ Sparse 하게 주어진 학습 이미지를 통해서 모델을 학습하고 해
 
 ### NeRF: Neural Radiance Field
 
-NeRF[^2]는 novel view synthesis task를 푸는 알고리즘이고, 여기에 implcit neural representation의 아이디어를 사용합니다. 앞서 implicit representation은 이미지 뿐만 아니라 어떤 물리적인 Field를 모델링할 수도 있다고 하였는데 NeRF에서는 Radience Field라는 것을 모델링합니다.
+NeRF[^2]는 novel view synthesis task를 푸는 알고리즘이고, 여기에 implcit neural representation의 아이디어를 사용합니다. 앞서 implicit representation은 이미지 뿐만 아니라 어떤 물리적인 Field를 모델링할 수도 있다고 하였는데 NeRF에서는 Radiance Field라는 것을 모델링합니다.
 
-Radience는 어떤 특정 파티클에 빛이 비춰서 해당 빛이 얼마만큼 반사되고 있는지를 의미합니다. 여기서 NeRF는 아래의 그림처럼 카메라와 object 상의 한 점을 이어서 만든 ray라는 직선이 있다고 할 때, ray 상 파티클의 $(x,y,z,\theta,\phi)$ coordinate에 따라 $RGB$라는 빛이 얼마만큼의 density $\sigma$를 가지고 방출되고 있는지를 모델링합니다. 
+Radiance는 어떤 특정 파티클에 빛이 비춰서 해당 빛이 얼마만큼 반사되고 있는지를 의미합니다. 여기서 NeRF는 아래의 그림처럼 카메라와 object 상의 한 점을 이어서 만든 ray라는 직선이 있다고 할 때, ray 상 파티클의 $(x,y,z,\theta,\phi)$ coordinate에 따라 $RGB$라는 빛이 얼마만큼의 density $\sigma$를 가지고 방출되고 있는지를 모델링합니다. 
 
 Ray 위의 coordinate마다 모든 $RGB\sigma$ 값을 계산한 뒤에 ray의 방향을 따라 파티클들의 모든 $RGB$ 값을 density $\sigma$와 비례하게 weighted sum을 하게 되면 이미지 내 하나의 pixel $RGB$ 값을 렌더링할 수 있게 됩니다.
 

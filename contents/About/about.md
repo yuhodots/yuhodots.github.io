@@ -43,11 +43,11 @@ category: "about"
 
 ### Talks
 
-- CoreAI Seminar, "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections." (2022.03.04) [[video](https://www.youtube.com/watch?v=lkEPEszRR04)]
-- 해군교육사령부, 교관양성 교육 - 합성곱 신경망 파트 실습 TA (2021.06.05)
+- CoreAI Seminar, "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections." (2022.03.04) [[video](https://www.youtube.com/watch?v=HDwkXyQjecQ)] [[slides](https://drive.google.com/file/d/1O4Af9vq_q_1BRdYxZBCw-PKEq0cqYSNM/view)]
+- 해군교육사령부, 교관양성 교육: 합성곱 신경망 파트 실습 강의 (2021.06.05)
 - CoreAI Seminar, "Bootstrap Your Own Latent." (2021.04.02) [[slides](https://slack-files.com/T017E9YJDU0-F01TUCCPNV6-54c6e3fb59)]
 - CoreAI Seminar, "Learning to Propagate Labels: Transductive Propagation Network for Few-shot Learning." (2021.03.06) [[slides](https://slack-files.com/T017E9YJDU0-F01PZ1RKUQP-9675e49bb9)]
-- UNIST AI Innovation Park, AI 노바투스 아카데미아 - 인공지능 기초 파트 실습 TA (2021.02, 2021.07)
+- UNIST AI Innovation Park, AI 노바투스 아카데미아: 인공지능 기초 파트 실습 강의 (2021.02, 2021.07)
 
 ### Skills
 
