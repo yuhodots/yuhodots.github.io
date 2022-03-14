@@ -12,7 +12,6 @@ const Header = ({ siteTitle, siteDescription, type }) => {
                 <h1>
                     <Link to="/">{siteTitle}</Link>
                 </h1>
-                <div className="description">{siteDescription} </div>
                 <ul>
                     <li>
                         <a href="/">Home</a>
