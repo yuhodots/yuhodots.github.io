@@ -2,7 +2,7 @@
 title: "Autoencoder"
 date: "2020-02-14"
 template: "post"
-draft: false
+draft: true
 path: "/datascience/20-02-14/"
 description: "딥러닝 생성모델 공부에 있어서 가장 기초가 되는 autoencoder에 대해 알아보겠습니다. 'Generative Deep Learning' (O'REILLY) 책을 통해 공부한 내용을 중심으로 포스팅을 작성하였습니다. Autoencoder는 입력 데이터를 저차원으로 인코딩합니다."
 category: "Deep Learning"

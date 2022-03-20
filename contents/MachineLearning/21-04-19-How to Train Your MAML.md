@@ -2,7 +2,7 @@
 title: "How to train your MAML"
 date: "2021-04-19"
 template: "post"
-draft: false
+draft: true
 path: "/deeplearning/21-04-19/"
 description: "2017년 ICML에 accept된 MAML은 meta-learning 연구분야에서 가장 핫한 알고리즘이자 meta-learning이라는 용어와 거의 동일시되는 알고리즘입니다. 중요한 논문이긴 하지만 MAML 논문의 아이디어를 그대로 코드에 적용시키면 몇 가지 이슈들이 존재합니다."
 category: "Deep Learning"

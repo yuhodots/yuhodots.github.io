@@ -2,7 +2,7 @@
 title: "Generative Adversarial Networks"
 date: "2020-04-22"
 template: "post"
-draft: false
+draft: true
 path: "/deeplearning/20-04-22/"
 description: "딥러닝 생성 모델 중 가장 유명한 Generative Adversarial Networks(생성적 적대 신경망)에 대해 알아보겠습니다. 이를 공부하는데 참고한 자료들은 아래 reference에 적어두었습니다. GAN은 2014년 Ian Goodfellow의 논문에서 처음 소개되었습니다."
 category: "Deep Learning"

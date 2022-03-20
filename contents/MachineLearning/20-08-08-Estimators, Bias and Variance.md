@@ -90,25 +90,11 @@ $$
   <i>Ian Goodfellow, Yoshua Bengio, and Aaron Courville, Deep Learning (The MIT Press), Chapter 5.4</i>
   </p></center>
 
-### Estimator 선정의 기준
-
-좋은 estimator를 선택하는 주요 기준들은 아래와 같습니다. (차재복님의 [정보통신기술용어해설](http://www.ktword.co.kr/abbr_view.php?m_temp1=458&id=1240)을 참고했습니다.)
-
-- **Consistency**: data points의 양이 늘어날수록, 우리의 point estimate이 true value로 잘 수렴하는지 
-- **Efficiency**: estimator의 generalization error가 작게 나타나는지 (estimator의 variance가 작은지)
-- **Sufficiency**: estimator가 true parameter $\theta$ 에 대해 가장 많은 정보를 제공하는지
-- **Unbiasedness**: estimator의 기대값이 true parameter $\theta$ 와 차이가 얼마나 되는지
-
-#### Consistency
-
- Estimator를 선정하는 기준 중 하나가 되는 consistency는, data points의 양이 늘어날수록 우리의 point estimate이 true value로 잘 수렴하는지를 의미합니다. 이를 $plim_{m\to \infin} \hat\theta_m = \theta$으로 표현할 수 있습니다 (plim은 확률에서의 수렴을 나타냅니다). consistency는 data example의 수가 늘어날수록 estimator의 bias가 줄어든다는 것을 보장하지만, 이는 asymtotic unbiasness가 consistency를 나타낸다는 것을 의미하지는 않습니다.
-
 ### Reference
 
 - Ian Goodfellow, Yoshua Bengio, and Aaron Courville, Deep Learning (The MIT Press), Chapter 5.4
 - [통계의 본질 유튜브 채널](https://www.youtube.com/watch?v=faVIwae-wkw)
 - [공돌이의 수학정리노트 유튜브 채널](https://www.youtube.com/watch?v=UWh6fmb5btY)
-- 정보통신기술용어해설
 
 
 

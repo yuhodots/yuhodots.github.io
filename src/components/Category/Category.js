@@ -9,7 +9,7 @@ const Category = ({ categories, posts }) => {
         sortedCategories[0]
     );
     const upperCategory = {
-        'MachineLearning':['Deep Learning', 'Data Science', 'MLOps'],
+        'MachineLearning':['Deep Learning', 'Data Science'],
         'Web':['FrontEnd', 'BackEnd', 'Server'],
         'Archive':['Cheat Sheet', 'Diary'],
     }

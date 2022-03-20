@@ -2,7 +2,7 @@
 title: "Variational Autoencoder"
 date: "2020-03-31"
 template: "post"
-draft: false
+draft: true
 path: "/deeplearning/20-03-31/"
 description: " 딥러닝 생성 모델 중 하나인 variational autoencoder(변이형 오토인코더)에 대해 알아보겠습니다. 'Generative Deep Learning' (O'REILLY) 책을 통해 공부한 내용을 중심으로 포스팅을 작성하였습니다. Additional information 파트를 특히 많이 인용하였습니다."
 category: "Deep Learning"

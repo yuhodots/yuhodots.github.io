@@ -2,7 +2,7 @@
 title: "Depth Estimation"
 date: "2020-02-17"
 template: "post"
-draft: false
+draft: true
 path: "/deeplearning/20-02-17/"
 description: " 얼마 전 연구실에서 진행중인 실험과 관련해서 depth estimation 코드를 돌려볼 일이 생겨서 depth estimation에 대해 아주 쪼끔 공부를 하게 되었습니다. 이번 포스팅에서는 이에 대해 제가 알게 된 내용과 참고한 논문 코드들을 공유해보도록 하겠습니다."
 category: "Deep Learning"
