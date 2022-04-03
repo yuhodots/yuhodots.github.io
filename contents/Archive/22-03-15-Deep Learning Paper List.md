@@ -69,7 +69,28 @@ category: "Cheat Sheet"
   - Pre-training은 MoCo-v2 protocol을 따르고, OpenSelfSup의 구현을 기반으로 하였음
   - Streaming data의 distribution shift가 milld한 경우에는 joint training과 self-supervised pre-training의 성능이 거의 비슷하고, large distribution shift인 경우에는 MAS(memory aware synapse)와 data replay 방법을 사용하면 비슷함.
 - [ ] [Madaan, Divyam, et al. "Rethinking the Representational Continuity: Towards Unsupervised Continual Learning." ICLR 2022.](https://openreview.net/pdf?id=9Hrka5PA7LW)
+  - Label unannotated인 unsupervised continual learning(CURL)을 SimSiam과 Barlow Twining 알고리즘 사용하여 해결해보았더니 신기하게도 supervised continual learning보다 catastrophic forgetting에 robust 함
+  - Lifelong Unsupervised Mixup(LUMP)는 previous task(in memory buffer)와 current task 사이의 interpolate를 활용하는 방법이며, LUMP를 안 써도 잘하지만 LUMP 사용시 더 잘함
+  - UCL/SCL이 low layer에서는 similar하고 high layer에서는 dissimilar함. UCL의 loss landscape이 더 smooth 함.
+  - Test 단계에서 classifying은 KNN을 사용한다고 하는데, 어떻게 사용한건지 아직 제대로 살펴보진 않았음
 - [ ] [Fini, Enrico, et al. "Self-Supervised Models are Continual Learners." arXiv preprint arXiv:2112.04215, 2021.](https://arxiv.org/pdf/2112.04215.pdf)
+- [ ] [Zhou, Minghao, et al. "Diagnosing Batch Normalization in Class Incremental Learning." arXiv preprint arXiv:2202.08025, 2022.](https://arxiv.org/abs/2202.08025)
+  - Training batch에 new class만 존재해야 better normalization & representation 학습 가능하지만, 이러면 모델이 BN discrepancy에 의해 편향됨. 이를 BN dilemma라고 함
+  - BN dilemma를 해소하기 위해서 BN trick(BNT) 방법을 제안
+  - EMA update는 $B_b$ (balanced batch)로 하고, parameter update는 $B_t, B_\mathcal{M}$를 가지고 EMA update 없이 joint training
+- [x] [Pham, Quang, Chenghao Liu, and H. O. I. Steven. "Continual normalization: Rethinking batch normalization for online continual learning." ICLR 2022.](https://openreview.net/forum?id=vwLLQ-HwqhZ)
+  - Previous task에 대한 inference 상황에서 current task에 biased된 moments를 사용하게 되는 현상을 cross-task normalization effect라고 함
+  - BN을 continual learning task에 단순히 사용하는 경우에 이런 cross-task normalization effect가 존재하기 때문에, GN과 같이 cross-task normalization effect 없는 method도 같이 사용하자는 것이 논문의 아이디어. 즉, mini-batch와 spatial normalization 사이에 balancing이 continual learning 에서의 normalization에 중요하다고 주장
+  - SwithNorm이나 TaskNorm과 같이 BN, LN, IN, GN 등의 blending weight 형태보다 GN -> BN (=CN)의 형태가 더 좋다고 주장
+- [ ] [Cha, Sungmin, et al. "Task-Balanced Batch Normalization for Exemplar-based Class-Incremental Learning." arXiv preprint arXiv:2201.12559, 2022.](https://arxiv.org/abs/2201.12559)
+
+  - Exemplar-based CIL에 대해, task-balaneced $\mu$ & $\sigma^2$ 계산 방법과 affine transformation parameter를 덜 편향되게 하는 계산법을 제안함
+  - Task-balanced $\mu$ & $\sigma^2$ calculation: current biased 되지 않도록 reshape과 repeat 연산을 사용한 새로운 $\mu$ & $\sigma^2$ 계산 방법 제안
+  - Less-biased learning of parameter for affine transformation: task-balanced calculation에서의 계산법과 어울리도록/일치하도록 reshape -> inverse reshape 방식의 계산 도입
+
+- [ ] [Skorokhodov, Ivan, and Mohamed Elhoseiny. "Class Normalization for (Continual)? Generalized Zero-Shot Learning." ICRL 2021.](https://openreview.net/forum?id=7pgFL2Dkyyy)
+  - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
+  - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
 
 ### Self / Semi-supervised Learning
 

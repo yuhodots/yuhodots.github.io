@@ -224,6 +224,16 @@ torch.manual_seed(args.seed)
 torch.cuda.manual_seed_all(args.seed)
 ```
 
+##### 👨‍💻 CS 
+
+*2022.03.30*
+
+친구([@jiun0](https://github.com/jiun0), [@bwmelon97](https://github.com/bwmelon97))들을 통해 알게 된 네이밍 스타일에 대해서 간단히 기록합니다.
+
+- 네이밍 스타일 종류: `lowerCamelCase`, `UpperCamelCase (PascalCase)`, `snake_case`, `Train_Case`, `spinal_case`, `UPPER_SNAKE_CASE`, ...
+- 자바스크립트는 주로: 변수, 함수, 메서드는 lowerCamelCase / 클래스명은 PascalCase / 상수명은 UPPER_SNAKE_CASE
+- 파이썬(PEP8)은 주로: 변수, 함수는 snake_case / 클래스는 CamelCase
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
