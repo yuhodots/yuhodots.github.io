@@ -1,6 +1,6 @@
 ---
 title: "PyTorch Custom Dataloader"
-date: "2022-03-30"
+date: "2022-04-03"
 template: "post"
 draft: false
 path: "/cheatsheet/22-04-03/"
@@ -48,7 +48,7 @@ Iterable-style dataset의 data loading 순서는 user-defined iterable을 통해
 - Sampler를 따로 정의하지 않더라도 Dataloader class constructor의 `shuffle` argument에 의해서 sequential(shuffle False인 경우) 혹은 shuffled(shuffle True인 경우) sampler가 자동으로 생성됩니다. 이 경우 `batch_size`와 `drop_last`를 목적에 따라 적절히 선택합시다.
 - 매번 list of batch indices를 뱉는 커스텀 Sampler를 새로 정의하는 경우에는, 해당 Sampler를 정의한 후에 Dataloader constructor의 `batch_sampler` argument에 전달하면 됩니다.
 
-### Example code 1.
+### Example 1.
 
 가장 간단한 예시로 BatchSampler를 확인해보겠습니다. mini-batch SGD에서 사용되는 Sampler이며 아래의 코드는 [PyTorch 코드](https://pytorch.org/docs/stable/_modules/torch/utils/data/sampler.html#BatchSampler)를 보기 쉽게 정리한 것입니다.
 
@@ -78,7 +78,7 @@ class BatchSampler(Sampler):
             return (len(self.sampler) + self.batch_size - 1) // self.batch_size
 ```
 
-### Example code 2.
+### Example 2.
 
 개인적으로 작업하고 있는 내용 중에서 서로 다른 두 개의 데이터 셋을 concat 해야하는 상황이 존재하여 아래와 같이 코드를 작성해 보았습니다.
 
