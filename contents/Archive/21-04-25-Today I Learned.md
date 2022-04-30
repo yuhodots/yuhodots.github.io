@@ -234,6 +234,16 @@ torch.cuda.manual_seed_all(args.seed)
 - 자바스크립트는 주로: 변수, 함수, 메서드는 lowerCamelCase / 클래스명은 PascalCase / 상수명은 UPPER_SNAKE_CASE
 - 파이썬(PEP8)은 주로: 변수, 함수는 snake_case / 클래스는 CamelCase
 
+##### 🤖 ML & DL
+
+*2021.04.10*
+
+연구를 하며, 모델 학습의 안정성에 있어서 residual connection이 유용하다는 경험적인 팁을 얻었습니다. ResNet과 같이 모델 구조에서 residual connection을 활용하는 것 뿐만 아니라, 어떤 값을 조심스럽게 바꾸고 싶을 때 residual connection을 가진 구조가 비교적 높은 성능을 보이는 것을 확인하였습니다.
+
+예를 들어 GNN을 통해 embedding vector를 업데이트하고 싶을 때 $V_{t+1} = G(V_t)$의 형태를 사용하는 것 보다 $V_{t+1} = V_t + G(V_t)$의 형태를 사용하는 것이 좋으며, 현재 실험 중인 것 중에서는 few-shot으로 distribution의 mean을 잘 추정해보려는 내용이 있는데, 이 경우에도 $\hat \mu = f_\theta(\text{few-shot})$ 보다는 $\hat \mu = \text{mean of few-shot} +  f_\theta(\text{few-shot})$ 형태에서 더 좋은 결과를 얻었습니다.
+
+아무래도 일반적으로 parameter가 0에 가까운 가우시안으로 초기화되기 때문에, residual connection을 사용한 경우에 초기 loss가 더 작아져 비교적 학습이 안정적인 것이 아닐까 싶습니다. (*정말로 그런 것인지 찾아보고 내용 추가하기*)
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

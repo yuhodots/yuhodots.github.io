@@ -82,12 +82,11 @@ category: "Cheat Sheet"
   - Previous task에 대한 inference 상황에서 current task에 biased된 moments를 사용하게 되는 현상을 cross-task normalization effect라고 함
   - BN을 continual learning task에 단순히 사용하는 경우에 이런 cross-task normalization effect가 존재하기 때문에, GN과 같이 cross-task normalization effect 없는 method도 같이 사용하자는 것이 논문의 아이디어. 즉, mini-batch와 spatial normalization 사이에 balancing이 continual learning 에서의 normalization에 중요하다고 주장
   - SwithNorm이나 TaskNorm과 같이 BN, LN, IN, GN 등의 blending weight 형태보다 GN -> BN (=CN)의 형태가 더 좋다고 주장
-- [ ] [Cha, Sungmin, et al. "Task-Balanced Batch Normalization for Exemplar-based Class-Incremental Learning." arXiv preprint arXiv:2201.12559, 2022.](https://arxiv.org/abs/2201.12559)
-
+- [x] [Cha, Sungmin, et al. "Task-Balanced Batch Normalization for Exemplar-based Class-Incremental Learning." arXiv preprint arXiv:2201.12559, 2022.](https://arxiv.org/abs/2201.12559)
   - Exemplar-based CIL에 대해, task-balaneced $\mu$ & $\sigma^2$ 계산 방법과 affine transformation parameter를 덜 편향되게 하는 계산법을 제안함
   - Task-balanced $\mu$ & $\sigma^2$ calculation: current biased 되지 않도록 reshape과 repeat 연산을 사용한 새로운 $\mu$ & $\sigma^2$ 계산 방법 제안
   - Less-biased learning of parameter for affine transformation: task-balanced calculation에서의 계산법과 어울리도록/일치하도록 reshape -> inverse reshape 방식의 계산 도입
-
+  
 - [ ] [Skorokhodov, Ivan, and Mohamed Elhoseiny. "Class Normalization for (Continual)? Generalized Zero-Shot Learning." ICRL 2021.](https://openreview.net/forum?id=7pgFL2Dkyyy)
   - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
@@ -118,10 +117,20 @@ category: "Cheat Sheet"
 
 ### etc.
 
-- [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021](https://arxiv.org/pdf/2105.07576.pdf)
+- [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
 - [x] [Lipton, Zachary C., and Jacob Steinhardt. "Troubling trends in machine learning scholarship." arXiv preprint arXiv:1807.03341, 2018.](https://arxiv.org/abs/1807.03341)
 - [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html)
 - [ ] [Khosla, Prannay, et al. "Supervised contrastive learning." NIPS 2020.](https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html)
 - [ ] [Sohn, Kihyuk. "Improved deep metric learning with multi-class n-pair loss objective." NIPS 2016.](https://proceedings.neurips.cc/paper/2016/hash/6b180037abbebea991d8b1232f8a8ca9-Abstract.html)
 - [ ] [He, Xinwei, et al. "Triplet-center loss for multi-view 3d object retrieval." CVPR 2018.](https://openaccess.thecvf.com/content_cvpr_2018/html/He_Triplet-Center_Loss_for_CVPR_2018_paper.html)
 - [x] [Martin-Brualla, Ricardo, et al. "Nerf in the wild: Neural radiance fields for unconstrained photo collections." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Martin-Brualla_NeRF_in_the_Wild_Neural_Radiance_Fields_for_Unconstrained_Photo_CVPR_2021_paper.html)
+- [ ] [Ridnik, Tal, et al. "Solving ImageNet: a Unified Scheme for Training any Backbone to Top Results." arXiv preprint arXiv:2204.03475 , 2022.](https://arxiv.org/pdf/2204.03475.pdf)
+  - 새로운 방법을 제안하는 논문은 아니고 technical report에 가까움
+  - ImageNet dataset에 대해서, 어떤 모델 구조더라도 하이퍼파라미터 튜닝 없이 동일하게 적용할 수 있는 USI(Unified Scheme for ImageNet)을 제안. Knowledge distillation과 몇 가지 modern tricks를 사용하였고, 모든 모델에 대해서 previous SOTA를 넘었음
+  - TResNet-L 구조의 teacher model과 더불어 논문에서 제안하는 하이퍼파라미터를 사용하면, CNN, Transformer, Mobile-oriented, MLP-only 형태의 student 모델에 대해서 모두 성능이 개선된다고 함
+  - 일반적인 knowledge distillation 형태(vanilla KD)와 동일하게, true label y에 대해서는 cross entropy loss를 사용하고, teacher label에 대해서는 temperature를 사용하여 soft label을 만든 뒤에 student prediction과 KLD를 계산함
+- [ ] [Lubana, Ekdeep S., Robert Dick, and Hidenori Tanaka. "Beyond BatchNorm: towards a unified understanding of normalization in deep learning." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/2578eb9cdf020730f77793e8b58e165a-Abstract.html)
+- [ ] [Ergen, Tolga, et al. "Demystifying batch normalization in relu networks: Equivalent convex optimization models and implicit regularization." ICLR 2022.](https://arxiv.org/pdf/2103.01499.pdf)
+- [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
+- [x] [Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.](https://arxiv.org/pdf/2101.08692.pdf)
+- [ ] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
