@@ -51,4 +51,6 @@ category: "about"
 
 ### Skills
 
-- Python, MATLAB, C, BackEnd(Django, Node.js)
+- Python, MATLAB and C
+- Internship(NAVER Corp): PyTorch, Django, jQuery and Bootstrap
+- Personal project(Web): Express.js, MySQL, AWS(EC2, S3, route53), Nginx and React.js
