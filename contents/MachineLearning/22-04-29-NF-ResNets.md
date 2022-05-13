@@ -142,6 +142,10 @@ $$
 
 이러한 AGC를 사용하니 NF-ResNets을 4096 이상의 large batch size에서도 안정적인 학습을 할 수 있었을 뿐만 아니라, RandAugment 같은 strong data augmentation 방법을 사용해도 문제가 없었다고 합니다.
 
+---
+
+*PyTorch에서 SPPs와 NF-ResNets를 구현한 코드가 있어서 참고하여 [이곳](https://github.com/yuhodots/SPPs)에서 결과를 확인해 보았습니다! 현재는 NF-ResNet101이 생각했던 형태가 나오지 않아서 제가 놓친 부분이 있는 듯 싶습니다...*
+
 ### References
 
 [^1]:Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.

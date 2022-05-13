@@ -236,13 +236,21 @@ torch.cuda.manual_seed_all(args.seed)
 
 ##### 🤖 ML & DL
 
-*2021.04.10*
+*2022.04.10*
 
 연구를 하며, 모델 학습의 안정성에 있어서 residual connection이 유용하다는 경험적인 팁을 얻었습니다. ResNet과 같이 모델 구조에서 residual connection을 활용하는 것 뿐만 아니라, 어떤 값을 조심스럽게 바꾸고 싶을 때 residual connection을 가진 구조가 비교적 높은 성능을 보이는 것을 확인하였습니다.
 
 예를 들어 GNN을 통해 embedding vector를 업데이트하고 싶을 때 $V_{t+1} = G(V_t)$의 형태를 사용하는 것 보다 $V_{t+1} = V_t + G(V_t)$의 형태를 사용하는 것이 좋으며, 현재 실험 중인 것 중에서는 few-shot으로 distribution의 mean을 잘 추정해보려는 내용이 있는데, 이 경우에도 $\hat \mu = f_\theta(\text{few-shot})$ 보다는 $\hat \mu = \text{mean of few-shot} +  f_\theta(\text{few-shot})$ 형태에서 더 좋은 결과를 얻었습니다.
 
 아무래도 일반적으로 parameter가 0에 가까운 가우시안으로 초기화되기 때문에, residual connection을 사용한 경우에 초기 loss가 더 작아져 비교적 학습이 안정적인 것이 아닐까 싶습니다. (*정말로 그런 것인지 찾아보고 내용 추가하기*)
+
+##### 👨‍💻 CS 
+
+*2022.05.11*
+
+- 인터프리터[^18] 언어: Python과 같이, 프로그래밍 언어의 소스 코드를 바로 실행. 빌드 시간이 없지만, runtime에서는 컴파일 언어에 비해 속도가 느림
+- 컴파일 언어[^19]: C/C++과 같이, 특정 프로그래밍 언어로 쓰여 있는 문서를 다른 프로그래밍 언어(혹은 기계어)로 번역하여 실행. 빌드 시간이 소요되지만, runtime에서 빠르게 실행 가능. 원래의 문서를 소스 코드(혹은 원시 코드)라고 부르고, 출력된 문서를 목적 코드라고 부름. 목적 코드는 주로 하드웨어가 처리하기에 용이한 형태로 출력되지만 사람이 읽을 수 있는 문서 파일이나 그림 파일 등으로 옮기는 경우도 있음
+- 현대에 들어 많은 인터프리터가 JIT(just-in-time) 컴파일 등의 기술로 실시간 컴파일을 수행하므로, 컴파일러와 인터프리터 사이의 기술적 구분은 사라져 가는 추세. Java가 JIT 컴파일을 지원하기 때문에 컴파일 언어인 동시에 인터프리터 언어라고 할 수 있음.
 
 ### References
 
@@ -266,4 +274,6 @@ torch.cuda.manual_seed_all(args.seed)
 
 [^ 16]: Wikipedia contributors. (2021, December 22). Web query. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:04, February 6, 2022, from https://en.wikipedia.org/w/index.php?title=Web_query&oldid=1061542579
 [^ 17]: Christina Kopecky. "What is a database query? SQL and NoSQL queries explained". https://www.educative.io/blog/what-is-database-query-sql-nosql#what-is, Aug 31, 2020.
+[^18]: 인터프리터. (2022년 3월 3일). *위키백과,* . 14:47, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0&oldid=32006110](https://ko.wikipedia.org/w/index.php?title=인터프리터&oldid=32006110) 에서 찾아볼 수 있음.
+[^19]: 컴파일러. (2022년 3월 15일). *위키백과,* . 15:23, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC&oldid=32228964](https://ko.wikipedia.org/w/index.php?title=컴파일러&oldid=32228964) 에서 찾아볼 수 있음.
 

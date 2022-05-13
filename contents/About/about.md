@@ -51,6 +51,6 @@ category: "about"
 
 ### Skills
 
-- Python, MATLAB and C
-- Internship(NAVER Corp): PyTorch, Django, jQuery and Bootstrap
-- Personal project(Web): Express.js, MySQL, AWS(EC2, S3, route53), Nginx and React.js
+- Python, C++, MATLAB
+- PyTorch, Django, jQuery and Bootstrap for NAVER Corp. internship
+- Express.js, MySQL, AWS EC2, AWS S3, Nginx and React.js for Uitda project

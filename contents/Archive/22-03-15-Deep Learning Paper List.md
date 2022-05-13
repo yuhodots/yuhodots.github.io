@@ -2,13 +2,13 @@
 title: "Deep Learning Paper List"
 date: "2022-03-15"
 template: "post"
-draft: true
-path: "/cheatsheet/22-03-15/"
-description: "관심 분야의 논문 리스트를 기록합니다. 최근에 읽은 논문들에 대해서는 핵심 내용을 세 줄 요약으로 적고 있습니다. 지금까지는 Few-shot learning / Meta Learning, Incremental / Continual Learning, Self / Semi-supervised Learning, Reinforcement Learning, Natural Language Processing에 대한 논문을 기록하였습니다."
-category: "Cheat Sheet"
+draft: false
+path: "/deeplearning/22-03-15/"
+description: "관심 분야의 논문들을 기록합니다. 최근에 읽은 논문들에 대해서는 핵심 내용을 세 줄 요약으로 적고 있습니다. 체크 표시가 되어있지 않은 논문들은 추후 다시 읽어 볼 필요가 있는 논문을 의미합니다. Few-shot learning, Meta Learning, Incremental & Continual Learning, Self & Semi-supervised Learning, Reinforcement Learning, Natural Language Processing 분야의 논문을 기록하였습니다."
+category: "Deep Learning"
 ---
 
-> 관심 분야의 논문 리스트를 기록합니다. 최근에 읽은 논문은 핵심 내용을 세 줄 요약으로 추가하고 있습니다. 
+> 관심 분야의 논문 리스트를 기록합니다. 최근에 읽은 논문은 핵심 내용을 세 줄 요약으로 추가하고 있습니다. 체크 표시가 되어있지 않은 논문들은 추후 다시 읽어 볼 필요가 있는 논문을 의미합니다.
 
 ### Few-shot / Meta Learning
 
@@ -53,7 +53,7 @@ category: "Cheat Sheet"
 - [x] [Zhu, Kai, et al. "Self-Promoted Prototype Refinement for Few-Shot Class-Incremental Learning." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Zhu_Self-Promoted_Prototype_Refinement_for_Few-Shot_Class-Incremental_Learning_CVPR_2021_paper.html)
 - [ ] [Kirkpatrick, James, et al. "Overcoming catastrophic forgetting in neural networks." PNAS 2017.](https://www.pnas.org/content/114/13/3521.short)
   - Fisher Information Matrix를 사용하여, parameter space 상에서 특정 covariance를 제약으로 parameter 학습이 이루어지도록 하는 알고리즘 (mahalanobis distance와 동일한 formulation)
-  - 참고할 블로그 [링크1](https://yukyunglee.github.io/Fisher-Information-Matrix/), [링크2](https://nzer0.github.io/Fisher-Info-and-NLL-Hessian.html)
+  - 논문 설명 블로그 [링크1](https://yukyunglee.github.io/Fisher-Information-Matrix/), [링크2](https://nzer0.github.io/Fisher-Info-and-NLL-Hessian.html)
 - [x] [Shi, Guangyuan, et al. "Overcoming Catastrophic Forgetting in Incremental Few-Shot Learning by Finding Flat Minima." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/357cfba15668cc2e1e73111e09d54383-Abstract.html)
   - Robust optimization과 관계가 깊은 논문. Figure 2만 봐도 논문이 말하고자 하는 내용은 파악 가능
 - [ ] [Chi, Haoang, et al. "Meta discovery: Learning to discover novel classes given very limited data." ICLR 2022.](https://openreview.net/pdf?id=MEpKGLsY8f)
@@ -85,8 +85,6 @@ category: "Cheat Sheet"
 - [x] [Cha, Sungmin, et al. "Task-Balanced Batch Normalization for Exemplar-based Class-Incremental Learning." arXiv preprint arXiv:2201.12559, 2022.](https://arxiv.org/abs/2201.12559)
   - Exemplar-based CIL에 대해, task-balaneced $\mu$ & $\sigma^2$ 계산 방법과 affine transformation parameter를 덜 편향되게 하는 계산법을 제안함
   - Task-balanced $\mu$ & $\sigma^2$ calculation: current biased 되지 않도록 reshape과 repeat 연산을 사용한 새로운 $\mu$ & $\sigma^2$ 계산 방법 제안
-  - Less-biased learning of parameter for affine transformation: task-balanced calculation에서의 계산법과 어울리도록/일치하도록 reshape -> inverse reshape 방식의 계산 도입
-  
 - [ ] [Skorokhodov, Ivan, and Mohamed Elhoseiny. "Class Normalization for (Continual)? Generalized Zero-Shot Learning." ICRL 2021.](https://openreview.net/forum?id=7pgFL2Dkyyy)
   - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
@@ -133,4 +131,5 @@ category: "Cheat Sheet"
 - [ ] [Ergen, Tolga, et al. "Demystifying batch normalization in relu networks: Equivalent convex optimization models and implicit regularization." ICLR 2022.](https://arxiv.org/pdf/2103.01499.pdf)
 - [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
 - [x] [Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.](https://arxiv.org/pdf/2101.08692.pdf)
-- [ ] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
+- [x] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
+- [ ] [Wu, Zhirong, et al. "Unsupervised feature learning via non-parametric instance discrimination." CVPR 2018.](https://openaccess.thecvf.com/content_cvpr_2018/html/Wu_Unsupervised_Feature_Learning_CVPR_2018_paper.html)

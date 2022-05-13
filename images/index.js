@@ -12,6 +12,8 @@ import ray from "./ray.png"
 import ICLR from "./ICLR.jpg"
 import NIPS from "./NIPS.png"
 import CVPR from "./CVPR.png"
+import cpp from "./cpp.png"
+import java from "./java.png"
 
 export default {
     aws,
@@ -27,5 +29,7 @@ export default {
     ray,
     ICLR,
     NIPS,
-    CVPR
+    CVPR,
+    cpp,
+    java
 };
