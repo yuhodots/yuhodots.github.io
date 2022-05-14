@@ -5,7 +5,7 @@ template: "post"
 draft: false
 path: "/server/19-08-14/"
 description: "이전 포스팅에서는 SSL 인증을 받고 이를 도메인에 연결한 뒤 node.js 내 app.js에서 http 접속을 강제로 https로 리다이렉션 하는 방법에 대해 알아보았습니다. 이번에는 nginx에서 https 리다이렉션을 구현하는 방법에 대해서 알아보도록 하겠습니다."
-category: "Server"
+category: "BackEnd"
 thumbnail: "nginx"
 ---
 

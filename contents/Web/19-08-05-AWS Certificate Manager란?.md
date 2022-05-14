@@ -5,7 +5,7 @@ template: "post"
 draft: false
 path: "/server/19-08-05/"
 description: "https에 붙는 's'는 Secure Socket Layer를 의미하는데 이를 줄여서 SSL이나 TLS(Transport Layer Security)라고 부르며 SSL/TLS인증을 받아야 자신의 웹 사이트를 공격자로 부터 더 안전한 사이트로 만들 수 있습니다."
-category: "Server"
+category: "BackEnd"
 thumbnail: "aws"
 ---
 

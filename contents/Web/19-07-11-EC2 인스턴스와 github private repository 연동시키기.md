@@ -5,7 +5,7 @@ template: "post"
 draft: false
 path: "/server/19-07-11/"
 description: " 자신이 제작하고 있는 웹 애플리케이션을 버전 관리 시스템으로 관리하고 싶다면, 자신이 사용하는 컴퓨터의 원하는 디렉토리 내에서 git clone명령어를 사용하여 github와 연동이 가능합니다."
-category: "Server"
+category: "BackEnd"
 thumbnail: "aws"
 ---
 
