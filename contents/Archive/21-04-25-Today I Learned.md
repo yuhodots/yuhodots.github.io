@@ -74,7 +74,7 @@ TensorFlow 1.15로 코드를 짜다가 `softmax_cross_entropy_with_logits`는 lo
 
 Few-shot learning setting에서 support set과 query set에 대해서 둘 다 `is_training`을 True로 설정하면 이는 transductive setting이 됩니다. 즉 query를 추정하기 위해서 support 뿐만 아니라 query 분포의 정보까지 사용하겠다는 것을 의미합니다. Few-shot learning에서는 대부분 transductive setting이 non-transductive에 비해 3%정도의 성능 향상을 보이기 때문에 본인의 실험 상황에 알맞게 아규먼트 값을 설정해야 합니다. 
 
-`tf.contrib.layers.group_norm` 같은 instance-based normalization 방식은 미니배치에 대한 running statistics를 사용하지 않기 때문에 `is_tranable` 파라미터가 존재하지 않습니다.
+`tf.contrib.layers.group_norm` 같은 instance-based normalization 방식은 미니배치에 대한 running statistics를 사용하지 않기 때문에 `is_trainable` 파라미터가 존재하지 않습니다.
 
 ##### 🤖 ML & DL
 
@@ -252,6 +252,38 @@ torch.cuda.manual_seed_all(args.seed)
 - 컴파일 언어[^19]: C/C++과 같이, 특정 프로그래밍 언어로 쓰여 있는 문서를 다른 프로그래밍 언어(혹은 기계어)로 번역하여 실행. 빌드 시간이 소요되지만, runtime에서 빠르게 실행 가능. 원래의 문서를 소스 코드(혹은 원시 코드)라고 부르고, 출력된 문서를 목적 코드라고 부름. 목적 코드는 주로 하드웨어가 처리하기에 용이한 형태로 출력되지만 사람이 읽을 수 있는 문서 파일이나 그림 파일 등으로 옮기는 경우도 있음
 - 현대에 들어 많은 인터프리터가 JIT(just-in-time) 컴파일 등의 기술로 실시간 컴파일을 수행하므로, 컴파일러와 인터프리터 사이의 기술적 구분은 사라져 가는 추세. Java가 JIT 컴파일을 지원하기 때문에 컴파일 언어인 동시에 인터프리터 언어라고 할 수 있음.
 
+##### 🤖 ML & DL
+
+*2022.05.16*
+
+Moore–Penrose inverse(=Pseudo inverse)[^20]에 대해서 정리합니다.
+
+- $A\mathrm  x =\mathrm b$의 형태의 linear system을 풀 때, $A$가 정방 행렬이 아니라면 아래의 두 가지 상황이 존재.
+
+1. Underdetemined (n < m): 가로로 긴 A. Infinitely many solution given $\mathrm b$ in general
+2. Overdetermined (n > m): 세로로 긴 A. Zero solution for given $\mathrm b$ in general
+
+- $A$에 대해서 singular value decomposition을 수행하면 아래와 같이 전개가 가능함
+
+$$
+A \mathrm x = b \\
+U \Sigma V^\top \mathrm  x =\mathrm b \\
+V \Sigma ^{-1} U^\top U \Sigma V^\top \mathrm  x =V \Sigma ^{-1} U^\top \mathrm b \\
+\tilde {\mathrm x} = V \Sigma ^{-1} U^\top \mathrm b := A^+ \mathrm  b
+$$
+
+- 여기서 $A^+ = V \Sigma ^+ U^\top $를 A의 pseudo inverse라 함
+- $\Sigma = \text{diag}_{n,m}(\lambda_1, \cdots, \lambda_{\min\{ n, m \}})$일 때, $\Sigma^+ = \text{diag}_{m,n}(\lambda_1^+, \cdots, \lambda^+_{\min\{ n, m \}})$ where $\lambda^+= 
+  \begin{cases}
+      \lambda^{-1},& \lambda \neq 0 \\
+      0,              & \lambda = 0
+  \end{cases}$
+
+Moore–Penrose inverse를 사용하면 선형대수학의 많은 부분을 쉽게 서술 및 증명 가능함
+
+1. Underdetemined(해가 여러 개 존재)에서 $A^+ \mathrm b$는 유클리드 노름 $||\tilde {\mathrm x} ||_2$을 최소화하는 해임
+2. Overdetermined에서 $||A \tilde {\mathrm  x} - \mathrm b||_2 = ||A A^+ \mathrm b - \mathrm b||_2$는 최소제곱법의 최적해임
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
@@ -277,3 +309,4 @@ torch.cuda.manual_seed_all(args.seed)
 [^18]: 인터프리터. (2022년 3월 3일). *위키백과,* . 14:47, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0&oldid=32006110](https://ko.wikipedia.org/w/index.php?title=인터프리터&oldid=32006110) 에서 찾아볼 수 있음.
 [^19]: 컴파일러. (2022년 3월 15일). *위키백과,* . 15:23, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC&oldid=32228964](https://ko.wikipedia.org/w/index.php?title=컴파일러&oldid=32228964) 에서 찾아볼 수 있음.
 
+[^20]: Wikipedia contributors. (2022, April 27). Moore–Penrose inverse. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:08, May 16, 2022, from [https://en.wikipedia.org/w/index.php?title=Moore%E2%80%93Penrose_inverse&oldid=1085006448](https://en.wikipedia.org/w/index.php?title=Moore–Penrose_inverse&oldid=1085006448)
