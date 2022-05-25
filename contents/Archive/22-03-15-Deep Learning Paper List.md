@@ -10,7 +10,7 @@ category: "Deep Learning"
 
 > 관심 분야의 논문 리스트를 기록합니다. 최근에 읽은 논문은 핵심 내용을 세 줄 요약으로 추가하고 있습니다. 체크 표시가 되어있지 않은 논문들은 추후 다시 읽어 볼 필요가 있는 논문을 의미합니다.
 
-### Few-shot / Meta Learning
+### Few-shot Learning, Meta Learning
 
 - [x] [Vinyals, Oriol, et al. "Matching networks for one shot learning." NIPS 2016.](https://dl.acm.org/doi/abs/10.5555/3157382.3157504)
 - [ ] [Santoro, et al. "Meta-Learning with Memory-Augmented Neural Networks." ICML 2016.](http://proceedings.mlr.press/v48/santoro16.pdf)
@@ -31,7 +31,7 @@ category: "Deep Learning"
 - [ ] [Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.](https://arxiv.org/pdf/2012.04324.pdf)
 - [ ] [Cha, Junbum, et al. "Swad: Domain generalization by seeking flat minima." NIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/bcb41ccdc4363c6848a1d760f26c28a0-Abstract.html)
 
-### Incremental / Continual Learning
+### Incremental Learning, Continual Learning
 
 - [x] [Li, Zhizhong, and Derek Hoiem. "Learning without forgetting." IEEE transactions on pattern analysis and machine intelligence 40.12 (2017): 2935-2947.](https://ieeexplore.ieee.org/abstract/document/8107520)
 - [x] [Parisi, German I., et al. "Continual lifelong learning with neural networks: A review." Neural Networks 113 (2019): 54-71.](https://www.sciencedirect.com/science/article/pii/S0893608019300231)
@@ -56,10 +56,6 @@ category: "Deep Learning"
   - 논문 설명 블로그 [링크1](https://yukyunglee.github.io/Fisher-Information-Matrix/), [링크2](https://nzer0.github.io/Fisher-Info-and-NLL-Hessian.html)
 - [x] [Shi, Guangyuan, et al. "Overcoming Catastrophic Forgetting in Incremental Few-Shot Learning by Finding Flat Minima." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/357cfba15668cc2e1e73111e09d54383-Abstract.html)
   - Robust optimization과 관계가 깊은 논문. Figure 2만 봐도 논문이 말하고자 하는 내용은 파악 가능
-- [ ] [Chi, Haoang, et al. "Meta discovery: Learning to discover novel classes given very limited data." ICLR 2022.](https://openreview.net/pdf?id=MEpKGLsY8f)
-  - Learning to discover novel classes(L2DNC) task에 대해서 이전 가정이 이론적으로 잘못되었다는 것을 증명하고, 이론적으로 가능한 L2DNC 상황을 재정립함. 이와 더불어 더 실생활과 관련있는 few novel observation 상황을 가정하여, L2DNCL task를 정의함.
-  - 재정립한 L2DNC이 meta-learning의 가정과 유사하여 MAML, ProtoNet의 아이디어를 차용한 MM, MP를 제안함.
-  - 그리고 meta-learning에 L2DNC를 접목할 수 있도록 Clustering-rule-aware Task Sampler(CATA)를 제안함.
 - [x] [Cha, Hyuntak, Jaeho Lee, and Jinwoo Shin. "Co2l: Contrastive continual learning." ICCV 2021.](https://openaccess.thecvf.com/content/ICCV2021/html/Cha_Co2L_Contrastive_Continual_Learning_ICCV_2021_paper.html)
   - Asymmetric SupCon loss로 novel learning하고, self-supervised instance-wise relation distill(IRD)로 preserve knowledge
   - Asymmetric SupCon: current task와 memory buffer를 둘 다 사용하지만, anchor로는 current task만 사용. 이 경우에 그냥 SupCon보다 효과 좋음
@@ -89,7 +85,7 @@ category: "Deep Learning"
   - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
 
-### Self / Semi-supervised Learning
+### Self-supervised Learning, Semi-supervised Learning
 
 - [x] [Grill, Jean-Bastien, et al. "Bootstrap your own latent: A new approach to self-supervised learning." NIPS 2020.](https://arxiv.org/abs/2006.07733)
 - [x] [Pham, Hieu, et al. "Meta pseudo labels." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Pham_Meta_Pseudo_Labels_CVPR_2021_paper.html)
@@ -103,6 +99,42 @@ category: "Deep Learning"
   - Key mechanism은 regression에서 confidence를 만들어내는 작업이었고, $x_u$가 추가됨에 따라서 MSE가 얼마나 개선되는지를 계산하여($\vartriangle_u$) 이 값이 제일 커지는 $x_u$에 대해 confidence가 높다고 판단하여 해당 $x_u$에 pseudo label을 부여
 - [ ] [Jean, Neal, Sang Michael Xie, and Stefano Ermon. "Semi-supervised Deep Kernel Learning: Regression with Unlabeled Data by Minimizing Predictive Variance." NIPS 2018.](https://par.nsf.gov/servlets/purl/10080181)
 
+### Metric Learning
+
+- [ ] [Khosla, Prannay, et al. "Supervised contrastive learning." NIPS 2020.](https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html)
+- [ ] [Sohn, Kihyuk. "Improved deep metric learning with multi-class n-pair loss objective." NIPS 2016.](https://proceedings.neurips.cc/paper/2016/hash/6b180037abbebea991d8b1232f8a8ca9-Abstract.html)
+- [ ] [He, Xinwei, et al. "Triplet-center loss for multi-view 3d object retrieval." CVPR 2018.](https://openaccess.thecvf.com/content_cvpr_2018/html/He_Triplet-Center_Loss_for_CVPR_2018_paper.html)
+- [ ] [Wu, Zhirong, et al. "Unsupervised feature learning via non-parametric instance discrimination." CVPR 2018.](https://openaccess.thecvf.com/content_cvpr_2018/html/Wu_Unsupervised_Feature_Learning_CVPR_2018_paper.html)
+
+### Normalization Methods
+
+- [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
+- [ ] [Lubana, Ekdeep S., Robert Dick, and Hidenori Tanaka. "Beyond BatchNorm: towards a unified understanding of normalization in deep learning." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/2578eb9cdf020730f77793e8b58e165a-Abstract.html)
+- [ ] [Ergen, Tolga, et al. "Demystifying batch normalization in relu networks: Equivalent convex optimization models and implicit regularization." ICLR 2022.](https://arxiv.org/pdf/2103.01499.pdf)
+- [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
+- [x] [Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.](https://arxiv.org/pdf/2101.08692.pdf)
+- [x] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
+
+### Novel Class Discovery
+
+- [x] [Han, Kai, et al. "Automatically Discovering and Learning New Visual Categories with Ranking Statistics." ICLR 2020.](https://openreview.net/forum?id=BJl2_nVFPB)
+
+- [x] [Han, Kai, et al. "Autonovel: Automatically discovering and learning novel visual categories." TPAMI 2021.](https://ieeexplore.ieee.org/abstract/document/9464163/)
+
+  1. Self-supervised pre-training on labelled and unlabelled data using RotNet loss (training $\Phi$)
+  2. Supervised training on labelled data using CE loss (training the head $\eta^l$ and the last micro-block of $\Phi$)
+  3. Training on pseudo-labelled data with ranking statisitics using BCE loss (training the head $\eta^u$ and the last micro-block of $\Phi$)
+
+  - 2번과 3번 joint training 수행. 하지만 3번이 매 epoch마다 다르게 pseudo-labelled 되어 학습의 불안정을 유발하므로, MSE를 consistency cost로써 추가 (자세한 식은 논문 참고)
+
+- [ ] [Chi, Haoang, et al. "Meta discovery: Learning to discover novel classes given very limited data." ICLR 2022.](https://openreview.net/pdf?id=MEpKGLsY8f)
+
+  - Learning to discover novel classes(L2DNC) task에 대해서 이전 가정이 이론적으로 잘못되었다는 것을 증명하고, 이론적으로 가능한 L2DNC 상황을 재정립함. 이와 더불어 더 실생활과 관련있는 few novel observation 상황을 가정하여, L2DNCL task를 정의함.
+  - 재정립한 L2DNCL이 meta-learning의 가정과 유사하여 MAML, ProtoNet의 아이디어를 차용한 MM, MP를 제안함.
+  - Meta-learning에 L2DNCL를 접목할 수 있도록 Clustering-rule-aware Task Sampler(CATA)를 제안함.
+
+- [ ] [Zhong, Zhun, et al. "Neighborhood Contrastive Learning for Novel Class Discovery." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Zhong_Neighborhood_Contrastive_Learning_for_Novel_Class_Discovery_CVPR_2021_paper.html)
+
 ### Reinforcement Learning
 
 - [ ] [Wang, Jane X., et al. "Learning to reinforcement learn." arXiv preprint arXiv:1611.05763, 2016](https://arxiv.org/pdf/1611.05763.pdf)
@@ -115,21 +147,11 @@ category: "Deep Learning"
 
 ### etc.
 
-- [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
 - [x] [Lipton, Zachary C., and Jacob Steinhardt. "Troubling trends in machine learning scholarship." arXiv preprint arXiv:1807.03341, 2018.](https://arxiv.org/abs/1807.03341)
 - [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html)
-- [ ] [Khosla, Prannay, et al. "Supervised contrastive learning." NIPS 2020.](https://proceedings.neurips.cc/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html)
-- [ ] [Sohn, Kihyuk. "Improved deep metric learning with multi-class n-pair loss objective." NIPS 2016.](https://proceedings.neurips.cc/paper/2016/hash/6b180037abbebea991d8b1232f8a8ca9-Abstract.html)
-- [ ] [He, Xinwei, et al. "Triplet-center loss for multi-view 3d object retrieval." CVPR 2018.](https://openaccess.thecvf.com/content_cvpr_2018/html/He_Triplet-Center_Loss_for_CVPR_2018_paper.html)
 - [x] [Martin-Brualla, Ricardo, et al. "Nerf in the wild: Neural radiance fields for unconstrained photo collections." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Martin-Brualla_NeRF_in_the_Wild_Neural_Radiance_Fields_for_Unconstrained_Photo_CVPR_2021_paper.html)
 - [ ] [Ridnik, Tal, et al. "Solving ImageNet: a Unified Scheme for Training any Backbone to Top Results." arXiv preprint arXiv:2204.03475 , 2022.](https://arxiv.org/pdf/2204.03475.pdf)
   - 새로운 방법을 제안하는 논문은 아니고 technical report에 가까움
   - ImageNet dataset에 대해서, 어떤 모델 구조더라도 하이퍼파라미터 튜닝 없이 동일하게 적용할 수 있는 USI(Unified Scheme for ImageNet)을 제안. Knowledge distillation과 몇 가지 modern tricks를 사용하였고, 모든 모델에 대해서 previous SOTA를 넘었음
   - TResNet-L 구조의 teacher model과 더불어 논문에서 제안하는 하이퍼파라미터를 사용하면, CNN, Transformer, Mobile-oriented, MLP-only 형태의 student 모델에 대해서 모두 성능이 개선된다고 함
   - 일반적인 knowledge distillation 형태(vanilla KD)와 동일하게, true label y에 대해서는 cross entropy loss를 사용하고, teacher label에 대해서는 temperature를 사용하여 soft label을 만든 뒤에 student prediction과 KLD를 계산함
-- [ ] [Lubana, Ekdeep S., Robert Dick, and Hidenori Tanaka. "Beyond BatchNorm: towards a unified understanding of normalization in deep learning." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/2578eb9cdf020730f77793e8b58e165a-Abstract.html)
-- [ ] [Ergen, Tolga, et al. "Demystifying batch normalization in relu networks: Equivalent convex optimization models and implicit regularization." ICLR 2022.](https://arxiv.org/pdf/2103.01499.pdf)
-- [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
-- [x] [Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.](https://arxiv.org/pdf/2101.08692.pdf)
-- [x] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
-- [ ] [Wu, Zhirong, et al. "Unsupervised feature learning via non-parametric instance discrimination." CVPR 2018.](https://openaccess.thecvf.com/content_cvpr_2018/html/Wu_Unsupervised_Feature_Learning_CVPR_2018_paper.html)

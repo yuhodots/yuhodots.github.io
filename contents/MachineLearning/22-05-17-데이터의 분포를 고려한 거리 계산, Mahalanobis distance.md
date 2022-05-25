@@ -9,7 +9,7 @@ category: "Data Science"
 thumbnail: "datascience"
 ---
 
-Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 Mahalanobis distance을 이해해보도록 하겠습니다. 
+> Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 Mahalanobis distance을 이해해보도록 하겠습니다. 
 
 ### Inverse matrix
 
