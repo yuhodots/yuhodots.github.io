@@ -284,6 +284,20 @@ Moore–Penrose inverse를 사용하면 선형대수학의 많은 부분을 쉽�
 1. Underdetemined(해가 여러 개 존재)에서 $A^+ \mathrm b$는 유클리드 노름 $||\tilde {\mathrm x} ||_2$을 최소화하는 해임
 2. Overdetermined에서 $||A \tilde {\mathrm  x} - \mathrm b||_2 = ||A A^+ \mathrm b - \mathrm b||_2$는 최소제곱법의 최적해임
 
+##### 🤖 ML & DL
+
+*2022.05.27*
+
+Linear combination에 대해서 계수가 양수이고 계수의 합이 1인 경우, 이를 convex combination이라고 함
+
+Convex set의 정의와 연관지어 보면, 어떤 집합 C에 속하는 임의의 점들의 convex combination이 C에 속하면 그 집합은 convex set이라고 말할 수 있으며, 마찬가지로 convex set C에 속하는 점들의 convex combination은 항상 C에 속함.
+
+##### 🤖 ML & DL
+
+*2022.05.28*
+
+다양한 Data Augmentation 방법들에 대해서 [이곳](https://cse-study.github.io/ai/2022-05/220527-data-augmentation/)에 정리하였습니다.
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

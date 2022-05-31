@@ -85,14 +85,17 @@ category: "Deep Learning"
   - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
 
-### Self-supervised Learning, Semi-supervised Learning
+### Self-supervised Learning
 
 - [x] [Grill, Jean-Bastien, et al. "Bootstrap your own latent: A new approach to self-supervised learning." NIPS 2020.](https://arxiv.org/abs/2006.07733)
-- [x] [Pham, Hieu, et al. "Meta pseudo labels." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Pham_Meta_Pseudo_Labels_CVPR_2021_paper.html)
 - [ ] [Kolesnikov, Alexander, Xiaohua Zhai, and Lucas Beyer. "Revisiting self-supervised visual representation learning." CVPR 2019.](https://openaccess.thecvf.com/content_CVPR_2019/html/Kolesnikov_Revisiting_Self-Supervised_Visual_Representation_Learning_CVPR_2019_paper.html)
 - [ ] [Tian, Yuandong, Xinlei Chen, and Surya Ganguli. "Understanding self-supervised Learning Dynamics without Contrastive Pairs." arXiv preprint arXiv:2102.06810, 2021.](https://arxiv.org/abs/2102.06810)
 - [ ] [Kevin Lu, et al. "Pretrained Transformers as Universal Computation Engines." arXiv preprint arXiv:2103.05247, 2021](https://arxiv.org/abs/2103.05247?fbclid=IwAR3T_ZxXT0bmygQnpbWdPy_9_ilNR9nrCbALNgc6EffsXAevguFxQ_myPFE)
 - [ ] [Goyal, Priya, et al. "Self-supervised Pretraining of Visual Features in the Wild." arXiv preprint arXiv:2103.01988, 2021.](https://arxiv.org/abs/2103.01988)
+
+### Semi-supervised Learning
+
+- [x] [Pham, Hieu, et al. "Meta pseudo labels." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Pham_Meta_Pseudo_Labels_CVPR_2021_paper.html)
 - [x] [Zhou, Zhi-Hua, and Ming Li. "Semi-supervised regression with co-training." IJCAI 2005.](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/ijcai05.pdf)
   - 두 개의 kNN regressor를 사용하여 co-training 진행
   - Sufficient and redundant view를 위해서 두 regressor의 metric은 p=2 Minkowsky와 p=5 Minkowsky로 서로 다르게 설정함 
@@ -108,14 +111,15 @@ category: "Deep Learning"
 
 ### Normalization Methods
 
-- [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
 - [ ] [Lubana, Ekdeep S., Robert Dick, and Hidenori Tanaka. "Beyond BatchNorm: towards a unified understanding of normalization in deep learning." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/2578eb9cdf020730f77793e8b58e165a-Abstract.html)
 - [ ] [Ergen, Tolga, et al. "Demystifying batch normalization in relu networks: Equivalent convex optimization models and implicit regularization." ICLR 2022.](https://arxiv.org/pdf/2103.01499.pdf)
 - [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
 - [x] [Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.](https://arxiv.org/pdf/2101.08692.pdf)
 - [x] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
 
-### Novel Class Discovery
+### Novel Category Discovery
+
+- [ ] [Han, Kai, Andrea Vedaldi, and Andrew Zisserman. "Learning to discover novel visual categories via deep transfer clustering." ICCV 2019.](https://arxiv.org/pdf/1908.09884.pdf)
 
 - [x] [Han, Kai, et al. "Automatically Discovering and Learning New Visual Categories with Ranking Statistics." ICLR 2020.](https://openreview.net/forum?id=BJl2_nVFPB)
 
@@ -133,11 +137,29 @@ category: "Deep Learning"
   - 재정립한 L2DNCL이 meta-learning의 가정과 유사하여 MAML, ProtoNet의 아이디어를 차용한 MM, MP를 제안함.
   - Meta-learning에 L2DNCL를 접목할 수 있도록 Clustering-rule-aware Task Sampler(CATA)를 제안함.
 
-- [ ] [Zhong, Zhun, et al. "Neighborhood Contrastive Learning for Novel Class Discovery." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Zhong_Neighborhood_Contrastive_Learning_for_Novel_Class_Discovery_CVPR_2021_paper.html)
+- [x] [Zhong, Zhun, et al. "Neighborhood Contrastive Learning for Novel Class Discovery." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Zhong_Neighborhood_Contrastive_Learning_for_Novel_Class_Discovery_CVPR_2021_paper.html)
 
-### Reinforcement Learning
+  - Ranking Statistics(RS) 방법에 NCL, SCL, HNG 총 세 개의 방법을 더 추가한 논문. 다만 ranking statistics를 사용하여 pseudo-labelling 하지 않고, cosine similarity 기준으로 pseudo-labelling 수행
+  - Neighborhood Contrastive Learning(NCL): Unlabelled dataset을 위한 loss. Self-supervised contrastive loss와 더불어, similarity가 높은 $k$ 개의 feature를 positive라고 labelling해서 contrastive loss를 추가적으로 계산. $\ell_{n c l}=\alpha \ell_{\left(z^{u}, \hat{z}^{u}\right)}+(1-\alpha) \ell_{\left(z^{u}, \rho_{k}\right)}$
+  - Supervised Contrastive Learning(SCL): Labelled dataset을 위한 loss. 기존 supervised-contrastive loss와 동일
+  - Hard-Negative Generation(HNG): True negative(labelled dataset)와 easy negative(unlabelled dataset)를 interpolate 한 것 중에서 제일 유사도 높은 $k$ 개를 hard negative로 사용 
+  
+- [x] [Vaze, Sagar, et al. "Generalized Category Discovery." CVPR 2022.](https://arxiv.org/pdf/2201.02609.pdf)
 
-- [ ] [Wang, Jane X., et al. "Learning to reinforcement learn." arXiv preprint arXiv:1611.05763, 2016](https://arxiv.org/pdf/1611.05763.pdf)
+  - Generalized Category Discovery라는 task를 처음으로 정의한 논문
+  - Main algorithm: ViT DINO pretraining, Supervised contrastive learning + Self-supervised contrastive learning, Semi-supervised k-means clustering(using k-means++)의 순서로 알고리즘 구성
+  - Class number estimation method: Brent's method 사용
+  - Strong baselines: RS와 UNO에서 labelled dataset와 unlabelled dataset에 대한 classification head가 두 개로 나뉘어 존재하던 것을 하나로 합침. Backbone은 저자들이 제안한 ViT구조를 그대로 사용하였는데, backbone을 finetuning하는 것은 오히려 성능이 좋지 않아서, backbone은 freeze하고 classification head만 tuning하였음
+
+### Data Augmentation
+
+- [ ] [Yun, Sangdoo, et al. "Cutmix: Regularization strategy to train strong classifiers with localizable features." ICCV 2019.](https://openaccess.thecvf.com/content_ICCV_2019/html/Yun_CutMix_Regularization_Strategy_to_Train_Strong_Classifiers_With_Localizable_Features_ICCV_2019_paper.html)
+- [x] [Verma, Vikas, et al. "Manifold mixup: Better representations by interpolating hidden states." ICML 2019.](https://proceedings.mlr.press/v97/verma19a.html)
+  - 기존 Input-spcae mixup과 달리 itermediate layer의 representation을 mixup하는 방법
+  - $\left(\tilde{g}_{k}, \tilde{y}\right):=\left(\operatorname{Mix}_{\lambda}\left(g_{k}(x), g_{k}\left(x^{\prime}\right)\right), \operatorname{Mix}_{\lambda}\left(y, y^{\prime}\right)\right)$
+  - SVD 했을 때 eigenvalue가 전체적으로 작아지는 효과를 가짐. 즉, principal components 수가 작아지는 효과 (flattening)
+  - Flattening을 통해 eigenvalue가 전체적으로 작아지니 volume이 작아지며, compression은 information theory 관점에서 이론적, 실험적으로 generalization과 연관이 있어 장점을 가짐
+- [ ] [Zhang, Linjun, et al. "How Does Mixup Help With Robustness and Generalization?." ICLR 2021.](https://arxiv.org/pdf/2010.04819.pdf) - *6월 내로 읽는 것을 목표로*
 
 ### Natural Language Processing
 
@@ -145,11 +167,23 @@ category: "Deep Learning"
 - [x] [Li, Xiaoya, et al. "Dice Loss for Data-imbalanced NLP Tasks." ACL 2020.](https://aclanthology.org/2020.acl-main.45.pdf)
 - [x] [Yadav, Vikas, and Steven Bethard. "A Survey on Recent Advances in Named Entity Recognition from Deep Learning models." COLING 2018.](https://aclanthology.org/C18-1182.pdf)
 
-### etc.
+### Reinforcement Learning
 
-- [x] [Lipton, Zachary C., and Jacob Steinhardt. "Troubling trends in machine learning scholarship." arXiv preprint arXiv:1807.03341, 2018.](https://arxiv.org/abs/1807.03341)
-- [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html)
+- [ ] [Wang, Jane X., et al. "Learning to reinforcement learn." arXiv preprint arXiv:1611.05763, 2016](https://arxiv.org/pdf/1611.05763.pdf)
+
+### Implicit Neural Representation
+
+- [x] [Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis." ECCV 2020.](https://link.springer.com/chapter/10.1007/978-3-030-58452-8_24)
 - [x] [Martin-Brualla, Ricardo, et al. "Nerf in the wild: Neural radiance fields for unconstrained photo collections." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Martin-Brualla_NeRF_in_the_Wild_Neural_Radiance_Fields_for_Unconstrained_Photo_CVPR_2021_paper.html)
+
+### Bayesian Deep Learning
+
+- [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html) - *6월 내로 읽는 것을 목표로*
+
+### Technical Reports
+
+- [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
+- [x] [Lipton, Zachary C., and Jacob Steinhardt. "Troubling trends in machine learning scholarship." arXiv preprint arXiv:1807.03341, 2018.](https://arxiv.org/abs/1807.03341)
 - [ ] [Ridnik, Tal, et al. "Solving ImageNet: a Unified Scheme for Training any Backbone to Top Results." arXiv preprint arXiv:2204.03475 , 2022.](https://arxiv.org/pdf/2204.03475.pdf)
   - 새로운 방법을 제안하는 논문은 아니고 technical report에 가까움
   - ImageNet dataset에 대해서, 어떤 모델 구조더라도 하이퍼파라미터 튜닝 없이 동일하게 적용할 수 있는 USI(Unified Scheme for ImageNet)을 제안. Knowledge distillation과 몇 가지 modern tricks를 사용하였고, 모든 모델에 대해서 previous SOTA를 넘었음
