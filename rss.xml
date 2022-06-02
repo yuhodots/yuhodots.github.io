@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Yuho Jeong]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 31 May 2022 15:47:25 GMT</lastBuildDate><item><title><![CDATA[데이터의 분포를 고려한 거리 계산, Mahalanobis distance]]></title><description><![CDATA[Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/datascience/22-05-17/</link><guid isPermaLink="false">https://yuhodots.github.io/datascience/22-05-17/</guid><pubDate>Tue, 17 May 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Yuho Jeong]]></title><description><![CDATA[Yuho Jeong]]></description><link>https://yuhodots.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Jun 2022 14:50:16 GMT</lastBuildDate><item><title><![CDATA[데이터의 분포를 고려한 거리 계산, Mahalanobis distance]]></title><description><![CDATA[Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬 term이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 mahalanobis distance을 이해해보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/datascience/22-05-17/</link><guid isPermaLink="false">https://yuhodots.github.io/datascience/22-05-17/</guid><pubDate>Tue, 17 May 2022 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;Mahalanobis distance는 데이터의 분포를 고려하며 거리 계산을 할 수 있는 좋은 툴입니다. 식을 이해하기 위해서는 먼저 공분산과 공분산의 역행렬이 의미하는 바를 알아야 하기 때문에, 이번 포스팅에서 간단한 설명 및 시각화를 통해 Mahalanobis distance을 이해해보도록 하겠습니다. &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;inverse-matrix&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#inverse-matrix&quot; aria-label=&quot;inverse matrix permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Inverse matrix&lt;/h3&gt;
@@ -1020,6 +1020,7 @@ train_loader &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; torch&l
 &lt;li&gt;Flattening을 통해 eigenvalue가 전체적으로 작아지니 volume이 작아지며, compression은 information theory 관점에서 이론적, 실험적으로 generalization과 연관이 있어 장점을 가짐&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; disabled&gt; &lt;a href=&quot;https://openreview.net/forum?id=g11CZSghXyY&quot;&gt;Wen, Yeming, et al. &quot;Combining Ensembles and Data Augmentation Can Harm Your Calibration.&quot; ICLR 2021.&lt;/a&gt;&lt;/li&gt;
 &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; disabled&gt; &lt;a href=&quot;https://arxiv.org/pdf/2010.04819.pdf&quot;&gt;Zhang, Linjun, et al. &quot;How Does Mixup Help With Robustness and Generalization?.&quot; ICLR 2021.&lt;/a&gt; - &lt;em&gt;6월 내로 읽는 것을 목표로&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;natural-language-processing&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#natural-language-processing&quot; aria-label=&quot;natural language processing permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Natural Language Processing&lt;/h3&gt;
@@ -5193,234 +5194,7 @@ moment&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tz&lt;span c
 &lt;li&gt;&lt;a href=&quot;https://meetup.toast.com/posts/130&quot;&gt;Toast meetup! - 자바스크립트에서 타임존 다루기 (2)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://momentjs.com/timezone/&quot;&gt;moment-timezone 공식 홈페이지&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://devstory.ibksplatform.com/2018/01/nodejs-momentjs.html&quot;&gt;Nodejs 날짜 관련 유용한 moment.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[React로 FullCalendar Events 띄우기]]></title><description><![CDATA[React를 사용해야하기 때문에 설치를 해 줍시다. 그리고 React 프로젝트를 원하는 디렉토리에 생성합니다. 프로젝트가 제대로 작동하는지 확인하기 위해서 App.js 파일이 위치한 디렉토리의 터미널에서 npm start를 수행합니다.]]></description><link>https://yuhodots.github.io/frontend/19-08-28-2/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-28-2/</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3 id=&quot;react-설치-react-프로젝트-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react-%EC%84%A4%EC%B9%98-react-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;react 설치 react 프로젝트 생성 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React 설치, React 프로젝트 생성&lt;/h3&gt;
-&lt;p&gt; React를 사용해야하기 때문에 설치를 해 줍시다. 그리고 React 프로젝트를 원하는 디렉토리에 생성합니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install -g create-react-app
-create-react-app &amp;#39;원하는 디렉토리&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 프로젝트가 제대로 작동하는지 확인하기 위해서 App.js 파일이 위치한 디렉토리의 터미널에서 npm start를 수행합니다. 웹 브라우저 주소창에 localhost:3000 을 입력했을 때 react의 마크가 빙글빙글 돌고있으면 성공입니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;cd &amp;#39;프로젝트를 생성한 디렉토리&amp;#39;
-npm start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&quot;react-프로젝트에-fullcalendar모듈-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-fullcalendar%EB%AA%A8%EB%93%88-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;react 프로젝트에 fullcalendar모듈 설치 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React 프로젝트에 FullCalendar모듈 설치&lt;/h3&gt;
-&lt;p&gt; FullCalendar를 react를 통해서 출력하기 위해서 아래 명령어를 통해 모듈을 설치합니다. 프로젝트의 node_modules 디렉토리 내 @fullcalendar라는 디렉토리와 파일들이 설치되면 성공입니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&quot;appjs에-fullcalendar-로드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#appjs%EC%97%90-fullcalendar-%EB%A1%9C%EB%93%9C&quot; aria-label=&quot;appjs에 fullcalendar 로드 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;App.js에 FullCalendar 로드&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; FullCalendar &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/react&apos;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/daygrid&apos;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;main.css 파일이 위치한 경로&apos;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar 
-          defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt; 
-          plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 프로젝트 내 다른파일들은 건드리지 않고 App.js 파일만 위와 같이 수정해봅시다. 그러면 FullCalendar가 잘 출력되는 것을 확인할 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/21b4d/19-08-28-2-1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 82.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABjklEQVQ4y6VUy0rEQBCcb/ILvHn14hf4Q4IXwYvg1+zCXkVUcA8RYSNr3u9JmZpYcdyNrLANQyo9ne7qrpmY5XKJ1Wrl1mKxQJIk8K3v+1lM+4xiXN3c4fr2HmcXlzg5PYcJwxBBEKCqKkRRhO1264LLskSWZQ6naYo4jh2mryiKyb8JPxDFCR4en/H08gqT57n7uGka9xGD+E6m3GMh+du2dT4mrOva7XVdN6zW4aEFGLVhrT3Y5iHMpyEzAj6FWZ2V5WcxLrLwMfeJyVjxhoA2Uh8xW2MgAxSo5HOYBISNWlUCYfmZ0MeK8Qv52DA7jS24wX4rLD/bIRsaBRGm2uyESRgjQuYYEebMlGUxseISE7H1GZLVLkOdx0mUn/n8f267M1Tro8quih2cDXzFlVCK/4X3EqbxGrZ5R5a8De2Ve6KwNR/PicIRTaK0VYC6WKOrNzhWoPHYVBFsl6Iqk6k6GWnguq8MJnOdUYqlm6Jb0493ecxue/w62HNYM97F/n/AqKK13VRRSebwofUFMs0z8WSAdhYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/15813/19-08-28-2-1.webp 190w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/1cdb2/19-08-28-2-1.webp 380w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/9046c/19-08-28-2-1.webp 760w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/c89f9/19-08-28-2-1.webp 1140w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/af3f0/19-08-28-2-1.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/a2d4f/19-08-28-2-1.png 190w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/3f520/19-08-28-2-1.png 380w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/3c051/19-08-28-2-1.png 760w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/b5cea/19-08-28-2-1.png 1140w,
-/static/a6aa897a0c06096a5b95939ff3a091f2/21b4d/19-08-28-2-1.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/3c051/19-08-28-2-1.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;React에 대해 공부를 많이 한 편은 아니어서 세부적으로 어떻게 작동하는지는 설명 드리지는 못하지만 제가 이해한 만큼만 설명 드리겠습니다. 아래는 FullCalendar에 대한 설명입니다.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;import를 통해 이전에 설치한 FullCalendar와 dayGridPlugin 정보를 가져옵니다.&lt;/li&gt;
-&lt;li&gt;App 컴포넌트 내 FullCalendar 컴포넌트를 넣습니다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;FullCalendar를 넣은 App에 대한 설명입니다. &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;기본적으로 react 프로젝트를 생성하면 src 디렉토리 내 App.js 파일의 App이라는 컴포넌트를 index.js에서 렌더합니다.&lt;/li&gt;
-&lt;li&gt;렌더한 내용은 public 디렉토리 내 index.html의, root라는 id값을 가진 div에 전달됩니다.&lt;/li&gt;
-&lt;li&gt;결과적으로 localhost:3000에서는 App 컴포넌트에 담긴 FullCalendar 컴포넌트가 출력됩니다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;react로-events-띄우기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react%EB%A1%9C-events-%EB%9D%84%EC%9A%B0%EA%B8%B0&quot; aria-label=&quot;react로 events 띄우기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React로 Events 띄우기&lt;/h3&gt;
-&lt;p&gt; Script로 Events를 띄우는 방법과 거의 똑같다고 보시면 됩니다. FullCalendar 컴포넌트에 props로서 events 값을 그저 전달해주기만 하면 전달한 내용에 따라 캘린더에 events가 출력되는 것을 확인할 수 있습니다. 컴포넌트 코드 예시는 아래와 같습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar
-  defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt;
-  plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;calendarPlugins&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  weekends&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  events&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;event 1&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; date&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-04-01&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;event 2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; date&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-04-02&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id=&quot;back-end에서-json정보-전달하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#back-end%EC%97%90%EC%84%9C-json%EC%A0%95%EB%B3%B4-%EC%A0%84%EB%8B%AC%ED%95%98%EA%B8%B0&quot; aria-label=&quot;back end에서 json정보 전달하기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Back-End에서 JSON정보 전달하기&lt;/h3&gt;
-&lt;p&gt; 저는 Node-Express 프레임워크를 활용해서 JSON 정보를 전달하였습니다. 아래는 Express 프로젝트의 index.js 라우터 코드입니다. DB 서버에 cal_events라는 테이블을 생성해서 이 테이블에서 정보를 가져오도록 했습니다. (db를 require하는 과정에 대해서는 따로 설명하지 않겠습니다. 글이 너무 길어질 것 같아서,,)&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; express &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;express&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; router &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; express&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; db &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;../config/db&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-router&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/test&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;SELECT * FROM cal_events&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;error&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; events&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; error&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-      res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; router&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; /test라는 url에 get요청이 들어오면 DB내 cal_events 테이블에 대한 정보를 res.json을 통해 응답하였습니다.&lt;/p&gt;
-&lt;h3 id=&quot;react에서-json정보-받기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react%EC%97%90%EC%84%9C-json%EC%A0%95%EB%B3%B4-%EB%B0%9B%EA%B8%B0&quot; aria-label=&quot;react에서 json정보 받기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React에서 JSON정보 받기&lt;/h3&gt;
-&lt;p&gt; Back-End에서 받은 정보를 받기 위해서는 일단 React를 Back-End서버의 프록시 서버로 설정해야합니다. React 프로젝트 내 package.json에 다음과 같은 내용을 추가해줍니다. (각자 Back-End서버의 포트번호를 알맞게 수정해서 적어주시길 바랍니다. 저는 3003번 포트를 이용하였습니다.)&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;quot;proxy&amp;quot;:&amp;quot;http://localhost:3003/&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 코드가 그렇게 짧지는 않기때문에 나눠서 설명하도록 하겠습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; FullCalendar &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/react&apos;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/daygrid&apos;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; axios &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;axios&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;main.css의 경로&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; App.js의 앞부분이자 모듈을 import하는 부분입니다. 이전 포스팅에서 달라진 내용은 &lt;code class=&quot;language-text&quot;&gt;import axios from &amp;#39;axios&amp;#39;&lt;/code&gt; 입니다. Back-End에서 보낸 데이터를 React가 받기위해서 사용됩니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-  state &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_getEvents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;token function-variable function&quot;&gt;_getEvents&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; events &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_axiosEvents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      events
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; 
-
-  &lt;span class=&quot;token function-variable function&quot;&gt;_axiosEvents&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; axios&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/test&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-
-  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
-      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;events &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; 
-        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar 
-          defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt; 
-          plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-          events&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&apos;loading&apos;&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-
-&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;_axiosEvents&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;_getEvents, componentDidMount&lt;/code&gt; 순으로 코드 순서와 &apos;반대로&apos; 설명하겠습니다. (*소스코드는 저와 같이 공부 중인 친구가 작성했습니다.)&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;: 컴포넌트 내 state 값에 events 정보가 담겼는지 확인하고, 담겼다면 FullCalendar 컴포넌트를 출력하고 그렇지 않다면 loading을 출력합니다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;_axiosEvents&lt;/code&gt;: axios의 get 메소드를 통해 Back-End의 /test url에 정보를 요청하고, 그에 따른 res.data 응답을 리턴합니다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;_getEvents&lt;/code&gt;: _axiosEvents이 응답을 받을 때 까지 기다리고, 응답을 받는다면 setState 메소드를 호출하여 state 값에 events라는 데이터를 넣어줍니다.&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;: 위의 모든 과정은 componentDidMount에 의해, 컴포넌트가 만들어지고 첫 렌더링을 모두 끝낸 후 실행됩니다.&lt;/li&gt;
-&lt;li&gt;결과적으로 state에는 Back-End에서 전송한 JSON 데이터가 events라는 이름으로 담깁니다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt; 아래는 events가 FullCalendar에 정상적으로 출력된 화면입니다. &lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/21b4d/19-08-28-2-2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 84.21052631578947%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAACcklEQVQ4y4VTO28TQRC+30OJqBBUNCgtFPAHKOjpoaGhQzSAaHgoUkJBaYQCksGhQMLIyCigEOeCg313fuzd+m7vtf6Y2fOerSgOI+3td7M7s9+8nEsbN3HhyjXcvnMXT59v4eGTF0iUgpV2u41Go4FOp4Nms4mdnfcIw7A+v3f/Ac6dv4jLV69j48YtOPsHLr5++47jgYfxZIqee4T5fI6iKDCbzczueR6CYER6jTQhXVY9mKYphnTWO3TxY+8X2fbhiOkU0+kEWmuMgsAYK2IYEJ5MJsiyDL7vm/84LfDTDdA9GCKcKWIqjFN+SIgpSnrcYQYsZVlCEzOLrazi38MYrz75ePZhiP3BzOi0iaa6o/UcDjOwIeZ5bjDvvJg1681jhHO6C2JDH4PLUht9madGx+IwZRY2ZOcs1qHFbMTCqSgJ86OMbUStroftzx7efAng8KFdLKfhsxZ9MJI5Dn0FN1BwpJR1xSxOksRUmCWOY/PPEkVRHYUQok6RSmbLkHGGnGS7/g4Wi4oSjKn0xRyhTDAWssJRbJhZtjbPYSQhpEKSlRBhZPLO+WXmXDjj8PXuMTZbPrZ3B9hq/cXLjx7etn3oRbuwUbHAe39CPH7Xx6NGH11X1AyrXlyEnKiUDObI8gIqzSqc5ShyvkStlKWwvZpS/vheQe3CudSLittcGoZ2LvmClFFlqCSk6EHnA0SiT2FXo8ZFs0XhMPkhdsIFrB0uk2qTTx1fEqu0j1wdUdOO17bTabhubKatlB16Ra0Q0lCktMs6JC6QnRpmZaaE/tmOz/nfsVNg87HEqOdzVW9lHXasI96rtYo1Tp7/D/8D5BAbDc26Xn0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/15813/19-08-28-2-2.webp 190w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/1cdb2/19-08-28-2-2.webp 380w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/9046c/19-08-28-2-2.webp 760w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/c89f9/19-08-28-2-2.webp 1140w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/af3f0/19-08-28-2-2.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/a2d4f/19-08-28-2-2.png 190w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/3f520/19-08-28-2-2.png 380w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/3c051/19-08-28-2-2.png 760w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/b5cea/19-08-28-2-2.png 1140w,
-/static/1b2c3afa144b1195a5a09a3da44f2675/21b4d/19-08-28-2-2.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/3c051/19-08-28-2-2.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt; 제가 설명을 적으면서도 참 어렵다는 생각이 드네요 허허허&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Script로 FullCalendar Events 띄우기]]></title><description><![CDATA[ 일단 자세한 사용법을 익히기 전에 FullCalendar를 화면에 띄워보는것부터 시작합시다. Scrpit 태그를 통해 FullCalendar를 띄우는 방법을 설명하고 있으니, ES6 빌드 시스템으로 띄우고 싶으신 분은 이곳을 참고하시길 바랍니다.]]></description><link>https://yuhodots.github.io/frontend/19-08-28/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-28/</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3 id=&quot;fullcalendar-띄우기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#fullcalendar-%EB%9D%84%EC%9A%B0%EA%B8%B0&quot; aria-label=&quot;fullcalendar 띄우기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;FullCalendar 띄우기&lt;/h3&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Script로 FullCalendar Events 띄우기]]></title><description><![CDATA[ 일단 자세한 사용법을 익히기 전에 FullCalendar를 화면에 띄워보는것부터 시작합시다. Scrpit 태그를 통해 FullCalendar를 띄우는 방법을 설명하고 있으니, ES6 빌드 시스템으로 띄우고 싶으신 분은 이곳을 참고하시길 바랍니다.]]></description><link>https://yuhodots.github.io/frontend/19-08-28/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-28/</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3 id=&quot;fullcalendar-띄우기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#fullcalendar-%EB%9D%84%EC%9A%B0%EA%B8%B0&quot; aria-label=&quot;fullcalendar 띄우기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;FullCalendar 띄우기&lt;/h3&gt;
 &lt;p&gt; 일단 자세한 사용법을 익히기 전에 FullCalendar를 화면에 띄워보는것부터 시작합시다. &lt;strong&gt;Scrpit 태그를 통해 FullCalendar를 띄우는 방법&lt;/strong&gt;을 설명하고 있으니, ES6 빌드 시스템으로 띄우고 싶으신 분은 &lt;a href=&quot;https://fullcalendar.io/docs/initialize-es6&quot;&gt;여기&lt;/a&gt;를 참고하시길 바랍니다.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;npm install --save @fullcalendar/core @fullcalendar/daygrid&lt;/code&gt;로 fullcalendar를 다운로드합니다.&lt;/li&gt;
@@ -5669,7 +5443,276 @@ events&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class
 &lt;li&gt;&lt;a href=&quot;https://fullcalendar.io/&quot;&gt;FullCalendar 공식 홈페이지&lt;/a&gt;&lt;a href=&quot;https://fullcalendar.io/#demos&quot;&gt;Demo 확인&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&quot;https://fullcalendar.io/#demos&quot;&gt;
-&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Connection lost: The server closed the connection 에러 해결하기]]></title><description><![CDATA[Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 'Error: Connection lost: The server closed the connection.' 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.]]></description><link>https://yuhodots.github.io/backend/19-08-19/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 &apos;Error: Connection lost: The server closed the connection.&apos; 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.&lt;/p&gt;
+&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React로 FullCalendar Events 띄우기]]></title><description><![CDATA[React를 사용해야하기 때문에 설치를 해 줍시다. 그리고 React 프로젝트를 원하는 디렉토리에 생성합니다. 프로젝트가 제대로 작동하는지 확인하기 위해서 App.js 파일이 위치한 디렉토리의 터미널에서 npm start를 수행합니다.]]></description><link>https://yuhodots.github.io/frontend/19-08-28-2/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-28-2/</guid><pubDate>Wed, 28 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3 id=&quot;react-설치-react-프로젝트-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react-%EC%84%A4%EC%B9%98-react-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;react 설치 react 프로젝트 생성 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React 설치, React 프로젝트 생성&lt;/h3&gt;
+&lt;p&gt; React를 사용해야하기 때문에 설치를 해 줍시다. 그리고 React 프로젝트를 원하는 디렉토리에 생성합니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install -g create-react-app
+create-react-app &amp;#39;원하는 디렉토리&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 프로젝트가 제대로 작동하는지 확인하기 위해서 App.js 파일이 위치한 디렉토리의 터미널에서 npm start를 수행합니다. 웹 브라우저 주소창에 localhost:3000 을 입력했을 때 react의 마크가 빙글빙글 돌고있으면 성공입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;cd &amp;#39;프로젝트를 생성한 디렉토리&amp;#39;
+npm start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;react-프로젝트에-fullcalendar모듈-설치&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-fullcalendar%EB%AA%A8%EB%93%88-%EC%84%A4%EC%B9%98&quot; aria-label=&quot;react 프로젝트에 fullcalendar모듈 설치 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React 프로젝트에 FullCalendar모듈 설치&lt;/h3&gt;
+&lt;p&gt; FullCalendar를 react를 통해서 출력하기 위해서 아래 명령어를 통해 모듈을 설치합니다. 프로젝트의 node_modules 디렉토리 내 @fullcalendar라는 디렉토리와 파일들이 설치되면 성공입니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;appjs에-fullcalendar-로드&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#appjs%EC%97%90-fullcalendar-%EB%A1%9C%EB%93%9C&quot; aria-label=&quot;appjs에 fullcalendar 로드 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;App.js에 FullCalendar 로드&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; FullCalendar &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/react&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/daygrid&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;main.css 파일이 위치한 경로&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar 
+          defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt; 
+          plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 프로젝트 내 다른파일들은 건드리지 않고 App.js 파일만 위와 같이 수정해봅시다. 그러면 FullCalendar가 잘 출력되는 것을 확인할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/21b4d/19-08-28-2-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 82.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABjklEQVQ4y6VUy0rEQBCcb/ILvHn14hf4Q4IXwYvg1+zCXkVUcA8RYSNr3u9JmZpYcdyNrLANQyo9ne7qrpmY5XKJ1Wrl1mKxQJIk8K3v+1lM+4xiXN3c4fr2HmcXlzg5PYcJwxBBEKCqKkRRhO1264LLskSWZQ6naYo4jh2mryiKyb8JPxDFCR4en/H08gqT57n7uGka9xGD+E6m3GMh+du2dT4mrOva7XVdN6zW4aEFGLVhrT3Y5iHMpyEzAj6FWZ2V5WcxLrLwMfeJyVjxhoA2Uh8xW2MgAxSo5HOYBISNWlUCYfmZ0MeK8Qv52DA7jS24wX4rLD/bIRsaBRGm2uyESRgjQuYYEebMlGUxseISE7H1GZLVLkOdx0mUn/n8f267M1Tro8quih2cDXzFlVCK/4X3EqbxGrZ5R5a8De2Ve6KwNR/PicIRTaK0VYC6WKOrNzhWoPHYVBFsl6Iqk6k6GWnguq8MJnOdUYqlm6Jb0493ecxue/w62HNYM97F/n/AqKK13VRRSebwofUFMs0z8WSAdhYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/15813/19-08-28-2-1.webp 190w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/1cdb2/19-08-28-2-1.webp 380w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/9046c/19-08-28-2-1.webp 760w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/c89f9/19-08-28-2-1.webp 1140w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/af3f0/19-08-28-2-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/a2d4f/19-08-28-2-1.png 190w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/3f520/19-08-28-2-1.png 380w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/3c051/19-08-28-2-1.png 760w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/b5cea/19-08-28-2-1.png 1140w,
+/static/a6aa897a0c06096a5b95939ff3a091f2/21b4d/19-08-28-2-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/a6aa897a0c06096a5b95939ff3a091f2/3c051/19-08-28-2-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;React에 대해 공부를 많이 한 편은 아니어서 세부적으로 어떻게 작동하는지는 설명 드리지는 못하지만 제가 이해한 만큼만 설명 드리겠습니다. 아래는 FullCalendar에 대한 설명입니다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;import를 통해 이전에 설치한 FullCalendar와 dayGridPlugin 정보를 가져옵니다.&lt;/li&gt;
+&lt;li&gt;App 컴포넌트 내 FullCalendar 컴포넌트를 넣습니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;FullCalendar를 넣은 App에 대한 설명입니다. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;기본적으로 react 프로젝트를 생성하면 src 디렉토리 내 App.js 파일의 App이라는 컴포넌트를 index.js에서 렌더합니다.&lt;/li&gt;
+&lt;li&gt;렌더한 내용은 public 디렉토리 내 index.html의, root라는 id값을 가진 div에 전달됩니다.&lt;/li&gt;
+&lt;li&gt;결과적으로 localhost:3000에서는 App 컴포넌트에 담긴 FullCalendar 컴포넌트가 출력됩니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;react로-events-띄우기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react%EB%A1%9C-events-%EB%9D%84%EC%9A%B0%EA%B8%B0&quot; aria-label=&quot;react로 events 띄우기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React로 Events 띄우기&lt;/h3&gt;
+&lt;p&gt; Script로 Events를 띄우는 방법과 거의 똑같다고 보시면 됩니다. FullCalendar 컴포넌트에 props로서 events 값을 그저 전달해주기만 하면 전달한 내용에 따라 캘린더에 events가 출력되는 것을 확인할 수 있습니다. 컴포넌트 코드 예시는 아래와 같습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar
+  defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt;
+  plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;calendarPlugins&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  weekends&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  events&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;event 1&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; date&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-04-01&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;event 2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; date&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2019-04-02&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&quot;back-end에서-json정보-전달하기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#back-end%EC%97%90%EC%84%9C-json%EC%A0%95%EB%B3%B4-%EC%A0%84%EB%8B%AC%ED%95%98%EA%B8%B0&quot; aria-label=&quot;back end에서 json정보 전달하기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Back-End에서 JSON정보 전달하기&lt;/h3&gt;
+&lt;p&gt; 저는 Node-Express 프레임워크를 활용해서 JSON 정보를 전달하였습니다. 아래는 Express 프로젝트의 index.js 라우터 코드입니다. DB 서버에 cal_events라는 테이블을 생성해서 이 테이블에서 정보를 가져오도록 했습니다. (db를 require하는 과정에 대해서는 따로 설명하지 않겠습니다. 글이 너무 길어질 것 같아서,,)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; express &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;express&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; router &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; express&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; db &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;../config/db&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+router&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/test&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;SELECT * FROM cal_events&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;error&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; events&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; error&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; router&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; /test라는 url에 get요청이 들어오면 DB내 cal_events 테이블에 대한 정보를 res.json을 통해 응답하였습니다.&lt;/p&gt;
+&lt;h3 id=&quot;react에서-json정보-받기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#react%EC%97%90%EC%84%9C-json%EC%A0%95%EB%B3%B4-%EB%B0%9B%EA%B8%B0&quot; aria-label=&quot;react에서 json정보 받기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;React에서 JSON정보 받기&lt;/h3&gt;
+&lt;p&gt; Back-End에서 받은 정보를 받기 위해서는 일단 React를 Back-End서버의 프록시 서버로 설정해야합니다. React 프로젝트 내 package.json에 다음과 같은 내용을 추가해줍니다. (각자 Back-End서버의 포트번호를 알맞게 수정해서 적어주시길 바랍니다. 저는 3003번 포트를 이용하였습니다.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;quot;proxy&amp;quot;:&amp;quot;http://localhost:3003/&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 코드가 그렇게 짧지는 않기때문에 나눠서 설명하도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Component&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; FullCalendar &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/react&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@fullcalendar/daygrid&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; axios &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;axios&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;main.css의 경로&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; App.js의 앞부분이자 모듈을 import하는 부분입니다. 이전 포스팅에서 달라진 내용은 &lt;code class=&quot;language-text&quot;&gt;import axios from &amp;#39;axios&amp;#39;&lt;/code&gt; 입니다. Back-End에서 보낸 데이터를 React가 받기위해서 사용됩니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+  state &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_getEvents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function-variable function&quot;&gt;_getEvents&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; events &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_axiosEvents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      events
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;token function-variable function&quot;&gt;_axiosEvents&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; axios&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/test&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+  &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;App&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;events &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; 
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;FullCalendar 
+          defaultView&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dayGridMonth&quot;&lt;/span&gt; 
+          plugins&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; dayGridPlugin &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+          events&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;events&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;loading&apos;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; App&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;_axiosEvents&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;_getEvents, componentDidMount&lt;/code&gt; 순으로 코드 순서와 &apos;반대로&apos; 설명하겠습니다. (*소스코드는 저와 같이 공부 중인 친구가 작성했습니다.)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;render()&lt;/code&gt;: 컴포넌트 내 state 값에 events 정보가 담겼는지 확인하고, 담겼다면 FullCalendar 컴포넌트를 출력하고 그렇지 않다면 loading을 출력합니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;_axiosEvents&lt;/code&gt;: axios의 get 메소드를 통해 Back-End의 /test url에 정보를 요청하고, 그에 따른 res.data 응답을 리턴합니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;_getEvents&lt;/code&gt;: _axiosEvents이 응답을 받을 때 까지 기다리고, 응답을 받는다면 setState 메소드를 호출하여 state 값에 events라는 데이터를 넣어줍니다.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;componentDidMount&lt;/code&gt;: 위의 모든 과정은 componentDidMount에 의해, 컴포넌트가 만들어지고 첫 렌더링을 모두 끝낸 후 실행됩니다.&lt;/li&gt;
+&lt;li&gt;결과적으로 state에는 Back-End에서 전송한 JSON 데이터가 events라는 이름으로 담깁니다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 아래는 events가 FullCalendar에 정상적으로 출력된 화면입니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/21b4d/19-08-28-2-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 84.21052631578947%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAACcklEQVQ4y4VTO28TQRC+30OJqBBUNCgtFPAHKOjpoaGhQzSAaHgoUkJBaYQCksGhQMLIyCigEOeCg313fuzd+m7vtf6Y2fOerSgOI+3td7M7s9+8nEsbN3HhyjXcvnMXT59v4eGTF0iUgpV2u41Go4FOp4Nms4mdnfcIw7A+v3f/Ac6dv4jLV69j48YtOPsHLr5++47jgYfxZIqee4T5fI6iKDCbzczueR6CYER6jTQhXVY9mKYphnTWO3TxY+8X2fbhiOkU0+kEWmuMgsAYK2IYEJ5MJsiyDL7vm/84LfDTDdA9GCKcKWIqjFN+SIgpSnrcYQYsZVlCEzOLrazi38MYrz75ePZhiP3BzOi0iaa6o/UcDjOwIeZ5bjDvvJg1681jhHO6C2JDH4PLUht9madGx+IwZRY2ZOcs1qHFbMTCqSgJ86OMbUStroftzx7efAng8KFdLKfhsxZ9MJI5Dn0FN1BwpJR1xSxOksRUmCWOY/PPEkVRHYUQok6RSmbLkHGGnGS7/g4Wi4oSjKn0xRyhTDAWssJRbJhZtjbPYSQhpEKSlRBhZPLO+WXmXDjj8PXuMTZbPrZ3B9hq/cXLjx7etn3oRbuwUbHAe39CPH7Xx6NGH11X1AyrXlyEnKiUDObI8gIqzSqc5ShyvkStlKWwvZpS/vheQe3CudSLittcGoZ2LvmClFFlqCSk6EHnA0SiT2FXo8ZFs0XhMPkhdsIFrB0uk2qTTx1fEqu0j1wdUdOO17bTabhubKatlB16Ra0Q0lCktMs6JC6QnRpmZaaE/tmOz/nfsVNg87HEqOdzVW9lHXasI96rtYo1Tp7/D/8D5BAbDc26Xn0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/15813/19-08-28-2-2.webp 190w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/1cdb2/19-08-28-2-2.webp 380w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/9046c/19-08-28-2-2.webp 760w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/c89f9/19-08-28-2-2.webp 1140w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/af3f0/19-08-28-2-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/a2d4f/19-08-28-2-2.png 190w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/3f520/19-08-28-2-2.png 380w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/3c051/19-08-28-2-2.png 760w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/b5cea/19-08-28-2-2.png 1140w,
+/static/1b2c3afa144b1195a5a09a3da44f2675/21b4d/19-08-28-2-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/1b2c3afa144b1195a5a09a3da44f2675/3c051/19-08-28-2-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 제가 설명을 적으면서도 참 어렵다는 생각이 드네요 허허허&lt;/p&gt;</content:encoded></item><item><title><![CDATA[req 객체와 res 객체, 그리고 res.send와 res.json의 비교]]></title><description><![CDATA[node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 Express 공식 홈페이지를 참고하여 정리 해 보았습니다. req.body는 POST 정보를 가집니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. ]]></description><link>https://yuhodots.github.io/backend/19-08-19-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19-2/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 &lt;a href=&quot;https://expressjs.com/ko/4x/api.html#express&quot;&gt;Express 공식 홈페이지&lt;/a&gt;를 참고하여 정리 해 보았습니다.&lt;/p&gt;
+&lt;h3 id=&quot;req-객체&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#req-%EA%B0%9D%EC%B2%B4&quot; aria-label=&quot;req 객체 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;req 객체&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;req.body :&lt;/strong&gt; &lt;strong&gt;POST&lt;/strong&gt; 정보를 가집니다. 파싱을 위해서 body-parser와 같은 패키지가 필요합니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;req.query :&lt;/strong&gt; &lt;strong&gt;GET&lt;/strong&gt; 정보를 가집니다. 즉, url로 전송된 쿼리 스트링 파라미터를 담고 있습니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;req.params :&lt;/strong&gt; 내가 이름 붙인 라우트 파라미터 정보를 가집니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;req.headers :&lt;/strong&gt; HTTP의 Header 정보를 가집니다.&lt;/li&gt;
+&lt;li&gt;이 외에도 req.route, req.cookies, req.acceptedLanguages, req.url, req.protocol, req.host, req.ip 등이 존재합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;res-객체&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#res-%EA%B0%9D%EC%B2%B4&quot; aria-label=&quot;res 객체 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res 객체&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;res.send :&lt;/strong&gt; 다양한 유형의 응답을 전송합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.redirect :&lt;/strong&gt; 브라우저를 리다이렉트 합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.render :&lt;/strong&gt; 설정된 템플릿 엔진을 사용해서 views를 렌더링합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.json :&lt;/strong&gt; JSON 응답을 전송합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;res.end :&lt;/strong&gt; 응답 프로세스를 종료합니다.&lt;/li&gt;
+&lt;li&gt;이 외에도 res.set, res.status, res.type, res.sendFile, res.links, res.cookie 등이 존재합니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;ressend--resjson--resend-비교&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ressend--resjson--resend-%EB%B9%84%EA%B5%90&quot; aria-label=&quot;ressend  resjson  resend 비교 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.send / res.json / res.end 비교&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;이 파트는 이 &lt;a href=&quot;https://blog.fullstacktraining.com/res-json-vs-res-send-vs-res-end-in-express/&quot;&gt;자료&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;ressend&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ressend&quot; aria-label=&quot;ressend permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.send&lt;/h4&gt;
+&lt;p&gt; res.send([body])의 body에는 Buffer, String, Object, Array가 올 수 있습니다. 그리고 response Header에는 Body의 &lt;strong&gt;Content-Type&lt;/strong&gt;이 자동으로 정의됩니다. 아래의 예시를 살펴보겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Minsu&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; key는 name, value는 &apos;Minsu&apos;라는 object를 body에 넣어서 response 응답을 전달하면, response Header 내 Content-Type은 자동으로 json(JavaScript Object Notation)으로 정의됩니다. 참고로 이 response Header는 response 객체 내 &lt;strong&gt;set메소드&lt;/strong&gt;로 제어가 가능합니다. 간단한 예로 res.set(&apos;Content-Type&apos;, &apos;text/html&apos;); 같은 형태를 들 수 있습니다.&lt;/p&gt;
+&lt;h4 id=&quot;resjson&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#resjson&quot; aria-label=&quot;resjson permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.json&lt;/h4&gt;
+&lt;p&gt; res.json은 JSON을 응답으로 보냅니다. 여기서 res.send도 Object를 응답으로 보낼 수 있으니까 res.json이 굳이 필요할까 라는 의문이 들 수 있는데, res.json은 JSON 정보를 전달하는데 더 특화된 기능을 가지고 있습니다. 일단 이를 이해하기 위해서는 Object와 JSON은 비슷하게 생기긴 했지만 확연한 차이점을 가지고 있다는 점을 알고계셔야 합니다. &lt;/p&gt;
+&lt;p&gt;  JSON은 String, Number, Object, Array, Boolean, Null을 지원하지만, Function, Date, Undefined 등과 같은 타입은 지원하지 않습니다. 그렇기 때문에 우리가 { x: [10, undefined, function(){}, Symbol(&apos;&apos;)] } 같은 파라미터를 입력하면 undefined, function(){}, Symbol(&quot;) 는 JSON이 지원하지 않는 타입이기에 JSON이 지원하는 타입으로 바꾸는 작업이 요구됩니다. 이는 &lt;strong&gt;JSON.stringfy() 메소드&lt;/strong&gt;를 통해 구현할 수 있습니다. &lt;/p&gt;
+&lt;p&gt; res.json을 사용하면 JSON.stringfy() 메소드를 호출하여 파라미터를 JSON string 형태로 먼저 변환 한 뒤, res.send()를 호출하여 응답을 내보냅니다. JSON.stringfy() 메소드는 replacer와 spaces라는 두 가지 파라미터를 가질 수 있는데 이를 Express에서는 아래와 같은 옵션을 통해 제어 가능합니다. (JSON.stringfy()에 대한 설명은 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify&quot;&gt;Mozilla&lt;/a&gt;에서 참고하시길 바랍니다.)&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json replacer&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; replacer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json spaces&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4 id=&quot;resend&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#resend&quot; aria-label=&quot;resend permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.end&lt;/h4&gt;
+&lt;p&gt; res.end는 위에서 언급한 것 처럼 응답 프로세스를 종료하는 데 사용됩니다. 그렇다면 res.end()를 굳이 코드 내 명시해줘야 할까요? 이에 대한 대답은 &apos;맞다&apos;가 될 수도 있고 &apos;아니다&apos;가 될 수도 있습니다. 데이터를 제공하지 않고 응답을 끝내려면 res.end()를 사용할 수 있습니다. 예를 들어 아래와 같이 404오류 페이지에 활용 될 수 있습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;404&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 하지만 응답 데이터를 res.json이나 res.send 같은 형태로 전송하는 경우에는 이들이 일부 데이터를 보낸 뒤에 자동으로 응답 종료처리를 하기 때문에 굳이 res.end()를 호출 할 필요가 없습니다. &lt;/p&gt;
+&lt;h3 id=&quot;express-함수&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#express-%ED%95%A8%EC%88%98&quot; aria-label=&quot;express 함수 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;express() 함수&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;express.json()&lt;/strong&gt; : 들어오는 request를 JSON 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.static()&lt;/strong&gt; : 정적 파일을 제공하며, serve-static를 기반으로 합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.Router()&lt;/strong&gt; : 새 router 객체를 생성합니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.urlencoded()&lt;/strong&gt; : 들어오는 request를 urlencoded 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Connection lost: The server closed the connection 에러 해결하기]]></title><description><![CDATA[Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 'Error: Connection lost: The server closed the connection.' 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.]]></description><link>https://yuhodots.github.io/backend/19-08-19/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Node.js와 mysql, AWS EC2, S3, Nginx 등을 연동하여 백엔드 작업을 하고있는데 가끔씩 &apos;Error: Connection lost: The server closed the connection.&apos; 이라는 에러 로그가 뜨면서 웹 사이트에 접속이 되지 않을 때가 있습니다. 구글링을 통해 왜 이런 에러가 발생하는지, 어떤 방식으로 해결 할 수 있는지에 대해 알게 된 내용을 아래에 적어봅니다.&lt;/p&gt;
 &lt;h3 id=&quot;error의-원인&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#error%EC%9D%98-%EC%9B%90%EC%9D%B8&quot; aria-label=&quot;error의 원인 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Error의 원인&lt;/h3&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -5748,49 +5791,7 @@ events&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class
 
 &lt;span class=&quot;token function&quot;&gt;handleDisconnect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/20210522/nodejs-mysql-error-connection-lost-the-server-closed-the-connection&quot;&gt;stackoverflow에서 발견한 해결방법&lt;/a&gt;을 바탕으로 위와 같은 소스코드를 작성하였습니다. mysql모듈을 로드하고 createConnection메소드를 이용해서 연결한 DB서버의 정보를 입력하는 것 까지는 기존과 동일합니다. 주의해서 볼 내용은 아래의 &lt;code class=&quot;language-text&quot;&gt;handleDisconnection&lt;/code&gt; 함수 파트입니다.&lt;/p&gt;
-&lt;p&gt; 먼저 &lt;code class=&quot;language-text&quot;&gt;db.connect&lt;/code&gt;를 통해 db서버에 연결을 시도합니다. 그리고 &lt;code class=&quot;language-text&quot;&gt;db.on&lt;/code&gt;을 이용해서 DB서버와의 연결이 끊어졌는지 확인하고 연결이 끊어졌다면 &lt;code class=&quot;language-text&quot;&gt;return handleDisconnect()&lt;/code&gt; 코드를 통해 &lt;code class=&quot;language-text&quot;&gt;handleDisconnect&lt;/code&gt; 함수를 호출하여 다시 연결을 시도합니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[req 객체와 res 객체, 그리고 res.send와 res.json의 비교]]></title><description><![CDATA[node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 Express 공식 홈페이지를 참고하여 정리 해 보았습니다. req.body는 POST 정보를 가집니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. ]]></description><link>https://yuhodots.github.io/backend/19-08-19-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-08-19-2/</guid><pubDate>Mon, 19 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt; node.js express를 사용하는 데에 있어서 가장 기본적인 것은 req객체, res객체, express()함수를 사용하는 것입니다. 하지만 매번 까먹곤 하는 내용이어서 &lt;a href=&quot;https://expressjs.com/ko/4x/api.html#express&quot;&gt;Express 공식 홈페이지&lt;/a&gt;를 참고하여 정리 해 보았습니다.&lt;/p&gt;
-&lt;h3 id=&quot;req-객체&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#req-%EA%B0%9D%EC%B2%B4&quot; aria-label=&quot;req 객체 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;req 객체&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;req.body :&lt;/strong&gt; &lt;strong&gt;POST&lt;/strong&gt; 정보를 가집니다. 파싱을 위해서 body-parser와 같은 패키지가 필요합니다. 요청 정보가 url에 들어있는 것이 아니라 Request의 본문에 들어있기 때문입니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;req.query :&lt;/strong&gt; &lt;strong&gt;GET&lt;/strong&gt; 정보를 가집니다. 즉, url로 전송된 쿼리 스트링 파라미터를 담고 있습니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;req.params :&lt;/strong&gt; 내가 이름 붙인 라우트 파라미터 정보를 가집니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;req.headers :&lt;/strong&gt; HTTP의 Header 정보를 가집니다.&lt;/li&gt;
-&lt;li&gt;이 외에도 req.route, req.cookies, req.acceptedLanguages, req.url, req.protocol, req.host, req.ip 등이 존재합니다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;res-객체&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#res-%EA%B0%9D%EC%B2%B4&quot; aria-label=&quot;res 객체 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res 객체&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;res.send :&lt;/strong&gt; 다양한 유형의 응답을 전송합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.redirect :&lt;/strong&gt; 브라우저를 리다이렉트 합니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.render :&lt;/strong&gt; 설정된 템플릿 엔진을 사용해서 views를 렌더링합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.json :&lt;/strong&gt; JSON 응답을 전송합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;res.end :&lt;/strong&gt; 응답 프로세스를 종료합니다.&lt;/li&gt;
-&lt;li&gt;이 외에도 res.set, res.status, res.type, res.sendFile, res.links, res.cookie 등이 존재합니다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;ressend--resjson--resend-비교&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ressend--resjson--resend-%EB%B9%84%EA%B5%90&quot; aria-label=&quot;ressend  resjson  resend 비교 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.send / res.json / res.end 비교&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;이 파트는 이 &lt;a href=&quot;https://blog.fullstacktraining.com/res-json-vs-res-send-vs-res-end-in-express/&quot;&gt;자료&lt;/a&gt;를 참고하였습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;ressend&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ressend&quot; aria-label=&quot;ressend permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.send&lt;/h4&gt;
-&lt;p&gt; res.send([body])의 body에는 Buffer, String, Object, Array가 올 수 있습니다. 그리고 response Header에는 Body의 &lt;strong&gt;Content-Type&lt;/strong&gt;이 자동으로 정의됩니다. 아래의 예시를 살펴보겠습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Minsu&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; key는 name, value는 &apos;Minsu&apos;라는 object를 body에 넣어서 response 응답을 전달하면, response Header 내 Content-Type은 자동으로 json(JavaScript Object Notation)으로 정의됩니다. 참고로 이 response Header는 response 객체 내 &lt;strong&gt;set메소드&lt;/strong&gt;로 제어가 가능합니다. 간단한 예로 res.set(&apos;Content-Type&apos;, &apos;text/html&apos;); 같은 형태를 들 수 있습니다.&lt;/p&gt;
-&lt;h4 id=&quot;resjson&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#resjson&quot; aria-label=&quot;resjson permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.json&lt;/h4&gt;
-&lt;p&gt; res.json은 JSON을 응답으로 보냅니다. 여기서 res.send도 Object를 응답으로 보낼 수 있으니까 res.json이 굳이 필요할까 라는 의문이 들 수 있는데, res.json은 JSON 정보를 전달하는데 더 특화된 기능을 가지고 있습니다. 일단 이를 이해하기 위해서는 Object와 JSON은 비슷하게 생기긴 했지만 확연한 차이점을 가지고 있다는 점을 알고계셔야 합니다. &lt;/p&gt;
-&lt;p&gt;  JSON은 String, Number, Object, Array, Boolean, Null을 지원하지만, Function, Date, Undefined 등과 같은 타입은 지원하지 않습니다. 그렇기 때문에 우리가 { x: [10, undefined, function(){}, Symbol(&apos;&apos;)] } 같은 파라미터를 입력하면 undefined, function(){}, Symbol(&quot;) 는 JSON이 지원하지 않는 타입이기에 JSON이 지원하는 타입으로 바꾸는 작업이 요구됩니다. 이는 &lt;strong&gt;JSON.stringfy() 메소드&lt;/strong&gt;를 통해 구현할 수 있습니다. &lt;/p&gt;
-&lt;p&gt; res.json을 사용하면 JSON.stringfy() 메소드를 호출하여 파라미터를 JSON string 형태로 먼저 변환 한 뒤, res.send()를 호출하여 응답을 내보냅니다. JSON.stringfy() 메소드는 replacer와 spaces라는 두 가지 파라미터를 가질 수 있는데 이를 Express에서는 아래와 같은 옵션을 통해 제어 가능합니다. (JSON.stringfy()에 대한 설명은 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify&quot;&gt;Mozilla&lt;/a&gt;에서 참고하시길 바랍니다.)&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json replacer&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; replacer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;json spaces&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id=&quot;resend&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#resend&quot; aria-label=&quot;resend permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;res.end&lt;/h4&gt;
-&lt;p&gt; res.end는 위에서 언급한 것 처럼 응답 프로세스를 종료하는 데 사용됩니다. 그렇다면 res.end()를 굳이 코드 내 명시해줘야 할까요? 이에 대한 대답은 &apos;맞다&apos;가 될 수도 있고 &apos;아니다&apos;가 될 수도 있습니다. 데이터를 제공하지 않고 응답을 끝내려면 res.end()를 사용할 수 있습니다. 예를 들어 아래와 같이 404오류 페이지에 활용 될 수 있습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;404&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 하지만 응답 데이터를 res.json이나 res.send 같은 형태로 전송하는 경우에는 이들이 일부 데이터를 보낸 뒤에 자동으로 응답 종료처리를 하기 때문에 굳이 res.end()를 호출 할 필요가 없습니다. &lt;/p&gt;
-&lt;h3 id=&quot;express-함수&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#express-%ED%95%A8%EC%88%98&quot; aria-label=&quot;express 함수 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;express() 함수&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;express.json()&lt;/strong&gt; : 들어오는 request를 JSON 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;express.static()&lt;/strong&gt; : 정적 파일을 제공하며, serve-static를 기반으로 합니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;express.Router()&lt;/strong&gt; : 새 router 객체를 생성합니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;express.urlencoded()&lt;/strong&gt; : 들어오는 request를 urlencoded 데이터로 파싱하며, body-parser를 기반으로 합니다.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[ECMAScript, TypeScript, React란 무엇인가?]]></title><description><![CDATA[프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다. 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다. ECMA스크립트는 Ecma 인터내셔널의 ECMA-262 기술 규격에 정의된 표준화된 스크립트 프로그래밍 언어이다.]]></description><link>https://yuhodots.github.io/frontend/19-08-16/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-16/</guid><pubDate>Fri, 16 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다.&lt;/p&gt;
+&lt;p&gt; 먼저 &lt;code class=&quot;language-text&quot;&gt;db.connect&lt;/code&gt;를 통해 db서버에 연결을 시도합니다. 그리고 &lt;code class=&quot;language-text&quot;&gt;db.on&lt;/code&gt;을 이용해서 DB서버와의 연결이 끊어졌는지 확인하고 연결이 끊어졌다면 &lt;code class=&quot;language-text&quot;&gt;return handleDisconnect()&lt;/code&gt; 코드를 통해 &lt;code class=&quot;language-text&quot;&gt;handleDisconnect&lt;/code&gt; 함수를 호출하여 다시 연결을 시도합니다. &lt;/p&gt;</content:encoded></item><item><title><![CDATA[ECMAScript, TypeScript, React란 무엇인가?]]></title><description><![CDATA[프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다. 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다. ECMA스크립트는 Ecma 인터내셔널의 ECMA-262 기술 규격에 정의된 표준화된 스크립트 프로그래밍 언어이다.]]></description><link>https://yuhodots.github.io/frontend/19-08-16/</link><guid isPermaLink="false">https://yuhodots.github.io/frontend/19-08-16/</guid><pubDate>Fri, 16 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;프론트엔드 공부를 시작할 때, 처음에 많이 언급되는 ECMAScript, TypeScript, React에 대해 정리합니다.&lt;/p&gt;
 &lt;h3 id=&quot;ecmascript&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ecmascript&quot; aria-label=&quot;ecmascript permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;ECMAScript&lt;/h3&gt;
 &lt;p&gt; 위키피디아에서는 ECMAScript를 아래와 같이 설명하고 있습니다.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -7581,7 +7582,171 @@ passport&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
 &lt;li&gt;done함수에 의해 serializeUser의 콜백함수 호출&lt;/li&gt;
 &lt;li&gt;serializeUser의 콜백함수에 의해, 사용자의 식별자 값이 session store의 passport데이터로 저장됨&lt;/li&gt;
 &lt;li&gt;웹 페이지를 옮겨다닐 때 마다 deserializeUser가 호출되어 인증된 사용자인지 확인&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Express-Session]]></title><description><![CDATA[ 쿠키가 등장하면서 웹이 이전의 통신 내용을 기억할 수 있게 되었습니다. 덕분에 개인화나 인증에 대한 발판이 만들어 졌지만 쿠키를 이용해서 인증을 이용하는 것은 매우 위험한 일입니다. 그래서 인증 기능을 구현할 때 쿠키가 아닌 다른 방법이 필요하게 되었고 session이 생겨났습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28-2/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[Cookie와 HTTP]]></title><description><![CDATA[Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt; 이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3385&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.&lt;/p&gt;
+&lt;p&gt; 크롬 개발자도구를 켜서 networks에 들어가 보도록 하겠습니다. 그리고 새로고침 버튼을 누르면 아래와 같은 화면이 출력됩니다. (웹 페이지마다 다릅니다.) 여기에 출력되는 정보들은 클라이언트와 서버간에 주고받고있는 정보들을 의미합니다. 이렇게 서로 주고받는 정보를 확인하는 것은 웹과 관련된 작업을 하는데 있어서 굉장히 중요한 테크닉이 될 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABrklEQVQoz1VSi5KkIAz0///vrmZ3nFFRAfHFQ8V3b2Cutuqo6oKQpBM6JFVd45UxSClRliWEbAgK6bsAqzjquiLU4JzHmDzPoZRCVVXxjjEGrTWstdCjQiJbDd46NJ0FFw2ynCErSnw/UzoXEELinWUoCkbJJe1UiArn5At2IO+6jkgNxlEjUcTuFgu7zFjXDW6aYJ3DsizxvCz+Y3varYsxhroJ98G/7zu8X7Gs5J8ckmCcu8d9XwDuX9zX//Z1nQjrE/dv3R/feR6/+YkaLHozo9MBE0bnkdcNKtmjFC0YVxF51WCwHrIzKKK/i3hVEs+iRjdOkScJyQVvKbkDIwTSpjfQ0wrRjggFuRqQlRLOHxGVbGPMSAQPJqAoZ17P6EtyEjlMLgifZXmc6DD08KRpT2Jba6LwTdPEpx37RgMY0fc9nDFIS4ZRDyTbTnpuSL6+U6SvjCYsMU0ztm2jAB2H0rYdai6ITOHx9aSBrDQAT7GCYqmreUZBT7bGxbyAJHyP9PWGcxMJf1EXJwxVDol9P8RvI4nwz99HTAikgghDQe+XqO/kZhwHdXgc+AEvnKm7/SBNWAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/15813/19-06-28-1.webp 190w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/1cdb2/19-06-28-1.webp 380w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/9046c/19-06-28-1.webp 760w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/c89f9/19-06-28-1.webp 1140w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/af3f0/19-06-28-1.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/a2d4f/19-06-28-1.png 190w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/3f520/19-06-28-1.png 380w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png 760w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/b5cea/19-06-28-1.png 1140w,
+/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; 이 중 하나를 클릭하여 header탭에 들어가 보면 이 정보에 대한 자세한 내용 또한 확인이 가능합니다.&lt;/p&gt;
+&lt;h3 id=&quot;cookie-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cookie-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;cookie 생성 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cookie 생성&lt;/h3&gt;
+&lt;p&gt; 쿠키는 HTTP 프로토콜에 속해있는 기술입니다. mozila재단에서 만든 쿠키에 대한 사용 설명서를 읽어보면 쿠키는 &lt;strong&gt;session management&lt;/strong&gt;( 인증), &lt;strong&gt;personality&lt;/strong&gt;(개인화), &lt;strong&gt;tracking&lt;/strong&gt;(트래킹) 이렇게 세 가지 목적을 가지고 있다고 합니다. 그렇다면 쿠키는 어떻게 생성할 수 있는지 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies&quot;&gt;예제&lt;/a&gt;와 함께 살펴보도록 하겠습니다.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+
+[page content]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 기본적인 형태는 &lt;code class=&quot;language-text&quot;&gt;Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;&lt;/code&gt; 입니다. 위의 예제에서 3번 째 줄은 &apos;yummy cookie&apos;라는 쿠키의 쿠키값이 &apos;choco&apos;라는 의미이고 4번 째 줄은 &apos;tasty_cookie&apos;쿠키의 쿠키값은 &apos;strawberry&apos;라는 의미이며 위의 코드는 이 두개의 쿠키를 생성하는 응답 메세지입니다. &lt;/p&gt;
+&lt;p&gt;그럼 다음으로는 nodejs를 이용해서 쿠키를 생성 해 보도록 하겠습니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+     response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드를 사용하면 &lt;strong&gt;응답하는 메세지를 조작&lt;/strong&gt;할 수 있습니다. 우리가 응답하는 메세지를 조작할 수 있다면, 이 응답 메세지에 Set-Cookie: 라는 메세지를 추가할 수 있게 되며 결국 쿠키를 생성하는 응답메세지를 최종적으로 생성할 수 있게 됩니다. &lt;/p&gt;
+&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드의 첫번 째 인자로는 status code가 들어가고 두번 째 인자로는 객체가 들어가도록 약속이 되어있습니다. 그런데 여기서 복수의 쿠키를 전달해야 할 때는 인자로 배열의 형태로 전해주도록 약속되어 있습니다. 자 그러면 이제는 위의 코드를 실행시킨 뒤에는 아래와 같이 코드를 다시 바꿔봅시다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// response.writeHead(200, {&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;//     &apos;Set-Cookie&apos;:[&apos;yummy_cookie=choco&apos;, &apos;tasty_cookie=strawberry&apos;]&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// });&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 이번에는 응답하는 메세지를 조작하지 않고 쿠키 값을 전달해주지 않았습니다. 하지만 크롬 개발자도구를 들어가서 파일의 헤더정보를 확인해 보면 request header에 이미 쿠키값이 심어져 있는 것을 볼 수 있습니다! 그리고 응답 헤더에서는 더 이상 쿠키를 전달하지 않는 것 또한 확인이 가능합니다. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 20.52631578947369%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVQY012O247DIBBD8/8/uNtqq0ZRCyTcL4GQVHEH1L7sSEdjjMby8Hu5YBxHcM7BGIOUEorQSnUthICYJZ58gSIvBA/vPzjX3452o3lDKQXrmtF2rRXGWozTA4vUyGWD0gY+JISUEWKC84E8C6l03w/GuzaWAkPEgH+TKPx6o8azgqWgv/uE+/QEE9RSLJil+WgJaRyU9Uiloh4ntv2F4TxPfGnTWvxcbz3IuEhHHnHdkHKlwx2BtLah42KG9an/5+0gdrwBrScwYXfcIO0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/15813/19-06-28-2.webp 190w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/1cdb2/19-06-28-2.webp 380w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/9046c/19-06-28-2.webp 760w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/c89f9/19-06-28-2.webp 1140w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/af3f0/19-06-28-2.webp 1280w&quot;
+              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/a2d4f/19-06-28-2.png 190w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3f520/19-06-28-2.png 380w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png 760w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/b5cea/19-06-28-2.png 1140w,
+/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png 1280w&quot;
+            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png&quot;
+            alt=&quot;img&quot;
+            title=&quot;img&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;cookie-읽기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cookie-%EC%9D%BD%EA%B8%B0&quot; aria-label=&quot;cookie 읽기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cookie 읽기&lt;/h3&gt;
+&lt;p&gt; 생성한 쿠키를 다시 웹 브라우저가 웹 서버에게 요청 했을 때, 그것을 웹 애플리케이션 내에서 어떻게 알아 낼 수 있는지에 대해 알아봅시다. 예시 코드를 통해 설명을 진행하도록 하겠습니다. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookie &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cookie&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cookie&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt; 여기서 중요한 부분은 if문 입니다. &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;는 request header의 쿠키에 대한 정보를 담고있습니다. 만약 여기에 정보가 하나라도 들어있다면 if문의 statement인 &lt;code class=&quot;language-text&quot;&gt;cookies = cookie.parse(request.headers.cookie)&lt;/code&gt; 코드가 실행되는데 &lt;code class=&quot;language-text&quot;&gt;cookie.parse&lt;/code&gt;코드는 &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;의 객체화 해주고 이를 cookies라는 객체 변수에 담아준 것입니다.&lt;/p&gt;
+&lt;p&gt; 쿠키에 대한 정보를 객체에 담아주면, 객체에 담긴 키 값을 활용하여 쿠키 값을 우리 웹 애플리케이션에서 사용할 수 있습니다. &lt;code class=&quot;language-text&quot;&gt;cookies.yummy_cookie&lt;/code&gt;를 소스코드에 입력하면 choco라는 값을 사용하겠다는 의미처럼요&lt;/p&gt;
+&lt;h3 id=&quot;http-request-message&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#http-request-message&quot; aria-label=&quot;http request message permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;HTTP request message&lt;/h3&gt;
+&lt;p&gt; 웹 브라우저에서 웹 서버에 접속할 때, 크롬 개발자도구의 네트워크의 헤더에서 Request header에 적혀있는 정보들이 무엇을 의미하는지 알아보기 위해 구글에 http request header format라고 검색을 해 봅시다. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&quot;&gt;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;구글에서 http request message에 대해서 알기 쉽게 설명된 이미지를 찾았습니다. 먼저 제일 첫 부분에는 request line이 위치합니다. 그리고 그 아래에는 request header가 위치하며 이 둘을 합쳐서 request message header 라고 합니다. 그리고 한 줄을 띄운 그 아래의 메세지는 request message body입니다. &lt;/p&gt;
+&lt;p&gt; request line의 GET은 웹 브라우저와 웹 서버가 어떤 방식으로 소통할 지 나타내는 메소드입니다. 그 다음 /doc/test.html은 우리가 웹서버에 요청하고 있는 정보를 의미합니다. 마지막으로 HTTP/1.1은 현재 사용하고 있는 HTTP의 버전이 1.1임을 나타냅니다.  &lt;/p&gt;
+&lt;p&gt;아래는 request header에 대한 설명입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;host&lt;/strong&gt;는 우리가 요청하는 웹 서버의 주소를 나타냅니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;user-agent&lt;/strong&gt;는 웹 브라우저의 다른 표현입니다. 지금 서버에 요청을 보내고 있는 웹 브라우저가 누구인가에 대한 정보를 나타냅니다. &lt;strong&gt;Accept-encoding&lt;/strong&gt;은 정보를 압축해서 전달할 때 어떤 방식으로 압축 인코딩을 처리할 수 있는지를 나타냅니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If-modified-since&lt;/strong&gt;는 내가 받은 파일이 마지막으로 언제 다운로드 된 것인지 나타내며, 웹 서버는 이 정보를 확인하여 업데이트가 필요 없는 경우엔 정보를 굳이 보내지 않아도 되기 떄문에 속도를 향상시키는데 사용할 수 있습니다. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;http-response-message&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#http-response-message&quot; aria-label=&quot;http response message permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;HTTP response message&lt;/h3&gt;
+&lt;p&gt; 이번에는 Response header에 적혀있는 정보들이 무엇을 의미하는지 알아보도록 하겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&quot;&gt;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 제일 첫 줄은 status에 대한 정보가 출력됩니다. 차례대로 version, status code, phrase를 의미합니다. 예를 들어보면 &apos;HTTP/1.1 200 0k&apos;이런 형태입니다.&lt;/p&gt;
+&lt;p&gt;아래는 response header에 대한 설명입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;content-type&lt;/strong&gt;은 웹 브라우저가 서버에게 받은 파일을 어떤 형식으로 인식하여 해석할 지를 결정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;content-length&lt;/strong&gt;는 받은 정보가 몇 바이트인지를 나타냅니다. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;content-encoding&lt;/strong&gt;은 어떤 방식을 통해 압축을 풀어 정보를 읽어들일지 결정합니다.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;last-modified&lt;/strong&gt;는 마지막으로 언제 수정된 정보인지를 알려줍니다.  &lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Express-Session]]></title><description><![CDATA[ 쿠키가 등장하면서 웹이 이전의 통신 내용을 기억할 수 있게 되었습니다. 덕분에 개인화나 인증에 대한 발판이 만들어 졌지만 쿠키를 이용해서 인증을 이용하는 것은 매우 위험한 일입니다. 그래서 인증 기능을 구현할 때 쿠키가 아닌 다른 방법이 필요하게 되었고 session이 생겨났습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28-2/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28-2/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3400/21836&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; 쿠키가 등장하면서 요청과 응답만을 처리할 수 있었던 웹이, 이전의 통신 내용을 기억할 수 있게 되었습니다. 덕분에 개인화나 인증에 대한 발판이 만들어 졌습니다. 하지만 쿠키를 이용해서 인증을 이용하는 것은 매우매우 위험한 일입니다. 쿠키에 인증정보를 저장하는 순간 익명의 공격자나 웹 서비스를 운영하는 개발자 등의 사람들이 사용자의 인증정보를 쉽게 알아낼 수 있기 때문입니다. 그래서 인증 기능을 구현할 때 쿠키가 아닌 다른 방법이 필요하게 되었고, 이런 요구에 의해 생겨난 것이 session입니다.&lt;/p&gt;
@@ -7761,171 +7926,7 @@ app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
         &lt;/picture&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;세션 저장소에는 위처럼 파일 형태로 데이터가 저장됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Cookie와 HTTP]]></title><description><![CDATA[Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.]]></description><link>https://yuhodots.github.io/backend/19-06-28/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-28/</guid><pubDate>Fri, 28 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
-&lt;p&gt; 이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3385&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt; Cookie를 제대로 이해하기 위해서는 먼저 HTTP에 대해서 알고있어야 합니다. HTTP는 Hyper Text Transfer Protocol의 약자로 서버와 클라이언트간에 요청/응답 관계에 대한 통신 규약을 말합니다. HTTP는 크게 request와 response를 위한 메세지로 구분되어 있습니다. HTTP는 눈에 쉽게 보이지 않는 추상적인 개념이기 때문에 쉽게 파악하기 위해서 크롭 개발자 도구를 활용해서 학습해 보도록 하겠습니다.&lt;/p&gt;
-&lt;p&gt; 크롬 개발자도구를 켜서 networks에 들어가 보도록 하겠습니다. 그리고 새로고침 버튼을 누르면 아래와 같은 화면이 출력됩니다. (웹 페이지마다 다릅니다.) 여기에 출력되는 정보들은 클라이언트와 서버간에 주고받고있는 정보들을 의미합니다. 이렇게 서로 주고받는 정보를 확인하는 것은 웹과 관련된 작업을 하는데 있어서 굉장히 중요한 테크닉이 될 수 있습니다.&lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 42.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABrklEQVQoz1VSi5KkIAz0///vrmZ3nFFRAfHFQ8V3b2Cutuqo6oKQpBM6JFVd45UxSClRliWEbAgK6bsAqzjquiLU4JzHmDzPoZRCVVXxjjEGrTWstdCjQiJbDd46NJ0FFw2ynCErSnw/UzoXEELinWUoCkbJJe1UiArn5At2IO+6jkgNxlEjUcTuFgu7zFjXDW6aYJ3DsizxvCz+Y3varYsxhroJ98G/7zu8X7Gs5J8ckmCcu8d9XwDuX9zX//Z1nQjrE/dv3R/feR6/+YkaLHozo9MBE0bnkdcNKtmjFC0YVxF51WCwHrIzKKK/i3hVEs+iRjdOkScJyQVvKbkDIwTSpjfQ0wrRjggFuRqQlRLOHxGVbGPMSAQPJqAoZ17P6EtyEjlMLgifZXmc6DD08KRpT2Jba6LwTdPEpx37RgMY0fc9nDFIS4ZRDyTbTnpuSL6+U6SvjCYsMU0ztm2jAB2H0rYdai6ITOHx9aSBrDQAT7GCYqmreUZBT7bGxbyAJHyP9PWGcxMJf1EXJwxVDol9P8RvI4nwz99HTAikgghDQe+XqO/kZhwHdXgc+AEvnKm7/SBNWAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/15813/19-06-28-1.webp 190w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/1cdb2/19-06-28-1.webp 380w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/9046c/19-06-28-1.webp 760w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/c89f9/19-06-28-1.webp 1140w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/af3f0/19-06-28-1.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/a2d4f/19-06-28-1.png 190w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/3f520/19-06-28-1.png 380w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png 760w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/b5cea/19-06-28-1.png 1140w,
-/static/8b0dbf82bfa3312039d273f3adf9478e/21b4d/19-06-28-1.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/8b0dbf82bfa3312039d273f3adf9478e/3c051/19-06-28-1.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt; 이 중 하나를 클릭하여 header탭에 들어가 보면 이 정보에 대한 자세한 내용 또한 확인이 가능합니다.&lt;/p&gt;
-&lt;h3 id=&quot;cookie-생성&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cookie-%EC%83%9D%EC%84%B1&quot; aria-label=&quot;cookie 생성 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cookie 생성&lt;/h3&gt;
-&lt;p&gt; 쿠키는 HTTP 프로토콜에 속해있는 기술입니다. mozila재단에서 만든 쿠키에 대한 사용 설명서를 읽어보면 쿠키는 &lt;strong&gt;session management&lt;/strong&gt;( 인증), &lt;strong&gt;personality&lt;/strong&gt;(개인화), &lt;strong&gt;tracking&lt;/strong&gt;(트래킹) 이렇게 세 가지 목적을 가지고 있다고 합니다. 그렇다면 쿠키는 어떻게 생성할 수 있는지 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies&quot;&gt;예제&lt;/a&gt;와 함께 살펴보도록 하겠습니다.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;HTTP/1.0 200 OK
-Content-type: text/html
-Set-Cookie: yummy_cookie=choco
-Set-Cookie: tasty_cookie=strawberry
-
-[page content]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 기본적인 형태는 &lt;code class=&quot;language-text&quot;&gt;Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;&lt;/code&gt; 입니다. 위의 예제에서 3번 째 줄은 &apos;yummy cookie&apos;라는 쿠키의 쿠키값이 &apos;choco&apos;라는 의미이고 4번 째 줄은 &apos;tasty_cookie&apos;쿠키의 쿠키값은 &apos;strawberry&apos;라는 의미이며 위의 코드는 이 두개의 쿠키를 생성하는 응답 메세지입니다. &lt;/p&gt;
-&lt;p&gt;그럼 다음으로는 nodejs를 이용해서 쿠키를 생성 해 보도록 하겠습니다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-     response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드를 사용하면 &lt;strong&gt;응답하는 메세지를 조작&lt;/strong&gt;할 수 있습니다. 우리가 응답하는 메세지를 조작할 수 있다면, 이 응답 메세지에 Set-Cookie: 라는 메세지를 추가할 수 있게 되며 결국 쿠키를 생성하는 응답메세지를 최종적으로 생성할 수 있게 됩니다. &lt;/p&gt;
-&lt;p&gt; &lt;code class=&quot;language-text&quot;&gt;response.writeHead&lt;/code&gt;코드의 첫번 째 인자로는 status code가 들어가고 두번 째 인자로는 객체가 들어가도록 약속이 되어있습니다. 그런데 여기서 복수의 쿠키를 전달해야 할 때는 인자로 배열의 형태로 전해주도록 약속되어 있습니다. 자 그러면 이제는 위의 코드를 실행시킨 뒤에는 아래와 같이 코드를 다시 바꿔봅시다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// response.writeHead(200, {&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;//     &apos;Set-Cookie&apos;:[&apos;yummy_cookie=choco&apos;, &apos;tasty_cookie=strawberry&apos;]&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// });&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 이번에는 응답하는 메세지를 조작하지 않고 쿠키 값을 전달해주지 않았습니다. 하지만 크롬 개발자도구를 들어가서 파일의 헤더정보를 확인해 보면 request header에 이미 쿠키값이 심어져 있는 것을 볼 수 있습니다! 그리고 응답 헤더에서는 더 이상 쿠키를 전달하지 않는 것 또한 확인이 가능합니다. &lt;/p&gt;
-&lt;p&gt;&lt;span
-      class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
-    &gt;
-      &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-    &lt;span
-    class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 20.52631578947369%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAyElEQVQY012O247DIBBD8/8/uNtqq0ZRCyTcL4GQVHEH1L7sSEdjjMby8Hu5YBxHcM7BGIOUEorQSnUthICYJZ58gSIvBA/vPzjX3452o3lDKQXrmtF2rRXGWozTA4vUyGWD0gY+JISUEWKC84E8C6l03w/GuzaWAkPEgH+TKPx6o8azgqWgv/uE+/QEE9RSLJil+WgJaRyU9Uiloh4ntv2F4TxPfGnTWvxcbz3IuEhHHnHdkHKlwx2BtLah42KG9an/5+0gdrwBrScwYXfcIO0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-  &gt;&lt;/span&gt;
-  &lt;picture&gt;
-          &lt;source
-              srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/15813/19-06-28-2.webp 190w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/1cdb2/19-06-28-2.webp 380w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/9046c/19-06-28-2.webp 760w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/c89f9/19-06-28-2.webp 1140w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/af3f0/19-06-28-2.webp 1280w&quot;
-              sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-              type=&quot;image/webp&quot;
-            /&gt;
-          &lt;source
-            srcset=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/a2d4f/19-06-28-2.png 190w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3f520/19-06-28-2.png 380w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png 760w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/b5cea/19-06-28-2.png 1140w,
-/static/47573b6e7cdaf8b5ac99a82eb42de7d1/21b4d/19-06-28-2.png 1280w&quot;
-            sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
-            type=&quot;image/png&quot;
-          /&gt;
-          &lt;img
-            class=&quot;gatsby-resp-image-image&quot;
-            src=&quot;/static/47573b6e7cdaf8b5ac99a82eb42de7d1/3c051/19-06-28-2.png&quot;
-            alt=&quot;img&quot;
-            title=&quot;img&quot;
-            loading=&quot;lazy&quot;
-            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
-          /&gt;
-        &lt;/picture&gt;
-  &lt;/a&gt;
-    &lt;/span&gt;&lt;/p&gt;
-&lt;h3 id=&quot;cookie-읽기&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cookie-%EC%9D%BD%EA%B8%B0&quot; aria-label=&quot;cookie 읽기 permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cookie 읽기&lt;/h3&gt;
-&lt;p&gt; 생성한 쿠키를 다시 웹 브라우저가 웹 서버에게 요청 했을 때, 그것을 웹 애플리케이션 내에서 어떻게 알아 낼 수 있는지에 대해 알아봅시다. 예시 코드를 통해 설명을 진행하도록 하겠습니다. &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookie &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cookie&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        cookies &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cookie&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cookie&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&apos;Set-Cookie&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;yummy_cookie=choco&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;tasty_cookie=strawberry&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    response&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Cookie!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt; 여기서 중요한 부분은 if문 입니다. &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;는 request header의 쿠키에 대한 정보를 담고있습니다. 만약 여기에 정보가 하나라도 들어있다면 if문의 statement인 &lt;code class=&quot;language-text&quot;&gt;cookies = cookie.parse(request.headers.cookie)&lt;/code&gt; 코드가 실행되는데 &lt;code class=&quot;language-text&quot;&gt;cookie.parse&lt;/code&gt;코드는 &lt;code class=&quot;language-text&quot;&gt;request.headers.cookie&lt;/code&gt;의 객체화 해주고 이를 cookies라는 객체 변수에 담아준 것입니다.&lt;/p&gt;
-&lt;p&gt; 쿠키에 대한 정보를 객체에 담아주면, 객체에 담긴 키 값을 활용하여 쿠키 값을 우리 웹 애플리케이션에서 사용할 수 있습니다. &lt;code class=&quot;language-text&quot;&gt;cookies.yummy_cookie&lt;/code&gt;를 소스코드에 입력하면 choco라는 값을 사용하겠다는 의미처럼요&lt;/p&gt;
-&lt;h3 id=&quot;http-request-message&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#http-request-message&quot; aria-label=&quot;http request message permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;HTTP request message&lt;/h3&gt;
-&lt;p&gt; 웹 브라우저에서 웹 서버에 접속할 때, 크롬 개발자도구의 네트워크의 헤더에서 Request header에 적혀있는 정보들이 무엇을 의미하는지 알아보기 위해 구글에 http request header format라고 검색을 해 봅시다. &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&quot;&gt;https://images.app.goo.gl/WsxVYpjhtQK1xqxK6&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;구글에서 http request message에 대해서 알기 쉽게 설명된 이미지를 찾았습니다. 먼저 제일 첫 부분에는 request line이 위치합니다. 그리고 그 아래에는 request header가 위치하며 이 둘을 합쳐서 request message header 라고 합니다. 그리고 한 줄을 띄운 그 아래의 메세지는 request message body입니다. &lt;/p&gt;
-&lt;p&gt; request line의 GET은 웹 브라우저와 웹 서버가 어떤 방식으로 소통할 지 나타내는 메소드입니다. 그 다음 /doc/test.html은 우리가 웹서버에 요청하고 있는 정보를 의미합니다. 마지막으로 HTTP/1.1은 현재 사용하고 있는 HTTP의 버전이 1.1임을 나타냅니다.  &lt;/p&gt;
-&lt;p&gt;아래는 request header에 대한 설명입니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;host&lt;/strong&gt;는 우리가 요청하는 웹 서버의 주소를 나타냅니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;user-agent&lt;/strong&gt;는 웹 브라우저의 다른 표현입니다. 지금 서버에 요청을 보내고 있는 웹 브라우저가 누구인가에 대한 정보를 나타냅니다. &lt;strong&gt;Accept-encoding&lt;/strong&gt;은 정보를 압축해서 전달할 때 어떤 방식으로 압축 인코딩을 처리할 수 있는지를 나타냅니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;If-modified-since&lt;/strong&gt;는 내가 받은 파일이 마지막으로 언제 다운로드 된 것인지 나타내며, 웹 서버는 이 정보를 확인하여 업데이트가 필요 없는 경우엔 정보를 굳이 보내지 않아도 되기 떄문에 속도를 향상시키는데 사용할 수 있습니다. &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;http-response-message&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#http-response-message&quot; aria-label=&quot;http response message permalink&quot; class=&quot;anchor-header before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;HTTP response message&lt;/h3&gt;
-&lt;p&gt; 이번에는 Response header에 적혀있는 정보들이 무엇을 의미하는지 알아보도록 하겠습니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&quot;&gt;https://images.app.goo.gl/uxDNwxkCYP2Rr2J67&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 제일 첫 줄은 status에 대한 정보가 출력됩니다. 차례대로 version, status code, phrase를 의미합니다. 예를 들어보면 &apos;HTTP/1.1 200 0k&apos;이런 형태입니다.&lt;/p&gt;
-&lt;p&gt;아래는 response header에 대한 설명입니다.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;content-type&lt;/strong&gt;은 웹 브라우저가 서버에게 받은 파일을 어떤 형식으로 인식하여 해석할 지를 결정합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;content-length&lt;/strong&gt;는 받은 정보가 몇 바이트인지를 나타냅니다. &lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;content-encoding&lt;/strong&gt;은 어떤 방식을 통해 압축을 풀어 정보를 읽어들일지 결정합니다.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;last-modified&lt;/strong&gt;는 마지막으로 언제 수정된 정보인지를 알려줍니다.  &lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Express 미들웨어]]></title><description><![CDATA[ Express에서 중요한 기능 두 가지를 꼽으라고 하면 하나는 Route이고 하나는 미들웨어 입니다. 다른 사람이 만든 부품을 내 웹 페이지 구현을 위해 사용하는 방법 중 하나가 미들웨어입니다. Express홈페이지에 들어가면 다양한 미들웨어를 확인 할 수 있습니다. ]]></description><link>https://yuhodots.github.io/backend/19-06-27/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-27/</guid><pubDate>Thu, 27 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;세션 저장소에는 위처럼 파일 형태로 데이터가 저장됩니다.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Express 미들웨어]]></title><description><![CDATA[ Express에서 중요한 기능 두 가지를 꼽으라고 하면 하나는 Route이고 하나는 미들웨어 입니다. 다른 사람이 만든 부품을 내 웹 페이지 구현을 위해 사용하는 방법 중 하나가 미들웨어입니다. Express홈페이지에 들어가면 다양한 미들웨어를 확인 할 수 있습니다. ]]></description><link>https://yuhodots.github.io/backend/19-06-27/</link><guid isPermaLink="false">https://yuhodots.github.io/backend/19-06-27/</guid><pubDate>Thu, 27 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 &lt;a href=&quot;https://opentutorials.org/course/3370/21378&quot;&gt;강의&lt;/a&gt;를 정리했음을 먼저 밝힙니다.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; Express에서 중요한 기능 두 가지를 꼽으라고 하면 하나는 Route이고 하나는 미들웨어 입니다. 다른 사람이 만든 부품을 내 웹 페이지 구현을 위해 사용하는 방법 중 하나가 미들웨어입니다. &lt;a href=&quot;https://expressjs.com/ko/resources/middleware.html&quot;&gt;Express홈페이지&lt;/a&gt;에 들어가면 다양한 미들웨어들을 확인 할 수 있습니다. &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4&quot;&gt;위키피디아&lt;/a&gt;에서 말하는 미들웨어의 정의는 다음과 같습니다. &lt;/p&gt;
