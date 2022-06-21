@@ -93,9 +93,46 @@ volumes:
 
 ### MLflow
 
+- Tracking: ML 실험과 관련된 모든 결과물을 기록 및 조회하기 위한 기능 제공
+- Project: 재현을 위한 패키징 기능 제공
+- Models: 다양한 플랫폼에서 모델 배포 및 추론을 관리하기 위한 기능 제공 (key concept: ***flavors***)
+- Model Registry: 전체 라이프사이클을 공동 관리하기 위한 central model store 제공
+
+##### MLflow Tracking
+
+- **Parameter, Metrics, Artifcats, Tags and Notes**
+
+(TODO). MLflow docs 빠르게 쭉 훑고, 중요한 내용만 기록하기
+
+##### MLflow Projects
+
+```
+name: cifar10_initial
+
+docker_env:
+  image: shibui/ml-system-in-actions:training_pattern_cifar10_0.0.1
+  volumes: ["$(pwd)/data:/opt/data", "/tmp/ml-system-in-actions/chapter2_training/cifar10/mlruns:/tmp/mlruns"]
+
+entry_points:
+  train:
+    parameters:
+      upstream: {type: string, default: ""}
+      downstream: {type: string, default: /opt/data/model/}
+      epochs: {type: int, default: 1}
+			...
+    command: |
+      python -m src.train \
+        --upstream {upstream} \
+        --downstream {downstream} \
+        --epochs {epochs} \
+				...
+```
+
+##### MLflow Models
 
 
-##### MLproject
+
+##### MLflow Model Registry
 
 
 

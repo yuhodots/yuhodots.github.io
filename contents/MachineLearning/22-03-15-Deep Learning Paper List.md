@@ -28,8 +28,6 @@ category: "Deep Learning"
 - [x] [Nichol, Alex, Joshua Achiam, and John Schulman. "On first-order meta-learning algorithms." arXiv preprint arXiv:1803.02999 (2018).](https://arxiv.org/abs/1803.02999)
 - [ ] [Oh, Jaehoon, et al. "BOIL: Towards Representation Change for Few-shot Learning." ICLR 2021.](https://openreview.net/pdf?id=umIdUL8rMH)
 - [x] [Oreshkin, Boris N., et al. "Tadam: Task dependent adaptive metric for improved few-shot learning." NIPS 2018.](https://dl.acm.org/doi/abs/10.5555/3326943.3327010)
-- [ ] [Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.](https://arxiv.org/pdf/2012.04324.pdf)
-- [ ] [Cha, Junbum, et al. "Swad: Domain generalization by seeking flat minima." NIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/bcb41ccdc4363c6848a1d760f26c28a0-Abstract.html)
 
 ### Incremental Learning, Continual Learning
 
@@ -84,6 +82,14 @@ category: "Deep Learning"
 - [ ] [Skorokhodov, Ivan, and Mohamed Elhoseiny. "Class Normalization for (Continual)? Generalized Zero-Shot Learning." ICRL 2021.](https://openreview.net/forum?id=7pgFL2Dkyyy)
   - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
+- [ ] [Zhu, Fei, et al. "Class-Incremental Learning via Dual Augmentation." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/file/77ee3bc58ce560b86c2b59363281e914-Paper.pdf)
+- [ ] [Zhou, Da-Wei, et al. "Forward compatible few-shot class-incremental learning." CVPR 2022.](https://arxiv.org/pdf/2203.06953.pdf)
+
+### Domain Generalization
+
+- [ ] [Cha, Junbum, et al. "Swad: Domain generalization by seeking flat minima." NIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/bcb41ccdc4363c6848a1d760f26c28a0-Abstract.html)
+- [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
+- [ ] [Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.](https://arxiv.org/pdf/2012.04324.pdf)
 
 ### Self-supervised Learning
 
@@ -95,12 +101,36 @@ category: "Deep Learning"
 
 ### Semi-supervised Learning
 
+- Generative model: Gaussian mixture, Deep generative models
+- Graph based: Label propagation
+- Self-training: Pseudo labelling, Co-training
+- Consistency regularization: Pi-model, Mean teacher
 - [x] [Pham, Hieu, et al. "Meta pseudo labels." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Pham_Meta_Pseudo_Labels_CVPR_2021_paper.html)
 - [x] [Zhou, Zhi-Hua, and Ming Li. "Semi-supervised regression with co-training." IJCAI 2005.](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/ijcai05.pdf)
   - 두 개의 kNN regressor를 사용하여 co-training 진행
   - Sufficient and redundant view를 위해서 두 regressor의 metric은 p=2 Minkowsky와 p=5 Minkowsky로 서로 다르게 설정함 
   - Key mechanism은 regression에서 confidence를 만들어내는 작업이었고, $x_u$가 추가됨에 따라서 MSE가 얼마나 개선되는지를 계산하여($\vartriangle_u$) 이 값이 제일 커지는 $x_u$에 대해 confidence가 높다고 판단하여 해당 $x_u$에 pseudo label을 부여
 - [ ] [Jean, Neal, Sang Michael Xie, and Stefano Ermon. "Semi-supervised Deep Kernel Learning: Regression with Unlabeled Data by Minimizing Predictive Variance." NIPS 2018.](https://par.nsf.gov/servlets/purl/10080181)
+- [ ] [Berthelot, David, et al. "Mixmatch: A holistic approach to semi-supervised learning." NeurIPS 2019.](https://proceedings.neurips.cc/paper/2019/hash/1cd138d0499a68f4bb72bee04bbec2d7-Abstract.html)
+
+  1. Unlabel data에 대해서 $K$개의 stochastic augmentation 수행 후 이를 모델에 입력
+  2. 모델이 뱉은 $K$개의 probability 출력을 평균 낸 뒤에, temperature scailing을 통해 entropy minimization(sharpening) 수행. 그리고 이 값 $p$를 $K$개의 unlabelled data가 공유
+     - 배치 내에서 Labelled data는 $B$개, Unlabelled data는 $B*K$개 존재하게 됨
+  3. 총 $B*(K + 1)$ 개의 데이터를 섞은 뒤에 Labelled data $B$개, Unlabelled data $B*K$개와 각각 Mixup
+     - 이 때, mixup $\lambda' = \max(\lambda, 1-\lambda)$는 항상 0.5 이상이 나오도록 설정하여, labelled mixup data는 labelled data에 dominant 하고, unlabelled mixup data는 unlabelled data에 dominant 하도록 강제함
+  4. Labelled mixup data로는 CE loss 계산, Unlabelled mixup data로는 Consistency loss 계산
+- [ ] [Berthelot, David, et al. "ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring." ICLR 2020.](https://openreview.net/pdf?id=HklkeR4KPB)
+
+  - Distribution Alignment: Unlabelled data의 예측 분포를 labelled data의 분포로 normalize. 즉, 기존 prediction $q$에 unlabelled data 분포의 running average로 나누고 labelled data 분포의 running average로 곱해줌.
+  - Augmentation Anchoring
+- [ ] [Sohn, Kihyuk, et al. "Fixmatch: Simplifying semi-supervised learning with consistency and confidence." NeurIPS 2020.](https://proceedings.neurips.cc/paper/2020/file/06964dce9addb1c5cb5d6e3d9838f733-Paper.pdf)
+  - Labelled image: Weakly augmented image 사용해서 cross entropy
+  - Unlabelled image: Weakly augmented image에 대해서 threshold를 넘는 경우에 이 예측의 one-hot encoding을 strong augmented image의 pseudo label로써 사용. Threshold를 넘지 못하는 경우에는 loss에 포함시키지 않음
+    - 원래는 temperatured scaling해서 pseudo label하였으나, temperature를 0으로 했을 때 잘 나왔다고 함 (이 경우 one-hot encoding과 동일)
+- [ ] [Saito, Kuniaki, Donghyun Kim, and Kate Saenko. "OpenMatch: Open-set Consistency Regularization for Semi-supervised Learning with Outliers." NeurIPS 2021.](https://arxiv.org/abs/2105.14148)
+- Open-set semi-supervised learning(OSSL) task를 풀기 위한 알고리즘
+- [ ] [Fan, Yue, Dengxin Dai, and Bernt Schiele. "CoSSL: Co-Learning of Representation and Classifier for Imbalanced Semi-Supervised Learning." CVPR 2022. ](https://arxiv.org/abs/2112.04564)- *8월 내로 읽는 것을 목표로*
+- [ ] [Oh, Youngtaek, Dong-Jin Kim, and In So Kweon. "Distribution-aware semantics-oriented pseudo-label for imbalanced semi-supervised learning." CVPR 2022.](https://arxiv.org/abs/2106.05682) - *8월 내로 읽는 것을 목표로*
 
 ### Metric Learning
 
@@ -113,7 +143,6 @@ category: "Deep Learning"
 
 - [ ] [Lubana, Ekdeep S., Robert Dick, and Hidenori Tanaka. "Beyond BatchNorm: towards a unified understanding of normalization in deep learning." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/2578eb9cdf020730f77793e8b58e165a-Abstract.html)
 - [ ] [Ergen, Tolga, et al. "Demystifying batch normalization in relu networks: Equivalent convex optimization models and implicit regularization." ICLR 2022.](https://arxiv.org/pdf/2103.01499.pdf)
-- [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
 - [x] [Brock, Andrew, Soham De, and Samuel L. Smith. "Characterizing signal propagation to close the performance gap in unnormalized ResNets." ICLR 2021.](https://arxiv.org/pdf/2101.08692.pdf)
 - [x] [Brock, Andy, et al. "High-performance large-scale image recognition without normalization." ICML 2021.](http://proceedings.mlr.press/v139/brock21a/brock21a.pdf)
 
@@ -150,6 +179,12 @@ category: "Deep Learning"
   - Main algorithm: ViT DINO pretraining, Supervised contrastive learning + Self-supervised contrastive learning, Semi-supervised k-means clustering(using k-means++)의 순서로 알고리즘 구성
   - Class number estimation method: Brent's method 사용
   - Strong baselines: RS와 UNO에서 labelled dataset와 unlabelled dataset에 대한 classification head가 두 개로 나뉘어 존재하던 것을 하나로 합침. Backbone은 저자들이 제안한 ViT구조를 그대로 사용하였는데, backbone을 finetuning하는 것은 오히려 성능이 좋지 않아서, backbone은 freeze하고 classification head만 tuning하였음
+  
+- [x] [Bhattacharjee, Supritam, Devraj Mandal, and Soma Biswas. "Multi-class novelty detection using mix-up technique." WACV 2020.](https://openaccess.thecvf.com/content_WACV_2020/html/Bhattacharjee_Multi-class_Novelty_Detection_Using_Mix-up_Technique_WACV_2020_paper.html)
+
+  - Test query를 novel class와 mixup하면 output prediction 값이 낮고, base class와 mixup하면 output prediction 값이 특정 하나의 class에 대해 높을 것이라 가정
+  - Open-set recognition task에서 자주 사용되는 K개의 sigmoid classifier 사용
+  - Class 마다 N개의 exemplar 이미지를 가지고, 해당 이미지와 test query의 mixed 샘플 output 확인. N개의 output을 평균내어 이를 membership score라는 이름으로 정의
 
 ### Data Augmentation
 
@@ -159,6 +194,7 @@ category: "Deep Learning"
   - $\left(\tilde{g}_{k}, \tilde{y}\right):=\left(\operatorname{Mix}_{\lambda}\left(g_{k}(x), g_{k}\left(x^{\prime}\right)\right), \operatorname{Mix}_{\lambda}\left(y, y^{\prime}\right)\right)$
   - SVD 했을 때 eigenvalue가 전체적으로 작아지는 효과를 가짐. 즉, principal components 수가 작아지는 효과 (flattening)
   - Flattening을 통해 eigenvalue가 전체적으로 작아지니 volume이 작아지며, compression은 information theory 관점에서 이론적, 실험적으로 generalization과 연관이 있어 장점을 가짐
+- [ ] [Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.](https://openreview.net/forum?id=g11CZSghXyY)
 - [ ] [Zhang, Linjun, et al. "How Does Mixup Help With Robustness and Generalization?." ICLR 2021.](https://arxiv.org/pdf/2010.04819.pdf) - *6월 내로 읽는 것을 목표로*
 
 ### Natural Language Processing
