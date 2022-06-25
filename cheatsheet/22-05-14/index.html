@@ -146,20 +146,41 @@
 <li><code class="language-text">docker-compose stop [options] [SERVICE...]</code>: 서비스 stop</li>
 <li><code class="language-text">docker-compose ps</code>: 현재 실행중인 서비스 상태 확인</li>
 </ul>
-<h3 id="kubernetes" style="position:relative;"><a href="#kubernetes" aria-label="kubernetes permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kubernetes</h3>
 <h3 id="mlflow" style="position:relative;"><a href="#mlflow" aria-label="mlflow permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MLflow</h3>
+<p>MLflow의 4가지 주요 기능</p>
 <ul>
-<li>Tracking: ML 실험과 관련된 모든 결과물을 기록 및 조회하기 위한 기능 제공</li>
-<li>Project: 재현을 위한 패키징 기능 제공</li>
+<li>
+<p>Tracking: ML 실험과 관련된 모든 결과물을 기록 및 조회하기 위한 기능 제공</p>
+<ul>
+<li><code class="language-text">log_metric</code>,<code class="language-text">log_param</code>, <code class="language-text">log_artifacts</code> , <code class="language-text">mlflow ui</code></li>
+</ul>
+</li>
+<li>
+<p>Project: 재현을 위한 패키징 기능 제공</p>
+<ul>
+<li><code class="language-text">mlflow run [로컬저장소 혹은 원격저장소]</code></li>
+</ul>
+</li>
 <li>Models: 다양한 플랫폼에서 모델 배포 및 추론을 관리하기 위한 기능 제공 (key concept: <strong><em>flavors</em></strong>)</li>
 <li>Model Registry: 전체 라이프사이클을 공동 관리하기 위한 central model store 제공</li>
 </ul>
 <h5 id="mlflow-tracking" style="position:relative;"><a href="#mlflow-tracking" aria-label="mlflow tracking permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MLflow Tracking</h5>
+<p>Tensorboard나 wandb charts 처럼 metrics, artifcats, tags, notes, parameter 정보들을 기록하기 위한 기능</p>
 <ul>
-<li><strong>Parameter, Metrics, Artifcats, Tags and Notes</strong></li>
+<li><code class="language-text">mlflow.set_tracking_uri()</code>: tracking URI 연결. MLFLOW<em>TRACKING</em>URI 환경변수를 사용해서 연결하는 것도 가능하며, tracking server를 원격으로 두는 경우에 http/https uri 사용도 가능</li>
+<li><code class="language-text">mlflow.create_experiment()</code> 혹은 MLFLOW<em>EXPERIMENT</em>NAME 환경 변수를 사용하여 실험을 특정 그룹단위로 묶어 관리 가능</li>
+<li><code class="language-text">mlflow.start_run()</code> 사용시 하나의 active run을 리턴. Logging function 사용시 자동으로 호출되긴 함. 당연히 <code class="language-text">mlflow.end_run()</code>도 존재</li>
+<li><code class="language-text">mlflow.log_param()</code>, <code class="language-text">mlflow.log_metric()</code>, <code class="language-text">mlflow.set_tag()</code>, <code class="language-text">mlflow.log_artifact()</code> 등을 통해 parameter, metric, tag, artifact 기록</li>
+<li>Scikit-learn, Gluon, PyTorch, Fastai 등에 대해서는 log 함수를 직접 명시하지 않아도 알아서 자동으로 logging 해주는 <strong><code class="language-text">mlflow.autolog()</code></strong> 기능 존재</li>
+<li>MLflow를 사용하여 tracking server를 따로 구축하는 경우에는 <a href="https://mlflow.org/docs/latest/tracking.html#mlflow-tracking-servers">이곳</a> 참고</li>
 </ul>
-<p>(TODO). MLflow docs 빠르게 쭉 훑고, 중요한 내용만 기록하기</p>
 <h5 id="mlflow-projects" style="position:relative;"><a href="#mlflow-projects" aria-label="mlflow projects permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MLflow Projects</h5>
+<p>MLflow Project는 다른 엔지니어들이 나의 코드를 돌릴 수 있도록 organizing, describing하는 convention임. 따라서 간단히 요약하면 아래의 과정이 전부임</p>
+<ol>
+<li><code class="language-text">MLProject</code> 파일에 <strong>Name</strong>, <strong>Entry point</strong>, <strong>Environment</strong> properties에 대한 정보를 명시. Entry point는 프로젝트 내에서 실행될 명령어와 해당 명령의 파라미터 정보들을 의미하며, environments는 conda, virtualenv 같은 실행 환경을 의미</li>
+<li><code class="language-text">mlflow run</code> CLI 명령어 혹은 <code class="language-text">mlflow.projects.run()</code> 파이썬 API를 사용하여 프로젝트 실행</li>
+</ol>
+<p><code class="language-text">MLproject</code> 파일 예시 (<a href="https://github.com/shibuiwilliam/ml-system-in-actions">ml-system-in-actions</a> 참고)</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">name: cifar10_initial
 
 docker_env:
@@ -179,8 +200,72 @@ entry_points:
         --downstream {downstream} \
         --epochs {epochs} \
 				...</code></pre></div>
+<p>Kubernetes에서 MLflow 프로젝트를 실행하는 방법은 다음과 같음</p>
+<ol>
+<li><code class="language-text">MLproject</code> 파일에 도커 환경 명시</li>
+<li>Backend configuration JSON 생성. <code class="language-text">kube-context</code>, <code class="language-text">repository-uri</code>, <code class="language-text">kube-job-template-path</code> 정보 기입. 자세한 내용은 <a href="https://mlflow.org/docs/latest/projects.html#execution-guide">이곳</a> 참고</li>
+<li>필요한 경우 도커나 쿠버네티스 리소스 접근을 위한 자격 증명을 얻고, MLflow CLI나 파이썬 API 사용하여 프로젝트 실행</li>
+</ol>
 <h5 id="mlflow-models" style="position:relative;"><a href="#mlflow-models" aria-label="mlflow models permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MLflow Models</h5>
+<p>다양한 downstream tools에서 ML 모델을 사용하기 위해 패키징하는 기능. 여기에 "flavor"이라는 컨셉이 등장하는데, 이는 사용하는 downstream tool이 무엇인지를 의미함</p>
+<p><code class="language-text">my_model</code>이라는 프로젝트 폴더가 있다고 가정하고 해당 프로젝트를 배포하고자 할 때, 먼저 프로젝트 폴더 내에 관련 모델, 환경 파일들을 구비하고, <code class="language-text">MLmodel</code> 파일을 기술하고, <code class="language-text">mlflow models serve -m my_model</code> 명령어를 통해 모델을 배포할 수 있음</p>
+<p><code class="language-text">MLmodel</code> 파일 예시 (<a href="https://mlflow.org/docs/latest/models.html#id19">mlflow docs</a> 참고). 해당 예시는 sklearn과 python, 2개의 flavor로 이루어짐 </p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">time_created: 2018-05-25T17:28:53.35
+
+flavors:
+  sklearn:
+    sklearn_version: 0.19.1
+    pickled_model: model.pkl
+  python_function:
+    loader_module: mlflow.sklearn</code></pre></div>
+<p><code class="language-text">MLmodel</code> 파일의 field로는 <code class="language-text">flavors</code> 뿐만 아니라, <code class="language-text">time_created</code>, <code class="language-text">run_id</code>, <code class="language-text">signature</code>, <code class="language-text">input_example</code>, <code class="language-text">databricks_runtime</code>, <code class="language-text">mlflow_version</code>가 존재할 수 있음</p>
+<ul>
+<li>Signature: 모델의 input, output을 기술. <code class="language-text">mlflow.models.signature</code> 모듈의 기능들 사용하여 로깅 가능</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">signature:
+    inputs: &#39;[{&quot;name&quot;: &quot;images&quot;, &quot;dtype&quot;: &quot;uint8&quot;, &quot;shape&quot;: [-1, 28, 28, 1]}]&#39;
+    outputs: &#39;[{&quot;shape&quot;: [-1, 10], &quot;dtype&quot;: &quot;float32&quot;}]&#39;</code></pre></div>
+<ul>
+<li>Input example: 유효한 모델 input 예시</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># each input has shape (4, 4)
+input_example = np.array([
+   [[  0,   0,   0,   0],
+    [  0, 134,  25,  56],
+    [253, 242, 195,   6],
+    [  0,  93,  82,  82]],
+   [[  0,  23,  46,   0],
+    [ 33,  13,  36, 166],
+    [ 76,  75,   0, 255],
+    [ 33,  44,  11,  82]]
+], dtype=np.uint8)
+mlflow.keras.log_model(..., input_example=input_example)</code></pre></div>
+<p>Built-in model flavors는 <a href="https://mlflow.org/docs/latest/models.html#built-in-model-flavors">이곳</a>에서 확인할 수 있으며, <code class="language-text">mlflow.pyfunc</code>, <code class="language-text">mlflow.tensorflow</code>, <code class="language-text">mlflow.pytorch</code> 등의 모듈 형태로 정의되어 있음</p>
+<p>Built-In Deployment Tools은 크게 4가지 형태로 생각해볼 수 있음. 자세한 내용 <a href="https://mlflow.org/docs/latest/models.html#built-in-deployment-tools">이곳</a> 참고</p>
+<ul>
+<li>Deploy locally</li>
+<li>Deploy on Microsoft Azure ML</li>
+<li>Deploy on Amazon SageMaker</li>
+<li>Export model as an Apache Spark UDF</li>
+</ul>
 <h5 id="mlflow-model-registry" style="position:relative;"><a href="#mlflow-model-registry" aria-label="mlflow model registry permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MLflow Model Registry</h5>
+<p>UI workflow와 API workflow로 구분지을 수 있으며, API workflow의 대략적인 사용법은 다음과 같음</p>
+<ul>
+<li>MLflow 모델을 model registry에 추가:  <code class="language-text">log_model()</code>, <code class="language-text">mlflow.register_model()</code></li>
+<li>Model registry로 부터 모델 fetching: <code class="language-text">load_model()</code></li>
+<li>Model registry로 부터 모델 serving: <code class="language-text">mlflow models serve -m ...</code></li>
+<li>
+<p>모델 정보 변경</p>
+<ul>
+<li>모델 description 추가 및 수정: <code class="language-text">update_model_version()</code></li>
+<li>모델 renaming: <code class="language-text">rename_registered_model()</code></li>
+<li>모델 stage 변경: <code class="language-text">transition_model_version_stage()</code></li>
+</ul>
+</li>
+<li>모델 탐색: <code class="language-text">list_registered_models()</code>, <code class="language-text">search_model_versions()</code></li>
+<li>모델 삭제: <code class="language-text">delete_model_version()</code></li>
+</ul>
+<h3 id="kubernetes" style="position:relative;"><a href="#kubernetes" aria-label="kubernetes permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kubernetes</h3>
 <h3 id="kubeflow" style="position:relative;"><a href="#kubeflow" aria-label="kubeflow permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kubeflow</h3>
 <h5 id="istio" style="position:relative;"><a href="#istio" aria-label="istio permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Istio</h5>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
