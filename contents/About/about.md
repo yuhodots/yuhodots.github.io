@@ -37,9 +37,10 @@ category: "about"
 
 ### Projects
 
-- Personal project / MLOps: Design ML pipeline for continual learning task with GCP (2022.04 ~ 2022.07)
-- Personal project / Web: BackEnd development at online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
+- Personal project - MLOps: [Design ML pipeline for continual learning task with GCP](https://github.com/yuhodots/mlops) (TBU)
+- Personal project - Web: [BackEnd development at online thrift store, Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
+- Research repositories: [cl-research](https://github.com/cl-research), [ncd-research](https://github.com/ncd-research), [ner-research](https://github.com/ner-research), [toolkits](https://github.com/yuhodots/toolkits)
 
 ### Presentation
 

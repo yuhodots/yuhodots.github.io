@@ -298,6 +298,16 @@ Convex set의 정의와 연관지어 보면, 어떤 집합 C에 속하는 임의
 
 다양한 Data Augmentation 방법들에 대해서 [이곳](https://cse-study.github.io/ai/2022-05/220527-data-augmentation/)에 정리하였습니다.
 
+##### 🤖 ML & DL
+
+*2022.06.29*
+
+Upper bound, Lower bound, Supremum, Infimum에 대한 수학적 정의를 [이곳](https://web.math.ucsb.edu/~agboola/teaching/2021/winter/122A/rudin.pdf)을 참고하여 정리합니다.
+
+- Upper bound (상계): 어떤 실수 $\beta$가 있을 때, $E$의 모든 원소 $x$에 대해서 $x < \beta$를 만족할 때, $\beta$를 $E$의 upper bound라고 함. 이 때 $E$는 ***bounded above***라고 함. (Lower bound도 동일한 방식으로 정의 됨)
+- Supremum, Least upper bound (상한): $\alpha = \sup E$ 이려면, $\alpha$가 $E$의 upper bound이며, $\gamma < \alpha$인 모든 $\gamma$가 $E$의 upper bound가 아니어야 함. 즉, **upper bound 중 least가 supermum**임
+- Infimum, Greatest lower bound (하한): $\alpha = \inf E$ 이려면, $\alpha$가 $E$의 lower bound이며,  $\beta > \alpha$인 모든 $\beta$가 $E$의 lower bound가 아니어야 함. 즉, **lower bound 중 greatest가 infimum**임
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

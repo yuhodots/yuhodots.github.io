@@ -87,24 +87,38 @@ volumes:
 - `docker-compose stop [options] [SERVICE...]`: 서비스 stop
 - `docker-compose ps`: 현재 실행중인 서비스 상태 확인
 
-### Kubernetes
-
-
-
 ### MLflow
 
+MLflow의 4가지 주요 기능
+
 - Tracking: ML 실험과 관련된 모든 결과물을 기록 및 조회하기 위한 기능 제공
+  - `log_metric`,` log_param`, `log_artifacts` , `mlflow ui`
+
 - Project: 재현을 위한 패키징 기능 제공
+  - `mlflow run [로컬저장소 혹은 원격저장소]`
+
 - Models: 다양한 플랫폼에서 모델 배포 및 추론을 관리하기 위한 기능 제공 (key concept: ***flavors***)
 - Model Registry: 전체 라이프사이클을 공동 관리하기 위한 central model store 제공
 
 ##### MLflow Tracking
 
-- **Parameter, Metrics, Artifcats, Tags and Notes**
+Tensorboard나 wandb charts 처럼 metrics, artifcats, tags, notes, parameter 정보들을 기록하기 위한 기능
 
-(TODO). MLflow docs 빠르게 쭉 훑고, 중요한 내용만 기록하기
+- `mlflow.set_tracking_uri()`: tracking URI 연결. MLFLOW\_TRACKING\_URI 환경변수를 사용해서 연결하는 것도 가능하며, tracking server를 원격으로 두는 경우에 http/https uri 사용도 가능
+- `mlflow.create_experiment()` 혹은 MLFLOW\_EXPERIMENT\_NAME 환경 변수를 사용하여 실험을 특정 그룹단위로 묶어 관리 가능
+- `mlflow.start_run()` 사용시 하나의 active run을 리턴. Logging function 사용시 자동으로 호출되긴 함. 당연히 `mlflow.end_run()`도 존재
+- `mlflow.log_param()`, `mlflow.log_metric()`, `mlflow.set_tag()`, `mlflow.log_artifact()` 등을 통해 parameter, metric, tag, artifact 기록
+- Scikit-learn, Gluon, PyTorch, Fastai 등에 대해서는 log 함수를 직접 명시하지 않아도 알아서 자동으로 logging 해주는 **`mlflow.autolog()`** 기능 존재
+- MLflow를 사용하여 tracking server를 따로 구축하는 경우에는 [이곳](https://mlflow.org/docs/latest/tracking.html#mlflow-tracking-servers) 참고
 
 ##### MLflow Projects
+
+MLflow Project는 다른 엔지니어들이 나의 코드를 돌릴 수 있도록 organizing, describing하는 convention임. 따라서 간단히 요약하면 아래의 과정이 전부임
+
+1. `MLProject` 파일에 **Name**, **Entry point**, **Environment** properties에 대한 정보를 명시. Entry point는 프로젝트 내에서 실행될 명령어와 해당 명령의 파라미터 정보들을 의미하며, environments는 conda, virtualenv 같은 실행 환경을 의미
+2. `mlflow run` CLI 명령어 혹은 `mlflow.projects.run()` 파이썬 API를 사용하여 프로젝트 실행
+
+`MLproject` 파일 예시 ([ml-system-in-actions](https://github.com/shibuiwilliam/ml-system-in-actions) 참고)
 
 ```
 name: cifar10_initial
@@ -128,11 +142,82 @@ entry_points:
 				...
 ```
 
+Kubernetes에서 MLflow 프로젝트를 실행하는 방법은 다음과 같음
+
+1. `MLproject` 파일에 도커 환경 명시
+2. Backend configuration JSON 생성. `kube-context`, `repository-uri`, `kube-job-template-path` 정보 기입. 자세한 내용은 [이곳](https://mlflow.org/docs/latest/projects.html#execution-guide) 참고
+3. 필요한 경우 도커나 쿠버네티스 리소스 접근을 위한 자격 증명을 얻고, MLflow CLI나 파이썬 API 사용하여 프로젝트 실행
+
 ##### MLflow Models
 
+다양한 downstream tools에서 ML 모델을 사용하기 위해 패키징하는 기능. 여기에 "flavor"이라는 컨셉이 등장하는데, 이는 사용하는 downstream tool이 무엇인지를 의미함
 
+`my_model`이라는 프로젝트 폴더가 있다고 가정하고 해당 프로젝트를 배포하고자 할 때, 먼저 프로젝트 폴더 내에 관련 모델, 환경 파일들을 구비하고, `MLmodel` 파일을 기술하고, `mlflow models serve -m my_model` 명령어를 통해 모델을 배포할 수 있음
+
+`MLmodel` 파일 예시 ([mlflow docs](https://mlflow.org/docs/latest/models.html#id19) 참고). 해당 예시는 sklearn과 python, 2개의 flavor로 이루어짐 
+
+```
+time_created: 2018-05-25T17:28:53.35
+
+flavors:
+  sklearn:
+    sklearn_version: 0.19.1
+    pickled_model: model.pkl
+  python_function:
+    loader_module: mlflow.sklearn
+```
+
+`MLmodel` 파일의 field로는 `flavors` 뿐만 아니라, `time_created`, `run_id`, `signature`, `input_example`, `databricks_runtime`, `mlflow_version`가 존재할 수 있음
+
+- Signature: 모델의 input, output을 기술. `mlflow.models.signature` 모듈의 기능들 사용하여 로깅 가능
+
+```
+signature:
+    inputs: '[{"name": "images", "dtype": "uint8", "shape": [-1, 28, 28, 1]}]'
+    outputs: '[{"shape": [-1, 10], "dtype": "float32"}]'
+```
+
+- Input example: 유효한 모델 input 예시
+
+```
+# each input has shape (4, 4)
+input_example = np.array([
+   [[  0,   0,   0,   0],
+    [  0, 134,  25,  56],
+    [253, 242, 195,   6],
+    [  0,  93,  82,  82]],
+   [[  0,  23,  46,   0],
+    [ 33,  13,  36, 166],
+    [ 76,  75,   0, 255],
+    [ 33,  44,  11,  82]]
+], dtype=np.uint8)
+mlflow.keras.log_model(..., input_example=input_example)
+```
+
+Built-in model flavors는 [이곳](https://mlflow.org/docs/latest/models.html#built-in-model-flavors)에서 확인할 수 있으며, `mlflow.pyfunc`, `mlflow.tensorflow`, `mlflow.pytorch` 등의 모듈 형태로 정의되어 있음
+
+Built-In Deployment Tools은 크게 4가지 형태로 생각해볼 수 있음. 자세한 내용 [이곳](https://mlflow.org/docs/latest/models.html#built-in-deployment-tools) 참고
+
+- Deploy locally
+- Deploy on Microsoft Azure ML
+- Deploy on Amazon SageMaker
+- Export model as an Apache Spark UDF
 
 ##### MLflow Model Registry
+
+UI workflow와 API workflow로 구분지을 수 있으며, API workflow의 대략적인 사용법은 다음과 같음
+
+- MLflow 모델을 model registry에 추가:  `log_model()`, `mlflow.register_model()`
+- Model registry로 부터 모델 fetching: `load_model()`
+- Model registry로 부터 모델 serving: `mlflow models serve -m ...`
+- 모델 정보 변경
+  - 모델 description 추가 및 수정: `update_model_version()`
+  - 모델 renaming: `rename_registered_model()`
+  - 모델 stage 변경: `transition_model_version_stage()`
+- 모델 탐색: `list_registered_models()`, `search_model_versions()`
+- 모델 삭제: `delete_model_version()`
+
+### Kubernetes
 
 
 

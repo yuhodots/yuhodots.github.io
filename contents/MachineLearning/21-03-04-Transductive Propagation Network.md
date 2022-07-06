@@ -39,11 +39,11 @@ Few-shot 문제를 풀기위한 선행 연구들은 주로 **거리 기반** 학
 
 거리 기반 학습의 경우에는 먼저 support set을 모델에 제공하여 임베딩 공간 상에 feature vector를 찍습니다. 그리고 이 feature vector들을 관찰하여 거리 기반으로 query set이 어느 label에 속할지 추론합니다. *(좌측 그림)*
 
-최적화 기반 학습의 경우에는 support set을 가지고 모델의 파라미터를 fine-tunnning 하고, 이 fine-tunning된 파라미터를 통해 query set을 잘 분류하도록 모델을 학습시킵니다. 이런 방식으로 학습을 진행하면, 적은 수의 데이터 만으로 fine-tunnning을 했을 때에도 모델이 빠르게 해당 task에 적합한 파라미터를 찾을 수 있게 됩니다. 즉 학습된 모델이 새로운 task에 대한 좋은 initial parameter point를 가지게 됩니다. *(우측 그림)*
+최적화 기반 학습의 경우에는 support set을 가지고 모델의 파라미터를 fine-tuning 하고, 이 fine-tuning된 파라미터를 통해 query set을 잘 분류하도록 모델을 학습시킵니다. 이런 방식으로 학습을 진행하면, 적은 수의 데이터 만으로 fine-tuning을 했을 때에도 모델이 빠르게 해당 task에 적합한 파라미터를 찾을 수 있게 됩니다. 즉 학습된 모델이 새로운 task에 대한 좋은 initial parameter point를 가지게 됩니다. *(우측 그림)*
 
 이러한 방법들이 few-shot 문제 상황을 어느정도 잘 풀어내긴 했지만, 아직 개선해볼 수 있는 단점들이 몇 가지 존재합니다. 첫 번째로 이 방법들은 support set과 query set 사이의 관계를 관찰하기는 하지만 **sample 사이의 관계 정보**는 직접적으로 관찰하지 않습니다. 학습과정에 있어서 관계 정보가 내재적으로 학습될 수는 있겠으나, 이를 직접적으로 학습의 입력값으로 넣어줄 여지는 존재합니다. 
 
-두 번째로는 support set을 모델의 query set 추론을 위한 단서로 사용하고, query set으로는 학습을 위한 loss만 뽑는 few-shot setting 자체가 단점입니다(논문에서는 이에 대해 fundamental difficulty라는 워딩을 사용했습니다). 워낙 적은 수의 support sample 만으로 query set의 label을 추론하다보니 적은 sample로만 추론한 데이터 분포가 실제 분포와는 많이 다를 수 있습니다. 다시말해, 각 task에 대한 모델의 추론에 있어서 support sample만 사용하기 때문에 **query set이라는 단서를 소모**하게 된다고 볼 수 있습니다. 예를 들어 support set으로 5-way 5-shot 데이터를 제공한 뒤 75개의 unlabeled query set 데이터를 가지고 loss를 얻는다면, 좋은 추론을 위해 사용할 수 있는 75개의 단서를 소모하는 것입니다.
+두 번째로는 support set을 모델의 query set 추론을 위한 단서로 사용하고, query set으로는 학습을 위한 loss만 뽑는 few-shot setting 자체가 단점입니다(논문에서는 이에 대해 fundamental difficulty라는 워딩을 사용했습니다). 워낙 적은 수의 support sample 만으로 query set의 label을 추론하다보니 적은 sample로만 추론한 데이터 분포가 실제 분포와는 많이 다를 수 있습니다. 다시 말해, 각 task에 대한 모델의 추론에 있어서 support sample만 사용하기 때문에 **query set이라는 단서를 소모**하게 된다고 볼 수 있습니다. 예를 들어 support set으로 5-way 5-shot 데이터를 제공한 뒤 75개의 unlabeled query set 데이터를 가지고 loss를 얻는다면, 좋은 추론을 위해 사용할 수 있는 75개의 단서를 소모하는 것입니다.
 
 그래서 이런 단점들을 극복하고자 공분산 정보나 graph 구조를 학습에 사용하는 시도들과, 모델의 추론 단계에 있어서 support set 뿐만 아니라 query set 까지도 활용할 수 있는 방안에 대한 연구가 최근 활발하게 진행되고 있고 TPN 또한 위의 단점들을 개선하기위해 제시된 방법 중 하나입니다.
 
@@ -99,7 +99,7 @@ $\alpha$가 0에서 1사이의 값이고, $S$ eigenvalue의 절댓값이 1보다
 
 역행렬 계산은 $O(n^3)$의 시간 복잡도를 갖는 비효율적인 계산이지만, few-shot learning의 경우엔 n이 100정도로 매우 작기 때문에 사용에 큰 무리는 없었다고 합니다.
 
-마지막으로 loss 단계에서는 label propagation 단계에서 계산된 $F^*$를 graound-truth labels와 비교하여 cross-entropy loss를 계산합니다. 여기서 개인적으로 loss를 query set의 label로만 계산하는 것이 아니라 support set의 label도 포함하여 계산한다는 점이 흥미로웠습니다. 기존의 few-shot learning 연구들은 support set는 추론을 위한 단서로 사용하고 오로지 query set을 가지고 loss를 뽑습니다. 하지만 TPN의 경우에는 추론의 단서로도 support set과 query set을 모두 사용하고, loss 계산에도 support set과 query set을 모두 사용이 가능한 세팅이라는 점이 신기하다는 생각을 했습니다. 그리고 추가적으로 query label만 가지고 loss를 뽑으면 결과가 어떻게 나올까 궁금하기도 했습니다. 그런데 논문에서 관련된 사항이 언급되지 않은걸 보니 query label만 가지고 loss를 뽑았을 때의 성능이 좋지 않았거나 큰 차이가 없어서 언급 자체를 안한 것이 아닐까 추측하고 있습니다.
+마지막으로 loss 단계에서는 label propagation 단계에서 계산된 $F^*$를 ground-truth labels와 비교하여 cross-entropy loss를 계산합니다. 여기서 개인적으로 loss를 query set의 label로만 계산하는 것이 아니라 support set의 label도 포함하여 계산한다는 점이 흥미로웠습니다. 기존의 few-shot learning 연구들은 support set는 추론을 위한 단서로 사용하고 오로지 query set을 가지고 loss를 뽑습니다. 하지만 TPN의 경우에는 추론의 단서로도 support set과 query set을 모두 사용하고, loss 계산에도 support set과 query set을 모두 사용이 가능한 세팅이라는 점이 신기하다는 생각을 했습니다. 그리고 추가적으로 query label만 가지고 loss를 뽑으면 결과가 어떻게 나올까 궁금하기도 했습니다. 그런데 논문에서 관련된 사항이 언급되지 않은걸 보니 query label만 가지고 loss를 뽑았을 때의 성능이 좋지 않았거나 큰 차이가 없어서 언급 자체를 안한 것이 아닐까 추측하고 있습니다.
 
 모든 과정을 다시 되돌아 보자면, 먼저 feature embedding 단계에서 이미지를 잘 설명하는 feature vector를 뽑고, graph construction 단계에서 feature vector를 바탕으로 task에 적합하게 feature를 조정하는 sigma를 뽑아 similarity matrix를 통해 그래프 형태를 구축하고, label propagation 단계에서 구축된 그래프와 support set label을 통해 unlabeled query set에 predicted label을 부여하고, 최종적으로 모든 노드에 부여된 predicted label 값을 ground truth label과 비교하여 모델을 최적화합니다.
 
@@ -207,7 +207,7 @@ F^* = lim_{t→\infin} F_t
 =(1-\alpha)(1-\alpha S)^{-1}Y
 $$
 
-##### normalized graph Laplacian
+##### Normalized graph Laplacian
 
 $$
 \begin{aligned}
