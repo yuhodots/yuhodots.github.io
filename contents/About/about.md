@@ -35,6 +35,10 @@ category: "about"
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
+### Publications
+
+- Preprint, To be updated.
+
 ### Projects
 
 - Personal project - MLOps: [Design ML pipeline for continual learning task with GCP](https://github.com/yuhodots/mlops) (TBU)
@@ -53,5 +57,5 @@ category: "about"
 ### Skills
 
 - Python, C++, MATLAB
-- PyTorch, Django, jQuery and Bootstrap for NAVER Corp. internship
-- Express.js, MySQL, AWS EC2, AWS S3, Nginx and React.js for Uitda project
+- PyTorch, Django, jQuery, and Bootstrap for NAVER Corp. internship
+- Express.js, MySQL, AWS EC2, AWS S3, Nginx, and React.js for Uitda project
