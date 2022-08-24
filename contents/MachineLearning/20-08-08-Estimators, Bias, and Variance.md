@@ -1,5 +1,5 @@
 ---
-title: "Estimators, Bias, Variance and Standard Error"
+title: "Estimators, Bias, Variance, and Standard Error"
 date: "2020-08-08"
 template: "post"
 draft: false

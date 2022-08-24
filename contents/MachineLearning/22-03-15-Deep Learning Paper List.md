@@ -83,7 +83,7 @@ category: "Deep Learning"
   - ZSL에서 자주 사용되는 'normalize+scale'(NS) 방법과 'attributes normalization'(AN) 방법의 한계점을 언급하며 이를 개선한 CN 제안
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
 - [ ] [Zhu, Fei, et al. "Class-Incremental Learning via Dual Augmentation." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/file/77ee3bc58ce560b86c2b59363281e914-Paper.pdf)
-- [ ] [Zhou, Da-Wei, et al. "Forward compatible few-shot class-incremental learning." CVPR 2022.](https://arxiv.org/pdf/2203.06953.pdf)
+- [x] [Zhou, Da-Wei, et al. "Forward compatible few-shot class-incremental learning." CVPR 2022.](https://arxiv.org/pdf/2203.06953.pdf)
 
 ### Domain Generalization
 
@@ -128,9 +128,8 @@ category: "Deep Learning"
   - Unlabelled image: Weakly augmented image에 대해서 threshold를 넘는 경우에 이 예측의 one-hot encoding을 strong augmented image의 pseudo label로써 사용. Threshold를 넘지 못하는 경우에는 loss에 포함시키지 않음
     - 원래는 temperatured scaling해서 pseudo label하였으나, temperature를 0으로 했을 때 잘 나왔다고 함 (이 경우 one-hot encoding과 동일)
 - [ ] [Saito, Kuniaki, Donghyun Kim, and Kate Saenko. "OpenMatch: Open-set Consistency Regularization for Semi-supervised Learning with Outliers." NeurIPS 2021.](https://arxiv.org/abs/2105.14148)
-- Open-set semi-supervised learning(OSSL) task를 풀기 위한 알고리즘
-- [ ] [Fan, Yue, Dengxin Dai, and Bernt Schiele. "CoSSL: Co-Learning of Representation and Classifier for Imbalanced Semi-Supervised Learning." CVPR 2022. ](https://arxiv.org/abs/2112.04564)- *8월 내로 읽는 것을 목표로*
-- [ ] [Oh, Youngtaek, Dong-Jin Kim, and In So Kweon. "Distribution-aware semantics-oriented pseudo-label for imbalanced semi-supervised learning." CVPR 2022.](https://arxiv.org/abs/2106.05682) - *8월 내로 읽는 것을 목표로*
+  - Open-set semi-supervised learning(OSSL) task를 풀기 위한 알고리즘
+
 
 ### Metric Learning
 
@@ -195,7 +194,6 @@ category: "Deep Learning"
   - SVD 했을 때 eigenvalue가 전체적으로 작아지는 효과를 가짐. 즉, principal components 수가 작아지는 효과 (flattening)
   - Flattening을 통해 eigenvalue가 전체적으로 작아지니 volume이 작아지며, compression은 information theory 관점에서 이론적, 실험적으로 generalization과 연관이 있어 장점을 가짐
 - [ ] [Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.](https://openreview.net/forum?id=g11CZSghXyY)
-- [ ] [Zhang, Linjun, et al. "How Does Mixup Help With Robustness and Generalization?." ICLR 2021.](https://arxiv.org/pdf/2010.04819.pdf) - *6월 내로 읽는 것을 목표로*
 
 ### Natural Language Processing
 
@@ -212,9 +210,17 @@ category: "Deep Learning"
 - [x] [Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis." ECCV 2020.](https://link.springer.com/chapter/10.1007/978-3-030-58452-8_24)
 - [x] [Martin-Brualla, Ricardo, et al. "Nerf in the wild: Neural radiance fields for unconstrained photo collections." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Martin-Brualla_NeRF_in_the_Wild_Neural_Radiance_Fields_for_Unconstrained_Photo_CVPR_2021_paper.html)
 
+### Neural Architecture Search
+
+- [ ] [Liu, Hanxiao, Karen Simonyan, and Yiming Yang. "Darts: Differentiable architecture search." ICLR 2019.](https://openreview.net/pdf?id=S1eYHoC5FX)
+
+### Long-Tailed Recognition
+
+- [ ] [Kang, Bingyi, et al. "Decoupling Representation and Classifier for Long-Tailed Recognition." ICLR 2020.](https://openreview.net/pdf?id=r1gRTCVFvB)
+
 ### Bayesian Deep Learning
 
-- [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html) - *6월 내로 읽는 것을 목표로*
+- [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html) - *아직 읽지 않음..*
 
 ### Technical Reports
 
@@ -225,3 +231,4 @@ category: "Deep Learning"
   - ImageNet dataset에 대해서, 어떤 모델 구조더라도 하이퍼파라미터 튜닝 없이 동일하게 적용할 수 있는 USI(Unified Scheme for ImageNet)을 제안. Knowledge distillation과 몇 가지 modern tricks를 사용하였고, 모든 모델에 대해서 previous SOTA를 넘었음
   - TResNet-L 구조의 teacher model과 더불어 논문에서 제안하는 하이퍼파라미터를 사용하면, CNN, Transformer, Mobile-oriented, MLP-only 형태의 student 모델에 대해서 모두 성능이 개선된다고 함
   - 일반적인 knowledge distillation 형태(vanilla KD)와 동일하게, true label y에 대해서는 cross entropy loss를 사용하고, teacher label에 대해서는 temperature를 사용하여 soft label을 만든 뒤에 student prediction과 KLD를 계산함
+- [x] [Phuong, Mary, and Marcus Hutter. "Formal Algorithms for Transformers." *arXiv preprint arXiv:2207.09238* (2022).](https://arxiv.org/pdf/2207.09238.pdf)

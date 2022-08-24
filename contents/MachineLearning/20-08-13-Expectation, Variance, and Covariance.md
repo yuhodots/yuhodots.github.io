@@ -1,5 +1,5 @@
 ---
-title: "Expectation, Variance and Covariance"
+title: "Expectation, Variance, and Covariance"
 date: "2020-08-13"
 template: "post"
 draft: false
