@@ -6,6 +6,7 @@
   "author": "yuho <yuho8437@unist.ac.kr>",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "false": "^0.0.4",
     "gatsby": "^2.31.1",
     "gatsby-alias-imports": "^1.0.6",
     "gatsby-image": "^2.5.0",
@@ -35,7 +36,8 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
-    "sass": "^1.32.5"
+    "sass": "^1.32.5",
+    "sharp": "^0.30.7"
   },
   "devDependencies": {
     "gh-pages": "^3.1.0",

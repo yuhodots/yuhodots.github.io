@@ -1,9 +1,9 @@
 ---
 title: "MLOps Cheat Sheet"
-date: "2022-05-14"
+date: "2022-08-26"
 template: "post"
 draft: false
-path: "/cheatsheet/22-05-14/"
+path: "/cheatsheet/22-08-26/"
 description: "MLOps를 위한 도구들의 사용법을 명령어 위주로 정리하고 있습니다. 대부분은 공식 문서의 내용을 참고하고 있고, 그 외 내용을 참고하게 되는 경우에는 글 내용에 언급하거나 reference에 추가하고 있습니다. 현재는 Docker, Kubernetes, MLflow, Kubeflow의 내용을 다루고 있으며, 공부 진행 상황에 따라서 내용을 계속해서 추가하고 있습니다."
 category: "Cheat Sheet"
 ---
@@ -229,7 +229,73 @@ UI workflow와 API workflow로 구분지을 수 있으며, API workflow의 대�
 
 
 
+### Design Patterns
+
+"AI 엔지니어를 위한 머신러닝 시스템 디자인 패턴 (시부이 유우스케 지음)"을 읽고 목차 별 핵심 내용을 한 줄로 정리합니다.
+
+##### Training patterns
+
+- Pipeline training pattern: 각 작업을 개별 자원으로 분할하여 별도로 구축하는 패턴. 각 작업의 독립성을 높일 수 있다는 장점과 관리가 복잡해진다는 단점 존재
+  - MLflow 활용하면 빠르게 프로토타이핑 가능
+- Batch training pattern: 모델 학습을 정기적으로 수행하여, 모델을 항상 최신 상태로 유지하는 패턴
+  - cron과 같은 스케줄링 시스템 활용
+- Antipattern 1. Only-me pattern: 개인 환경에서 모델을 개발하였지만 다른 사람이 해당 시스템을 재현할 수 없는 상태
+- Antipattern 2. Too many pipes pattern: 당연하게도 복잡한 파이프라인은 관리하기 매우 어려움
+
+##### Serving patterns
+
+- Web single pattern: 하나의 작은 모델을 하나의 추론 서버를 사용하여 동기적으로 추론하는 패턴. 가장 간단하고 기초적인 구성
+  - 학습된 모델을 ONNX, FastAPI, Unicorn, Gunicorn를 활용한 웹 싱글 패턴으로 제작하고 Docker로 감싸 빠르게 프로토타이핑 가능
+- Synchronous pattern: 서비스 내 여러 작업들이 모델의 추론 결과에 의존하는(순서대로 실행되어야 하는) 패턴
+  - 추론 모델은 ONNX, TensorFlow Serving 등으로 구성 후에, REST API, gRPC 등으로 요청 및 응답을 주고 받는 형태
+- Asynchronous pattern: 사용자와 추론 결과 출력처를 분리하고 싶은 경우에 사용하는 패턴. 예를 들어, 추론 결과가 오래 걸리는 경우에 클라이언트에게 '잠시 기다려주세요'와 같은 메세지를 제공하면 클라이언트의 조작을 멈추지 않으면서도 추론 작업을 수행할 수 있음
+  - 요청 서버와 추론 서버 사이에 queue(Apache Kafka) 혹은 cache(Rabbit MQ, Redis Cache) 서버를 구축해두고, 추론 서버에서 해당 queue, cache를 지속적으로 풀링하여, 대기 중인 작업이 있으면 추론 수행
+- Batch pattern: 대량의 데이터(시간 단위, 월 단위의 데이터)를 하나로 정리하여 추론하고 싶은 경우 사용하는 패턴
+  - cron과 같은 스케줄링 시스템 활용. 관련하여 Kubernetes에는 CronJobs라는 도구 존재
+- Prep-pred pattern: 전처리와 추론에서 필요로 하는 리소스가 크게 다른 경우에, 전처리와 추론을 서로 다른 컨테이너로 분리하여 유지 보수성을 향상시키는 패턴
+  - 데이터 취득, 전처리, 추론 등의 서버를 각각 구축하고, 이 앞단에 proxy 서버를 구비하여 gRPC(혹은 REST API)를 통해 요청 및 응답을 주고 받도록 구성
+- Microservice vertical pattern: 여러 개의 추론기로 구성되는 시스템에서 추론기 사이의 의존성이 명확하고, 실행 순서가 정해져 있는 경우에 사용하는 패턴
+  - 이 또한 각 추론 서버의 앞단에 proxy 서버를 구비하여 gRPC(혹은 REST API)를 통해 요청 및 응답을 주고 받도록 구성
+- Microservice horizontal pattern: 의존 관계가 없는 여러 개의 추론을 병렬로 실행하는 패턴
+- Prediction cache pattern: 동일한 요청에 대해 캐시를 활용하여 속도를 향상시키는 패턴. 다만 캐시의 양이 늘어날수록 속도 향상에 따른 메모리 비용 증가
+  - Redis 활용
+- Data cache pattern: 데이터, 전처리된 데이터를 캐시하고 데이터를 매우 빠르게 취득하는 것을 목적으로하는 패턴 
+- Serving template pattern: 유사한 추론기를 여러 개 만들 때에, 추론기의 학습이나 모델과 관련없는 부분을 개발상의 규칙으로 공통화하는 패턴. 예를 들어 OS, 네트워크, 보안, 로그 수집 등은 동일한 템플릿으로 미리 구축하면 추후 개발에 소모되는 시간과 반복 작업들을 크게 줄일 수 있음
+  - 파이썬 템플릿 엔진 jinja2를 활용하여 템플릿 작성 가능
+- Antipattern 1. Online bigsize pattern: 웹 서비스라면 요청에 대해 N초 안에 응답, 배치 처리라면 야간 N시간 내 전체 레코드를 완료해야하는 등 최대 소요 시간 내에 서비스가 작동할 수 있어야 함
+- Antipattern 2. All-in-one pattern: 시스템 내의 모든 모델이 하나의 서버에서 가동되면 복잡성이 커지고 장애 대응이 어려워짐
+
+##### Operation patterns
+
+- Model-in-image pattern: 추론기의 이미지에 모델 파일을 포함해서 빌드하는 패턴. 서버 이미지와 모델의 버전을 일치시킬 수 있지만, 학습한 모델의 수 만큼 서버 이미지의 수도 늘어난다는 단점 존재
+  - 도커 이미지는 DockerHub에 두고, Kubernetes의 Masnifest용 YAML 파일에 사용할 리소스를 정의하는 방식
+- Model-load pattern: 서버 이미지보다 추론 모델의 버전을 더 빈번하게 갱신하여거나, 동일한 서버 이미지로 여러 종류의 추론 모델 가동이 필요한 경우에, 모델 파일을 이미지 내에 포함시키지 않고 외부에서 다운로드해서 사용하는 패턴
+  - 모델 파일은 AWS S3, GCP Storage에 저장 후, Kubernetes의 init container 기능 사용하여 컨테이너 초기화 시 모델 파일 다운로드
+- Prediction log pattern: 클라이언트 이벤트 로그, 프록시 서버 지연 로그, 추론 서버 로그 등을 로그 스토리지에 저장하여 서비스를 개선하는 패턴
+  - 로그 수집 기반으로는 queue나 Kubernetes의 Fluentd sidecar 기능 활용
+- Prediction monitoring pattern: 로그를 감시하는 도중 경향이 비정상적인 경우에 운영자에게 통보하고자 하는 패턴. Prediction log pattern에서의 로그 스토리지를 바라보고 있는 감시 시스템을 추가하면 됨
+- Parameter-based serving pattern: 추론 결과를 룰 베이스로 제어하고자 하는 패턴
+  - 추론기마다 룰 베이스 제어에 사용할 변수를 환경 변수의 형태로 설정
+- Condition-based-serving pattern: 각 그룹에 맞는 모델을 만들고 룰 베이스로 요청을 배분하는 패턴. 요청 지역에 따라, 요청 시간대에 따라 적합한 추론 모델을 골라 응답 가능
+  - 추론 시스템은 Kubernetes 클러스터에 구축하고, 조건 분기는 Istio로 제어. Istio의 VirtualServie에는 요청의 헤더에 따라 요청의 전송처를 제어하는 기능이 내장되어 있으므로 이를 활용
+- Antipattern 1. No logging pattern: 로그가 없다면 시스템을 개선할 수 없음
+- Antipattern 2. Nobody knows pattern: 시스템 구축 이후에 운영하는 사람이 떠난 경우. 해당 시스템이 정확히 어떻게 동작하는 것인지 아무도 모르는 상태가 된다면 당연히 운용 및 개선 불가
+
+##### QA patterns
+
+- Loading test pattern: 추론 서버의 응답 속도를 측정
+  - vegeta attack 활용
+- Prediction circuit break pattern: 서버 액세스가 증가하는데 바로 서버의 스케일 아웃이 불가능한 경우에, 일부 요청을 일부러 처리하지 않도록 하여 서버 중단을 방지하는 패턴
+  - Istio의 트래픽 관리 기능으로 서킷브레이커가 이미 내장되어 있음. 부하 테스트로는 vegeta attack 활용
+- Shadow AB-testing pattern: 새로운 추론 모델이 실제 환경에서 문제 없이 작동하는지 확인하기 위한 패턴. Proxy서버가 현행 모델과 새로운 추론 모델에 둘 다 요청을 보내지만, 실제 응답은 현행 모델에게서만 받도록 구성
+  - Istio의 VirtualService를 활용. VirtualService를 사용하여 트래픽 미러링
+- Online AB-testing pattern: 요청의 일부를 새로운 추론기를 통해 응답하여 사용자의 반응을 확인하는 패턴
+  - Istio의 VirtualService를 활용. VirtualService를 사용하여 트래픽 분할
+- Antipattern 1. Offline-only pattern: 테스트셋으로만 모델을 검증하는 패턴. 모델을 판단하는 기준은 언제나 테스트 데이터가 아니라 실제 서비스 상황에서의 데이터여야 함
+
 ### References
 
 - [Docker docs - Reference documentation](https://docs.docker.com/reference/)
 - [MLflow documentation](https://mlflow.org/docs/latest/index.html)
+- https://github.com/mercari/ml-system-design-pattern
+- https://mercari.github.io/ml-system-design-pattern/README_ko.html
