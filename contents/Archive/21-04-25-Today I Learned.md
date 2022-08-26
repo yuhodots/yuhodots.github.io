@@ -308,6 +308,16 @@ Upper bound, Lower bound, Supremum, Infimum에 대한 수학적 정의를 [이�
 - Supremum, Least upper bound (상한): $\alpha = \sup E$ 이려면, $\alpha$가 $E$의 upper bound이며, $\gamma < \alpha$인 모든 $\gamma$가 $E$의 upper bound가 아니어야 함. 즉, **upper bound 중 least가 supermum**임
 - Infimum, Greatest lower bound (하한): $\alpha = \inf E$ 이려면, $\alpha$가 $E$의 lower bound이며,  $\beta > \alpha$인 모든 $\beta$가 $E$의 lower bound가 아니어야 함. 즉, **lower bound 중 greatest가 infimum**임
 
+##### 👨‍💻 CS 
+
+*2022.08.26*
+
+'머신러닝 시스템 디자인 패턴 (시부이 유우스케 지음)' 책에 등장하는 기술 스택에 대해 간단히 정리합니다.
+
+- ONNX[^21]: Intermediate Representation(IR)의 한 종류. ML model에 대해서 static graphs의 형태인 CNTK, Caffe2, Theano, TensorFlow와 dynamic graphs의 형태인 PyTorch, Chainer 등 다양한 프레임워크들이 존재하고, 이들은 각각 그들만의 특장점이 존재함. 따라서 개발 단계에 따라 적합한 도구를 선택하는 것이 요구되는데, 이 때 ONNX를 활용하면 서로 다른 환경에서 만들어진 모델을 하나의 공통된 형태로 변환하여 사용할 수 있음
+- Redis: Database 중 하나이며, Cassandra DB, DynamoDB와 같이 **key value DB engine** 중 하나임. in-memory 데이터 구조를 사용하여 매우 빠른 속도를 가지며, 캐싱을 위해 자주 사용됨
+- gRPC(Remote Procedure Calls): 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출 (RPC) 시스템. 여기서 RPC[^22]는 별도의 원격 제어를 위한 코딩 없이 다른 주소 공간에서 함수나 프로시저를 실행할 수 있게하는 프로세스 간 통신 기술을 말함. 
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
@@ -334,3 +344,5 @@ Upper bound, Lower bound, Supremum, Infimum에 대한 수학적 정의를 [이�
 [^19]: 컴파일러. (2022년 3월 15일). *위키백과,* . 15:23, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC&oldid=32228964](https://ko.wikipedia.org/w/index.php?title=컴파일러&oldid=32228964) 에서 찾아볼 수 있음.
 
 [^20]: Wikipedia contributors. (2022, April 27). Moore–Penrose inverse. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:08, May 16, 2022, from [https://en.wikipedia.org/w/index.php?title=Moore%E2%80%93Penrose_inverse&oldid=1085006448](https://en.wikipedia.org/w/index.php?title=Moore–Penrose_inverse&oldid=1085006448)
+[^21]: https://github.com/onnx/onnx/blob/main/docs/Overview.md
+[^22]: 원격 프로시저 호출. (2022년 2월 26일). *위키백과,* . 11:52, 2022년 8월 26일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9B%90%EA%B2%A9_%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80_%ED%98%B8%EC%B6%9C&oldid=31906127](https://ko.wikipedia.org/w/index.php?title=원격_프로시저_호출&oldid=31906127) 에서 찾아볼 수 있음.
