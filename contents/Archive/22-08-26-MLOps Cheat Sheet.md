@@ -231,7 +231,7 @@ UI workflow와 API workflow로 구분지을 수 있으며, API workflow의 대�
 
 ### Design Patterns
 
-"AI 엔지니어를 위한 머신러닝 시스템 디자인 패턴 (시부이 유우스케 지음)"을 읽고 목차 별 핵심 내용을 한 줄로 정리합니다.
+[이곳](https://github.com/mercari/ml-system-design-pattern)을 참고하여 디자인 패턴 별 핵심 내용을 한 줄씩 정리합니다. 
 
 ##### Training patterns
 
