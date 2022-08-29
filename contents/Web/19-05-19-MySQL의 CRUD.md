@@ -6,7 +6,6 @@ draft: false
 path: "/backend/19-05-19/"
 description: "이전 포스팅에서 소개하였던 Create / Read / Update / Delete에 대해서 알아볼 차례입니다. 그 중에 Create와 Read가 제일 중요하다는 것을 기억해 주시고 MySQL에서는 어떻게 구현하는지 아래에서 살펴보도록 하겠습니다."
 category: "BackEnd"
-thumbnail: "database"
 ---
 
 > 이 글은 ‘오픈튜토리얼스-생활코딩’의 Egoing님의 [강의](https://www.opentutorials.org/course/3162)를 정리했음을 먼저 밝힙니다.

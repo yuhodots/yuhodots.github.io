@@ -4,11 +4,11 @@ date: "2022-08-28"
 template: "post"
 draft: false
 path: "/cheatsheet/22-08-28/"
-description: "Mary Phuong and Marcus Hutter, 'Formal Algorithms for Transformers',  Vaswani, Ashish, et al., 'Attention Is All You Need' 등의 논문을 참고하여 Transformer를 정리합니다. Attention은 query vector와 key vector를 기반으로 value vector를 업데이트 시키는 매커니즘입니다..."
+description: "'Formal Algorithms for Transformers'과 'Attention Is All You Need' 논문을 참고하여 Transformer를 정리합니다. Attention은 query vector와 key vector를 기반으로 value vector를 업데이트 시키는 매커니즘입니다. 그리고 Attention을 기반으로 2017년에 Transformer라는 구조가 제안되었습니다."
 category: "Cheat Sheet"
 ---
 
-> Mary Phuong and Marcus Hutter, "Formal Algorithms for Transformers",  Vaswani, Ashish, et al., "Attention Is All You Need" 등의 논문을 참고하여 Transformer를 정리합니다.
+> Mary Phuong and Marcus Hutter, "Formal Algorithms for Transformers",  Vaswani, Ashish, et al., "Attention Is All You Need" 논문을 참고하여 Transformer를 정리합니다.
 
 ### Preliminaries
 
@@ -36,7 +36,7 @@ category: "Cheat Sheet"
 - Token: 모델의 입력으로 주어지는 어떤 의미를 가지는 하나의 단위
 - Tokenization: 주어진 문장이나 문서 데이터를 token이라는 단위로 나누는 작업. Character-level tokenization, Word-level tokenization, Subword tokenization 등의 종류가 존재하며, 일반적으로는 Subword tokenization이 많이 사용됨 (task에 따라 달라짐). [이곳](https://wikidocs.net/86649)[^3]에서 자세한 설명을 제공하고 있음
 - Vocabulary: 각 token에 ID를 부착하여 식별 가능하도록 만든 파일. 대부분 `vocab.txt`이라는 이름으로 존재
-  - Special token: mask_token, bos_token(문장 시작), eos_token(문장 끝), etc.
+  - Special token: mask\_token, bos\_token(문장 시작), eos\_token(문장 끝), etc.
 
 
 ### Transformer

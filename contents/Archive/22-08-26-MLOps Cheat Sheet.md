@@ -244,26 +244,26 @@ UI workflow와 API workflow로 구분지을 수 있으며, API workflow의 대�
 
 ##### Serving patterns
 
-- Web single pattern: 하나의 작은 모델을 하나의 추론 서버를 사용하여 동기적으로 추론하는 패턴. 가장 간단하고 기초적인 구성
+- Web single pattern: 하나의 모델을 하나의 추론 서버를 사용하여 동기적으로 추론하는 가장 단순한 패턴
   - 학습된 모델을 ONNX, FastAPI, Unicorn, Gunicorn를 활용한 웹 싱글 패턴으로 제작하고 Docker로 감싸 빠르게 프로토타이핑 가능
 - Synchronous pattern: 서비스 내 여러 작업들이 모델의 추론 결과에 의존하는(순서대로 실행되어야 하는) 패턴
   - 추론 모델은 ONNX, TensorFlow Serving 등으로 구성 후에, REST API, gRPC 등으로 요청 및 응답을 주고 받는 형태
-- Asynchronous pattern: 사용자와 추론 결과 출력처를 분리하고 싶은 경우에 사용하는 패턴. 예를 들어, 추론 결과가 오래 걸리는 경우에 클라이언트에게 '잠시 기다려주세요'와 같은 메세지를 제공하면 클라이언트의 조작을 멈추지 않으면서도 추론 작업을 수행할 수 있음
+- Asynchronous pattern: 추론 결과가 오래 걸리는 경우에 사용자에게 비동기적으로 대기 메세지를 제공하면 조작을 멈추지 않으면서도 추론 작업을 수행할 수 있음
   - 요청 서버와 추론 서버 사이에 queue(Apache Kafka) 혹은 cache(Rabbit MQ, Redis Cache) 서버를 구축해두고, 추론 서버에서 해당 queue, cache를 지속적으로 풀링하여, 대기 중인 작업이 있으면 추론 수행
 - Batch pattern: 대량의 데이터(시간 단위, 월 단위의 데이터)를 하나로 정리하여 추론하고 싶은 경우 사용하는 패턴
   - cron과 같은 스케줄링 시스템 활용. 관련하여 Kubernetes에는 CronJobs라는 도구 존재
 - Prep-pred pattern: 전처리와 추론에서 필요로 하는 리소스가 크게 다른 경우에, 전처리와 추론을 서로 다른 컨테이너로 분리하여 유지 보수성을 향상시키는 패턴
   - 데이터 취득, 전처리, 추론 등의 서버를 각각 구축하고, 이 앞단에 proxy 서버를 구비하여 gRPC(혹은 REST API)를 통해 요청 및 응답을 주고 받도록 구성
 - Microservice vertical pattern: 여러 개의 추론기로 구성되는 시스템에서 추론기 사이의 의존성이 명확하고, 실행 순서가 정해져 있는 경우에 사용하는 패턴
-  - 이 또한 각 추론 서버의 앞단에 proxy 서버를 구비하여 gRPC(혹은 REST API)를 통해 요청 및 응답을 주고 받도록 구성
+  - 앞단에 proxy 서버를 구비하여 gRPC(혹은 REST API)를 통해 요청 및 응답을 주고 받도록 구성
 - Microservice horizontal pattern: 의존 관계가 없는 여러 개의 추론을 병렬로 실행하는 패턴
-- Prediction cache pattern: 동일한 요청에 대해 캐시를 활용하여 속도를 향상시키는 패턴. 다만 캐시의 양이 늘어날수록 속도 향상에 따른 메모리 비용 증가
+- Prediction cache pattern: 동일한 요청에 대해 캐시를 활용하여 속도를 향상시키는 패턴
   - Redis 활용
 - Data cache pattern: 데이터, 전처리된 데이터를 캐시하고 데이터를 매우 빠르게 취득하는 것을 목적으로하는 패턴 
-- Serving template pattern: 유사한 추론기를 여러 개 만들 때에, 추론기의 학습이나 모델과 관련없는 부분을 개발상의 규칙으로 공통화하는 패턴. 예를 들어 OS, 네트워크, 보안, 로그 수집 등은 동일한 템플릿으로 미리 구축하면 추후 개발에 소모되는 시간과 반복 작업들을 크게 줄일 수 있음
+- Serving template pattern: 유사한 추론기를 여러 개 만들 때에, 추론기의 학습이나 모델과 관련없는 부분(OS, 네트워크, 보안, 로그 수집)을 개발상의 규칙으로 공통화하는 패턴
   - 파이썬 템플릿 엔진 jinja2를 활용하여 템플릿 작성 가능
 - Antipattern 1. Online bigsize pattern: 웹 서비스라면 요청에 대해 N초 안에 응답, 배치 처리라면 야간 N시간 내 전체 레코드를 완료해야하는 등 최대 소요 시간 내에 서비스가 작동할 수 있어야 함
-- Antipattern 2. All-in-one pattern: 시스템 내의 모든 모델이 하나의 서버에서 가동되면 복잡성이 커지고 장애 대응이 어려워짐
+- Antipattern 2. All-in-one pattern: 시스템 내의 모든 모델이 하나의 서버에서 가동되면 장애 대응 어려움
 
 ##### Operation patterns
 
