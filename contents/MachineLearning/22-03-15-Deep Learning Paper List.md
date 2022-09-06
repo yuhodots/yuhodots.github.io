@@ -127,8 +127,23 @@ category: "Deep Learning"
   - Labelled image: Weakly augmented image 사용해서 cross entropy
   - Unlabelled image: Weakly augmented image에 대해서 threshold를 넘는 경우에 이 예측의 one-hot encoding을 strong augmented image의 pseudo label로써 사용. Threshold를 넘지 못하는 경우에는 loss에 포함시키지 않음
     - 원래는 temperatured scaling해서 pseudo label하였으나, temperature를 0으로 했을 때 잘 나왔다고 함 (이 경우 one-hot encoding과 동일)
+
+### Open-Set Recognition
+
+- Novelty Detection (ND) = One-Class Classification: Known class와 unknown class를 binary classification
+- Open-Set Recognition (OSR): Known에 대한 closed-set classification과 unknown class detect를 동시에 수행
+- Out-of-Distribution Detection (OOD): OSR과 유사하며, unknown class(outlier)가 더 넓은 도메인까지도 존재
+- Anomaly Detection (AD): 학습 데이터가 모두 unlabeled. 즉, unsupervised learning 상황
+
 - [ ] [Saito, Kuniaki, Donghyun Kim, and Kate Saenko. "OpenMatch: Open-set Consistency Regularization for Semi-supervised Learning with Outliers." NeurIPS 2021.](https://arxiv.org/abs/2105.14148)
   - Open-set semi-supervised learning(OSSL) task를 풀기 위한 알고리즘
+- [x] [Vaze, Sagar, et al. "Open-Set Recognition: A Good Closed-Set Classifier is All You Need." ICLR 2022.](https://openreview.net/pdf?id=5hLP5JY9S2d)
+  - Close-set classification을 잘하면 OSR도 잘한다는 것을 보인 논문 (이 두 performance 사이에 positive correlation이 존재한다)
+  - 따라서 아주 기본적인 Maximum Softmax Probability (MSP) OSR 알고리즘만 사용해도, feature extractor 성능만 높으면 기존의 SOTA와 동일하거나 더 높은 성능을 얻을 수 있음
+  - 해당 논문에서, softmax가 아닌 그 직전 값인 logit을 활용한 Maximum Logit Score (MLS) 방법과, Semantic Shift Benchmark (SSB) split도 추가적으로 제안하였음
+- [ ] [Chen, Guangyao, et al. "Adversarial reciprocal points learning for open set recognition." TPAMI 2021.](https://arxiv.org/abs/2103.00953)
+  -  Porototype은 target class를 대표하는 벡터라면, reciprocal point는 non-target class를 대표하는 벡터임
+  - Unlabeled data가 존재할 수 있는 공간을 bounding 함
 
 
 ### Metric Learning
