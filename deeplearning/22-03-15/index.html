@@ -242,10 +242,32 @@
 <li>원래는 temperatured scaling해서 pseudo label하였으나, temperature를 0으로 했을 때 잘 나왔다고 함 (이 경우 one-hot encoding과 동일)</li>
 </ul>
 </li>
+</ul>
+<h3 id="open-set-recognition" style="position:relative;"><a href="#open-set-recognition" aria-label="open set recognition permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open-Set Recognition</h3>
+<ul>
+<li>Novelty Detection (ND) = One-Class Classification: Known class와 unknown class를 binary classification</li>
+<li>Open-Set Recognition (OSR): Known에 대한 closed-set classification과 unknown class detect를 동시에 수행</li>
+<li>Out-of-Distribution Detection (OOD): OSR과 유사하며, unknown class(outlier)가 더 넓은 도메인까지도 존재</li>
+<li>Anomaly Detection (AD): 학습 데이터가 모두 unlabeled. 즉, unsupervised learning 상황</li>
 <li class="task-list-item">
 <p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2105.14148">Saito, Kuniaki, Donghyun Kim, and Kate Saenko. "OpenMatch: Open-set Consistency Regularization for Semi-supervised Learning with Outliers." NeurIPS 2021.</a></p>
 <ul>
 <li>Open-set semi-supervised learning(OSSL) task를 풀기 위한 알고리즘</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" checked disabled> <a href="https://openreview.net/pdf?id=5hLP5JY9S2d">Vaze, Sagar, et al. "Open-Set Recognition: A Good Closed-Set Classifier is All You Need." ICLR 2022.</a></p>
+<ul>
+<li>Close-set classification을 잘하면 OSR도 잘한다는 것을 보인 논문 (이 두 performance 사이에 positive correlation이 존재한다)</li>
+<li>따라서 아주 기본적인 Maximum Softmax Probability (MSP) OSR 알고리즘만 사용해도, feature extractor 성능만 높으면 기존의 SOTA와 동일하거나 더 높은 성능을 얻을 수 있음</li>
+<li>해당 논문에서, softmax가 아닌 그 직전 값인 logit을 활용한 Maximum Logit Score (MLS) 방법과, Semantic Shift Benchmark (SSB) split도 추가적으로 제안하였음</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2103.00953">Chen, Guangyao, et al. "Adversarial reciprocal points learning for open set recognition." TPAMI 2021.</a></p>
+<ul>
+<li>Porototype은 target class를 대표하는 벡터라면, reciprocal point는 non-target class를 대표하는 벡터임</li>
+<li>Unlabeled data가 존재할 수 있는 공간을 bounding 함</li>
 </ul>
 </li>
 </ul>
