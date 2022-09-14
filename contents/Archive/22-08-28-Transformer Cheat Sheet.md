@@ -47,7 +47,7 @@ category: "Cheat Sheet"
     , \ W_{p}[2 i, t] =\cos \left(t / \ell_{\max }^{2 i / d_{\mathrm{e}}}\right)$
 
 - Bidirectional self-attention (= Unmaksed self-attention): Current token의 위치와 상관없이 모델 입력으로 전체 문장, 문서를 제공하는 형태의 어텐션. Self-attention이기 때문에 query, key, value에 동일한 데이터 집합이 사용됨
-- Undirectional self-attention (= Maksed self-attention): Auto-regressive 형태를 만들기 위해 current token 이후의 token은 masking하여 모델 입력으로 제공하지 않는 형태의 어텐션
+- Unidirectional self-attention (= Maksed self-attention): Auto-regressive 형태를 만들기 위해 current token 이후의 token은 masking하여 모델 입력으로 제공하지 않는 형태의 어텐션
 - Cross-attention: Sequence-to-sequence task 같이, query와 key의 데이터 출처가 다른 경우
 - Layer normalization: 이전 층에서 전달된 representations에 대해 mean과 variance로 normalization 후에 scaling과 biasing을 걸어주는 층. Batch 단위로 수행하는 것은 아니기 때문에 layer normalization으로 불림
 - Unembedding: 최종 vector representation을 vocabulary에 대한 distribution으로 변환시키는 것
