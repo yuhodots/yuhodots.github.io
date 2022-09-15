@@ -91,6 +91,28 @@ thumbnail: "linux"
 - 로그인, 재부팅 로그 확인: *`last`* (경로: /usr/bin/last)
 - 로그 파일이 모여있는 디렉토리: /var/log
 
+### 서버 접속
+
+##### SSH Key 등록
+
+1. Key 생성: 로컬에서 `ssh-keygen -t rsa` (key type이 rsa라는 것을 의미)
+2. Key 생성 확인: 로컬에 .ssh/id_rsa.pub 파일이 생성되었는지 확인하고, 파일의 내용을 복사
+3. Key 등록: 서버에 .ssh/authorized_keys 파일을 만들고, 로컬에서 복사했던 rsa key 값을 authorized_keys 파일에 붙여넣고 저장
+4. .ssh/authorized_keys 파일에 여러 개의 key를 등록하고 싶은 경우에는 줄 바꿈 사용
+
+##### SSH config 설정
+
+- 로컬의 .ssh/config 파일에 '서버 접속 이름 / ip address / username / port / key' 값을 저장하여, '서버 접속 이름' 만 입력하여도 서버 접속이 가능. 사용법은 아래 예시 참고
+
+```
+# vim ~/.ssh/config
+Host servername
+	HostName 10.20.12.123
+	User username			
+	Port 50100
+	IdentityFile ~/.ssh/id_rsa
+```
+
 ### 그 외
 
 - 명령어 앞에 sudo 붙이는 것을 잊었을 때: *`sudo !!`*
@@ -105,4 +127,3 @@ thumbnail: "linux"
 - [nota's story - 리눅스 tar, gz 압축 및 해제](https://nota.tistory.com/53) ('파일 관리' 파트)
 - [15 Essential Linux Command Line Tips and Tricks](https://medium.com/better-programming/15-essential-linux-command-line-tips-and-tricks-95e2bfa2890f) ('그 외' 파트)
 - [https://shaeod.tistory.com - [리눅스 명령어] lastlog - 접속 로그 보기](https://shaeod.tistory.com/734) ('로그 확인' 파트)
-
