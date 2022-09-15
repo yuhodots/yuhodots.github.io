@@ -147,6 +147,24 @@
 <li>로그인, 재부팅 로그 확인: <em><code class="language-text">last</code></em> (경로: /usr/bin/last)</li>
 <li>로그 파일이 모여있는 디렉토리: /var/log</li>
 </ul>
+<h3 id="서버-접속" style="position:relative;"><a href="#%EC%84%9C%EB%B2%84-%EC%A0%91%EC%86%8D" aria-label="서버 접속 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>서버 접속</h3>
+<h5 id="ssh-key-등록" style="position:relative;"><a href="#ssh-key-%EB%93%B1%EB%A1%9D" aria-label="ssh key 등록 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSH Key 등록</h5>
+<ol>
+<li>Key 생성: 로컬에서 <code class="language-text">ssh-keygen -t rsa</code> (key type이 rsa라는 것을 의미)</li>
+<li>Key 생성 확인: 로컬에 .ssh/id_rsa.pub 파일이 생성되었는지 확인하고, 파일의 내용을 복사</li>
+<li>Key 등록: 서버에 .ssh/authorized<em>keys 파일을 만들고, 로컬에서 복사했던 rsa key 값을 authorized</em>keys 파일에 붙여넣고 저장</li>
+<li>.ssh/authorized_keys 파일에 여러 개의 key를 등록하고 싶은 경우에는 줄 바꿈 사용</li>
+</ol>
+<h5 id="ssh-config-설정" style="position:relative;"><a href="#ssh-config-%EC%84%A4%EC%A0%95" aria-label="ssh config 설정 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSH config 설정</h5>
+<ul>
+<li>로컬의 .ssh/config 파일에 '서버 접속 이름 / ip address / username / port / key' 값을 저장하여, '서버 접속 이름' 만 입력하여도 서버 접속이 가능. 사용법은 아래 예시 참고</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># vim ~/.ssh/config
+Host servername
+	HostName 10.20.12.123
+	User username			
+	Port 50100
+	IdentityFile ~/.ssh/id_rsa</code></pre></div>
 <h3 id="그-외" style="position:relative;"><a href="#%EA%B7%B8-%EC%99%B8" aria-label="그 외 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>그 외</h3>
 <ul>
 <li>명령어 앞에 sudo 붙이는 것을 잊었을 때: <em><code class="language-text">sudo !!</code></em></li>
