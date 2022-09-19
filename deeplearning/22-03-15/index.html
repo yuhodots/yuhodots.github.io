@@ -332,6 +332,21 @@
 <li>Class 마다 N개의 exemplar 이미지를 가지고, 해당 이미지와 test query의 mixed 샘플 output 확인. N개의 output을 평균내어 이를 membership score라는 이름으로 정의</li>
 </ul>
 </li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2207.10659">Joseph, K. J., et al. "Novel Class Discovery without Forgetting." ECCV 2022.</a></p>
+<ul>
+<li>NCD, GCD의 advanced setting인 NCD without Forgetting을 제안함</li>
+<li>GCD 세팅과, base data training 이후에 base data에 대한 접근이 제한된다는 점이 차이점 (GCD 보다 더 어려운 task)</li>
+<li>Pseudo-latent, Mutual information based regularizer, Known Class Indentifier라는 방법들을 통해 NCDwF를 해결하는데, 아직 자세히 이해하지는 못했음</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" checked disabled> <a href="https://arxiv.org/abs/2208.01898">Fei, Yixin, et al. "XCon: Learning with Experts for Fine-grained Category Discovery." arXiv preprint arXiv:2208.01898 (2022).</a></p>
+<ul>
+<li>Fine-grained dataset에 대해서, class-irrelevant cues(e.g. background, object pose) 위주로 clustering 되는 경향이 있음</li>
+<li>따라서 이를 해결하기 위해 dataset을 먼저 k-means clustering 하고(그러면 class-irrelevant cues 비슷한 것 끼리 얼추 모임), 이 data split에 대해 각각 contrastive learning을 수행하면 class-irrelevant cues로 인한 부정적인 영향을 줄일 수 있음</li>
+</ul>
+</li>
 </ul>
 <h3 id="data-augmentation" style="position:relative;"><a href="#data-augmentation" aria-label="data augmentation permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data Augmentation</h3>
 <ul>
