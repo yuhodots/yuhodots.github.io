@@ -199,6 +199,17 @@ category: "Deep Learning"
   - Test query를 novel class와 mixup하면 output prediction 값이 낮고, base class와 mixup하면 output prediction 값이 특정 하나의 class에 대해 높을 것이라 가정
   - Open-set recognition task에서 자주 사용되는 K개의 sigmoid classifier 사용
   - Class 마다 N개의 exemplar 이미지를 가지고, 해당 이미지와 test query의 mixed 샘플 output 확인. N개의 output을 평균내어 이를 membership score라는 이름으로 정의
+  
+- [ ] [Joseph, K. J., et al. "Novel Class Discovery without Forgetting." ECCV 2022.](https://arxiv.org/abs/2207.10659)
+
+  - NCD, GCD의 advanced setting인 NCD without Forgetting을 제안함
+  - GCD 세팅과, base data training 이후에 base data에 대한 접근이 제한된다는 점이 차이점 (GCD 보다 더 어려운 task)
+  - Pseudo-latent, Mutual information based regularizer, Known Class Indentifier라는 방법들을 통해 NCDwF를 해결하는데, 아직 자세히 이해하지는 못했음
+
+- [x] [Fei, Yixin, et al. "XCon: Learning with Experts for Fine-grained Category Discovery." arXiv preprint arXiv:2208.01898 (2022).](https://arxiv.org/abs/2208.01898)
+
+  - Fine-grained dataset에 대해서, class-irrelevant cues(e.g. background, object pose) 위주로 clustering 되는 경향이 있음
+  - 따라서 이를 해결하기 위해 dataset을 먼저 k-means clustering 하고(그러면 class-irrelevant cues 비슷한 것 끼리 얼추 모임), 이 data split에 대해 각각 contrastive learning을 수행하면 class-irrelevant cues로 인한 부정적인 영향을 줄일 수 있음
 
 ### Data Augmentation
 
