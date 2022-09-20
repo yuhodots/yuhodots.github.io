@@ -1,5 +1,5 @@
 import aws from "./aws.png";
-import datascience from "./datascience.png";
+import mathematics from "./mathematics.png";
 import deeplearning from "./deeplearning.png";
 import linux from "./linux.png";
 import nginx from "./nginx.png";
@@ -13,7 +13,7 @@ import CVPR from "./CVPR.png"
 
 export default {
     aws,
-    datascience,
+    mathematics,
     deeplearning,
     linux,
     nginx,

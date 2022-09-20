@@ -3,10 +3,10 @@ title: "Estimators, Bias, Variance, and Standard Error"
 date: "2020-08-08"
 template: "post"
 draft: false
-path: "/datascience/20-08-08/"
+path: "/mathematics/20-08-08/"
 description: " 이 챕터는 주로 statistics에 관한 개념들에 대해 다룹니다. 우리가 다음과 같은 statistics 개념에 대해 이해한다면, generalization, underfitting and overfitting에 대해서 분석을 할 때 유용하게 활용할 수 있습니다."
-category: "Data Science"
-thumbnail: "datascience"
+category: "Mathematics"
+thumbnail: "mathematics"
 ---
 
  Ian Goodfellow의 Deep Learning 책 5.4 챕터의 내용을 번역한 포스팅입니다. 개인적인 이해도에 따라서 추가되거나 빠진 내용이 있는 점 참고하시길 바랍니다. 잘못된 내용에 대해서도 지적해주시면 감사하겠습니다.

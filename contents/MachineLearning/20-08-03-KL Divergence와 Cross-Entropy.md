@@ -3,10 +3,10 @@ title: "KL Divergence와 Cross-Entropy"
 date: "2020-08-03"
 template: "post"
 draft: false
-path: "/datascience/20-08-03/"
+path: "/mathematics/20-08-03/"
 description: "Ian Goodfellow의 Deep Learning 책 내용을 참고하여 번역한 포스팅입니다. 개인적인 이해도에 따라서 추가되거나 빠진 내용이 있는 점 참고하시길 바랍니다. 잘못된 내용에 대해서도 지적해주시면 감사하겠습니다."
-category: "Data Science"
-thumbnail: "datascience"
+category: "Mathematics"
+thumbnail: "mathematics"
 ---
 
  Ian Goodfellow의 Deep Learning 책 내용을 참고하여 번역한 포스팅입니다. 개인적인 이해도에 따라서 추가되거나 빠진 내용이 있는 점 참고하시길 바랍니다. 잘못된 내용에 대해서도 지적해주시면 감사하겠습니다.

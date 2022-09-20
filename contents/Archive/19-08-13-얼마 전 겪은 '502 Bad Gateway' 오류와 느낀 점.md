@@ -3,9 +3,9 @@ title: "얼마 전 겪은 '502 : Bad Gateway' 오류와 느낀점"
 date: "2019-08-13"
 template: "post"
 draft: false
-path: "/diary/19-08-13/"
+path: "/essay/19-08-13/"
 description: "한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다."
-category: "Diary"
+category: "Essay"
 ---
 
 한 4일 전 쯤에, AWS에서 ACM 인증서를 발급 받고 웹 사이트에 https 접속을 받을 수 있게 되어서 굉장히 뿌듯해 하고 있었습니다. 그리고 이 뿌듯한 마음을 가지고 백 엔드 작업을 룰루랄라 신나게(?)하고 있었는데 갑자기 웹 사이트가 nginx 502: Bad Gateway 에러를 꽥 뱉으면서 접속이 되지 않았습니다.

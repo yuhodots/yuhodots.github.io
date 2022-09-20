@@ -9,9 +9,9 @@ const Category = ({ categories, posts }) => {
         sortedCategories[0]
     );
     const upperCategory = {
-        'MachineLearning':['Deep Learning', 'Data Science'],
+        'MachineLearning':['Deep Learning', 'Mathematics'],
         'Web':['FrontEnd', 'BackEnd'],
-        'Archive':['Cheat Sheet', 'Diary'],
+        'Archive':['Cheat Sheet', 'Essay'],
     }
     return (
         <div className="category">

@@ -3,10 +3,10 @@ title: "Expectation, Variance, and Covariance"
 date: "2020-08-13"
 template: "post"
 draft: false
-path: "/datascience/20-08-13/"
+path: "/mathematics/20-08-13/"
 description: "위키피디아와 DeepLearning Book 등을 바탕으로, 참고하기 위해 정의와 성질 순서로 간단하게만 정리한 글입니다.사건에 대한 확률 변수와 그 사건이 벌어질 확률을 곱한 것을 전체 사건에 대해 합한 값 - 확률적 사건에 대한 평균의 의미로 생각할 수 있다. 이 경우 '모 평균'으로 다룰 수 있다."
-category: "Data Science"
-thumbnail: "datascience"
+category: "Mathematics"
+thumbnail: "mathematics"
 ---
 
 위키피디아와 DeepLearning Book을 바탕으로, 참고하기 위해 정의와 성질 순서로 간단하게만 정리한 글입니다.
