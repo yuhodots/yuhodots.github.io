@@ -240,6 +240,12 @@ category: "Deep Learning"
 
 - [ ] [Liu, Hanxiao, Karen Simonyan, and Yiming Yang. "Darts: Differentiable architecture search." ICLR 2019.](https://openreview.net/pdf?id=S1eYHoC5FX)
 
+  - Neural Architecture Search (NAS) 연구에 대해, 기존에는 search space가 미분 불가능하다는 문제점 때문에 RL 기반으로만 연구가 진행었는데, DARTS는 search space를 미분 가능하게 정의하고 여기에 MAML의 최적화 방식과 동일한 bilevel optimization을 도입하여 gradient descent 기반의 NAS를 가능하도록 만들었음
+
+  1. Differentiable archtecture search: 논문에서 정의한 bilevel optimization 식을 통한 가중치 $\alpha$ 최적화 수행
+  2. Discretization step: $\alpha$와 $k$ 기반으로 필요 없는 operation edge 제거
+  3. Retraining for the top- $k$ strongest operations: 남은 operation edge에 대해 처음부터 다시 학습 수행
+
 ### Long-Tailed Recognition
 
 - [ ] [Kang, Bingyi, et al. "Decoupling Representation and Classifier for Long-Tailed Recognition." ICLR 2020.](https://openreview.net/pdf?id=r1gRTCVFvB)
