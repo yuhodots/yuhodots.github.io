@@ -4,7 +4,7 @@ date: "2022-09-20"
 template: "post"
 draft: false
 path: "/mathematics/22-09-20/"
-description: Bishop, "Pattern Recognition and Machine Learning." 교재 내에서, 개인적으로 포스팅으로 정리하고 싶은 내용을 선정하여 기록하였습니다. 교재는 이곳에서 확인할 수 있으며, 교재 외에 내용도 필요에 따라 추가하였습니다. 공부 진행 상황에 따라서 계속 내용을 추가 중에 있습니다."
+description: Bishop, "Pattern Recognition and Machine Learning." 교재 내에서, 개인적으로 포스팅으로 정리하고 싶은 내용을 선정하여 기록하였습니다. 교재는 이곳에서 확인할 수 있으며, 교재 외에 내용도 필요에 따라 추가하였습니다. 공부 진행 상황에 따라서 계속 내용을 추가 중에 있습니다.
 category: "Mathematics"
 thumbnail: "mathematics"
 ---
@@ -99,9 +99,7 @@ $$
 - 위 최적화 문제에 대한 lagrangian은 아래와 같이 표현됨
 
 $$
-\begin{equation}
 L(x,u,v) = f(x) + \sum_{i=1}^m u_i h_i(x) + \sum_{j=1}^r v_j l_j(x) 
-\end{equation}
 $$
 
 - 일반적으로 **constraint convex optimization** 문제를 풀 때는 primal problem을 풀기보다 dual problem 즉, Lagrangian dual function을 푸는 경우가 대부분
