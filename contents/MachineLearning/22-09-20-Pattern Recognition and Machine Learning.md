@@ -90,8 +90,8 @@ $$
 
 $$
 \begin{aligned}
-\min_x & \quad f(x)  \\
-s.t.   & \quad h_i(x) \leq 0, i = 1,\dots,m \\
+\text{minimize} & \quad f(x)  \\
+\text{s.t.}   & \quad h_i(x) \leq 0, i = 1,\dots,m \\
        & \quad l_j(x) = 0, j=1,\dots,r 
 \end{aligned}
 $$
@@ -123,11 +123,6 @@ $$
 
 ##### Karsh-Kuhn-Tucker Conditions
 
-1. **Primal feasibility**: $h_i(x) \le 0, \ l_j(x) = 0 \text{ for all } i, j$
-2. **Dual feasibility**: $\lambda_i \ge 0 \text{ for all } i$
-3. **Complementary slackness**: $h_i(x) \le 0, \ l_j(x) = 0 \text{ for all } i, j$
-   - $\lambda_i$와 $h_i$ 중 적어도 하나의 값은 0을 가짐을 의미
-4. **Stationarity** (Gradient of Lagrangian w.r.t $x$ vanishes): $0 \in \partial \big( f(x) + \sum_{i=1}^{m} \lambda_i h_i(x) + \sum_{j=1}^{r} \nu_j l_j(x) \big)$
 
 - Necessity: If $x$ and $u, v$ are primal and dual solutions with zero duality gap, then $x, u, v$ satisfy the KKT conditions.
 - Sufficiency: If $x$ and $u, v$ satisfy the KKT conditions, then $x$ and $u, v$ are primal and dual solutions.
@@ -137,8 +132,43 @@ $$
 \text{$x,u,v$가 KKT condition을 만족} \iff \text{$x$는 primal solution이고 $u,v$는 dual solution}
 $$
 
+1. **Primal feasibility**: $h_i(x) \le 0, \ l_j(x) = 0 \text{ for all } i, j$
+2. **Dual feasibility**: $\lambda_i \ge 0 \text{ for all } i$
+3. **Complementary slackness**: $h_i(x) \le 0, \ l_j(x) = 0 \text{ for all } i, j$
+   - $\lambda_i$와 $h_i$ 중 적어도 하나의 값은 0을 가짐을 의미
+4. **Stationarity** (Gradient of Lagrangian w.r.t $x$ vanishes): $0 \in \partial \big( f(x) + \sum_{i=1}^{m} \lambda_i h_i(x) + \sum_{j=1}^{r} \nu_j l_j(x) \big)$
+
 ### Maximum Margin Classifiers
+
+##### Linear Discriminant
+
+![img](../img/PRML1.png)
+
+- 선형 판별 함수는 가장 단순하게 $y(\mathbf x) = \mathbf w^\top\mathbf x + b$ 으로 표현됨
+- $\mathbf w$의 특징: 결정 표면 상에 존재하는 두 점 $\mathbf x_A$과 $\mathbf x_B$에 대해서 **$y(\mathbf x_A) = y(\mathbf x_A) = 0$이기 때문에 $\mathbf w^\top(\mathbf x_A - \mathbf x_B)=0$이며, 따라서 벡터 $\mathbf w$는 결정 표면상의 모든 벡터들과 직교**
+- **점 $\mathbf x$와 결정 표면 사이의 수직거리 $r$**을 구하는 것은 아래의 전개 과정을 따름
+
+1. $\mathbf x= \mathbf x_{\perp} + r \frac{\mathbf w}{|| \mathbf w ||}$ ($\frac{\mathbf w}{|| \mathbf w ||}$는 벡터 $\mathbf w$의 단위 방향 벡터)
+2. 양변에 $\mathbf w^\top$를 곱하고 $b$를 더하면, $\mathbf w^\top\mathbf x + b = \mathbf w^\top(\mathbf x_{\perp} + r \frac{\mathbf w}{|| \mathbf w ||}) + b$
+3. 식을 다시 정리하면, $\mathbf w^\top\mathbf x + b = \mathbf w^\top\mathbf x_{\perp} + b+ r \frac{\mathbf w^\top \mathbf w}{|| \mathbf w ||} $. 따라서, $y(\mathbf x) = 0 + r \frac{||\mathbf w||^2}{|| \mathbf w ||}$
+4. $\therefore r = \frac{y(\mathbf x)}{||\mathbf w||}$
 
 ##### Support Vector Machine
 
-- *작성중입니다.*
+![img](../img/PRML2.png)
+
+- Support vector와 결정 표면 사이의 수직거리를 $r$이라고 하면, support vector 사이의 margin은 $2r = \frac{2}{||\mathbf w||}$
+- 따라서, SVM에 대한 최적화 문제는 **단순히 $||\mathbf w||^{-1}$을 최대화**하는 문제로 바뀜. 이는 **$||\mathbf w||^{2}$을 최소화 하는 문제와 동일 (quadratic programming)**
+  - Support vector에 대해서 $t_n\cdot(\mathbf w^\top\mathbf x + b)=1$이라고 임의로 설정하면, 모든 데이터 포인트들에 대해 $t_n\cdot(\mathbf w^\top\mathbf x + b) \ge 1, \quad n=1,...,N$ 이라는 제약조건을 만족
+  - 아래 최적화 식을 만족하는 $\mathbf w, b$을 찾는 것이 목표
+
+$$
+\begin{aligned}
+\text{minimize} & \quad \frac{1}{2}\mathbf w^\top \mathbf w \\
+\text{s.t.}   & \quad t_n \cdot(\mathbf w^\top\mathbf x + b) \ge 1, \quad n=1,...,N
+\end{aligned}
+$$
+
+##### Dual Representation of SVM
+
+- *PRML 367p. 부터 다시 정리하기*

@@ -10,7 +10,7 @@ category: "Deep Learning"
 
 > 관심 분야의 논문 리스트를 기록합니다. 최근에 읽은 논문은 핵심 내용을 세 줄 요약으로 추가하고 있습니다. 체크 표시가 되어있지 않은 논문들은 추후 다시 읽어 볼 필요가 있는 논문을 의미합니다.
 
-### Few-shot Learning, Meta Learning
+### Few-Shot and Meta Learning
 
 - [x] [Vinyals, Oriol, et al. "Matching networks for one shot learning." NIPS 2016.](https://dl.acm.org/doi/abs/10.5555/3157382.3157504)
 - [ ] [Santoro, et al. "Meta-Learning with Memory-Augmented Neural Networks." ICML 2016.](http://proceedings.mlr.press/v48/santoro16.pdf)
@@ -29,7 +29,7 @@ category: "Deep Learning"
 - [ ] [Oh, Jaehoon, et al. "BOIL: Towards Representation Change for Few-shot Learning." ICLR 2021.](https://openreview.net/pdf?id=umIdUL8rMH)
 - [x] [Oreshkin, Boris N., et al. "Tadam: Task dependent adaptive metric for improved few-shot learning." NIPS 2018.](https://dl.acm.org/doi/abs/10.5555/3326943.3327010)
 
-### Incremental Learning, Continual Learning
+### Incremental and Continual Learning
 
 - [x] [Li, Zhizhong, and Derek Hoiem. "Learning without forgetting." IEEE transactions on pattern analysis and machine intelligence 40.12 (2017): 2935-2947.](https://ieeexplore.ieee.org/abstract/document/8107520)
 - [x] [Parisi, German I., et al. "Continual lifelong learning with neural networks: A review." Neural Networks 113 (2019): 54-71.](https://www.sciencedirect.com/science/article/pii/S0893608019300231)
@@ -91,15 +91,23 @@ category: "Deep Learning"
 - [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
 - [ ] [Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.](https://arxiv.org/pdf/2012.04324.pdf)
 
-### Self-supervised Learning
+### Unsupervised and Self-Supervised Learning
 
 - [x] [Grill, Jean-Bastien, et al. "Bootstrap your own latent: A new approach to self-supervised learning." NIPS 2020.](https://arxiv.org/abs/2006.07733)
 - [ ] [Kolesnikov, Alexander, Xiaohua Zhai, and Lucas Beyer. "Revisiting self-supervised visual representation learning." CVPR 2019.](https://openaccess.thecvf.com/content_CVPR_2019/html/Kolesnikov_Revisiting_Self-Supervised_Visual_Representation_Learning_CVPR_2019_paper.html)
 - [ ] [Tian, Yuandong, Xinlei Chen, and Surya Ganguli. "Understanding self-supervised Learning Dynamics without Contrastive Pairs." arXiv preprint arXiv:2102.06810, 2021.](https://arxiv.org/abs/2102.06810)
 - [ ] [Kevin Lu, et al. "Pretrained Transformers as Universal Computation Engines." arXiv preprint arXiv:2103.05247, 2021](https://arxiv.org/abs/2103.05247?fbclid=IwAR3T_ZxXT0bmygQnpbWdPy_9_ilNR9nrCbALNgc6EffsXAevguFxQ_myPFE)
 - [ ] [Goyal, Priya, et al. "Self-supervised Pretraining of Visual Features in the Wild." arXiv preprint arXiv:2103.01988, 2021.](https://arxiv.org/abs/2103.01988)
+- [ ] [Caron, Mathilde, et al. "Unsupervised learning of visual features by contrasting cluster assignments." NeurIPS 2020.](https://proceedings.neurips.cc/paper/2020/file/70feb62b69f16e0238f741fab228fec2-Paper.pdf)
+  - 저자의 논문 설명 영상은 [이곳](https://www.youtube.com/watch?v=7QmsTleiRLs)에서 확인할 수 있음
+  - Key idea: Train an embedding with consistent cluster(prototypes) assignments between views of the same image
+  - Constraint: All prototypes are selected the same amount of time. 그래야 모든 sample이 하나의 cluster에만 할당되는 것을 방지할 수 있음. Objective 식에서는 $\max H(\mathbf{Q})$ 형태의 regularizer로 표현됨 (모든 cluster에 균등하게 할당되는 경우에 entropy기 maximize 되기 때문)
+  - Problem: $\max _{\mathbf{Q} \in \mathcal{Q}} \operatorname{Tr}\left(\mathbf{Q}^{\top} \mathbf{C}^{\top} \mathbf{Z}\right)+\varepsilon H(\mathbf{Q})$ 
+    - Where $\mathbf{Q}$ is the mapping matrix, $\mathbf{C}$ are prototypes, and $\mathbf Z$ are feature vectors
+  - Solution: Sinkhorn-Knopp algorithm $\mathbf{Q}^*=\operatorname{Diag}(\mathbf{u}) \exp \left(\frac{\mathbf{C}^{\top} \mathbf{Z}}{\varepsilon}\right) \operatorname{Diag}(\mathbf{v})$
+    - Where $\mathbf u$ and $\mathbf v$ are renormalization vectors in $\mathbb R^K$ and $\mathbb R^B$ respectively
 
-### Semi-supervised Learning
+### Semi-Supervised Learning
 
 - Generative model: Gaussian mixture, Deep generative models
 - Graph based: Label propagation
@@ -210,6 +218,30 @@ category: "Deep Learning"
 
   - Fine-grained dataset에 대해서, class-irrelevant cues(e.g. background, object pose) 위주로 clustering 되는 경향이 있음
   - 따라서 이를 해결하기 위해 dataset을 먼저 k-means clustering 하고(그러면 class-irrelevant cues 비슷한 것 끼리 얼추 모임), 이 data split에 대해 각각 contrastive learning을 수행하면 class-irrelevant cues로 인한 부정적인 영향을 줄일 수 있음
+  
+- [x] [Cao, Kaidi, Maria Brbic, and Jure Leskovec. "Open-world semi-supervised learning." ICLR 2022.](https://openreview.net/pdf?id=O-r8LOR-CCA)
+
+  - Novel Category Discovery를 traditional SSL로 일반화한 Open-World Semi-Supervised Learning 세팅을 처음으로 제안 (Generalized Category Discovery와 동일한 세팅)
+  - Unlabeled data의 uncertainty를 기반으로 known(seen) class의 intra-class를 조절하면서 학습하는 end-to-end 알고리즘은 ORCA를 제안
+    - e.g., Unlabeled data의 uncertainty가 낮은 경우에, labeled data를 fully exploit
+    - 이 과정을 통해 known class에 대한 discriminative representation learning이 novel class 대비 너무 빠르게 진행되지 않도록 강제함
+  - Supervised objective w. uncertainty adaptive margin, Pairwise objective, Regularization term, 총 3개의 주요 objectives로 이루어져있음
+    - Supervised objective w. uncertainty adaptive margin: $
+        \mathcal{L}_{\mathrm{S}}=\frac{1}{n} \sum_{z_i \in \mathcal{Z}_l}-\log \frac{e^{s\left(W_{y_i}^T \cdot z_i+\lambda \bar{u}\right)}}{e^{s\left(W_{y_i}^T \cdot z_i+\lambda \bar{u}\right)}+\sum_{j \neq i} e^{s W_{y_j}^T \cdot z_i}}
+        $ where uncertainty $\bar{u}=\frac{1}{\left|\mathcal{D}_u\right|} \sum_{x_i \in \mathcal{D}_u} 1-\max _k \operatorname{Pr}\left(Y=k \mid X=x_i\right)$
+    - Pairwise objective: $
+        \mathcal{L}_{\mathrm{P}}=\frac{1}{m+n} \sum_{\substack{z_i, z_i^{\prime} \in
+        \left(\mathcal{Z}_l \cup \mathcal{Z}_u, \mathcal{Z}_l^{\prime} \cup \mathcal{Z}_u^{\prime}\right)}}-\log \left\langle\sigma\left(W^T \cdot z_i\right), \sigma\left(W^T \cdot z_i^{\prime}\right)\right\rangle
+        $
+    - Regularization term: $\mathcal{R}=K L\left(\frac{1}{m+n} \sum_{z_i \in \mathcal{Z}_l \cup \mathcal{Z}_u} \sigma\left(W^T \cdot z_i\right) \| \mathcal{P}(y)\right)$
+  
+- [ ] [Rizve, Mamshad Nayeem, et al. "OpenLDN: Learning to Discover Novel Classes for Open-World Semi-Supervised Learning." ECCV 2022.](https://arxiv.org/pdf/2207.02261.pdf)
+
+- [x] [Fini, Enrico, et al. "A unified objective for novel class discovery." ICCV 2021.](https://openaccess.thecvf.com/content/ICCV2021/papers/Fini_A_Unified_Objective_for_Novel_Class_Discovery_ICCV_2021_paper.pdf)
+
+  - 기존 multi-step approach와 달리 (Labeled data를 활용한 supervised learning 혹은, self-supervised pre-training 이후에 unlabeled data로 transfer clustering하는 접근 방법), 처음부터 모든 objective를 하나의 step에 합쳐 학습하는 방법을 제안하였고 좋은 성능을 기록함
+  - UNO 논문을 읽는 것 보다 SwAV 논문을 읽는 것이 UNO 알고리즘을 이해하는 데에 더 도움이 되니 참고하기
+  - 논문 내에서 새롭게 제안하는 방법론이 없는데도 (task는 달라지긴 했지만) oral paper로 선정된 것이 조금 놀라움 (기존에 있는 방법들을 NCD에 적합하게 잘 엮은 논문임)
 
 ### Data Augmentation
 
