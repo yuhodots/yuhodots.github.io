@@ -6,7 +6,7 @@ draft: false
 path: "/deeplearning/22-03-05/"
 description: "CVPR 2021에서 oral로 발표된 NeRF in the Wild (NeRF-W)에 대해서 포스팅합니다. 해당 논문은 View Synthesis task를 풀기 위한 알고리즘인 NeRF가 in-the-wild 데이터에는 대응하지 못한다는 점을 지적하며 이를 개선하고자 한 advanced 버전의 NeRF 알고리즘입니다."
 category: "Deep Learning"
-thumbnail: "CVPR"
+thumbnail: "deeplearning"
 ---
 
 > 구글 리서치 팀에서 2020년 8월에 발표하여 CVPR 2021에서 oral로 발표된 NeRF in the Wild (NeRF-W)에 대해서 포스팅합니다. 해당 논문은 View Synthesis task를 풀기 위한 알고리즘인 NeRF가, photometric variation과 transient objects가 존재하는 in-the-wild 데이터셋에는 대응하지 못한다는 점을 지적하며 이를 개선하고자 한 advanced 버전의 NeRF 알고리즘입니다.
