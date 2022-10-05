@@ -84,6 +84,8 @@ Prototype 초기화 이후에는 전체 데이터셋의 feature vectors을 대�
 
 GCD task는 본 논문에서 제안된 새로운 task이기 때문에 prior work가 존재하지 않습니다. 따라서 저자들은 NCD task를 위해 제안되었던 RS[^5]와 UNO[^6]라는 알고리즘을, GCD task에 맞게 적절히 개조하여 각각 RS+, UNO+라는 이름으로 명시하였습니다. 결과적으로 본 논문에서 제안하는 알고리즘을 단순 $k$-means clustering 방법과 더불어, RS+, UNO+와 비교하여 성능을 검증하였습니다. RS+와 UNO+ 모두 classification head가 learnable paramter의 형태를 가집니다. RS는 deep clustering 방법론에서 일반적으로 사용되는 **pairwise pseudo-label**를 활용하고, UNO는 **SwAV[^7] manner의 pseudo-label**을 활용하여 모델을 각각 학습시키는데, 자세한 내용은 논문을 직접 참고하시면 좋습니다.
 
+<center><img src="../img/GCD_baselines.png"></center>
+
 ##### Comparative Results
 
 비교 실험을 위해서는 3개의 generic image recognition dataset과 3개의 fine-grained dataset, 총 6개의 데이터셋을 사용하였습니다. 각각의 데이터셋에 대해서 known class의 50%를 labeled dataset에, 나머지 50%를 unlabeled dataset에 할당하고, novel class는 전부를 unlabeled dataset에 할당하였다고 합니다. 일부 방법들이 known class(Old)에 대해 성능이 좋은 것을 확인할 수 있지만, 전체 기준으로는 본 논문에서 제안하는 방법이 성능이 제일 좋은 것을 확인할 수 있습니다.
