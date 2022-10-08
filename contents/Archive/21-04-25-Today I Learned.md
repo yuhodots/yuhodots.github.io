@@ -318,6 +318,45 @@ Upper bound, Lower bound, Supremum, Infimum에 대한 수학적 정의를 [이�
 - Redis: Database 중 하나이며, Cassandra DB, DynamoDB와 같이 **key value DB engine** 중 하나임. in-memory 데이터 구조를 사용하여 매우 빠른 속도를 가지며, 캐싱을 위해 자주 사용됨
 - gRPC(Remote Procedure Calls): 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출 (RPC) 시스템. 여기서 RPC[^22]는 별도의 원격 제어를 위한 코딩 없이 다른 주소 공간에서 함수나 프로시저를 실행할 수 있게하는 프로세스 간 통신 기술을 말함. 
 
+##### 🤖 ML & DL
+
+*2022.10.06*
+
+10월 6일에 진행된 AI workshop 내용을 기록합니다. 먼저, Federated Learning과 관련된 내용입니다.
+
+1. Federated Learning (FL)
+   - Central server에 client의 data를 업로드할 수 없는 상황에 어떻게 모델을 학습할 수 있을지?
+   - Client에서 각자 업데이트된 '모델'을 서버로 올리고, 평균을 취해서 다시 client에게 뿌리는 방식이 제일 일반적 (FedAvg)
+   - 하지만 이런 방식은 non-IID setting(heterogeneous)에서 매우 크게 성능이 떨어지게 됨: PFL 연구의 배경
+2. Personalized Federated Learning (PFL): Client specific weights이 도입됨
+3. PFL via Meta-learning: PFL의 컨셉과 Meta-learning(MAML)의 컨셉이 매우 유사하다는 점에서 고안됨
+
+Imitation learning 관련 내용입니다.
+
+1. Reinforcement Learning (RL)
+   - Purpose: Find an optimal policy $\pi*$ that miximize $V$
+   - Require domain knowledge for real-world application
+   - 드론을 예로 들면, 실제 드론은 매우 쉽게 부숴지므로 Sim2Real learning을 고려해야 하고, 드론 physics에 많은 perturbation이 존재하므로 Robust learning도 고려해야 함
+2. Imitation Learning (IL)
+   - Behavior cloning (BC), Inverse RL (IRL), IRL + RL 등의 방법이 존재
+   - BC는 많은 양의 데이터가 필요하고 compounding error에 취약하므로, 이런 점에서는 IRL이 장점을 가짐
+3. Generative Adversariel Imitation Learning (GAIL)
+   - Real data로는 expert actions를 제공하고, Fake data로는 policy actions를 제공하여 expert의 policy를 흉내내도록 학슴
+   - Limitation: Real envrionment danger와 environment perturbation에 대해서는 잘 모델링하지 않음. 따라서 domain-adpative IL이 필요
+4. Simulation-based Learning: Domain Adaptive IL
+   - Simulation(source) env.에서 information을 뽑아, target env의 policy에 도움을 주도록, information extraction 과정이 중요
+
+##### 🤖 ML & DL
+
+*2022.10.06*
+
+레딧을 읽다가 "학습이 너무 오래걸리는 경우엔 하이퍼파리미터 튜닝을 어떻게 해야하는가?"에 대한 글이 있어, 글에 달린 코멘트와 개인적인 생각들을 기록합니다.
+
+- 모델 스케일을 줄인 상태로 하이퍼 파라미터 튜닝을 진행하거나, 데이터셋을 일부만 사용한 학습을 통해 하이퍼 파라미터 튜닝을 진행
+- e.g., ResNet152라고 한다면 ResNet18 같이 작은 모델 사용하거나, ImageNet이라고 한다면 100개 class만 사용하여 학습 수행
+- 이 방법은 당연히 sub-optimal이긴 하겠지만 학습이 너무 오래걸리는 경우에 충분히 활용해 볼만 한 방법이라고 생각했음
+- 사실 제일 좋은 것은 GPU 자원을 병렬로 충분히 활용할 수 있게 엔지니어링을 거친 후에 학습하는 것. 왜냐면 big model과 small model 사이에 하이퍼 파라미터에 따른 모델의 동작에 분명히 차이가 존재할 것이기 때문에, 원래 스케일대로 실험하는게 제일 좋음
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

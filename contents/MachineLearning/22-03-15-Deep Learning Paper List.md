@@ -245,12 +245,14 @@ category: "Deep Learning"
 
 ### Data Augmentation
 
-- [ ] [Yun, Sangdoo, et al. "Cutmix: Regularization strategy to train strong classifiers with localizable features." ICCV 2019.](https://openaccess.thecvf.com/content_ICCV_2019/html/Yun_CutMix_Regularization_Strategy_to_Train_Strong_Classifiers_With_Localizable_Features_ICCV_2019_paper.html)
+- [ ] [Zhang, Hongyi, et al. "mixup: Beyond Empirical Risk Minimization." ICLR 2018.](https://openreview.net/pdf?id=r1Ddp1-Rb)
+- [x] [Yun, Sangdoo, et al. "Cutmix: Regularization strategy to train strong classifiers with localizable features." ICCV 2019.](https://openaccess.thecvf.com/content_ICCV_2019/html/Yun_CutMix_Regularization_Strategy_to_Train_Strong_Classifiers_With_Localizable_Features_ICCV_2019_paper.html)
 - [x] [Verma, Vikas, et al. "Manifold mixup: Better representations by interpolating hidden states." ICML 2019.](https://proceedings.mlr.press/v97/verma19a.html)
   - 기존 Input-spcae mixup과 달리 itermediate layer의 representation을 mixup하는 방법
   - $\left(\tilde{g}_{k}, \tilde{y}\right):=\left(\operatorname{Mix}_{\lambda}\left(g_{k}(x), g_{k}\left(x^{\prime}\right)\right), \operatorname{Mix}_{\lambda}\left(y, y^{\prime}\right)\right)$
   - SVD 했을 때 eigenvalue가 전체적으로 작아지는 효과를 가짐. 즉, principal components 수가 작아지는 효과 (flattening)
   - Flattening을 통해 eigenvalue가 전체적으로 작아지니 volume이 작아지며, compression은 information theory 관점에서 이론적, 실험적으로 generalization과 연관이 있어 장점을 가짐
+- [ ] [Lim, Soon Hoe, et al. "Noisy feature mixup." ICLR 2022.](https://openreview.net/pdf?id=vJb4I2ANmy)
 - [ ] [Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.](https://openreview.net/forum?id=g11CZSghXyY)
 
 ### Natural Language Processing
