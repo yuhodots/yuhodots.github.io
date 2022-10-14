@@ -235,7 +235,11 @@ category: "Deep Learning"
         $
     - Regularization term: $\mathcal{R}=K L\left(\frac{1}{m+n} \sum_{z_i \in \mathcal{Z}_l \cup \mathcal{Z}_u} \sigma\left(W^T \cdot z_i\right) \| \mathcal{P}(y)\right)$
   
-- [ ] [Rizve, Mamshad Nayeem, et al. "OpenLDN: Learning to Discover Novel Classes for Open-World Semi-Supervised Learning." ECCV 2022.](https://arxiv.org/pdf/2207.02261.pdf)
+- [x] [Rizve, Mamshad Nayeem, et al. "OpenLDN: Learning to Discover Novel Classes for Open-World Semi-Supervised Learning." ECCV 2022.](https://arxiv.org/pdf/2207.02261.pdf)
+
+  1. Pairwise loss, cross entropy, rgularization 기반으로 novel class를 discovering하기 위한 OpenLDN 알고리즘 수행
+  2. 모든 파라미터를 다 초기화한 뒤에, OpenLDN으로 얻어낸 novel pseudo label 기반으로 closed-SSL 다시 수행 (MixMatch와 UDA 사용)
+  3. Novel pseudo label이 학습이 진행됨에 따라 개선되도록 하기 위해서 iterative pseudo labeling 전략 사용
 
 - [x] [Fini, Enrico, et al. "A unified objective for novel class discovery." ICCV 2021.](https://openaccess.thecvf.com/content/ICCV2021/papers/Fini_A_Unified_Objective_for_Novel_Class_Discovery_ICCV_2021_paper.pdf)
 
