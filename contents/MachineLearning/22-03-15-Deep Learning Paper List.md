@@ -28,6 +28,9 @@ category: "Deep Learning"
 - [x] [Nichol, Alex, Joshua Achiam, and John Schulman. "On first-order meta-learning algorithms." arXiv preprint arXiv:1803.02999 (2018).](https://arxiv.org/abs/1803.02999)
 - [ ] [Oh, Jaehoon, et al. "BOIL: Towards Representation Change for Few-shot Learning." ICLR 2021.](https://openreview.net/pdf?id=umIdUL8rMH)
 - [x] [Oreshkin, Boris N., et al. "Tadam: Task dependent adaptive metric for improved few-shot learning." NIPS 2018.](https://dl.acm.org/doi/abs/10.5555/3326943.3327010)
+- [ ] [Ren, Mengye, et al. "Meta-Learning for Semi-Supervised Few-Shot Classification." ICLR 2018.](https://openreview.net/pdf?id=HJcSzz-CZ)
+  - Semi-supervised few-shot classification을 푸는데, 이 때 unlabeled data에 distractor(support set에서 주어지지 않았던 class로, 단순 SSL시 방해가 되는 novel class)가 존재하는 상황
+  - ProtoNet w. soft k-means / ProtoNet w. soft k-means w. a distractor clsuter / ProtoNet w. soft k-means and masking, 총 3개의 방법을 제안
 
 ### Incremental and Continual Learning
 
