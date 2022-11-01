@@ -366,6 +366,13 @@ ML 분야에서의 "Grokking"이라는 단어의 의미를 기록합니다.
 - Overparameterized된 뉴럴넷 모델이, small training dataset에 대해서 overfit 되어 있다가, 매우 많은 시간(optimization step)이 지난 후에 어느 지점에 갑자기 좋은 generalization 성능(validation loss 감소)을 달성하는 현상
 - OpenAI의 ["Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets"](https://mathai-iclr.github.io/papers/papers/MATHAI_29_paper.pdf) 논문에서 명명
 
+##### 🤖 ML & DL
+
+*2022.10.21*
+
+- The stability-plasticity dilemma: 새로운 지식을 얻기 위해 모델의 영구 변형이 요구되면서도, 동시에 기존의 지식을 잊어버리지도 않아야 한다는 점
+- Learning in a parallel and distributed system requires plasticity for the integration of new knowledge but also stability in order to prevent the forgetting of previous knowledge.[^23]
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
@@ -394,3 +401,4 @@ ML 분야에서의 "Grokking"이라는 단어의 의미를 기록합니다.
 [^20]: Wikipedia contributors. (2022, April 27). Moore–Penrose inverse. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:08, May 16, 2022, from [https://en.wikipedia.org/w/index.php?title=Moore%E2%80%93Penrose_inverse&oldid=1085006448](https://en.wikipedia.org/w/index.php?title=Moore–Penrose_inverse&oldid=1085006448)
 [^21]: https://github.com/onnx/onnx/blob/main/docs/Overview.md
 [^22]: 원격 프로시저 호출. (2022년 2월 26일). *위키백과,* . 11:52, 2022년 8월 26일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9B%90%EA%B2%A9_%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80_%ED%98%B8%EC%B6%9C&oldid=31906127](https://ko.wikipedia.org/w/index.php?title=원격_프로시저_호출&oldid=31906127) 에서 찾아볼 수 있음.
+[^23]: Mermillod, Martial, Aurélia Bugaiska, and Patrick Bonin. "The stability-plasticity dilemma: Investigating the continuum from catastrophic forgetting to age-limited learning effects." *Frontiers in psychology* 4 (2013): 504.

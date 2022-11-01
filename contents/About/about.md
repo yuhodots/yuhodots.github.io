@@ -29,7 +29,7 @@ category: "about"
 
 ### Experience
 
-- M.S. in Artifical Intelligence at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0), UNIST (2021.03 ~ 2023.02)
+- M.S. in Artificial Intelligence at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0), UNIST (2021.03 ~ 2023.02)
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
 - B.S. in Mechanical Aerospace Engineering and B.S. in Computer Science Engineering, UNIST (2016.03 ~ 2021.02) 
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
@@ -41,14 +41,14 @@ category: "about"
 
 ### Projects
 
-- Personal project - MLOps: [Design ML pipeline for continual learning task with GCP](https://github.com/yuhodots/mlops) (TBU)
+- Personal project - MLOps: [Design ML pipeline for continual learning tasks with GCP](https://github.com/yuhodots/mlops) (TBU)
 - Personal project - Web: [BackEnd development at online thrift store, Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 - Research repositories: [cl-research](https://github.com/cl-research), [ncd-research](https://github.com/ncd-research), [ner-research](https://github.com/ner-research), [toolkits](https://github.com/yuhodots/toolkits)
 
 ### Presentation
 
-- CoreAI Seminar, "Generalized Category Discovery." (2022.10.07) [video] [slides] [[post](https://yuhodots.github.io/deeplearning/22-10-07/)]
+- CoreAI Seminar, "Generalized Category Discovery." (2022.10.07) [[video](https://youtu.be/pNoYt0bzG-s?t=450)] [[slides](https://drive.google.com/file/d/1QRFtVonBzZiiba73F-vYVPRib1Z1avOb/view?usp=sharing)] [[post](https://yuhodots.github.io/deeplearning/22-10-07/)]
 - CoreAI Seminar, "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections." (2022.03.04) [[video](https://www.youtube.com/watch?v=HDwkXyQjecQ)] [[slides](https://drive.google.com/file/d/1O4Af9vq_q_1BRdYxZBCw-PKEq0cqYSNM/view)] [[post](https://yuhodots.github.io/deeplearning/22-03-05/)]
 - 해군교육사령부, 교관양성 교육: 합성곱 신경망 파트 실습 강의 (2021.06.05)
 - CoreAI Seminar, "Bootstrap Your Own Latent." (2021.04.02) [[slides](https://slack-files.com/T017E9YJDU0-F01TUCCPNV6-54c6e3fb59)] [[post](https://yuhodots.github.io/deeplearning/21-04-04/)]
@@ -58,5 +58,5 @@ category: "about"
 ### Skills
 
 - Python, C++, MATLAB
-- PyTorch, Django, jQuery, and Bootstrap for NAVER Corp. internship
+- PyTorch, Django, jQuery, and Bootstrap for the internship at NAVER Corp.
 - Express.js, MySQL, AWS EC2, AWS S3, Nginx, and React.js for Uitda project

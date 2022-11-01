@@ -133,10 +133,10 @@ $$
 $$
 
 1. **Primal feasibility**: $h_i(x) \le 0, \ l_j(x) = 0 \text{ for all } i, j$
-2. **Dual feasibility**: $\lambda_i \ge 0 \text{ for all } i$
-3. **Complementary slackness**: $h_i(x) \le 0, \ l_j(x) = 0 \text{ for all } i, j$
-   - $\lambda_i$와 $h_i$ 중 적어도 하나의 값은 0을 가짐을 의미
-4. **Stationarity** (Gradient of Lagrangian w.r.t $x$ vanishes): $0 \in \partial \big( f(x) + \sum_{i=1}^{m} \lambda_i h_i(x) + \sum_{j=1}^{r} \nu_j l_j(x) \big)$
+2. **Dual feasibility**: $u_i \ge 0 \text{ for all } i$
+3. **Complementary slackness**: $u_ih_i(x) = 0 \text{ for all } i, j$
+   - $u_i$ 혹은 $h_i$ 중에 하난느 0이여야 함
+4. **Stationarity** (Gradient of Lagrangian w.r.t $x$ vanishes): $0 \in \partial \big( f(x) + \sum_{i=1}^{m} u_i h_i(x) + \sum_{j=1}^{r} v_j l_j(x) \big)$
 
 ### Maximum Margin Classifiers
 
@@ -145,7 +145,7 @@ $$
 ![img](../img/PRML1.png)
 
 - 선형 판별 함수는 가장 단순하게 $y(\mathbf x) = \mathbf w^\top\mathbf x + b$ 으로 표현됨
-- $\mathbf w$의 특징: 결정 표면 상에 존재하는 두 점 $\mathbf x_A$과 $\mathbf x_B$에 대해서 **$y(\mathbf x_A) = y(\mathbf x_A) = 0$이기 때문에 $\mathbf w^\top(\mathbf x_A - \mathbf x_B)=0$이며, 따라서 벡터 $\mathbf w$는 결정 표면상의 모든 벡터들과 직교**
+- $\mathbf w$의 특징: 결정 표면 상에 존재하는 두 점 $\mathbf x_A$과 $\mathbf x_B$에 대해서 **$y(\mathbf x_A) - y(\mathbf x_B) = 0$이기 때문에 $\mathbf w^\top(\mathbf x_A - \mathbf x_B)=0$이며, 따라서 벡터 $\mathbf w$는 결정 표면상의 모든 벡터들과 직교**
 - **점 $\mathbf x$와 결정 표면 사이의 수직거리 $r$**을 구하는 것은 아래의 전개 과정을 따름
 
 1. $\mathbf x= \mathbf x_{\perp} + r \frac{\mathbf w}{|| \mathbf w ||}$ ($\frac{\mathbf w}{|| \mathbf w ||}$는 벡터 $\mathbf w$의 단위 방향 벡터)
