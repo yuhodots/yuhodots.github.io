@@ -96,9 +96,9 @@ thumbnail: "linux"
 ##### SSH Key 등록
 
 1. Key 생성: 로컬에서 `ssh-keygen -t rsa` (key type이 rsa라는 것을 의미)
-2. Key 생성 확인: 로컬에 .ssh/id_rsa.pub 파일이 생성되었는지 확인하고, 파일의 내용을 복사
-3. Key 등록: 서버에 .ssh/authorized_keys 파일을 만들고, 로컬에서 복사했던 rsa key 값을 authorized_keys 파일에 붙여넣고 저장
-4. .ssh/authorized_keys 파일에 여러 개의 key를 등록하고 싶은 경우에는 줄 바꿈 사용
+2. Key 생성 확인: 로컬에 .ssh/id\_rsa.pub 파일이 생성되었는지 확인하고, 파일의 내용을 복사
+3. Key 등록: 서버에 .ssh/authorized\_keys 파일을 만들고, 로컬에서 복사했던 rsa key 값을 authorized\_keys 파일에 붙여넣고 저장
+4. .ssh/authorized\_keys 파일에 여러 개의 key를 등록하고 싶은 경우에는 줄 바꿈 사용
 
 ##### SSH config 설정
 

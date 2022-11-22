@@ -29,9 +29,10 @@ category: "about"
 
 ### Experience
 
-- M.S. in Artificial Intelligence at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0), UNIST (2021.03 ~ 2023.02)
+- M.S. in Artificial Intelligence at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0), UNIST (2021.03 ~ present)
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
-- B.S. in Mechanical Aerospace Engineering and B.S. in Computer Science Engineering, UNIST (2016.03 ~ 2021.02) 
+- B.S. in Mechanical Aerospace Engineering, UNIST (2016.03 ~ 2021.02)
+- B.S. in Computer Science Engineering, UNIST (2016.03 ~ 2021.02)
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
@@ -41,8 +42,8 @@ category: "about"
 
 ### Projects
 
-- Personal project - MLOps: [Design ML pipeline for continual learning tasks with GCP](https://github.com/yuhodots/mlops) (TBU)
-- Personal project - Web: [BackEnd development at online thrift store, Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
+- Personal project - MLOps: Design ML pipeline for continual learning tasks with GCP (TBU)
+- Personal project - Web: BackEnd development at online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 - Research repositories: [cl-research](https://github.com/cl-research), [ncd-research](https://github.com/ncd-research), [ner-research](https://github.com/ner-research), [toolkits](https://github.com/yuhodots/toolkits)
 
