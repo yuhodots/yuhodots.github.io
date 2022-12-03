@@ -373,6 +373,19 @@ ML 분야에서의 "Grokking"이라는 단어의 의미를 기록합니다.
 - The stability-plasticity dilemma: 새로운 지식을 얻기 위해 모델의 영구 변형이 요구되면서도, 동시에 기존의 지식을 잊어버리지도 않아야 한다는 점
 - Learning in a parallel and distributed system requires plasticity for the integration of new knowledge but also stability in order to prevent the forgetting of previous knowledge.[^23]
 
+##### 🤖 ML & DL
+
+*2022.12.03*
+
+Noisy label이란 무엇을 의미하는가?
+
+- 데이터 셋 내에 데이터의 labeling이 잘 못 되어있는 경우를 noisy label 혹은 labeling noise라고 함. Large scale dataset에 대해서는 label을 확인하는 과정이 힘들다 보니까(돈과 시간이 많이 소요), 이러한 noisy label이 충분히 존재할 수 있음
+- 종종 semi-supervised learning 분야에서도 사용되는데, 이 때는 pseudo label 기반의 self-training model이 unlabeled dataset에 잘못 pseudo labeling 한 것을 noisy label이라고 부르는 듯 함
+
+Ad-hoc이란 무엇을 의미하는가?
+
+- 일반적으로는 '오로지 특정 하나의 목적만을 위해 고안된 방법' 정도로 해석해볼 수 있음
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
