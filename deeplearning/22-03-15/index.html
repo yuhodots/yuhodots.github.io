@@ -261,6 +261,19 @@
 <li>원래는 temperatured scaling해서 pseudo label하였으나, temperature를 0으로 했을 때 잘 나왔다고 함 (이 경우 one-hot encoding과 동일)</li>
 </ul>
 </li>
+<li class="task-list-item">
+<p><input type="checkbox" checked disabled> <a href="https://proceedings.neurips.cc/paper/2019/hash/bf25356fd2a6e038f1a3a59c26687e80-Abstract.html">Li, Xinzhe, et al. "Learning to self-train for semi-supervised few-shot classification." NeurIPS 2019.</a></p>
+<ul>
+<li>Few-shot SSL (SSFSC)을 위해, unlabeled data에 pseudo-label(self-training)할 데이터 선정하는 방법 고안</li>
+<li>Noisy label에 의해 좋지 않은 방향으로 optimize되는 영향을 줄이기 위해서, soft weighting network(SWN) 모듈을 추가</li>
+<li>전체 과정은 아래와 같음</li>
+<li>Cherry picking stage 1. Pseudo labeling 할 unlabeled data를 class 마다 top Z개 씩 선정</li>
+<li>Cherry picking stage 2. SWN을 사용하여 선정된 unlabeled sample에 soft label 할당: top Z sample을 class-wise prototype과 concatenate하여 RelationNet 형태의 SWN에 넣고, output으로 나온 soft value 획득</li>
+<li>Soft-labeled pseudo samples와 support set 기반으로 모델 inner update</li>
+<li>Inner-updated된 모델에 대해서 query loss를 뽑고, 모델을 meta-update</li>
+<li>모델 초기 파라미터는 previous SOTA method인 MTL(meta transfer learning) pre-trained model을 그대로 사용하며, 해당 pre-trained model을 학습 시작점으로 사용. 그 뒤에 오로지 classifier weight만 meta-update함 (freezing the feature extractor)</li>
+</ul>
+</li>
 </ul>
 <h3 id="open-set-recognition" style="position:relative;"><a href="#open-set-recognition" aria-label="open set recognition permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open-Set Recognition</h3>
 <ul>
