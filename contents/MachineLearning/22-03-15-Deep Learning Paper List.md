@@ -10,7 +10,7 @@ category: "Deep Learning"
 
 > 관심 분야의 논문 리스트를 기록합니다. 최근에 읽은 논문은 핵심 내용을 세 줄 요약으로 추가하고 있습니다. 체크 표시가 되어있지 않은 논문들은 추후 다시 읽어 볼 필요가 있는 논문을 의미합니다.
 
-### Few-Shot and Meta Learning
+### Few-Shot Learning / Meta-Learning
 
 - [x] [Vinyals, Oriol, et al. "Matching networks for one shot learning." NIPS 2016.](https://dl.acm.org/doi/abs/10.5555/3157382.3157504)
 - [ ] [Santoro, et al. "Meta-Learning with Memory-Augmented Neural Networks." ICML 2016.](http://proceedings.mlr.press/v48/santoro16.pdf)
@@ -32,7 +32,7 @@ category: "Deep Learning"
   - Semi-supervised few-shot classification을 푸는데, 이 때 unlabeled data에 distractor(support set에서 주어지지 않았던 class로, 단순 SSL시 방해가 되는 novel class)가 존재하는 상황
   - ProtoNet w. soft k-means / ProtoNet w. soft k-means w. a distractor clsuter / ProtoNet w. soft k-means and masking, 총 3개의 방법을 제안
 
-### Incremental and Continual Learning
+### Incremental Learning / Continual Learning
 
 - [x] [Li, Zhizhong, and Derek Hoiem. "Learning without forgetting." IEEE transactions on pattern analysis and machine intelligence 40.12 (2017): 2935-2947.](https://ieeexplore.ieee.org/abstract/document/8107520)
 - [x] [Parisi, German I., et al. "Continual lifelong learning with neural networks: A review." Neural Networks 113 (2019): 54-71.](https://www.sciencedirect.com/science/article/pii/S0893608019300231)
@@ -94,7 +94,7 @@ category: "Deep Learning"
 - [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
 - [ ] [Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.](https://arxiv.org/pdf/2012.04324.pdf)
 
-### Unsupervised and Self-Supervised Learning
+### Unsupervised Learning / Self-Supervised Learning
 
 - [x] [Grill, Jean-Bastien, et al. "Bootstrap your own latent: A new approach to self-supervised learning." NIPS 2020.](https://arxiv.org/abs/2006.07733)
 - [ ] [Kolesnikov, Alexander, Xiaohua Zhai, and Lucas Beyer. "Revisiting self-supervised visual representation learning." CVPR 2019.](https://openaccess.thecvf.com/content_CVPR_2019/html/Kolesnikov_Revisiting_Self-Supervised_Visual_Representation_Learning_CVPR_2019_paper.html)
@@ -154,8 +154,8 @@ category: "Deep Learning"
   
   - Noisy label에 의해 좋지 않은 방향으로 optimize되는 영향을 줄이기 위해서, soft weighting network(SWN) 모듈을 추가
   - 전체 과정은 아래와 같음
-    1. Cherry picking stage 1. Pseudo labeling 할 unlabeled data를 class 마다 top Z개 씩 선정
-    2. Cherry picking stage 2. SWN을 사용하여 선정된 unlabeled sample에 soft label 할당: top Z sample을 class-wise prototype과 concatenate하여 RelationNet 형태의 SWN에 넣고, output으로 나온 soft value 획득
+    1. [Cherry picking stage 1.] Pseudo labeling 할 unlabeled data를 class 마다 top Z개 씩 선정
+    2. [Cherry picking stage 2.] SWN을 사용하여 선정된 unlabeled sample에 soft label 할당: top Z sample을 class-wise prototype과 concatenate하여 RelationNet 형태의 SWN에 넣고, output으로 나온 soft value 획득
     3. Soft-labeled pseudo samples와 support set 기반으로 모델 inner update
     4. Inner-updated된 모델에 대해서 query loss를 뽑고, 모델을 meta-update
   - 모델 초기 파라미터는 previous SOTA method인 MTL(meta transfer learning) pre-trained model을 그대로 사용하며, 해당 pre-trained model을 학습 시작점으로 사용. 그 뒤에 오로지 classifier weight만 meta-update함 (freezing the feature extractor)
@@ -219,13 +219,6 @@ category: "Deep Learning"
   - Supervised Contrastive Learning(SCL): Labelled dataset을 위한 loss. 기존 supervised-contrastive loss와 동일
   - Hard-Negative Generation(HNG): True negative(labelled dataset)와 easy negative(unlabelled dataset)를 interpolate 한 것 중에서 제일 유사도 높은 $k$ 개를 hard negative로 사용 
   
-- [x] [Vaze, Sagar, et al. "Generalized Category Discovery." CVPR 2022.](https://arxiv.org/pdf/2201.02609.pdf)
-
-  - Generalized Category Discovery라는 task를 처음으로 정의한 논문
-  - Main algorithm: ViT DINO pretraining, Supervised contrastive learning + Self-supervised contrastive learning, Semi-supervised k-means clustering(using k-means++)의 순서로 알고리즘 구성
-  - Class number estimation method: Brent's method 사용
-  - Strong baselines: RS와 UNO에서 labelled dataset와 unlabelled dataset에 대한 classification head가 두 개로 나뉘어 존재하던 것을 하나로 합침. Backbone은 저자들이 제안한 ViT구조를 그대로 사용하였는데, backbone을 finetuning하는 것은 오히려 성능이 좋지 않아서, backbone은 freeze하고 classification head만 tuning하였음
-  
 - [x] [Bhattacharjee, Supritam, Devraj Mandal, and Soma Biswas. "Multi-class novelty detection using mix-up technique." WACV 2020.](https://openaccess.thecvf.com/content_WACV_2020/html/Bhattacharjee_Multi-class_Novelty_Detection_Using_Mix-up_Technique_WACV_2020_paper.html)
 
   - Test query를 novel class와 mixup하면 output prediction 값이 낮고, base class와 mixup하면 output prediction 값이 특정 하나의 class에 대해 높을 것이라 가정
@@ -238,11 +231,25 @@ category: "Deep Learning"
   - GCD 세팅과, base data training 이후에 base data에 대한 접근이 제한된다는 점이 차이점 (GCD 보다 더 어려운 task)
   - Pseudo-latent, Mutual information based regularizer, Known Class Indentifier라는 방법들을 통해 NCDwF를 해결하는데, 아직 자세히 이해하지는 못했음
 
+- [x] [Fini, Enrico, et al. "A unified objective for novel class discovery." ICCV 2021.](https://openaccess.thecvf.com/content/ICCV2021/papers/Fini_A_Unified_Objective_for_Novel_Class_Discovery_ICCV_2021_paper.pdf)
+
+  - 기존 multi-step approach와 달리 (Labeled data를 활용한 supervised learning 혹은, self-supervised pre-training 이후에 unlabeled data로 transfer clustering하는 접근 방법), 처음부터 모든 objective를 하나의 step에 합쳐 학습하는 방법을 제안하였고 좋은 성능을 기록함
+  - UNO 논문을 읽는 것 보다 SwAV 논문을 읽는 것이 UNO 알고리즘을 이해하는 데에 더 도움이 되니 참고하기
+  - 논문 내에서 새롭게 제안하는 방법론이 없는데도 (task는 달라지긴 했지만) oral paper로 선정된 것이 조금 놀라움 (기존에 있는 방법들을 NCD에 적합하게 잘 엮은 논문임)
+
+### Generalized Category Discovery
+
+- [x] [Vaze, Sagar, et al. "Generalized Category Discovery." CVPR 2022.](https://arxiv.org/pdf/2201.02609.pdf)
+
+  - Generalized Category Discovery라는 task를 처음으로 정의한 논문
+  - Main algorithm: ViT DINO pretraining, Supervised contrastive learning + Self-supervised contrastive learning, Semi-supervised k-means clustering(using k-means++)의 순서로 알고리즘 구성
+  - Class number estimation method: Brent's method 사용
+  - Strong baselines: RS와 UNO에서 labelled dataset와 unlabelled dataset에 대한 classification head가 두 개로 나뉘어 존재하던 것을 하나로 합침. Backbone은 저자들이 제안한 ViT구조를 그대로 사용하였는데, backbone을 finetuning하는 것은 오히려 성능이 좋지 않아서, backbone은 freeze하고 classification head만 tuning하였음
+
 - [x] [Fei, Yixin, et al. "XCon: Learning with Experts for Fine-grained Category Discovery." arXiv preprint arXiv:2208.01898 (2022).](https://arxiv.org/abs/2208.01898)
 
   - Fine-grained dataset에 대해서, class-irrelevant cues(e.g. background, object pose) 위주로 clustering 되는 경향이 있음
   - 따라서 이를 해결하기 위해 dataset을 먼저 k-means clustering 하고(그러면 class-irrelevant cues 비슷한 것 끼리 얼추 모임), 이 data split에 대해 각각 contrastive learning을 수행하면 class-irrelevant cues로 인한 부정적인 영향을 줄일 수 있음
-  
 - [x] [Cao, Kaidi, Maria Brbic, and Jure Leskovec. "Open-world semi-supervised learning." ICLR 2022.](https://openreview.net/pdf?id=O-r8LOR-CCA)
 
   - Novel Category Discovery를 traditional SSL로 일반화한 Open-World Semi-Supervised Learning 세팅을 처음으로 제안 (Generalized Category Discovery와 동일한 세팅)
@@ -258,18 +265,26 @@ category: "Deep Learning"
         \left(\mathcal{Z}_l \cup \mathcal{Z}_u, \mathcal{Z}_l^{\prime} \cup \mathcal{Z}_u^{\prime}\right)}}-\log \left\langle\sigma\left(W^T \cdot z_i\right), \sigma\left(W^T \cdot z_i^{\prime}\right)\right\rangle
         $
     - Regularization term: $\mathcal{R}=K L\left(\frac{1}{m+n} \sum_{z_i \in \mathcal{Z}_l \cup \mathcal{Z}_u} \sigma\left(W^T \cdot z_i\right) \| \mathcal{P}(y)\right)$
-  
 - [x] [Rizve, Mamshad Nayeem, et al. "OpenLDN: Learning to Discover Novel Classes for Open-World Semi-Supervised Learning." ECCV 2022.](https://arxiv.org/pdf/2207.02261.pdf)
-
   1. Pairwise loss, cross entropy, rgularization 기반으로 novel class를 discovering하기 위한 OpenLDN 알고리즘 수행
   2. 모든 파라미터를 다 초기화한 뒤에, OpenLDN으로 얻어낸 novel pseudo label 기반으로 closed-SSL 다시 수행 (MixMatch와 UDA 사용)
   3. Novel pseudo label이 학습이 진행됨에 따라 개선되도록 하기 위해서 iterative pseudo labeling 전략 사용
-
-- [x] [Fini, Enrico, et al. "A unified objective for novel class discovery." ICCV 2021.](https://openaccess.thecvf.com/content/ICCV2021/papers/Fini_A_Unified_Objective_for_Novel_Class_Discovery_ICCV_2021_paper.pdf)
-
-  - 기존 multi-step approach와 달리 (Labeled data를 활용한 supervised learning 혹은, self-supervised pre-training 이후에 unlabeled data로 transfer clustering하는 접근 방법), 처음부터 모든 objective를 하나의 step에 합쳐 학습하는 방법을 제안하였고 좋은 성능을 기록함
-  - UNO 논문을 읽는 것 보다 SwAV 논문을 읽는 것이 UNO 알고리즘을 이해하는 데에 더 도움이 되니 참고하기
-  - 논문 내에서 새롭게 제안하는 방법론이 없는데도 (task는 달라지긴 했지만) oral paper로 선정된 것이 조금 놀라움 (기존에 있는 방법들을 NCD에 적합하게 잘 엮은 논문임)
+- [x] [Xin Wen, et al. "A Simple Parametric Classification Baseline for Generalized Category Discovery." Under review.](https://arxiv.org/abs/2211.11727)
+  - GCD setting에서 기존 parametric classifier가 실패했던 이유를 찾아내고(less discriminative representation & unreliable pseudo-labeling strategy), 이를 기반으로 기존 알고리즘을 수정하여, parametric classifier로 SOTA 성능을 달성함
+  - 결론적으로는, GCD의 representation learning 방식(self-supervised & superivsed contrastive learning)에서 "parametric classification" 관련 objective만 추가되었음. 그리고 non-parametric clustering은 사용하지 않음 (논문 내 section 4.2.만 읽으면 됨)
+  - 실험에 앞서 발견한 인사이트들
+    1. Classifier: class-mean classifier보다 parametric (linear, cosine) classifier가 더 좋음
+    2. Representation: Projector를 거친 representation보다, backbone에서 나온 representation을 바로 사용하는 것이 더 좋음
+    3. Decoupling(GCD) vs. Joint training(UNO): UNO의 성능이 낮았던 것은 UNO의 방식이 'self-label' 방식이었기 때문임. 'self-distill'(section 4.2.) 방식으로 수정하면 GCD보다 더 좋은 성능을 보임
+  - Self-distill: 2개의 different view에 대한 모델 예측을 출력한 뒤에, 하나의 출력에 sharpening을 가하여 다른 출력의 pseudo label로써 사용 (부가적으로 dead prototype을 만들지 않기 위한 entropy regularization term도 추가)
+- [ ] [Sheng Zhan, et al. "PromptCAL: Contrastive Affinity Learning via Auxiliary Prompts for Generalized Novel Category Discovery." Under review.](https://openreview.net/pdf?id=yVcLmMW5ySI)
+  - 2022.12.18. 진행 예정
+- [ ] [Florent Chiaroni, et al., "Mutual Information-based Generalized Category Discovery." Under review.](https://arxiv.org/pdf/2212.00334.pdf)
+  - 2022.12.18. 진행 예정
+- [ ] [Bingchen Zhao, et al., "Generalized Category Discovery via Adaptive GMMs without Knowing the Class Number." Under review.](https://openreview.net/pdf?id=oQjWltREeRA)
+  - E-step: Semi-supervised GMM 수행하여 class number와 prototype 추정
+  - M-step: 추정한 class number와 prototypes 기반으로 prototypical contrastive learning 수행
+  - M-step의 prototypical contrastive learning 식 자체는 prototype을 classifier로 사용하는 softmax cross-entropy와 다를 바 없어보임
 
 ### Data Augmentation
 
@@ -316,7 +331,11 @@ category: "Deep Learning"
 
 - [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html) - *아직 읽지 않음..*
 
-### Technical Reports
+### Deep Neural Architectures
+
+- [ ] [Geoffrey Hinton. "The Forward-Forward Algorithm: Some Preliminary Investigations." (2022).](https://www.cs.toronto.edu/~hinton/FFA13.pdf)
+
+### Technical Report
 
 - [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
 - [x] [Lipton, Zachary C., and Jacob Steinhardt. "Troubling trends in machine learning scholarship." arXiv preprint arXiv:1807.03341, 2018.](https://arxiv.org/abs/1807.03341)
