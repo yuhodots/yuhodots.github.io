@@ -113,22 +113,15 @@ category: "Deep Learning"
 ### Semi-Supervised Learning
 
 - Generative model: Gaussian mixture, Deep generative models
-
 - Graph based: Label propagation
-
 - Self-training: Pseudo labelling, Co-training
-
 - Consistency regularization: Pi-model, Mean teacher
-
 - [x] [Pham, Hieu, et al. "Meta pseudo labels." CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Pham_Meta_Pseudo_Labels_CVPR_2021_paper.html)
-
 - [x] [Zhou, Zhi-Hua, and Ming Li. "Semi-supervised regression with co-training." IJCAI 2005.](https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/ijcai05.pdf)
   - 두 개의 kNN regressor를 사용하여 co-training 진행
   - Sufficient and redundant view를 위해서 두 regressor의 metric은 p=2 Minkowsky와 p=5 Minkowsky로 서로 다르게 설정함 
   - Key mechanism은 regression에서 confidence를 만들어내는 작업이었고, $x_u$가 추가됨에 따라서 MSE가 얼마나 개선되는지를 계산하여($\vartriangle_u$) 이 값이 제일 커지는 $x_u$에 대해 confidence가 높다고 판단하여 해당 $x_u$에 pseudo label을 부여
-  
 - [ ] [Jean, Neal, Sang Michael Xie, and Stefano Ermon. "Semi-supervised Deep Kernel Learning: Regression with Unlabeled Data by Minimizing Predictive Variance." NIPS 2018.](https://par.nsf.gov/servlets/purl/10080181)
-
 - [ ] [Berthelot, David, et al. "Mixmatch: A holistic approach to semi-supervised learning." NeurIPS 2019.](https://proceedings.neurips.cc/paper/2019/hash/1cd138d0499a68f4bb72bee04bbec2d7-Abstract.html)
 
   1. Unlabel data에 대해서 $K$개의 stochastic augmentation 수행 후 이를 모델에 입력
@@ -137,19 +130,15 @@ category: "Deep Learning"
   3. 총 $B*(K + 1)$ 개의 데이터를 섞은 뒤에 Labelled data $B$개, Unlabelled data $B*K$개와 각각 Mixup
      - 이 때, mixup $\lambda' = \max(\lambda, 1-\lambda)$는 항상 0.5 이상이 나오도록 설정하여, labelled mixup data는 labelled data에 dominant 하고, unlabelled mixup data는 unlabelled data에 dominant 하도록 강제함
   4. Labelled mixup data로는 CE loss 계산, Unlabelled mixup data로는 Consistency loss 계산
-  
 - [ ] [Berthelot, David, et al. "ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring." ICLR 2020.](https://openreview.net/pdf?id=HklkeR4KPB)
 
   - Distribution Alignment: Unlabelled data의 예측 분포를 labelled data의 분포로 normalize. 즉, 기존 prediction $q$에 unlabelled data 분포의 running average로 나누고 labelled data 분포의 running average로 곱해줌.
   - Augmentation Anchoring
-  
 - [ ] [Sohn, Kihyuk, et al. "Fixmatch: Simplifying semi-supervised learning with consistency and confidence." NeurIPS 2020.](https://proceedings.neurips.cc/paper/2020/file/06964dce9addb1c5cb5d6e3d9838f733-Paper.pdf)
   - Labelled image: Weakly augmented image 사용해서 cross entropy
   - Unlabelled image: Weakly augmented image에 대해서 threshold를 넘는 경우에 이 예측의 one-hot encoding을 strong augmented image의 pseudo label로써 사용. Threshold를 넘지 못하는 경우에는 loss에 포함시키지 않음
     - 원래는 temperatured scaling해서 pseudo label하였으나, temperature를 0으로 했을 때 잘 나왔다고 함 (이 경우 one-hot encoding과 동일)
-  
 - [x] [Li, Xinzhe, et al. "Learning to self-train for semi-supervised few-shot classification." NeurIPS 2019.](https://proceedings.neurips.cc/paper/2019/hash/bf25356fd2a6e038f1a3a59c26687e80-Abstract.html)
-  
   - Few-shot SSL (SSFSC)을 위해, unlabeled data에 pseudo-label(self-training)할 데이터 선정하는 방법 고안
   
   - Noisy label에 의해 좋지 않은 방향으로 optimize되는 영향을 줄이기 위해서, soft weighting network(SWN) 모듈을 추가
@@ -159,6 +148,14 @@ category: "Deep Learning"
     3. Soft-labeled pseudo samples와 support set 기반으로 모델 inner update
     4. Inner-updated된 모델에 대해서 query loss를 뽑고, 모델을 meta-update
   - 모델 초기 파라미터는 previous SOTA method인 MTL(meta transfer learning) pre-trained model을 그대로 사용하며, 해당 pre-trained model을 학습 시작점으로 사용. 그 뒤에 오로지 classifier weight만 meta-update함 (freezing the feature extractor)
+- [ ] [Baixu Chen, et al. "Debiased Self-Training for Semi-Supervised Learning." NeurIPS 2022.](https://openreview.net/pdf?id=NI7moUOKtc)
+  - Data bias와 Training bias란?:
+  - Training bias를 줄이기 위한 방법: 
+  - Data bias를 줄이기 위한 방법: 
+- [x] [Mingcai Chen, et al. "Semi-supervised learning with multi-head co-training." AAAI 2022.](https://ojs.aaai.org/index.php/AAAI/article/view/20577)
+  - 2개 이상의 model(backbone)이 요구되는 기존 co-training 방식과 달리, 본 논문은 backbone은 하나로 두고 classification head만 여럿으로 두어 co-training 수행
+  - Weakly augmented sample을 여러 head에 전달 한 뒤에, 타겟이 되는 head를 제외한 나머지 head의 출력을 타겟 head의 pseudo-label로 사용
+  - 그리고 Strong augmented sample을 타겟 head에 전달하여 나온 출력과 pseudo-label 사이의 cross-entropy 기반으로 loss 계산
 
 ### Open-Set Recognition
 
@@ -278,11 +275,15 @@ category: "Deep Learning"
     3. Decoupling(GCD) vs. Joint training(UNO): UNO의 성능이 낮았던 것은 UNO의 방식이 'self-label' 방식이었기 때문임. 'self-distill'(section 4.2.) 방식으로 수정하면 GCD보다 더 좋은 성능을 보임
   - Self-distill: 2개의 different view에 대한 모델 예측을 출력한 뒤에, 하나의 출력에 sharpening을 가하여 다른 출력의 pseudo label로써 사용 (부가적으로 dead prototype을 만들지 않기 위한 entropy regularization term도 추가)
 - [ ] [Sheng Zhan, et al. "PromptCAL: Contrastive Affinity Learning via Auxiliary Prompts for Generalized Novel Category Discovery." Under review.](https://openreview.net/pdf?id=yVcLmMW5ySI)
-  - 2022.12.18. 진행 예정
+  - Multi-Prompt Clustering (MPC)를 활용하여 representation의 warm-up process 거침. $L_1(\boldsymbol{x})=L_{\mathrm{semi}}^{\mathrm{CLS}}(\boldsymbol{z})+\gamma L_{\mathrm{semi}}^{\mathrm{CLU}}\left(\overline{\boldsymbol{z}}_{\mathrm{CLU}}\right)$ 식에서 $L_{\mathrm{semi}}^{\mathrm{CLS}}(\boldsymbol{z})$는 GCD의 contrastive learning과 동일하지만 매 layer마다 prompt weight이 추가되었다는 점만 다르고, $L_{\mathrm{semi}}^{\mathrm{CLU}}\left(\overline{\boldsymbol{z}}_{\mathrm{CLU}}\right)$는 [CLU] prompt 대상으로 contrastive learning을 수행한다는 점이 특징임
+  - Semi-supervised affinity generration (SemiAG) 활용하여 pseudo-positive 선정을 위한 affinity graph 생성. Graph diffusion method를 사용하여 label을 각 노드로 퍼뜨리는데, 이 때 동일한 class 사이의 edge weight은 1, 다른 class 사이의 edge weight은 0으로 초기화 함
+  - 모든 데이터셋에 대한 affinity graph를 매번 계산할 수 없으니 graph sampling 기법을 활용하며, 이렇게 샘플링된 graph를 활용하여 contrastive affinity learning (CAL) 수행
+  - Fine-grained dataset에 대한 성능이 매우 좋다는 점에 주목할만 함
 - [ ] [Florent Chiaroni, et al., "Mutual Information-based Generalized Category Discovery." Under review.](https://arxiv.org/pdf/2212.00334.pdf)
-  - 2022.12.18. 진행 예정
+  - Entropy $\mathcal H(Y)$, Conditional entropy $\mathcal H(Y|Z)$, Cross entropy를 사용하여 모델을 튜닝
+  - Conditional entropy를 줄이는 것은 모델이 confident prediction을 출력하도록 유도하며, entropy term은 예측에 대한 class balance를 맞추는 데에 도움이 됨
 - [ ] [Bingchen Zhao, et al., "Generalized Category Discovery via Adaptive GMMs without Knowing the Class Number." Under review.](https://openreview.net/pdf?id=oQjWltREeRA)
-  - E-step: Semi-supervised GMM 수행하여 class number와 prototype 추정
+  - E-step: Semi-supervised k-means 수행하여 GMM의 class number와 prototype 추정
   - M-step: 추정한 class number와 prototypes 기반으로 prototypical contrastive learning 수행
   - M-step의 prototypical contrastive learning 식 자체는 prototype을 classifier로 사용하는 softmax cross-entropy와 다를 바 없어보임
 

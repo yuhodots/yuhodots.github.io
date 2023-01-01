@@ -386,6 +386,21 @@ Ad-hoc이란 무엇을 의미하는가?
 
 - 일반적으로는 '오로지 특정 하나의 목적만을 위해 고안된 방법' 정도로 해석해볼 수 있음
 
+##### 🤖 ML & DL
+
+*2023.01.01*
+
+Anomaly detection 관련 용어정리, ChatGPT를 활용해보았음.
+
+- Target(positive) class가 강아지라고 가정할 때, 새로운 데이터에 대해 발생할 수 있는 상황들
+  1. 강아지이지만, 이전에 본 적 없는 새로운 종의 강아지를 발견한 경우
+  2. 고양이 데이터 등과 같이 아예 새로운 클래스를 발견한 경우
+  3. 강아지 데이터이지만 손상된/오염된 데이터를 발견한 경우
+- Novelty detection: Unseen data point를 발견하는 경우나, **새로운 트렌드나 경향성**을 발견하는 경우에 주로 사용하는 용어
+- Outlier detection: 기존 데이터와 매우 차이나는 data point를 발견하는 경우나, 제거해야 할 **오염되거나 손상된 데이터**를 발견하는 경우에 주로 사용하는 용어
+- Anomaly detection: Novelty detection과 Outlier detection의 경우를 모두 포함하는 상대적으로 넓은 범위의 용어
+- 다만 위의 세 가지 용어들이 매우 자주 혼용되므로, 논문이나 상황에 맞게 유동적으로 이해해야 함
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
