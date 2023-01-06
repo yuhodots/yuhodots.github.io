@@ -14,7 +14,7 @@ category: "about"
 
 저는 한정된 데이터를 사용한 학습을 통해 그 외의 데이터까지도 일반화가 가능한 `Few-shot & Meta Learning` 연구와, pre-trained knowledge를 기반으로 전체 데이터 셋에 대한 재학습 없이 지식을 확장해나가는 `Continual learning` 연구에 관심이 많습니다. 최근에는, 이들과 유사한 방향성을 가지고 있는 [Open-World Learning](https://www.cs.uic.edu/~liub/lifelong-learning/open-world-learning.pdf) 분야의 연구 동향을 파악하면서 `Novel Category Discovery`라는 task도 풀고 있습니다.
 
-논문으로만 존재하는 AI/ML 알고리즘을 real-world로 가져왔을 때 만들 수 있는 임팩트에 대해 고민하고 있습니다. 대학원에서는 대부분의 시간을 연구에 집중하고 있지만, 졸업 후에 연구와 산업을 잇는 엔지니어가 되고자 여가시간에는 기초적인 백엔드, MLOps 공부를 종종 하고 있습니다.
+논문 위주로만 존재하는 AI/ML 알고리즘을 real-world에서 실제로 서비스 했을 때 만들 수 있는 임팩트에 대해 고민하고 있습니다. 대학원에서는 대부분의 시간을 연구에 집중하고 있지만, 졸업 후에 연구와 산업을 잇는 엔지니어가 되고자 여가시간에는 기초적인 백엔드, MLOps 공부를 종종 하고 있습니다.
 
 궁금한 점이나 조언해주실 내용에 대해, 이메일, 깃허브, SNS를 통해 연락주시는 것은 언제든지 환영합니다.
 
@@ -43,7 +43,7 @@ category: "about"
 ### Projects
 
 - Personal project - MLOps: Design ML pipeline for continual learning tasks with GCP (TBU)
-- Personal project - Web: BackEnd development at online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
+- Personal project - Web: BackEnd development at the online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 - Research repositories: [cl-research](https://github.com/cl-research), [ncd-research](https://github.com/ncd-research), [ner-research](https://github.com/ner-research), [toolkits](https://github.com/yuhodots/toolkits)
 
