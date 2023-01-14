@@ -401,6 +401,53 @@ Anomaly detection 관련 용어정리, ChatGPT를 활용해보았음.
 - Anomaly detection: Novelty detection과 Outlier detection의 경우를 모두 포함하는 상대적으로 넓은 범위의 용어
 - 다만 위의 세 가지 용어들이 매우 자주 혼용되므로, 논문이나 상황에 맞게 유동적으로 이해해야 함
 
+##### 🤖 ML & DL
+
+*2023.01.11*
+
+Object detection과 관련된 용어를 정리합니다. 먼저 문제 상황들을 나열하였습니다.
+
+- Localization: **Single object**, 해당 object가 사진 내에서 어느 위치에 존재하는지 bounding box 설정
+- Object detection: **Multiple object**, 여러 objects가 사진 내에서 어느 위치에 존재하는지 bounding box 설정하고 각각의 class 정보까지 부여
+- Segmentation: **Multiple object**, 여러 objects가 사진 내에서 어느 위치에 존재하는지를 '픽셀 단위로' class 정보 부여
+- 2-Stage 방식: 물체가 존재할 것 같은 위치를 제안한 다음에(**Region proposal**, localization), 해당 위치 정보를 기반으로 feature를 추출하고 class 부여
+- 1-Stage 방식: Localization과 classification을 한 번에 수행. 2-Stage에 비해 성능은 낮지만 속도는 빠름
+- Region proposal 방식
+  1. Sliding window: Window를 슬라이딩하며 window 내에 object가 존재하는지 확인
+  2. Selective search: 인접한 영역끼리 유사성을 측정해 큰 영역으로 차례대로 통합
+- NMS: 여러 bounding box가 같은 class로 겹쳐있다면, 하나의 class로 통합하는 방법
+- RoI = Region of Intereset = Region proposal
+
+2-Stage detector를 간단히 정리합니다.
+
+- R-CNN: Selective search를 통해 2000개 정도의 region proposal 찾음. 각각의 crop 이미지를 모두 CNN에 입력한 뒤에, feature vector 추출. 마지막으로는 Regressor를 통해 bounding box를 설정하고, SVM을 통해 classification
+- Fast R-CNN: Selective search를 통해 2000개 정도의 region proposal 찾음 
+- Faster R-CNN: 이전까지는 CPU 기반의 selective search 였다면, 본 알고리즘은 GPU 기반의 Region Proposal Network(RPN)을 제안하여 속도 향상. 그 외에는 Fast R-CNN와 동일
+
+1-Stage detector를 간단히 정리합니다.
+
+- YOLO: 이미지를 NxN 그리드로 분할하여 예측 텐서(Prediction tensor) 생성
+- SSD: 테두리 상자 조정을 위해 픽셀이나 특징들을 재 추출하지 않음
+
+##### 👨‍💻 CS
+
+*2023.01.14*
+
+Hash Table에 대해 간단히 정리합니다.
+
+- Key를 hash function에 넣어 index를 얻고, 해당 index의 value에 접근하는 방식
+- Collision이 없는 경우에는 $O(1)$의 시간복잡도를 가지지만, collision이 존재하는 경우에는 해당 index 내에서 선형 탐색을 하기 때문에 최악의 경우 $O(N)$의 시간복잡도를 가짐
+
+##### 🤖 ML & DL
+
+*2023.01.14*
+
+Bayesian Inference에 대해 간단히 정리합니다.
+
+- Bayesian Inference: 추론 대상의 사전 확률과 추가적인 정보를 통해 해당 대상의 사후 확률을 추론하는 방법
+- 일반적으로 우리의 목적은 $p(x^* | X)$를 계산하는 것임. 즉, given data $X$를 기반으로 test data $x^*$에 대한 올바른 예측을 할 수 있어야 함
+- $p(x^* | X) = \int p (x^* | \theta) p(\theta | X) d \theta$로 계산 할 수 있으며, 여기서 $p(\theta | X)$는 Bayes rule에 의해 $p(\theta | X) = \frac{p(X|\theta)p(\theta)}{P(X)}$임
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
