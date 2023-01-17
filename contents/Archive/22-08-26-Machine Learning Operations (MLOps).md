@@ -1,5 +1,5 @@
 ---
-title: "MLOps Cheat Sheet"
+title: "Machine Learning Operations (MLOps)"
 date: "2022-08-26"
 template: "post"
 draft: false

@@ -1,5 +1,5 @@
 ---
-title: "매트랩(MATLAB) Cheat Sheet"
+title: "MATLAB Basic Commands"
 date: "2019-09-17"
 template: "post"
 draft: false

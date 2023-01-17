@@ -1,5 +1,5 @@
 ---
-title: "Linux Command Cheat Sheet"
+title: "Linux Basic Commands"
 date: "2020-10-08"
 template: "post"
 draft: false
