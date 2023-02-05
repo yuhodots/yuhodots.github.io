@@ -4,7 +4,7 @@ date: "2023-01-15"
 template: "post"
 draft: false
 path: "/cheatsheet/23-01-15/"
-description: "강화학습(Reinforcement Learning)에 대해, 테이블 기반의 방법론부터 Deep RL까지 중요한 개념을 위주로 간단히 정리합니다. 공부를 위해 교재로는 노승은 님의 '바닥부터 배우는 강화학습'을 읽은 뒤에 Sutton 교수님의 'Reinforcement learning - An introduction.'을 살펴보시는 것을 추천드립니다. 정의와 수식 위주로 포스팅을 작성하였으며 자세한 설명은 해당 책들을 참고하시면 좋습니다."
+description: "강화학습(Reinforcement Learning)에 대해, 테이블 기반의 방법론부터 Deep RL까지 중요한 개념을 위주로 간단히 정리합니다. 공부를 위해 교재로는 노승은 님의 '바닥부터 배우는 강화학습'을 읽은 뒤에 Sutton 교수님의 'Reinforcement learning - An introduction.'을 살펴보시는 것을 추천드립니다."
 category: "Cheat Sheet"
 ---
 
@@ -30,7 +30,7 @@ category: "Cheat Sheet"
 - Bootstrap: 다른 추정값들을 기반으로 특정 추정값을 갱신하는 방법을 일반적으로 부트스트랩이라 부름 
 - Dynamic Programming (DP): 복잡한 문제를 간단한 여러 개의 문제로 나누어 푸는 방법. 점화식을 생각해보면 좋음. 모든 DP 방법은 어떤 state의 value 추정값 갱신을 위해 그 state로부터 파생되는 state의 value 추정값을 기반으로 하므로, bootstrap 방법으로 볼 수 있음
 
-##### Policy and Value
+##### Value and Policy
 
 - Reward: 의사결정을 얼마나 잘하고 있는지에 대한 신호
 - Properties of Reward: '어떻게?'에 대한 정보를 담고 있지 않고, 희소 및 지연될 수 있으며, 벡터가 아닌 스칼라 값임. 기본적으로 강화학습은 스칼라 형태의 보상이 있는 경우에 적용이 가능
@@ -126,7 +126,7 @@ category: "Cheat Sheet"
 - Deep Q-Learning (DQN)
   - $\mathcal L(\theta) = \mathbb E[(r + \gamma \max_{a'}Q_\theta(s',a') - Q_\theta(s,a))^2]$
   - $\theta'= \theta + \alpha((r + \gamma \max_{a'}Q_\theta(s',a') - Q_\theta(s,a))\nabla_\theta Q_\theta(s,a,)$
-  - Experience Replay: 이전에 겪었던 경험ㄴ을 학습에 재사용하는 방법. Transition을 replay buffer에 계속 쌓아가며, trainsition 하나가 학습을 위한 데이터 하나임
+  - Experience Replay: 이전에 겪었던 경험을 학습에 재사용하는 방법. Transition을 replay buffer에 계속 쌓아가며, trainsition 하나가 학습을 위한 데이터 하나임
   - Target Network: $q$를 모델링하기 위해 오로지 하나의 네트워크 $\theta$만 존재하는 경우에는 정답이 $\theta$에 의존적이기 때문에 $\theta$ 업데이트에 따라 정답 값이 계속해서 변하여 안정적인 학습이 어려움. 따라서 정답지를 계산할 때 사용하는 네트워크의 파라미터를 잠시 얼려두어 학습을 위한 파라미터와 따로 두고, 일정 주기마다 얼려 놓았던 네트워크를 최신 파라미터로 교체해주는 방식을 사용
 
 
