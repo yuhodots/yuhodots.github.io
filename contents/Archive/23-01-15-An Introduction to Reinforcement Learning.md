@@ -12,14 +12,14 @@ category: "Cheat Sheet"
 
 ### Preliminary
 
-- 강화학습이란, **Sequential Decision Problem**에서 **Trial and Error**(환경과의 상호작용)를 통해 **Return**(누적 보상)을 최대화하기 위한 방향으로 **Policy**(행동, 정책)를 교정하는 과정임
+- 강화학습이란, Sequential Decision Problem에서 Trial and Error(환경과의 상호작용)를 통해 Return(누적 보상)을 최대화하기 위한 방향으로 Policy(행동, 정책)를 교정하는 과정임
 - 강화학습 기반으로 문제상황을 잘 해결하기 위해서는, MDP 문제를 잘 정의하고 optimal policy $\pi^*$와 optimal value function $v^*$을 찾아내는 것이 중요함
 
 ##### Terminology
 
 - Agent: 학습자 혹은 의사결정자
 - Environment: 에이전트와 상호작용하는 에이전트 이외의 모든 것
-- Model: ML 분야에서 말하는 모델이 아니라, **'환경'에 대한 모델**을 말함. 즉, 환경이 어떻게 변화해 갈지를 추정할 수 있게 해주는 요소
+- Model: ML 분야에서 말하는 모델이 아니라, '환경'에 대한 모델을 말함. 즉, 환경이 어떻게 변화해 갈지를 추정할 수 있게 해주는 요소
 - Tick (=Time-Step): Sequential decision problem에서의 이산적(discrete) 시간 단위
 - Episode (=Trial): State $s_0$에서 terminal state $s_T$에 도달할 때 까지의 하나의 여정. 즉, $[s_0, a_0, R_0,s_1, a_1, R_1, \cdots, s_T]$의 형태를 가짐
 - Transition: 일반적으로 state trainsition 1번을 의미. 즉, $(s,a,r,s')$의 형태를 가짐
