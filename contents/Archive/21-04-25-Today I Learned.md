@@ -448,6 +448,18 @@ Bayesian Inference에 대해 간단히 정리합니다.
 - 일반적으로 우리의 목적은 $p(x^* | X)$를 계산하는 것임. 즉, given data $X$를 기반으로 test data $x^*$에 대한 올바른 예측을 할 수 있어야 함
 - $p(x^* | X) = \int p (x^* | \theta) p(\theta | X) d \theta$로 계산 할 수 있으며, 여기서 $p(\theta | X)$는 Bayes rule에 의해 $p(\theta | X) = \frac{p(X|\theta)p(\theta)}{P(X)}$임
 
+##### 🤖 ML & DL
+
+*2023.02.22*
+
+CLIP에 대해 간단히 정리합니다
+
+- **Natural language supervision**: 이미지와 텍스트가 짝을 이루는 데이터셋을 활용하여 이미지 모델을 학습시키는 것
+
+1. Contastive pre-training: Batchsize 만큼의 이미지와 그에 해당하는 텍스트(문장)에 대해 이미지와 텍스트 임베딩을 각각 뽑아내고, 서로 짝이 맞는 임베딩간 유사도가 높아지도록 모델 학습
+2. Target dataset에 대해 class label 임베딩을 모두 뽑는데, 이 때 텍스트로는 'a photo of a {class labe}'를 입력으로 줌 (Prompt engineering!)
+3. 최종적으로, 테스트 이미지의 임베딩과 target dataset의 'a photo of a {class labe}' 임베딩 사이에 유사도가 제일 높은 것을 확인함
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

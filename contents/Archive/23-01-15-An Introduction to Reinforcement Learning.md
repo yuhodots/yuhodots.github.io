@@ -160,3 +160,10 @@ category: "Cheat Sheet"
 - Asynchronous Advantage Actor-Critic (A3C)
 - Deep Deterministic Policy Gradient (DDPG)
 - Monte Carlo Tree Search
+
+### References
+
+- Sutton, Richard S., and Andrew G. Barto., *Reinforcement learning: An introduction*, MIT press, 2018.
+- Sutton, Richard S., and Andrew G. Barto., 김성우 역, *단단한 강화학습*, 제이펍(2020)
+- 노승은, *바닥부터 배우는 강화 학습*, 영진닷컴(2020)
+

@@ -250,7 +250,7 @@ category: "Deep Learning"
 - [x] [Cao, Kaidi, Maria Brbic, and Jure Leskovec. "Open-world semi-supervised learning." ICLR 2022.](https://openreview.net/pdf?id=O-r8LOR-CCA)
 
   - Novel Category Discovery를 traditional SSL로 일반화한 Open-World Semi-Supervised Learning 세팅을 처음으로 제안 (Generalized Category Discovery와 동일한 세팅)
-  - Unlabeled data의 uncertainty를 기반으로 known(seen) class의 intra-class를 조절하면서 학습하는 end-to-end 알고리즘은 ORCA를 제안
+  - Unlabeled data의 uncertainty를 기반으로 known(seen) class의 intra-class를 조절하면서 학습하는 end-to-end 알고리즘인 ORCA를 제안
     - e.g., Unlabeled data의 uncertainty가 낮은 경우에, labeled data를 fully exploit
     - 이 과정을 통해 known class에 대한 discriminative representation learning이 novel class 대비 너무 빠르게 진행되지 않도록 강제함
   - Supervised objective w. uncertainty adaptive margin, Pairwise objective, Regularization term, 총 3개의 주요 objectives로 이루어져있음
