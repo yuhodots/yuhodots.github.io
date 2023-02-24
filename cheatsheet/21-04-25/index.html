@@ -458,6 +458,15 @@ V \Sigma ^{-1} U^\top U \Sigma V^\top \mathrm  x =V \Sigma ^{-1} U^\top \mathrm 
 <li>Target dataset에 대해 class label 임베딩을 모두 뽑는데, 이 때 텍스트로는 'a photo of a {class labe}'를 입력으로 줌 (Prompt engineering!)</li>
 <li>최종적으로, 테스트 이미지의 임베딩과 target dataset의 'a photo of a {class labe}' 임베딩 사이에 유사도가 제일 높은 것을 확인함</li>
 </ul>
+<h5 id="-cs-6" style="position:relative;"><a href="#-cs-6" aria-label=" cs 6 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>👨‍💻 CS</h5>
+<p><em>2023.02.24</em></p>
+<p>Data lake와 Database catalog에 대해 간단히 정리합니다.</p>
+<ul>
+<li>Data lake: 데이터를 원시 형태(raw data)로 저장하는 단일한 데이터 저장소. 구조화되거나 반구조화되거나 구조화되지 않은 대량의 데이터를 저장, 처리, 보호하기 위한 중앙 집중식 저장소</li>
+<li><strong>Data lake, Data warehouse, Data mart의 차이점</strong>: <a href="https://aws.amazon.com/ko/compare/the-difference-between-a-data-warehouse-data-lake-and-data-mart/">링크</a></li>
+<li>Data lake에 대해 설명되어 있는 글들: <a href="https://www.samsungsds.com/kr/insights/big_data_lake.html">링크1</a>, <a href="https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake">링크2</a>, <a href="https://cloud.google.com/learn/what-is-a-data-lake?hl=ko">링크3</a></li>
+<li>Database catalog<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup>: Catalog는 번역하면 '(상품자료의) 목록'을 의미함. 데이터베이스의 개체들에 대한 정의를 담고 있는 메타데이터들로 구성된 데이터베이스 내의 인스턴스</li>
+</ul>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <div class="footnotes">
 <hr>
@@ -555,6 +564,22 @@ V \Sigma ^{-1} U^\top U \Sigma V^\top \mathrm  x =V \Sigma ^{-1} U^\top \mathrm 
 <li id="fn-23">
 <p>Mermillod, Martial, Aurélia Bugaiska, and Patrick Bonin. "The stability-plasticity dilemma: Investigating the continuum from catastrophic forgetting to age-limited learning effects." <em>Frontiers in psychology</em> 4 (2013): 504.</p>
 <a href="#fnref-23" class="footnote-backref">↩</a>
+</li>
+<li id="fn-24">
+<p>Samsung SDS, 박민영, "빅데이터로 가치를 만드는 호수 ‘데이터 레이크’ 이야기", <a href="https://www.samsungsds.com/kr/insights/big_data_lake.html">https://www.samsungsds.com/kr/insights/big_data_lake.html</a></p>
+<a href="#fnref-24" class="footnote-backref">↩</a>
+</li>
+<li id="fn-25">
+<p>Red hat, "데이터 레이크란 무엇일까요?", <a href="https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake">https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake</a></p>
+<a href="#fnref-25" class="footnote-backref">↩</a>
+</li>
+<li id="fn-26">
+<p>Google Cloud, "데이터 레이크란?", <a href="https://cloud.google.com/learn/what-is-a-data-lake?hl=ko">https://cloud.google.com/learn/what-is-a-data-lake?hl=ko</a></p>
+<a href="#fnref-26" class="footnote-backref">↩</a>
+</li>
+<li id="fn-27">
+<p>데이터베이스 카탈로그. (2022년 2월 28일). <em>위키백과,</em> . 07:59, 2023년 2월 24일에 확인 <a href="https://ko.wikipedia.org/w/index.php?title=%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%B9%B4%ED%83%88%EB%A1%9C%EA%B7%B8&#x26;oldid=31941199">https://ko.wikipedia.org/w/index.php?title=%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%B9%B4%ED%83%88%EB%A1%9C%EA%B7%B8&#x26;oldid=31941199</a> 에서 찾아볼 수 있음.</p>
+<a href="#fnref-27" class="footnote-backref">↩</a>
 </li>
 </ol>
 </div></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2023<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/cheatsheet/21-04-25/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2966d4d8fea208fd6f8f.js"],"app":["/app-9cbfa4b1e60c23aee528.js"],"component---src-pages-404-js":["/component---src-pages-404-js-9c04155390b493ad90ef.js"],"component---src-templates-about-js":["/component---src-templates-about-js-4c57f8912c7981cdc304.js"],"component---src-templates-category-js":["/component---src-templates-category-js-4dd97c66fdfc9a5a9afc.js"],"component---src-templates-index-js":["/component---src-templates-index-js-af7db0e7db9df8fe0378.js"],"component---src-templates-post-js":["/component---src-templates-post-js-a9ade4c96093dee825cd.js"]};/*]]>*/</script><script src="/polyfill-2966d4d8fea208fd6f8f.js" nomodule=""></script><script src="/component---src-templates-post-js-a9ade4c96093dee825cd.js" async=""></script><script src="/9a83efd0f2f53a11fc9fd4ead3c578a48e734387-f68cff5db3e59fbc93f6.js" async=""></script><script src="/styles-407fe62976dc5310c43e.js" async=""></script><script src="/app-9cbfa4b1e60c23aee528.js" async=""></script><script src="/framework-741ade27086b2708e961.js" async=""></script><script src="/webpack-runtime-a908be9d63d4d23dc146.js" async=""></script></body></html>
