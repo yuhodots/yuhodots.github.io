@@ -460,6 +460,17 @@ CLIP에 대해 간단히 정리합니다
 2. Target dataset에 대해 class label 임베딩을 모두 뽑는데, 이 때 텍스트로는 'a photo of a {class labe}'를 입력으로 줌 (Prompt engineering!)
 3. 최종적으로, 테스트 이미지의 임베딩과 target dataset의 'a photo of a {class labe}' 임베딩 사이에 유사도가 제일 높은 것을 확인함
 
+##### 👨‍💻 CS
+
+*2023.02.24*
+
+Data lake와 Database catalog에 대해 간단히 정리합니다.
+
+- Data lake: 데이터를 원시 형태(raw data)로 저장하는 단일한 데이터 저장소. 구조화되거나 반구조화되거나 구조화되지 않은 대량의 데이터를 저장, 처리, 보호하기 위한 중앙 집중식 저장소
+- **Data lake, Data warehouse, Data mart의 차이점**: [링크](https://aws.amazon.com/ko/compare/the-difference-between-a-data-warehouse-data-lake-and-data-mart/)
+- Data lake에 대해 설명되어 있는 글들: [링크1](https://www.samsungsds.com/kr/insights/big_data_lake.html), [링크2](https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake), [링크3](https://cloud.google.com/learn/what-is-a-data-lake?hl=ko)
+- Database catalog[^27]: Catalog는 번역하면 '(상품자료의) 목록'을 의미함. 데이터베이스의 개체들에 대한 정의를 담고 있는 메타데이터들로 구성된 데이터베이스 내의 인스턴스
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
@@ -489,3 +500,7 @@ CLIP에 대해 간단히 정리합니다
 [^21]: https://github.com/onnx/onnx/blob/main/docs/Overview.md
 [^22]: 원격 프로시저 호출. (2022년 2월 26일). *위키백과,* . 11:52, 2022년 8월 26일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9B%90%EA%B2%A9_%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80_%ED%98%B8%EC%B6%9C&oldid=31906127](https://ko.wikipedia.org/w/index.php?title=원격_프로시저_호출&oldid=31906127) 에서 찾아볼 수 있음.
 [^23]: Mermillod, Martial, Aurélia Bugaiska, and Patrick Bonin. "The stability-plasticity dilemma: Investigating the continuum from catastrophic forgetting to age-limited learning effects." *Frontiers in psychology* 4 (2013): 504.
+[^24]: Samsung SDS, 박민영, "빅데이터로 가치를 만드는 호수 ‘데이터 레이크’ 이야기", https://www.samsungsds.com/kr/insights/big_data_lake.html
+[^25]: Red hat, "데이터 레이크란 무엇일까요?", https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake
+[^26]: Google Cloud, "데이터 레이크란?", https://cloud.google.com/learn/what-is-a-data-lake?hl=ko
+[^27]: 데이터베이스 카탈로그. (2022년 2월 28일). *위키백과,* . 07:59, 2023년 2월 24일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%B9%B4%ED%83%88%EB%A1%9C%EA%B7%B8&oldid=31941199](https://ko.wikipedia.org/w/index.php?title=데이터베이스_카탈로그&oldid=31941199) 에서 찾아볼 수 있음.

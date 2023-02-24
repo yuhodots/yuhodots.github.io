@@ -17,9 +17,9 @@ thumbnail: "deeplearning"
 
 설명은 한줄씩만 적고, 나머지는 사진으로 제공
 
-- Semantic Segmentation
-- Instance Segmentation
-- panoptic segmentation
+- Semantic Segmentation: class label도 알아맞춰야 하는건가?
+- Instance Segmentation: class label은 알아맞출 필요는 없는건가?
+- panoptic segmentation:
 - point cloud (3d) semantic segmentation
 
 최근, 속도 측면에서 detector FCOS나 CondInst 기반의 알고리즘들의 instance segmentation 속도가 bounding-box object detection 만큼 빠르기 때문에 굳이 object detec하는 경우에도 instance segmentation 쓰는 경우 늘어나고 있다고 함. 따라서 pixel-level mask annotation이라는 작업만 없다면 완전히 대체될 수도 있지 않을까 싶음 (weakly supervised instance segmentation의 중요성)
@@ -100,7 +100,7 @@ The choice of label type depends on the nature of the data and the specific requ
 - 어떻게해서 RoI free method가 되었는지 설명
 - Full-image mask segmentation이 가능하다는 특징이 BoxInst에 어떤 도움을 주었는지 설명
 - 최종적으로, CondInst의 어떤 losses 들이 있었고, 이것이 BoxInst로 발전되면서 어떻게 변했는지 설명
-- Dice loss의 장점에 대해 설명
+- Dice loss의 식과 장점에 대해 설명
 - BoxInst의 core idea: CondInst 내의 pixel-wise mask losses를 projection loss와 pairwise affinity loss로 대체하는 것
 
 ##### Projection Loss
@@ -127,6 +127,7 @@ The choice of label type depends on the nature of the data and the specific requ
 ##### Experimental Results
 
 - PolarMask나 YOLACK 같은 mask annotation 기반의 모델들 보다 성능이 좋다는 것은 인상적
+- FPN, BiFPN, DCN에 대해 간단히 설명
 - 내용을 추가하고 있습니다.
 
 ### References

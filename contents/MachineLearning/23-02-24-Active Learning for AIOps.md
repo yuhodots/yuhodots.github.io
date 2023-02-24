@@ -11,12 +11,37 @@ thumbnail: "operations"
 
 `아직 작성이 완료되지 않은 포스팅입니다.`
 
+### Introduction
+
+- Active Learning이란 무엇인지 설명하고 그 중요성에 대해 이야기합니다.
+
 ### Active Learning
 
-- Active Learning이란 무엇인지 설명합니다.
 - Active Learning의 여러 분야에 대해 설명합니다.
 
-### Tools
+##### Uncertainty Sampling
+
+- Entropy
+- Margin
+- LeastConf and VarRatio
+- BALD
+- MeanSTD
+
+##### Diversity Sampling
+
+- CoreSet
+- Cluster-Margin
+- Active-DPP and BADGE
+- DiscAL
+- VAAL and WAAL
+
+##### Hybird Strategy
+
+- CCAL
+- Exploitation-Exploration
+- WAAL, BADGE, DBAL
+
+### Active Learning Tools
 
 - Active Learning을 위한 tools에 대해 간단히 소개합니다.
 
@@ -33,4 +58,5 @@ thumbnail: "operations"
 ### References
 
 - <a href="https://www.flaticon.com/free-icons/business-operations" title="business operations icons">Business operations icons created by juicy_fish - Flaticon</a> (thumbnail for this post)
+- Zhan, Xueying, et al. "A comparative survey of deep active learning." *arXiv preprint arXiv:2203.13450* (2022).
 
