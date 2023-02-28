@@ -10,11 +10,11 @@ category: "about"
 
 ## 안녕하세요 🙋‍♂️
 
-안녕하세요. 블로그에 방문해주셔서 감사합니다.
+안녕하세요! 블로그에 방문해주셔서 감사합니다. 
 
 저는 대학원에서 한정된 데이터를 사용한 학습을 통해 그 외의 데이터까지도 일반화가 가능한 `Few-shot & Meta Learning` 연구와, pre-trained knowledge를 기반으로 전체 데이터 셋에 대한 재학습 없이 지식을 확장해나가는 `Continual Learning` 연구를 수행했습니다. 또한, 이들과 유사한 방향성을 가지고 있는 [Open-World Learning](https://www.cs.uic.edu/~liub/lifelong-learning/open-world-learning.pdf) 분야의 연구 동향을 파악하면서 `Novel Category Discovery`와 `Open-World Semi-Supervised Learning`이라는 task를 풀기도 했습니다.
 
-학부에서 대학원까지 학업에 임하며 항상 '연구적 성과에서 그치는 것이 아니라, 실제로 세상에 영향을 줄 수 있는 기술이 가치를 갖는다'라는 생각을 가지고 있었습니다. AI/ML 알고리즘을 real-world에서 서비스 했을 때 만들 수 있는 임팩트에 대해 자주 고민했던 경험을 바탕으로, 현재는 산업계에서 AI/ML Engineer 역할을 맡아 실제 서비스 상황에서의 AI/ML 기술을 개발하고 있습니다.
+학부에서 대학원까지 학업에 임하며 항상 '연구적 성과에서 그치는 것이 아니라 실제로 세상에 영향을 줄 수 있는 기술이 가치를 갖는다'라는 생각을 가지고 있었습니다. AI/ML 알고리즘을 real-world에서 서비스 했을 때 만들 수 있는 임팩트에 대해 자주 고민했던 경험을 바탕으로, 현재는 산업계에서 실제 서비스를 위한 AI/ML 기술을 개발하고 있습니다.
 
 궁금한 점이나 조언해주실 내용에 대해, 이메일, 깃허브, SNS를 통해 연락주시는 것은 언제든지 환영합니다.
 

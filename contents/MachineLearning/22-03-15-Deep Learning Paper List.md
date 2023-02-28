@@ -299,6 +299,10 @@ category: "Deep Learning"
 - [ ] [Lim, Soon Hoe, et al. "Noisy feature mixup." ICLR 2022.](https://openreview.net/pdf?id=vJb4I2ANmy)
 - [ ] [Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.](https://openreview.net/forum?id=g11CZSghXyY)
 
+### Image Segmentation
+
+- [ ] [Zhi Tian, et al., "Boxinst: High-performance instance segmentation with box annotations," CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Tian_BoxInst_High-Performance_Instance_Segmentation_With_Box_Annotations_CVPR_2021_paper.html)
+
 ### Natural Language Processing
 
 - [ ] [Gunel, Beliz, et al. "Supervised Contrastive Learning for Pre-trained Language Model Fine-tuning." ICLR 2020.](https://openreview.net/pdf?id=cu7IUiOhujH)
