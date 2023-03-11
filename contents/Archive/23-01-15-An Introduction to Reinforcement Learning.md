@@ -4,11 +4,11 @@ date: "2023-01-15"
 template: "post"
 draft: false
 path: "/cheatsheet/23-01-15/"
-description: "강화학습(Reinforcement Learning)에 대해, 테이블 기반의 방법론부터 Deep RL까지 중요한 개념을 위주로 간단히 정리합니다. 공부를 위해 교재로는 노승은 님의 '바닥부터 배우는 강화학습'을 읽은 뒤에 Sutton 교수님의 'Reinforcement learning - An introduction.'을 살펴보시는 것을 추천드립니다."
+description: "강화학습(Reinforcement Learning)과 관련하여 테이블 기반의 방법론부터 Deep RL까지 중요한 개념을 위주로 간단히 정리합니다. 공부를 위해 교재로는 노승은 님의 '바닥부터 배우는 강화학습'을 읽은 뒤에 Sutton 교수님의 'Reinforcement learning - An introduction.'을 살펴보시는 것을 추천드립니다."
 category: "Cheat Sheet"
 ---
 
-> 강화학습(Reinforcement Learning)에 대해, 테이블 기반의 방법론부터 Deep RL까지 중요한 개념을 위주로 간단히 정리합니다.
+> 강화학습(Reinforcement Learning)과 관련하여 테이블 기반의 방법론부터 Deep RL까지 중요한 개념을 위주로 간단히 정리합니다. 공부를 위해 교재로는 노승은 님의 '바닥부터 배우는 강화학습'을 읽은 뒤에 Sutton 교수님의 'Reinforcement learning - An introduction.'을 살펴보시는 것을 추천드립니다.
 
 ### Preliminary
 

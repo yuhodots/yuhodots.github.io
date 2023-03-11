@@ -35,6 +35,7 @@ category: "about"
 
 ### Experience
 
+- AI Engineer at Nuvilab Inc. (2023.02 ~ current)
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
