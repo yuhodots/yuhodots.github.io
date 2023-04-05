@@ -471,6 +471,27 @@ Data lake와 Database catalog에 대해 간단히 정리합니다.
 - Data lake에 대해 설명되어 있는 글들: [링크1](https://www.samsungsds.com/kr/insights/big_data_lake.html), [링크2](https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake), [링크3](https://cloud.google.com/learn/what-is-a-data-lake?hl=ko)
 - Database catalog[^27]: Catalog는 번역하면 '(상품자료의) 목록'을 의미함. 데이터베이스의 개체들에 대한 정의를 담고 있는 메타데이터들로 구성된 데이터베이스 내의 인스턴스
 
+##### 🤖 ML & DL
+
+*2023.03.24*
+
+- Domain generalization: source domain으로 학습한 뒤 바로 target domain에 일반화
+- Domain adaptation: target domain에도 어느정도 label이 존재하여 재학습이 가능
+- Style-based generalization: Gram matrix, Maximum Mean Discrepancy(MMD), Mean Var 등을 style로 여겨서 활용
+- 일반적으로 CNN은 texture를 잘 잡는 high pass filter(고주파 위주로 전달), Transfomer는 contour를 잘 잡는 low pass filter의 특성을 보인다고 함. 따라서 CNN에 대해 adversarial attack 할 때도 특정 이미지에 다른 texture 입히면 예측 성능 떨어짐
+
+##### 🤖 ML & DL
+
+*2023.04.03*
+
+Stable diffusion에 대한 간단한 기록
+
+- Text2Image를 위해 text encoder(CLIP의 text encoder)와 image generator 사용
+- Image generator: Image information creator (UNet + Scheduler)와 image decoder (Autoencoder decoder)로 구성됨
+  - Image information creator: latent space to latent space. Diffusion process 수행
+  - Image decoder: latent space to image space
+- Text conditioning: UNet 내부의 resnet block 사이에 attention layer를 추가하고, token embedding을 각 attention layer의 입력으로 주어 conditioning
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

@@ -40,10 +40,6 @@ category: "about"
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
-### Publications
-
-- Under Review, To be updated.
-
 ### Projects
 
 - Personal project - Web: BackEnd development at the online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
