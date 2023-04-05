@@ -467,6 +467,28 @@ V \Sigma ^{-1} U^\top U \Sigma V^\top \mathrm  x =V \Sigma ^{-1} U^\top \mathrm 
 <li>Data lake에 대해 설명되어 있는 글들: <a href="https://www.samsungsds.com/kr/insights/big_data_lake.html">링크1</a>, <a href="https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake">링크2</a>, <a href="https://cloud.google.com/learn/what-is-a-data-lake?hl=ko">링크3</a></li>
 <li>Database catalog<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup>: Catalog는 번역하면 '(상품자료의) 목록'을 의미함. 데이터베이스의 개체들에 대한 정의를 담고 있는 메타데이터들로 구성된 데이터베이스 내의 인스턴스</li>
 </ul>
+<h5 id="-ml--dl-19" style="position:relative;"><a href="#-ml--dl-19" aria-label=" ml  dl 19 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🤖 ML &#x26; DL</h5>
+<p><em>2023.03.24</em></p>
+<ul>
+<li>Domain generalization: source domain으로 학습한 뒤 바로 target domain에 일반화</li>
+<li>Domain adaptation: target domain에도 어느정도 label이 존재하여 재학습이 가능</li>
+<li>Style-based generalization: Gram matrix, Maximum Mean Discrepancy(MMD), Mean Var 등을 style로 여겨서 활용</li>
+<li>일반적으로 CNN은 texture를 잘 잡는 high pass filter(고주파 위주로 전달), Transfomer는 contour를 잘 잡는 low pass filter의 특성을 보인다고 함. 따라서 CNN에 대해 adversarial attack 할 때도 특정 이미지에 다른 texture 입히면 예측 성능 떨어짐</li>
+</ul>
+<h5 id="-ml--dl-20" style="position:relative;"><a href="#-ml--dl-20" aria-label=" ml  dl 20 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🤖 ML &#x26; DL</h5>
+<p><em>2023.04.03</em></p>
+<p>Stable diffusion에 대한 간단한 기록</p>
+<ul>
+<li>Text2Image를 위해 text encoder(CLIP의 text encoder)와 image generator 사용</li>
+<li>
+<p>Image generator: Image information creator (UNet + Scheduler)와 image decoder (Autoencoder decoder)로 구성됨</p>
+<ul>
+<li>Image information creator: latent space to latent space. Diffusion process 수행</li>
+<li>Image decoder: latent space to image space</li>
+</ul>
+</li>
+<li>Text conditioning: UNet 내부의 resnet block 사이에 attention layer를 추가하고, token embedding을 각 attention layer의 입력으로 주어 conditioning</li>
+</ul>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <div class="footnotes">
 <hr>
