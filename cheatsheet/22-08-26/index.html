@@ -120,16 +120,54 @@
 <li><code class="language-text">npx husky add .husky/pre-commit &quot;{do_something}&quot;</code>: Git hooks 생성</li>
 <li><code class="language-text">git add .husky/pre-commit</code></li>
 </ul>
+<h5 id="pre-commit" style="position:relative;"><a href="#pre-commit" aria-label="pre commit permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>pre-commit</h5>
+<ul>
+<li>공식 문서: <a href="https://pre-commit.com">https://pre-commit.com</a></li>
+<li>사용 가능한 pre-commit hooks 들은 <a href="https://pre-commit.com/hooks.html">이곳</a>에서 확인 가능함</li>
+<li><code class="language-text">brew install pre-commit</code>: Install</li>
+<li><code class="language-text">pre-commit sample-config &gt; .pre-commit-config.yaml</code>: Create a config file</li>
+<li><code class="language-text">pre-commit run</code>: 수동으로 pre-commit 실행하기</li>
+<li><strong><code class="language-text">pre-commit install</code></strong>: commit 할 때 자동으로 pre-commit가 실행되도록 git hook에 등록</li>
+</ul>
 <h3 id="docker" style="position:relative;"><a href="#docker" aria-label="docker permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Docker</h3>
+<h5 id="fast-start-for-a-beginner" style="position:relative;"><a href="#fast-start-for-a-beginner" aria-label="fast start for a beginner permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fast start for a beginner</h5>
+<ul>
+<li>아래의 명령어 수행하면서 작동 확인하기</li>
+<li><code class="language-text">sudo usermod -aG docker $USER</code>: sudo 없이 사용할 수 있도록 사용자 계정을  docker gorup에 추가</li>
+<li><code class="language-text">docker pull ubuntu:latest</code>: centos 최신 버전의 이미지를 pull</li>
+<li><code class="language-text">docker images</code>: 이미지 확인</li>
+<li><code class="language-text">docker run -it ubuntu:latest bash</code>: Bash shell을 실행하는 옵션으로 CentOS 컨테이너 실행</li>
+<li><code class="language-text">docker ps -a</code>: 컨테이너 확인 (exited 컨테이너까지 확인)</li>
+<li><code class="language-text">docker restart ${container_id}</code>: 컨테이너 다시 시작</li>
+<li><code class="language-text">docker attach ${container_id}</code>: 컨테이너 안으로 이동</li>
+<li>컨테이너에 패키지나 프로그램 설치 후 exit</li>
+<li><code class="language-text">docker commit ${container_id} ${new_image_name}</code>: 컨테이너로 부터 이미지 빌드</li>
+</ul>
 <h5 id="commands" style="position:relative;"><a href="#commands" aria-label="commands permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Commands</h5>
 <ul>
-<li><code class="language-text">docker pull [OPTIONS] NAME[:TAG|@DIGEST]</code>: Docker Hub로부터 이미지 다운로드</li>
+<li>
+<p><code class="language-text">docker pull [OPTIONS] NAME[:TAG|@DIGEST]</code>: Docker Hub로부터 이미지 다운로드</p>
+<ul>
+<li>ex. <code class="language-text">docker pull centos:latest</code></li>
+</ul>
+</li>
 <li><code class="language-text">docker push [OPTIONS] NAME[:TAG]</code>: Docker Hub로 이미지 업로드</li>
 <li><code class="language-text">docker create [OPTIONS] IMAGE [COMMAND] [ARG...]</code>: 이미지로부터 새 컨테이너 생성</li>
 <li><code class="language-text">docker stop [OPTIONS] CONTAINER [CONTAINER...]</code>: 작동중인 컨테이너를 stop. (<em>memory release</em>)</li>
 <li><code class="language-text">docker start [OPTIONS] CONTAINER [CONTAINER...]</code>: stop 상태의 컨테이너를 시작</li>
-<li><code class="language-text">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code>: 이미지 다운로드 후, 컨테이너 생성(create) 후, 컨테이너 시작(start). 옵션은 <a href="https://docs.docker.com/engine/reference/commandline/run/#options">이곳</a> 참고</li>
-<li><code class="language-text">docker build [OPTIONS] PATH | URL | -</code>: Dockerfile로부터 이미지 빌드</li>
+<li>
+<p><code class="language-text">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code>: 이미지 다운로드 후, 컨테이너 생성(create) 후, 컨테이너 시작(start). 옵션은 <a href="https://docs.docker.com/engine/reference/commandline/run/#options">이곳</a> 참고</p>
+<ul>
+<li>ex. <code class="language-text">docker run -it centos:latest bash</code>: Shell 실행을 위해서 it 옵션을 사용</li>
+</ul>
+</li>
+<li>
+<p><code class="language-text">docker build [OPTIONS] PATH | URL | -</code>: Dockerfile로부터 이미지 빌드</p>
+<ul>
+<li><code class="language-text">docker build -t ${new_image_name} .</code>: 현재 위치의 Dockerfile로부터 ${new<em>image</em>name} 이름의 이미지 빌드</li>
+</ul>
+</li>
+<li><code class="language-text">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</code>: 컨테이너로 부터 이미지 빌드</li>
 <li><code class="language-text">docker rename CONTAINER NEW_NAME</code>: 컨테이너 이름 변경</li>
 <li><code class="language-text">docker pause CONTAINER [CONTAINER...]</code>: 작동중인 컨테이너를 pause. 컨테이너 프로세스를 stop하지는 않고 대기 시켜놓는 것 (<em>keep memory</em>).  kill, stop과의 차이점은 <a href="https://www.gistshare.com/2018/11/kill-stop-and-pause-docker-commands.html#summary">이곳</a> 참고</li>
 <li><code class="language-text">docker unpause CONTAINER [CONTAINER...]</code>: pause 상태의 컨테이너를 unpause</li>
