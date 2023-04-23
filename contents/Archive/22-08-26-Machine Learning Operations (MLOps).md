@@ -55,17 +55,48 @@ category: "Cheat Sheet"
 4. `npx husky add .husky/pre-commit "{do_something}"`: Git hooks 생성
 5. `git add .husky/pre-commit`
 
+##### pre-commit
+
+- 공식 문서: https://pre-commit.com
+- 사용 가능한 pre-commit hooks 들은 [이곳](https://pre-commit.com/hooks.html)에서 확인 가능함
+
+1. `brew install pre-commit`: Install
+2. `pre-commit sample-config > .pre-commit-config.yaml`: Create a config file
+3. `pre-commit run`: 수동으로 pre-commit 실행하기
+4. **`pre-commit install`**: commit 할 때 자동으로 pre-commit가 실행되도록 git hook에 등록
+
 ### Docker
+
+##### Fast start for a beginner
+
+- 아래의 명령어 수행하면서 작동 확인하기
+
+1. `sudo usermod -aG docker $USER`: sudo 없이 사용할 수 있도록 사용자 계정을  docker gorup에 추가
+2. `docker pull ubuntu:latest`: centos 최신 버전의 이미지를 pull
+3. `docker images`: 이미지 확인
+4. `docker run -it ubuntu:latest bash`: Bash shell을 실행하는 옵션으로 CentOS 컨테이너 실행
+5. `docker ps -a`: 컨테이너 확인 (exited 컨테이너까지 확인)
+6. `docker restart ${container_id}`: 컨테이너 다시 시작
+7. `docker attach ${container_id}`: 컨테이너 안으로 이동
+8. 컨테이너에 패키지나 프로그램 설치 후 exit
+9. `docker commit ${container_id} ${new_image_name}`: 컨테이너로 부터 이미지 빌드
 
 ##### Commands
 
 - `docker pull [OPTIONS] NAME[:TAG|@DIGEST]`: Docker Hub로부터 이미지 다운로드
+  - ex. `docker pull centos:latest`
+
 - `docker push [OPTIONS] NAME[:TAG]`: Docker Hub로 이미지 업로드
 - `docker create [OPTIONS] IMAGE [COMMAND] [ARG...]`: 이미지로부터 새 컨테이너 생성
 - `docker stop [OPTIONS] CONTAINER [CONTAINER...]`: 작동중인 컨테이너를 stop. (*memory release*)
 - `docker start [OPTIONS] CONTAINER [CONTAINER...]`: stop 상태의 컨테이너를 시작
 - `docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`: 이미지 다운로드 후, 컨테이너 생성(create) 후, 컨테이너 시작(start). 옵션은 [이곳](https://docs.docker.com/engine/reference/commandline/run/#options) 참고
+  - ex. `docker run -it centos:latest bash`: Shell 실행을 위해서 it 옵션을 사용
+
 - `docker build [OPTIONS] PATH | URL | -`: Dockerfile로부터 이미지 빌드
+  - `docker build -t ${new_image_name} .`: 현재 위치의 Dockerfile로부터 ${new_image_name} 이름의 이미지 빌드
+
+- `docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]`: 컨테이너로 부터 이미지 빌드
 - `docker rename CONTAINER NEW_NAME`: 컨테이너 이름 변경
 - `docker pause CONTAINER [CONTAINER...]`: 작동중인 컨테이너를 pause. 컨테이너 프로세스를 stop하지는 않고 대기 시켜놓는 것 (*keep memory*).  kill, stop과의 차이점은 [이곳](https://www.gistshare.com/2018/11/kill-stop-and-pause-docker-commands.html#summary) 참고
 - `docker unpause CONTAINER [CONTAINER...]`: pause 상태의 컨테이너를 unpause

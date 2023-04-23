@@ -302,6 +302,38 @@ category: "Deep Learning"
 ### Image Segmentation
 
 - [ ] [Zhi Tian, et al., "Boxinst: High-performance instance segmentation with box annotations," CVPR 2021.](https://openaccess.thecvf.com/content/CVPR2021/html/Tian_BoxInst_High-Performance_Instance_Segmentation_With_Box_Annotations_CVPR_2021_paper.html)
+- [ ] [Meta AI Research, "Segment Anything," 2023](https://scontent-ssn1-1.xx.fbcdn.net/v/t39.2365-6/10000000_900554171201033_1602411987825904100_n.pdf?_nc_cat=100&ccb=1-7&_nc_sid=3c67a6&_nc_ohc=YLTtOW2cPwwAX_Yy2Sd&_nc_ht=scontent-ssn1-1.xx&oh=00_AfB4YsQnTr0-I00xt5Q9W1P6Qbe_M9ey4Y1zBP7vvmRbLA&oe=643500E7)
+  - (Notice) 아래의 내용이 너무 길기 때문에, 논문 내용 정리 더 추가해서 포스팅으로 옮기기
+  - Image segmentation에 대한 foundation model 알고리즘 개발을 목표로 함
+  - SAM은 interactive segmentation 방식(mask 수정을 사람이 반복적으로 가이딩 해주는 방법)과 automatic segmentation 방식(바로 segmentation 가능하지만 많은 양의 학습 데이터 필요한 방법)의 일반화 버전. 즉, 두 방식 모두 가능하다는 것
+  - Zero-shot instance segmentation 정량 평가에서는 ViTDet이 좋지만, 사람 평가에서는 SAM이 좋았음
+  - [Task] Promptable segmentation (for pre-training): forground, background points / boxs, masks / free-form text 등에 대한 다양한 제안이 ambiguous하게 들어오더라도, 올바른(valid) segmentation mask를 최소 하나 이상 반환해야 하는 task
+    - Interactive segmentation 방식은 선행 논문들 참고
+    - Forground, background points: (x, y, fg/bg)
+    - Boxs, masks: (x1, y1, x2, y2)
+    - Free-form text: 아직 공개되지 않음
+  - [Model] Segment Anything Model (SAM)
+    - Image encoder: MAE pre-trained ViT
+    - Pormpt encoder: input points and boxes by positional encoding, free-form text with text encoder CLIP, and dense(mask) pompt are embedded by ConvNet and summed elemet-wise with the image embedding
+    - Mask decoder: a modification of a Transformer decoder block
+    - Resolving ambiguity: 애매한 prompt 대처할 수 있도록 multi-output mask 가지도록 모델 구조 수정함. 3개면 충분했고, 학습할 때 loss가 가장 작은 output만 backprop 했음
+    - Losses: linear combination of focal and dice loss 20:1 
+  - [Data] Data engine and Dataset (SA-1B)
+    - Data engine (model-in-the-loop): 처음에는 publice segmentation dataset으로 학습 (1) model assist annotator (classic interactive segmentation setup) - (2) semi-automatic annotation - (3) fully automatic mask creation
+    - SA-1B: the largest ever segmentation dataset (400x more masks than any existing segmentation dataset)
+
+### Multi-Modal Learning
+
+##### Visually-Situated Language Understanding
+
+- Documents, tables, infographics, and user interfaces (UIs) are intended to be consumed holistically, without clear boundaries between textual and visual elements
+
+- [ ] [Lee, Kenton, et al. "Pix2Struct: Screenshot parsing as pretraining for visual language understanding." arXiv preprint arXiv:2210.03347, 2022.](https://arxiv.org/abs/2210.03347)
+  - Visually-situated language understanding task와 관련하여 prior work 들의 방법이 너무 산재해 있었고 서로 모델 구조나, 접근법, 데이터 등이 크게 sharing 되지 않았음
+  - Pre-training: 본 논문은 '웹 페이지의 masked-screenshot을 input으로 받아 HTML을 예측하는 형태의 pre-training 방법'을 고안하여, general-purpose의 visually-situated language understanding model을 구축함
+  - Curriculum learning: 학습 초기 단계에서 아주 쉬운 parsing 문제(e.g., 글씨에 색깔만 입힌 HTML parsing)로 warm-up stage를 거치면 converge도 빠르고 fine-tuning 성능도 좋아짐 (Appendix D 참고)
+  - Transfer learning: ViT를 위한 새로운 fine-tuning 전략인 variable-resolution input representation을 제안. 일반적으로 ViT는 image patch를 뽑기 전에 pre-defined resolution으로 rescale을 하는데, 이 경우에 screenshot을 왜곡하거나 high resolution으로의 transfer learning에 방해가 될 것임. 따라서 저자들은 2d absolute positional embedding을 input patch와 같이 입력으로 제공하였음
+  - Architecture: image-encoder-text-decoder ViT
 
 ### Natural Language Processing
 

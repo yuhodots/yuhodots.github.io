@@ -492,6 +492,15 @@ Stable diffusion에 대한 간단한 기록
   - Image decoder: latent space to image space
 - Text conditioning: UNet 내부의 resnet block 사이에 attention layer를 추가하고, token embedding을 각 attention layer의 입력으로 주어 conditioning
 
+##### 🤖 ML & DL
+
+*2023.04.08*
+
+Random thought of AI tech.
+
+- 최근에 나온 논문인 Segment Anything과 PIX2STRUCT를 읽으며 든 (이전부터 자주 했지만 더 강해진) 생각은, '학습을 위한 task를 어떻게 정의하는지', 그리고 '수많은 양의 training 데이터를 어떻게 모아야하는지' 고민하는 것이 powerful한 모델을 만드는 제일 중요한 기반이 될 것이라는 것
+- 관련하여 Video PreTraining (VPT)도 이런 생각을 기반으로 연구되었음
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
