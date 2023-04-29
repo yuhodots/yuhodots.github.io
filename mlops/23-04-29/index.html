@@ -126,14 +126,12 @@
 <li>Script mode: 빠른 추론 및 배포를 위해 변환한 mode. 런타임 과정에서 python interpreter로 실행되지 않아 최적화 가능</li>
 <li>PyTorch JIT: PyTorch 프로그램에 최적화된 컴파일러</li>
 <li>TorchScript 변환 방식 1. JIT Trace: (dummy) input을 모델에 흘려보내 모델 구조를 파악하는 방식</li>
-<li>TorchScript 변환 방식 2. JIT Script: 코드를 직접 TorchScript로 변환하는 방식</li>
-<li>JIT Trace: <code class="language-text">torch.jit.trace()</code></li>
 </ul>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">dummy_input <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">224</span><span class="token punctuation">,</span> <span class="token number">224</span><span class="token punctuation">)</span>
 script_module <span class="token operator">=</span> torch<span class="token punctuation">.</span>jit<span class="token punctuation">.</span>trace<span class="token punctuation">(</span>model<span class="token punctuation">,</span> dummy_input<span class="token punctuation">)</span></code></pre></div>
-<ol start="2">
-<li>JIT Script: <code class="language-text">torch.jit.script()</code></li>
-</ol>
+<ul>
+<li>TorchScript 변환 방식 2. JIT Script: 코드를 직접 TorchScript로 변환하는 방식</li>
+</ul>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">instance <span class="token operator">=</span> MyModule<span class="token punctuation">(</span>args<span class="token punctuation">)</span>
 script_module <span class="token operator">=</span> torch<span class="token punctuation">.</span>jit<span class="token punctuation">.</span>script<span class="token punctuation">(</span>instance<span class="token punctuation">)</span></code></pre></div>
 <h3 id="inference-server" style="position:relative;"><a href="#inference-server" aria-label="inference server permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inference Server</h3>
@@ -141,7 +139,7 @@ script_module <span class="token operator">=</span> torch<span class="token punc
 <ul>
 <li>TensorRT, TorchScript만 사용하면 되는가?: Static graph만으로 모든 걸 알 순 없음</li>
 <li>Triton: OpenAI가 만든 언어 및 컴파일러. I/O 최적화된 CUDA 코드를 최적화</li>
-<li>관련 내용은 <a href="https://www.youtube.com/watch?v=Se62pRpk9A0">김태훈 님의 2023 Deview 발표 영상</a>에서 확인. 그리고 추가 공부하여 내용 추가하기</li>
+<li>관련 내용은 <a href="https://www.youtube.com/watch?v=Se62pRpk9A0">김태훈 님의 2023 Deview 발표 영상</a>에서 확인. 더 공부하여 내용 추가하기</li>
 </ul>
 <h3 id="reference" style="position:relative;"><a href="#reference" aria-label="reference permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h3>
 <ul>
