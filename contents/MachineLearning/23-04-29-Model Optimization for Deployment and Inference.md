@@ -4,12 +4,12 @@ date: "2023-04-29"
 template: "post"
 draft: false
 path: "/mlops/23-04-29/"
-description: "AI 모델 배포를 위한 라이브러리와 프레임워크의 사용법을 간단히 기록합니다. ONNX: Open Neural Network Exchange. 서로 다른 프레임워크로 만들어진 AI 모델을 서로 호환 가능하도록 Facebook과 Microsoft가 개발한 신경망 모델 포맷. TensorFlow, PyTorch, ..."
+description: "AI 모델 배포를 위한 라이브러리와 프레임워크들에 대해 간단히 기록합니다. ONNX: Open Neural Network Exchange. 서로 다른 프레임워크로 만들어진 AI 모델을 서로 호환 가능하도록 Facebook과 Microsoft가 개발한 신경망 모델 포맷. TensorFlow, PyTorch, ..."
 category: "MLOps"
 thumbnail: "mlops"
 ---
 
-> AI 모델 배포를 위한 라이브러리와 프레임워크의 사용법을 간단히 기록합니다.
+> AI 모델 배포를 위한 라이브러리와 프레임워크들에 대해 간단히 기록합니다.
 
 ### Neural Network Exchange
 
@@ -71,29 +71,26 @@ if __name__ == "__main__":
 - Script mode: 빠른 추론 및 배포를 위해 변환한 mode. 런타임 과정에서 python interpreter로 실행되지 않아 최적화 가능
 - PyTorch JIT: PyTorch 프로그램에 최적화된 컴파일러
 - TorchScript 변환 방식 1. JIT Trace: (dummy) input을 모델에 흘려보내 모델 구조를 파악하는 방식
-- TorchScript 변환 방식 2. JIT Script: 코드를 직접 TorchScript로 변환하는 방식
-
-1. JIT Trace: `torch.jit.trace()`
 
 ```python
 dummy_input = torch.rand(1, 3, 224, 224)
 script_module = torch.jit.trace(model, dummy_input)
 ```
 
-2. JIT Script: `torch.jit.script()`
+- TorchScript 변환 방식 2. JIT Script: 코드를 직접 TorchScript로 변환하는 방식
 
 ```python
 instance = MyModule(args)
 script_module = torch.jit.script(instance)
 ```
 
-### Inference Server
+### GPU Programming
 
 ##### Triton
 
 - TensorRT, TorchScript만 사용하면 되는가?: Static graph만으로 모든 걸 알 순 없음
 - Triton: OpenAI가 만든 언어 및 컴파일러. I/O 최적화된 CUDA 코드를 최적화
-- 관련 내용은 [김태훈 님의 2023 Deview 발표 영상](https://www.youtube.com/watch?v=Se62pRpk9A0)에서 확인. 그리고 추가 공부하여 내용 추가하기
+- 관련 내용은 [김태훈 님의 2023 Deview 발표 영상](https://www.youtube.com/watch?v=Se62pRpk9A0)에서 확인. 더 공부하여 내용 추가하기
 
 ### Reference
 

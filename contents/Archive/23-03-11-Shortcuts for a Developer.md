@@ -20,6 +20,7 @@ category: "Cheat Sheet"
 - `⌘ E`: 최근에 사용한 파일
 - `⌥ Enter`: pycharm의 제안사항 확인
 - 가끔 debugging 시에 내부 라이브러리로 step in 잘 안되는 경우 있는데, 이런 경우는 대부분 .idea 폴더 삭제해서 캐시 없애면 잘 작동함
+- Pycharm remote debugging in a docker container: [파이참에서 DOCKER를 이용한 디버깅 환경 구축](https://seongwoopark.github.io/2017-06-02-study-pycharm_interpreter/)
 
 ### Vim
 

@@ -1,26 +1,14 @@
 ---
-title: "Today I Learned"
-date: "2021-04-25"
+title: "Today I Learned (AI/ML)"
+date: "2021-04-26"
 template: "post"
 draft: false
-path: "/cheatsheet/21-04-25/"
-description: "새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 매일 공부한 내용을 기록하기보다는 아무때나 업데이트 할 생각입니다! 나중에는 카테고리 포스팅을 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요. 나중에는 카테고리 별로 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요. (최근에 작성한 내용들이 하단에 위치하도록 배열하였습니다)"
+path: "/cheatsheet/21-04-26/"
+description: "새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 매일 공부한 내용을 기록하기보다는 아무때나 비정기적으로 내용을 업데이트 하고 있습니다. 본 포스팅에서는 AI/ML과 관련된 기술스택 내용을 쌓고 있습니다. 최근에 작성한 내용들이 하단에 위치하도록 배열하였습니다."
 category: "Cheat Sheet"
 ---
 
-새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 매일 공부한 내용을 기록하기보다는 아무때나 업데이트 할 생각입니다! 나중에는 카테고리 포스팅을 나눌 수 있을 정도로 내용이 엄청 많아졌으면 좋겠네요 🤓
-
-> 최근에 작성한 내용들이 하단에 위치하도록 배열하였습니다.
-
-##### 🥧 Python
-
-*2021.04.25*
-
-[파이썬 도큐먼트](https://docs.python.org/3/reference/simple_stmts.html#future)의 `future` 문에 대한 설명을 읽었습니다. `future` 문은 미래 버전 파이썬의 기능들을 쉽게 마이그레이션(하나의 운영환경에서 다른 운영환경으로 옮기는 것)하기 위해 만들어졌습니다. import 뒤에 따라오는 new feature가 만약 파이썬 3의 기능이라고 하더라도 파이썬 2 버전에서 사용 가능하게 됩니다.
-
-```python
-from __future__ import print_function
-```
+새롭게 알게 된 지식 중에서 하나의 포스팅으로 만들기에는 부담스러운 내용들을 이곳에 모아둡니다. 매일 공부한 내용을 기록하기보다는 아무때나 비정기적으로 내용을 업데이트 하고 있습니다. 본 포스팅에서는 AI/ML과 관련된 기술스택 내용을 쌓고 있습니다. 최근에 작성한 내용들이 하단에 위치하도록 배열하였습니다.
 
 ##### 🧩 ML library
 
@@ -84,58 +72,6 @@ Moment[^1]는 물리학에서 특정 물리량과 distance의 곱을 통해 물�
 
 수학에서는 함수의 특징을 나타내기위해 moment라는 워딩을 사용합니다. 함수가 확률분포 형태인 경우 first moment는 확률 분포의 기댓값을 의미하며, 이를 moments about zero라고도 말합니다. 또한 second central moment로는 variance, third standardized moment는 skewness(비대칭도),  fourth standardized moment는 kurtosis(첨도, 뾰족한 정도) 등이 있습니다.
 
-##### 👨‍💻 CS
-
-*2021.05.24*
-
-[API](https://ko.wikipedia.org/wiki/API)(Application Programming Interfaces)[^2]는 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 말합니다. 외부와 새로운 연결들을 구축할 필요 없이 내부 기능들이 서로 잘 통합되어 있으며, API를 사용하면 해당 API의 자세한 작동원리와 구현방식은 알지 못해도, 제품/서비스간에 커뮤니케이션이 가능합니다.
-
-웹 API가 늘어나면서 메세지 전달을 위한 표준을 만들고자 SOAP(Simple Object Access Protocol)가 개발되었고, 최근 웹 API로는 [REST](https://ko.wikipedia.org/wiki/REST)ful API라는 *아키텍쳐 스타일*이 더 많이 사용되고 있습니다. REST는 규정된 프로토콜이 아니라 아키텍쳐 스타일이기 때문에 정해진 표준은 없습니다. 다만 Roy Fielding의 논문에 정의된 아래의 6가지 원칙을 기본으로 합니다. (자세한 설명은 위키피디아 문서[^3] 참고)
-
-- `인터페이스 일관성`, `무상태(Stateless)`, `캐시 처리 가능(Cacheable)`, `계층화(Layered System)`, `Code on demand (optional)`, `클라이언트/서버 구조`
-
-[URI](https://ko.wikipedia.org/wiki/%ED%86%B5%ED%95%A9_%EC%9E%90%EC%9B%90_%EC%8B%9D%EB%B3%84%EC%9E%90)는 Uniform Resource Identifier(통합 자원 식별자)[^4]의 약자로 특정 자원의 위치를 나타내주는 유일한 주소를 말합니다. RESTful API는 웹 상에서 사용되는 리소스를 HTTP URI로 표현하고, 리소스에 대한 작업들을 HTTP Method로 정의합니다.
-
-##### 🥧 Python
-
-*2021.05.24*
-
-파이썬의 객체는 그 속성이 mutable(값이 변한다)과 immutable로 구분됩니다. ([이곳](https://wikidocs.net/32277)과 [이곳](https://wikidocs.net/16038)을 참고하였습니다.)
-
-- Immutable : 숫자(number), 문자열(string), 튜플(tuple)
-- Mutable : 리스트(list), 딕셔너리(dictionary), NumPy의 배열(ndarray)
-
-Immutable 타입인 int에 대해 예를 들어 보겠습니다.
-
-```python
-x = 1
-y = x
-y += 3
-
-# results: x = 1, y = 4
-```
-
-두 번째 라인까지는 x와 y가 1이라는 동일한 ***객체***를 가리키고 있습니다. 세 번째에서 y의 값을 변경하는 순간 y는 4를, x는 1을 가리키게 됩니다.
-
-C/C++같은 언어 관점에서 보면 `y=x`가 실행하는 순간 값을 복사하는 것으로 이해할 수 있지만, 파이썬은 `y=x`가 호출되는 시점에는 동일한 객체를 가리키다가 immutable 타입인 y를 변경했을 때 변경됩니다.
-
-##### 🥧 Python
-
-*2021.08.05*
-
-최근에 알게된 유용한 Pycharm 단축키를 정리합니다.
-
-- 변수/함수가 사용된 위치 찾기: `Find Usages`, `Alt + F7` (`Option + F7`)
-- 변수/함수 선언부 찾기: `Ctrl + 클릭` (`Command + 클릭`)
-
-##### 👨‍💻 CS 
-
-*2021.08.25*
-
-FLOPS[^9] (FLoating point Operations Per Second)는 '1초 당 부동소수점 연산량'을 의미합니다. 컴퓨터의 성능을 나타낼 때 주로 사용됩니다. 슈퍼 컴퓨터의 성능을 나타낼 경우에는 테라플롭스 TFLOPS(1×1012 플롭스)가 주로 쓰이며 PFLOPS는 페타플롭스를 의미합니다.
-
-FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 약자인데, 이는 '부동소수점 연산량'을 의미합니다. FLOPs 같은 경우에는 딥러닝 커뮤니티에서 모델의 크기, 모델의 연산량을 나타내는데 사용됩니다.
-
 ##### 🧩 ML library
 
 *2021.09.20*
@@ -146,19 +82,11 @@ FLOPS와 FLOPs의 의미는 다릅니다. FLOPs는 FLoating point Operations의 
 - unsqueeze: 특정 위치에 1인 차원을 추가하는 함수힙니다.
 - view: 텐서의 shape을 변경해주는 함수입니다.
 
-##### 🥧 Python
-
-*2021.09.30*
-
-[Python 공식 문서](https://docs.python.org/ko/3/tutorial/modules.html)를 참고하여 모듈과 모듈성에 대해 정리합니다.
-
-프로그램의 유지/보수를 위해 여러 개의 파일로 나누고 싶거나, 함수를 여러 프로그램에 복사하지 않고도 사용하고 싶은 경우에, 파이썬은 정의들을 파일에 넣고 사용할 수 있는 방법을 제공합니다. 그런 파일을 모듈[^10]이라고 부릅니다. 즉, 다른 파이썬 프로그램에서 불러와 사용할 수 있도록 만든 또 다른 파이썬 파일을 모듈이라고 합니다.
-
 ##### 🤖 ML & DL
 
 *2021.11.13*
 
-위키피디아의 Signed Distance Function(SDF)[^12]에 대한 설명을 읽었습니다. 먼저, SDF는 다음과 같이 정의됩니다.
+위키피디아의 Signed Distance Function(SDF)[^4]에 대한 설명을 읽었습니다. 먼저, SDF는 다음과 같이 정의됩니다.
 
 - If $\Omega$ is a subset of a metric space and $b$ is the boundary of $\Omega$ the signed distance function $f$ is defined by
 
@@ -172,7 +100,7 @@ $$
 
 SDF는 어떤 boundary까지의 거리를 표현하는 함수입니다. 만약 어떤 점 $x$가 boundary 안 쪽에 위치하게 되면 function 값은 양수를 갖게 되며, 이 점이 boundary와 점점 가깝게 이동할 수록 function 값은 0에 가까워 지다가, boundary에 위치하는 경우에는 0이 됩니다. 반대로 $x$가 boundary 바깥 쪽에 위치하는 경우에는 function 값이 음수를 갖습니다.
 
-위에서는 SDF 함수의 식에 대해서 boundary 안 쪽인 경우에 양수라고 표기하였지만 boundary 안 쪽을 음수로 두어 반대로 사용하는 경우도 존재합니다. 아래 사진은 DeepSDF[^13]라는 논문에서 가져온 SDF의 예시이며 해당 논문에서는 boundary 안 쪽을 음수로 두었습니다.
+위에서는 SDF 함수의 식에 대해서 boundary 안 쪽인 경우에 양수라고 표기하였지만 boundary 안 쪽을 음수로 두어 반대로 사용하는 경우도 존재합니다. 아래 사진은 DeepSDF[^5]라는 논문에서 가져온 SDF의 예시이며 해당 논문에서는 boundary 안 쪽을 음수로 두었습니다.
 
 ![img](../img/21-11-14-2.png)
 
@@ -186,7 +114,7 @@ Implicit Neural Representation은 이미지나 3D 데이터를 pixel, voxel 단�
 
 지금까지는 아무 생각 없이 continuous distribution에서도 single point에 특정 확률이 존재한다고 생각했습니다. 예를 들어 $\mathcal N (0, 1)$에 대해서 point $x=1$이 관측될 확률이 특정 값으로 존재한다고 잘못 생각하고 있었습니다.
 
-[이 곳](https://www.itl.nist.gov/div898/handbook/eda/section3/eda361.htm)[^14]을 참고하니 continuous probability function은 continuous interval의 무한 points에 대해 정의되기 때문에 single point의 확률은 언제나 0이며, 따라서 continuous probability function에서 확률은 특정 interval에 대해서 측정하고 single point에 대해선 측정하지 않는다고 합니다.
+[이 곳](https://www.itl.nist.gov/div898/handbook/eda/section3/eda361.htm)[^6]을 참고하니 continuous probability function은 continuous interval의 무한 points에 대해 정의되기 때문에 single point의 확률은 언제나 0이며, 따라서 continuous probability function에서 확률은 특정 interval에 대해서 측정하고 single point에 대해선 측정하지 않는다고 합니다.
 
 어찌보면 간단한 것이었지만 자세히 생각해보지는 않아서 헷갈렸던 듯 합니다. 추가적으로, 그러면 어떻게 0이 모여 1이 되는 것 인지까지 궁금해지면서 수학을 당장 근본부터 다시 공부해야하나 싶었지만, 시간은 한정되어 있고 할 일은 많으니 길게 보고 천천히 공부하자는 결론으로 돌아왔습니다 🥲
 
@@ -205,7 +133,7 @@ Layer 단위로 freezing 하는 경우에는 `required_grad=False`를 사용해�
 
 *2022.01.15*
 
-[링크](https://omoindrot.github.io/triplet-loss)[^15]를 참고하여 triplet loss 관련 용어를 숙지하였습니다. 
+[링크](https://omoindrot.github.io/triplet-loss)[^7]를 참고하여 triplet loss 관련 용어를 숙지하였습니다. 
 
 - Easy triplets: $d(a, p) + \text{margin} < d(a, n)$
 - Hard triplets: $d(a,n) < d(a, p)$
@@ -224,16 +152,6 @@ torch.manual_seed(args.seed)
 torch.cuda.manual_seed_all(args.seed)
 ```
 
-##### 👨‍💻 CS 
-
-*2022.03.30*
-
-친구([@jiun0](https://github.com/jiun0), [@bwmelon97](https://github.com/bwmelon97))들을 통해 알게 된 네이밍 스타일에 대해서 간단히 기록합니다.
-
-- 네이밍 스타일 종류: `lowerCamelCase`, `UpperCamelCase (PascalCase)`, `snake_case`, `Train_Case`, `spinal_case`, `UPPER_SNAKE_CASE`, ...
-- 자바스크립트는 주로: 변수, 함수, 메서드는 lowerCamelCase / 클래스명은 PascalCase / 상수명은 UPPER_SNAKE_CASE
-- 파이썬(PEP8)은 주로: 변수, 함수는 snake_case / 클래스는 CamelCase
-
 ##### 🤖 ML & DL
 
 *2022.04.10*
@@ -244,19 +162,11 @@ torch.cuda.manual_seed_all(args.seed)
 
 아무래도 일반적으로 parameter가 0에 가까운 가우시안으로 초기화되기 때문에, residual connection을 사용한 경우에 초기 loss가 더 작아져 비교적 학습이 안정적인 것이 아닐까 싶습니다. (*정말로 그런 것인지 찾아보고 내용 추가하기*)
 
-##### 👨‍💻 CS 
-
-*2022.05.11*
-
-- 인터프리터[^18] 언어: Python과 같이, 프로그래밍 언어의 소스 코드를 바로 실행. 빌드 시간이 없지만, runtime에서는 컴파일 언어에 비해 속도가 느림
-- 컴파일 언어[^19]: C/C++과 같이, 특정 프로그래밍 언어로 쓰여 있는 문서를 다른 프로그래밍 언어(혹은 기계어)로 번역하여 실행. 빌드 시간이 소요되지만, runtime에서 빠르게 실행 가능. 원래의 문서를 소스 코드(혹은 원시 코드)라고 부르고, 출력된 문서를 목적 코드라고 부름. 목적 코드는 주로 하드웨어가 처리하기에 용이한 형태로 출력되지만 사람이 읽을 수 있는 문서 파일이나 그림 파일 등으로 옮기는 경우도 있음
-- 현대에 들어 많은 인터프리터가 JIT(just-in-time) 컴파일 등의 기술로 실시간 컴파일을 수행하므로, 컴파일러와 인터프리터 사이의 기술적 구분은 사라져 가는 추세. Java가 JIT 컴파일을 지원하기 때문에 컴파일 언어인 동시에 인터프리터 언어라고 할 수 있음.
-
 ##### 🤖 ML & DL
 
 *2022.05.16*
 
-Moore–Penrose inverse(=Pseudo inverse)[^20]에 대해서 정리합니다.
+Moore–Penrose inverse(=Pseudo inverse)[^8]에 대해서 정리합니다.
 
 - $A\mathrm  x =\mathrm b$의 형태의 linear system을 풀 때, $A$가 정방 행렬이 아니라면 아래의 두 가지 상황이 존재.
 
@@ -307,16 +217,6 @@ Upper bound, Lower bound, Supremum, Infimum에 대한 수학적 정의를 [이�
 - Upper bound (상계): 어떤 실수 $\beta$가 있을 때, $E$의 모든 원소 $x$에 대해서 $x < \beta$를 만족할 때, $\beta$를 $E$의 upper bound라고 함. 이 때 $E$는 ***bounded above***라고 함. (Lower bound도 동일한 방식으로 정의 됨)
 - Supremum, Least upper bound (상한): $\alpha = \sup E$ 이려면, $\alpha$가 $E$의 upper bound이며, $\gamma < \alpha$인 모든 $\gamma$가 $E$의 upper bound가 아니어야 함. 즉, **upper bound 중 least가 supermum**임
 - Infimum, Greatest lower bound (하한): $\alpha = \inf E$ 이려면, $\alpha$가 $E$의 lower bound이며,  $\beta > \alpha$인 모든 $\beta$가 $E$의 lower bound가 아니어야 함. 즉, **lower bound 중 greatest가 infimum**임
-
-##### 👨‍💻 CS 
-
-*2022.08.26*
-
-'머신러닝 시스템 디자인 패턴 (시부이 유우스케 지음)' 책에 등장하는 기술 스택에 대해 간단히 정리합니다.
-
-- ONNX[^21]: Intermediate Representation(IR)의 한 종류. ML model에 대해서 static graphs의 형태인 CNTK, Caffe2, Theano, TensorFlow와 dynamic graphs의 형태인 PyTorch, Chainer 등 다양한 프레임워크들이 존재하고, 이들은 각각 그들만의 특장점이 존재함. 따라서 개발 단계에 따라 적합한 도구를 선택하는 것이 요구되는데, 이 때 ONNX를 활용하면 서로 다른 환경에서 만들어진 모델을 하나의 공통된 형태로 변환하여 사용할 수 있음
-- Redis: Database 중 하나이며, Cassandra DB, DynamoDB와 같이 **key value DB engine** 중 하나임. in-memory 데이터 구조를 사용하여 매우 빠른 속도를 가지며, 캐싱을 위해 자주 사용됨
-- gRPC(Remote Procedure Calls): 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출 (RPC) 시스템. 여기서 RPC[^22]는 별도의 원격 제어를 위한 코딩 없이 다른 주소 공간에서 함수나 프로시저를 실행할 수 있게하는 프로세스 간 통신 기술을 말함. 
 
 ##### 🤖 ML & DL
 
@@ -371,7 +271,7 @@ ML 분야에서의 "Grokking"이라는 단어의 의미를 기록합니다.
 *2022.10.21*
 
 - The stability-plasticity dilemma: 새로운 지식을 얻기 위해 모델의 영구 변형이 요구되면서도, 동시에 기존의 지식을 잊어버리지도 않아야 한다는 점
-- Learning in a parallel and distributed system requires plasticity for the integration of new knowledge but also stability in order to prevent the forgetting of previous knowledge.[^23]
+- Learning in a parallel and distributed system requires plasticity for the integration of new knowledge but also stability in order to prevent the forgetting of previous knowledge.[^10]
 
 ##### 🤖 ML & DL
 
@@ -429,15 +329,6 @@ Object detection과 관련된 용어를 정리합니다. 먼저 문제 상황들
 - YOLO: 이미지를 NxN 그리드로 분할하여 예측 텐서(Prediction tensor) 생성
 - SSD: 테두리 상자 조정을 위해 픽셀이나 특징들을 재 추출하지 않음
 
-##### 👨‍💻 CS
-
-*2023.01.14*
-
-Hash Table에 대해 간단히 정리합니다.
-
-- Key를 hash function에 넣어 index를 얻고, 해당 index의 value에 접근하는 방식
-- Collision이 없는 경우에는 $O(1)$의 시간복잡도를 가지지만, collision이 존재하는 경우에는 해당 index 내에서 선형 탐색을 하기 때문에 최악의 경우 $O(N)$의 시간복잡도를 가짐
-
 ##### 🤖 ML & DL
 
 *2023.01.14*
@@ -459,17 +350,6 @@ CLIP에 대해 간단히 정리합니다
 1. Contastive pre-training: Batchsize 만큼의 이미지와 그에 해당하는 텍스트(문장)에 대해 이미지와 텍스트 임베딩을 각각 뽑아내고, 서로 짝이 맞는 임베딩간 유사도가 높아지도록 모델 학습
 2. Target dataset에 대해 class label 임베딩을 모두 뽑는데, 이 때 텍스트로는 'a photo of a {class labe}'를 입력으로 줌 (Prompt engineering!)
 3. 최종적으로, 테스트 이미지의 임베딩과 target dataset의 'a photo of a {class labe}' 임베딩 사이에 유사도가 제일 높은 것을 확인함
-
-##### 👨‍💻 CS
-
-*2023.02.24*
-
-Data lake와 Database catalog에 대해 간단히 정리합니다.
-
-- Data lake: 데이터를 원시 형태(raw data)로 저장하는 단일한 데이터 저장소. 구조화되거나 반구조화되거나 구조화되지 않은 대량의 데이터를 저장, 처리, 보호하기 위한 중앙 집중식 저장소
-- **Data lake, Data warehouse, Data mart의 차이점**: [링크](https://aws.amazon.com/ko/compare/the-difference-between-a-data-warehouse-data-lake-and-data-mart/)
-- Data lake에 대해 설명되어 있는 글들: [링크1](https://www.samsungsds.com/kr/insights/big_data_lake.html), [링크2](https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake), [링크3](https://cloud.google.com/learn/what-is-a-data-lake?hl=ko)
-- Database catalog[^27]: Catalog는 번역하면 '(상품자료의) 목록'을 의미함. 데이터베이스의 개체들에 대한 정의를 담고 있는 메타데이터들로 구성된 데이터베이스 내의 인스턴스
 
 ##### 🤖 ML & DL
 
@@ -501,36 +381,60 @@ Random thought of AI tech.
 - 최근에 나온 논문인 Segment Anything과 PIX2STRUCT를 읽으며 든 (이전부터 자주 했지만 더 강해진) 생각은, '학습을 위한 task를 어떻게 정의하는지', 그리고 '수많은 양의 training 데이터를 어떻게 모아야하는지' 고민하는 것이 powerful한 모델을 만드는 제일 중요한 기반이 될 것이라는 것
 - 관련하여 Video PreTraining (VPT)도 이런 생각을 기반으로 연구되었음
 
+##### 🧩 ML library
+
+*2023.05.05*
+
+Lightning에서 Distributed Data Parallel 사용할 때 참고할 점에 대해 기록합니다.
+
+- 참고 링크:  https://github.com/Lightning-AI/lightning/discussions/6501#discussioncomment-553152
+- `sync_dist=True` 옵션을 사용하면 모든 process에 대해 sync 맞춤. 기본 옵션은 reduced mean
+- 다만, torchmetrics과 관련해서는 own sync code가 있기 때문에 `self.log(...)`의 `sync_dist`, `sync_dist_op`, `sync_dist_group`, `reduce_fx`, `tbptt_reduce_fx` flags가 metric logging에는 전혀 영향을 주지 않음
+- Metric sync는 `metric.compute()` 함수 호출시 동작함
+
+##### 🤖 ML & DL
+
+*2023.05.05*
+
+Reinforcement Learning from Human Feedback (RLHF)에 대해 기록합니다
+
+- 영상 링크: https://www.youtube.com/watch?v=2MBJOuVq380
+- 논문 링크: https://arxiv.org/pdf/2203.02155.pdf
+- RL을 이용하여 human feedback으로부터 model을 학습시키는 방법. 다만 2~3 단계를 통해 실제로 왜 학습이 되는지에 대해 제대로 이해하지 못해서 다시 공부할 필요 있음.
+
+1. Pretraining a language model (LM)
+2. Gathering data and training a reward model
+3. Fine-tuning the LM with reinforcement learning
+
+##### 🤖 ML & DL
+
+*2023.05.05*
+
+VQ-VAE에 대해 기록합니다.
+
+- AutoEncoder: latent variable $z$를 잘 추출하기 위한 구조
+- VAE: $z$ encoding의 distribution이 prior로 주어짐
+- VQ-VAE
+  - AutoEncoder와 같은 구조이긴 하나, $z$ 기반으로 codebook(K개의 embeddings) 내 가장 가까운 embedding을 가져와서 decoder input으로 사용함. codebook을 거쳐 가져오기 때문에 vector quantization임 (codebook에 대한 설명은 [이 블로그 포스팅](https://zerojsh00.github.io/posts/Vector-Quantization/) 참고)
+  - Posterior와 prior가 categorical distribution임
+  - 한가지 의문: K는 image 샘플 수와 같은지가 궁금함
+  - Forward pass: 위에서 말한대로 codebook에서 유사한 embedding을 가져와서 decoder에 feed forward
+  - Backward pass: decoder는 그대로 backward propagation 수행하는데, codebook에서 embedding 고르는 부분은 argmin에 의해 backprop 될 수 없기 때문에, decoder의 gradient를 encoder 끝단에 그대로 가져옴
+  - Loss: (encoder-decoder에 대한 reconstruction error) + (codebook embedding이 encoder output과 유사해지도록 돕는 l2 loss) + (encoder output이 codebook embedding과 유사해지도록 돕는 l2 loss) 
+
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
-[^2]: API. (2021년 3월 2일). 위키백과, . 04:58, 2021년 5월 24일에 확인 https://ko.wikipedia.org/w/index.php?title=API&oldid=28891731 
-[^3]: REST. (2021년 4월 28일). 위키백과, . 04:57, 2021년 5월 24일에 확인 https://ko.wikipedia.org/w/index.php?title=REST&oldid=29220143
-[^4]: 통합 자원 식별자. (2021년 3월 14일). 위키백과, . 05:02, 2021년 5월 24일에 확인 https://ko.wikipedia.org/w/index.php?title=%ED%86%B5%ED%95%A9%EC%9E%90%EC%9B%90%EC%8B%9D%EB%B3%84%EC%9E%90&oldid=28963926
-[^ 5]: mutable vs immutable. (2019년 5월 24일). 공학자를 위한 Python, WikiDocs. 2021년 5월 24일에 확인 https://wikidocs.net/32277
-[^ 6]: 얕은 복사(shallow copy)와 깊은 복사(deep copy). (2018년 3월 13일). 파이썬 - 기본을 갈고 닦자!, WikiDocs. 2021년 5월 24일에 확인 https://wikidocs.net/16038
-[^7]: JinWon Lee - PR-317: MLP-Mixer: An all-MLP Architecture for Vision. https://www.youtube.com/watch?v=KQmZlxdnnuY
-[^8]: JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network
+[^2]: JinWon Lee - PR-317: MLP-Mixer: An all-MLP Architecture for Vision. https://www.youtube.com/watch?v=KQmZlxdnnuY
+[^3]: JoonYoung Yi - Slideshare, Dynamically Expandable Network (DEN). https://www.slideshare.net/ssuser62b35f/180808-dynamically-expandable-network
 
-[^9]: 플롭스. (2021년 2월 3일). *위키백과,* . 13:21, 2021년 8월 25일에 확인 [https://ko.wikipedia.org/w/index.php?title=%ED%94%8C%EB%A1%AD%EC%8A%A4&oldid=28682165](https://ko.wikipedia.org/w/index.php?title=플롭스&oldid=28682165)
-[^10]: 6. 모듈. (2021년 9월 30일). Python 3.9.7 문서, https://docs.python.org/ko/3/tutorial/modules.html
-[^11]: 모듈성 (프로그래밍). (2019년 4월 16일). 위키백과, . 15:08, 2021년 9월 30일에 확인 https://ko.wikipedia.org/w/index.php?title=%EB%AA%A8%EB%93%88%EC%84%B1_(%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)&oldid=24041546
-[^12]: Wikipedia contributors. (2021, August 1). Signed distance function. In *Wikipedia, The Free Encyclopedia*. Retrieved 00:41, November 14, 2021, from https://en.wikipedia.org/w/index.php?title=Signed_distance_function&oldid=1036639454
-[^13]: Park, Jeong Joon, et al. "Deepsdf: Learning continuous signed distance functions for shape representation." *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition*. 2019.
-[^14]: 1.3.6.1.What is a Probability Distribution., *NIST/SEMATECH e-Handbook of Statistical Methods*, http://www.itl.nist.gov/div898/handbook/, December 2, 2021.
+[^4]: Wikipedia contributors. (2021, August 1). Signed distance function. In *Wikipedia, The Free Encyclopedia*. Retrieved 00:41, November 14, 2021, from https://en.wikipedia.org/w/index.php?title=Signed_distance_function&oldid=1036639454
+[^5]: Park, Jeong Joon, et al. "Deepsdf: Learning continuous signed distance functions for shape representation." *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition*. 2019.
+[^6]: 1.3.6.1.What is a Probability Distribution., *NIST/SEMATECH e-Handbook of Statistical Methods*, http://www.itl.nist.gov/div898/handbook/, December 2, 2021.
 
-[^ 15]: Olivier Moindrot. "Triplet Loss and Online Triplet Mining in TensorFlow". https://omoindrot.github.io/triplet-loss, Mar 19, 2018.
+[^ 7]: Olivier Moindrot. "Triplet Loss and Online Triplet Mining in TensorFlow". https://omoindrot.github.io/triplet-loss, Mar 19, 2018.
 
-[^ 16]: Wikipedia contributors. (2021, December 22). Web query. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:04, February 6, 2022, from https://en.wikipedia.org/w/index.php?title=Web_query&oldid=1061542579
-[^ 17]: Christina Kopecky. "What is a database query? SQL and NoSQL queries explained". https://www.educative.io/blog/what-is-database-query-sql-nosql#what-is, Aug 31, 2020.
-[^18]: 인터프리터. (2022년 3월 3일). *위키백과,* . 14:47, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0&oldid=32006110](https://ko.wikipedia.org/w/index.php?title=인터프리터&oldid=32006110) 에서 찾아볼 수 있음.
-[^19]: 컴파일러. (2022년 3월 15일). *위키백과,* . 15:23, 2022년 5월 10일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC&oldid=32228964](https://ko.wikipedia.org/w/index.php?title=컴파일러&oldid=32228964) 에서 찾아볼 수 있음.
-
-[^20]: Wikipedia contributors. (2022, April 27). Moore–Penrose inverse. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:08, May 16, 2022, from [https://en.wikipedia.org/w/index.php?title=Moore%E2%80%93Penrose_inverse&oldid=1085006448](https://en.wikipedia.org/w/index.php?title=Moore–Penrose_inverse&oldid=1085006448)
-[^21]: https://github.com/onnx/onnx/blob/main/docs/Overview.md
-[^22]: 원격 프로시저 호출. (2022년 2월 26일). *위키백과,* . 11:52, 2022년 8월 26일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EC%9B%90%EA%B2%A9_%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80_%ED%98%B8%EC%B6%9C&oldid=31906127](https://ko.wikipedia.org/w/index.php?title=원격_프로시저_호출&oldid=31906127) 에서 찾아볼 수 있음.
-[^23]: Mermillod, Martial, Aurélia Bugaiska, and Patrick Bonin. "The stability-plasticity dilemma: Investigating the continuum from catastrophic forgetting to age-limited learning effects." *Frontiers in psychology* 4 (2013): 504.
-[^24]: Samsung SDS, 박민영, "빅데이터로 가치를 만드는 호수 ‘데이터 레이크’ 이야기", https://www.samsungsds.com/kr/insights/big_data_lake.html
-[^25]: Red hat, "데이터 레이크란 무엇일까요?", https://www.redhat.com/ko/topics/data-storage/what-is-a-data-lake
-[^26]: Google Cloud, "데이터 레이크란?", https://cloud.google.com/learn/what-is-a-data-lake?hl=ko
-[^27]: 데이터베이스 카탈로그. (2022년 2월 28일). *위키백과,* . 07:59, 2023년 2월 24일에 확인 [https://ko.wikipedia.org/w/index.php?title=%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%B9%B4%ED%83%88%EB%A1%9C%EA%B7%B8&oldid=31941199](https://ko.wikipedia.org/w/index.php?title=데이터베이스_카탈로그&oldid=31941199) 에서 찾아볼 수 있음.
+[^8]: Wikipedia contributors. (2022, April 27). Moore–Penrose inverse. In *Wikipedia, The Free Encyclopedia*. Retrieved 06:08, May 16, 2022, from [https://en.wikipedia.org/w/index.php?title=Moore%E2%80%93Penrose_inverse&oldid=1085006448](https://en.wikipedia.org/w/index.php?title=Moore–Penrose_inverse&oldid=1085006448)
+[^9]: https://github.com/onnx/onnx/blob/main/docs/Overview.md
+[^10]: Mermillod, Martial, Aurélia Bugaiska, and Patrick Bonin. "The stability-plasticity dilemma: Investigating the continuum from catastrophic forgetting to age-limited learning effects." *Frontiers in psychology* 4 (2013): 504.
