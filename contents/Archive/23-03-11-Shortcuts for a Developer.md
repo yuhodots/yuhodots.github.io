@@ -42,6 +42,19 @@ category: "Cheat Sheet"
 - `atq`: 예약되어 있는 작업 목록 확인
 - `atrm {task_num}`: 예약된 작업을 제거
 
+##### CPU Limit
+
+- `taskset -c 0-3 python script.py`: CPU cores 0~3만을 사용
+- `cpulimit -p "$(pgrep -f ${file_name})" -l 50`: file_name 실행하기 위해 CPU 50%만 사용
+
+### Network
+
+##### SSH Tunneling
+
+- `ssh -L local_port:remote_server:remote_port remote_username@remote_server`
+- ssh -L을 통한 터널링을 통해, local에서 remote server에 실행중인 서비스에 요청을 보내고 응답을 받을 수 있음
+- 예를 들어, (remote server에 대해 ssh_config에 server1으로 설정해두었다고 하고) server1의 host 0.0.0.0(모든 접근 허용), port 5000에 특정 API를 띄워 두었다고 가정. 그러면 `ssh -L 8080:0.0.0.0:5000 server1`으로 터널링 후, local의 웹 브라우저에서 http://127.0.0.1:8080/ 접속 가능하며 요청 보내기도 가능
+
 ### tmux
 
 - [Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com)
@@ -168,10 +181,7 @@ Sphinx = "^5.1.1"
 my-script = "my_package:main"
 ```
 
-### YAML
-
-- TBU
-
 ### Etc.
 
 - SQL/NoSQL GUI tools: Beekeeper, MongoDB Compass , DBgate, NoSQLBooster...
+- YAML: TBU

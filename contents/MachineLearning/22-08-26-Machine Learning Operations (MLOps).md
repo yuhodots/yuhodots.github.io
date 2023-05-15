@@ -110,9 +110,14 @@ thumbnail: "mlops"
 - `docker images [OPTIONS] [REPOSITORY[:TAG]]`: 이미지 목록 확인
 - `docker rmi [OPTIONS] IMAGE [IMAGE...]`: 이미지 삭제
 
-##### Options
+##### Run options
 
-- `--volume, -v`: 컨테이너 내부 디렉토리를 로컬 컴퓨터의 디렉토리에 마운트
+- `docker run --volume, -v`: 컨테이너 내부 디렉토리를 로컬 컴퓨터의 디렉토리에 마운트
+- `docker run -m 512m ${image}`: memory를 512m로 제한
+- `docker run -m 512m --memory-reservation=256m ${image}`: 메모리 부족시 활성화(예약)
+- `docker run --cpuset-cpus="0,1" ${image}`: 1, 2번째 CPU 사용
+- `docker run --cpus=0.2 ${image}`: CPU의 20%만 사용
+- `docker run --cpus=2 --cpu-shares=2000 ${image}`: CPU 할당 우선순위 결정. 1024가 default
 
 ##### Dockerfile
 
@@ -163,6 +168,20 @@ volumes:
 - `docker-compose start [SERVICE...]`: stop 되어있던 서비스 시작
 - `docker-compose stop [options] [SERVICE...]`: 서비스 stop
 - `docker-compose ps`: 현재 실행중인 서비스 상태 확인
+
+### FastAPI
+
+##### Run Options
+
+```
+uvicorn main:app --reload --host 0.0.0.0 --port 5000
+```
+
+- `main`: main.py 파일 의미
+- `app`: main.py 파일 안의 `app=FastAPI()`
+- `--reload`: 코드 변경 시 저장 후 재시작
+- `--host`: 모든 접근 허용은 0.0.0.0
+- `--port`: 포트 설정
 
 ### MLflow
 

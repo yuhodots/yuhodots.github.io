@@ -420,7 +420,33 @@ VQ-VAE에 대해 기록합니다.
   - 한가지 의문: K는 image 샘플 수와 같은지가 궁금함
   - Forward pass: 위에서 말한대로 codebook에서 유사한 embedding을 가져와서 decoder에 feed forward
   - Backward pass: decoder는 그대로 backward propagation 수행하는데, codebook에서 embedding 고르는 부분은 argmin에 의해 backprop 될 수 없기 때문에, decoder의 gradient를 encoder 끝단에 그대로 가져옴
-  - Loss: (encoder-decoder에 대한 reconstruction error) + (codebook embedding이 encoder output과 유사해지도록 돕는 l2 loss) + (encoder output이 codebook embedding과 유사해지도록 돕는 l2 loss) 
+  - Loss: (encoder-decoder에 대한 reconstruction error) + (codebook embedding이 encoder output과 유사해지도록 돕는 l2 loss) + (encoder output이 codebook embedding과 유사해지도록 돕는 l2 loss)
+
+##### 🤖 ML & DL
+
+*2023.05.12*
+
+Meta에서 5월 9일에 발표한 ImageBind에 대해서 기록합니다.
+
+- 6 mocailities(Image/Video, Text, Heatmap, Depth, Audio, IMU)로 학습된 모델이 one modaility specialist model의 성능을 넘김
+- 특히, 이 뿐만 아니라 여러 modality 기반으로 다른 modality로의 전이, 예를 들어 audio 기반으로 image 생성 등의 multi-modality 연구로 확장 가능
+- Cross-modal retrieval, embedding-space arithmetic, audio-to-image generation 등 가능
+- 최근 Meta의 open source AI tool들의 집합체임. DINO v2, SAM 등을 포함하고 있음
+- For the four additional modalities (audio, depth, thermal, and IMU readings), ImageBind use naturally paired self-supervised data. 즉, image 혹은 video를 다른 modaility와 pair 시킴으로써 6개의 modality를 모두 combine 할 수 있다는 것을 ImageBind가 보임
+
+##### 🤖 ML & DL
+
+*2023.05.15*
+
+ViT와 CNN에 대한 비교: [How Do Vision Transformers Work?](https://arxiv.org/abs/2202.06709)
+
+- ViT 즉, Multi-head Self Attention(MSA)은 shape(structure) biased = low-pass filter
+- ResNet 즉, ConvNet은 texture biased = high-pass filter
+
+CL ViT와 MIM ViT에 대한 비교: [What Do Self-Supervised Vision Transformers Learn?](https://arxiv.org/abs/2305.00729)
+
+- CL: self-attentions collapse into homogeneity 발생 / utilizes the low-frequency signals / a crucial role in the later layers
+- MIM: utilizes the high-frequency signals / focuses on the early layers
 
 
 ### References
