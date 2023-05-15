@@ -446,9 +446,31 @@ V \Sigma ^{-1} U^\top U \Sigma V^\top \mathrm  x =V \Sigma ^{-1} U^\top \mathrm 
 <li>한가지 의문: K는 image 샘플 수와 같은지가 궁금함</li>
 <li>Forward pass: 위에서 말한대로 codebook에서 유사한 embedding을 가져와서 decoder에 feed forward</li>
 <li>Backward pass: decoder는 그대로 backward propagation 수행하는데, codebook에서 embedding 고르는 부분은 argmin에 의해 backprop 될 수 없기 때문에, decoder의 gradient를 encoder 끝단에 그대로 가져옴</li>
-<li>Loss: (encoder-decoder에 대한 reconstruction error) + (codebook embedding이 encoder output과 유사해지도록 돕는 l2 loss) + (encoder output이 codebook embedding과 유사해지도록 돕는 l2 loss) </li>
+<li>Loss: (encoder-decoder에 대한 reconstruction error) + (codebook embedding이 encoder output과 유사해지도록 돕는 l2 loss) + (encoder output이 codebook embedding과 유사해지도록 돕는 l2 loss)</li>
 </ul>
 </li>
+</ul>
+<h5 id="-ml--dl-24" style="position:relative;"><a href="#-ml--dl-24" aria-label=" ml  dl 24 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🤖 ML &#x26; DL</h5>
+<p><em>2023.05.12</em></p>
+<p>Meta에서 5월 9일에 발표한 ImageBind에 대해서 기록합니다.</p>
+<ul>
+<li>6 mocailities(Image/Video, Text, Heatmap, Depth, Audio, IMU)로 학습된 모델이 one modaility specialist model의 성능을 넘김</li>
+<li>특히, 이 뿐만 아니라 여러 modality 기반으로 다른 modality로의 전이, 예를 들어 audio 기반으로 image 생성 등의 multi-modality 연구로 확장 가능</li>
+<li>Cross-modal retrieval, embedding-space arithmetic, audio-to-image generation 등 가능</li>
+<li>최근 Meta의 open source AI tool들의 집합체임. DINO v2, SAM 등을 포함하고 있음</li>
+<li>For the four additional modalities (audio, depth, thermal, and IMU readings), ImageBind use naturally paired self-supervised data. 즉, image 혹은 video를 다른 modaility와 pair 시킴으로써 6개의 modality를 모두 combine 할 수 있다는 것을 ImageBind가 보임</li>
+</ul>
+<h5 id="-ml--dl-25" style="position:relative;"><a href="#-ml--dl-25" aria-label=" ml  dl 25 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>🤖 ML &#x26; DL</h5>
+<p><em>2023.05.15</em></p>
+<p>ViT와 CNN에 대한 비교: <a href="https://arxiv.org/abs/2202.06709">How Do Vision Transformers Work?</a></p>
+<ul>
+<li>ViT 즉, Multi-head Self Attention(MSA)은 shape(structure) biased = low-pass filter</li>
+<li>ResNet 즉, ConvNet은 texture biased = high-pass filter</li>
+</ul>
+<p>CL ViT와 MIM ViT에 대한 비교: <a href="https://arxiv.org/abs/2305.00729">What Do Self-Supervised Vision Transformers Learn?</a></p>
+<ul>
+<li>CL: self-attentions collapse into homogeneity 발생 / utilizes the low-frequency signals / a crucial role in the later layers</li>
+<li>MIM: utilizes the high-frequency signals / focuses on the early layers</li>
 </ul>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <div class="footnotes">
