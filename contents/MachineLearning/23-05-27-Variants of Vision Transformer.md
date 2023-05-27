@@ -33,6 +33,8 @@ Hugo Touvron, et al., "Training data-efficient image transformers & distillation
 
 ![img](../img/Deit.png)
 
+<center><p><i>Taken from Hugo Touvron, et al.</i></p></center>
+
 - ViT는 CNN에 비해 inductive bias가 적은 구조를 가지지만 그에 따라 매우 많은 양의 학습 데이터를 요구함
 - 따라서 DeiT 논문에서는 ViT 구조는 그대로 유지하고, transformer에 적합한 teacher-student 방식인 distillation token을 추가하여 빠른 수렴 가능하게 했음
 - Distillation token: ViT에서 CLS token과 더불어 distillation token이라는 것을 추가하고, teacher model의 output을 distillation token의 target으로 사용
