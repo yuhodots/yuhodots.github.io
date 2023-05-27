@@ -446,8 +446,39 @@ ViT와 CNN에 대한 비교: [How Do Vision Transformers Work?](https://arxiv.or
 CL ViT와 MIM ViT에 대한 비교: [What Do Self-Supervised Vision Transformers Learn?](https://arxiv.org/abs/2305.00729)
 
 - CL: self-attentions collapse into homogeneity 발생 / utilizes the low-frequency signals / a crucial role in the later layers
-- MIM: utilizes the high-frequency signals / focuses on the early layers
+- MIM: utilizes high-frequency signals / focuses on the early layers
 
+##### 🤖 ML & DL
+
+*2023.05.20*
+
+- Hyper-parameter tuning 고민: shell script 짜서 미리 정한 rule에 따라 실험 옵션 여러 개 돌리고, wandb runs에서 원하는 options들만 띄워서 표 형태로 보는게 제일 편리한듯
+
+##### 🤖 ML & DL
+
+*2023.05.20*
+
+서비스 가능한 AI는 어떤 기준으로 결정되는지에 대한 질문에 대해 ChatGPT가 답변한 내용. 충분히 고민해볼만한 내용인 것 같아 기록함
+
+1. Define requirements: Clearly identify the specific tasks or problems the AI model needs to address. Determine the desired input-output behavior, performance metrics, scalability, and any other relevant criteria.
+2. Training and validation data: The data should cover various scenarios that the AI model will encounter in real-world usage.
+3. Model selection: Consider factors like the model's architecture, complexity, size, computational requirements, and availability of resources.
+4. Model evaluation: Common metrics include accuracy, precision, recall, F1 score, or domain-specific metrics relevant to the task.
+5. Testing and validation: Deploy the AI model in a controlled or limited production environment. Validate its performance against real-world data or simulated scenarios, including edge cases and corner cases.
+6. Iterative improvement: Continuously monitor and evaluate the AI model's performance in a live or simulated environment. Collect user feedback and address any issues or limitations through iterative updates, such as fine-tuning, retraining, or architecture modifications.
+7. Ethical considerations: Evaluate the AI model's compliance with ethical guidelines, privacy requirements, and legal regulations.
+8. Scalability and resource requirements: Assess the AI model's scalability and resource demands, such as computing power, memory, or network bandwidth.
+9. Robustness and reliability: Test the AI model's robustness by subjecting it to adversarial attacks, noisy or incomplete data, or other challenging conditions. Assess its reliability by measuring its performance over an extended period, considering factors like model drift or degradation.
+10. Cost considerations: Evaluate the total cost of deploying and maintaining the AI model, including infrastructure, licensing, data storage, and ongoing support. Consider the model's value proposition and its impact on productivity, efficiency, or revenue generation.
+
+##### 🤖 ML & DL
+
+DINO와 DINO v2에 대해서 간단히 정리합니다.
+
+- Self-supervised ViT의 특징: scene layout 경계 파악 잘하며, feature만 가지고 k-NN classifier 만들어도 성능 좋음
+- 다만 k-NN classifier 성능 위해서는, momentum encoder, multi-crop augmentation, small patches가 요구되는 것 발견
+- DINO: momentum encoder 기반 BYOL 방식 차용. 여기에 loss 식에 조금 차이 가지고, teacher-student 구조 동일함
+- DINO v2: Image level로는 서로 다른 이미지 구분, patch level 같은 이미지 내 서로 다른 patch 구분. 이 외에도 많은 양의 ‘퀄리티 좋은’ 데이터와 빠르고 효율적인 학습 방법 제안
 
 ### References
 
