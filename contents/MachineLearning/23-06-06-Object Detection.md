@@ -1,9 +1,9 @@
 ---
 title: "Object Detection"
-date: "23-06-03"
+date: "23-06-06"
 template: "post"
 draft: true
-path: "/deeplearning/23-06-03/"
+path: "/deeplearning/23-06-06/"
 description: "Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 제일 유명한 알고리즘을 위주로 간단히 정리하였습니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
