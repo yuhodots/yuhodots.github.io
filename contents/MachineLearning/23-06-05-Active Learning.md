@@ -1,10 +1,10 @@
 ---
-title: "Active Learning"
+title: "Learning with not Enough Data: Active Learning"
 date: "2023-06-05"
 template: "post"
-draft: true
+draft: false
 path: "/deeplearning/23-06-05/"
-description: "Unlabeled data pool에서 가치있는 데이터를 발굴해내기 위한 방법인 Active Learning에 대해 정리합니다. 원작자인 Lillian weng 님의 허락을 받고 블로그 글의 일부를 번역하였으며, 자세한 내용은 원문 링크를 참고하시면 좋습니다: https://lilianweng.github.io/posts/2022-02-20-active-learning"
+description: "Unlabeled data pool에서 가치있는 데이터를 발굴해내기 위한 방법인 Active Learning에 대해 정리합니다. 원작자인 Lillian weng 님의 허락을 받고 블로그 글의 일부를 번역하였으며, 자세한 내용은 원문 링크를 참고하시면 좋습니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
