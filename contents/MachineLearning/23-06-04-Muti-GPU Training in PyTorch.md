@@ -23,7 +23,6 @@ https://pytorch-lightning.readthedocs.io/en/0.9.0/multi_gpu.html
 ### Data Parallel (DP)
 
 - `DataParallel`는 single-process multi-thread parallelism을 수행하기에 (python GIL 때문에) DDP보다 느리고, not recommended
-- 
 - $k$ GPU에 batch를 split. 즉, 32 batch와 GPU 2개를 가지고 있다면 각 GPU가 16개씩 프로세싱하고, root node가 결과를 aggregate
 
 ### Distributed Data Parallel (DDP)
