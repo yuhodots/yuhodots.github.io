@@ -1,6 +1,6 @@
 ---
 title: "Object Detection"
-date: "23-06-06"
+date: "2023-06-06"
 template: "post"
 draft: true
 path: "/deeplearning/23-06-06/"

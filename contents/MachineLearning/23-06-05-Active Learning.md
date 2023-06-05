@@ -1,6 +1,6 @@
 ---
 title: "Active Learning"
-date: "23-06-05"
+date: "2023-06-05"
 template: "post"
 draft: true
 path: "/deeplearning/23-06-05/"

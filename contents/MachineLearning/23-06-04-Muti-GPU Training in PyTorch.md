@@ -1,6 +1,6 @@
 ---
 title: "Multi-GPU Training in PyTorch"
-date: "23-06-04"
+date: "2023-06-04"
 template: "post"
 draft: true
 path: "/deeplearning/23-06-04/"
