@@ -4,12 +4,12 @@ date: "2023-06-05"
 template: "post"
 draft: false
 path: "/deeplearning/23-06-05/"
-description: "Unlabeled data pool에서 가치있는 데이터를 발굴해내기 위한 방법인 Active Learning에 대해 정리합니다. 원작자인 Lillian weng 님의 허락을 받고 블로그 글의 일부를 번역하였으며, 자세한 내용은 원문 링크를 참고하시면 좋습니다."
+description: "Unlabeled data pool에서 가치있는 데이터를 발굴해내기 위한 방법인 Active Learning에 대해 정리합니다. 원작자인 Lilian weng 님의 허락을 받고 블로그 글의 일부를 번역하였으며, 자세한 내용은 원문 링크를 참고하시면 좋습니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
 
-> Unlabeled data pool에서 가치있는 데이터를 발굴해내기 위한 방법인 Active Learning에 대해 정리합니다. 원작자인 Lillian weng 님의 허락을 받고 블로그 글의 일부를 번역하였으며, 자세한 내용은 원문 링크를 참고하시면 좋습니다: https://lilianweng.github.io/posts/2022-02-20-active-learning
+> Unlabeled data pool에서 가치있는 데이터를 발굴해내기 위한 방법인 Active Learning에 대해 정리합니다. 원작자인 Lilian weng 님의 허락을 받고 블로그 글의 일부를 번역하였으며, 자세한 내용은 원문 링크를 참고하시면 좋습니다: https://lilianweng.github.io/posts/2022-02-20-active-learning
 
 ### Preliminary
 
@@ -61,13 +61,13 @@ Expected model change는 샘플이 모델 학습에 가져올 영향력을 의�
 ##### Uncertainty in Parameter Space
 
 - Bayes-by-backprop ([Blundell et al. 2015](https://arxiv.org/abs/1505.05424)): 뉴럴넷의 weight uncertainty를 직접적으로 측정하는 방법으로, weight $\mathbf w$를 확률 분포로 모델링함. 알고리즘의 순서는 아래와 같으며 variational parameters $\theta = \{\mu_i , \rho_i\}^d_{i=1}$를 업데이트하기 위한 KLD loss 식 유도 과정은 원문 글 참고
+  1. Sample $\epsilon \sim \mathcal{N}(0, I)$
+  1. Let $\mathbf{w} = \mu + \log(1+ \exp(\rho)) \circ \epsilon$
+  1. Let $\theta = (\mu, \rho)$
+  1. Let $f(\mathbf{w}, \theta) = \log q(\mathbf{w} \vert \theta) - \log p(\mathbf{w})p(\mathcal{D}\vert \mathbf{w})$
+  1. Calculate the gradient of $f(\mathbf{w}, \theta)$ w.r.t. to $μ$ and $ρ$ and then update $θ$
+  1. Uncertainty is measured by sampling different model weights during inference
 
-1. Sample $\epsilon \sim \mathcal{N}(0, I)$
-2. Let $\mathbf{w} = \mu + \log(1+ \exp(\rho)) \circ \epsilon$
-3. Let $\theta = (\mu, \rho)$
-4. Let $f(\mathbf{w}, \theta) = \log q(\mathbf{w} \vert \theta) - \log p(\mathbf{w})p(\mathcal{D}\vert \mathbf{w})$
-5. Calculate the gradient of $f(\mathbf{w}, \theta)$ w.r.t. to $μ$ and $ρ$ and then update $θ$
-6. Uncertainty is measured by sampling different model weights during inference
 
 ##### Other Methods
 
