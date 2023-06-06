@@ -1,33 +1,30 @@
 ---
-title: "Object Detection"
+title: "An Overview of Object Detection"
 date: "2023-06-06"
 template: "post"
 draft: true
 path: "/deeplearning/23-06-06/"
-description: "Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 제일 유명한 알고리즘을 위주로 간단히 정리하였습니다."
+description: "Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 유명한 알고리즘들을 위주로 간단히 정리하였습니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
 
-> Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 제일 유명한 알고리즘을 위주로 간단히 정리하였습니다.
+> Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 유명한 알고리즘들을 위주로 간단히 정리하였습니다.
 
-### TODOs
-
-아래 세개 참고하기
-
-1. https://www.youtube.com/watch?v=jqNCdjOB15s
-2. https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/
-3. https://lilianweng.github.io/posts/2018-12-27-object-recognition-part-4/
-
-### Preliminary
+### Introduction
 
 - Localization: Object의 위치를 bouding box 형태로 알아내는 task
 - Object detection: 이미지 내에 다수의 object가 존재할 때, 각각의 class를 맞추고 localization 하는 task
 - RoI: Region of Interest
-- Region proposal: 물체가 있을 것 같은 위치
+- Region proposal: Object가 있을 것 같은 영역을 제안
   - Sliding window: 다양한 크기의 window를 이미지 상에서 sliding 하면서 해당 위치에 물체가 존재하는지 확인하는 방법
   - Selective search: 인접한 region 사이의 유사도를 측정하고, 점점 큰 영역으로 통합하는 방법
-- Intersection of Union (IoU): 예측 bbox와 정답 bbox가 겹치는 비율
+- Localization layer: Bbox position를 제안하는 layer이고 일반적으로 regressor 활용
+- Classification layer: Object의 class를 제안하는 layer
+- RoI pooling: 각 RoI 영역에 대해 pooling 방식 (e.g., max-pooling) 적용해서 NxN matrix 추출
+  - mask R-CNN에서는 RoI pooling 개선시킨 RoIAlign layer 활용함
+
+- IoU (Intersection of Union): 예측 bbox와 정답 bbox가 겹치는 비율
 
 $$
 \text{IoU} = \frac{\text{두 bbox의 교집합}}{\text{두 bbox의 합집합}}
@@ -95,7 +92,7 @@ def non_maximum_suppression(bounding_boxes, confidence_scores, overlap_threshold
 
 ##### Evaluation Metric
 
-- Average Precision (AP@0.5): IoU 0.5 이상을 true positive로 인식
+- Average Precision (AP .5): IoU 0.5 이상을 true positive로 인식
 - 11점 보간법과 모든점 보간법 계산법
 
 $$
@@ -112,9 +109,9 @@ $$
 \end{aligned}
 $$
 
-- AP@[.5:.05:.95]: AP@0.5, AP@0.55, ..., AP@0.95의 값을 모두 측정하여 평균. 모든점 보간법을 이용해서 AP를 구한 값의 평균, 즉, Precision Recall Curve의 아래 면적을 의미
+- AP[.5:.05:.95]: AP .5, AP .55, ..., AP .95의 값을 모두 측정하여 평균. 모든점 보간법을 이용해서 AP를 구한 값의 평균, 즉, Precision-Recall Curve의 아래 면적을 의미
 
-- mean Average Precision: 기본적으로 precision은 하나의 object에 대한 검출을 의미하므로, mAP는 각각의 class에 대해 AP(AP@[.5:.05:.95])를 계산하고 평균을 산출했다는 의미
+- mean Average Precision: 기본적으로 precision은 하나의 object에 대한 검출을 의미하므로, mAP는 각각의 class에 대해 AP[.5:.05:.95]를 계산하고 평균을 산출했다는 의미
   $$
   m A P=\frac{1}{N} \sum_{i=1}^N A P_i
   $$
@@ -126,9 +123,25 @@ $$
 - Macro: '평균의 평균'을 구하는 방법. macro_precision = (precision_1 + precision_2 + ... + precision_K) / K where K is the number of classes
 - Micro: '전체의 평균'을 구하는 방법. micro_precision = TP / (TP + FP)
 
+##### Feature Pyramid Networks (FPN)[^4]
+
+Multi-resolution 정보를 최대한 활용하여 object detection 성능 향상을 이루고자 하는 연구들 많았는데 FPN도 그 중 하나임. 다양한 object detection 모델들의 backbone으로 활용되어 성능을 높여줌
+
+- Featurized image pyramid: 입력 이미지를 여러 크기로 resize 하여 각각 CNN에 통과시켜 feature map 획득하는 방법. 당연히도 매우 느림
+- Single feature map: 가장 마지막 feature map만 예측에 활용하므로 작은 object에 대한 정보 잘 잡지 못할 것임
+- Pyramidal feature hierarchy: 
+- Feature Pyramid Network (FPN): 
+
+![img](../img/23-06-03-4.png)
+
+<center><p><i>Taken from Tsung-Yi Lin, et al.</i></p></center>
+
+- Bottom-up pathway in FPN: 
+- Top-down pathway in FPN: 
+
 ### Two-Stage Detector
 
-일반적으로 localization과 classification을 순차적으로 수행. 따라서 속도가 느리지만 일반적으로 성능이 좋음
+Region proposals을 먼저 생성 한 이후에 object classification and bbox regression 수행. 따라서 속도가 느리지만 일반적으로 성능이 좋음
 
 ![img](../img/23-06-03-2.png)
 
@@ -136,57 +149,45 @@ $$
 
 ##### R-CNN[^1]
 
+Abbreviation of 'Region-Based Convolutional Neural Networks'
+
 1. 이미지에 대해 selective search를 이용하여 약 2000개의 RoI 추출
-   - selective search: 
-2. 각 RoI들을 warping
-   - warping: 
+   - Selective search: 자세한 설명은 [이곳](https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/#selective-search) 참고
+2. 각 RoI들을 warping (i.e., transforming image regions to a fixed size)
 3. Warped image에 대해 CNN으로 feature 추출
 4. Feature를 활용하여, SVM으로는 classification, regressor로는 bbox 예측(i.e., {x, y, width, height})을 수행
 
 ##### Fast R-CNN[^2]
 
-1. 이미지에 대해 selective search를 이용하여 약 2000개의 RoI 추출 (R-CNN과 동일)
-2. 이미지를 CNN에 한번만 넣어 feature map을 추출
-3. 각각의 RoI를 feature map dimension으로 projection(RoI projection)
-4. RoI pooling 수행: RoI 영역의 feature map에 max-pooling 적용
+1. 이미지에 대해 selective search를 이용하여 약 2000개의 RoI 추출 (*R-CNN과 동일*)
+2. 입력 이미지를 그대로 CNN에 넣어 feature map을 추출. 즉, 입력 이미지가 CNN에 한 번만 forwarding 되어도 됨
+3. RoI projection: 각각의 RoI를 feature map dimension으로 projection
+4. RoI pooling 수행: Feature map에서의 각 RoI 영역에 대해 max-pooling 적용해서 NxN matrix 추출
 5. 최종 feature를 활용하여 softmax layer으로는 classification, regressor로는 bbox 예측을 수행
 
 ##### Faster R-CNN[^3]
 
-📍`Multi-reference Detection (Anchors Boxes)`
+Prior works의 region proposal 방식이 bottleneck이었는데, RPN을 통해 end-to-end 형태의 구조 제안하여 성능 향상
 
-1. 이미지를 CNN에 넣어 feature map을 추출
-2. Feature map을 region proposal network(RPN)으로 보내, feature map에 대한 RoI 생성
+1. 이미지를 CNN에 넣어 feature map을 추출 (Prior works와 달리, region proposal 하기 전에 feature 부터 뽑음)
+2. Feature map을 region proposal network(RPN)으로 보내 feature map에 대한 RoI 생성
+   - RPN은 기본적으로 여러 개의 서로 다른 형태의 anchor boxes를 사용한 sliding window 방식 사용
+   - RPN의 final layer에는 물체가 있는지 없는지 판단하는 2-softmax와, bbox 제안하는 regressor가 존재
+   - 2-softmax와 regressor ouput을 기반으로 RoI 생성하고 이를 RoI pooling layer로 전달
 3. RoI pooling 수행
 4. 최종 feature를 활용하여 softmax layer으로는 classification, regressor로는 bbox 예측을 수행
 
-- RPN
-  - k 개의 앵커박스를 이용
-  - sliding window를 거쳐 각 위치에 regression과 classification 수행
-  - 다만 물체가 있다 없다만 알면 되므로 2개에 대한 classification
+##### Recap.
 
-##### Feature Pyramid Networks (FPN)[^4]
-
-📍`Feature Fusion`
-
-![img](../img/23-06-03-4.png)
-
-<center><p><i>Taken from Tsung-Yi Lin, et al.</i></p></center>
-
-- 세줄 요약 추가하기
-
-##### Summary
-
-|              | Conference   | Region proposal             | RoI pooling | Classification layer | Localization layer |
-| ------------ | ------------ | --------------------------- | ----------- | -------------------- | ------------------ |
-| R-CNN        | CVPR 2014    | Selective search (CPU)      |             | SVMs                 | Regressor          |
-| Fast R-CNN   | ICCV 2015    | Selective search (CPU)      |             | Softmax              | Regressor          |
-| Faster R-CNN | NeurIPS 2015 | Sliding window w. RPN (GPU) |             | Softmax              | Regressor          |
-| FPN          |              |                             |             |                      |                    |
+|              | Conference   | Region proposal             | Classification layer | Localization layer |
+| ------------ | ------------ | --------------------------- | -------------------- | ------------------ |
+| R-CNN        | CVPR 2014    | Selective search (CPU)      | SVMs                 | Regressor          |
+| Fast R-CNN   | ICCV 2015    | Selective search (CPU)      | Softmax              | Regressor          |
+| Faster R-CNN | NeurIPS 2015 | Sliding window w. RPN (GPU) | Softmax              | Regressor          |
 
 ### One-Stage Detector
 
-일반적으로 localization과 classification을 동시에 수행하고, 속도가 빨라 실시간 서비스에 활용하는데에 용이함. 특히 DETR은 end-to-end framework를 제안하여 복잡했던 object detection 과정을 단순화함
+Pre-generated region proposals 없이 object classification and bbox regression 수행
 
 ![img](../img/23-06-03-3.png)
 
@@ -214,15 +215,14 @@ $$
 
 - 세줄 요약 추가하기
 
-##### Summary
-
-|           | Conference | Region proposal | RoI pooling | Classification layer | Localization layer |
-| --------- | ---------- | --------------- | ----------- | -------------------- | ------------------ |
-| YOLO      |            |                 |             |                      |                    |
-| RetinaNet |            |                 |             |                      |                    |
-| DETR      |            |                 |             |                      |                    |
-
 ### References
+
+##### Blog Posts
+
+- https://lilianweng.github.io/posts/2017-12-31-object-recognition-part-3/
+- https://lilianweng.github.io/posts/2018-12-27-object-recognition-part-4/
+
+##### Papers
 
 [^1]:Girshick, Ross, et al. "Rich feature hierarchies for accurate object detection and semantic segmentation." *Proceedings of the IEEE conference on computer vision and pattern recognition*. 2014.
 [^2]: Girshick, Ross. "Fast r-cnn." *Proceedings of the IEEE international conference on computer vision*. 2015.

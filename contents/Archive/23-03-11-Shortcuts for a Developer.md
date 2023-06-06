@@ -28,6 +28,14 @@ category: "Cheat Sheet"
 - `dd`: 한 줄 잘라내기
 - `j`, `k`: 한 줄 단위의 커서 이동
 
+### iTerm2
+
+- 플러그인 적용하려면 `.zshrc` 파일의 `plugins=()`에 플러그인 이름 적어넣으면 됨
+  - zsh-syntax-highlighting: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
+  - zsh-autosuggestions: `git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
+  - autojump: `brew install autojump`
+- dotenv라는 내장 플러그인 존재하는데, 해당 플러그인 사용시 `~/.env` 파일에 환경변수 설정 가능하며 이 때 export는 적지 않아도 됨
+
 ### Linux
 
 - [LeCoupa / awesome-cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh)
