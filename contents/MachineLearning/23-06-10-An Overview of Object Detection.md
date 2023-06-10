@@ -120,12 +120,12 @@ $$
 
 <center><p><i>Taken from https://cocodataset.org/#detection-eval</i></p></center>
 
-- Macro: '평균의 평균'을 구하는 방법. macro_precision = (precision_1 + precision_2 + ... + precision_K) / K where K is the number of classes
-- Micro: '전체의 평균'을 구하는 방법. micro_precision = TP / (TP + FP)
+- Macro: '평균의 평균'을 구하는 방법. macro precision = (precision 1 + precision 2 + ... + precision K) / K where K is the number of classes
+- Micro: '전체의 평균'을 구하는 방법. micro precision = TP / (TP + FP)
 
 ### Two-Stage Detector
 
-Region proposals을 먼저 생성 한 이후에 object classification and bbox regression 수행. 따라서 속도가 느리지만 일반적으로 성능이 좋음 (최근에는 꼭 그렇지도 않음)
+Region proposals을 먼저 생성 한 이후에 object classification and bbox regression 수행. 따라서 속도가 느리지만 일반적으로 성능이 좋음 (최근에는 꼭 그렇지도 않은듯)
 
 ![img](../img/23-06-03-2.png)
 
