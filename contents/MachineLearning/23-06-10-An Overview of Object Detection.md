@@ -1,15 +1,15 @@
 ---
 title: "An Overview of Object Detection"
-date: "2023-06-06"
+date: "2023-06-10"
 template: "post"
-draft: true
-path: "/deeplearning/23-06-06/"
-description: "Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 유명한 알고리즘들을 위주로 간단히 정리하였습니다."
+draft: false
+path: "/deeplearning/23-06-10/"
+description: "Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 유명한 알고리즘들을 위주로 간단히 정리하였습니다. 오타나 정확하지 않은 내용에 대해서 댓글 달아주시면 감사합니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
 
-> Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 유명한 알고리즘들을 위주로 간단히 정리하였습니다.
+> Deep learning 기반의 object detection 알고리즘에 대해 리뷰합니다. Two-stage detector와 one-stage detector 알고리즘 중에서 유명한 알고리즘들을 위주로 간단히 정리하였습니다. 오타나 정확하지 않은 내용에 대해서 댓글 달아주시면 감사합니다.
 
 ### Introduction
 
@@ -21,7 +21,7 @@ thumbnail: "deeplearning"
   - Selective search: 인접한 region 사이의 유사도를 측정하고, 점점 큰 영역으로 통합하는 방법
 - Localization layer: Bbox position를 제안하는 layer이고 일반적으로 regressor 활용
 - Classification layer: Object의 class를 제안하는 layer
-- RoI pooling: 각 RoI 영역에 대해 pooling 방식 (e.g., max-pooling) 적용해서 NxN matrix 추출
+- RoI pooling: 각 RoI 영역에 대해 pooling(e.g., max-pooling) 적용해서 NxN matrix 추출
   - mask R-CNN에서는 RoI pooling 개선시킨 RoIAlign layer 활용함
 
 - IoU (Intersection of Union): 예측 bbox와 정답 bbox가 겹치는 비율
@@ -123,41 +123,24 @@ $$
 - Macro: '평균의 평균'을 구하는 방법. macro_precision = (precision_1 + precision_2 + ... + precision_K) / K where K is the number of classes
 - Micro: '전체의 평균'을 구하는 방법. micro_precision = TP / (TP + FP)
 
-##### Feature Pyramid Networks (FPN)[^4]
-
-Multi-resolution 정보를 최대한 활용하여 object detection 성능 향상을 이루고자 하는 연구들 많았는데 FPN도 그 중 하나임. 다양한 object detection 모델들의 backbone으로 활용되어 성능을 높여줌
-
-- Featurized image pyramid: 입력 이미지를 여러 크기로 resize 하여 각각 CNN에 통과시켜 feature map 획득하는 방법. 당연히도 매우 느림
-- Single feature map: 가장 마지막 feature map만 예측에 활용하므로 작은 object에 대한 정보 잘 잡지 못할 것임
-- Pyramidal feature hierarchy: 
-- Feature Pyramid Network (FPN): 
-
-![img](../img/23-06-03-4.png)
-
-<center><p><i>Taken from Tsung-Yi Lin, et al.</i></p></center>
-
-- Bottom-up pathway in FPN: 
-- Top-down pathway in FPN: 
-
 ### Two-Stage Detector
 
-Region proposals을 먼저 생성 한 이후에 object classification and bbox regression 수행. 따라서 속도가 느리지만 일반적으로 성능이 좋음
+Region proposals을 먼저 생성 한 이후에 object classification and bbox regression 수행. 따라서 속도가 느리지만 일반적으로 성능이 좋음 (최근에는 꼭 그렇지도 않음)
 
 ![img](../img/23-06-03-2.png)
 
 <center><p><i>Taken from  Wu, Xiongwei, Doyen Sahoo, and Steven CH Hoi.</i></p></center>
 
-##### R-CNN[^1]
+##### R-CNN (2014)[^1]
 
-Abbreviation of 'Region-Based Convolutional Neural Networks'
+Region-Based Convolutional Neural Networks
 
-1. 이미지에 대해 selective search를 이용하여 약 2000개의 RoI 추출
-   - Selective search: 자세한 설명은 [이곳](https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/#selective-search) 참고
+1. 이미지에 대해 selective search를 이용하여 약 2000개의 RoI 추출. Selective search에 대한 설명은 [이곳](https://lilianweng.github.io/posts/2017-10-29-object-recognition-part-1/#selective-search) 참고
 2. 각 RoI들을 warping (i.e., transforming image regions to a fixed size)
 3. Warped image에 대해 CNN으로 feature 추출
 4. Feature를 활용하여, SVM으로는 classification, regressor로는 bbox 예측(i.e., {x, y, width, height})을 수행
 
-##### Fast R-CNN[^2]
+##### Fast R-CNN (2015)[^2]
 
 1. 이미지에 대해 selective search를 이용하여 약 2000개의 RoI 추출 (*R-CNN과 동일*)
 2. 입력 이미지를 그대로 CNN에 넣어 feature map을 추출. 즉, 입력 이미지가 CNN에 한 번만 forwarding 되어도 됨
@@ -165,11 +148,11 @@ Abbreviation of 'Region-Based Convolutional Neural Networks'
 4. RoI pooling 수행: Feature map에서의 각 RoI 영역에 대해 max-pooling 적용해서 NxN matrix 추출
 5. 최종 feature를 활용하여 softmax layer으로는 classification, regressor로는 bbox 예측을 수행
 
-##### Faster R-CNN[^3]
+##### Faster R-CNN (2015)[^3]
 
 Prior works의 region proposal 방식이 bottleneck이었는데, RPN을 통해 end-to-end 형태의 구조 제안하여 성능 향상
 
-1. 이미지를 CNN에 넣어 feature map을 추출 (Prior works와 달리, region proposal 하기 전에 feature 부터 뽑음)
+1. 이미지를 CNN에 넣어 feature map을 추출
 2. Feature map을 region proposal network(RPN)으로 보내 feature map에 대한 RoI 생성
    - RPN은 기본적으로 여러 개의 서로 다른 형태의 anchor boxes를 사용한 sliding window 방식 사용
    - RPN의 final layer에는 물체가 있는지 없는지 판단하는 2-softmax와, bbox 제안하는 regressor가 존재
@@ -185,6 +168,55 @@ Prior works의 region proposal 방식이 bottleneck이었는데, RPN을 통해 e
 | Fast R-CNN   | ICCV 2015    | Selective search (CPU)      | Softmax              | Regressor          |
 | Faster R-CNN | NeurIPS 2015 | Sliding window w. RPN (GPU) | Softmax              | Regressor          |
 
+##### Feature Pyramid Networks (2017)[^4]
+
+Multi-resolution 정보를 최대한 활용하여 object detection 성능 향상을 이루고자 하는 연구들 많았는데 FPN도 그 중 하나임. 다양한 object detection 모델들의 backbone으로 활용되어 성능을 높여줌
+
+- Featurized image pyramid: 입력 이미지를 여러 크기로 resize 하여 각각 CNN에 통과시켜 feature map 획득하는 방법. 당연히도 매우 느림
+- Single feature map: 가장 마지막 feature map만 예측에 활용하므로 작은 object에 대한 정보 잘 잡지 못할 것임
+- Feature Pyramid Network (FPN)
+  - Bottom-up pathway와 top-down pathway 형태로 구성됨
+  - Top-down pathway에서는 이전 layer feature와 bottom-up feature를 입력으로 받아 (adding 후에) upsampling 수행하여 feature map 뽑아내는데, 매 top-down pathway 마다의 feature map를 RPN(region proposal network)에 넣어 모델 예측 출력 가능
+  - 즉, FPN 사용하면 multi-resolution feature를 뽑아내어 더 나은 object detection 가능
+
+![img](../img/23-06-03-4.png)
+
+<center><p><i>Taken from Tsung-Yi Lin, et al.</i></p></center>
+
+```python
+# Sample code from https://github.com/jwyang/fpn.pytorch/blob/master/lib/model/fpn/fpn.py#L159
+...
+def forward(self, im_data, im_info, gt_boxes, num_boxes):
+    batch_size = im_data.size(0)
+
+    im_info = im_info.data
+    gt_boxes = gt_boxes.data
+    num_boxes = num_boxes.data
+
+    # Bottom-up
+    c1 = self.RCNN_layer0(im_data)
+    c2 = self.RCNN_layer1(c1)
+    c3 = self.RCNN_layer2(c2)
+    c4 = self.RCNN_layer3(c3)
+    c5 = self.RCNN_layer4(c4)
+    
+    # Top-down
+    p5 = self.RCNN_toplayer(c5)
+    p4 = self._upsample_add(p5, self.RCNN_latlayer1(c4))
+    p4 = self.RCNN_smooth1(p4)
+    p3 = self._upsample_add(p4, self.RCNN_latlayer2(c3))
+    p3 = self.RCNN_smooth2(p3)
+    p2 = self._upsample_add(p3, self.RCNN_latlayer3(c2))
+    p2 = self.RCNN_smooth3(p2)
+
+    p6 = self.maxpool2d(p5)
+
+    rpn_feature_maps = [p2, p3, p4, p5, p6]
+    mrcnn_feature_maps = [p2, p3, p4, p5]
+
+    rois, rpn_loss_cls, rpn_loss_bbox = self.RCNN_rpn(rpn_feature_maps, im_info, gt_boxes, num_boxes)
+```
+
 ### One-Stage Detector
 
 Pre-generated region proposals 없이 object classification and bbox regression 수행
@@ -193,27 +225,52 @@ Pre-generated region proposals 없이 object classification and bbox regression 
 
 <center><p><i>Taken from  Wu, Xiongwei, Doyen Sahoo, and Steven CH Hoi.</i></p></center>
 
-##### YOLO[^5]
+##### YOLO (2016)[^5]
 
-📍`Multi-resolution Detection`, `Hard-negative Mining`
+1. 이미지를 N x N grid로 분할 (N=7)
+2. 이미지를 CNN에 넣고 feature vector를 뽑아냄
+3. 해당 feature vector를 resize해서 N x N x D의 feature map으로 변형
+4. N x N이 각각의 grid를 의미하는데, 하나의 D size feature를 (x, y, w, h, confidence socre)과 (class probabilities)로 활용
 
-- 세줄 요약 추가하기
+```python
+# Sample code from https://github.com/motokimura/yolo_v1_pytorch/blob/master/yolo_v1.py
+...
+def forward(self, x):
+    S, B, C = self.feature_size, self.num_bboxes, self.num_classes
+    x = self.features(x)
+    x = self.conv_layers(x)
+    x = self.fc_layers(x)
+    x = x.view(-1, S, S, 5 * B + C)
+    return x
+```
 
-##### RetinaNet[^7]
+##### RetinaNet (2017)[^7]
 
-📍`Keypoint Based Detection`
+- Backbone으로 FPN 사용함
+- Foreground, background의 imabalance를 해결하기 위한 focal loss 제안. Easy negative example보다 hard example에 더 많은 가중치를 주는 효과 가짐
 
-- 세줄 요약 추가하기
+$$
+\begin{aligned}
+&\text { Cross Entropy }=-\log \left(p_{t}\right) \\
+&\text { Focal Loss }=-\left(1-p_{t}\right)^{\gamma} \log \left(p_{t}\right)
+\end{aligned}
+$$
 
-##### DETR[^8]
+##### DETR (2020)[^8]
 
-📍`End to End Detection`, `Reference-free Detection`
+- Prior works들이 NMS나 spatial anchors(RPN) 같은 hand-designed components 너무 많이 요구함. 따라서 customized layer drop하는 단순한 구조 제안
+- Bipartite matching (e.g., *Hungarian algorithm*): 기존엔 set prediction problem을 NMS 등으로 간접적으로 해결했는데, bipartite matching은 object 출력을 아예 N개로 고정시켜 버려서 directly predicts the set of detections
+  - 예를 들어 N=10이고 object=2라면, 8개는 no object로 예측하면 됨
 
 ![img](../img/23-06-03-5.png)
 
 <center><p><i>Taken from Nicolas Carion, et al.</i></p></center>
 
-- 세줄 요약 추가하기
+1. CNN 활용하여 image feature 추출. Image feature는 $C \times H \times W$ 의 shape의 feature map인데, $C=2048$이고, 이미지의 height $H_0$, width $W_0$라 할 때 $H, W = \frac{H_0}{32}, \frac{W_0}{32}$임
+2. Image feature map에 positional encoding 더하여 transformer encoder에 입력
+3. Decoder에 object queries와 encoder output을 입력. 이 때, object query는 N개(max obejct 수)임
+4. Decoder output을 각각 feed forward network에 입력하고, object가 있는지 없는지, 있다면 class는 무엇이고 bbox는 어떻게 되는지를 출력
+5. 최종 (prediction head의) 출력에 대해 bipartite matching (i.e., Hungarian algorithm) 수행 후, loss 계산하여 모델 학습. Class prediction loss와 Generalized IoU 활용한 box loss 사용
 
 ### References
 
