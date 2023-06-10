@@ -89,6 +89,18 @@
 <li><code class="language-text">dd</code>: 한 줄 잘라내기</li>
 <li><code class="language-text">j</code>, <code class="language-text">k</code>: 한 줄 단위의 커서 이동</li>
 </ul>
+<h3 id="iterm2" style="position:relative;"><a href="#iterm2" aria-label="iterm2 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>iTerm2</h3>
+<ul>
+<li>
+<p>플러그인 적용하려면 <code class="language-text">.zshrc</code> 파일의 <code class="language-text">plugins=()</code>에 플러그인 이름 적어넣으면 됨</p>
+<ul>
+<li>zsh-syntax-highlighting: <code class="language-text">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</code></li>
+<li>zsh-autosuggestions: <code class="language-text">git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</code></li>
+<li>autojump: <code class="language-text">brew install autojump</code></li>
+</ul>
+</li>
+<li>dotenv라는 내장 플러그인 존재하는데, 해당 플러그인 사용시 <code class="language-text">~/.env</code> 파일에 환경변수 설정 가능하며 이 때 export는 적지 않아도 됨</li>
+</ul>
 <h3 id="linux" style="position:relative;"><a href="#linux" aria-label="linux permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Linux</h3>
 <ul>
 <li><a href="https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh">LeCoupa / awesome-cheatsheets</a></li>
