@@ -14,7 +14,7 @@ thumbnail: "deeplearning"
 ### Preliminary
 
 - Sampling strategy (Query strategy): 말 그대로 샘플링 전략. Unlabeled set 중에서 가장 가치있는 샘플을 발견해내기 위한 전략을 의미
-- Acquisition function $U(\mathbf x)$: 샘플링에 활용하기 위한 scoring function. Score가 높을수록 GT 라벨링하기에 더 가치있는 샘플임을 의미
+- Acquisition function $U(\mathbf x)$: 샘플링에 활용하기 위한 scoring function. Score가 높을수록 GT 라벨링하기에 더 가치있는 샘플임을 의미. 단순히 labeling cost를 줄이기 위함 뿐만 아니라, 원하는 유형의 데이터만 선정하고 싶을 때에도 사용할 수 있음
 - Two buckets of model uncertainty
   - Aleatoric uncertainty: Data noise로 인해 유발되는 uncertainty. 이는 ground truth에서 정보 유실이 있기 때문에 irreducible한 것으로 여겨짐
   - Epistemic uncertainty: 모델 파라미터에 존재하는 uncertainty. 이론적으로는 더 많은 데이터가 주어지면 reducible한 것으로 여겨짐
