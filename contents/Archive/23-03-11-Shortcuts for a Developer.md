@@ -22,6 +22,64 @@ category: "Cheat Sheet"
 - 가끔 debugging 시에 내부 라이브러리로 step in 잘 안되는 경우 있는데, 이런 경우는 대부분 .idea 폴더 삭제해서 캐시 없애면 잘 작동함
 - Pycharm remote debugging in a docker container: [파이참에서 DOCKER를 이용한 디버깅 환경 구축](https://seongwoopark.github.io/2017-06-02-study-pycharm_interpreter/)
 
+### VSCode
+
+- `⌘ ⇧ P`: open the command palette
+- `⌘ ⇧ D`: open debugging tab
+- `⌘ ⇧ E`: open the project tab
+- `⌘ ⌥ up/down`: multiple cursors
+- `⌘ D`: multiple selection
+- `⌘ P`: search file by name
+- `⌘ P + @`: `⌘ F` 보다 더 간편히 파일 내 코드 검색 가능
+- `⌘ ⇧ .`: `⌘ P + @`와 유사한 기능
+- `⌘ G`: go to line number
+- `⌘ L`: highlight line
+- `⌘ /`: comment
+- `⌘ N`: open a new file
+- `⌥ up/down`: move a line
+- `⌘ >`: vscode의 제안사항 확인
+- `⇧ ⌥ F`: auto-formatting
+
+##### Debugging
+
+- launch.json 파일을 통해서 디버깅 옵션 설정 가능
+- `name`: 디버깅 config의 이름
+- `type`: 디버거 유형
+- `request`: launch or attach
+- `cwd`: project working directory
+- `program`: run a script
+- `args`: command line arguments
+- `env`: environment variables
+- `console`: 사용할 console 종류
+- `justMyCode`: false시 내부 라이브러리 까지도 jump-in 가능
+
+```
+# Example code
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "debugging option 1",
+            "type": "python",
+            "request": "launch",
+            "cwd":"${workspaceFolder}/project_dir",
+            "program": "${workspaceFolder}/project_dir/main.py",
+            "args": [
+                "--config", "configs/base.yaml",
+                "--mode", "train",
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0, 1, 2",
+            },
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+
+    ]
+}
+```
+
 ### Vim
 
 - [Vim cheat sheet](https://vim.rtorr.com/lang/ko)
@@ -54,6 +112,14 @@ category: "Cheat Sheet"
 
 - `taskset -c 0-3 python script.py`: CPU cores 0~3만을 사용
 - `cpulimit -p "$(pgrep -f ${file_name})" -l 50`: file_name 실행하기 위해 CPU 50%만 사용
+
+### NVIDIA
+
+nvidia-smi에서 smi는 system management interface의 약자. Official document는 [이 곳](https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf) 참고.
+
+- `nvidia-smi -pl 150`: power limit을 150W으로 설정
+- `nvidia-smi -lmc 6500`: lmc는 lock memory clock의 약자. memory clock frequency를 6500 MHz으로 제한
+- `nvidia-smi -lgc 0,1800`: lgc는 lock gpu clock의 약자. minGpuClock=0, maxGpuClock=1800으로 설정
 
 ### Network
 

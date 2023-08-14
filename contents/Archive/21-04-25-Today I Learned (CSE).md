@@ -146,6 +146,23 @@ REST, gRPC, GraphQL에 대해 기록합니다
   - 클라이언트가 원하는 데이터, 원하는 방식, 형식 결정
   - REST는 원하는 데이터를 얻기 위해 여러 요청을 해야 하고 각 요청에서 데이터를 과도하게 가져와야 하는 경우가 많은데, GraphQL은 클라이언트가 특정 용도를 위해 특정 형식의 데이터를 요청할 수 있다는 점에 초점을 뒀기 때문에, 대표적으로 Github에서 활용중
 
+##### 👨‍💻 CS
+
+*2023.08.12*
+
+서버 Identity Management을 위해 참고하면 좋을 글들
+
+- https://blog.promedius.ai/freeipa-sso-integration/
+- https://saramin.github.io/2022-06-30-idm/
+
+##### 👨‍💻 CS
+
+*2023.08.15*
+
+- Latency: 대기시간. 즉, 정보 송수신(작업 처리)에 걸리는 시간
+- Throughput: 처리량. 즉, 단위 시간 당 정보 송수신(작업 처리) 수
+- Bandwidth: 대역폭. 즉, 단위 시간 당 정보 송수신(작업 처리) 가능한 정보량
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

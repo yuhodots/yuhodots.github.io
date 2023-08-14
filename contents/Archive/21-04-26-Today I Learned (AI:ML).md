@@ -480,6 +480,14 @@ DINO와 DINO v2에 대해서 간단히 정리합니다.
 - DINO: momentum encoder 기반 BYOL 방식 차용. 여기에 loss 식에 조금 차이 가지고, teacher-student 구조 동일함
 - DINO v2: Image level로는 서로 다른 이미지 구분, patch level 같은 이미지 내 서로 다른 patch 구분. 이 외에도 많은 양의 ‘퀄리티 좋은’ 데이터와 빠르고 효율적인 학습 방법 제안
 
+##### 🧩 ML library
+
+*2023.08.12*
+
+- Apache Arrow: 직렬화와 역직렬화의 오버헤드가 높다는 것은 데이터 다룰 때 자주 발생하는 문제점임. Apach Arrow는 직렬화 과정이 없는 zero-copy read가 가능한데, 일반적인 방법인 객체를 가지고 작업하는 방식이 아닌 직렬화된 데이터 자체를 가지고 작업하기 때문에 이것이 가능
+  - Main purpose: Language-independent open standards and libraries to accelerate and simplify in-memory computing
+- Huggingface datasets w. arrow: 위에서 언급한 것 처럼 Arrow는 많은 양의 데이터에 대한 처리와 이동을 빠르게 가능하게 함 (Arrow format은 zero-copy read 가능하기에 직렬화 오버헤드를 없애주기 때문). 따라 Huggingface datasets은 arrow 활용함. 또한 column-oriented이기 때문에 querying이나 slicing 등 처리 속도 빠름
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
