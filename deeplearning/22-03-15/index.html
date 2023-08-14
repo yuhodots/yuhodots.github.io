@@ -481,40 +481,39 @@
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://openreview.net/pdf?id=vJb4I2ANmy">Lim, Soon Hoe, et al. "Noisy feature mixup." ICLR 2022.</a></li>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://openreview.net/forum?id=g11CZSghXyY">Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.</a></li>
 </ul>
+<h3 id="object-detection" style="position:relative;"><a href="#object-detection" aria-label="object detection permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object Detection</h3>
 <h3 id="image-segmentation" style="position:relative;"><a href="#image-segmentation" aria-label="image segmentation permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Image Segmentation</h3>
 <ul>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Tian_BoxInst_High-Performance_Instance_Segmentation_With_Box_Annotations_CVPR_2021_paper.html">Zhi Tian, et al., "Boxinst: High-performance instance segmentation with box annotations," CVPR 2021.</a></li>
 <li class="task-list-item">
 <p><input type="checkbox" disabled> <a href="https://scontent-ssn1-1.xx.fbcdn.net/v/t39.2365-6/10000000_900554171201033_1602411987825904100_n.pdf?_nc_cat=100&#x26;ccb=1-7&#x26;_nc_sid=3c67a6&#x26;_nc_ohc=YLTtOW2cPwwAX_Yy2Sd&#x26;_nc_ht=scontent-ssn1-1.xx&#x26;oh=00_AfB4YsQnTr0-I00xt5Q9W1P6Qbe_M9ey4Y1zBP7vvmRbLA&#x26;oe=643500E7">Meta AI Research, "Segment Anything," 2023</a></p>
 <ul>
-<li>(Notice) 아래의 내용이 너무 길기 때문에, 논문 내용 정리 더 추가해서 포스팅으로 옮기기</li>
-<li>Image segmentation에 대한 foundation model 알고리즘 개발을 목표로 함</li>
+<li>Image segmentation에 대한 foundation model 개발</li>
 <li>SAM은 interactive segmentation 방식(mask 수정을 사람이 반복적으로 가이딩 해주는 방법)과 automatic segmentation 방식(바로 segmentation 가능하지만 많은 양의 학습 데이터 필요한 방법)의 일반화 버전. 즉, 두 방식 모두 가능하다는 것</li>
 <li>Zero-shot instance segmentation 정량 평가에서는 ViTDet이 좋지만, 사람 평가에서는 SAM이 좋았음</li>
-<li>[Task] Promptable segmentation (for pre-training): forground, background points / boxs, masks / free-form text 등에 대한 다양한 제안이 ambiguous하게 들어오더라도, 올바른(valid) segmentation mask를 최소 하나 이상 반환해야 하는 task</li>
+<li>Task: Promptable segmentation (for pre-training): forground, background points / boxs, masks / free-form text 등에 대한 다양한 제안이 ambiguous하게 들어오더라도, 올바른(valid) segmentation mask를 최소 하나 이상 반환해야 하는 task</li>
 <li>Interactive segmentation 방식은 선행 논문들 참고</li>
 <li>Forground, background points: (x, y, fg/bg)</li>
 <li>Boxs, masks: (x1, y1, x2, y2)</li>
 <li>Free-form text: 아직 공개되지 않음</li>
-<li>[Model] Segment Anything Model (SAM)</li>
+<li>Model: Segment Anything Model (SAM)</li>
 <li>Image encoder: MAE pre-trained ViT</li>
-<li>Pormpt encoder: input points and boxes by positional encoding, free-form text with text encoder CLIP, and dense(mask) pompt are embedded by ConvNet and summed elemet-wise with the image embedding</li>
+<li>Prompt encoder: input points and boxes by positional encoding, free-form text with text encoder CLIP, and dense(mask) prompt are embedded by ConvNet and summed element-wise with the image embedding</li>
 <li>Mask decoder: a modification of a Transformer decoder block</li>
 <li>Resolving ambiguity: 애매한 prompt 대처할 수 있도록 multi-output mask 가지도록 모델 구조 수정함. 3개면 충분했고, 학습할 때 loss가 가장 작은 output만 backprop 했음</li>
 <li>Losses: linear combination of focal and dice loss 20:1 </li>
-<li>[Data] Data engine and Dataset (SA-1B)</li>
+<li>Data: Data engine and Dataset (SA-1B)</li>
 <li>Data engine (model-in-the-loop): 처음에는 publice segmentation dataset으로 학습 (1) model assist annotator (classic interactive segmentation setup) - (2) semi-automatic annotation - (3) fully automatic mask creation</li>
 <li>SA-1B: the largest ever segmentation dataset (400x more masks than any existing segmentation dataset)</li>
 </ul>
 </li>
 </ul>
 <h3 id="multi-modal-learning" style="position:relative;"><a href="#multi-modal-learning" aria-label="multi modal learning permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Multi-Modal Learning</h3>
-<h5 id="visually-situated-language-understanding" style="position:relative;"><a href="#visually-situated-language-understanding" aria-label="visually situated language understanding permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Visually-Situated Language Understanding</h5>
 <ul>
-<li>Documents, tables, infographics, and user interfaces (UIs) are intended to be consumed holistically, without clear boundaries between textual and visual elements</li>
 <li class="task-list-item">
 <p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2210.03347">Lee, Kenton, et al. "Pix2Struct: Screenshot parsing as pretraining for visual language understanding." arXiv preprint arXiv:2210.03347, 2022.</a></p>
 <ul>
+<li>Visually-Situated Language Understanding: Documents, tables, infographics, and user interfaces (UIs) are intended to be consumed holistically, without clear boundaries between textual and visual elements</li>
 <li>Visually-situated language understanding task와 관련하여 prior work 들의 방법이 너무 산재해 있었고 서로 모델 구조나, 접근법, 데이터 등이 크게 sharing 되지 않았음</li>
 <li>Pre-training: 본 논문은 '웹 페이지의 masked-screenshot을 input으로 받아 HTML을 예측하는 형태의 pre-training 방법'을 고안하여, general-purpose의 visually-situated language understanding model을 구축함</li>
 <li>Curriculum learning: 학습 초기 단계에서 아주 쉬운 parsing 문제(e.g., 글씨에 색깔만 입힌 HTML parsing)로 warm-up stage를 거치면 converge도 빠르고 fine-tuning 성능도 좋아짐 (Appendix D 참고)</li>
@@ -556,7 +555,7 @@
 </ul>
 <h3 id="bayesian-deep-learning" style="position:relative;"><a href="#bayesian-deep-learning" aria-label="bayesian deep learning permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Bayesian Deep Learning</h3>
 <ul>
-<li class="task-list-item"><input type="checkbox" disabled> <a href="http://proceedings.mlr.press/v48/gal16.html">Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.</a> - <em>아직 읽지 않음..</em></li>
+<li class="task-list-item"><input type="checkbox" disabled> <a href="http://proceedings.mlr.press/v48/gal16.html">Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.</a> - <em>아직 읽지 않음</em></li>
 </ul>
 <h3 id="deep-neural-architectures" style="position:relative;"><a href="#deep-neural-architectures" aria-label="deep neural architectures permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deep Neural Architectures</h3>
 <ul>

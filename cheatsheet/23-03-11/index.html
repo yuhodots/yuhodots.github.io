@@ -83,6 +83,61 @@
 <li>가끔 debugging 시에 내부 라이브러리로 step in 잘 안되는 경우 있는데, 이런 경우는 대부분 .idea 폴더 삭제해서 캐시 없애면 잘 작동함</li>
 <li>Pycharm remote debugging in a docker container: <a href="https://seongwoopark.github.io/2017-06-02-study-pycharm_interpreter/">파이참에서 DOCKER를 이용한 디버깅 환경 구축</a></li>
 </ul>
+<h3 id="vscode" style="position:relative;"><a href="#vscode" aria-label="vscode permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>VSCode</h3>
+<ul>
+<li><code class="language-text">⌘ ⇧ P</code>: open the command palette</li>
+<li><code class="language-text">⌘ ⇧ D</code>: open debugging tab</li>
+<li><code class="language-text">⌘ ⇧ E</code>: open the project tab</li>
+<li><code class="language-text">⌘ ⌥ up/down</code>: multiple cursors</li>
+<li><code class="language-text">⌘ D</code>: multiple selection</li>
+<li><code class="language-text">⌘ P</code>: search file by name</li>
+<li><code class="language-text">⌘ P + @</code>: <code class="language-text">⌘ F</code> 보다 더 간편히 파일 내 코드 검색 가능</li>
+<li><code class="language-text">⌘ ⇧ .</code>: <code class="language-text">⌘ P + @</code>와 유사한 기능</li>
+<li><code class="language-text">⌘ G</code>: go to line number</li>
+<li><code class="language-text">⌘ L</code>: highlight line</li>
+<li><code class="language-text">⌘ /</code>: comment</li>
+<li><code class="language-text">⌘ N</code>: open a new file</li>
+<li><code class="language-text">⌥ up/down</code>: move a line</li>
+<li><code class="language-text">⌘ &gt;</code>: vscode의 제안사항 확인</li>
+<li><code class="language-text">⇧ ⌥ F</code>: auto-formatting</li>
+</ul>
+<h5 id="debugging" style="position:relative;"><a href="#debugging" aria-label="debugging permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debugging</h5>
+<ul>
+<li>launch.json 파일을 통해서 디버깅 옵션 설정 가능</li>
+<li><code class="language-text">name</code>: 디버깅 config의 이름</li>
+<li><code class="language-text">type</code>: 디버거 유형</li>
+<li><code class="language-text">request</code>: launch or attach</li>
+<li><code class="language-text">cwd</code>: project working directory</li>
+<li><code class="language-text">program</code>: run a script</li>
+<li><code class="language-text">args</code>: command line arguments</li>
+<li><code class="language-text">env</code>: environment variables</li>
+<li><code class="language-text">console</code>: 사용할 console 종류</li>
+<li><code class="language-text">justMyCode</code>: false시 내부 라이브러리 까지도 jump-in 가능</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># Example code
+{
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+
+        {
+            &quot;name&quot;: &quot;debugging option 1&quot;,
+            &quot;type&quot;: &quot;python&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;cwd&quot;:&quot;${workspaceFolder}/project_dir&quot;,
+            &quot;program&quot;: &quot;${workspaceFolder}/project_dir/main.py&quot;,
+            &quot;args&quot;: [
+                &quot;--config&quot;, &quot;configs/base.yaml&quot;,
+                &quot;--mode&quot;, &quot;train&quot;,
+            ],
+            &quot;env&quot;: {
+                &quot;CUDA_VISIBLE_DEVICES&quot;: &quot;0, 1, 2&quot;,
+            },
+            &quot;console&quot;: &quot;integratedTerminal&quot;,
+            &quot;justMyCode&quot;: false
+        },
+
+    ]
+}</code></pre></div>
 <h3 id="vim" style="position:relative;"><a href="#vim" aria-label="vim permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Vim</h3>
 <ul>
 <li><a href="https://vim.rtorr.com/lang/ko">Vim cheat sheet</a></li>
@@ -119,6 +174,13 @@
 <ul>
 <li><code class="language-text">taskset -c 0-3 python script.py</code>: CPU cores 0~3만을 사용</li>
 <li><code class="language-text">cpulimit -p &quot;$(pgrep -f ${file_name})&quot; -l 50</code>: file_name 실행하기 위해 CPU 50%만 사용</li>
+</ul>
+<h3 id="nvidia" style="position:relative;"><a href="#nvidia" aria-label="nvidia permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>NVIDIA</h3>
+<p>nvidia-smi에서 smi는 system management interface의 약자. Official document는 <a href="https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf">이 곳</a> 참고.</p>
+<ul>
+<li><code class="language-text">nvidia-smi -pl 150</code>: power limit을 150W으로 설정</li>
+<li><code class="language-text">nvidia-smi -lmc 6500</code>: lmc는 lock memory clock의 약자. memory clock frequency를 6500 MHz으로 제한</li>
+<li><code class="language-text">nvidia-smi -lgc 0,1800</code>: lgc는 lock gpu clock의 약자. minGpuClock=0, maxGpuClock=1800으로 설정</li>
 </ul>
 <h3 id="network" style="position:relative;"><a href="#network" aria-label="network permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network</h3>
 <h5 id="ssh-tunneling" style="position:relative;"><a href="#ssh-tunneling" aria-label="ssh tunneling permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SSH Tunneling</h5>
