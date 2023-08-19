@@ -133,6 +133,7 @@ thumbnail: "mlops"
 - `ENV <key>=<value> ...`: 컨테이너에서 사용할 환경변수 지정
 - `CMD ["executable","param1","param2"]`: 컨테이너가 실행되었을 때 실행되는 기본 명령어. shell form 형태는 [이곳](https://docs.docker.com/engine/reference/builder/#cmd) 참고
 - `LABEL <key>=<value> <key>=<value> <key>=<value> ...`: 이미지에 메타데이터 추가. 메타데이터 통해 이미지에 대한 정보 쉽게 파악 가능
+- **`RUN --mount=type=ssh ...`**: private repo clone 하거나 private package 다운을 위해 ssh key mount. 더 자세한 내용은 [스택오버플로우 답변](https://stackoverflow.com/questions/55929417/how-to-securely-git-clone-pip-install-a-private-repository-into-my-docker-image) 참고
 
 ##### Compose file
 

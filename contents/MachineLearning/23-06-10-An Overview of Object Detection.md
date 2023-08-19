@@ -17,13 +17,12 @@ thumbnail: "deeplearning"
 - Object detection: 이미지 내에 다수의 object가 존재할 때, 각각의 class를 맞추고 localization 하는 task
 - RoI: Region of Interest
 - Region proposal: Object가 있을 것 같은 영역을 제안
-  - Sliding window: 다양한 크기의 window를 이미지 상에서 sliding 하면서 해당 위치에 물체가 존재하는지 확인하는 방법
-  - Selective search: 인접한 region 사이의 유사도를 측정하고, 점점 큰 영역으로 통합하는 방법
+  - Selective search (e.g., Fast R-CNN): 인접한 region 사이의 유사도를 측정하고, 점점 큰 영역으로 통합하는 방법
+  - Sliding window, Spatial anchor, RPN (e.g., Faster R-CNN): 다양한 크기의 window를 이미지 상에서 sliding 하면서 해당 위치에 물체가 존재하는지 확인하는 방법. [해당 유튜브 영상](https://www.youtube.com/watch?v=ZhvU7D_qKO8)에서 정말 잘 설명해주고 있음
 - Localization layer: Bbox position를 제안하는 layer이고 일반적으로 regressor 활용
 - Classification layer: Object의 class를 제안하는 layer
-- RoI pooling: 각 RoI 영역에 대해 pooling(e.g., max-pooling) 적용해서 NxN matrix 추출
-  - mask R-CNN에서는 RoI pooling 개선시킨 RoIAlign layer 활용함
-
+- RoI Pooling: RPN을 통해 나온 Proposal의 크기가 다 다른데, RoI pooling을 거치면 모두 사이즈가 같아짐 (e.g., Output size = 7x7 pooled feature)
+- RoIAlign: mask R-CNN (Instance Segmentation model)에서 사용. RoI Pooling과 output size는 동일한데 pooling 값 계산하는 방식이 다름. 이후 연구들은 대부분 RoIAlign 사용함
 - IoU (Intersection of Union): 예측 bbox와 정답 bbox가 겹치는 비율
 
 $$
