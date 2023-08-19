@@ -79,18 +79,14 @@
 <li>
 <p>Region proposal: Object가 있을 것 같은 영역을 제안</p>
 <ul>
-<li>Sliding window: 다양한 크기의 window를 이미지 상에서 sliding 하면서 해당 위치에 물체가 존재하는지 확인하는 방법</li>
-<li>Selective search: 인접한 region 사이의 유사도를 측정하고, 점점 큰 영역으로 통합하는 방법</li>
+<li>Selective search (e.g., Fast R-CNN): 인접한 region 사이의 유사도를 측정하고, 점점 큰 영역으로 통합하는 방법</li>
+<li>Sliding window, Spatial anchor, RPN (e.g., Faster R-CNN): 다양한 크기의 window를 이미지 상에서 sliding 하면서 해당 위치에 물체가 존재하는지 확인하는 방법. <a href="https://www.youtube.com/watch?v=ZhvU7D_qKO8">해당 유튜브 영상</a>에서 정말 잘 설명해주고 있음</li>
 </ul>
 </li>
 <li>Localization layer: Bbox position를 제안하는 layer이고 일반적으로 regressor 활용</li>
 <li>Classification layer: Object의 class를 제안하는 layer</li>
-<li>
-<p>RoI pooling: 각 RoI 영역에 대해 pooling(e.g., max-pooling) 적용해서 NxN matrix 추출</p>
-<ul>
-<li>mask R-CNN에서는 RoI pooling 개선시킨 RoIAlign layer 활용함</li>
-</ul>
-</li>
+<li>RoI Pooling: RPN을 통해 나온 Proposal의 크기가 다 다른데, RoI pooling을 거치면 모두 사이즈가 같아짐 (e.g., Output size = 7x7 pooled feature)</li>
+<li>RoIAlign: mask R-CNN (Instance Segmentation model)에서 사용. RoI Pooling과 output size는 동일한데 pooling 값 계산하는 방식이 다름. 이후 연구들은 대부분 RoIAlign 사용함</li>
 <li>IoU (Intersection of Union): 예측 bbox와 정답 bbox가 겹치는 비율</li>
 </ul>
 <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>IoU</mtext><mo>=</mo><mfrac><mtext>두 bbox의 교집합</mtext><mtext>두 bbox의 합집합</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{IoU} = \frac{\text{두 bbox의 교집합}}{\text{두 bbox의 합집합}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord">IoU</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord hangul_fallback">두</span><span class="mord"> bbox</span><span class="mord hangul_fallback">의</span><span class="mord"> </span><span class="mord hangul_fallback">합집합</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord hangul_fallback">두</span><span class="mord"> bbox</span><span class="mord hangul_fallback">의</span><span class="mord"> </span><span class="mord hangul_fallback">교집합</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
