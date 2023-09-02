@@ -87,12 +87,17 @@ category: "Deep Learning"
   - NS와 AN이 잘 되는 이유에 대한 informal한 분석/의견을 내놓으면서 이를 바탕으로 CN을 제안하는 과정이 매끄러움. 이 점 덕분에 accept이 되었다고 생각함
 - [ ] [Zhu, Fei, et al. "Class-Incremental Learning via Dual Augmentation." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/file/77ee3bc58ce560b86c2b59363281e914-Paper.pdf)
 - [x] [Zhou, Da-Wei, et al. "Forward compatible few-shot class-incremental learning." CVPR 2022.](https://arxiv.org/pdf/2203.06953.pdf)
+- [ ] [Shibhansh Dohare, et al. "Loss of Plasticity in Deep Continual Learning"](https://arxiv.org/pdf/2306.13812.pdf)
+  - 기존 CL 연구들은 catastrophic forgetting 막는것만 집중했는데 사실 CL 세팅은 새로운 지식 학습하는 능력에도 영향을 미침
+  - CL에서 L2 regularization & [shrink-and-perturb](https://arxiv.org/pdf/1910.08475.pdf) 적절히 조정해주는게 plasticity(새로운 지식을 배우는 능력)에 도움됨
+  - CL 학습시 일부 dead neuron을 reinitialize해주는 방식 사용한게 도움됨
 
 ### Domain Generalization
 
 - [ ] [Cha, Junbum, et al. "Swad: Domain generalization by seeking flat minima." NIPS 2021.](https://proceedings.neurips.cc/paper/2021/hash/bcb41ccdc4363c6848a1d760f26c28a0-Abstract.html)
 - [ ] [Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.](http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html)
 - [ ] [Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.](https://arxiv.org/pdf/2012.04324.pdf)
+- [x] [Zhou, Zhi, et al. "ODS: Test-Time Adaptation in the Presence of Open-World Data Shift." ICML 2023.](https://openreview.net/pdf?id=Phjti0QbkZ) 
 
 ### Unsupervised Learning / Self-Supervised Learning
 
@@ -300,6 +305,9 @@ category: "Deep Learning"
 - [ ] [Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.](https://openreview.net/forum?id=g11CZSghXyY)
 
 ### Object Detection
+- [x] [Zhu, Xizhou, et al. "Deformable DETR: Deformable Transformers for End-to-End Object Detection." ICLR 2021.](https://arxiv.org/abs/2010.04159) 
+- [x] [Carion, Nicolas, et al. "End-to-end object detection with transformers." ECCV  2020.](https://link.springer.com/chapter/10.1007/978-3-030-58452-8_13)
+- [ ] [Dai, Jifeng, et al. "Deformable convolutional networks." ICCV 2017.](http://openaccess.thecvf.com/content_iccv_2017/html/Dai_Deformable_Convolutional_Networks_ICCV_2017_paper.html)
 
 ### Image Segmentation
 
