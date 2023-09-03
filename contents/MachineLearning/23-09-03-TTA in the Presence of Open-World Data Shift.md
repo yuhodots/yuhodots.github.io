@@ -4,7 +4,7 @@ date: "2023-09-03"
 template: "post"
 draft: false
 path: "/deeplearning/23-09-03/"
-description: "ICML 2023 oral paper로 선정된 Test-Time Augmentation in the Presence of Open-World Data Shift 논문을 정리합니다. 일반적으로 TTA 세팅은 covariate shift만을 가정합니다. 하지만 본 논문에서 label shift 또한 real-world에서 빈번히 발생하는 문제이기에 이를 대응할 수 있어야 한다고 주장합니다."
+description: "ICML 2023 oral paper로 선정된 Test-Time Augmentation in the Presence of Open-World Data Shift 논문을 정리합니다. 일반적으로 TTA 세팅은 covariate shift만을 가정하지만, 본 논문에서는 real-world에서 label shift 또한 대응할 수 있어야 한다고 주장합니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
