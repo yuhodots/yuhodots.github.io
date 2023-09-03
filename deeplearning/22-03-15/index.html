@@ -192,12 +192,21 @@
 </li>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://proceedings.neurips.cc/paper/2021/file/77ee3bc58ce560b86c2b59363281e914-Paper.pdf">Zhu, Fei, et al. "Class-Incremental Learning via Dual Augmentation." NeurIPS 2021.</a></li>
 <li class="task-list-item"><input type="checkbox" checked disabled> <a href="https://arxiv.org/pdf/2203.06953.pdf">Zhou, Da-Wei, et al. "Forward compatible few-shot class-incremental learning." CVPR 2022.</a></li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> <a href="https://arxiv.org/pdf/2306.13812.pdf">Shibhansh Dohare, et al. "Loss of Plasticity in Deep Continual Learning"</a></p>
+<ul>
+<li>기존 CL 연구들은 catastrophic forgetting 막는것만 집중했는데 사실 CL 세팅은 새로운 지식 학습하는 능력에도 영향을 미침</li>
+<li>CL에서 L2 regularization &#x26; <a href="https://arxiv.org/pdf/1910.08475.pdf">shrink-and-perturb</a> 적절히 조정해주는게 plasticity(새로운 지식을 배우는 능력)에 도움됨</li>
+<li>CL 학습시 일부 dead neuron을 reinitialize해주는 방식 사용한게 도움됨</li>
+</ul>
+</li>
 </ul>
 <h3 id="domain-generalization" style="position:relative;"><a href="#domain-generalization" aria-label="domain generalization permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Domain Generalization</h3>
 <ul>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://proceedings.neurips.cc/paper/2021/hash/bcb41ccdc4363c6848a1d760f26c28a0-Abstract.html">Cha, Junbum, et al. "Swad: Domain generalization by seeking flat minima." NIPS 2021.</a></li>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="http://openaccess.thecvf.com/content/CVPR2021/html/Fan_Adversarially_Adaptive_Normalization_for_Single_Domain_Generalization_CVPR_2021_paper.html">Fan, Xinjie, et al. "Adversarially adaptive normalization for single domain generalization." CVPR 2021.</a></li>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://arxiv.org/pdf/2012.04324.pdf">Volpi, Riccardo, et al. "Continual Adaptation of Visual Representations via Domain Randomization and Meta-learning." CVPR 2021.</a></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <a href="https://openreview.net/pdf?id=Phjti0QbkZ">Zhou, Zhi, et al. "ODS: Test-Time Adaptation in the Presence of Open-World Data Shift." ICML 2023.</a> </li>
 </ul>
 <h3 id="unsupervised-learning--self-supervised-learning" style="position:relative;"><a href="#unsupervised-learning--self-supervised-learning" aria-label="unsupervised learning  self supervised learning permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Unsupervised Learning / Self-Supervised Learning</h3>
 <ul>
@@ -482,6 +491,11 @@
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://openreview.net/forum?id=g11CZSghXyY">Wen, Yeming, et al. "Combining Ensembles and Data Augmentation Can Harm Your Calibration." ICLR 2021.</a></li>
 </ul>
 <h3 id="object-detection" style="position:relative;"><a href="#object-detection" aria-label="object detection permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Object Detection</h3>
+<ul>
+<li class="task-list-item"><input type="checkbox" checked disabled> <a href="https://arxiv.org/abs/2010.04159">Zhu, Xizhou, et al. "Deformable DETR: Deformable Transformers for End-to-End Object Detection." ICLR 2021.</a> </li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <a href="https://link.springer.com/chapter/10.1007/978-3-030-58452-8_13">Carion, Nicolas, et al. "End-to-end object detection with transformers." ECCV  2020.</a></li>
+<li class="task-list-item"><input type="checkbox" disabled> <a href="http://openaccess.thecvf.com/content_iccv_2017/html/Dai_Deformable_Convolutional_Networks_ICCV_2017_paper.html">Dai, Jifeng, et al. "Deformable convolutional networks." ICCV 2017.</a></li>
+</ul>
 <h3 id="image-segmentation" style="position:relative;"><a href="#image-segmentation" aria-label="image segmentation permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Image Segmentation</h3>
 <ul>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Tian_BoxInst_High-Performance_Instance_Segmentation_With_Box_Annotations_CVPR_2021_paper.html">Zhi Tian, et al., "Boxinst: High-performance instance segmentation with box annotations," CVPR 2021.</a></li>
