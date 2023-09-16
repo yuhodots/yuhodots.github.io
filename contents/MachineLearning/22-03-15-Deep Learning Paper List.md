@@ -88,9 +88,15 @@ category: "Deep Learning"
 - [ ] [Zhu, Fei, et al. "Class-Incremental Learning via Dual Augmentation." NeurIPS 2021.](https://proceedings.neurips.cc/paper/2021/file/77ee3bc58ce560b86c2b59363281e914-Paper.pdf)
 - [x] [Zhou, Da-Wei, et al. "Forward compatible few-shot class-incremental learning." CVPR 2022.](https://arxiv.org/pdf/2203.06953.pdf)
 - [ ] [Shibhansh Dohare, et al. "Loss of Plasticity in Deep Continual Learning"](https://arxiv.org/pdf/2306.13812.pdf)
+  - [발표 영상 1](https://www.youtube.com/watch?v=p_zknyfV9fY), [발표 영상 2](https://www.youtube.com/watch?v=oA_XLqh4Das)
   - 기존 CL 연구들은 catastrophic forgetting 막는것만 집중했는데 사실 CL 세팅은 새로운 지식 학습하는 능력에도 영향을 미침
   - CL에서 L2 regularization & [shrink-and-perturb](https://arxiv.org/pdf/1910.08475.pdf) 적절히 조정해주는게 plasticity(새로운 지식을 배우는 능력)에 도움됨
-  - CL 학습시 일부 dead neuron을 reinitialize해주는 방식 사용한게 도움됨
+  - CL 학습시 일부 dead neuron을 reinitialize해주는 방식 사용한게 도움됨 (continual backpropagation)
+- [x] [Ash, Jordan, and Ryan P. Adams. "On warm-starting neural network training." NeurIPS 2020.](https://proceedings.neurips.cc/paper/2020/hash/288cd2567953f06e460a33951f55daaf-Abstract.html)
+  - 어떠한 지식을 배운 후, 해당 weight으로 유사한 지식을 학습하는 것을 warm start라고 하는데, 이는 (최종 training loss는 비슷하더라도) random initialzation으로 부터 다시 학습하는 것 보다 더 안 좋은 일반화 성능을 가짐. 본 논문에서는 이 현상이 왜 일어나는지 분석하고, 이를 극복할 수 있는 몇 가지 트릭을 제안 
+  - 사전 실험: warm start의 generalization gap - 데이터 셋 절반을 미리 학습하고, 이에 대해 random init와 warm start 비교해봤을 때 warm start가 못함. Convection approach의 경우, 어떤 하이퍼파라미터 튜닝을 하던지 warm start가 항상 random init 보다 좋지 않음
+  - 따라서 Shrink, Perturb, Repeat라는 방식 제안: (1) 이전 학습된 weight을 zero 방향으로 줄이고 (shrink), (2) paramter noise를 삽입. 즉, $\theta_i^t \leftarrow \lambda \theta_i^{t-1}+p^t \text {, where } p^t \sim \mathcal{N}\left(0, \sigma^2\right) \text { and } 0<\lambda<1 \text {. }$
+  - 해당 방법을 pre-training, continual active learning, batch online-learning 등에서 다양하게 활용 가능
 
 ### Domain Generalization
 
@@ -330,6 +336,18 @@ category: "Deep Learning"
   - Data: Data engine and Dataset (SA-1B)
     - Data engine (model-in-the-loop): 처음에는 publice segmentation dataset으로 학습 (1) model assist annotator (classic interactive segmentation setup) - (2) semi-automatic annotation - (3) fully automatic mask creation
     - SA-1B: the largest ever segmentation dataset (400x more masks than any existing segmentation dataset)
+- [ ] [Tian, Zhi, Chunhua Shen, and Hao Chen. "Conditional Convolutions for Instance Segmentation." ECCV 202.](https://link.springer.com/chapter/10.1007/978-3-030-58452-8_17)
+  - MaskRCNN은 Fixed weights에 ROIs를 입력으로 줘서 mask 출력하는데, 만약 A, B라는 사람 instance가 매우 겹쳐진 위치에서 비슷한 특징을 가지고 있는 경우에 A에 대해 B를 배경으로 잡아야 하는데 이것 어려움.
+  - CondInst: (1) ROI crop나 feature alignment 없이 ConvNet으로만 구성됨. (2) Fixed weight이 아니라 dynamically genarated ConvNet이라서 mask head 매우 컴팩트하고 빠름
+  - 작동 순서는 다음과 같음
+    1. 이미지 입력을 FPN에 넣어 multi-resolution feature를 뽑아냄
+    2. Feature 기반으로 classification prediction과 filter parameter $\theta_{x,y}$, 그리고 center-ness output, box output를 생성. 여기서 filter parameter는 1x1 8 channel conv이고 이게 3개(conv1, conv2, conv3)임. 사실 ROI 사용 안하니까 box head는 필요 없긴 한데, box head 기반으로 NMNS하면 inference time 줄어들어서 사용함
+    3. Mask branch $F_\text{mask} \in \mathbb R^{H,W,C}$에 대해 relative coord를 append한 뒤, 해당 mask feature를 $\theta_{x,y}$ 기반의 mask ConvNet head에 입력으로 넣어줌. 이 때, mask feature는 image input resolution의 1/8. 그리고 conditioning된 filter의 개수만큼의 instance가 있다고 생각하면 됨 (MaskRCNN에서는 ROI box 개수가 instance의 수를 나타냄)
+    4. Loss function으로는 FCOS loss와 Mask loss 사용
+- [ ] [Cheng, Bowen, Omkar Parkhi, and Alexander Kirillov. "Pointly-supervised instance segmentation." CVPR 2022.](http://openaccess.thecvf.com/content/CVPR2022/html/Cheng_Pointly-Supervised_Instance_Segmentation_CVPR_2022_paper.html)
+  - weakly-supervised instance seg의 장점: 10 point or bbox annotations are 5 times faster than mask annotations. 
+  - point supervised scheme 제안: 기존과 달리 click-based가 아님. points가 randomly sampled되고 이것에 대해서 background인지 아닌지 작업자가 판단하는 task
+  - 이 방법을 기반으로 Mask RCNN, PointRend, CondInst에 적용해서 성능 확인해봄: fully supervised의 94~98% 나옴. 특히, PointRedn의 변형인 Implicit PointRend를 제안함
 
 ### Multi-Modal Learning
 

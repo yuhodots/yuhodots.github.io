@@ -163,6 +163,16 @@ REST, gRPC, GraphQL에 대해 기록합니다
 - Throughput: 처리량. 즉, 단위 시간 당 정보 송수신(작업 처리) 수
 - Bandwidth: 대역폭. 즉, 단위 시간 당 정보 송수신(작업 처리) 가능한 정보량
 
+##### 👨‍💻 CS
+
+*2023.09.16*
+
+- AWS Redshift란?: 데이터 웨어하우스 서비스. Massive Parallel Processing(대규모 병렬 처리), Columnar data storage 등의 특징 가짐. PostgreSQL을 기반으로 하지만 몇 가지 차이점들 존재 ([관련 링크](https://docs.aws.amazon.com/ko_kr/redshift/latest/dg/c_redshift-and-postgres-sql.html))
+- AWS Redshift Query Editor V2: https://aws.amazon.com/ko/blogs/korea/amazon-redshift-query-editor-v2-web-query-authoring/
+- View: 가상의 테이블이라고 생각하면 됨. 데이터는 없고 SQL만 저장함. 사용자가 view에 접근할 때 저장되어있던 SQL이 수행되어 결과도출
+- In-memory DB란?: 디스크가 아닌 메모리에 모든 데이터를 보유하고 있는 DB. 매우 빠르지만 휘발성이라 서버가 꺼져서 날아가도 상관 없는 임시 데이터에 주로 사용
+- In-memory DB 종류: Redis, SQLite, AWS ElasticCahe
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

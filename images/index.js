@@ -11,6 +11,7 @@ import ray from "./ray.png"
 import ICLR from "./ICLR.jpg"
 import NIPS from "./NIPS.png"
 import CVPR from "./CVPR.png"
+import pandas from "./pandas.png"
 
 export default {
     aws,
@@ -26,4 +27,5 @@ export default {
     ICLR,
     NIPS,
     CVPR,
+    pandas
 };

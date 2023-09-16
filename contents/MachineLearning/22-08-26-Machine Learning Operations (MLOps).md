@@ -135,6 +135,8 @@ thumbnail: "mlops"
 - `LABEL <key>=<value> <key>=<value> <key>=<value> ...`: 이미지에 메타데이터 추가. 메타데이터 통해 이미지에 대한 정보 쉽게 파악 가능
 - **`RUN --mount=type=ssh ...`**: private repo clone 하거나 private package 다운을 위해 ssh key mount. 더 자세한 내용은 [스택오버플로우 답변](https://stackoverflow.com/questions/55929417/how-to-securely-git-clone-pip-install-a-private-repository-into-my-docker-image) 참고 (Other approaches:  [link1](https://medium.com/@erika_dike/installing-package-from-a-private-repo-in-your-docker-container-f45b1a4954a2), [link2](https://vsupalov.com/build-docker-image-clone-private-repo-ssh-key/))
 
+### Docker Compose
+
 ##### Compose file
 
 멀티 컨테이너 어플리케이션 관리를 위한 파일로, 컨테이너 실행에 필요한 옵션이나, 실행 순서, 의존성 등의 내용을 하나의 파일로 관리 가능. 아래는 `docker-compose.yml` 파일 예시
@@ -164,8 +166,13 @@ volumes:
 - `volumes`: 로컬 컴퓨터의 디렉토리에 마운트
 - `links`: 다른 서비스 컨테이너와의 네트워크 링크를 정의 (SERVICE:ALIAS 혹은 SERVICE). 컴포즈 파일 버전 3 이후로는 links 사용하지 않더라도 한 네트워크 안에 있는 서비스끼리 통신가능
 - `image`: 해당 서비스가 사용할 이미지
+
+##### Commands
+
 - `docker-compose up [options] [--scale SERVICE=NUM...] [SERVICE...]`: `docker-compose.yml` 파일 따라 서비스 실행
-- `docker-compose down [options]`: 서비스 지움
+  - 개발용 dev container를 compose 파일로 만들어두면 서버를 옮겨가며 작업할 때 매우 편리함
+  - `docker-compose up -d`: 컨테이너를 백그라운드로 실행
+- `docker-compose down [options]`: docker-compose up 명령으로 생성한 컨테이너나 이미지를 모아서 삭제
 - `docker-compose start [SERVICE...]`: stop 되어있던 서비스 시작
 - `docker-compose stop [options] [SERVICE...]`: 서비스 stop
 - `docker-compose ps`: 현재 실행중인 서비스 상태 확인
