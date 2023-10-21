@@ -544,12 +544,45 @@
 </ul>
 </li>
 <li class="task-list-item">
-<p><input type="checkbox" disabled> <a href="http://openaccess.thecvf.com/content/CVPR2022/html/Cheng_Pointly-Supervised_Instance_Segmentation_CVPR_2022_paper.html">Cheng, Bowen, Omkar Parkhi, and Alexander Kirillov. "Pointly-supervised instance segmentation." CVPR 2022.</a></p>
+<p><input type="checkbox" checked disabled> <a href="http://openaccess.thecvf.com/content/CVPR2022/html/Cheng_Pointly-Supervised_Instance_Segmentation_CVPR_2022_paper.html">Cheng, Bowen, Omkar Parkhi, and Alexander Kirillov. "Pointly-supervised instance segmentation." CVPR 2022.</a></p>
 <ul>
-<li>weakly-supervised instance seg의 장점: 10 point or bbox annotations are 5 times faster than mask annotations. </li>
-<li>point supervised scheme 제안: 기존과 달리 click-based가 아님. points가 randomly sampled되고 이것에 대해서 background인지 아닌지 작업자가 판단하는 task</li>
-<li>이 방법을 기반으로 Mask RCNN, PointRend, CondInst에 적용해서 성능 확인해봄: fully supervised의 94~98% 나옴. 특히, PointRedn의 변형인 Implicit PointRend를 제안함</li>
+<li>BoxInst 같은 box-supervised method가 이미 존재하지만, 여전히 성능은 좋지 않음. 그렇다고 해서 fully-supervised 방식을 사용하기에는 cost가 너무 많이 듦</li>
+<li>따라서 저자들은 box-supervison과 더불어 point-supervision도 사용해보자는 의견을 제시하고, 이 때point-supervision을 box-supervision 기반으로 만드는 효율적인(빠른) 방법을 제안함</li>
+<li>먼저 작업자가 Bbox를 만들면, 여기서 랜덤하게 point가 찍힘</li>
+<li>이 점에 대해서 작업자가 foreground와 background 라벨링을 또 한 번 수행함</li>
+<li>이 작업은 instance당 15초 정도 소요됨. 즉, fully supervised 방식 대비 5배 정도 빠른 라벨링 가능</li>
+<li>그리고 이렇게 만든 point supervision이 다른 '모든' instance segmentation pipeline과 compatible 하도록 만들었음. 즉, 이 point supervision을 가지고 mask loss를 계산하는 방법을 고안하여 제안함</li>
+<li>예측은 기존 instance segmentation의 모델과 동일하게 수행한 다음,</li>
+<li>GT points에 대해서 loss 계산을 하는데, prediction points는 prediction mask들의 bilinear interpolation을 사용. 이 방법은 기존 instance segmentation 모델에 대해 구조상으로는 변경될 것이 따로 없어서 좋음</li>
 </ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" checked disabled> Tianheng Cheng, et al. "Boxteacher: Exploring high-quality pseudo labels for weakly supervised instance segmentation." CVPR 2023.</p>
+<ol>
+<li>Teacher, student 구조로 모델 학습시키는데(Backbone으로는 CondInst 활용), 이미지 입력에는 strong augmentation 적용함</li>
+<li>모든 모델 예측을 pseudo label로 사용하는게 아니라, box GT와 충분히 비슷하고(high IoU), 모델이 강한 확신 보이는(high confidence) 예측만 필터링해서 pseudo label로 사용</li>
+<li>추가적으로, 예측 noise 줄이는 loss 고안해서 적용</li>
+</ol>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" checked disabled> Ruihuang Li, et al. "SIM: Semantic-aware Instance Mask Generation for Box-Supervised Instance Segmentation." CVPR 2023.</p>
+<ol>
+<li>Pre-trained instance segmentation model 구비 (CondInst and Mask2Former)</li>
+<li>Class-wise Prototypes과 similarity 측정해서 semantic mask 얻음</li>
+<li>Instance mask 얻음</li>
+<li>Semantic mask와 instance mask를 weighted averaging하여 pseudo mask 얻음</li>
+</ol>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> Beomyoung Kim, et al. "The Devil is in the Points: Weakly Semi-Supervised Instance Segmentation via Point-Guided Mask Representation." CVPR 2023.</p>
+<ol>
+<li>만약 dataset의 10%만 fully labeled 되어있다면, 나머지 90%는 point supervision을 부여함. 당연히 이 부분은 사람이 만들어야하지만, instance 하나 당 point 하나이기 때문에 cost는 적음</li>
+<li>(Step 1): Fully-labeled data로 먼저 Teacher network와 MaskRefineNet을 학습함. MaskRefineNet은 [Teacher의 mask 예측 / 이미지 / Instance Point]를 입력으로 받아서, mask 예측을 개선시키는 네트워크임. 즉, Point label을 사용해서 더 좋은 예측으로 mask를 업데이트!</li>
+<li>Teacher 학습시에는 데이터셋에 point supervision이 존재하지 않기 때문에, mask 예측의 center point를 입력 point로 사용</li>
+<li>Student 학습시에는 데이터셋에 point supervision이 존재하기 때문에 해당 point supervision 활용</li>
+<li>(Step 2): Teacher의 예측을, MaskRefineNet 기반으로 개선시킨 후에, 개선된 mask를 pseudo-label로 사용함</li>
+<li>이 외에도 adaptive strategy라는 pseudo label 좀 더 보완하는 방법도 추가 제안함</li>
+</ol>
 </li>
 </ul>
 <h3 id="multi-modal-learning" style="position:relative;"><a href="#multi-modal-learning" aria-label="multi modal learning permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Multi-Modal Learning</h3>
@@ -563,6 +596,29 @@
 <li>Curriculum learning: 학습 초기 단계에서 아주 쉬운 parsing 문제(e.g., 글씨에 색깔만 입힌 HTML parsing)로 warm-up stage를 거치면 converge도 빠르고 fine-tuning 성능도 좋아짐 (Appendix D 참고)</li>
 <li>Transfer learning: ViT를 위한 새로운 fine-tuning 전략인 variable-resolution input representation을 제안. 일반적으로 ViT는 image patch를 뽑기 전에 pre-defined resolution으로 rescale을 하는데, 이 경우에 screenshot을 왜곡하거나 high resolution으로의 transfer learning에 방해가 될 것임. 따라서 저자들은 2d absolute positional embedding을 input patch와 같이 입력으로 제공하였음</li>
 <li>Architecture: image-encoder-text-decoder ViT</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> Xiaoshuai Hao, et al. "Mixgen: A new multi-modal data augmentation." WACV Workshop 2023.</p>
+<ul>
+<li>image는 interpolating, text는 concatenating</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> Liu, Zichang, et al. "Learning Multimodal Data Augmentation in Feature Space." ICLR 2023.</p>
+<ul>
+<li>Task Network, Augmentation Network라는 것 도입해서 learning 기반으로 multi-modal feature augmentation</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> So, Junhyuk, et al. "Geodesic multi-modal mixup for robust fine-tuning." <em>arXiv preprint arXiv:2203.03897</em> (2022).</p>
+<ul>
+<li>CLIP의 임베딩이 text, image 서로 separated 되어있음. CLIP embedding을 분석하고, 문제를 해결한 첫 논문임</li>
+<li>발견: temperature를 높여서 학습하면 uniformity와 alignment measure는 좋아지는데, downstream task의 performance는 하락함</li>
+<li>이를 해결할 방법으로 geodesic multi-modal mixup (m2 mixup) 제안</li>
+<li>hard negative를 image text feature mixup 사용해서 만들고, 이를 contrastive loss 안에 삽입</li>
+<li>이 때, feature mixup(interpolation)을 hypersphere 상에서 수행하여서 geodesic mixup이라 이름 붙임</li>
+<li>text, timage emedding 사이의 alignment를 개선시키고 이를 통해 fine-tuning에서의 robustness를 얻음</li>
 </ul>
 </li>
 </ul>

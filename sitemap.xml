@@ -3,6 +3,7 @@
 <url> <loc>https://yuhodots.github.io/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/category</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yuhodots.github.io/cheatsheet/23-10-22/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/MLOps/22-09-27/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/cheatsheet/23-09-16/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/deeplearning/23-09-03/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -46,10 +47,10 @@
 <url> <loc>https://yuhodots.github.io/frontend/19-09-15/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/frontend/19-09-14/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/19-09-01/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://yuhodots.github.io/frontend/19-08-28-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/frontend/19-08-28/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://yuhodots.github.io/backend/19-08-19/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yuhodots.github.io/frontend/19-08-28-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/19-08-19-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yuhodots.github.io/backend/19-08-19/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/frontend/19-08-16/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/server/19-08-14/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/essay/19-08-13/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -67,8 +68,8 @@
 <url> <loc>https://yuhodots.github.io/server/19-07-10-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/2019-07-04/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/2019-07-02/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://yuhodots.github.io/backend/19-06-28/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/19-06-28-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://yuhodots.github.io/backend/19-06-28/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/19-06-27/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/19-06-26/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://yuhodots.github.io/backend/19-05-19/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

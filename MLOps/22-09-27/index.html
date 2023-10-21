@@ -229,6 +229,34 @@ default_args <span class="token operator">=</span> <span class="token punctuatio
     task1
     
 dag <span class="token operator">=</span> greet_dag<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<h5 id="xcoms" style="position:relative;"><a href="#xcoms" aria-label="xcoms permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>XComs</h5>
+<p>XComs를 통해 task간 정보를 주고받는 것은 TaskInstance 객체의 xcom<em>push, xcom</em>pull 메소드를 통해 가능합니다.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> airflow<span class="token punctuation">.</span>decorators <span class="token keyword">import</span> dag
+<span class="token keyword">from</span> airflow<span class="token punctuation">.</span>operators<span class="token punctuation">.</span>python <span class="token keyword">import</span> PythonOperator
+<span class="token keyword">from</span> airflow<span class="token punctuation">.</span>models <span class="token keyword">import</span> TaskInstance
+
+<span class="token keyword">def</span> <span class="token function">test_xcoms_push</span><span class="token punctuation">(</span>ti<span class="token punctuation">:</span> TaskInstance<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  ti<span class="token punctuation">.</span>xcom_push<span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"first_item"</span><span class="token punctuation">,</span> value<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'first_item'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  ti<span class="token punctuation">.</span>xcom_push<span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"second_item"</span><span class="token punctuation">,</span> value<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'second_item'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">test_xcoms_pull</span><span class="token punctuation">(</span>ti<span class="token punctuation">:</span> TaskInstance<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  item1 <span class="token operator">=</span> ti<span class="token punctuation">.</span>xcom_pull<span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"first_item"</span><span class="token punctuation">,</span> task_ids<span class="token operator">=</span><span class="token string">"test_xcoms_push"</span><span class="token punctuation">)</span>
+  item2 <span class="token operator">=</span> ti<span class="token punctuation">.</span>xcom_pull<span class="token punctuation">(</span>key<span class="token operator">=</span><span class="token string">"second_item"</span><span class="token punctuation">,</span> task_ids<span class="token operator">=</span><span class="token string">"test_xcoms_push"</span><span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>item1<span class="token punctuation">,</span> itme2<span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@dag</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">dag_function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    task1 <span class="token operator">=</span> PythonOperator<span class="token punctuation">(</span>
+  		task_id<span class="token operator">=</span><span class="token string">'test_xcoms_push'</span><span class="token punctuation">,</span>
+    	python_callable<span class="token operator">=</span>test_xcoms_push<span class="token punctuation">,</span>
+  	<span class="token punctuation">)</span>
+    task2 <span class="token operator">=</span> PythonOperator<span class="token punctuation">(</span>
+  		task_id<span class="token operator">=</span><span class="token string">'test_xcoms_pull'</span><span class="token punctuation">,</span>
+    	python_callable<span class="token operator">=</span>test_xcoms_pull<span class="token punctuation">,</span>
+  	<span class="token punctuation">)</span>
+    task1 <span class="token operator">>></span> task2
+    
+dag <span class="token operator">=</span> dag_function<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
 <h5 id="connection" style="position:relative;"><a href="#connection" aria-label="connection permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connection</h5>
 <p>Webserver의 Admin 탭에서 connection 설정을 할 수 있습니다. Connection은 외부 연결을 관리해주며, 일반적으로 클라우드에 존재하는 DB 서버, Datalake 등의 연결을 목적으로 활용됩니다.</p>
 <p><span
