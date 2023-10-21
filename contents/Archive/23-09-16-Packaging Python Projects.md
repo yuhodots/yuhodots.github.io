@@ -4,8 +4,9 @@ date: "2023-09-16"
 template: "post"
 draft: false
 path: "/cheatsheet/23-09-16/"
-description: " Python project packaging과 관련하여 poetry 사용법과 pyproject.toml 작성 방법에 대해 간단히 기록합니다. 과거에는 python package 제작시 setuptools를 활용하여 setup.py에 package 정보를 적고, 이를 twine 등을 통해 PyPI에 등록하는 절차를 거쳤지만, 최근에는 pypoject.toml을 활용하여 패키징하는 형태로 대부분 바뀌는 중입니다."
+description: " Python project packaging과 관련하여 poetry 사용법과 pyproject.toml 작성 방법에 대해 간단히 기록합니다. 과거에는 package 제작시 setuptools를 활용하여 setup.py에 package 정보를 적고 PyPI에 등록하는 절차를 거쳤지만, 최근에는 pypoject.toml 형태로 대부분 바뀌는 중입니다."
 category: "Cheat Sheet"
+thumbnail: "python"
 ---
 
 >  Python project packaging과 관련하여 poetry 사용법과 pyproject.toml 작성 방법에 대해 간단히 기록합니다.

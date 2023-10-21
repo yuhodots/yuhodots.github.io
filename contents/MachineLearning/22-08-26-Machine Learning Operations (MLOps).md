@@ -135,6 +135,8 @@ thumbnail: "mlops"
 - `LABEL <key>=<value> <key>=<value> <key>=<value> ...`: 이미지에 메타데이터 추가. 메타데이터 통해 이미지에 대한 정보 쉽게 파악 가능
 - **`RUN --mount=type=ssh ...`**: private repo clone 하거나 private package 다운을 위해 ssh key mount. 더 자세한 내용은 [스택오버플로우 답변](https://stackoverflow.com/questions/55929417/how-to-securely-git-clone-pip-install-a-private-repository-into-my-docker-image) 참고 (Other approaches:  [link1](https://medium.com/@erika_dike/installing-package-from-a-private-repo-in-your-docker-container-f45b1a4954a2), [link2](https://vsupalov.com/build-docker-image-clone-private-repo-ssh-key/))
 
+도커 파일 최적화와 관련해서는 잘 작성된 글들이 있어 링크를 공유함: [link1](https://thearchivelog.dev/article/optimize-docker-image/), [link2](https://mateon.tistory.com/68)
+
 ### Docker Compose
 
 ##### Compose file

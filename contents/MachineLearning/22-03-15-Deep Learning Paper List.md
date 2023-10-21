@@ -142,7 +142,6 @@ category: "Deep Learning"
      - 이 때, mixup $\lambda' = \max(\lambda, 1-\lambda)$는 항상 0.5 이상이 나오도록 설정하여, labelled mixup data는 labelled data에 dominant 하고, unlabelled mixup data는 unlabelled data에 dominant 하도록 강제함
   4. Labelled mixup data로는 CE loss 계산, Unlabelled mixup data로는 Consistency loss 계산
 - [ ] [Berthelot, David, et al. "ReMixMatch: Semi-Supervised Learning with Distribution Matching and Augmentation Anchoring." ICLR 2020.](https://openreview.net/pdf?id=HklkeR4KPB)
-
   - Distribution Alignment: Unlabelled data의 예측 분포를 labelled data의 분포로 normalize. 즉, 기존 prediction $q$에 unlabelled data 분포의 running average로 나누고 labelled data 분포의 running average로 곱해줌.
   - Augmentation Anchoring
 - [ ] [Sohn, Kihyuk, et al. "Fixmatch: Simplifying semi-supervised learning with consistency and confidence." NeurIPS 2020.](https://proceedings.neurips.cc/paper/2020/file/06964dce9addb1c5cb5d6e3d9838f733-Paper.pdf)
@@ -344,10 +343,34 @@ category: "Deep Learning"
     2. Feature 기반으로 classification prediction과 filter parameter $\theta_{x,y}$, 그리고 center-ness output, box output를 생성. 여기서 filter parameter는 1x1 8 channel conv이고 이게 3개(conv1, conv2, conv3)임. 사실 ROI 사용 안하니까 box head는 필요 없긴 한데, box head 기반으로 NMNS하면 inference time 줄어들어서 사용함
     3. Mask branch $F_\text{mask} \in \mathbb R^{H,W,C}$에 대해 relative coord를 append한 뒤, 해당 mask feature를 $\theta_{x,y}$ 기반의 mask ConvNet head에 입력으로 넣어줌. 이 때, mask feature는 image input resolution의 1/8. 그리고 conditioning된 filter의 개수만큼의 instance가 있다고 생각하면 됨 (MaskRCNN에서는 ROI box 개수가 instance의 수를 나타냄)
     4. Loss function으로는 FCOS loss와 Mask loss 사용
-- [ ] [Cheng, Bowen, Omkar Parkhi, and Alexander Kirillov. "Pointly-supervised instance segmentation." CVPR 2022.](http://openaccess.thecvf.com/content/CVPR2022/html/Cheng_Pointly-Supervised_Instance_Segmentation_CVPR_2022_paper.html)
-  - weakly-supervised instance seg의 장점: 10 point or bbox annotations are 5 times faster than mask annotations. 
-  - point supervised scheme 제안: 기존과 달리 click-based가 아님. points가 randomly sampled되고 이것에 대해서 background인지 아닌지 작업자가 판단하는 task
-  - 이 방법을 기반으로 Mask RCNN, PointRend, CondInst에 적용해서 성능 확인해봄: fully supervised의 94~98% 나옴. 특히, PointRedn의 변형인 Implicit PointRend를 제안함
+- [x] [Cheng, Bowen, Omkar Parkhi, and Alexander Kirillov. "Pointly-supervised instance segmentation." CVPR 2022.](http://openaccess.thecvf.com/content/CVPR2022/html/Cheng_Pointly-Supervised_Instance_Segmentation_CVPR_2022_paper.html)
+  - BoxInst 같은 box-supervised method가 이미 존재하지만, 여전히 성능은 좋지 않음. 그렇다고 해서 fully-supervised 방식을 사용하기에는 cost가 너무 많이 듦
+  - 따라서 저자들은 box-supervison과 더불어 point-supervision도 사용해보자는 의견을 제시하고, 이 때point-supervision을 box-supervision 기반으로 만드는 효율적인(빠른) 방법을 제안함
+    1. 먼저 작업자가 Bbox를 만들면, 여기서 랜덤하게 point가 찍힘
+    2. 이 점에 대해서 작업자가 foreground와 background 라벨링을 또 한 번 수행함
+    3. 이 작업은 instance당 15초 정도 소요됨. 즉, fully supervised 방식 대비 5배 정도 빠른 라벨링 가능
+  
+  - 그리고 이렇게 만든 point supervision이 다른 '모든' instance segmentation pipeline과 compatible 하도록 만들었음. 즉, 이 point supervision을 가지고 mask loss를 계산하는 방법을 고안하여 제안함
+    1. 예측은 기존 instance segmentation의 모델과 동일하게 수행한 다음,
+    2. GT points에 대해서 loss 계산을 하는데, prediction points는 prediction mask들의 bilinear interpolation을 사용. 이 방법은 기존 instance segmentation 모델에 대해 구조상으로는 변경될 것이 따로 없어서 좋음
+- [x] Tianheng Cheng, et al. "Boxteacher: Exploring high-quality pseudo labels for weakly supervised instance segmentation." CVPR 2023.
+  1. Teacher, student 구조로 모델 학습시키는데(Backbone으로는 CondInst 활용), 이미지 입력에는 strong augmentation 적용함
+  2. 모든 모델 예측을 pseudo label로 사용하는게 아니라, box GT와 충분히 비슷하고(high IoU), 모델이 강한 확신 보이는(high confidence) 예측만 필터링해서 pseudo label로 사용
+  3. 추가적으로, 예측 noise 줄이는 loss 고안해서 적용
+  
+- [x] Ruihuang Li, et al. "SIM: Semantic-aware Instance Mask Generation for Box-Supervised Instance Segmentation." CVPR 2023.
+  1. Pre-trained instance segmentation model 구비 (CondInst and Mask2Former)
+  2. Class-wise Prototypes과 similarity 측정해서 semantic mask 얻음
+  3. Instance mask 얻음
+  4. Semantic mask와 instance mask를 weighted averaging하여 pseudo mask 얻음
+  
+- [ ] Beomyoung Kim, et al. "The Devil is in the Points: Weakly Semi-Supervised Instance Segmentation via Point-Guided Mask Representation." CVPR 2023.
+  1. 만약 dataset의 10%만 fully labeled 되어있다면, 나머지 90%는 point supervision을 부여함. 당연히 이 부분은 사람이 만들어야하지만, instance 하나 당 point 하나이기 때문에 cost는 적음
+  2. (Step 1): Fully-labeled data로 먼저 Teacher network와 MaskRefineNet을 학습함. MaskRefineNet은 [Teacher의 mask 예측 / 이미지 / Instance Point]를 입력으로 받아서, mask 예측을 개선시키는 네트워크임. 즉, Point label을 사용해서 더 좋은 예측으로 mask를 업데이트!
+     1. Teacher 학습시에는 데이터셋에 point supervision이 존재하지 않기 때문에, mask 예측의 center point를 입력 point로 사용
+     2. Student 학습시에는 데이터셋에 point supervision이 존재하기 때문에 해당 point supervision 활용
+  3. (Step 2): Teacher의 예측을, MaskRefineNet 기반으로 개선시킨 후에, 개선된 mask를 pseudo-label로 사용함
+  4. 이 외에도 adaptive strategy라는 pseudo label 좀 더 보완하는 방법도 추가 제안함
 
 ### Multi-Modal Learning
 
@@ -358,6 +381,19 @@ category: "Deep Learning"
   - Curriculum learning: 학습 초기 단계에서 아주 쉬운 parsing 문제(e.g., 글씨에 색깔만 입힌 HTML parsing)로 warm-up stage를 거치면 converge도 빠르고 fine-tuning 성능도 좋아짐 (Appendix D 참고)
   - Transfer learning: ViT를 위한 새로운 fine-tuning 전략인 variable-resolution input representation을 제안. 일반적으로 ViT는 image patch를 뽑기 전에 pre-defined resolution으로 rescale을 하는데, 이 경우에 screenshot을 왜곡하거나 high resolution으로의 transfer learning에 방해가 될 것임. 따라서 저자들은 2d absolute positional embedding을 input patch와 같이 입력으로 제공하였음
   - Architecture: image-encoder-text-decoder ViT
+- [ ] Xiaoshuai Hao, et al. "Mixgen: A new multi-modal data augmentation." WACV Workshop 2023.
+  - image는 interpolating, text는 concatenating
+- [ ] Liu, Zichang, et al. "Learning Multimodal Data Augmentation in Feature Space." ICLR 2023.
+  
+  - Task Network, Augmentation Network라는 것 도입해서 learning 기반으로 multi-modal feature augmentation
+- [ ] So, Junhyuk, et al. "Geodesic multi-modal mixup for robust fine-tuning." *arXiv preprint arXiv:2203.03897* (2022).
+  
+  - CLIP의 임베딩이 text, image 서로 separated 되어있음. CLIP embedding을 분석하고, 문제를 해결한 첫 논문임
+  - 발견: temperature를 높여서 학습하면 uniformity와 alignment measure는 좋아지는데, downstream task의 performance는 하락함
+  - 이를 해결할 방법으로 geodesic multi-modal mixup (m2 mixup) 제안
+    - hard negative를 image text feature mixup 사용해서 만들고, 이를 contrastive loss 안에 삽입
+    - 이 때, feature mixup(interpolation)을 hypersphere 상에서 수행하여서 geodesic mixup이라 이름 붙임
+    - text, timage emedding 사이의 alignment를 개선시키고 이를 통해 fine-tuning에서의 robustness를 얻음
 
 ### Natural Language Processing
 
