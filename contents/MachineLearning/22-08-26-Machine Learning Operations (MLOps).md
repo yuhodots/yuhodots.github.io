@@ -3,7 +3,7 @@ title: "Machine Learning Operations (MLOps)"
 date: "2022-08-26"
 template: "post"
 draft: false
-path: "/mlops/22-08-26/"
+path: "/MLOps/22-08-26/"
 description: "MLOps를 위한 도구들의 사용법을 명령어 위주로 정리하고 있습니다. 대부분은 공식 문서의 내용을 참고하고 있고, 그 외 내용을 참고하게 되는 경우에는 글 내용에 언급하거나 reference에 추가하고 있습니다. 현재는 Docker, Kubernetes, MLflow, Kubeflow의 내용을 다루고 있으며, 공부 진행 상황에 따라서 내용을 계속해서 추가하고 있습니다."
 category: "MLOps"
 thumbnail: "mlops"
@@ -11,9 +11,7 @@ thumbnail: "mlops"
 
 > MLOps를 위한 도구들의 사용법을 명령어 위주로 정리하고 있습니다. 대부분은 공식 문서의 내용을 참고하고 있고, 그 외 내용을 참고하게 되는 경우에는 글 내용에 언급하거나 reference에 추가하고 있습니다. 현재는 공부 진행 상황에 따라서 내용을 계속해서 추가하는 중에 있습니다. 
 
-### CI/CD
-
-##### GitHub Actions
+### GitHub Actions
 
 - 공식 문서: [GitHub Actions에 대한 워크플로 구문](https://docs.github.com/ko/actions/using-workflows/workflow-syntax-for-github-actions)
 - Workflows: 한 개 혹은 여러 개의 Job으로 구성되고, event나 스케줄 등에 의해 트리거될 수 있음
@@ -21,6 +19,11 @@ thumbnail: "mlops"
 - Jobs: Same runner에 존재하는 workflow 내의 여러 단계들. 여러 jobs이 의존성을 가질 수 있고 병렬적 실행되는 것도 가능
 - Actions: individual tasks that you can combine to create jobs and customize your workflow
 - Runners: Workflow가 수행될 인스턴스. 일반적으로는 GitHub에서 호스팅해주는 runner를 사용하나 self-hosted runners도 가능
+
+##### Workflow
+
+- `on:workflow_dispath`: actions 탭에 run workflow 버튼이 생겨서 직접 트리거링 가능해짐
+- `ssh-private-key`: actions 적용할 저장소의 secrets에 private key를 등록하고, 사용할 저장소의 deploy keys에 public key를 등록하면, 둘 사이의 ssh priavte 연결 가능
 
 1. Workflows 생성: github의 workflow template 활용하거나, `.github/workflows` 폴더 직접 생성
 2. `.yml` 파일 생성하고 내용 작성
@@ -33,7 +36,7 @@ thumbnail: "mlops"
    - `jobs/${job_name}/steps/run`: runner 내에서 수행할 커맨드를 명시
 3. 그 외: 조직과 workflow 공유, secret key 저장, dependecy caching, artifact 저장 등의 기능도 수행 가능하니 공식 문서 참고하기
 
-##### Git Hooks
+### Git Hooks
 
 - 공식 문서: [Git맞춤 - Git Hooks](https://git-scm.com/book/ko/v2/Git맞춤-Git-Hooks)
 - GitHub Action은 remote에서 트리거에 따른 작업을 수행하지만, 로컬에서도 git hooks를 통해 특정 액션에 대한 특정 스크립트를 자동으로 실행할 수 있음. 또한 **husky**라는 Git Hooks를 보다 쉽게 적용할 수 있는 모듈 또한 존재함

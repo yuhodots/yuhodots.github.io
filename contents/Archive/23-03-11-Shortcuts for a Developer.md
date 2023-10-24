@@ -82,7 +82,9 @@ category: "Cheat Sheet"
 
 ##### Extensions
 
-- image preview, python image preview, black formatter, ...
+- Image: image preview, python image preview
+- Formatter: black formatter, ...
+- Debug: Python Test Explorer
 
 ### Vim
 

@@ -3,7 +3,7 @@ title: "Deep Learning Model Serving"
 date: "2023-04-29"
 template: "post"
 draft: false
-path: "/mlops/23-04-29/"
+path: "/MLOps/23-04-29/"
 description: "AI 모델 배포를 위한 라이브러리와 프레임워크들에 대해 간단히 기록합니다. ONNX: Open Neural Network Exchange. 서로 다른 프레임워크로 만들어진 AI 모델을 서로 호환 가능하도록 Facebook과 Microsoft가 개발한 신경망 모델 포맷. TensorFlow, PyTorch, ..."
 category: "MLOps"
 thumbnail: "mlops"
