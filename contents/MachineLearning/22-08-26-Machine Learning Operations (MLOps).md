@@ -182,6 +182,42 @@ volumes:
 - `docker-compose stop [options] [SERVICE...]`: 서비스 stop
 - `docker-compose ps`: 현재 실행중인 서비스 상태 확인
 
+##### Examples for ML Training Container
+
+```
+version: '3.8'
+
+services:
+  trainer:
+    image: <your_image_name>:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      ssh: 
+      	default: <path_to_your_ssh_key>	# for private repository
+    container_name: yuhodots	# for identifying user
+    environment:
+      - ENV_FILE_LOCATION=~/.env	# dotenv file
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+    volumes:
+      - ${HOME}/.aws/credentials:/root/.aws/credentials:ro	# aws connection
+      - <local_data_dir>:<container_data_dir>	# data mount
+      - <local_code_dir>:<container_code_dir>	# code mount
+    command: /bin/zsh
+    stdin_open: true
+    tty: true
+```
+
+- `stdin_open`: true시 docker run 의 -i(interactive)를 의미
+- `tty`: true시 docker run의 -t 의미
+
 ### FastAPI
 
 ##### Run Options

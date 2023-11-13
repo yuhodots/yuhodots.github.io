@@ -2,7 +2,7 @@
 title: "Data Analytics: Pandas, SQL, and Grafana"
 date: "2023-10-22"
 template: "post"
-draft: false
+draft: true
 path: "/cheatsheet/23-10-22/"
 description: "데이터 분석에 필요한 툴에 대해 사용법과 간단한 예제를 기록합니다. 아직 작성 중인 포스팅입니다. EDA에 필요한 pandas function들을 기록하기. groupby, apply 등의 기능을 통해 추가적인 후처리 하는 방법들 기록하기. SQL query를 cheat sheet의 느낌으로 기록하기. Grafana SQL 연결 방법 기록하기."
 category: "Cheat Sheet"
