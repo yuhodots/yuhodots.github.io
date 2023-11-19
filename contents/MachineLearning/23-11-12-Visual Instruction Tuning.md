@@ -1,15 +1,15 @@
 ---
-title: "LLaVa: Visual Instruction Tuning"
+title: "LLaVA: Large Language and Vision Assistant"
 date: "2023-11-12"
 template: "post"
 draft: false
 path: "/deeplearning/23-11-12/"
-description: "NeurIPS 2023에서 oral paper로 선정된 Visual Instruction Tuning 논문을 정리합니다. 해당 논문은 LLaVa라는 이름으로도 알려져 있는데, multimodal learning 분야에서 image와 text pair를 가지는 intruction tuning dataset을 만들고 이를 활용하여 multi-task multimodal LLM을 만드는 시도를 한 첫 논문입니다."
+description: "NeurIPS 2023에서 oral paper로 선정된 Visual Instruction Tuning 논문을 정리합니다. 해당 논문은 LLaVA라는 이름으로도 알려져 있으며, multimodal learning 분야에서 image와 text pair를 가지는 intruction tuning dataset으로 모델 학습을 시도한 첫 논문입니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
 
-> NeurIPS 2023에서 oral paper로 선정된 Visual Instruction Tuning 논문을 정리합니다. 해당 논문은 LLaVa라는 이름으로도 알려져 있는데, multimodal learning 분야에서 image와 text pair를 가지는 intruction tuning dataset을 만들고 이를 활용하여 multi-task multimodal LLM을 만드는 시도를 한 첫 논문입니다.
+> NeurIPS 2023에서 oral paper로 선정된 Visual Instruction Tuning 논문을 정리합니다. 해당 논문은 LLaVA라는 이름으로도 알려져 있으며, multimodal learning 분야에서 image와 text pair를 가지는 intruction tuning dataset으로 모델 학습을 시도한 첫 논문입니다.
 
 ### Introduction
 
@@ -30,7 +30,7 @@ thumbnail: "deeplearning"
 
 ![img](../img/23-11-12-1.png)
 
-또 다른 관련 연구들로는 Multimodal instruction-following agent나 Multimodal LLMs 등이 있습니다. (Habitat, InstructPix2Pix, VisualChatGPT, OpenFlamingo, LLaMA-Adapter, etc.) 하지만 이들은 오직 하나의 task만을 위한 모델/에이전트이거나 vision-language instruction-following data로 튜닝된 모델들이 아니기 때문에 성능도 충분하지 않습니다. 따라서 이러한 점들이 LLaVa와 차이를 가집니다.
+또 다른 관련 연구들로는 Multimodal instruction-following agent나 Multimodal LLMs 등이 있습니다. (Habitat, InstructPix2Pix, VisualChatGPT, OpenFlamingo, LLaMA-Adapter, etc.) 하지만 이들은 오직 하나의 task만을 위한 모델/에이전트이거나 vision-language instruction-following data로 튜닝된 모델들이 아니기 때문에 성능도 충분하지 않습니다. 따라서 이러한 점들이 LLaVA와 차이를 가집니다.
 
 ![img](../img/23-11-12-2.png)
 
@@ -43,7 +43,7 @@ thumbnail: "deeplearning"
 따라서 저자들은 이미지 입력 없이 multimodal instruction-following data을 만들어내기 위해서 caption과 bounding box라는 두 가지 정보를 GPT에 추가로 제공합니다. 이를 통해 GPT는 text 만으로도 마치 image를 보고있는 것 처럼 대답할 수 있게 됩니다. 참고로, caption과 bounding box 정보 제공 위한 데이터셋으로는 COCO dataset을 사용합니다.
 
 - Caption: 다양한 관점에서 visual scene을 묘사하는 text입니다.
-- Bounding box: scene 내의 물체의 위치를 [x_min, y_min, x_max, y_max] 형태로 제공(localize)합니다.
+- Bounding box: scene 내의 물체의 위치를 [x_min, y\_min, x\_max, y\_max] 형태로 제공(localize)합니다.
 
 ![img](../img/23-11-12-3.png)
 
@@ -88,7 +88,7 @@ Response type에 대한 예시와 데이터 생성을 위해 사용한 프롬프
 
 ![img](../img/23-11-12-7.png)
 
-자세한 방법은 다음과 같습니다. GPT-4에는 textual description과 question을 입력하여 response를 얻고, LLaVa에는 image와 question을 입력하여 response를 얻어냅니다. 그리고 이 두 response를 다시 GPT-4에 입력하여, LLaVa의 결과가 얼마나 GPT-4와 유사한지에 대해 점수를 출력합니다. 그 결과를 아래의 table에서 확인하실 수 있습니다. 
+자세한 방법은 다음과 같습니다. GPT-4에는 textual description과 question을 입력하여 response를 얻고, LLaVA에는 image와 question을 입력하여 response를 얻어냅니다. 그리고 이 두 response를 다시 GPT-4에 입력하여, LLaVA의 결과가 얼마나 GPT-4와 유사한지에 대해 점수를 출력합니다. 그 결과를 아래의 table에서 확인하실 수 있습니다. 
 
 ![img](../img/23-11-12-8.png)
 
@@ -98,8 +98,8 @@ ScienceQA 데이터셋에 대해서도 평가를 수행합니다. ScienceQA 데�
 
 여기서는 GPT-4와 LLaVa의 ensemble을 두 가지 버전을 제공하고 있고, 이 중에서 GPT-4 judge는 ScienceQA SoTA인 MM-CoT 보다 더 높은 성능을 보이고 있습니다.
 
-- GPT-4 complement: GPT-4가 답변에 실패하면 LLaVa가 답변 제공
-- GPT-4 judge: GPT-4와 LLaVa의 답변이 서로 다르면 둘의 답변을 모아 GPT-4에 다시 프롬프트로 제공
+- GPT-4 complement: GPT-4가 답변에 실패하면 LLaVA가 답변 제공
+- GPT-4 judge: GPT-4와 LLaVA의 답변이 서로 다르면 둘의 답변을 모아 GPT-4에 다시 프롬프트로 제공
 
 ![img](../img/23-11-12-9.png)
 
