@@ -173,6 +173,16 @@ REST, gRPC, GraphQL에 대해 기록합니다
 - In-memory DB란?: 디스크가 아닌 메모리에 모든 데이터를 보유하고 있는 DB. 매우 빠르지만 휘발성이라 서버가 꺼져서 날아가도 상관 없는 임시 데이터에 주로 사용
 - In-memory DB 종류: Redis, SQLite, AWS ElasticCahe
 
+##### 👨‍💻 CS
+
+*2023.11.23*
+
+- Simple Email Service (SES): 개발자가 모든 애플리케이션 내에서 이메일을 보내거나 받을 수 있는 서비스. 
+- Simple Notification Service (SNS): 게시자에서 구독자로 메시지를 전송하는 관리형 서비스. 하나의 메세지를 여러 서비스에서 처리. 클라이언트가 SNS 주제를 구독하는 방식으로 fan out pattern 자주 활용됨
+  - 예를 들어, 어떤 이벤트를 SNS가 받아서 여러 개의 SQS로 뿌리고, 각각의 마이크로 서비스가 해당 SQS를 읽는 방식
+  - 그러면 개별 마이크로 서비스에 장애가 나더라도 SQS가 queue를 보관하고 있고, 서로 다른 서비스 끼리도 교차 장애 발생 케이스 줄어듦
+- Simple Queue Service (SQS): 하나의 메세지를 한번만 처리
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752

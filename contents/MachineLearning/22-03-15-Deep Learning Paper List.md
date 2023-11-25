@@ -426,7 +426,7 @@ category: "Deep Learning"
 
 ### Bayesian Deep Learning
 
-- [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html) - *아직 읽지 않음*
+- [ ] [Gal, Yarin, and Zoubin Ghahramani. "Dropout as a bayesian approximation: Representing model uncertainty in deep learning." ICML 2016.](http://proceedings.mlr.press/v48/gal16.html)
 
 ### Deep Neural Architectures
 
@@ -442,3 +442,15 @@ category: "Deep Learning"
   - TResNet-L 구조의 teacher model과 더불어 논문에서 제안하는 하이퍼파라미터를 사용하면, CNN, Transformer, Mobile-oriented, MLP-only 형태의 student 모델에 대해서 모두 성능이 개선된다고 함
   - 일반적인 knowledge distillation 형태(vanilla KD)와 동일하게, true label y에 대해서는 cross entropy loss를 사용하고, teacher label에 대해서는 temperature를 사용하여 soft label을 만든 뒤에 student prediction과 KLD를 계산함
 - [x] [Phuong, Mary, and Marcus Hutter. "Formal Algorithms for Transformers." *arXiv preprint arXiv:2207.09238* (2022).](https://arxiv.org/pdf/2207.09238.pdf)
+
+### Blog Posts & Videos
+
+- https://engineering.clova.ai/posts/2022/07/nsml-k8s-based-platform
+- https://www.slideshare.net/deview/224nsml-80881317
+- https://helloworld.kurly.com/blog/second-mlops
+- https://yangoos57.github.io/blog/mlops/kubeflow/pipeline_using_kfp_sdk/
+- https://samsungsds.tistory.com/32
+- https://www.youtube.com/watch?v=EEsYbiqqcc0
+- https://engineering.linecorp.com/ko/blog/data-engineering-with-airflow-k8s-1
+- https://humbledude.github.io/blog/2019/07/12/airflow-on-k8s/
+
