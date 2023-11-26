@@ -3,10 +3,10 @@ title: "Using Databases as an AI Engineer (feat. Qdrant)"
 date: "2023-11-19"
 template: "post"
 draft: false
-path: "/MLOps/23-11-19/"
+path: "/Operations/23-11-19/"
 description: "데이터 기반의 의사결정을 하거나 AI 알고리즘/rule을 서비스에 추가하기 위해서, 여러 다양한 데이터를 가공하고 DB에 넣고 querying 할 필요가 있습니다. 본 포스팅에서는 이와 관련된 vector DB 사용법 부터 기본적인 SQL query 문, 시각화 방법 등을 기록합니다."
-category: "MLOps"
-thumbnail: "mlops"
+category: "Operations"
+thumbnail: "Operations"
 ---
 
 > 데이터 기반의 의사결정을 하거나 AI 알고리즘/rule을 서비스에 추가하기 위해서, 여러 다양한 데이터를 가공하고 DB에 넣고 querying 할 필요가 있습니다. 본 포스팅에서는 이와 관련된 vector DB 사용법 부터 기본적인 SQL query 문, 시각화 방법 등을 기록합니다.
@@ -94,9 +94,15 @@ search_result = client.search(
 
 ##### Redash
 
+##### Query Optimization
+
+- Tips: Query plan을 보면 쿼리가 어떻게 실행되고 있는지 확인 가능하여 어떤 부분 튜닝이 필요한지 파악할 수 있음
+
 ### NoSQL
 
 ##### Pymongo
+
+##### Query Optimization
 
 ### References
 

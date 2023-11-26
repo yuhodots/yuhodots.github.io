@@ -4,12 +4,12 @@ date: "2023-11-25"
 template: "post"
 draft: false
 path: "/deeplearning/23-11-25/"
-description: "가짜연구소 7기 '최신연구동향 쉽고 재미있게 작성하기' 그룹에 참여하여 작성한 글을 이곳에 공유합니다.  Weakly-Supervised Instance Segmentation을 주제로 선정하여 최신 연구 동향에 대한 글을 작성하였습니다. 인공지능에 대한 기본적인 이해, 특히 CV 분야에 대한 이해도가 있는 분들을 독자층으로 하고 있습니다."
+description: "가짜연구소 7기 '최신연구동향 쉽고 재미있게 작성하기' 그룹에 참여하여 작성한 글을 이곳에 공유합니다.  Weakly-Supervised Instance Segmentation을 주제로 선정하여 최신 연구 동향에 대한 글을 작성하였으며 CV 분야에 대한 이해도가 있는 분들을 독자층으로 하고 있습니다."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
 
-> 2023 가짜연구소 7기: '최신연구동향 쉽고 재미있게 작성하기' 그룹에 참여하여 작성한 글을 이곳에 공유합니다.  Weakly-Supervised Instance Segmentation을 주제로 선정하여 최신 연구 동향에 대한 글을 작성하였습니다. 인공지능에 대한 기본적인 이해, 특히 CV 분야에 대한 이해도가 있는 분들을 독자층으로 하고 있습니다.
+> 가짜연구소 7기 '최신연구동향 쉽고 재미있게 작성하기' 그룹에 참여하여 작성한 글을 이곳에 공유합니다.  Weakly-Supervised Instance Segmentation을 주제로 선정하여 최신 연구 동향에 대한 글을 작성하였으며 CV 분야에 대한 이해도가 있는 분들을 독자층으로 하고 있습니다.
 
 ### Introduction
 

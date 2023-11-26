@@ -3,9 +3,9 @@ title: "NVIDIA Triton Inference Server"
 date: "2023-10-24"
 template: "post"
 draft: false
-path: "/MLOps/23-10-24/"
+path: "/Operations/23-10-24/"
 description: "NVIDIA Triton Inference Server 사용을 위한 기본 개념들과 샘플 코드를 기록합니다. Triton은 NVIDIA가 직접 만든 AI inference용 서버입니다. Triton 내부에서는 추론 최적화 및 GPU 활용률을 높일 수 있는 여러 기능들을 제공하고 있으며, 모델을 model repository에 저장하면 간단히 inference API를 만들 수 있습니다."
-category: "MLOps"
+category: "Operations"
 ---
 
 > NVIDIA Triton Inference Server 사용을 위한 기본 개념들과 샘플 코드를 기록합니다. 모든 내용은 NVIDIA Triton Inference Server의 github document를 기반으로 작성되었습니다. 

@@ -3,9 +3,9 @@ title: "Apache Airflow DAGs"
 date: "2023-09-27"
 template: "post"
 draft: false
-path: "/MLOps/22-09-27/"
+path: "/Operations/22-09-27/"
 description: "Apache airflow는 에어비앤비에서 만든 워크플로우 관리 시스템입니다. 본 포스팅에서는 기초적인 airflow DAGs 작성 예시와 사용법을 확인합니다. 로컬 가상환경에서 pip를 통해 airflow를 설치하여 사용하거나, airflow docker 이미지를 pull 받아 사용하는 방법이 존재합니다."
-category: "MLOps"
+category: "Operations"
 thumbnail: "airflow"
 ---
 
