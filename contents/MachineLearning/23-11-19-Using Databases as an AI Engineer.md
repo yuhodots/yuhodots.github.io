@@ -88,6 +88,13 @@ search_result = client.search(
 
 ### SQL
 
+##### Basics
+
+- Key: super key, candidate key, primary key, foreign key, composite key, alternate key
+- Normalization: 1NF, 2NF, 3NF, BCNF
+- Entity Relationship Diagram(ERC)를 그리기 위해 https://dbdiagram.io/home 활용하면 좋음. 특히, 다대다 관계를 가진 경우에 junction(join) table을 만들어주면 좋음
+- 더 찾아볼 내용: Constraints, Referential integrity, etc...
+
 ##### Pymysql
 
 ##### Redshift 
