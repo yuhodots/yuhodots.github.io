@@ -69,7 +69,7 @@
       }
     })
   </script><link rel="alternate" type="application/rss+xml" title="Yuho Jeong" href="/rss.xml"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="/favicon-32x32.png?v=b9ac6d42d70288006ce459b057353927" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#24292f"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=b9ac6d42d70288006ce459b057353927"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=b9ac6d42d70288006ce459b057353927"/><link as="script" rel="preload" href="/webpack-runtime-732c31fa62c876cdd7e9.js"/><link as="script" rel="preload" href="/framework-741ade27086b2708e961.js"/><link as="script" rel="preload" href="/app-9cbfa4b1e60c23aee528.js"/><link as="script" rel="preload" href="/styles-407fe62976dc5310c43e.js"/><link as="script" rel="preload" href="/9a83efd0f2f53a11fc9fd4ead3c578a48e734387-f68cff5db3e59fbc93f6.js"/><link as="script" rel="preload" href="/component---src-templates-post-js-a9ade4c96093dee825cd.js"/><link as="fetch" rel="preload" href="/page-data/Operations/23-12-18/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2390655019.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/256249292.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><header class="simple"><div class="header-inner"><h1><a href="/">Yuho Jeong</a></h1><ul><li><a href="/">Home</a></li><li><a href="/category">Category</a></li><li><a href="/about">About</a></li><li><a href="https://github.com/yuhodots">GitHub</a></li></ul></div></header><div class="layout layout_post"><main><div class="post-container"><div class="post-info-container"><div class="post-info"><span class="category">Operations</span><span class="middle"></span><span class="date">2023-12-18</span></div><h2 class="post-title">Dynamic Task Mapping with TaskGroups</h2></div><div class="post-content"><h3 id="taskgroups" style="position:relative;"><a href="#taskgroups" aria-label="taskgroups permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TaskGroups</h3>
-<p>Airflow DAG를 짤 때 여러 task를 연결시키다 보면 graph view가 상당히 복잡해지곤 합니다. 이를 해결하기 위해서 airflow에서는 task들을 hierarchical groups으로 정돈할 수 있도록 돕는 TaskGroup이라는 기능을 제공하고 있습니다. 아래의 샘플코드처럼 <code class="language-text">task_group</code> 데커레이터를 통해 간단하게 사용해볼 수 있습니다.</p>
+<p>Airflow DAG를 짤 때 여러 task를 연결시키다 보면 graph view가 많이 복잡해지곤 합니다. 이를 해결하기 위해서 airflow에서는 task들을 hierarchical groups으로 정돈할 수 있도록 돕는 TaskGroup이라는 기능을 제공하고 있습니다. 아래의 샘플코드처럼 <code class="language-text">task_group</code> 데커레이터를 통해 간단하게 사용해볼 수 있습니다.</p>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token decorator annotation punctuation">@dag</span><span class="token punctuation">(</span>dag_id<span class="token operator">=</span><span class="token string">"hello_world"</span><span class="token punctuation">,</span> start_date<span class="token operator">=</span>datetime<span class="token punctuation">(</span><span class="token number">2023</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> tzinfo<span class="token operator">=</span>pendulum<span class="token punctuation">.</span>timezone<span class="token punctuation">(</span><span class="token string">"Asia/Seoul"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">def</span> <span class="token function">hello_world</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     task1 <span class="token operator">=</span> EmptyOperator<span class="token punctuation">(</span>task_id<span class="token operator">=</span><span class="token string">"task1"</span><span class="token punctuation">)</span>
@@ -88,7 +88,7 @@
     <span class="token punctuation">[</span>task1 <span class="token operator">>></span> task_group1<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
 
 dag <span class="token operator">=</span> hello_world<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
-<p>Airflow UI에서 해당 task group을 클릭하면 내부 요소들을 열고 닫으며 확인할 수 있습니다.</p>
+<p>Airflow graph UI에서 해당 task group을 클릭하여 내부 요소들을 열고 닫아가며 확인할 수 있습니다.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
@@ -133,7 +133,7 @@ dag <span class="token operator">=</span> hello_world<span class="token punctuat
   </a>
     </span></p>
 <h3 id="dynamic-task-mapping" style="position:relative;"><a href="#dynamic-task-mapping" aria-label="dynamic task mapping permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Dynamic Task Mapping</h3>
-<p>또 다른 유용한 기능으로는 dynamic task mapping이 존재합니다. Task의 수를 사전에 미리 알 필요 없이, runtime에서 주어진 data를 기반으로 동적으로 병렬 task를 생성하고 싶을 때 dynamic task mapping를 사용해볼 수 있습니다. 제 경우에는 ETL 프로세스에서 여러 조건 별 데이터 배치 처리가 필요할 때 dynamic task mapping을 활용하고 있습니다.  </p>
+<p>또 다른 유용한 기능으로는 dynamic task mapping이 존재합니다. Task의 수를 사전에 미리 알 필요 없이, runtime에서 주어진 data를 기반으로 동적으로 병렬 task를 생성하고 싶을 때 dynamic task mapping를 사용해볼수 있습니다. 제 경우에는 ETL 프로세스에서 여러 조건별 데이터 배치 처리가 필요할 때 dynamic task mapping을 활용하고 있습니다.  </p>
 <p>샘플코드처럼 <code class="language-text">expand()</code> method를 통해 간단하게 사용해볼 수 있습니다. 아래 예시는 airflow 공식 문서의 예제입니다.</p>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token decorator annotation punctuation">@dag</span><span class="token punctuation">(</span>dag_id<span class="token operator">=</span><span class="token string">"dynamic_dag"</span><span class="token punctuation">,</span> start_date<span class="token operator">=</span>datetime<span class="token punctuation">(</span><span class="token number">2023</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> tzinfo<span class="token operator">=</span>pendulum<span class="token punctuation">.</span>timezone<span class="token punctuation">(</span><span class="token string">"Asia/Seoul"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">def</span> <span class="token function">dynamic_dag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -156,35 +156,35 @@ dag <span class="token operator">=</span> dynamic_dag<span class="token punctuat
     >
       <a
     class="gatsby-resp-image-link"
-    href="/static/1dc052de3aa290cb092ccbe5b7000383/c0255/23-12-18-2.png"
+    href="/static/f4722b41369383a92e3389ca13a15719/9c177/23-12-18-2.png"
     style="display: block"
     target="_blank"
     rel="noopener"
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 10.526315789473683%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAVUlEQVQI122MSwqAMBBDe/87iriqv26sDq3ziZ2uRAy8RUKSYGZ442JmbGkHEUHVoC0/6cKRc/PaEVF8t074Oyy1YJwG1Hr3sWtNC+YY4RXPWOT38AHPQJ1KLZDbTQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 11.052631578947368%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAUklEQVQI122MwQqAMAxD9/9/qTIsDgYTetmaRruTyALvkjYvuTu/RNrdWGtl74OAT6JT1fkDgGbgfxuklTCfO0WEr4eGGJJH3ljKNe8hHGZL4QPAtp0eM2EAbwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <picture>
           <source
-              srcset="/static/1dc052de3aa290cb092ccbe5b7000383/15813/23-12-18-2.webp 190w,
-/static/1dc052de3aa290cb092ccbe5b7000383/1cdb2/23-12-18-2.webp 380w,
-/static/1dc052de3aa290cb092ccbe5b7000383/9046c/23-12-18-2.webp 760w,
-/static/1dc052de3aa290cb092ccbe5b7000383/966d8/23-12-18-2.webp 920w"
+              srcset="/static/f4722b41369383a92e3389ca13a15719/15813/23-12-18-2.webp 190w,
+/static/f4722b41369383a92e3389ca13a15719/1cdb2/23-12-18-2.webp 380w,
+/static/f4722b41369383a92e3389ca13a15719/9046c/23-12-18-2.webp 760w,
+/static/f4722b41369383a92e3389ca13a15719/fd35f/23-12-18-2.webp 880w"
               sizes="(max-width: 760px) 100vw, 760px"
               type="image/webp"
             />
           <source
-            srcset="/static/1dc052de3aa290cb092ccbe5b7000383/a2d4f/23-12-18-2.png 190w,
-/static/1dc052de3aa290cb092ccbe5b7000383/3f520/23-12-18-2.png 380w,
-/static/1dc052de3aa290cb092ccbe5b7000383/3c051/23-12-18-2.png 760w,
-/static/1dc052de3aa290cb092ccbe5b7000383/c0255/23-12-18-2.png 920w"
+            srcset="/static/f4722b41369383a92e3389ca13a15719/a2d4f/23-12-18-2.png 190w,
+/static/f4722b41369383a92e3389ca13a15719/3f520/23-12-18-2.png 380w,
+/static/f4722b41369383a92e3389ca13a15719/3c051/23-12-18-2.png 760w,
+/static/f4722b41369383a92e3389ca13a15719/9c177/23-12-18-2.png 880w"
             sizes="(max-width: 760px) 100vw, 760px"
             type="image/png"
           />
           <img
             class="gatsby-resp-image-image"
-            src="/static/1dc052de3aa290cb092ccbe5b7000383/3c051/23-12-18-2.png"
+            src="/static/f4722b41369383a92e3389ca13a15719/3c051/23-12-18-2.png"
             alt="img"
             title="img"
             loading="lazy"
@@ -269,7 +269,7 @@ dag <span class="token operator">=</span> dynamic_task_group_dag<span class="tok
         </picture>
   </a>
     </span></p>
-<p>다만 이때 주의할 점이 있는데, expand를 통해 task group에 전달된 값은 실제로 dag가 수행되기 전까지는 MappedArgument object로 real value가 아닙니다. 해당 task group이 실제로 실행될 때에 비로소 real value를 resolve할 수 있는데, 저의 경우에는 아래처럼 MappedArgument의 resolve method를 활용하여 real value를 runtime에 얻어내는 방식으로 DAG 코드를 작성하였습니다.</p>
+<p>다만 이 때 주의할 점이 있는데, expand를 통해 task group에 전달된 값은 실제로 dag가 수행되기 전까지는 MappedArgument object로 real value가 아닙니다. 해당 task group이 실제로 실행될 때에 비로소 real value를 resolve할 수 있는데, 저의 경우에는 아래처럼 MappedArgument의 resolve method를 활용하여 real value를 runtime에 얻어내는 방식으로 DAG 코드를 작성하였습니다.</p>
 <div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> airflow<span class="token punctuation">.</span>models<span class="token punctuation">.</span>baseoperator <span class="token keyword">import</span> BaseOperator
 
 <span class="token keyword">class</span> <span class="token class-name">MyCustomOperator</span><span class="token punctuation">(</span>BaseOperator<span class="token punctuation">)</span><span class="token punctuation">:</span>
