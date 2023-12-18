@@ -4,14 +4,14 @@ date: "2023-12-18"
 template: "post"
 draft: false
 path: "/Operations/23-12-18/"
-description: "Airflow DAG를 짤 때 여러 task를 연결시키다 보면 graph view가 상당히 복잡해지곤 합니다. 이를 해결하기 위해서 airflow에서는 task들을 hierarchical groups으로 정돈할 수 있도록 돕는 TaskGroup이라는 기능을 제공하고 있습니다.task_group 데커레이터를 통해 간단하게 사용해볼 수 있습니다."
+description: "Airflow DAG를 짤 때 여러 task를 연결시키다 보면 graph view가 많이 복잡해지곤 합니다. 이를 해결하기 위해서 airflow에서는 task들을 hierarchical groups으로 정돈할 수 있도록 돕는 TaskGroup이라는 기능을 제공하고 있습니다."
 category: "Operations"
 thumbnail: "airflow"
 ---
 
 ### TaskGroups
 
-Airflow DAG를 짤 때 여러 task를 연결시키다 보면 graph view가 상당히 복잡해지곤 합니다. 이를 해결하기 위해서 airflow에서는 task들을 hierarchical groups으로 정돈할 수 있도록 돕는 TaskGroup이라는 기능을 제공하고 있습니다. 아래의 샘플코드처럼 `task_group` 데커레이터를 통해 간단하게 사용해볼 수 있습니다.
+Airflow DAG를 짤 때 여러 task를 연결시키다 보면 graph view가 많이 복잡해지곤 합니다. 이를 해결하기 위해서 airflow에서는 task들을 hierarchical groups으로 정돈할 수 있도록 돕는 TaskGroup이라는 기능을 제공하고 있습니다. 아래의 샘플코드처럼 `task_group` 데커레이터를 통해 간단하게 사용해볼 수 있습니다.
 
 ```python
 @dag(dag_id="hello_world", start_date=datetime(2023, 12, 1, tzinfo=pendulum.timezone("Asia/Seoul")))
@@ -34,13 +34,13 @@ def hello_world():
 dag = hello_world()
 ```
 
-Airflow UI에서 해당 task group을 클릭하면 내부 요소들을 열고 닫으며 확인할 수 있습니다.
+Airflow graph UI에서 해당 task group을 클릭하여 내부 요소들을 열고 닫아가며 확인할 수 있습니다.
 
 ![img](../img/23-12-18-1.png)
 
 ### Dynamic Task Mapping
 
-또 다른 유용한 기능으로는 dynamic task mapping이 존재합니다. Task의 수를 사전에 미리 알 필요 없이, runtime에서 주어진 data를 기반으로 동적으로 병렬 task를 생성하고 싶을 때 dynamic task mapping를 사용해볼 수 있습니다. 제 경우에는 ETL 프로세스에서 여러 조건 별 데이터 배치 처리가 필요할 때 dynamic task mapping을 활용하고 있습니다.  
+또 다른 유용한 기능으로는 dynamic task mapping이 존재합니다. Task의 수를 사전에 미리 알 필요 없이, runtime에서 주어진 data를 기반으로 동적으로 병렬 task를 생성하고 싶을 때 dynamic task mapping를 사용해볼수 있습니다. 제 경우에는 ETL 프로세스에서 여러 조건별 데이터 배치 처리가 필요할 때 dynamic task mapping을 활용하고 있습니다.  
 
 샘플코드처럼 `expand()` method를 통해 간단하게 사용해볼 수 있습니다. 아래 예시는 airflow 공식 문서의 예제입니다.
 
@@ -104,7 +104,7 @@ dag = dynamic_task_group_dag()
 
 ![img](../img/23-12-18-3.png)
 
-다만 이때 주의할 점이 있는데, expand를 통해 task group에 전달된 값은 실제로 dag가 수행되기 전까지는 MappedArgument object로 real value가 아닙니다. 해당 task group이 실제로 실행될 때에 비로소 real value를 resolve할 수 있는데, 저의 경우에는 아래처럼 MappedArgument의 resolve method를 활용하여 real value를 runtime에 얻어내는 방식으로 DAG 코드를 작성하였습니다.
+다만 이 때 주의할 점이 있는데, expand를 통해 task group에 전달된 값은 실제로 dag가 수행되기 전까지는 MappedArgument object로 real value가 아닙니다. 해당 task group이 실제로 실행될 때에 비로소 real value를 resolve할 수 있는데, 저의 경우에는 아래처럼 MappedArgument의 resolve method를 활용하여 real value를 runtime에 얻어내는 방식으로 DAG 코드를 작성하였습니다.
 
 ```python
 from airflow.models.baseoperator import BaseOperator
