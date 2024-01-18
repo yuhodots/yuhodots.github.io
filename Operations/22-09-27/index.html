@@ -361,6 +361,12 @@ dag <span class="token operator">=</span> dag_function<span class="token punctua
 
 <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
     dag<span class="token punctuation">.</span>test<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<h3 id="re-run" style="position:relative;"><a href="#re-run" aria-label="re run permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Re-run</h3>
+<ul>
+<li>Catchup은 DAG 배포가 start_date 설정 보다 더 나중일 때, 과거의 배치작업을 수행해줌. 이 외에 backfill 혹은 clear를 통해 이전에 돌았던 배치작업을 재수행 해줄 수 있음</li>
+<li>Backfill command: <code class="language-text">airflow dags backfill -s &lt;START_DATE&gt; -e &lt;END_DATE&gt; &lt;DAG_ID&gt;</code></li>
+<li>Clear: airflow web UI 상에서 원하는 배치작업을 clear </li>
+</ul>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <p>아래의 자료들을 같이 참고하면 좋습니다.</p>
 <ul>
