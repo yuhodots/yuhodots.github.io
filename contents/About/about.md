@@ -27,19 +27,34 @@ category: "about"
 ### Education
 
 - M.S. in Artificial Intelligence at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0), UNIST (2021.03 ~ 2023.02)
+  - Meta-learning and Few-shot classification algorithms
+  - Class-incremental learning algorithms
+  - Open-world learning (e.g., Category discovery)
+
 - B.S. in Mechanical Aerospace Engineering, UNIST (2016.03 ~ 2021.02)
 - B.S. in Computer Science Engineering, UNIST (2016.03 ~ 2021.02)
 
 ### Experience
 
 - AI Engineer at Nuvilab Inc. (2023.02 ~ current)
+  - AI Modeling for the instance segmentation and zero-shot classification task
+  - Developing a data pipeline with active learning to address class-imbalanced fine-grained datasets
+  - Constructing an anomaly detection pipeline and AI service performance monitoring system
+  - Developing a data engine equipped with auto-labeling capabilities for mask annotations
+
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
+  - Developing a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
+  - Analyzing existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
+
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
+  
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
 ### Publications
 
 - Solang Kim, Yuho Jeong, Joon Sung Park and Sung Whan Yoon, "MICS: Midpoint Interpolation to Learn Compact and Separated Representations for Few-Shot Class-Incremental Learning," accepted to IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), Hawaii, U.S., 2024.
+  - *Master's Thesis in UNIST AI Graduate School*
+
 
 ### Presentation
 
@@ -59,6 +74,7 @@ category: "about"
 
 ### Skills
 
-- Python, C++, MATLAB
+- Python, SQL, MATLAB, C++, etc.
 - PyTorch, Django, jQuery, and Bootstrap for the internship at NAVER Corp.
 - Express.js, MySQL, AWS EC2, AWS S3, Nginx, and React.js for Uitda project
+

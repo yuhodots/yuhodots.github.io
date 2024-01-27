@@ -195,6 +195,12 @@ if __name__ == "__main__":
     dag.test()
 ```
 
+### Re-run
+
+- Catchup은 DAG 배포가 start_date 설정 보다 더 나중일 때, 과거의 배치작업을 수행해줌. 이 외에 backfill 혹은 clear를 통해 이전에 돌았던 배치작업을 재수행 해줄 수 있음
+- Backfill command: `airflow dags backfill -s <START_DATE> -e <END_DATE> <DAG_ID>`
+- Clear: airflow web UI 상에서 원하는 배치작업을 clear 
+
 ### References
 
 아래의 자료들을 같이 참고하면 좋습니다.
