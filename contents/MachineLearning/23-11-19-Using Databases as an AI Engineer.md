@@ -90,26 +90,150 @@ search_result = client.search(
 
 ##### Basics
 
-- Key: super key, candidate key, primary key, foreign key, composite key, alternate key
+```
+SELECT 컬럼
+FROM 테이블 
+WHERE 조건 
+GROUP BY 묶는 기준 
+ORDER BY 정렬 기준 
+LIKE 문자열 조건 
+LIMIT 데이터 출력수
+	OFFSET 앞 부터 N개 제외
+	...;
+```
+
+##### Join
+
+`employees` 테이블과 `departments` 테이블에 대해 ChatGPT가 제공해준 join 예시들
+
+| employee_id | employee_name | department_id |
+| ----------- | ------------- | ------------- |
+| 1           | John Doe      | 101           |
+| 2           | Jane Smith    | 102           |
+| 3           | Mike Brown    | NULL          |
+
+| department_id | department_name |
+| ------------- | --------------- |
+| 101           | Human Resources |
+| 102           | Finance         |
+| 103           | IT              |
+
+- `INNER JOIN`: 두 테이블에서 일치하는 값이 있는 레코드 반환
+
+```sql
+SELECT employees.employee_name, departments.department_name
+FROM employees
+INNER JOIN departments 
+	ON employees.department_id = departments.department_id;
+```
+
+| employee_name | department_name |
+| ------------- | --------------- |
+| John Doe      | Human Resources |
+| Jane Smith    | Finance         |
+
+- `LEFT JOIN` (LEFT OUTER JOIN): 왼쪽 테이블의 모든 레코드와 오른쪽 테이블의 일치하는 레코드 반환
+
+```sql
+SELECT employees.employee_name, departments.department_name
+FROM employees
+LEFT JOIN departments
+	ON employees.department_id = departments.department_id;
+```
+
+| employee_name | department_name |
+| ------------- | --------------- |
+| John Doe      | Human Resources |
+| Jane Smith    | Finance         |
+| Mike Brown    | NULL            |
+
+- `RIGHT JOIN` (RIGHT OUTER JOIN): 오른쪽 테이블의 모든 레코드와 왼쪽 테이블의 일치하는 레코드 반환
+
+```sql
+SELECT employees.employee_name, departments.department_name
+FROM employees
+RIGHT JOIN departments 
+	ON employees.department_id = departments.department_id;
+```
+
+| employee_name | department_name |
+| ------------- | --------------- |
+| John Doe      | Human Resources |
+| Jane Smith    | Finance         |
+| NULL          | IT              |
+
+- `OUTER JOIN` (FULL OUTER JOIN): 왼쪽 또는 오른쪽 테이블에 일치하는 항목이 있는 모든 레코드 반환
+
+```sql
+SELECT employees.employee_name, departments.department_name
+FROM employees
+FULL OUTER JOIN departments 
+	ON employees.department_id = departments.department_id;
+```
+
+| employee_name | department_name |
+| ------------- | --------------- |
+| John Doe      | Human Resources |
+| Jane Smith    | Finance         |
+| Mike Brown    | NULL            |
+| NULL          | IT              |
+
+- `UNION`: 각 select 의 결과 집합(set)을 결합. UNION을 위한 각 열 개수가 모두 동일해야 하고, 데이터 타입이 유사해야 하며, 순서도 동일해야 함.
+  - `UNION`은 중복 rows를 지우므로, 중복을 허용하려면  `UNION ALL` 사용
+
+```sql
+SELECT employee_name FROM employees WHERE department_id = 101
+UNION
+SELECT employee_name FROM employees WHERE department_id = 102;
+```
+
+| employee_name |
+| ------------- |
+| John Doe      |
+| Jane Smith    |
+
+##### Advanced
+
+- `LIKE`:  '%'는 N개의 문자, '_'는 1개의 문자를 의미
+
+- `GROUP BY`: 같은 값을 가진 rows를 그룹지어 줌. `COUNT()`, `MAX()`, `MIN()`, `SUM()`, `AVG()`과 같은 집계함수와 주로 같이 사용됨
+  - SELECT문의 모든 열이 집계함수이거나 GROUP BY 절에 존재해야함
+  - 집계함수 없이 아래 예시 같이 사용하는 경우에 중복을 제거한 unique rows를 확인해볼 수 있음
+
+```sql
+select column1, column2, column3, column4
+from schema.table
+group by 1, 2, 3, 4
+```
+
+- `CASE WHEN condition THEN result1 ELSE result2 END`
+
+```sql
+SELECT
+  employee_name,
+  CASE
+    WHEN department_id IS NULL THEN 'No Department'
+    ELSE (SELECT department_name FROM departments WHERE department_id = employees.department_id)
+  END AS department_status
+FROM employees;
+```
+
+| employee_name | department_status |
+| ------------- | ----------------- |
+| John Doe      | Human Resources   |
+| Jane Smith    | Finance           |
+| Mike Brown    | No Department     |
+
+- 이 외에도 `SELECT INTO`, `INSERT INTO`, `EXISTS`, `HAVING`, `ANY`, `ALL` 등 존재
+- Key 종류: super key, candidate key, primary key, foreign key, composite key, alternate key
 - Normalization: 1NF, 2NF, 3NF, BCNF
 - Entity Relationship Diagram(ERC)를 그리기 위해 https://dbdiagram.io/home 활용하면 좋음. 특히, 다대다 관계를 가진 경우에 junction(join) table을 만들어주면 좋음
+- Query Optimization: Query plan을 보면 쿼리가 어떻게 실행되고 있는지 확인 가능하여 어떤 부분 튜닝이 필요한지 파악할 수 있음
 - 더 찾아볼 내용: Constraints, Referential integrity, etc...
-
-##### Pymysql
-
-##### Redshift 
-
-##### Redash
-
-##### Query Optimization
-
-- Tips: Query plan을 보면 쿼리가 어떻게 실행되고 있는지 확인 가능하여 어떤 부분 튜닝이 필요한지 파악할 수 있음
 
 ### NoSQL
 
-##### Pymongo
-
-##### Query Optimization
+- 아직 작성하지 않았습니다.
 
 ### References
 
