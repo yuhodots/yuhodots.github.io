@@ -41,11 +41,13 @@ category: "about"
   - Developing a data pipeline with active learning to address class-imbalanced fine-grained datasets
   - Constructing an anomaly detection pipeline and AI service performance monitoring system
   - Developing a data engine equipped with auto-labeling capabilities for mask annotations
-
+  - w. Lightning AI, Airflow, Triton, MLFlow, FastAPI, AWS, DB(RDBMS, NoSQL, VectorDB), etc.
+  
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
   - Developing a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
   - Analyzing existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
-
+  - w. Language Models, PyTorch, Django, and jQuery
+  
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
   
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
@@ -71,10 +73,3 @@ category: "about"
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 - Research repositories: [cl-research](https://github.com/cl-research), [ncd-research](https://github.com/ncd-research), [ner-research](https://github.com/ner-research), [toolkits](https://github.com/yuhodots/toolkits)
 - Study group: https://cse-study.github.io/home/
-
-### Skills
-
-- Python, SQL, MATLAB, C++, etc.
-- PyTorch, Django, jQuery, and Bootstrap for the internship at NAVER Corp.
-- Express.js, MySQL, AWS EC2, AWS S3, Nginx, and React.js for Uitda project
-

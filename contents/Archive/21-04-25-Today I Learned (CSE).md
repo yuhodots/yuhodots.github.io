@@ -183,6 +183,39 @@ REST, gRPC, GraphQL에 대해 기록합니다
   - 그러면 개별 마이크로 서비스에 장애가 나더라도 SQS가 queue를 보관하고 있고, 서로 다른 서비스 끼리도 교차 장애 발생 케이스 줄어듦
 - Simple Queue Service (SQS): 하나의 메세지를 한번만 처리
 
+##### 👨‍💻 CS
+
+*2024.02.17*
+
+Python decorator 동작에 대한 이해
+
+```python
+def print_result_decorator(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        print(result)
+    return wrapper
+
+class PrintResultDecorator:
+    def __init__(self, func):
+        self.func = func
+    def __call__(self, *args, **kwargs):
+        result = self.func(*args, **kwargs)
+        print(result)
+
+@print_result_decorator
+def add(a, b):
+    return a + b
+
+@PrintResultDecorator
+def subtract(a, b):
+    return a - b
+
+if __name__ == '__main__':
+    add(2, 3)   # print 5
+    subtract(5, 3)  # print 2
+```
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
