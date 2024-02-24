@@ -297,6 +297,35 @@ services:
 <li><code class="language-text">--host</code>: 모든 접근 허용은 0.0.0.0</li>
 <li><code class="language-text">--port</code>: 포트 설정</li>
 </ul>
+<h5 id="code-api" style="position:relative;"><a href="#code-api" aria-label="code api permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Code API</h5>
+<ul>
+<li>Router: <code class="language-text">APIRouter</code> class는 path operation을 그룹지어줄 때 활용.아래의 경우 inference 요청을 /base/inference 통해 수행 가능하며, base.py 파일 내의 모든 요청이 /base로 그룹지어짐</li>
+</ul>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># main.py</span>
+<span class="token keyword">from</span> fastapi <span class="token keyword">import</span> FastAPI
+<span class="token keyword">from</span> base <span class="token keyword">import</span> router
+app <span class="token operator">=</span> FastAPI<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">"API server!"</span><span class="token punctuation">,</span> version<span class="token operator">=</span><span class="token string">"0.1.0"</span><span class="token punctuation">)</span>
+app<span class="token punctuation">.</span>include_router<span class="token punctuation">(</span>router<span class="token punctuation">,</span> prefix<span class="token operator">=</span><span class="token string">'/base'</span><span class="token punctuation">,</span> tags<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"Base"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token comment"># base.py</span>
+<span class="token keyword">from</span> fastapi <span class="token keyword">import</span> APIRouter
+router <span class="token operator">=</span> APIRouter<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token decorator annotation punctuation">@router<span class="token punctuation">.</span>post</span><span class="token punctuation">(</span><span class="token string">"/inference"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre></div>
+<ul>
+<li>
+<p>Middleware: 아래의 경우, 들어오는 모든 요청에 대해 dispatch 함수 적용가능</p>
+<ul>
+<li>Advanced middleware: <a href="https://fastapi.tiangolo.com/advanced/middleware/">https://fastapi.tiangolo.com/advanced/middleware/</a></li>
+</ul>
+</li>
+</ul>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>middleware</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">dispatch</span><span class="token punctuation">(</span>request<span class="token punctuation">:</span> Request<span class="token punctuation">,</span> call_next<span class="token punctuation">:</span> Callable<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Response<span class="token punctuation">:</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre></div>
+<ul>
+<li>redocly, swagger 같은 툴로 문서화 가능</li>
+</ul>
 <h3 id="mlflow" style="position:relative;"><a href="#mlflow" aria-label="mlflow permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MLflow</h3>
 <p>MLflow의 4가지 주요 기능</p>
 <ul>
