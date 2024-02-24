@@ -313,6 +313,10 @@ category: "Deep Learning"
 - [x] [Zhu, Xizhou, et al. "Deformable DETR: Deformable Transformers for End-to-End Object Detection." ICLR 2021.](https://arxiv.org/abs/2010.04159) 
 - [x] [Carion, Nicolas, et al. "End-to-end object detection with transformers." ECCV  2020.](https://link.springer.com/chapter/10.1007/978-3-030-58452-8_13)
 - [ ] [Dai, Jifeng, et al. "Deformable convolutional networks." ICCV 2017.](http://openaccess.thecvf.com/content_iccv_2017/html/Dai_Deformable_Convolutional_Networks_ICCV_2017_paper.html)
+- [ ] [Tian, Zhi, et al. "Fcos: Fully convolutional one-stage object detection." ICCV 2019.](https://openaccess.thecvf.com/content_ICCV_2019/html/Tian_FCOS_Fully_Convolutional_One-Stage_Object_Detection_ICCV_2019_paper.html)
+  - Object detection을 per-pixel prediction으로 재정의함. 따라서, 모델 예측이 pixel 단위로 수행되며, pixel 단위로 class 예측과 bbox 예측(그리고 centerness 예측)을 뱉음. Per-pixel prediction으로 정의하다보니, regressor 학습하는데 있어서 매우 많은 forground sample을 사용하는 효과낼 수 있음
+  - FPN 사용하고, multi-level feature에 shared head 활용해서 예측 뱉음
+  - 현재 픽셀이 물체 중심과 얼마나 가까운지 예측하는 centerness loss도 추가하여 학습. Inference time에서는 classification socre와 곱하여 자연적으로 low quality prediction을 걸러낼 수 있었고, 또한 이후에 NMS 까지 한번 더 거치면 최종 bbox 예측 얻을 수 있음
 
 ### Image Segmentation
 

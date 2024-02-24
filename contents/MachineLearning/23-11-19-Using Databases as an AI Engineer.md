@@ -233,7 +233,25 @@ FROM employees;
 
 ### NoSQL
 
-- 아직 작성하지 않았습니다.
+##### MongoDB
+
+```json
+{
+    "$and": [
+        {
+            "key_name1": {"$regex": "some_value1"}
+        },
+        {
+            "key_name2": {
+                "$not": {"$regex": "some_value2"}
+            }
+        },
+        {
+        		"key_name3": "some_value3"
+        }
+    ]
+}
+```
 
 ### References
 

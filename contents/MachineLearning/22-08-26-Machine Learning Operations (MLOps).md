@@ -232,6 +232,38 @@ uvicorn main:app --reload --host 0.0.0.0 --port 5000
 - `--host`: 모든 접근 허용은 0.0.0.0
 - `--port`: 포트 설정
 
+##### Code API
+
+- Router: `APIRouter` class는 path operation을 그룹지어줄 때 활용.아래의 경우 inference 요청을 /base/inference 통해 수행 가능하며, base.py 파일 내의 모든 요청이 /base로 그룹지어짐
+
+```python
+# main.py
+from fastapi import FastAPI
+from base import router
+app = FastAPI(title="API server!", version="0.1.0")
+app.include_router(router, prefix='/base', tags=["Base"])
+```
+
+```python
+# base.py
+from fastapi import APIRouter
+router = APIRouter()
+
+@router.post("/inference"):
+  ...
+```
+
+- Middleware: 아래의 경우, 들어오는 모든 요청에 대해 dispatch 함수 적용가능
+  - Advanced middleware: https://fastapi.tiangolo.com/advanced/middleware/
+
+```python
+@app.middleware("http"):
+async def dispatch(request: Request, call_next: Callable) -> Response:
+	...
+```
+
+- redocly, swagger 같은 툴로 문서화 가능
+
 ### MLflow
 
 MLflow의 4가지 주요 기능
