@@ -253,6 +253,20 @@ FROM employees;
 }
 ```
 
+### Advanced Topics
+
+추가 DB 관련 개념들을 아래에 적고, 관련하여 참고될만한 링크들을 기록합니다.
+
+- Master, Transaction, History tables
+- Design pattern: ODS, DW, DM, ETL, CDC, EDW, OLAP
+- Partitioning, Sharding, Replication, Indexing, Stored procedure
+- ETL patterns: https://aws.amazon.com/ko/blogs/big-data/etl-and-elt-design-patterns-for-lake-house-architecture-using-amazon-redshift-part-1/
+- Links
+  - https://yannichoongs.tistory.com/232
+  - https://aiday.tistory.com/123
+  - https://code-lab1.tistory.com/202
+  - https://hudi.blog/db-partitioning-and-sharding/
+
 ### References
 
 - https://qdrant.tech/documentation/quick-start/

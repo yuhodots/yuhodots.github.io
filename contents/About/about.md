@@ -41,6 +41,8 @@ category: "about"
   - Developing a data pipeline with active learning to address class-imbalanced fine-grained datasets
   - Constructing an anomaly detection pipeline and AI service performance monitoring system
   - Developing a data engine equipped with auto-labeling capabilities for mask annotations
+  - Developing dense prediction models on the few data samples (e.g., hospital food domain)
+  - Some data engineering works such as batch data processing
   - w. Lightning AI, Airflow, Triton, MLFlow, FastAPI, AWS, DB(RDBMS, NoSQL, VectorDB), etc.
   
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
