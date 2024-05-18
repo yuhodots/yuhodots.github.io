@@ -9,7 +9,7 @@ category: "Operations"
 thumbnail: "Operations"
 ---
 
-> MLOps를 위한 도구들의 사용법을 명령어 위주로 정리하고 있습니다. 대부분은 공식 문서의 내용을 참고하고 있고, 그 외 내용을 참고하게 되는 경우에는 글 내용에 언급하거나 reference에 추가하고 있습니다. 현재는 공부 진행 상황에 따라서 내용을 계속해서 추가하는 중에 있습니다. 
+> MLOps를 위한 도구들의 사용법을 명령어 위주로 정리하고 있습니다. 대부분은 공식 문서의 내용을 참고하고 있고, 그 외 내용을 참고하게 되는 경우에는 글 내용에 언급하거나 reference에 추가하고 있습니다. 현재는 공부 진행 상황에 따라서 내용을 계속해서 추가하는 중에 있습니다. (Last update: 2024.05.18)
 
 ### GitHub Actions
 
@@ -394,17 +394,28 @@ UI workflow와 API workflow로 구분지을 수 있으며, API workflow의 대�
 - 모델 탐색: `list_registered_models()`, `search_model_versions()`
 - 모델 삭제: `delete_model_version()`
 
-### Kubernetes
+### GitOps Automation with ArgoCD
 
+- GitOps?: 선언형 배포 작업 정의서, Git을 이용한 배포 버전 관리, 변경 사항 운영 반영 자동화, 자가 치유 및 이상 탐지
+- SSOT?: Single Source of Truth. 데이터베이스, 애플리케이션, 등 모든 데이터에 대해 하나의 출처를 사용하는 개념. 데이터의 정확성, 일관성, 신뢰성을 보장
 
+##### CI Workflow
 
-### Kubeflow
+1. 소스코드 repo, manifest repo를 각각 만들고, manifest repo에 기본적인 helm chart template 제작
+2. 소스코드  repo에 .github/worflow에 CI .yaml 파일을 제작
+3. 소스코드 repo의 develop 혹은 main branch에 코드를 병합하면 아래 순서대로 CI 과정 수행
+   1. 소스코드 repo의 도커파일 빌드
+   2. 소스코드 repo 도커파일을 AWS ECR에 업로드
+   3. ECR에 업로드된 도커 이미지 tag를 manifest repo의 helm values 파일에 overwrite
 
+##### CD with ArgoCD & Helm Chart
 
+![img](https://picluster.ricsanfre.com/assets/img/cicd-gitops-architecture.png)
 
-##### Istio
-
-
+1. ArgoCD와 manifest repo를 연결
+2. Dev / Stage / Prod 분리는 values 활용: manifest repo안에 helm values 파일을 develop 용이랑 production 용 각각 제작하고 CI .yaml 파일에, merge되는 branch 따라서 overwrite되는 values 파일 경로 다르게 설정
+3. ArgoCD에서 sync
+4. Secret은 GitHub Secrets, Sealed Secret, Infisical 중에서 선택
 
 ### Design Patterns
 

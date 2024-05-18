@@ -224,6 +224,34 @@ FROM employees;
 | Jane Smith    | Finance           |
 | Mike Brown    | No Department     |
 
+- `WITH`: 이름을 가진 sub query를 정의한 후 사용하는 구문
+  - WITH절을 사용했을 때의 장점이 [schatz37](https://schatz37.tistory.com/46)님의 블로그에 매우 상세히 설명되어 있어 여러번 읽어보면 좋을 것 같음 (Materilaize 방식의 경우 가독성의 장점 뿐만 아니라 쿼리 성능 개선으로도 이어짐)
+
+```sql
+WITH 임시테이블1 AS ( SELECT ... ),
+WITH 임시테이블2 AS( SELECT ... )
+SELECT * FROM 임시테이블1, 임시테이블2
+```
+
+- **Window function**: MAX, MIN, RANK 등.. 있지만 ROW_NUM 예시를 적음
+  - `WINODW_FUNCTION (ARGUMENTS) OVER ([PARTITION BY][ORDER BY][WINDOWING])`
+  - 아래와 같이 작성시, 중복 데이터 중에서 제일 최근에 데이터 웨어하우스에 추가된 데이터만 골라낼 수 있음 (중복 제거)
+
+```sql
+SELECT * FROM
+(
+  SELECT
+  	some_data_column,
+  	dw_load_timestamp,
+  	row_number() OVER (
+    	PARTITION BY some_data_column
+      ORDER BY dw_load_timestamp DESC
+    ) AS rn
+  FROM some_table
+)
+WHERE rn = 1
+```
+
 - 이 외에도 `SELECT INTO`, `INSERT INTO`, `EXISTS`, `HAVING`, `ANY`, `ALL` 등 존재
 - Key 종류: super key, candidate key, primary key, foreign key, composite key, alternate key
 - Normalization: 1NF, 2NF, 3NF, BCNF
