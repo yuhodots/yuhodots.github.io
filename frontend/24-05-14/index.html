@@ -174,50 +174,63 @@
 <h3 id="redux" style="position:relative;"><a href="#redux" aria-label="redux permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Redux</h3>
 <p>State를 이용해 웹 사이트 혹은 애플리케이션의 상태 관리를 해줄 목적으로 사용되는 JavaScript 상태관리 라이브러리. 특정 component만의 데이터 저장소가 아닌 모든 component에 영향을 끼치는 데이터 저장소</p>
 <ul>
-<li>
-<p>Action: 작성중</p>
+<li><a href="https://redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif">링크</a> 통해 전반적인 flow 확인해볼 수 있음</li>
+<li>Store: 앱의 전체 state를 가지고 있는 중앙 저장소. 전체 앱에 대한 하나의 store가 존재 </li>
+</ul>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'redux'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> rootReducer <span class="token keyword">from</span> <span class="token string">'./reducers'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>rootReducer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span><span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <ul>
-<li>Action creators: 작성중</li>
+<li>
+<p>Action: 상태 변화를 일으키기 위한 신호. <code class="language-text">type</code>이라는 필수 속성을 가지고 있으며, 추가적으로 상태 변화를 설명하는 데이터(payload)를 가질 수 있음</p>
+<ul>
+<li>Action creators: Action 객체를 생성하는 함수. 특정 액션을 생성하기 위한 로직을 캡슐화하여, Action 객체 생성을 더 간결하고 일관되게 만듦</li>
 </ul>
 </li>
 </ul>
-<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript">action 코드 작성중</code></pre></div>
-<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript">action creators 코드 작성중</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> incrementAction <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token keyword">type</span><span class="token operator">:</span> <span class="token string">'INCREMENT'</span><span class="token punctuation">,</span>
+  payload<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">increment</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span><span class="token operator">:</span> <span class="token string">'INCREMENT'</span><span class="token punctuation">,</span>
+    payload<span class="token operator">:</span> value<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <ul>
-<li>Reducer: 작성중</li>
+<li>Reducer: 현재 상태와 Action을 받아서 새로운 상태를 반환하는 함수. 상태 변화 로직이 들어 있으며, 순수 함수여야 함. 즉, 동일한 인풋에는 항상 동일한 아웃풋을 반환해야 하며, 인풋을 변경하지 않아야 함</li>
 </ul>
-<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript">reducer 예시 코드 작성중</code></pre></div>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">counterReducer</span><span class="token punctuation">(</span>state <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>action<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'INCREMENT'</span><span class="token operator">:</span>
+      <span class="token keyword">return</span> state <span class="token operator">+</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'DECREMENT'</span><span class="token operator">:</span>
+      <span class="token keyword">return</span> state <span class="token operator">-</span> action<span class="token punctuation">.</span>payload<span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      <span class="token keyword">return</span> state<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
 <ul>
-<li>Store: 작성중</li>
+<li>Dispatch: Store의 메서드로, Action을 Reducer에게 전달하여 상태를 변경</li>
 </ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">store 예시 코드 작성중</code></pre></div>
-<ul>
-<li>Dispatch: 작성중</li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">dispatch 예시 코드 작성중</code></pre></div>
-<ul>
-<li>일반적으로는 올바른 action을 전달하기 위해 action creators를 호출</li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">const increment = () =&gt; {
-  return {
-    type: &#39;counter/increment&#39;
-  }
-}
-store.dispatch(increment())</code></pre></div>
-<p><img src="https://redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif" alt="img"></p>
+<div class="gatsby-highlight" data-language="typescrip"><pre class="language-typescrip"><code class="language-typescrip">store.dispatch(increment(1));</code></pre></div>
 <h5 id="advanced-topics" style="position:relative;"><a href="#advanced-topics" aria-label="advanced topics permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advanced Topics</h5>
 <ul>
-<li>Provider: 작성중</li>
-<li>Connect: 작성중</li>
-<li>mapStateToProps: 작성중</li>
-<li>mapDispatchToProps: 작성중</li>
+<li>Provider: 하위 컴포넌트들이 redux의 store에 접근할 수 있게 해주는 컴포넌트 </li>
+<li>Connect: 접근할 권한을 얻게 된 뒤에, store에 저장되어 있는 state를 이용하기 위해 컴포넌트들을 store에 연결시켜주는 함수</li>
+<li>mapStateToProps: store로 부터 state를 가져와 컴포넌트의 props로 전달</li>
+<li>mapDispatchToProps: dispatch를 컴포넌트의 props로 전달</li>
 </ul>
+<div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token function">connect</span><span class="token punctuation">(</span>mapStateToProps<span class="token punctuation">,</span> mapDispatchToProps<span class="token punctuation">)</span><span class="token punctuation">(</span>component<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h3 id="hooks" style="position:relative;"><a href="#hooks" aria-label="hooks permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooks</h3>
+<p>다양한 React Hook에 대한 설명을 <a href="https://ko.react.dev/reference/react/hooks">이곳</a>에서 확인할 수 있습니다. </p>
 <ul>
-<li>useRef: 작성중</li>
-<li>useState: 작성중</li>
-<li>useCallback: 작성중</li>
-<li>useEffect: 작성중</li>
+<li>useState, <code class="language-text">const [state, setState] = useState(initialState)</code>: 컴포넌트에 state 변수를 추가</li>
+<li>useCallback, <code class="language-text">const cachedFn = useCallback(fn, dependencies)</code>: 특정 함수를 새로 만들지 않고 재사용</li>
+<li>useRef, <code class="language-text">const ref = useRef(initialValue)</code>: 렌더링에 필요하지 않은 값을 참조</li>
+<li>useEffect, <code class="language-text">useEffect(setup, dependencies?)</code>: 컴포넌트가 렌더링 될 때마다 특정 작업을 실행</li>
 </ul>
 <h3 id="development" style="position:relative;"><a href="#development" aria-label="development permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Development</h3>
 <h5 id="quick-start" style="position:relative;"><a href="#quick-start" aria-label="quick start permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Start</h5>
