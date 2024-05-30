@@ -40,10 +40,11 @@ category: "about"
   - AI Modeling for the instance segmentation and zero-shot classification task
   - Developing a data pipeline with active learning to address class-imbalanced fine-grained datasets
   - Constructing an anomaly detection pipeline and AI service performance monitoring system
-  - Developing a data engine equipped with auto-labeling capabilities for mask annotations
+  - Developing a data engine equipped with semi-auto-labeling capabilities for mask annotations
   - Developing dense prediction models on the few data samples (e.g., hospital food domain)
   - Some data engineering works such as batch data processing
-  - w. Lightning AI, Airflow, Triton, MLFlow, FastAPI, AWS, DB(RDBMS, NoSQL, VectorDB), etc.
+  - FrontEnd and BackEnd development for customizing data annotation tool, CVAT
+  - w. Lightning AI, Apache Airflow, NVIDIA Triton, MLFlow, FastAPI, AWS, DB(RDBMS, NoSQL, VectorDB), React.js, etc.
   
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
   - Developing a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine

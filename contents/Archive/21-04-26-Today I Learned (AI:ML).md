@@ -488,6 +488,12 @@ DINO와 DINO v2에 대해서 간단히 정리합니다.
   - Main purpose: Language-independent open standards and libraries to accelerate and simplify in-memory computing
 - Huggingface datasets w. arrow: 위에서 언급한 것 처럼 Arrow는 많은 양의 데이터에 대한 처리와 이동을 빠르게 가능하게 함 (Arrow format은 zero-copy read 가능하기에 직렬화 오버헤드를 없애주기 때문). 따라 Huggingface datasets은 arrow 활용함. 또한 column-oriented이기 때문에 querying이나 slicing 등 처리 속도 빠름
 
+##### 🧩 ML library
+
+*2024.05.30*
+
+- 스크랩: [[python] OpenCV, PIL, Numpy, PyTorch 타입 분석, 타입 변환 정리](https://mvje.tistory.com/97 )
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
