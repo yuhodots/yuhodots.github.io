@@ -241,6 +241,35 @@ y <span class="token operator">+=</span> <span class="token number">3</span>
 <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
     add<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>   <span class="token comment"># print 5</span>
     subtract<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>  <span class="token comment"># print 2</span></code></pre></div>
+<h5 id="-cs-13" style="position:relative;"><a href="#-cs-13" aria-label=" cs 13 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>👨‍💻 CS</h5>
+<p><em>2024.07.03</em></p>
+<p>Mock과 Stub의 차이: 유닛테스트에서 실제 객체를 대체하여 사용되는 테스트 더블(실제 객체를 대신해서 테스팅에서 사용하는 모든 방법)의 타입임. 이 둘은 목적과 특성 측면에서 조금 차이를 가짐</p>
+<ul>
+<li>Stub은 테스트 중에 특정 호출에 대해 미리 정의된 응답을 제공하는데 사용됨. 일반적으로 단위 테스트가 상호작용하는 실제 구성 요소의 동작을 시뮬레이트하기 위해 사용됨. 예를 들어, 고정된 값을 반환하거나 특정 코드 경로를 트리거</li>
+<li>Stub은 '어떻게' 사용되는지에 대해 트래킹은 하지 않음. 즉, 호출 횟수나 호출 순서에 대해서는 신경쓰지 않고, 기대되는 결과를 '리턴'하는 것이 주요 역할임.</li>
+<li>따라서 stub은 테스트가 단위 테스트의 대상에 집중하고, 구성 요소 간의 상호작용이 아니라 테스트의 초점을 맞출 때 사용됨. 스텁은 테스트 대상 단위를 격리시키고 주요 대상이 아닌 다른 의존성을 대체하는 데 도움을 줌</li>
+<li>Mock은 단위 테스트 대상과 그 의존성 간의 상호작용을 검증하는데 사용. 미리 정의된 응답을 제공할 뿐만 아니라 '어떻게' 호출되었는지도 기록</li>
+<li>Mock은 특정 메소드가 특정 횟수만큼, 특정 인수로, 특정 순서대로 호출되었는지 등을 확인</li>
+<li>따라서 mock은 단위 테스트 대상이 다른 구성 요소와 올바르게 상호작용하는지 확인하는데 사용</li>
+</ul>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">UserRepositoryStub</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">get_user</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> user_id<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token string">"id"</span><span class="token punctuation">:</span> user_id<span class="token punctuation">,</span> <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">}</span>
+
+<span class="token keyword">def</span> <span class="token function">test_get_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_repo_stub <span class="token operator">=</span> UserRepositoryStub<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user_service <span class="token operator">=</span> UserService<span class="token punctuation">(</span>user_repo_stub<span class="token punctuation">)</span>
+    user <span class="token operator">=</span> user_service<span class="token punctuation">.</span>get_user<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> user <span class="token operator">==</span> <span class="token punctuation">{</span><span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">}</span></code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> unittest<span class="token punctuation">.</span>mock <span class="token keyword">import</span> Mock
+
+<span class="token keyword">def</span> <span class="token function">test_get_user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_repo_mock <span class="token operator">=</span> Mock<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    user_repo_mock<span class="token punctuation">.</span>get_user<span class="token punctuation">.</span>return_value <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">}</span>
+    user_service <span class="token operator">=</span> UserService<span class="token punctuation">(</span>user_repo_mock<span class="token punctuation">)</span>
+    user <span class="token operator">=</span> user_service<span class="token punctuation">.</span>get_user<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    user_repo_mock<span class="token punctuation">.</span>get_user<span class="token punctuation">.</span>assert_called_once_with<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">assert</span> user <span class="token operator">==</span> <span class="token punctuation">{</span><span class="token string">"id"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">}</span></code></pre></div>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <div class="footnotes">
 <hr>
