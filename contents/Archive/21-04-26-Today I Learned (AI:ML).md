@@ -494,6 +494,68 @@ DINO와 DINO v2에 대해서 간단히 정리합니다.
 
 - 스크랩: [[python] OpenCV, PIL, Numpy, PyTorch 타입 분석, 타입 변환 정리](https://mvje.tistory.com/97 )
 
+##### 🤖 ML & DL
+
+*2024.08.05*
+
+![img](../img/24-08-05-1.png)
+
+**Attention**
+
+- Attention: Scaled dot-product attention mechanism의 식은 아래와 같습니다. Query와 key 사이의 유사도를 구하고, 해당 유사도를 key와 맵핑되어있는 각 value에 반영하는 방식입니다. Self-attention이라고 한다면, (1) 입력이 Wq, Wk, Wv matrix를 각각 거쳐서 query, key, value embedding으로 변하고 (2) 해당 query, key, value embedding 간 attention을 수행하게 됩니다.
+
+$$
+\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V
+$$
+
+![img](../img/24-08-05-2.png)
+
+- Multi-Head Attention (MHA): Attention을 하나가 아닌 여러 개 사용함으로써 입력 데이터의 다양한 subspace에서의 문맥 정보를 포착하고 복잡한 패턴을 더 잘 이해할 수 있도록 돕습니다. 한번의 attention 연산을 위해 각각 하나의 query, key, value head가 필요하므로, H번의 연산을 위해서는 각 H개의 query, key, value head가 필요합니다.
+- Multi-Query Attention (MQA): MQA는 key, value head를 오로지 하나만 두는 변형입니다. 
+- Grouped-Query Attention (GQA): GQA는 H개의 query를 G개의 그룹으로 나누어 어텐션 연산을 수행합니다. GQA-G는 G group의 key, value head를 가지는데, 따라서 GQA-H는 MHA와 동일하고 GQA-1은 MQA와 동일하게 됩니다. MHA의 체크포인트를 GQA의 체크포인트로 변환하기 위해서, 각 그룹에 속하는 기존 head를 mean pooling 하여 새로운 key, value head를 만듭니다. GQA는 MQA만큼 빠르면서도 MHA 성능에 근접합니다.
+
+**Pre-Training**
+
+- Mixture of Experts (MoE): 여러 전문가 서브네트워크가 데이터의 다른 측면에 특화되도록 학습합니다. 추론 중에는 이러한 전문가 중 일부만 활성화되어 계산 부담을 줄이면서도 높은 성능을 유지합니다.
+
+- Mixture of Depth (MoD): 학습 및 추론 중 모델의 깊이를 동적으로 조정하는 접근 방식입니다. 
+
+**Instruction Tuning**
+
+- Multi-Turn Instructions: Multi-Turn Instructions는 여러 대화 턴에 걸쳐 응답을 이해하고 생성하는 모델을 학습시키는 것을 포함합니다. 이 튜닝 방법은 모델이 확장된 상호작용 과정에서 문맥과 일관성을 유지할 수 있는 능력을 향상시켜 챗봇과 같은 프로그램에 유용합니다.
+
+- Instruction Following: Instruction Following은 주어진 지시 사항을 이해하고 실행하는 모델을 학습시키는 과정입니다. 이 기술은 모델이 복잡한 지시를 정확하게 따를 수 있는 능력을 향상시키는 데 중요하여, 정밀하고 신뢰할 수 있는 작업 완료를 요구하는 응용 프로그램에서 더 유용합니다.
+
+**Alignment**
+
+- Reinforcement Learning from Human Feedback
+
+  1. Initial Training of the Language Model (Pre-training): 먼저, LLM은 일반적으로 대량의 텍스트 데이터로 사전 학습(pre-training)됩니다. 이 단계에서는 언어 모델이 언어의 통계적 패턴을 학습하고, 다양한 텍스트 생성 및 이해 능력을 갖추게 됩니다.
+  2. Supervised Fine-tuning: LLM이 사전 학습된 후, 주로 인간이 레이블링한 데이터셋을 사용하여 모델을 특정 작업에 맞게 미세 조정합니다. 이 단계는 모델이 특정 형식의 질문에 대답하거나 특정 스타일로 글을 작성하는 등 특정 작업을 더 잘 수행하도록 합니다.
+  3. Collecting Human Feedback: 모델이 어느 정도 성능을 갖추게 되면, 생성된 텍스트에 대해 인간으로부터 피드백을 수집합니다. 피드백은 일반적으로 텍스트의 품질, 정확성, 관련성 등을 평가하는 형태로 제공됩니다. 이 데이터를 사용하여 reward model을 학습합니다.
+  4. Training the Reward Model: 수집된 인간 피드백 데이터를 기반으로 reward model을 학습합니다. 이 모델은 주어진 텍스트에 대해 점수를 매기며, 텍스트의 품질이나 사용자 의도와의 일치도를 평가합니다.
+  5. Reinforcement Learning (RL) Fine-tuning: 학습된 reward model을 사용하여 LLM을 강화 학습(Reinforcement Learning) 방식으로 미세 조정합니다. 이 단계에서 주로 사용하는 알고리즘은 Proximal Policy Optimization (PPO)입니다. 다음과 같은 절차로 진행됩니다:
+     - Policy Generation: 현재 LLM을 사용하여 텍스트를 생성합니다.
+     - Reward Evaluation: 생성된 텍스트를 reward model을 통해 평가하여 보상(reward)을 계산합니다.
+     - Policy Update: 보상을 최대화하도록 LLM의 파라미터를 업데이트합니다. 이 과정에서 PPO 알고리즘을 사용하여 안정적으로 정책을 최적화합니다.
+  6. Iterative Improvement: 강화 학습을 통해 모델이 지속적으로 개선됩니다. 필요하면 더 많은 인간 피드백을 수집하여 reward model을 업데이트하고, 이를 다시 LLM의 강화 학습에 반영하여 모델을 반복적으로 향상시킬 수 있습니다.
+
+- Direct Preference Optimization:
+
+**Decoding Strategies**
+
+- Greedy Search: Greedy search는 모델이 각 단계에서 가장 높은 확률의 토큰을 선택하는 단순한 디코딩 전략입니다. 빠르고 직관적이지만 미래의 가능성을 고려하지 않아 최적의 결과를 놓칠 수 있습니다.
+
+- Beam Search: Beam search는 각 단계에서 여러 후보 시퀀스(빔)를 유지하는 더 정교한 디코딩 전략입니다. 여러 경로를 동시에 탐색함으로써 그리디 서치보다 더 최적의 솔루션을 찾을 가능성이 높아지지만, 계산 비용이 더 많이 듭니다.
+
+- Top-k Sampling: Top-k 샘플링은 모델이 다음 토큰을 상위 k개의 가장 확률이 높은 후보 중에서 선택하는 확률적 디코딩 전략입니다. 이 방법은 다양성을 도입하고 반복적이거나 결정론적인 출력을 줄여, 생성된 텍스트의 자연스러움과 다양성을 향상시킵니다.
+
+- Top-p Sampling: Top-p 샘플링(누클리어스 샘플링)은 누적 확률이 특정 임계값 p를 초과하는 가장 작은 후보 집합에서 다음 토큰을 선택합니다. 이 방법은 샘플링 풀의 동적 조정을 가능하게 하여, 생성된 텍스트의 다양성과 일관성 사이의 균형을 맞춥니다.
+
+**Efficient Tuning**
+
+- Low-Rank Adaptation: pretrained model weight를 모두 freeze 한 뒤에, downstream task fine-tuning을 위한 rank decomposition matrice를 추가하여 효율적 fine-tuning을 수행합니다.
+
 ### References
 
 [^1]: Wikipedia contributors. (2021, April 12). Moment (mathematics). In Wikipedia, The Free Encyclopedia. Retrieved 12:08, May 24, 2021, from https://en.wikipedia.org/w/index.php?title=Moment_(mathematics)&oldid=1017468752
