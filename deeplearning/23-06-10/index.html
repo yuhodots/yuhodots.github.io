@@ -590,6 +590,119 @@
 <li>Decoder output을 각각 feed forward network에 입력하고, object가 있는지 없는지, 있다면 class는 무엇이고 bbox는 어떻게 되는지를 출력</li>
 <li>최종 (prediction head의) 출력에 대해 bipartite matching (i.e., Hungarian algorithm) 수행 후, loss 계산하여 모델 학습. Class prediction loss와 Generalized IoU 활용한 box loss 사용</li>
 </ol>
+<h3 id="quick-overview" style="position:relative;"><a href="#quick-overview" aria-label="quick overview permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Overview</h3>
+<ul>
+<li>YOLO:  실시간 객체 탐지를 위해 개발된 모델로, 이미지 전체를 한 번에 처리하여 객체를 감지하는 방식. 전통적인 슬라이딩 윈도우 방식과 달리, 이미지 전체를 단일 네트워크로 처리하여 속도가 매우 빠름. <strong>입력 이미지를 SxS 그리드로 나누고, 각 그리드 feature마다 (x, y, w, h, confidence socre)과 (class probabilities) 출력</strong></li>
+<li>
+<p>YOLOX: <strong>YOLO 모델에 Anchor free 방법을 적용</strong>해서 성능을 향상. 이외에도 다양한 기술 적용 (Decoupled head , SimOTA, multi-positives, etc)</p>
+<ul>
+<li>Anchor free: 각 그리그마다 3개씩 예측하던 것을 1개로 변경하고 직접 4개의 값을 예측(left-top corner, height, width). FCOS 방식을 생각하면 쉬움</li>
+</ul>
+</li>
+<li>RCNN(Region-based Convolutional Neural Network): 객체 탐지를 위해 제안된 최초의 Region Proposal 기반 방법 중 하나. 입력 이미지에서 여러 개의 Region Proposal을 생성한 후, <strong>각 Region Proposal에 대해 CNN을 적용하여 피쳐를 추출하고, 이를 기반으로 객체 클래스와 위치를 예측</strong></li>
+<li>Cascade RCNN: 여러 단계의 검출기(Detector)를 사용하여 탐지의 정확성을 점진적으로 향상시키는 방법. 각 단계에서는 이전 단계에서 검출된 객체를 기반으로 더 세밀한 검출을 수행. (1) <strong>0.5 IoU로 학습한 detector로 region proposal을 생성</strong>하고, (2) <strong>생성된 region proposal로 0.6 IoU인 detector을 학습</strong>하고, (3) <strong>0.7 IoU detector도 같은 방식으로 학습</strong>. (4) 3-stage가 실험적으로 적합했다고 하며, inference 시에도 cascade 방식으로 수행. 객체 크기가 다양하거나 경계 상자 예측이 어려운 상황에서 특히 효과적이라고 함</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d1a006ad01965366f70d136aa8898cab/ee515/24-08-10-1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25.789473684210527%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAAsSAAALEgHS3X78AAABOklEQVQY0x2O207CUBBF+/+fYqJRNDEmvoiggEVaoRWkFzy9cUqBcmkLiC4PTDKZ2ZmVPVv7Pf5RbStqzwbd6QRvE3Fdf+fuzeC20+PySWeYJ4wGMRd6h66eYHUTxF5y3zK5afeonbrZ43Fso3GEh6bB1XOdfLblVO7Ix7I8BgOXz77Pqzugl4ZMREajaWIl6zMnQ2Xed7EVaynWdyO0n6qgZmd81TscAp+4PGKoVIXVJzcN1obBzBkhi5KPr5i82TibzdYFettmpe6rD1OxJtvREG2WprQ/v/lOF1Rlge0IdE+yyJdky5zlZsN+vyeIJS/DiO1ux0FpmS1ojROyPCedz1mXJX/qkRaGIZGYqLgOIggQEx/hOTiOQ6i0q2agmDgKCXwHz/UQQpDKKcVqgZxO1S6ZK9OqqvgH/IpqWTA2bvsAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d1a006ad01965366f70d136aa8898cab/15813/24-08-10-1.webp 190w,
+/static/d1a006ad01965366f70d136aa8898cab/1cdb2/24-08-10-1.webp 380w,
+/static/d1a006ad01965366f70d136aa8898cab/9046c/24-08-10-1.webp 760w,
+/static/d1a006ad01965366f70d136aa8898cab/c89f9/24-08-10-1.webp 1140w,
+/static/d1a006ad01965366f70d136aa8898cab/a5e36/24-08-10-1.webp 1269w"
+              sizes="(max-width: 760px) 100vw, 760px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d1a006ad01965366f70d136aa8898cab/a2d4f/24-08-10-1.png 190w,
+/static/d1a006ad01965366f70d136aa8898cab/3f520/24-08-10-1.png 380w,
+/static/d1a006ad01965366f70d136aa8898cab/3c051/24-08-10-1.png 760w,
+/static/d1a006ad01965366f70d136aa8898cab/b5cea/24-08-10-1.png 1140w,
+/static/d1a006ad01965366f70d136aa8898cab/ee515/24-08-10-1.png 1269w"
+            sizes="(max-width: 760px) 100vw, 760px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d1a006ad01965366f70d136aa8898cab/3c051/24-08-10-1.png"
+            alt="img"
+            title="img"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>DETR: DETR은 객체 탐지에 Transformer 구조를 도입한 모델. 먼저 <strong>CNN backbone으로 C(2048)×H×W image feature를 추출</strong>. 이후, 1x1 conv 사용하여 C=256으로 차원을 줄여서 256 dimension의 H×W tokens를 만들어 냄. 이를 encoder에 한번 넣고, <strong>encoder 출력과 object query를 decoder에서 cross attention</strong> 수행. 최종 object query ouput을 예측에 사용. Region Proposal과 같은 추가적인 단계 없이도 정확한 탐지를 수행할 수 있으며 end-to-end 학습이 가능.</li>
+<li>DN-DETR: 훈련 초기의 모호한 이분 매칭이 느린 수렴으로 이어져, 노이즈를 섞은 GT 박스에 대해 노이즈 제거를 통해 훈련 가속화</li>
+<li>Deformable-DETR: <strong>Deformable Attention Mechanism</strong> 도입. DETR보다 빠른 수렴 속도를 가지며 작은 객체에 대한 탐지 성능도 개선</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/76d6c8e4e78dbef86539b1513466f33d/10d53/24-08-10-2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 24.210526315789476%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/0lEQVQY0z2O226CQBRF+f8v6oM2pTVUUS4iIkNgVAbpGS460ACW25Fo0v22srKSLR2iq3G6bmjG8gpxpHvftqm59UNymhBEtQkSIxRWVIyIadlYJDID7hD219ylKVuq7kKxveiKv8LYBrKXzvexQyIc+3NeyTrdvKuqrHXsDOZOe1soa9ecKXdRPuPVYfFpekeOOTd0TybJ3L78xx86Xc+XK8XqEog9+rU8qLNvTSPVvZO8i7BCsWWCl+30k/nMcdluf2IBm5AXjXnMHV6TpEbEW906UUH82KXQdL2EzzVNDQBZnkMcD22LQ4/D8FJ938MPZFmaJgnnABxuRflSDxcKDAR6NvQQAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/76d6c8e4e78dbef86539b1513466f33d/15813/24-08-10-2.webp 190w,
+/static/76d6c8e4e78dbef86539b1513466f33d/1cdb2/24-08-10-2.webp 380w,
+/static/76d6c8e4e78dbef86539b1513466f33d/9046c/24-08-10-2.webp 760w,
+/static/76d6c8e4e78dbef86539b1513466f33d/c89f9/24-08-10-2.webp 1140w,
+/static/76d6c8e4e78dbef86539b1513466f33d/7afe4/24-08-10-2.webp 1520w,
+/static/76d6c8e4e78dbef86539b1513466f33d/0f980/24-08-10-2.webp 1724w"
+              sizes="(max-width: 760px) 100vw, 760px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/76d6c8e4e78dbef86539b1513466f33d/a2d4f/24-08-10-2.png 190w,
+/static/76d6c8e4e78dbef86539b1513466f33d/3f520/24-08-10-2.png 380w,
+/static/76d6c8e4e78dbef86539b1513466f33d/3c051/24-08-10-2.png 760w,
+/static/76d6c8e4e78dbef86539b1513466f33d/b5cea/24-08-10-2.png 1140w,
+/static/76d6c8e4e78dbef86539b1513466f33d/891d5/24-08-10-2.png 1520w,
+/static/76d6c8e4e78dbef86539b1513466f33d/10d53/24-08-10-2.png 1724w"
+            sizes="(max-width: 760px) 100vw, 760px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/76d6c8e4e78dbef86539b1513466f33d/3c051/24-08-10-2.png"
+            alt="img"
+            title="img"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>DINO (DETR with Improved Noise optimization): <strong>Contrastive DeNoising Training</strong> 도입. N개의 GT box에 대해 양성과 음성 쿼리를 생성하여 총 2N개의 쿼리 생성. 같은 GT 박스에 대해 positive 샘플에는 적은 노이즈 λ1을, negative 샘플에는 큰 노이즈 λ2를 추가. Negative에 대해 no object 예측을 하도록 훈련. DETR 계열 모델 중에서도 최상위 성능</li>
+<li>BoxInst: Weakly-supervised instance segmentation 방법. <strong>Projection loss term</strong> (모델의 mask예측의 x, y축 방향 projection과, box GT가 얼마나 비슷한지를 측정)과 <strong>pairwise loss term</strong> (두 pixel 사이의 색상이 유사하면 이 둘이 같은 label을 가지는 경우가 많다고 주장하며, 가까운 pixel에 대해서 유사한 색상을 가지면 같은 객체로 예측되도록 유도) 제안</li>
+</ul>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <h5 id="blog-posts" style="position:relative;"><a href="#blog-posts" aria-label="blog posts permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Blog Posts</h5>
 <ul>
