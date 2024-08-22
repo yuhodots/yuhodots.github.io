@@ -179,6 +179,24 @@ model_warmup [
 ]
 ```
 
+Model warmup을 위한 input을 파일 형태로 만든 뒤에 전달해주는 방법도 존재합니다.
+
+1. model registry 안의 각 모델 내부에 `warmup`이라는 이름의 sub-directory를 생성합니다.
+
+2. warmup을 위한 데이터를 `warmup` directory 안에 만듭니다. 아래의 방법을 통해 생성 가능합니다.
+
+   ``` python
+   import numpy as np
+   from tritonclient.utils import serialize_byte_tensor
+   serialized = serialize_byte_tensor(np.array(["example_text".encode("utf-8")], dtype=object))
+   with open("str_warmup_input", "wb") as fh:
+       fh.write(serialized.item())
+   ```
+
+3. model config.pbtxt 파일에서 `input_data_file` key에 알맞은 파일 명을 기입합니다.
+
+Python backend model에 warmup을 적용하려고 할 때는 주의할 점이 존재합니다. Python backend model에서 다른 모델을 call 하는 경우가 존재하는데, 이렇게 다른 모델에 의존성이 있는 모델을 warmup 하려고 하면 '{MODEL NAME} is noy ready'라는 에러와 함께 warmup이 수행되지 않습니다. 그래서 다른 모델에 의존성이 있는 경우는 warmup을 할 수 없거나 다른 모델 call을 하지 않도록 내부 코드를 수정해야합니다.
+
 ### Python Backend
 
 Trition backend는 model 실행을 위한 구현체들을 의미하며 기본적으로는 PyTorch, TensorFlow, TensorRT, ONNX Runtime 등 딥러닝 프레임워크의 wrapper로 볼 수 있습니다. 특히 딥러닝 프레임워크에 대한 backend 뿐만 아니라 [python backend](https://github.com/triton-inference-server/python_backend)도 지원을 해서, 모델 입력에 대한 전처리나 모델 출력에 대한 후처리를 python backend 내에서 수행할 수 있습니다.
