@@ -122,6 +122,63 @@ Triton에 의해 생성된 model configuration은 [model configuration endpoint]
 curl localhost:8000/v2/models/<model name>/config
 ```
 
+##### Model Warmup
+
+NVIDIA inference server를 띄우고 요청을 보내보면 지연시간이 존재하는 것을 확인할 수 있습니다. 따라서 model warmup을 추가해주는 것이 좋습니다. 초기 요청에 지연 시간이 걸리는 이유는 다음과 같습니다. 
+
+- 초기 지연 시간 감소 (Cold Start Latency): 모델이 처음 로드되고 호출될 때, 메모리 할당이나 캐시 초기화가 완료되지 않았기 때문에 첫 번째 추론 요청의 지연 시간이 길어질 수 있습니다. 
+- 최적화된 연산 경로 준비: 딥러닝 모델은 다양한 연산 경로와 커널을 사용하며, 첫 번째 추론 시 최적화된 경로를 선택하고 준비하는 과정에서 시간이 소요됩니다. 
+- 메모리 및 버퍼 할당 최적화: 모델이나 알고리즘에 따라 필요한 메모리나 버퍼를 동적으로 할당해야 하는 경우가 있습니다. 이 과정에서 지연이 발생할 수 있습니다.
+- 캐시 초기화: 모델의 가중치나 데이터가 GPU 메모리에 로드되고, 데이터 캐시가 채워지지 않으면 첫 번째 추론 시 시간이 더 걸릴 수 있습니다.
+- 안정적인 성능 유지: GPU는 사용 상태에 따라 다른 성능 및 전력 상태로 전환될 수 있습니다. 처음 몇 번의 추론에서 GPU가 최적의 성능 상태로 도달하기 전까지 시간이 걸릴 수 있습니다.
+
+다음은 model warmup을 위한 config.pbtxt의 예시입니다.
+
+```
+name: "resnet_classification"
+platform: "tensorrt_plan"  # 또는 "tensorflow_graphdef", "onnxruntime_onnx", "pytorch_libtorch" 등 사용 중인 모델의 플랫폼에 맞게 변경
+
+input [
+  {
+    name: "input_tensor"
+    data_type: TYPE_FP32
+    dims: [3, 224, 224]  # 일반적인 ResNet 입력 크기
+  }
+]
+
+output [
+  {
+    name: "output_tensor"
+    data_type: TYPE_FP32
+    dims: [1000]  # 일반적인 ResNet 출력 크기 (ImageNet 기준)
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
+
+# Model Warmup 설정 추가
+model_warmup [
+  {
+    name: "resnet_warmup"
+    batch_size: 1
+    count: 10
+    inputs {
+      key: "input_tensor"
+      value: {
+        data_type: TYPE_FP32
+        dims: [3, 224, 224]
+        random_data: true  # 무작위 데이터를 사용하여 워밍업
+      }
+    }
+  }
+]
+```
+
 ### Python Backend
 
 Trition backend는 model 실행을 위한 구현체들을 의미하며 기본적으로는 PyTorch, TensorFlow, TensorRT, ONNX Runtime 등 딥러닝 프레임워크의 wrapper로 볼 수 있습니다. 특히 딥러닝 프레임워크에 대한 backend 뿐만 아니라 [python backend](https://github.com/triton-inference-server/python_backend)도 지원을 해서, 모델 입력에 대한 전처리나 모델 출력에 대한 후처리를 python backend 내에서 수행할 수 있습니다.
