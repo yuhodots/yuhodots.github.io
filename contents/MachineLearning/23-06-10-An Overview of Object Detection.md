@@ -271,6 +271,25 @@ $$
 4. Decoder output을 각각 feed forward network에 입력하고, object가 있는지 없는지, 있다면 class는 무엇이고 bbox는 어떻게 되는지를 출력
 5. 최종 (prediction head의) 출력에 대해 bipartite matching (i.e., Hungarian algorithm) 수행 후, loss 계산하여 모델 학습. Class prediction loss와 Generalized IoU 활용한 box loss 사용
 
+### Quick Overview
+
+- YOLO:  실시간 객체 탐지를 위해 개발된 모델로, 이미지 전체를 한 번에 처리하여 객체를 감지하는 방식. 전통적인 슬라이딩 윈도우 방식과 달리, 이미지 전체를 단일 네트워크로 처리하여 속도가 매우 빠름. **입력 이미지를 SxS 그리드로 나누고, 각 그리드 feature마다 (x, y, w, h, confidence socre)과 (class probabilities) 출력**
+- YOLOX: **YOLO 모델에 Anchor free 방법을 적용**해서 성능을 향상. 이외에도 다양한 기술 적용 (Decoupled head , SimOTA, multi-positives, etc)
+  - Anchor free: 각 그리그마다 3개씩 예측하던 것을 1개로 변경하고 직접 4개의 값을 예측(left-top corner, height, width). FCOS 방식을 생각하면 쉬움
+- RCNN(Region-based Convolutional Neural Network): 객체 탐지를 위해 제안된 최초의 Region Proposal 기반 방법 중 하나. 입력 이미지에서 여러 개의 Region Proposal을 생성한 후, **각 Region Proposal에 대해 CNN을 적용하여 피쳐를 추출하고, 이를 기반으로 객체 클래스와 위치를 예측**
+- Cascade RCNN: 여러 단계의 검출기(Detector)를 사용하여 탐지의 정확성을 점진적으로 향상시키는 방법. 각 단계에서는 이전 단계에서 검출된 객체를 기반으로 더 세밀한 검출을 수행. (1) **0.5 IoU로 학습한 detector로 region proposal을 생성**하고, (2) **생성된 region proposal로 0.6 IoU인 detector을 학습**하고, (3) **0.7 IoU detector도 같은 방식으로 학습**. (4) 3-stage가 실험적으로 적합했다고 하며, inference 시에도 cascade 방식으로 수행. 객체 크기가 다양하거나 경계 상자 예측이 어려운 상황에서 특히 효과적이라고 함
+
+![img](../img/24-08-10-1.png)
+
+- DETR: DETR은 객체 탐지에 Transformer 구조를 도입한 모델. 먼저 **CNN backbone으로 C(2048)×H×W image feature를 추출**. 이후, 1x1 conv 사용하여 C=256으로 차원을 줄여서 256 dimension의 H×W tokens를 만들어 냄. 이를 encoder에 한번 넣고, **encoder 출력과 object query를 decoder에서 cross attention** 수행. 최종 object query ouput을 예측에 사용. Region Proposal과 같은 추가적인 단계 없이도 정확한 탐지를 수행할 수 있으며 end-to-end 학습이 가능.
+- DN-DETR: 훈련 초기의 모호한 이분 매칭이 느린 수렴으로 이어져, 노이즈를 섞은 GT 박스에 대해 노이즈 제거를 통해 훈련 가속화
+- Deformable-DETR: **Deformable Attention Mechanism** 도입. DETR보다 빠른 수렴 속도를 가지며 작은 객체에 대한 탐지 성능도 개선
+
+![img](../img/24-08-10-2.png)
+
+- DINO (DETR with Improved Noise optimization): **Contrastive DeNoising Training** 도입. N개의 GT box에 대해 양성과 음성 쿼리를 생성하여 총 2N개의 쿼리 생성. 같은 GT 박스에 대해 positive 샘플에는 적은 노이즈 λ1을, negative 샘플에는 큰 노이즈 λ2를 추가. Negative에 대해 no object 예측을 하도록 훈련. DETR 계열 모델 중에서도 최상위 성능
+- BoxInst: Weakly-supervised instance segmentation 방법. **Projection loss term** (모델의 mask예측의 x, y축 방향 projection과, box GT가 얼마나 비슷한지를 측정)과 **pairwise loss term** (두 pixel 사이의 색상이 유사하면 이 둘이 같은 label을 가지는 경우가 많다고 주장하며, 가까운 pixel에 대해서 유사한 색상을 가지면 같은 객체로 예측되도록 유도) 제안
+
 ### References
 
 ##### Blog Posts
