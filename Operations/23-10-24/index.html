@@ -155,6 +155,72 @@ output [
 <p>일반적으로 config.pbtxt 파일이 필요하긴 하나 해당 파일이 optional인 경우도 있습니다. 예를 들어, model configuration 설정을 따로 하지 않더라도  <a href="https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_configuration.md#auto-generated-model-configuration">auto-generated model configurate</a>에 따라서 triton이 <a href="https://github.com/triton-inference-server/server/blob/main/docs/user_guide/model_configuration.md#minimal-model-configuration">minimal model configuration</a>을 만드는 작업을 수행하기 때문입니다. 물론, <code class="language-text">--disable-auto-complete-config</code>  옵션으로 이 과정을 자동으로 수행하지 않도록 설정하는 것도 가능합니다. </p>
 <p>Triton에 의해 생성된 model configuration은 <a href="https://github.com/triton-inference-server/server/blob/main/docs/protocol/extension_model_configuration.md#model-configuration-extension">model configuration endpoint</a>에 요청을 보내 확인 가능합니다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">curl localhost:8000/v2/models/&lt;model name&gt;/config</code></pre></div>
+<h5 id="model-warmup" style="position:relative;"><a href="#model-warmup" aria-label="model warmup permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Model Warmup</h5>
+<p>NVIDIA inference server를 띄우고 요청을 보내보면 지연시간이 존재하는 것을 확인할 수 있습니다. 따라서 model warmup을 추가해주는 것이 좋습니다. 초기 요청에 지연 시간이 걸리는 이유는 다음과 같습니다. </p>
+<ul>
+<li>초기 지연 시간 감소 (Cold Start Latency): 모델이 처음 로드되고 호출될 때, 메모리 할당이나 캐시 초기화가 완료되지 않았기 때문에 첫 번째 추론 요청의 지연 시간이 길어질 수 있습니다. </li>
+<li>최적화된 연산 경로 준비: 딥러닝 모델은 다양한 연산 경로와 커널을 사용하며, 첫 번째 추론 시 최적화된 경로를 선택하고 준비하는 과정에서 시간이 소요됩니다. </li>
+<li>메모리 및 버퍼 할당 최적화: 모델이나 알고리즘에 따라 필요한 메모리나 버퍼를 동적으로 할당해야 하는 경우가 있습니다. 이 과정에서 지연이 발생할 수 있습니다.</li>
+<li>캐시 초기화: 모델의 가중치나 데이터가 GPU 메모리에 로드되고, 데이터 캐시가 채워지지 않으면 첫 번째 추론 시 시간이 더 걸릴 수 있습니다.</li>
+<li>안정적인 성능 유지: GPU는 사용 상태에 따라 다른 성능 및 전력 상태로 전환될 수 있습니다. 처음 몇 번의 추론에서 GPU가 최적의 성능 상태로 도달하기 전까지 시간이 걸릴 수 있습니다.</li>
+</ul>
+<p>다음은 model warmup을 위한 config.pbtxt의 예시입니다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">name: &quot;resnet_classification&quot;
+platform: &quot;tensorrt_plan&quot;  # 또는 &quot;tensorflow_graphdef&quot;, &quot;onnxruntime_onnx&quot;, &quot;pytorch_libtorch&quot; 등 사용 중인 모델의 플랫폼에 맞게 변경
+
+input [
+  {
+    name: &quot;input_tensor&quot;
+    data_type: TYPE_FP32
+    dims: [3, 224, 224]  # 일반적인 ResNet 입력 크기
+  }
+]
+
+output [
+  {
+    name: &quot;output_tensor&quot;
+    data_type: TYPE_FP32
+    dims: [1000]  # 일반적인 ResNet 출력 크기 (ImageNet 기준)
+  }
+]
+
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
+
+# Model Warmup 설정 추가
+model_warmup [
+  {
+    name: &quot;resnet_warmup&quot;
+    batch_size: 1
+    count: 10
+    inputs {
+      key: &quot;input_tensor&quot;
+      value: {
+        data_type: TYPE_FP32
+        dims: [3, 224, 224]
+        random_data: true  # 무작위 데이터를 사용하여 워밍업
+      }
+    }
+  }
+]</code></pre></div>
+<p>Model warmup을 위한 input을 파일 형태로 만든 뒤에 전달해주는 방법도 존재합니다.</p>
+<ol>
+<li>model registry 안의 각 모델 내부에 <code class="language-text">warmup</code>이라는 이름의 sub-directory를 생성합니다.</li>
+<li>
+<p>warmup을 위한 데이터를 <code class="language-text">warmup</code> directory 안에 만듭니다. 아래의 방법을 통해 생성 가능합니다.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> tritonclient<span class="token punctuation">.</span>utils <span class="token keyword">import</span> serialize_byte_tensor
+serialized <span class="token operator">=</span> serialize_byte_tensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"example_text"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token builtin">object</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"str_warmup_input"</span><span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fh<span class="token punctuation">:</span>
+   fh<span class="token punctuation">.</span>write<span class="token punctuation">(</span>serialized<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></div>
+</li>
+<li>model config.pbtxt 파일에서 <code class="language-text">input_data_file</code> key에 알맞은 파일 명을 기입합니다.</li>
+</ol>
+<p>Python backend model에 warmup을 적용하려고 할 때는 주의할 점이 존재합니다. Python backend model에서 다른 모델을 call 하는 경우가 존재하는데, 이렇게 다른 모델에 의존성이 있는 모델을 warmup 하려고 하면 '{MODEL NAME} is noy ready'라는 에러와 함께 warmup이 수행되지 않습니다. 그래서 다른 모델에 의존성이 있는 경우는 warmup을 할 수 없거나 다른 모델 call을 하지 않도록 내부 코드를 수정해야합니다.</p>
 <h3 id="python-backend" style="position:relative;"><a href="#python-backend" aria-label="python backend permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Python Backend</h3>
 <p>Trition backend는 model 실행을 위한 구현체들을 의미하며 기본적으로는 PyTorch, TensorFlow, TensorRT, ONNX Runtime 등 딥러닝 프레임워크의 wrapper로 볼 수 있습니다. 특히 딥러닝 프레임워크에 대한 backend 뿐만 아니라 <a href="https://github.com/triton-inference-server/python_backend">python backend</a>도 지원을 해서, 모델 입력에 대한 전처리나 모델 출력에 대한 후처리를 python backend 내에서 수행할 수 있습니다.</p>
 <p>Python backend를 사용하기 위해서는 아래의 구조를 가진 <strong>TritonPythonModel</strong> class를 정의해야 하고, TritonPythonModel 내에는 4개의 함수가 존재합니다. </p>
