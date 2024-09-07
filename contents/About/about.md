@@ -37,22 +37,29 @@ category: "about"
 ### Experience
 
 - AI Engineer at Nuvilab Inc. (2023.02 ~ current)
-  - AI Modeling for the instance segmentation and zero-shot classification task
-  - Developing a data pipeline with active learning to address class-imbalanced fine-grained datasets
-  - Constructing an anomaly detection pipeline and AI service performance monitoring system
-  - Developing a data engine equipped with semi-auto-labeling capabilities for mask annotations
-  - Developing dense prediction models on the few data samples (e.g., hospital food domain)
-  - Some data engineering works such as batch data processing
-  - FrontEnd and BackEnd development for customizing data annotation tool, CVAT
+  - Developed AI models for instance segmentation and zero-shot classification tasks
+  
+  - Created a data pipeline utilizing active learning methods to address class-imbalanced fine-grained datasets
+  
+  - Built an anomaly detection pipeline and an AI service performance monitoring system
+  
+  - Developed a data engine with semi-automated labeling capabilities for mask annotations
+  
+  - Designed and trained dense prediction models with limited data samples (e.g., hospital foods)
+  
+  - Deployed and operated AI microservices
+  
+  - Performed various data engineering tasks, including batch data processing
+  
+  - Developed both front-end and back-end components for customizing the data annotation tool, CVAT
+  
   - w. Lightning AI, Apache Airflow, NVIDIA Triton, MLFlow, FastAPI, AWS, DB(RDBMS, NoSQL, VectorDB), React.js, etc.
   
 - Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
-  - Developing a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
-  - Analyzing existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
+  - Developed a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
+  - Analyzed existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
   - w. Language Models, PyTorch, Django, and jQuery
-  
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
-  
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
 ### Publications
