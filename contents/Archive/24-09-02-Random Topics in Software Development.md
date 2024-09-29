@@ -3,10 +3,9 @@ title: "Random Topics in Software Development"
 date: "2024-09-02"
 template: "post"
 draft: false
-path: "/Operations/24-09-02/"
-description: "Software Development 관련 공부한 내용을 아래에 기록합니다. SemVer(Semantic Versioning): {major}.{minor}.{patch}로 의미를 부여한 버저닝 시스템. 가장 일반적으로 사용되는 버저닝 방식. HeadVer: {head}.{yearweek}.{build}로 부여한 버저닝 시스템"
-category: "Operations"
-thumbnail: "Operations"
+path: "/cheatsheet/24-09-02/"
+description: "Software Development 관련 공부한 내용을 아래에 기록합니다. SemVer(Semantic Versioning): {major}.{minor}.{patch}로 의미를 부여한 버저닝 시스템. 가장 일반적으로 사용되는 버저닝 방식. HeadVer: {head}.{yearweek}.{build}로 부여한 버저닝 시스템. SemVer는 API를 위한 버저닝 시스템이라는 점을 지적하며, 최종 사용자를 더 염두에 두고 버저닝한 방식."
+category: "Cheat Sheet"
 ---
 
 > Software Development 관련 공부한 내용을 아래에 기록합니다.

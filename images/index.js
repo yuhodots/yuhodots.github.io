@@ -15,6 +15,7 @@ import pandas from "./pandas.png"
 import airflow from "./airflow.png"
 import python from "./python.png"
 import k8s from "./k8s.png"
+import flutter from "./flutter.png"
 
 export default {
     aws,
@@ -33,5 +34,6 @@ export default {
     pandas,
     airflow,
     python,
-    k8s
+    k8s,
+    flutter
 };
