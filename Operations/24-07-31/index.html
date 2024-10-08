@@ -303,6 +303,55 @@
 <li>최종적으로 Helm은 템플릿을 렌더링하여 완전한 Kubernetes 매니페스트 파일을 생성하고 이를 클러스터에 적용합니다. 미리 적용될 값을 확인해보기 위해서는 <code class="language-text">--dry-run</code> 옵션을 사용해볼 수 있습니다 (<code class="language-text">helm install NAME . --dry-run --values=values.yaml</code>).</li>
 </ol>
 <p>다양한 helm 커맨드들은 공식 사이트의 <a href="https://helm.sh/docs/intro/cheatsheet/">cheat sheet</a> 항목에서 확인 가능합니다.</p>
+<h3 id="local-development" style="position:relative;"><a href="#local-development" aria-label="local development permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Local Development</h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/04abf573ae735e9efd64eae2ae52f4e3/c27e7/24-07-31-1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABQElEQVQoz42S61LCMBCFeQ5KC8VCm0uT3iEEEMfLOPrL93+Y4yYDWKGgP84k2e5+Od3NSLQWvNki4B1C3mCykJgs87MCOo8T4dd+/JZG/US3vyyc8RKxqBCm6n/AE8itablGkjcYO/AxwT6/o7JPvcvkeT+kIzBHSIm8NmDlyu+DhBFUIS73WOgWy6JDlGpf5Nye1Df04zDhmCoDufsEN6+YEyTMDYK0QFwdILsdBIk1FqzeIFEt5rJGTBoEjh844sJi9fYFvf9AunpBpCwm5CjVBqq2pA0EtWShOw+a8cr3d9ghBWZMoTZbJJIGsBR0CfMTLwnSrh/RdHtI1WGaFYgyffUSroARK5CvD9THDbLK+F9ycQeYEsCLcpyrMNO/BtGHnoGuwZJcCOpT7IrofG+afzp0ANds9+aGii516/s33VoluiDHgY0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/04abf573ae735e9efd64eae2ae52f4e3/15813/24-07-31-1.webp 190w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/1cdb2/24-07-31-1.webp 380w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/9046c/24-07-31-1.webp 760w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/c89f9/24-07-31-1.webp 1140w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/7afe4/24-07-31-1.webp 1520w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/80ed4/24-07-31-1.webp 2144w"
+              sizes="(max-width: 760px) 100vw, 760px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/04abf573ae735e9efd64eae2ae52f4e3/a2d4f/24-07-31-1.png 190w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/3f520/24-07-31-1.png 380w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/3c051/24-07-31-1.png 760w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/b5cea/24-07-31-1.png 1140w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/891d5/24-07-31-1.png 1520w,
+/static/04abf573ae735e9efd64eae2ae52f4e3/c27e7/24-07-31-1.png 2144w"
+            sizes="(max-width: 760px) 100vw, 760px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/04abf573ae735e9efd64eae2ae52f4e3/3c051/24-07-31-1.png"
+            alt="img"
+            title="img"
+            loading="lazy"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>도커 데스크탑의 설정에서 k8s 항목에 들어간 뒤, 'Enable Kubernetes'을 클릭하면 로컬 환경에 k8s 클러스터를 구축할 수 있습니다. 그럼 자동으로 k8s config인 <code class="language-text">~/.kube/config</code>에 docker-desktop이라는 이름의 cluster가 추가된 것을 확인할 수 있습니다. 만약 'Show system containers' 버튼을 누르셨다면, 도커 데스크탑의 container 목록에서 k8s의 시스템 컨테이너(kube-apiserver, etcd, kube-scheduler, kube-controller-manager...)들이 추가된 것 또한 확인할 수 있습니다. </p>
 <h3 id="references" style="position:relative;"><a href="#references" aria-label="references permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>References</h3>
 <ul>
 <li><a href="https://kubernetes.io/ko/docs/home/">https://kubernetes.io/ko/docs/home/</a></li>
