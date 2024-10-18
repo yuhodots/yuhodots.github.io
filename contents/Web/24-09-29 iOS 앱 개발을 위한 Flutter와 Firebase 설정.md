@@ -92,15 +92,3 @@ Firebase는 Google이 제공하는 백엔드 서비스 플랫폼으로, 데이�
 6. `flutter pub add firebase_core`를 통해 firebase_core 의존성을 추가합니다.
 7. `flutter pub get`을 통해 명시된 의존성을 모두 설치하고 적용합니다.
 
-### App 개발하기
-
-Flutter에서 Firebase를 활용한 앱 개발은 다음과 같은 방식으로 시작할 수 있습니다. 
-
-1. 해당 저장소의 `lib` 디렉토리 내 코드를 참고하여 코드를 작성합니다.
-2. 해당 저장소의 res/api 내 저장소의 데이터를 다운받고, pubspec.yaml의 asset 항목에 추가합니다.
-3. firebase_analytics, firebase_database, firebase_remote_config, firebase_crashlytics, connectivity_plus 패키지를 `flutter pub add`를 통해 추가합니다.
-4. `flutter pub get`을 통해 프로젝트에 패키지를 설치합니다.
-5. Firebase에서 필요한 세팅들을 마칩니다. (Remote config, Realtime Database 등)
-6. Rub main.dart 버튼을 눌러 프로젝트를 빌드합니다.
-   - Multidex support 에러 발생시: `android/app/build.gradle` 파일의 defaultConfig에 `multiDexEnabled true`를 추가해주고, dependencies에 `implementation 'com.android.support:multidex:2.0.1'`를 추가
-

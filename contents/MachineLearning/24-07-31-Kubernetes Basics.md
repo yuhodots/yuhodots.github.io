@@ -253,6 +253,12 @@ spec:
 
 다양한 helm 커맨드들은 공식 사이트의 [cheat sheet](https://helm.sh/docs/intro/cheatsheet/) 항목에서 확인 가능합니다.
 
+### Local Development
+
+![img](../img/24-07-31-1.png)
+
+도커 데스크탑의 설정에서 k8s 항목에 들어간 뒤, 'Enable Kubernetes'을 클릭하면 로컬 환경에 k8s 클러스터를 구축할 수 있습니다. 그럼 자동으로 k8s config인 `~/.kube/config`에 docker-desktop이라는 이름의 cluster가 추가된 것을 확인할 수 있습니다. 만약 'Show system containers' 버튼을 누르셨다면, 도커 데스크탑의 container 목록에서 k8s의 시스템 컨테이너(kube-apiserver, etcd, kube-scheduler, kube-controller-manager...)들이 추가된 것 또한 확인할 수 있습니다. 
+
 ### References
 
 - https://kubernetes.io/ko/docs/home/
