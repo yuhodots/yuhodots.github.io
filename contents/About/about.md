@@ -36,26 +36,17 @@ category: "about"
 
 ### Experience
 
-- AI Engineer at Nuvilab Inc. (2023.02 ~ current)
-  - Developed AI models for instance segmentation and zero-shot classification tasks
-  
-  - Created a data pipeline utilizing active learning methods to address class-imbalanced fine-grained datasets
-  
-  - Built an anomaly detection pipeline and an AI service performance monitoring system
-  
+- ML Engineer at [Devsisters](https://www.devsisters.com/en) (2024.10 ~ current)
+- AI Engineer at [Nuvilab Inc.](https://www.nuvilab.com) (2023.02 ~ 2024.10)
+  - Developed AI models for instance segmentation and zero-shot classification tasks, improving AP by 0.13 and AR by 0.12 for segmentation, and achieving a 10% performance increase for zero-shot classification
+  - Deployed and operated AI microservices using NVIDIA Triton, VectorDB, GitHub Actions, Gitflow, and ArgoCD
+  - Designed a data pipeline using active learning to address class-imbalance in fine-grained datasets, reducing labeling costs by 50% compared to previous methods
+  - Built an outlier detection pipeline and an AI service performance monitoring system, reducing 40% outlier data to enhance service quality
   - Developed a data engine with semi-automated labeling capabilities for mask annotations
-  
   - Designed and trained dense prediction models with limited data samples (e.g., hospital foods)
-  
-  - Deployed and operated AI microservices
-  
-  - Performed various data engineering tasks, including batch data processing
-  
-  - Developed both front-end and back-end components for customizing the data annotation tool, CVAT
-  
-  - w. Lightning AI, Apache Airflow, NVIDIA Triton, MLFlow, FastAPI, AWS, DB(RDBMS, NoSQL, VectorDB), React.js, etc.
-  
-- Language AI Internship at Semantic Knowledge Team, NAVER Corp. (2021.12 ~ 2022.03)
+  - Performed various data engineering tasks, including batch data processing, with Apache Airflow
+  - Developed both front-end and back-end components for customizing a data annotation tool
+- Language AI Internship at Semantic Knowledge Team, [NAVER Corp.](https://www.navercorp.com) (2021.12 ~ 2022.03)
   - Developed a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
   - Analyzed existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
   - w. Language Models, PyTorch, Django, and jQuery
