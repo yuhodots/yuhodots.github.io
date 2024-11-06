@@ -49,7 +49,6 @@ category: "about"
 - Language AI Internship at Semantic Knowledge Team, [NAVER Corp.](https://www.navercorp.com) (2021.12 ~ 2022.03)
   - Developed a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
   - Analyzed existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
-  - w. Language Models, PyTorch, Django, and jQuery
 - Research internship at [Machine Intelligence and Information Learning Lab](https://sites.google.com/view/swyoon89/research-interests?authuser=0) (2020.07 ~ 2021.02)
 - Research internship at [Autonomous System Lab](https://sites.google.com/site/aslunist/news) (2019.12 ~ 2020.02)
 
