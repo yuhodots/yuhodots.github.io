@@ -78,7 +78,7 @@
 <li>Matryoshka representation learning: 배포 단계에서 바로, 원하는 dimension으로 feature embedding을 slicing 해서 사용할 수 있는 방법. 더 자세한 내용은 <a href="https://yuhodots.github.io/deeplearning/24-07-11/">이전 포스팅</a> 참고</li>
 </ul>
 <h3 id="quantization" style="position:relative;"><a href="#quantization" aria-label="quantization permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quantization</h3>
-<p>딥러닝 모델을 경량화하고 추론 속도를 높이기 위해 사용되는 기술로, 모델의 가중치나 activation 값을 낮은 정밀도의 수로 표현하는 기법</p>
+<p>딥러닝 모델을 경량화하고 추론 속도를 높이기 위해 사용되는 기술로, 모델의 가중치나 activation 값을 낮은 정밀도의 수로 표현하는 기법. Float32를 Float16, Float8, BFloat16 등으로 변환할 수 있는데, BFloat와 Float 사이의 설명은 <a href="https://www.youtube.com/watch?v=7q1Gh1KOlzw&#x26;t=32s">이 영상</a>에서 참고 가능 (요약하자면, Float16은 정밀도가 높으나 float overflow 발생할 수 있고, BFloat은 그 반대)</p>
 <ul>
 <li>
 <p>Post-Training Quantization (PTQ): 이미 학습된 모델을 양자화하는 방법. 학습 후에 가중치와 activation를 정밀도가 낮은 형식으로 변환. 추가적인 학습 과정 없이 양자화를 적용할 수 있어 간편하지만, 성능 손실이 발생할 수 있음</p>
