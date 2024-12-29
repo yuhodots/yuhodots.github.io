@@ -151,7 +151,9 @@
 </ul>
 <h5 id="resources" style="position:relative;"><a href="#resources" aria-label="resources permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resources</h5>
 <ul>
-<li><strong>Workloads</strong></li>
+<li>
+<p><strong>Workloads</strong></p>
+<ul>
 <li><strong>Pod</strong>: 하나 이상의 컨테이너를 포함하는 가장 작은 배포 단위</li>
 <li>ReplicationController: 원하는 수의 Pod를 유지하도록 관리 (거의 사용되지 않고 ReplicaSet으로 대체)</li>
 <li><strong>ReplicaSet</strong>: 특정 수의 Pod를 유지하도록 관리</li>
@@ -160,6 +162,8 @@
 <li><strong>DaemonSet</strong>: 모든 (또는 일부) 노드에서 실행되는 Pod를 보장</li>
 <li><strong>Job</strong>: 일회성 작업을 관리하고 완료를 보장</li>
 <li><strong>CronJob</strong>: 일정에 따라 주기적으로 작업을 수행</li>
+</ul>
+</li>
 <li>
 <p><strong>Network</strong></p>
 <ul>
@@ -178,17 +182,25 @@
 <li><strong>LimitRange</strong>: 네임스페이스 내의 리소스 사용량을 제한하고 요청과 한계를 정의</li>
 </ul>
 </li>
-<li><strong>Access Control</strong></li>
+<li>
+<p><strong>Access Control</strong></p>
+<ul>
 <li><strong>ServiceAccount</strong>: Pod에 권한을 부여하기 위한 사용자 계정</li>
 <li><strong>Role</strong>: 네임스페이스 내 리소스에 대한 권한을 정의</li>
 <li><strong>ClusterRole</strong>: 클러스터 전체에 걸쳐 리소스에 대한 권한을 정의</li>
 <li><strong>RoleBinding</strong>: 네임스페이스 내의 사용자/그룹에 역할을 부여</li>
 <li><strong>ClusterRoleBinding</strong>: 클러스터 전체의 사용자/그룹에 역할을 부여</li>
-<li><strong>Storage</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Storage</strong></p>
+<ul>
 <li><strong>PersistentVolume (PV)</strong>: 클러스터 내의 스토리지 리소스를 나타냄</li>
 <li><strong>PersistentVolumeClaim (PVC)</strong>: 사용자와 Pod가 사용할 스토리지를 요청</li>
 <li><strong>StorageClass</strong>: 스토리지 제공자의 스토리지 설정을 정의</li>
 <li>VolumeAttachment: 외부 스토리지 시스템의 볼륨을 클러스터의 노드에 연결</li>
+</ul>
+</li>
 <li>
 <p>etc.</p>
 <ul>
@@ -267,9 +279,13 @@
 <li><code class="language-text">...</code>: 문서의 끝 (optional)</li>
 </ul>
 <h3 id="core-concepts-for-cka" style="position:relative;"><a href="#core-concepts-for-cka" aria-label="core concepts for cka permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Core Concepts for CKA</h3>
+<ul>
+<li>
 <p>k8s에서 pod을 yaml 기반으로 선언하는 간단한 예제</p>
 <ul>
-<li>kubectl apply -f pod.yaml 를 통해 적용 가능</li>
+<li><code class="language-text">kubectl apply -f pod.yaml</code> 를 통해 적용 가능</li>
+</ul>
+</li>
 </ul>
 <div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># pod definition</span>
 <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
@@ -324,8 +340,8 @@
 <thead>
 <tr>
 <th>Type</th>
-<th>클러스터 내부</th>
-<th>클러스터 외부</th>
+<th>내부 <br />접근</th>
+<th>외부<br />접근</th>
 <th>설명</th>
 </tr>
 </thead>
@@ -339,25 +355,25 @@
 <tr>
 <td><strong>NodePort</strong></td>
 <td>O</td>
-<td>O (노드의 IP 사용)</td>
-<td>테스트 또는 간단한 외부 노출을 위해, 클러스터 외부에서 접근 가능하도록 각 노드의 특정 포트를 열어즘</td>
+<td>O</td>
+<td>테스트 또는 간단한 외부 노출을 위해, 클러스터 외부에서 접근 가능하도록 각 노드의 특정 포트를 열어즘 (<strong>노드의 IP 사용</strong>)</td>
 </tr>
 <tr>
 <td><strong>LoadBalancer</strong></td>
 <td>O</td>
-<td>O (로드밸런서 사용)</td>
-<td>'클라우드 환경'에서 외부 로드밸런서를 자동으로 생성해 외부 접근을 제공. 클라우드 제공 업체(AWS, GCP, Azure 등)의 네트워크 로드밸런서를 사용하며, <strong>NodePort</strong>와 <strong>ClusterIP</strong>를 내부적으로 사용</td>
+<td>O</td>
+<td>'클라우드 환경'에서 외부 로드밸런서를 자동으로 생성해 외부 접근을 제공. 클라우드 제공 업체(AWS, GCP, Azure 등)의 <strong>네트워크 로드밸런서를 사용</strong>하며, NodePort와 ClusterIP를 내부적으로 사용</td>
 </tr>
 <tr>
 <td><strong>ExternalName</strong></td>
 <td>-</td>
-<td>O (DNS 이름 사용)</td>
-<td>DNS 이름을 사용해 클러스터 외부 서비스로 요청을 라우팅. 클러스터 외부의 데이터베이스나 API 서버를 Kubernetes 네임스페이스 내부에서 사용할 수 있도록 설정하여 외부 서비스와의 통합 가능</td>
+<td>O</td>
+<td><strong>DNS 이름을 사용</strong>해 클러스터 외부 서비스로 요청을 라우팅. 클러스터 외부의 데이터베이스나 API 서버를 Kubernetes 네임스페이스 내부에서 사용할 수 있도록 설정하여 외부 서비스와의 통합 가능</td>
 </tr>
 <tr>
 <td><strong>Headless</strong></td>
 <td>O</td>
-<td>X (Pod에 직접 접근)</td>
+<td>X</td>
 <td>Stateful 애플리케이션 또는 Pod 직접 접근</td>
 </tr>
 </tbody>
