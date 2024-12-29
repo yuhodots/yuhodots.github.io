@@ -18,7 +18,7 @@ category: "Deep Learning"
 
 ### Quantization
 
-딥러닝 모델을 경량화하고 추론 속도를 높이기 위해 사용되는 기술로, 모델의 가중치나 activation 값을 낮은 정밀도의 수로 표현하는 기법
+딥러닝 모델을 경량화하고 추론 속도를 높이기 위해 사용되는 기술로, 모델의 가중치나 activation 값을 낮은 정밀도의 수로 표현하는 기법. Float32를 Float16, Float8, BFloat16 등으로 변환할 수 있는데, BFloat와 Float 사이의 설명은 [이 영상](https://www.youtube.com/watch?v=7q1Gh1KOlzw&t=32s)에서 참고 가능 (요약하자면, Float16은 정밀도가 높으나 float overflow 발생할 수 있고, BFloat은 그 반대)
 
 - Post-Training Quantization (PTQ): 이미 학습된 모델을 양자화하는 방법. 학습 후에 가중치와 activation를 정밀도가 낮은 형식으로 변환. 추가적인 학습 과정 없이 양자화를 적용할 수 있어 간편하지만, 성능 손실이 발생할 수 있음
   - Weight quantization: 학습된 모델의 가중치를 8비트 정수로 변환

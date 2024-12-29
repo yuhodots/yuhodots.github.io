@@ -1,35 +1,34 @@
 ---
-title: "Kubernetes Basics"
+title: "Comprehensive Guide to Kubernetes"
 date: "2024-07-31"
 template: "post"
 draft: false
 path: "/Operations/24-07-31/"
-description: "Kubernetes는 컨테이너 오케스트레이션 플랫폼 중 하나로 다수의 컨테이너 어플리케이션을 운영 및 관리하고, 배포하고, 확장할 수 있는 여러 자동화된 기능들을 제공하고 있습니다. 본 포스팅에서는 Kubernetes의 기본 개념과 kubectl, helm 등에 대해 기록합니다."
+description: "Kubernetes는 컨테이너 오케스트레이션 플랫폼 중 하나로 다수의 컨테이너 어플리케이션을 운영 및 관리하고, 배포하고, 확장할 수 있는 여러 자동화된 기능들을 제공하고 있습니다. 본 포스팅에서는 Kubernetes의 기본 개념부터, kubectl, helm 등에 대해 기록합니다."
 category: "Operations"
 thumbnail: "k8s"
 ---
 
-> Kubernetes는 컨테이너 오케스트레이션 플랫폼 중 하나로 다수의 컨테이너 어플리케이션을 운영 및 관리하고, 배포하고, 확장할 수 있는 여러 자동화된 기능들을 제공하고 있습니다. 본 포스팅에서는 Kubernetes의 기본 개념과 kubectl, helm 등에 대해 기록합니다..
+> Kubernetes는 컨테이너 오케스트레이션 플랫폼 중 하나로 다수의 컨테이너 어플리케이션을 운영 및 관리하고, 배포하고, 확장할 수 있는 여러 자동화된 기능들을 제공하고 있습니다. 본 포스팅에서는 Kubernetes의 기본 개념부터, kubectl, helm 등에 대해 기록합니다..
 
 ### Kubernetes Components
 
 쿠버네티스 클러스터를 갖기 위해 필요한 요소들은 다음과 같습니다. 
 
-- 컨트롤 플레인 컴포넌트
-  - kube-apiserver: Kubernetes API 서버로서 클러스터의 모든 요청을 처리하고 인증, 권한 부여, API 검증/설정을 담당
-  - etcd: 모든 클러스터 데이터를 저장하는 고가용성 키-값 저장소로, Kubernetes의 상태를 유지
-  - kube-scheduler: 새로 생성된 Pod에 적합한 노드를 선택하는 스케줄링 작업을 수행
-  - kube-controller-manager: 노드, 레플리카, 엔드포인트 등의 상태를 지속적으로 관리하고 조정하는 컨트롤러들을 실행
+- **컨트롤 플레인 컴포넌트**
+  - **kube-apiserver**: Kubernetes API 서버로서 클러스터의 모든 요청을 처리하고 인증, 권한 부여, API 검증/설정을 담당
+  - **etcd**: 모든 클러스터 데이터를 저장하는 고가용성 키-값 저장소로, Kubernetes의 상태를 유지
+  - **kube-scheduler**: 새로 생성된 Pod에 적합한 노드를 선택하는 스케줄링 작업을 수행
+  - **kube-controller-manager**: 노드, 레플리카, 엔드포인트 등의 상태를 지속적으로 관리하고 조정하는 컨트롤러들을 실행
   - cloud-controller-manager: 클러스터 자원을 관리하고 조정
 
-- 노드 컴포넌트
-
-  - kubelet: 각 노드에서 실행되며 Pod 및 컨테이너의 상태를 관리하고 보고
-
-  - kube-proxy: 네트워크 프록시로서 네트워킹을 관리하고 Kubernetes 서비스 간의 통신을 처리
-
-  - 컨테이너 런타임 (Kubernetes CRI - containerd, CRI-O...): 컨테이너를 실행하고 관리하는 소프트웨어
-
+- **노드 컴포넌트**
+  - **kubelet**: 각 노드에서 실행되며 Pod 및 컨테이너의 상태를 관리하고 보고
+  
+  - **kube-proxy**: 네트워크 프록시로서 네트워킹을 관리하고 Kubernetes 서비스 간의 통신을 처리
+  
+  - **컨테이너 런타임** (Kubernetes CRI - containerd, CRI-O...): 컨테이너를 실행하고 관리하는 소프트웨어
+  
 - 애드온
 
   - DNS: Kubernetes 서비스 간의 이름 해석을 제공하여 네트워킹을 간소화
@@ -72,87 +71,84 @@ spec:
         - containerPort: 80
 ```
 
-- `apiVersion`: 오브젝트를 생성에 사용되는 쿠버네티스 API 버전
-- `kind`: 오브젝트 종류
-- `metadata`: 클러스터 내에서 오브젝트를 구분지어 주기 위한 정보
-- `spec`: 오브젝트에 대해 어떤 상태를 의도하는지에 대한 정보
+- **`apiVersion`**: 오브젝트를 생성에 사용되는 쿠버네티스 API 버전
+  - POD: v1
+  - Service: v1
+  - ReplicaSet: apps/v1
+  - Deployment: apps/v1
+
+- **`kind`**: 오브젝트 종류
+- **`metadata`**: 클러스터 내에서 오브젝트를 구분지어 주기 위한 정보
+  - name: 오브젝트의 이름
+  - labels: 비슷한 오브젝트들을 연결지어주는 레이블
+
+- **`spec`**: 오브젝트에 대해 어떤 상태를 의도하는지에 대한 정보
 
 ##### Resources
 
-- 워크로드 리소스
+- **Workloads**
+- **Pod**: 하나 이상의 컨테이너를 포함하는 가장 작은 배포 단위
+  
+- ReplicationController: 원하는 수의 Pod를 유지하도록 관리 (거의 사용되지 않고 ReplicaSet으로 대체)
+  
+- **ReplicaSet**: 특정 수의 Pod를 유지하도록 관리
+  
+- **Deployment**: 애플리케이션의 선언적 업데이트를 제공
+  
+- **StatefulSet**: 고유하고 안정적인 네트워크 식별자와 스토리지의 순서를 보장하는 애플리케이션을 관리
+  
+- **DaemonSet**: 모든 (또는 일부) 노드에서 실행되는 Pod를 보장
+  
+- **Job**: 일회성 작업을 관리하고 완료를 보장
+  
+- **CronJob**: 일정에 따라 주기적으로 작업을 수행
+- **Network**
+  - **Service**: Pod 간의 네트워크 접속을 관리
 
-  - Pod: 하나 이상의 컨테이너를 포함하는 가장 작은 배포 단위
+  - **Ingress**: 외부 HTTP 및 HTTPS 트래픽을 클러스터 내의 서비스로 라우팅
 
-  - ReplicationController: 원하는 수의 Pod를 유지하도록 관리
+  - **NetworkPolicy**: Pod의 네트워크 트래픽을 제어
 
-  - ReplicaSet: 특정 수의 Pod를 유지하도록 관리
+  - 이 외, Endpoint, Network policy, Port forwarding...
+- **Config**
+  - **ConfigMap**: 애플리케이션 설정 데이터를 저장하고 관리
 
-  - Deployment: 애플리케이션의 선언적 업데이트를 제공
+  - **Secret**: 민감한 데이터(예: 비밀번호, 토큰, 키)를 저장하고 관리
 
-  - StatefulSet: 고유하고 안정적인 네트워크 식별자와 스토리지의 순서를 보장하는 애플리케이션을 관리
+  - **ResourceQuota**: 네임스페이스 내에서 리소스 사용량을 제한
 
-  - DaemonSet: 모든 (또는 일부) 노드에서 실행되는 Pod를 보장
-
-  - Job: 일회성 작업을 관리하고 완료를 보장
-
-  - CronJob: 일정에 따라 주기적으로 작업을 수행
-
-- 네트워킹 리소스
-
-  - Service: Pod 간의 네트워크 접속을 관리
-
-  - Ingress: 외부 HTTP 및 HTTPS 트래픽을 클러스터 내의 서비스로 라우팅
-
-  - NetworkPolicy: Pod의 네트워크 트래픽을 제어
-
-- 구성 리소스
-
-  - ConfigMap: 애플리케이션 설정 데이터를 저장하고 관리
-
-  - Secret: 민감한 데이터(예: 비밀번호, 토큰, 키)를 저장하고 관리
-
-- 권한 부여 리소스
-
-  - ServiceAccount: Pod에 권한을 부여하기 위한 사용자 계정
-
-  - Role: 네임스페이스 내 리소스에 대한 권한을 정의
-
-  - ClusterRole: 클러스터 전체에 걸쳐 리소스에 대한 권한을 정의
-
-  - RoleBinding: 네임스페이스 내의 사용자/그룹에 역할을 부여
-
-  - ClusterRoleBinding: 클러스터 전체의 사용자/그룹에 역할을 부여
-
-- 정책 리소스
-
+  - **LimitRange**: 네임스페이스 내의 리소스 사용량을 제한하고 요청과 한계를 정의
+- **Access Control**
+- **ServiceAccount**: Pod에 권한을 부여하기 위한 사용자 계정
+  
+- **Role**: 네임스페이스 내 리소스에 대한 권한을 정의
+  
+- **ClusterRole**: 클러스터 전체에 걸쳐 리소스에 대한 권한을 정의
+  
+- **RoleBinding**: 네임스페이스 내의 사용자/그룹에 역할을 부여
+  
+- **ClusterRoleBinding**: 클러스터 전체의 사용자/그룹에 역할을 부여
+- **Storage**
+- **PersistentVolume (PV)**: 클러스터 내의 스토리지 리소스를 나타냄
+  
+- **PersistentVolumeClaim (PVC)**: 사용자와 Pod가 사용할 스토리지를 요청
+  
+- **StorageClass**: 스토리지 제공자의 스토리지 설정을 정의
+  
+- VolumeAttachment: 외부 스토리지 시스템의 볼륨을 클러스터의 노드에 연결
+- etc.
+  - **Namespace**: 논리적으로 클러스터 리소스를 그룹화
+  
   - PodSecurityPolicy: Pod 보안 정책을 정의하여 Pod의 보안 설정을 제어
-  - ResourceQuota: 네임스페이스 내에서 리소스 사용량을 제한
-
-  - LimitRange: 네임스페이스 내의 리소스 사용량을 제한하고 요청과 한계를 정의
-
-- 클러스터 관리 리소스
-
-  - Namespace: 논리적으로 클러스터 리소스를 그룹화
-
-  - Node: 클러스터 내의 단일 노드를 나타냄
-
-  - PersistentVolume (PV): 클러스터 내의 스토리지 리소스를 나타냄
-
-  - PersistentVolumeClaim (PVC): 사용자와 Pod가 사용할 스토리지를 요청
-
-  - StorageClass: 스토리지 제공자의 스토리지 설정을 정의
-
-  - VolumeAttachment: 외부 스토리지 시스템의 볼륨을 클러스터의 노드에 연결
-
-- 기타
-
+  
   - HorizontalPodAutoscaler: 애플리케이션의 부하에 따라 Pod의 수를 자동으로 조정
-
+  
   - VerticalPodAutoscaler: Pod의 리소스 요청을 자동으로 조정
-
+  
   - PodDisruptionBudget: 클러스터 관리 중에 서비스 가용성을 보장하기 위한 최소 Pod 수를 정의
-
+  
   - CustomResourceDefinition (CRD): 사용자 정의 리소스를 정의하여 Kubernetes API를 확장
+  
 
 ### Kubectl
 
@@ -163,26 +159,23 @@ kubectl [command] [TYPE] [NAME] [flags]
 ```
 
 - `command`: 수행할 작업을 지정
-
-  - `get`: 리소스 조회
-  - `create`: 새로운 리소스 생성
-  - `apply`: YAML 파일을 이용해 리소스를 생성 또는 업데이트
-  - `delete`: 리소스 삭제
-  - `describe`: 리소스의 상세 정보를 표시
+  - **`get`**: 리소스 조회
+  - **`create`**: 새로운 리소스 생성
+  - **`apply`**: YAML 파일을 이용해 리소스를 생성 또는 업데이트
+  - **`delete`**: 리소스 삭제
+  - **`describe`**: 리소스의 상세 정보를 표시
   - `edit`: 리소스 편집
-  - `logs`: 특정 Pod의 로그 조회
+  - **`logs`**: 특정 Pod의 로그 조회
 
 - `TYPE`: 리소스 타입을 지정. 리소스 유형은 단수형과 복수형을 모두 사용할 수 있음
-
   - `pod`, `pods`, `deployment`, `deployments`, `service`, `services`, `node`, `nodes`, `configmap`, etc.
-
+  
 - `NAME`: 작업할 리소스의 유형을 지정. 이름 생략시, 해당 리소스 유형의 모든 인스턴스를 대상으로 명령 적용
-
   - 리소스가 모두 동일한 타입인 경우: `TYPE1 name1 name2 name<#>`: `kubectl get pod example-pod1 example-pod2`
   - 여러 리소스 타입을 개별적으로 지정하고 싶은 경우: `TYPE1/name1 TYPE1/name2 TYPE2/name3 TYPE<#>/name<#>`: `kubectl get pod/example-pod1 replicationcontroller/example-rc1`
-
+  
   - 하나 이상의 파일로 리소스를 지정하려는 경우: `-f file1 -f file2 -f file<#>`
-
+  
 - `flags`: 선택적 플래그
 
   - `-s` 또는 `--server`: 쿠버네티스 API 서버의 주소와 포트를 지정
@@ -208,6 +201,90 @@ kubectl [command] [TYPE] [NAME] [flags]
   - `|-`: 마지막 줄바꿈을 제외하고 인식
 - `---`: 문서의 시작 (optional)
 - `...`: 문서의 끝 (optional)
+
+### Core Concepts for CKA
+
+k8s에서 pod을 yaml 기반으로 선언하는 간단한 예제
+
+- kubectl apply -f pod.yaml 를 통해 적용 가능
+
+```yaml
+# pod definition
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-simple-pod
+  labels:
+    app: my-app
+spec:
+  containers:
+  - name: my-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+```
+
+- **RepicaSets**: 특정 개수의 동일한 Pod이 항상 실행되도록 보장. 그러나 보통 Deployment를 통해 관리
+  - 라벨 셀렉터를 사용해 관리할 Pod을 식별
+  - 수동으로 업데이트 필요하며, 롤백 지원하지 않음
+- **Deployments**: ReplicaSet의 상위 개념으로, Pod과 ReplicaSet에 대한 선언적 업데이트를 제공. 애플리케이션의 배포를 쉽게 관리하며, 무중단 업데이트를 보장
+  - 롤링 업데이트 및 롤백 기능 제공
+
+```yaml
+# k8s yaml definition for ReplicaSet
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:	# 위의 pod.yaml에서 내용 거의 그대로 가져오면 됨
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-container
+        image: nginx:latest
+```
+
+- **Service**: Pod의 네트워크를 노출하고, 로드밸런싱을 제공하여 클러스터 내부와 외부에서 안정적으로 애플리케이션에 접근할 수 있도록 도와줌
+
+| Type             | 클러스터 내부 | 클러스터 외부       | 설명                                                         |
+| ---------------- | ------------- | ------------------- | ------------------------------------------------------------ |
+| **ClusterIP**    | O             | X                   | 클러스터 내부에서만 접근 가능한 내부 IP를 생성               |
+| **NodePort**     | O             | O (노드의 IP 사용)  | 테스트 또는 간단한 외부 노출을 위해, 클러스터 외부에서 접근 가능하도록 각 노드의 특정 포트를 열어즘 |
+| **LoadBalancer** | O             | O (로드밸런서 사용) | '클라우드 환경'에서 외부 로드밸런서를 자동으로 생성해 외부 접근을 제공. 클라우드 제공 업체(AWS, GCP, Azure 등)의 네트워크 로드밸런서를 사용하며, **NodePort**와 **ClusterIP**를 내부적으로 사용 |
+| **ExternalName** | -             | O (DNS 이름 사용)   | DNS 이름을 사용해 클러스터 외부 서비스로 요청을 라우팅. 클러스터 외부의 데이터베이스나 API 서버를 Kubernetes 네임스페이스 내부에서 사용할 수 있도록 설정하여 외부 서비스와의 통합 가능 |
+| **Headless**     | O             | X (Pod에 직접 접근) | Stateful 애플리케이션 또는 Pod 직접 접근                     |
+
+- **Namespace**: 하나의 클러스터를 논리적으로 분리하여 여러 애플리케이션, 팀, 환경(예: 개발, 테스트, 프로덕션)을 독립적으로 관리할 수 있도록 하는 가상 클러스터
+  - **default**: 특별히 지정하지 않은 리소스가 생성되는 기본 namespace
+  - **kube-system**: Kubernetes 시스템 구성 요소(Pod, Service 등)가 포함된 namespace
+  - **kube-public**: 모든 사용자가 읽기 가능한 공개 namespace
+  - **kube-node-lease**: 각 노드의 상태를 추적하기 위해 사용
+  - yaml apply 혹은 `kubectl create namespace my-namespace` 통해 생성 가능
+
+```
+# kubectl apply -f namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-namespace
+```
+
+##### Scheduling
+
+##### Maintenance
+
+##### Security
+
+##### Storage
+
+##### Networking
 
 ### Helm
 
