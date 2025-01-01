@@ -405,16 +405,13 @@
 </ul>
 </li>
 <li>
-<p><strong>Label</strong></p>
+<p><strong>Label</strong>: 기본 형식은 <code class="language-text">&lt;prefix&gt;/&lt;name&gt;</code> 형태인데 prefix는 선택사항이고, 일반적으로 도메인 이름 형식을 따름 (예: <code class="language-text">example.com/mylabel</code>). <code class="language-text">kubectl get pods --selector app=App1</code>과 같은 형태로 필터링 가능</p>
 <ul>
-<li>기본 형식은 <code class="language-text">&lt;prefix&gt;/&lt;name&gt;</code> 형태인데 prefix는 선택사항이고, 일반적으로 도메인 이름 형식을 따름(예: <code class="language-text">example.com/mylabel</code>)</li>
-<li>많이 사용되는 라벨은 다음과 같음</li>
 <li><code class="language-text">app</code>: 애플리케이션 이름.</li>
 <li><code class="language-text">env</code>: 환경 정보 (예: <code class="language-text">production</code>, <code class="language-text">staging</code>, <code class="language-text">dev</code>).</li>
 <li><code class="language-text">tier</code>: 애플리케이션 계층 (예: <code class="language-text">frontend</code>, <code class="language-text">backend</code>, <code class="language-text">database</code>).</li>
 <li><code class="language-text">role</code>: 역할 정보 (예: <code class="language-text">web-server</code>, <code class="language-text">data-store</code>).</li>
 <li><code class="language-text">function</code>: 특정 기능을 나타내는 라벨.</li>
-<li><code class="language-text">kubectl get pods --selector app=App1</code>과 같은 형태로 필터링 가능</li>
 </ul>
 </li>
 </ul>
@@ -429,9 +426,7 @@
 <li>
 <p><strong>Taints</strong>: 노드에 적용되어 특정 파드가 해당 노드에 스케줄링되지 못하게 하는 메커니즘입니다. 노드에 Taint(오염)가 설정되면, 해당 Taint를 "참을 수 있는" 파드(Toleration)가 아니면 그 노드에 배치되지 않습니다.</p>
 <ul>
-<li>Key: Taint의 이름 또는 속성</li>
-<li>Value: 선택 사항으로, Key에 대한 추가 정보 제공</li>
-<li>Effect: Taint의 효과를 정의하며, 아래 중 하나를 사용</li>
+<li>Key: Taint의 이름 또는 속성 / Value: 선택 사항으로, Key에 대한 추가 정보 제공 / Effect: Taint의 효과를 정의하며, 아래 중 하나를 사용</li>
 <li><strong><code class="language-text">NoSchedule</code></strong>: Taint를 참을 수 없는 파드는 이 노드에 배치되지 않음</li>
 <li><strong><code class="language-text">PreferNoSchedule</code></strong>: 가능한 한 이 노드에 배치되지 않으나, 강제하지 않음</li>
 <li><strong><code class="language-text">NoExecute</code></strong>: 즉시 노드에서 파드를 제거하며, 새 파드도 스케줄링되지 않음</li>
@@ -445,10 +440,8 @@
 <p><strong>Toleration</strong>: 파드가 특정 Taint를 "참을 수 있도록" 허용하는 설정입니다. Toleration이 없는 파드는 Taint가 있는 노드에 스케줄링될 수 없습니다.</p>
 <ul>
 <li>Key: Taint의 Key와 일치해야 함</li>
-<li>Operator</li>
-<li><code class="language-text">Equal</code>: Key와 Value가 일치해야 Toleration 인정</li>
-<li><code class="language-text">Exists</code>: Key만 일치하면 Toleration 인정</li>
-<li>Value: Taint의 Value와 일치해야 함(Equal인 경우에만 사용)</li>
+<li>Operator: <code class="language-text">Equal</code>는 Key와 Value가 일치해야 Toleration 인정 / <code class="language-text">Exists</code>는 Key만 일치하면 Toleration 인정</li>
+<li>Value: Taint의 Value와 일치해야 함 (Equal인 경우에만 사용)</li>
 <li>Effect: Taint의 Effect와 일치해야 함</li>
 </ul>
 </li>
@@ -568,8 +561,8 @@
 <p><strong>Rollback</strong>: Deployment를 이전 상태로 복구하는 작업</p>
 <ul>
 <li><code class="language-text">kubectl rollout undo deployment &lt;deployment-name&gt;</code>: 바로 이전의 상태로 복구</li>
-<li><code class="language-text">kubectl rollout undo deployment &lt;deployment-name&gt; --to-revision=&lt;revision-number&gt;</code>: 특정 버전으로 복구</li>
 <li><code class="language-text">kubectl rollout history deployment &lt;deployment-name&gt;</code>: revision 기록 확인 (revision-number 확인 가능)</li>
+<li><code class="language-text">kubectl rollout undo deployment &lt;deployment-name&gt; --to-revision=&lt;revision-number&gt;</code>: 특정 버전으로 복구</li>
 <li>Kubernetes는 기본적으로 Deployment의 최대 10개 Revision을 기록. 이 제한은 <code class="language-text">revisionHistoryLimit</code> 필드로 설정할 수 있음</li>
 </ul>
 </li>
@@ -627,8 +620,7 @@
 <ul>
 <li><strong>Sidecar 패턴</strong>: 애플리케이션 컨테이너와 이를 보조하는 컨테이너를 함께 실행 (e.g., 애플리케이션 컨테이너와 로그를 수집하는 Fluentd 컨테이너)</li>
 <li><strong>Ambassador 패턴</strong>: 특정 서비스와의 통신을 처리하는 컨테이너(프록시 역할)를 포함</li>
-<li><strong>initContainer</strong>: 애플리케이션 컨테이너가 시작되기 전에 실행되는 컨테이너. InitContainer는 초기화 작업을 수행하고 종료된 후에 애플리케이션 컨테이너 실행</li>
-<li>예시: 애플리케이션 컨테이너의 실행 전 데이터 준비, 권한 설정, 네트워크 연결 테스트, 디펜던시 다운로드 등</li>
+<li><strong>initContainer</strong>: 애플리케이션 컨테이너가 시작되기 전에 실행되는 컨테이너. InitContainer는 초기화 작업을 수행하고 종료된 후에 애플리케이션 컨테이너 실행 (예시: 애플리케이션 컨테이너의 실행 전 데이터 준비, 권한 설정, 네트워크 연결 테스트, 디펜던시 다운로드 등)</li>
 </ul>
 </li>
 </ul>
@@ -658,12 +650,9 @@
 <li>
 <p>OS Upgrades</p>
 <ul>
-<li><strong>Drain</strong>: 노드에서 실행 중인 모든 pod을 다른 노드로 이동시키는 작업</li>
-<li><code class="language-text">kubectl drain &lt;node-name&gt; --ignore-daemonsets --delete-emptydir-data</code></li>
-<li><strong>Cordon</strong>: 노드를 스케줄링 대상으로 지정하지 않도록 설정. 새로운 pod이 해당 노드에 할당되지 않도록 하기 위해 사용</li>
-<li><code class="language-text">kubectl cordon &lt;node-name&gt;</code></li>
-<li><strong>Uncordon</strong>: cordon 상태를 해제하여 노드가 다시 pod을 받을 수 있도록 함</li>
-<li><code class="language-text">kubectl uncordon &lt;node-name&gt;</code></li>
+<li><strong>Drain</strong>: <code class="language-text">kubectl drain &lt;node-name&gt; --ignore-daemonsets --delete-emptydir-data</code>, 노드에서 실행 중인 모든 pod을 다른 노드로 이동시키는 작업</li>
+<li><strong>Cordon</strong>: <code class="language-text">kubectl cordon &lt;node-name&gt;</code>, 노드를 스케줄링 대상으로 지정하지 않도록 설정. 새로운 pod이 해당 노드에 할당되지 않도록 하기 위해 사용</li>
+<li><strong>Uncordon</strong>: <code class="language-text">kubectl uncordon &lt;node-name&gt;</code>, cordon 상태를 해제하여 노드가 다시 pod을 받을 수 있도록 함</li>
 </ul>
 </li>
 <li>
@@ -676,11 +665,8 @@
 <li>
 <p>Backup &#x26; Restore</p>
 <ul>
-<li>전략 1. Resource Configuration Backup: 모든 Kubernetes 리소스의 YAML 또는 Helm 차트를 GitHub 같은 버전 관리 시스템에 저장</li>
-<li><code class="language-text">kubectl get all --all-namespaces -o yaml &gt; cluster-backup.yaml</code></li>
-<li>전략 2. ETCD Cluster Backup</li>
-<li><code class="language-text">ketcdctl snapshot save &lt;snapshot.db&gt; --endpoints=&lt;etcd-endpoints&gt; --cert=&lt;cert-file&gt; --key=&lt;key-file&gt; --cacert=&lt;ca-file&gt;</code></li>
-<li><code class="language-text">etcdctl snapshot restore &lt;snapshot.db&gt; --data-dir=&lt;new-data-dir&gt;</code></li>
+<li>전략 1. Resource Configuration Backup: 모든 Kubernetes 리소스의 YAML 또는 Helm 차트를 GitHub 같은 버전 관리 시스템에 저장, <code class="language-text">kubectl get all --all-namespaces -o yaml &gt; cluster-backup.yaml</code></li>
+<li>전략 2. ETCD Cluster Backup, <code class="language-text">ketcdctl snapshot save &lt;snapshot.db&gt; ...</code> 이후에 <code class="language-text">ketcdctl snapshot restore &lt;snapshot.db&gt; --data-dir=&lt;new-data-dir&gt;</code></li>
 </ul>
 </li>
 </ul>
@@ -706,15 +692,9 @@
 <li>
 <p><strong>API Groups</strong>: Kubernetes 리소스(예: Pods, Services, Deployments 등)를 그룹으로 나누어 API 요청을 관리하는 구조</p>
 <ul>
-<li><strong>Core Group</strong> (Legacy API): <code class="language-text">https://&lt;k8s-apiserver&gt;/api/v1</code> 형태로, Kubernetes에서 가장 기본적인 리소스를 포함</li>
-<li>Pod, Service, Node, Namespace, ConfigMap, Secret, PersistentVolume (PV), PersistentVolumeClaim (PVC) 등</li>
+<li><strong>Core Group</strong> (Legacy API): <code class="language-text">https://&lt;k8s-apiserver&gt;/api/v1</code> 형태로, Kubernetes에서 가장 기본적인 리소스를 포함, Pod, Service, Node, Namespace, ConfigMap, Secret, PersistentVolume (PV), PersistentVolumeClaim (PVC) 등</li>
 <li><strong>Named API Groups</strong>:  <code class="language-text">https://&lt;k8s-apiserver&gt;/apis/&lt;group&gt;/v1</code> 형태로, Core Group 외의 기능을 추가하거나 확장하기 위해 사용</li>
-<li>apps (<code class="language-text">/apis/apps/v1</code>): Deployment, StatefulSet, DaemonSet, ReplicaSet</li>
-<li>batch (<code class="language-text">/apis/batch/v1</code>): Job, CronJob</li>
-<li>autoscaling (<code class="language-text">/apis/autoscaling/v1</code>): HorizontalPodAutoscaler (HPA)</li>
-<li>networking.k8s.io(<code class="language-text">/apis/networking.k8s.io/v1</code>): Ingress, NetworkPolicy</li>
-<li>rbac.authorization.k8s.io (<code class="language-text">/apis/rbac.authorization.k8s.io/v1</code>): Role, ClusterRole, RoleBinding, ClusterRoleBinding</li>
-<li>이 외에도 더 존재함</li>
+<li>Named API Groups에는 <strong>apps</strong> (<code class="language-text">/apis/apps/v1</code>): Deployment, StatefulSet, DaemonSet, ReplicaSet / <strong>batch</strong> (<code class="language-text">/apis/batch/v1</code>): Job, CronJob / <strong>autoscaling</strong> (<code class="language-text">/apis/autoscaling/v1</code>): HorizontalPodAutoscaler (HPA) / <strong>networking.k8s.io</strong> (<code class="language-text">/apis/networking.k8s.io/v1</code>): Ingress, NetworkPolicy / <strong>rbac.authorization.k8s.io</strong> (<code class="language-text">/apis/rbac.authorization.k8s.io/v1</code>): Role, ClusterRole, RoleBinding, ClusterRoleBinding 등 존재</li>
 </ul>
 </li>
 <li>Authorization mode: Node, ABAC, RBAC, Webhook, AlwaysAllow, AlwaysDeny가 존재</li>
@@ -741,10 +721,7 @@
 <li><code class="language-text">policyTypes</code>: 정책의 유형, ingress, egress 또는 둘 다 설정 가능</li>
 <li><code class="language-text">ingress</code>: 들어오는 트래픽 규칙 정의</li>
 <li><code class="language-text">egress</code>: 나가는 트래픽 규칙 정의</li>
-<li><code class="language-text">rules</code>: 트래픽을 허용할 조건을 정의</li>
-<li><code class="language-text">from</code>: Ingress 트래픽의 소스</li>
-<li><code class="language-text">to</code>: Egress 트래픽의 대상</li>
-<li><code class="language-text">ports</code>: 트래픽의 포트와 프로토콜</li>
+<li><code class="language-text">rules</code>: 트래픽을 허용할 조건을 정의, <code class="language-text">from</code>, <code class="language-text">to</code>, <code class="language-text">ports</code> 기입</li>
 </ul>
 </li>
 </ul>
@@ -806,15 +783,9 @@
 <li>
 <p>Probe: 컨테이너에서 kubelet에 의해 주기적으로 수행되는 진단</p>
 <ul>
-<li><strong>Liveness Probe</strong>: 컨테이너가 정상적으로 실행 중인지 확인</li>
-<li>애플리케이션이 교착 상태(deadlock)에 빠질 가능성이 있을 때 활용 가능</li>
-<li>장기 실행 프로세스에서 특정 조건이 충족되지 않으면 복구가 필요한 경우 활용 가능</li>
-<li><strong>Readiness Probe</strong>: 컨테이너가 트래픽을 처리할 준비가 되었는지 확인</li>
-<li>애플리케이션 초기화(예: 데이터 로드)가 완료된 후 트래픽을 받도록 설정할 때 활용 가능</li>
-<li>외부 서비스(예: DB 연결)가 준비될 때까지 트래픽을 차단하고 싶을 때 활용 가능</li>
-<li><strong>Startup Probe</strong>: 애플리케이션의 초기화 완료 여부를 확인. 컨테이너가 처음 시작될 때만 사용되며, 초기화 시간에 따라 Liveness Probe보다 더 긴 대기 시간이 허용 (e.g., Triton Inference Server)</li>
-<li>초기화 시간이 긴 애플리케이션(예: 복잡한 데이터 초기화 작업)이 있는 경우 활용 가능</li>
-<li>기존 Liveness Probe가 너무 일찍 실패를 반환해 컨테이너가 재시작되는 것을 방지하고 싶을 때 활용 가능</li>
+<li><strong>Liveness Probe</strong>: 컨테이너가 "정상적으로 실행 중"인지 확인. 애플리케이션이 교착 상태(deadlock)에 빠질 가능성이 있을 때 활용 가능. 장기 실행 프로세스에서 특정 조건이 충족되지 않으면 복구가 필요한 경우 활용 가능</li>
+<li><strong>Readiness Probe</strong>: 컨테이너가 "트래픽을 처리할 준비"가 되었는지 확인. 애플리케이션 초기화(예: 데이터 로드)가 완료된 후 트래픽을 받도록 설정할 때 활용 가능. 외부 서비스(예: DB 연결)가 준비될 때까지 트래픽을 차단하고 싶을 때 활용 가능</li>
+<li><strong>Startup Probe</strong>: 애플리케이션의 "초기화 완료 여부"를 확인. 컨테이너가 처음 시작될 때만 사용되며, 초기화 시간에 따라 Liveness Probe보다 더 긴 대기 시간이 허용 (e.g., Triton Inference Server). 초기화 시간이 긴 애플리케이션(예: 복잡한 데이터 초기화 작업)이 있는 경우 활용 가능. 기존 Liveness Probe가 너무 일찍 실패를 반환해 컨테이너가 재시작되는 것을 방지하고 싶을 때 활용 가능</li>
 </ul>
 </li>
 </ul>
