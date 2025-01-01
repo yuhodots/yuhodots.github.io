@@ -753,10 +753,77 @@
         <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
           <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">3306</span></code></pre></div>
 <h5 id="storage" style="position:relative;"><a href="#storage" aria-label="storage permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage</h5>
+<table>
+<thead>
+<tr>
+<th>스토리지 유형</th>
+<th>설명</th>
+<th>사용 사례</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EmptyDir</td>
+<td>Pod 라이프사이클 동안 유지. Pod이 삭제되거나 재시작되면 데이터 소멸</td>
+<td>캐시, 임시 파일 저장</td>
+</tr>
+<tr>
+<td>HostPath</td>
+<td>노드 파일 시스템 경로 사용. 노드와 강하게 결합되어 Pod의 이동성이 제한됨</td>
+<td>디버깅, 로그 저장</td>
+</tr>
+<tr>
+<td>PersistentVolume (PV)</td>
+<td>클러스터 관리자에 의해 관리. 클러스터 외부의 실제 스토리지를 Kubernetes 리소스로 추상화</td>
+<td>지속적 데이터 저장, 스토리지 백엔드 연결</td>
+</tr>
+<tr>
+<td>PersistentVolumeClaim (PVC)</td>
+<td>애플리케이션이 PV를 요청할 때 사용하는 리소스. 요청 스토리지 크기 및 액세스 모드를 지정</td>
+<td>애플리케이션-스토리지 연결</td>
+</tr>
+<tr>
+<td>StorageClass</td>
+<td>PV를 동적으로 프로비저닝하기 위한 템플릿 역할. 관리자 설정에 따라 PV를 자동으로 생성하며 <code class="language-text">reclaimPolicy</code>(삭제, 보존 등) 설정 가능</td>
+<td>다양한 백엔드 스토리지 지원</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>Persistent Volumes</li>
-<li>Persistent Volume Claims</li>
+<li>PV로 사용 가능한 볼륨 유형: HostPath, NFS (Network File System), AWS EBS (Elastic Block Store), GCE Persistent Disk (PD), CSI (Container Storage Interface) 등</li>
+<li>Static Provisioning: 클러스터 관리자가 직접 PersistentVolume(PV)을 생성하고 구성한 다음, 이를 애플리케이션에서 PersistentVolumeClaim(PVC)으로 요청하여 사용하는 방식</li>
+<li>Dynamic Provisioning: PVC가 생성될 때 Kubernetes가 자동으로 적합한 PersistentVolume(PV)을 프로비저닝하는 방식. <strong>StorageClass</strong>를 사용하여 동작하며, 사용자는 스토리지 유형, 크기, 접근 모드만 지정하면 됨</li>
 </ul>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># PersistentVolume </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolume
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pv<span class="token punctuation">-</span>example
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">capacity</span><span class="token punctuation">:</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> 10Gi
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteOnce
+  <span class="token key atrule">persistentVolumeReclaimPolicy</span><span class="token punctuation">:</span> Retain
+  <span class="token key atrule">nfs</span><span class="token punctuation">:</span>
+    <span class="token key atrule">path</span><span class="token punctuation">:</span> /nfs/share
+    <span class="token key atrule">server</span><span class="token punctuation">:</span> 192.168.1.1</code></pre></div>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># PersistentVolumeClaim </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolumeClaim
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pvc<span class="token punctuation">-</span>example
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteOnce
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+    <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+      <span class="token key atrule">storage</span><span class="token punctuation">:</span> 5Gi</code></pre></div>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># PVC와 PV 연결:</span>
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> persistent<span class="token punctuation">-</span>storage
+  <span class="token key atrule">persistentVolumeClaim</span><span class="token punctuation">:</span>
+    <span class="token key atrule">claimName</span><span class="token punctuation">:</span> pvc<span class="token punctuation">-</span>example</code></pre></div>
 <h5 id="networking" style="position:relative;"><a href="#networking" aria-label="networking permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Networking</h5>
 <ul>
 <li>Pod Networking</li>
