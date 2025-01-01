@@ -557,12 +557,102 @@
 </ul>
 <h5 id="application-lifecycle-management" style="position:relative;"><a href="#application-lifecycle-management" aria-label="application lifecycle management permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Application Lifecycle Management</h5>
 <ul>
-<li>Rolling Update</li>
-<li>Rollback</li>
-<li>ConfigMaps</li>
-<li>Secrets</li>
-<li>initContainer</li>
+<li>
+<p><strong>Rolling Update</strong>: <code class="language-text">kubectl apply</code> 명령어를 사용하여 deployment를 업데이트하면, rollout update가 자동으로 수행됨</p>
+<ul>
+<li><code class="language-text">kubectl rollout status deployment &lt;deployment-name&gt;</code>: rollout 상태 확인</li>
+<li><code class="language-text">kubectl rollout restart deployment &lt;deployment-name&gt;</code>: deployment 업데이트하지 않고, rollout 방식으로 pod restart</li>
 </ul>
+</li>
+<li>
+<p><strong>Rollback</strong>: Deployment를 이전 상태로 복구하는 작업</p>
+<ul>
+<li><code class="language-text">kubectl rollout undo deployment &lt;deployment-name&gt;</code>: 바로 이전의 상태로 복구</li>
+<li><code class="language-text">kubectl rollout undo deployment &lt;deployment-name&gt; --to-revision=&lt;revision-number&gt;</code>: 특정 버전으로 복구</li>
+<li><code class="language-text">kubectl rollout history deployment &lt;deployment-name&gt;</code>: revision 기록 확인 (revision-number 확인 가능)</li>
+<li>Kubernetes는 기본적으로 Deployment의 최대 10개 Revision을 기록. 이 제한은 <code class="language-text">revisionHistoryLimit</code> 필드로 설정할 수 있음</li>
+</ul>
+</li>
+<li><strong>ConfigMap</strong>: 환경설정 데이터를 관리하기 위한 리소스</li>
+</ul>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>config
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">key1</span><span class="token punctuation">:</span> value1
+  <span class="token key atrule">key2</span><span class="token punctuation">:</span> value2</code></pre></div>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>using<span class="token punctuation">-</span>configmap
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">env</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> MY_KEY1
+      <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span>
+        <span class="token key atrule">configMapKeyRef</span><span class="token punctuation">:</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>config
+          <span class="token key atrule">key</span><span class="token punctuation">:</span> key1</code></pre></div>
+<ul>
+<li><strong>Secret</strong>: 민감한 데이터를 안전하게 저장하고 관리하기 위한 리소스. 기본적으로 Base64로 인코딩되어 저장되지만, 암호화되어 있지는 않음</li>
+</ul>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Secret
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>secret
+<span class="token key atrule">type</span><span class="token punctuation">:</span> Opaque
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">username</span><span class="token punctuation">:</span> bXktdXNlcg==   <span class="token comment"># "my-user"의 Base64 값</span>
+  <span class="token key atrule">password</span><span class="token punctuation">:</span> bXktcGFzcw==   <span class="token comment"># "my-pass"의 Base64 값</span></code></pre></div>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>using<span class="token punctuation">-</span>secret
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">env</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> USERNAME
+      <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span>
+        <span class="token key atrule">secretKeyRef</span><span class="token punctuation">:</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>secret
+          <span class="token key atrule">key</span><span class="token punctuation">:</span> username</code></pre></div>
+<ul>
+<li>
+<p>Multi-Container Pods: 앱과 logger를 함께 들고다니고 싶을 때, 이런 경우 multi-contianer 형태의 pod 활용해봐도 좋음. localhost로 통신 가능</p>
+<ul>
+<li><strong>Sidecar 패턴</strong>: 애플리케이션 컨테이너와 이를 보조하는 컨테이너를 함께 실행 (e.g., 애플리케이션 컨테이너와 로그를 수집하는 Fluentd 컨테이너)</li>
+<li><strong>Ambassador 패턴</strong>: 특정 서비스와의 통신을 처리하는 컨테이너(프록시 역할)를 포함</li>
+<li><strong>initContainer</strong>: 애플리케이션 컨테이너가 시작되기 전에 실행되는 컨테이너. InitContainer는 초기화 작업을 수행하고 종료된 후에 애플리케이션 컨테이너 실행</li>
+<li>예시: 애플리케이션 컨테이너의 실행 전 데이터 준비, 권한 설정, 네트워크 연결 테스트, 디펜던시 다운로드 등</li>
+</ul>
+</li>
+</ul>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> init<span class="token punctuation">-</span>container<span class="token punctuation">-</span>pod
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">initContainers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> init<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"sh"</span><span class="token punctuation">,</span> <span class="token string">"-c"</span><span class="token punctuation">,</span> <span class="token string">"echo 'Initializing...' &amp;&amp; sleep 5"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /app/data
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> app<span class="token punctuation">-</span>container
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> shared<span class="token punctuation">-</span>data
+    <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
 <h5 id="cluster-maintenance" style="position:relative;"><a href="#cluster-maintenance" aria-label="cluster maintenance permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cluster Maintenance</h5>
 <ul>
 <li>OS Upgrades</li>
@@ -605,6 +695,20 @@
 <li>Control Plane Failure</li>
 <li>Worker Node Failure</li>
 <li>Network Troubleshooting</li>
+</ul>
+</li>
+<li>
+<p>Probe: 컨테이너에서 kubelet에 의해 주기적으로 수행되는 진단</p>
+<ul>
+<li><strong>Liveness Probe</strong>: 컨테이너가 정상적으로 실행 중인지 확인</li>
+<li>애플리케이션이 교착 상태(deadlock)에 빠질 가능성이 있을 때 활용 가능</li>
+<li>장기 실행 프로세스에서 특정 조건이 충족되지 않으면 복구가 필요한 경우 활용 가능</li>
+<li><strong>Readiness Probe</strong>: 컨테이너가 트래픽을 처리할 준비가 되었는지 확인</li>
+<li>애플리케이션 초기화(예: 데이터 로드)가 완료된 후 트래픽을 받도록 설정할 때 활용 가능</li>
+<li>외부 서비스(예: DB 연결)가 준비될 때까지 트래픽을 차단하고 싶을 때 활용 가능</li>
+<li><strong>Startup Probe</strong>: 애플리케이션의 초기화 완료 여부를 확인. 컨테이너가 처음 시작될 때만 사용되며, 초기화 시간에 따라 Liveness Probe보다 더 긴 대기 시간이 허용 (e.g., Triton Inference Server)</li>
+<li>초기화 시간이 긴 애플리케이션(예: 복잡한 데이터 초기화 작업)이 있는 경우 활용 가능</li>
+<li>기존 Liveness Probe가 너무 일찍 실패를 반환해 컨테이너가 재시작되는 것을 방지하고 싶을 때 활용 가능</li>
 </ul>
 </li>
 </ul>
