@@ -686,14 +686,95 @@
 </ul>
 <h5 id="security" style="position:relative;"><a href="#security" aria-label="security permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Security</h5>
 <ul>
-<li>TLS</li>
-<li>Certificate API</li>
-<li>KubeConfig</li>
-<li>API Groups</li>
-<li>Authorization</li>
-<li>Role</li>
-<li>Network Policy</li>
+<li>
+<p>Basics</p>
+<ul>
+<li><strong>Authentication</strong>: "누가" 접근 가능한지</li>
+<li><strong>Authorization</strong>: 그들이 "어떤 행위"를 할 수 있는지</li>
+<li>TLS(Transport Layer Security): 클라이언트와 서버 간의 통신을 암호화하여 데이터의 기밀성과 무결성을 보장하는 프로토콜</li>
+<li>Certificate API: 클러스터 내에서 TLS 인증서를 관리하는 메커니즘을 제공</li>
 </ul>
+</li>
+<li>
+<p>KubeConfig: KubeConfig 파일을 사용하여 클러스터와 사용자 간의 인증 및 연결을 설정</p>
+<ul>
+<li><strong>clusters</strong>: 클러스터의 API 서버 정보를 포함. URL과 인증서 데이터가 주요 정보</li>
+<li><strong>contexts</strong>: 클러스터와 사용자 간의 연결을 정의</li>
+<li><strong>users</strong>: 클러스터에 접근하는 사용자 정보를 포함. 인증 토큰, 클라이언트 인증서 및 키가 주요 정보</li>
+</ul>
+</li>
+<li>
+<p><strong>API Groups</strong>: Kubernetes 리소스(예: Pods, Services, Deployments 등)를 그룹으로 나누어 API 요청을 관리하는 구조</p>
+<ul>
+<li><strong>Core Group</strong> (Legacy API): <code class="language-text">https://&lt;k8s-apiserver&gt;/api/v1</code> 형태로, Kubernetes에서 가장 기본적인 리소스를 포함</li>
+<li>Pod, Service, Node, Namespace, ConfigMap, Secret, PersistentVolume (PV), PersistentVolumeClaim (PVC) 등</li>
+<li><strong>Named API Groups</strong>:  <code class="language-text">https://&lt;k8s-apiserver&gt;/apis/&lt;group&gt;/v1</code> 형태로, Core Group 외의 기능을 추가하거나 확장하기 위해 사용</li>
+<li>apps (<code class="language-text">/apis/apps/v1</code>): Deployment, StatefulSet, DaemonSet, ReplicaSet</li>
+<li>batch (<code class="language-text">/apis/batch/v1</code>): Job, CronJob</li>
+<li>autoscaling (<code class="language-text">/apis/autoscaling/v1</code>): HorizontalPodAutoscaler (HPA)</li>
+<li>networking.k8s.io(<code class="language-text">/apis/networking.k8s.io/v1</code>): Ingress, NetworkPolicy</li>
+<li>rbac.authorization.k8s.io (<code class="language-text">/apis/rbac.authorization.k8s.io/v1</code>): Role, ClusterRole, RoleBinding, ClusterRoleBinding</li>
+<li>이 외에도 더 존재함</li>
+</ul>
+</li>
+<li>Authorization mode: Node, ABAC, RBAC, Webhook, AlwaysAllow, AlwaysDeny가 존재</li>
+<li>
+<p><strong>RBAC</strong> (Role-Based Access Control)</p>
+<ul>
+<li>Role을 먼저 생성하고, RoleBinding 통해 유저를 Role에 연결하는 방식</li>
+<li><strong>Namespaced</strong>: <strong>roles, rolebindings</strong>, pods, replicasets, jobs, deployments, serviced, secrets, configmaps, PVC</li>
+<li><strong>Cluster Scoped</strong>: <strong>clusterroles</strong>, <strong>cluterrolebindings</strong>, nodes, PV, namespaces</li>
+</ul>
+</li>
+<li>
+<p>Accounts</p>
+<ul>
+<li>User account: 실제 사람이 사용하는 계정 (admin, developer, ...)</li>
+<li><strong>Service account</strong>: 머신이 사용하는 계정  (prometheus, jenkins, ...)</li>
+</ul>
+</li>
+<li>
+<p><strong>Network Policy</strong></p>
+<ul>
+<li>기본적으로 Kubernetes에서는 모든 pod 간의 네트워크 트래픽이 허용. Network Policy를 사용하면 특정 pod에 대한 트래픽 허용/차단 규칙을 정의 가능</li>
+<li><code class="language-text">podSelector</code>: 정책이 적용될 pod를 선택</li>
+<li><code class="language-text">policyTypes</code>: 정책의 유형, ingress, egress 또는 둘 다 설정 가능</li>
+<li><code class="language-text">ingress</code>: 들어오는 트래픽 규칙 정의</li>
+<li><code class="language-text">egress</code>: 나가는 트래픽 규칙 정의</li>
+<li><code class="language-text">rules</code>: 트래픽을 허용할 조건을 정의</li>
+<li><code class="language-text">from</code>: Ingress 트래픽의 소스</li>
+<li><code class="language-text">to</code>: Egress 트래픽의 대상</li>
+<li><code class="language-text">ports</code>: 트래픽의 포트와 프로토콜</li>
+</ul>
+</li>
+</ul>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> networking.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> NetworkPolicy
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> mixed<span class="token punctuation">-</span>policy
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">podSelector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> backend
+  <span class="token key atrule">policyTypes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> Ingress
+    <span class="token punctuation">-</span> Egress
+  <span class="token key atrule">ingress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">from</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">podSelector</span><span class="token punctuation">:</span>
+            <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+              <span class="token key atrule">app</span><span class="token punctuation">:</span> frontend
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+          <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+  <span class="token key atrule">egress</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">to</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">ipBlock</span><span class="token punctuation">:</span>
+            <span class="token key atrule">cidr</span><span class="token punctuation">:</span> 172.16.0.0/12
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+          <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">3306</span></code></pre></div>
 <h5 id="storage" style="position:relative;"><a href="#storage" aria-label="storage permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Storage</h5>
 <ul>
 <li>Persistent Volumes</li>
