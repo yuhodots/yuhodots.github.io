@@ -655,9 +655,34 @@
     <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
 <h5 id="cluster-maintenance" style="position:relative;"><a href="#cluster-maintenance" aria-label="cluster maintenance permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cluster Maintenance</h5>
 <ul>
-<li>OS Upgrades</li>
-<li>Cluster Upgrades</li>
-<li>ETCDCTL</li>
+<li>
+<p>OS Upgrades</p>
+<ul>
+<li><strong>Drain</strong>: 노드에서 실행 중인 모든 pod을 다른 노드로 이동시키는 작업</li>
+<li><code class="language-text">kubectl drain &lt;node-name&gt; --ignore-daemonsets --delete-emptydir-data</code></li>
+<li><strong>Cordon</strong>: 노드를 스케줄링 대상으로 지정하지 않도록 설정. 새로운 pod이 해당 노드에 할당되지 않도록 하기 위해 사용</li>
+<li><code class="language-text">kubectl cordon &lt;node-name&gt;</code></li>
+<li><strong>Uncordon</strong>: cordon 상태를 해제하여 노드가 다시 pod을 받을 수 있도록 함</li>
+<li><code class="language-text">kubectl uncordon &lt;node-name&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>Cluster Upgrades</p>
+<ul>
+<li>전략 1. Master node를 업데이트한 뒤에, worker node를 하나씩 업그레이드. 이 때, 업그레이드 할 worker node는 다른 node로 drain &#x26; uncordon</li>
+<li>전략 2. Master node를 업데이트한 뒤에, worker node를 하나씩 업그레이드. 이 때, 업그레이드시 대용으로 사용할 새로운 node 추가 </li>
+</ul>
+</li>
+<li>
+<p>Backup &#x26; Restore</p>
+<ul>
+<li>전략 1. Resource Configuration Backup: 모든 Kubernetes 리소스의 YAML 또는 Helm 차트를 GitHub 같은 버전 관리 시스템에 저장</li>
+<li><code class="language-text">kubectl get all --all-namespaces -o yaml &gt; cluster-backup.yaml</code></li>
+<li>전략 2. ETCD Cluster Backup</li>
+<li><code class="language-text">ketcdctl snapshot save &lt;snapshot.db&gt; --endpoints=&lt;etcd-endpoints&gt; --cert=&lt;cert-file&gt; --key=&lt;key-file&gt; --cacert=&lt;ca-file&gt;</code></li>
+<li><code class="language-text">etcdctl snapshot restore &lt;snapshot.db&gt; --data-dir=&lt;new-data-dir&gt;</code></li>
+</ul>
+</li>
 </ul>
 <h5 id="security" style="position:relative;"><a href="#security" aria-label="security permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Security</h5>
 <ul>
