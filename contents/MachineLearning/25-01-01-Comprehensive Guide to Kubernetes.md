@@ -283,16 +283,12 @@ metadata:
 - Manual Scheduling
   - k8s에서 이미 생성된 pod의 nodeName 변경은 불가
   - 따라서 이미 생성된 pod에 node를 할당하려면, Binding object를 생성하고 binding API에 요청 보내기
-
-- **Label**
-  - 기본 형식은 `<prefix>/<name>` 형태인데 prefix는 선택사항이고, 일반적으로 도메인 이름 형식을 따름(예: `example.com/mylabel`)
-  - 많이 사용되는 라벨은 다음과 같음
-    - `app`: 애플리케이션 이름.
-    - `env`: 환경 정보 (예: `production`, `staging`, `dev`).
-    - `tier`: 애플리케이션 계층 (예: `frontend`, `backend`, `database`).
-    - `role`: 역할 정보 (예: `web-server`, `data-store`).
-    - `function`: 특정 기능을 나타내는 라벨.
-  - `kubectl get pods --selector app=App1`과 같은 형태로 필터링 가능
+- **Label**: 기본 형식은 `<prefix>/<name>` 형태인데 prefix는 선택사항이고, 일반적으로 도메인 이름 형식을 따름 (예: `example.com/mylabel`). `kubectl get pods --selector app=App1`과 같은 형태로 필터링 가능
+  - `app`: 애플리케이션 이름.
+  - `env`: 환경 정보 (예: `production`, `staging`, `dev`).
+  - `tier`: 애플리케이션 계층 (예: `frontend`, `backend`, `database`).
+  - `role`: 역할 정보 (예: `web-server`, `data-store`).
+  - `function`: 특정 기능을 나타내는 라벨.
 
 ```yaml
 apiVeision: v1
@@ -305,12 +301,10 @@ metadata:
 ```
 
 - **Taints**: 노드에 적용되어 특정 파드가 해당 노드에 스케줄링되지 못하게 하는 메커니즘입니다. 노드에 Taint(오염)가 설정되면, 해당 Taint를 "참을 수 있는" 파드(Toleration)가 아니면 그 노드에 배치되지 않습니다.
-  - Key: Taint의 이름 또는 속성
-  - Value: 선택 사항으로, Key에 대한 추가 정보 제공
-  - Effect: Taint의 효과를 정의하며, 아래 중 하나를 사용
-    - **`NoSchedule`**: Taint를 참을 수 없는 파드는 이 노드에 배치되지 않음
-    - **`PreferNoSchedule`**: 가능한 한 이 노드에 배치되지 않으나, 강제하지 않음
-    - **`NoExecute`**: 즉시 노드에서 파드를 제거하며, 새 파드도 스케줄링되지 않음
+  - Key: Taint의 이름 또는 속성 / Value: 선택 사항으로, Key에 대한 추가 정보 제공 / Effect: Taint의 효과를 정의하며, 아래 중 하나를 사용
+  - **`NoSchedule`**: Taint를 참을 수 없는 파드는 이 노드에 배치되지 않음
+  - **`PreferNoSchedule`**: 가능한 한 이 노드에 배치되지 않으나, 강제하지 않음
+  - **`NoExecute`**: 즉시 노드에서 파드를 제거하며, 새 파드도 스케줄링되지 않음
   - 흥미로운 사실: Master node는 NoSchedule taints가 걸려있고, 어떠한 application pod도 뜨지 않음 
 
 ```yaml
@@ -319,10 +313,8 @@ key=value:effect
 
 - **Toleration**: 파드가 특정 Taint를 "참을 수 있도록" 허용하는 설정입니다. Toleration이 없는 파드는 Taint가 있는 노드에 스케줄링될 수 없습니다.
   - Key: Taint의 Key와 일치해야 함
-  - Operator
-    - `Equal`: Key와 Value가 일치해야 Toleration 인정
-    - `Exists`: Key만 일치하면 Toleration 인정
-  - Value: Taint의 Value와 일치해야 함(Equal인 경우에만 사용)
+  - Operator: `Equal`는 Key와 Value가 일치해야 Toleration 인정 / `Exists`는 Key만 일치하면 Toleration 인정
+  - Value: Taint의 Value와 일치해야 함 (Equal인 경우에만 사용)
   - Effect: Taint의 Effect와 일치해야 함
 
 ```yaml
@@ -411,73 +403,288 @@ spec:
 
 ##### Application Lifecycle Management
 
-- Rolling Update
+- **Rolling Update**: `kubectl apply` 명령어를 사용하여 deployment를 업데이트하면, rollout update가 자동으로 수행됨
+  - `kubectl rollout status deployment <deployment-name>`: rollout 상태 확인
 
-- Rollback
+  - `kubectl rollout restart deployment <deployment-name>`: deployment 업데이트하지 않고, rollout 방식으로 pod restart
+- **Rollback**: Deployment를 이전 상태로 복구하는 작업
+  - `kubectl rollout undo deployment <deployment-name>`: 바로 이전의 상태로 복구
+  - `kubectl rollout history deployment <deployment-name>`: revision 기록 확인 (revision-number 확인 가능)
+  - `kubectl rollout undo deployment <deployment-name> --to-revision=<revision-number>`: 특정 버전으로 복구
+  - Kubernetes는 기본적으로 Deployment의 최대 10개 Revision을 기록. 이 제한은 `revisionHistoryLimit` 필드로 설정할 수 있음
 
-- ConfigMaps
 
-- Secrets
+- **ConfigMap**: 환경설정 데이터를 관리하기 위한 리소스
 
-- initContainer
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  key1: value1
+  key2: value2
+```
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-using-configmap
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    env:
+    - name: MY_KEY1
+      valueFrom:
+        configMapKeyRef:
+          name: my-config
+          key: key1
+```
+
+- **Secret**: 민감한 데이터를 안전하게 저장하고 관리하기 위한 리소스. 기본적으로 Base64로 인코딩되어 저장되지만, 암호화되어 있지는 않음
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+data:
+  username: bXktdXNlcg==   # "my-user"의 Base64 값
+  password: bXktcGFzcw==   # "my-pass"의 Base64 값
+```
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-using-secret
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    env:
+    - name: USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: my-secret
+          key: username
+```
+
+- Multi-Container Pods: 앱과 logger를 함께 들고다니고 싶을 때, 이런 경우 multi-contianer 형태의 pod 활용해봐도 좋음. localhost로 통신 가능
+
+  - **Sidecar 패턴**: 애플리케이션 컨테이너와 이를 보조하는 컨테이너를 함께 실행 (e.g., 애플리케이션 컨테이너와 로그를 수집하는 Fluentd 컨테이너)
+  - **Ambassador 패턴**: 특정 서비스와의 통신을 처리하는 컨테이너(프록시 역할)를 포함
+
+  - **initContainer**: 애플리케이션 컨테이너가 시작되기 전에 실행되는 컨테이너. InitContainer는 초기화 작업을 수행하고 종료된 후에 애플리케이션 컨테이너 실행 (예시: 애플리케이션 컨테이너의 실행 전 데이터 준비, 권한 설정, 네트워크 연결 테스트, 디펜던시 다운로드 등)
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container-pod
+spec:
+  initContainers:
+  - name: init-container
+    image: busybox
+    command: ["sh", "-c", "echo 'Initializing...' && sleep 5"]
+    volumeMounts:
+    - name: shared-data
+      mountPath: /app/data
+  containers:
+  - name: app-container
+    image: nginx
+    volumeMounts:
+    - name: shared-data
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+```
 
 ##### Cluster Maintenance
 
 - OS Upgrades
+  - **Drain**: `kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data`, 노드에서 실행 중인 모든 pod을 다른 노드로 이동시키는 작업
+    
+  - **Cordon**: `kubectl cordon <node-name>`, 노드를 스케줄링 대상으로 지정하지 않도록 설정. 새로운 pod이 해당 노드에 할당되지 않도록 하기 위해 사용
+    
+  - **Uncordon**: `kubectl uncordon <node-name>`, cordon 상태를 해제하여 노드가 다시 pod을 받을 수 있도록 함
 
 - Cluster Upgrades
+  - 전략 1. Master node를 업데이트한 뒤에, worker node를 하나씩 업그레이드. 이 때, 업그레이드 할 worker node는 다른 node로 drain & uncordon
 
-- ETCDCTL
+  - 전략 2. Master node를 업데이트한 뒤에, worker node를 하나씩 업그레이드. 이 때, 업그레이드시 대용으로 사용할 새로운 node 추가 
+
+- Backup & Restore
+  - 전략 1. Resource Configuration Backup: 모든 Kubernetes 리소스의 YAML 또는 Helm 차트를 GitHub 같은 버전 관리 시스템에 저장, `kubectl get all --all-namespaces -o yaml > cluster-backup.yaml`
+  - 전략 2. ETCD Cluster Backup, `ketcdctl snapshot save <snapshot.db> ...` 이후에 `ketcdctl snapshot restore <snapshot.db> --data-dir=<new-data-dir>`
 
 ##### Security
 
-- TLS
+- Basics
+  - **Authentication**: "누가" 접근 가능한지
+  - **Authorization**: 그들이 "어떤 행위"를 할 수 있는지
+  - TLS(Transport Layer Security): 클라이언트와 서버 간의 통신을 암호화하여 데이터의 기밀성과 무결성을 보장하는 프로토콜
+  - Certificate API: 클러스터 내에서 TLS 인증서를 관리하는 메커니즘을 제공
 
-- Certificate API
 
-- KubeConfig
+- KubeConfig: KubeConfig 파일을 사용하여 클러스터와 사용자 간의 인증 및 연결을 설정
+  - **clusters**: 클러스터의 API 서버 정보를 포함. URL과 인증서 데이터가 주요 정보
+  - **contexts**: 클러스터와 사용자 간의 연결을 정의
+  - **users**: 클러스터에 접근하는 사용자 정보를 포함. 인증 토큰, 클라이언트 인증서 및 키가 주요 정보
+- **API Groups**: Kubernetes 리소스(예: Pods, Services, Deployments 등)를 그룹으로 나누어 API 요청을 관리하는 구조
+  - **Core Group** (Legacy API): `https://<k8s-apiserver>/api/v1` 형태로, Kubernetes에서 가장 기본적인 리소스를 포함, Pod, Service, Node, Namespace, ConfigMap, Secret, PersistentVolume (PV), PersistentVolumeClaim (PVC) 등
+  - **Named API Groups**:  `https://<k8s-apiserver>/apis/<group>/v1` 형태로, Core Group 외의 기능을 추가하거나 확장하기 위해 사용
+  - Named API Groups에는 **apps** (`/apis/apps/v1`): Deployment, StatefulSet, DaemonSet, ReplicaSet / **batch** (`/apis/batch/v1`): Job, CronJob / **autoscaling** (`/apis/autoscaling/v1`): HorizontalPodAutoscaler (HPA) / **networking.k8s.io** (`/apis/networking.k8s.io/v1`): Ingress, NetworkPolicy / **rbac.authorization.k8s.io** (`/apis/rbac.authorization.k8s.io/v1`): Role, ClusterRole, RoleBinding, ClusterRoleBinding 등 존재
+- Authorization mode: Node, ABAC, RBAC, Webhook, AlwaysAllow, AlwaysDeny가 존재
+- **RBAC** (Role-Based Access Control)
+  - Role을 먼저 생성하고, RoleBinding 통해 유저를 Role에 연결하는 방식
+  - **Namespaced**: **roles, rolebindings**, pods, replicasets, jobs, deployments, serviced, secrets, configmaps, PVC
+  - **Cluster Scoped**: **clusterroles**, **cluterrolebindings**, nodes, PV, namespaces
+- Accounts
+  - User account: 실제 사람이 사용하는 계정 (admin, developer, ...)
+  - **Service account**: 머신이 사용하는 계정  (prometheus, jenkins, ...)
+- **Network Policy**
+  - 기본적으로 Kubernetes에서는 모든 pod 간의 네트워크 트래픽이 허용. Network Policy를 사용하면 특정 pod에 대한 트래픽 허용/차단 규칙을 정의 가능
+  - `podSelector`: 정책이 적용될 pod를 선택
+  - `policyTypes`: 정책의 유형, ingress, egress 또는 둘 다 설정 가능
+  - `ingress`: 들어오는 트래픽 규칙 정의
+  - `egress`: 나가는 트래픽 규칙 정의
+  - `rules`: 트래픽을 허용할 조건을 정의, `from`, `to`, `ports` 기입
 
-- API Groups
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mixed-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend
+      ports:
+        - protocol: TCP
+          port: 8080
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 172.16.0.0/12
+      ports:
+        - protocol: TCP
+          port: 3306
 
-- Authorization
-
-- Role
-
-- Network Policy
+```
 
 ##### Storage
 
-- Persistent Volumes
+| 스토리지 유형               | 설명                                                         | 사용 사례                                |
+| --------------------------- | ------------------------------------------------------------ | ---------------------------------------- |
+| EmptyDir                    | Pod 라이프사이클 동안 유지. Pod이 삭제되거나 재시작되면 데이터 소멸 | 캐시, 임시 파일 저장                     |
+| HostPath                    | 노드 파일 시스템 경로 사용. 노드와 강하게 결합되어 Pod의 이동성이 제한됨 | 디버깅, 로그 저장                        |
+| PersistentVolume (PV)       | 클러스터 관리자에 의해 관리. 클러스터 외부의 실제 스토리지를 Kubernetes 리소스로 추상화 | 지속적 데이터 저장, 스토리지 백엔드 연결 |
+| PersistentVolumeClaim (PVC) | 애플리케이션이 PV를 요청할 때 사용하는 리소스. 요청 스토리지 크기 및 액세스 모드를 지정 | 애플리케이션-스토리지 연결               |
+| StorageClass                | PV를 동적으로 프로비저닝하기 위한 템플릿 역할. 관리자 설정에 따라 PV를 자동으로 생성하며 `reclaimPolicy`(삭제, 보존 등) 설정 가능 | 다양한 백엔드 스토리지 지원              |
 
-- Persistent Volume Claims
+- PV로 사용 가능한 볼륨 유형: HostPath, NFS (Network File System), AWS EBS (Elastic Block Store), GCE Persistent Disk (PD), CSI (Container Storage Interface) 등
+- Static Provisioning: 클러스터 관리자가 직접 PersistentVolume(PV)을 생성하고 구성한 다음, 이를 애플리케이션에서 PersistentVolumeClaim(PVC)으로 요청하여 사용하는 방식
+- Dynamic Provisioning: PVC가 생성될 때 Kubernetes가 자동으로 적합한 PersistentVolume(PV)을 프로비저닝하는 방식. **StorageClass**를 사용하여 동작하며, 사용자는 스토리지 유형, 크기, 접근 모드만 지정하면 됨
 
-##### Networking
+```yaml
+# PersistentVolume 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-example
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /nfs/share
+    server: 192.168.1.1
+```
 
-- Pod Networking
+```yaml
+# PersistentVolumeClaim 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-example
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+```
 
-- Cluster Networking
+```yaml
+# PVC와 PV 연결:
+volumes:
+- name: persistent-storage
+  persistentVolumeClaim:
+    claimName: pvc-example
+```
 
-- CNI
+##### Network
 
-- IP Address Management - Weave
+- **Ingress**: 클러스터 외부에서 내부 서비스로 HTTP 및 HTTPS 트래픽을 라우팅하는 Kubernetes 리소스
+  - `ingressClassName`: NGINX와 같은 Ingress Controller를 지정
+  - `tls`: TLS를 설정하고 example.com에 대한 HTTPS 지원을 활성화. `secretName`은 TLS 인증서가 저장된 Kubernetes Secret의 이름
+  - `rules`: 호스트(example.com)와 경로(/)를 정의하여 트래픽을 example-service로 전달
+  - `nginx.ingress.kubernetes.io/rewrite-target`: 트래픽을 특정 경로로 리다이렉트
+  - `nginx.ingress.kubernetes.io/ssl-redirect`: HTTP를 HTTPS로 강제 리다이렉트
 
-- Service Networking
-
-- DNS
-
-- CoreDNS
-
-- Ingress
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" # HTTP를 HTTPS로 리다이렉트
+spec:
+  ingressClassName: nginx # 사용하는 Ingress Controller
+  tls:
+  - hosts:
+    - example.com
+    secretName: example-tls-secret # TLS 인증서
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-service
+            port:
+              number: 80
+```
 
 ##### ETC.
 
-- Kubeadm
+- Probe: 컨테이너에서 kubelet에 의해 주기적으로 수행되는 진단
+  - **Liveness Probe**: 컨테이너가 "정상적으로 실행 중"인지 확인. 애플리케이션이 교착 상태(deadlock)에 빠질 가능성이 있을 때 활용 가능. 장기 실행 프로세스에서 특정 조건이 충족되지 않으면 복구가 필요한 경우 활용 가능
+    
+  - **Readiness Probe**: 컨테이너가 "트래픽을 처리할 준비"가 되었는지 확인. 애플리케이션 초기화(예: 데이터 로드)가 완료된 후 트래픽을 받도록 설정할 때 활용 가능. 외부 서비스(예: DB 연결)가 준비될 때까지 트래픽을 차단하고 싶을 때 활용 가능
+    
+  - **Startup Probe**: 애플리케이션의 "초기화 완료 여부"를 확인. 컨테이너가 처음 시작될 때만 사용되며, 초기화 시간에 따라 Liveness Probe보다 더 긴 대기 시간이 허용 (e.g., Triton Inference Server). 초기화 시간이 긴 애플리케이션(예: 복잡한 데이터 초기화 작업)이 있는 경우 활용 가능. 기존 Liveness Probe가 너무 일찍 실패를 반환해 컨테이너가 재시작되는 것을 방지하고 싶을 때 활용 가능
 
-- Trouble Shooting
-  - Application Failure
-  - Control Plane Failure
-  - Worker Node Failure
-  - Network Troubleshooting
 
 ### Helm
 
