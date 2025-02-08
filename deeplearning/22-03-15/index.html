@@ -669,6 +669,40 @@
 <ul>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://www.cs.toronto.edu/~hinton/FFA13.pdf">Geoffrey Hinton. "The Forward-Forward Algorithm: Some Preliminary Investigations." (2022).</a></li>
 </ul>
+<h3 id="image-editing" style="position:relative;"><a href="#image-editing" aria-label="image editing permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Image Editing</h3>
+<ul>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2403.18818">Winter, Daniel, et al. "Objectdrop: Bootstrapping counterfactuals for photorealistic object removal and insertion." ECCV 2024.</a></p>
+<ul>
+<li>잘 큐레이션된 counterfactual 데이터셋에 대해 diffusion 모델을 학습</li>
+<li>Removal: 장면을 찍고, object를 제거해서 장면을 다시 찍은 데이터 셋 (couterfactual supervised training)</li>
+<li>Insertion: 합성 데이터셋 사용 (bootstrap supervision)</li>
+<li>Object removal model을 학습</li>
+<li>Removal model을 통해 방대한 합성 데이터셋 생성</li>
+<li>이 데이터셋을 통해 diffusion model을 튜닝</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2409.11340">Xiao, Shitao, et al. "Omnigen: Unified image generation." arXiv preprint arXiv:2409.11340 (2024).</a></p>
+<ul>
+<li><strong>Unification:</strong> txt2img, image editing, subject-driven generation, visual-conditional generation 등이 하나의 모델에서 모두 가능</li>
+<li><strong>Simplicity:</strong> 단순한 구조로 텍스트 인코더가 필요하지 않음. VAE와 Transformer 만 존재</li>
+<li>LLaVa와 비슷하게, image는 vae encoder로 뽑은 patch embedding을, text는 text tokens으로 받고, timestep과 noise도 전부 token 형태로 만들어서 이 모두를 transformer의 입력으로 전달받음</li>
+<li>최종적으로는 noise token의 출력만 취해서, 이를 decoder에 태움 </li>
+<li><strong>Knowledge Transfer:</strong> 여러 task에 대해 통합된 형태로 학습</li>
+<li>여러 task를 통합적으로 학습 가능한 데이터셋 X2I(anything to image)를 구축하여 공유</li>
+</ul>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" disabled> <a href="https://arxiv.org/abs/2411.14430">Avrahami, Omri, et al. "Stable Flow: Vital Layers for Training-Free Image Editing." arXiv preprint arXiv:2411.14430 (2024).</a></p>
+<ul>
+<li>Flow matching을 활용하는 DiT 모델 구조를 분석하여 vital layers(핵심 레이어)를 자동으로 식별하고 이를 활용하여 훈련 없이 다양한 이미지 편집 작업을 수행하는 방법 고안</li>
+<li><strong>Measuring the Importance of DiT Layers</strong>: DiT 구조에서 각 레이어를 제거했을 때 이미지 품질이 어떻게 변화하는지 분석하고, vital layers 탐색. Vital layers에만 편집 정보를 주입함으로써 보다 안정적인 편집 가능</li>
+<li><strong>Image Editing using Vital Layers</strong>: Vital layers의 attention 정보를 새로운 편집 이미지에 삽입하여 변화된 부분만 조정. 다양한 편집을 동일한 방식으로 수행 가능.</li>
+<li><strong>Latent Nudging for Real Image Editing</strong>: 기존의 Inverse Euler ODE solver를 적용했을 때, 원본 이미지와 차이가 발생하는 문제 발생. 이를 해결하기 위해 latent nudging 기법을 적용하여 편집 시 원본 이미지의 보존율을 향상</li>
+</ul>
+</li>
+</ul>
 <h3 id="technical-report" style="position:relative;"><a href="#technical-report" aria-label="technical report permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Technical Report</h3>
 <ul>
 <li class="task-list-item"><input type="checkbox" disabled> <a href="https://arxiv.org/pdf/2105.07576.pdf">Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.</a></li>
