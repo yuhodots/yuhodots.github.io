@@ -37,6 +37,9 @@ category: "about"
 ### Experience
 
 - ML Engineer at [Devsisters](https://www.devsisters.com/en) (2024.10 ~ current)
+  - Designed, fine-tuned, and researched generative models, including those for image editing tasks
+  - Implemented image data captioning using VLMs to enhance dataset quality and usability
+  - Built and optimized a deployment pipeline to integrate AI models into production services, ensuring scalability and reliability
 - AI Engineer at [Nuvilab Inc.](https://www.nuvilab.com) (2023.02 ~ 2024.10)
   - Developed AI models for instance segmentation and zero-shot classification tasks, improving AP by 0.13 and AR by 0.12 for segmentation, and achieving a 10% performance increase for zero-shot classification
   - Deployed and operated AI microservices using NVIDIA Triton, VectorDB, GitHub Actions, Gitflow, and ArgoCD

@@ -436,6 +436,34 @@ category: "Deep Learning"
 
 - [ ] [Geoffrey Hinton. "The Forward-Forward Algorithm: Some Preliminary Investigations." (2022).](https://www.cs.toronto.edu/~hinton/FFA13.pdf)
 
+### Image Editing
+
+- [ ] [Winter, Daniel, et al. "Objectdrop: Bootstrapping counterfactuals for photorealistic object removal and insertion." ECCV 2024.](https://arxiv.org/abs/2403.18818)
+
+  - 잘 큐레이션된 counterfactual 데이터셋에 대해 diffusion 모델을 학습
+  - Removal: 장면을 찍고, object를 제거해서 장면을 다시 찍은 데이터 셋 (couterfactual supervised training)
+  - Insertion: 합성 데이터셋 사용 (bootstrap supervision)
+    1. Object removal model을 학습
+    2. Removal model을 통해 방대한 합성 데이터셋 생성
+    3. 이 데이터셋을 통해 diffusion model을 튜닝
+
+- [ ] [Xiao, Shitao, et al. "Omnigen: Unified image generation." arXiv preprint arXiv:2409.11340 (2024).](https://arxiv.org/abs/2409.11340)
+
+  - **Unification:** txt2img, image editing, subject-driven generation, visual-conditional generation 등이 하나의 모델에서 모두 가능
+  - **Simplicity:** 단순한 구조로 텍스트 인코더가 필요하지 않음. VAE와 Transformer 만 존재
+    - LLaVa와 비슷하게, image는 vae encoder로 뽑은 patch embedding을, text는 text tokens으로 받고, timestep과 noise도 전부 token 형태로 만들어서 이 모두를 transformer의 입력으로 전달받음
+    - 최종적으로는 noise token의 출력만 취해서, 이를 decoder에 태움 
+  - **Knowledge Transfer:** 여러 task에 대해 통합된 형태로 학습
+  - 여러 task를 통합적으로 학습 가능한 데이터셋 X2I(anything to image)를 구축하여 공유
+
+- [ ] [Avrahami, Omri, et al. "Stable Flow: Vital Layers for Training-Free Image Editing." arXiv preprint arXiv:2411.14430 (2024).](https://arxiv.org/abs/2411.14430)
+
+  - Flow matching을 활용하는 DiT 모델 구조를 분석하여 vital layers(핵심 레이어)를 자동으로 식별하고 이를 활용하여 훈련 없이 다양한 이미지 편집 작업을 수행하는 방법 고안
+
+  - **Measuring the Importance of DiT Layers**: DiT 구조에서 각 레이어를 제거했을 때 이미지 품질이 어떻게 변화하는지 분석하고, vital layers 탐색. Vital layers에만 편집 정보를 주입함으로써 보다 안정적인 편집 가능
+  - **Image Editing using Vital Layers**: Vital layers의 attention 정보를 새로운 편집 이미지에 삽입하여 변화된 부분만 조정. 다양한 편집을 동일한 방식으로 수행 가능.
+  - **Latent Nudging for Real Image Editing**: 기존의 Inverse Euler ODE solver를 적용했을 때, 원본 이미지와 차이가 발생하는 문제 발생. 이를 해결하기 위해 latent nudging 기법을 적용하여 편집 시 원본 이미지의 보존율을 향상
+
 ### Technical Report
 
 - [ ] [Wu, Yuxin, and Justin Johnson. "Rethinking" Batch" in BatchNorm." arXiv preprint arXiv:2105.07576, 2021.](https://arxiv.org/pdf/2105.07576.pdf)
