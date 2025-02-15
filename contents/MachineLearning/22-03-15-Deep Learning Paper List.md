@@ -447,7 +447,7 @@ category: "Deep Learning"
     2. Removal model을 통해 방대한 합성 데이터셋 생성
     3. 이 데이터셋을 통해 diffusion model을 튜닝
 
-- [ ] [Xiao, Shitao, et al. "Omnigen: Unified image generation." arXiv preprint arXiv:2409.11340 (2024).](https://arxiv.org/abs/2409.11340)
+- [x] [Xiao, Shitao, et al. "Omnigen: Unified image generation." arXiv preprint arXiv:2409.11340 (2024).](https://arxiv.org/abs/2409.11340)
 
   - **Unification:** txt2img, image editing, subject-driven generation, visual-conditional generation 등이 하나의 모델에서 모두 가능
   - **Simplicity:** 단순한 구조로 텍스트 인코더가 필요하지 않음. VAE와 Transformer 만 존재
@@ -463,6 +463,31 @@ category: "Deep Learning"
   - **Measuring the Importance of DiT Layers**: DiT 구조에서 각 레이어를 제거했을 때 이미지 품질이 어떻게 변화하는지 분석하고, vital layers 탐색. Vital layers에만 편집 정보를 주입함으로써 보다 안정적인 편집 가능
   - **Image Editing using Vital Layers**: Vital layers의 attention 정보를 새로운 편집 이미지에 삽입하여 변화된 부분만 조정. 다양한 편집을 동일한 방식으로 수행 가능.
   - **Latent Nudging for Real Image Editing**: 기존의 Inverse Euler ODE solver를 적용했을 때, 원본 이미지와 차이가 발생하는 문제 발생. 이를 해결하기 위해 latent nudging 기법을 적용하여 편집 시 원본 이미지의 보존율을 향상
+  
+- [x] Mao, Chaojie, et al. "Ace++: Instruction-based image creation and editing via context-aware content filling." arXiv preprint arXiv:2501.02487 (2025)
+
+  - Instruction based diffusion framework를 제안
+
+  - ACE에서 제안한 LCU 활용하여 input을 정의하나, 더 효율 좋은 channel-wise feature concat 방식으로 수정한 **LCU++**를 제안하여 활용
+
+  - **All-around model**: 0-ref text-to-image task 학습 후, ACE 논문에서 제안한 데이터 전체 활용해서 학습 (0-ref + N-ref)
+
+  - **Task-sepcific model**: Flux.1-Fill-dev를 시작점으로 활용하여 LoRA fine-tuning
+
+  - 0-ref task: $\mathbf{L C U}_{0-\mathrm{ref}}^{++}=\left\{\{T\},\left\{V^{++}\right\}\right\}, \quad V_{0 \text {-ref }}^{++}=\left\{\left[I^{i n} ; M^{i n} ; X_t\right]\right\}$
+
+  - General task. 아래에서 $I^N$은 우리가 변형하고자하는 샘플 (edit image)
+    $$
+    \begin{aligned}
+    \mathrm{LCU}^{++} & =\left\{\left\{T_1, T_2, \ldots, T_m\right\},\left\{V_1^{++}, V_2^{++}, \ldots, V_m^{++}\right\}\right\} \\
+    V^{++} & \left.=\left\{I^1 ; M^1 ; X_t^1\right],\left[I^2 ; M^2 ; X_t^2\right], \ldots,\left[I^N ; M^N ; X_t^N\right]\right\}
+    \end{aligned}
+    $$
+
+  - **Loss**: 변형하고자 하는 샘플 $I^N$이라 할 때, $\sum_{N-1}^{i=0} \mathbb{E}_{t, \mathbf{x}_0, \mathbf{x}_1}\left\|\mathbf{v}_t^i-\mathbf{u}_t^i\right\|^2+\mathbb{E}_{t, \mathbf{x}_0, \mathbf{x}_1}\left\|\mathbf{v}_t^N-\mathbf{u}_t^N\right\|^2$
+
+    - Reference image에 대해서는 원본 복구를 하는 방향으로 velocity prediction
+    - Target image에 대해서는 잘 예측해서 생성해내는 방향으로 velocity prediction 
 
 ### Technical Report
 
