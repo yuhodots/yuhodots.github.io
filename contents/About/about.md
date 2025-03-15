@@ -14,7 +14,7 @@ category: "about"
 
 저는 대학원에서 `Meta-Learning`, `Continual Learning`, `Open-World Learning`과 같이, 한정된 데이터를 사용한 학습을 통해 그 외의 데이터까지 일반화가 가능한 알고리즘들에 대해 연구했습니다. 이 과정에서 real-world에 AI 기술을 서비스할 때 겪을 수 있는 문제 상황들과 한계점, 그리고 이를 극복할 수 있는 방법에 대해서 자주 고민하곤 했습니다. 이런 경험을 바탕으로 현재는 산업계에서 실제 서비스를 위한 AI 기술을 개발하고 있습니다.
 
-문제 정의를 중요하게 여기고, 문제 상황에 대한 해결 방법을 모델링에 한정짓지 않고 다양한 지점에서 찾으려 노력하고 있습니다. 연구적 성과에서 그치는 것이 아니라 실제로 세상에 영향을 줄 수 있는 기술들에 관심이 많아, 최근에는 AI 파이프라인 설계에 개인적으로 관심을 가지고 공부하고 있습니다. 궁금한 점이나 조언해주실 내용에 대해, 이메일, 블로그, SNS를 통해 연락주시는 것은 언제든지 환영합니다.
+문제 정의를 중요하게 여기고, 문제 상황에 대한 해결 방법을 모델링에 한정짓지 않고 다양한 지점에서 찾으려 노력하고 있습니다. 연구적 성과에서 그치는 것이 아니라 실제로 세상에 영향을 줄 수 있는 기술들에 관심이 많으며, 여러 AI 파이프라인 설계에 관심을 가지고 공부하고 있습니다. 궁금한 점이나 조언해주실 내용에 대해, 이메일이나 LinkedIn을 통해 연락주시는 것은 언제든지 환영합니다.
 
 ---
 
@@ -22,7 +22,6 @@ category: "about"
 
 - Email: yuho8437@gmail.com
 - LinkedIn: https://www.linkedin.com/in/yuho-jeong-b9423a19b/
-- SNS: https://www.instagram.com/im.uho/
 
 ### Education
 
@@ -37,18 +36,21 @@ category: "about"
 ### Experience
 
 - ML Engineer at [Devsisters](https://www.devsisters.com/en) (2024.10 ~ current)
-  - Designed, fine-tuned, and researched generative models, including those for image editing tasks
-  - Implemented image data captioning using VLMs to enhance dataset quality and usability
-  - Built and optimized a deployment pipeline to integrate AI models into production services, ensuring scalability and reliability
+  - Research topics: *Image Captioning, Multi-Modal to Image Generation (Image Editing), Generative Models, MLOps, LLM, Retrieval-Augmented Generation, etc.*
+  - Researched, fine-tuned, and developed generative models, focusing on image editing tasks.
+  - Improved dataset quality and usability by implementing image captioning with VLMs.
+  - Designed and optimized a deployment pipeline to seamlessly integrate AI models into production, ensuring scalability and reliability.
 - AI Engineer at [Nuvilab Inc.](https://www.nuvilab.com) (2023.02 ~ 2024.10)
+  - Research topics: *Active Learning, Outlier Detection, Data Labeling Pipeline, MLOps, Multi-Modal Learning, Instance Segmentation, and Object Detection.*
   - Developed AI models for instance segmentation and zero-shot classification tasks, improving AP by 0.13 and AR by 0.12 for segmentation, and achieving a 10% performance increase for zero-shot classification
   - Deployed and operated AI microservices using NVIDIA Triton, VectorDB, GitHub Actions, Gitflow, and ArgoCD
   - Designed a data pipeline using active learning to address class-imbalance in fine-grained datasets, reducing labeling costs by 50% compared to previous methods
   - Built an outlier detection pipeline and an AI service performance monitoring system, reducing 40% outlier data to enhance service quality
   - Developed a data engine with semi-automated labeling capabilities for mask annotations
-  - Designed and trained dense prediction models with limited data samples (e.g., hospital foods)
+  - Designed and trained dense prediction models with limited data samples (e.g., hospital foods) [[link](https://medium.com/nuvilab/alexandra-hospital-track-patient-nutrition-intake-733f78209203)]
   - Performed various data engineering tasks, including batch data processing, with Apache Airflow
   - Developed both front-end and back-end components for customizing a data annotation tool
+  
 - Language AI Internship at Semantic Knowledge Team, [NAVER Corp.](https://www.navercorp.com) (2021.12 ~ 2022.03)
   - Developed a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
   - Analyzed existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
