@@ -16,6 +16,7 @@ import airflow from "./airflow.png"
 import python from "./python.png"
 import k8s from "./k8s.png"
 import flutter from "./flutter.png"
+import supabase from "./supabase.png"
 
 export default {
     aws,
@@ -35,5 +36,6 @@ export default {
     airflow,
     python,
     k8s,
-    flutter
+    flutter,
+    supabase,
 };

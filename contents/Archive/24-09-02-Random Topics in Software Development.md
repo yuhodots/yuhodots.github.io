@@ -101,8 +101,18 @@ loguru 기준으로 살펴본 log level은 아래와 같습니다.
 
 Sentry는 애플리케이션의 오류 추적 및 성능 모니터링을 제공하는 오픈 소스 플랫폼입니다. Sentry를 통해 애플리케이션에서 발생하는 오류와 성능 문제를 실시간으로 감지하고 분석할 수 있습니다. 
 
-- Source Map: 배포 환경에서도 에러가 난 소스 코드 위치를 상세하게 파악 가능하게 시각화
-- Breadcrumbs: 애플리케이션에서 발생한 중요한 사건(로그, 사용자 액션, 시스템 이벤트 등)을 기록하는 기능. 오류가 발생하기 전과 후의 이벤트를 기록함으로써, 개발자는 문제의 원인을 추적할 수 있게 도움
+- 에러 추적 (Error Tracking): 코드에서 발생한 예외(Exception)를 실시간으로 수집하여 대시보드에 표시. 에러의 stack trace, 환경 정보, 사용자 정보 등을 자동 수집
+- 릴리즈 헬스 모니터링 (Release Health): 특정 릴리즈 버전에서 발생한 이슈나 성능 저하를 추적. 각 릴리즈에 대한 crash-free rate, adoption rate 등 확인 가능
+- 성능 모니터링 (Performance Monitoring): 트랜잭션 별 응답 시간, 쿼리 지연, API 요청 병목 등 추적. APM(Application Performance Monitoring) 수준의 기능 제공
+- 알림 시스템: 슬랙, 이메일, MS Teams, Discord 등과 연동해 알림 전송 가능. 특정 조건(예: 동일 에러 반복, 특정 사용자 발생)에 따른 알림 설정
+- 이슈 그룹핑 및 자동화: 같은 종류의 에러를 하나의 이슈로 묶어서 관리. 특정 이슈에 태그 지정, 우선순위 설정, 담당자 할당 가능
+
+예를 들어 웹사이트에서 사용자가 버튼을 클릭했을 때 JS 오류가 발생하면:
+
+1. 에러가 Sentry SDK를 통해 자동으로 전송됨
+2. 대시보드에서 해당 오류의 경로, 환경, 사용자 ID 등 확인
+3. 슬랙으로 에러 발생 알림 수신
+4. 특정 커밋과 연결해 어떤 코드 변경이 문제를 일으켰는지도 추적 가능
 
 ### Data Libraries
 
@@ -291,6 +301,55 @@ GIL로 인해 Python의 스레드는 한 번에 하나의 스레드만 Python �
 
 Asyncio는 비동기 프로그래밍을 가능하게 해주는 Python의 라이브러리입니다. 한 번에 하나의 작업을 처리하는 대신, 작업을 잠깐 멈추고(예: I/O 대기) 그 시간 동안 다른 작업을 처리하는 방식입니다. Asyncio는 GIL에 크게 영향을 받지 않으며, 주로 I/O-bound 작업에 적합합니다. 웹 서버, 네트워크 서버, 비동기 파일 처리 등에서 자주 사용됩니다. Asyncio는 일반적으로 단일 스레드에서 작동하며, 많은 수의 작업을 효율적으로 스케줄링하지만, CPU-bound 작업에서는 Multi-Processing만큼 강력하지 않습니다.
 
+### Database
+
+##### CoackroachDB
+
+CockroachDB는 **분산 SQL 데이터베이스**로, 수평 확장성, 자동 복제 및 복구, 그리고 강한 일관성(strong consistency)을 특징으로 함. 이름에서 알 수 있듯이, Cockroach처럼 쉽게 죽지 않는(disaster resilient) 시스템을 목표로 만들어졌음. Google의 Spanner에서 영감을 받아 개발되었고, Go 언어로 작성되었음
+
+- 분산 SQL: 전통적인 RDBMS처럼 SQL을 사용하지만, 데이터는 여러 노드에 분산되어 저장. PostgreSQL wire protocol을 사용해서 PostgreSQL 클라이언트나 ORM과 호환
+- 강한 일관성: Raft consensus 알고리즘을 사용하여 노드 간의 복제본(replica) 간에 강한 일관성을 유지. 읽기/쓰기 모두 일관성이 보장되어, 분산 환경에서도 데이터 정합성을 보장
+- 자동 샤딩(Auto-Sharding): 데이터는 자동으로 range 단위로 쪼개져 여러 노드에 분산. 특정 range가 커지면 자동으로 분할
+- 복제 및 장애 복구: 각 range는 기본적으로 3개 이상의 replica를 가지며, 다수결(majority)로 결정. 특정 노드가 장애가 나도 나머지 노드로 자동 복구가 가능
+- Geo-Distribution 지원: 여러 지역에 걸친 배포가 가능하고, 지역 기반 레이턴시 최적화나 데이터 지역성(geo-partitioning) 기능도 제공
+
+위와 같은 특징 때문에 고가용성과 복원력이 중요한 시스템 (예: 금융, 게임, 헬스케어) / 멀티 리전 또는 멀티 데이터센터 환경이 필요한 경우 / 기존 RDBMS의 SQL 기능을 유지하면서 분산 시스템의 이점을 누리고 싶은 경우에 사용 가능
+
+```
++----------------+
+|    SQL Layer   |   <- PostgreSQL 호환 SQL 인터페이스
++----------------+
++-------------------+
+| Transaction Layer |   <- 분산 트랜잭션, 강한 일관성 (Raft + MVCC)
++-------------------+
++-----------------------+
+|  Distributed KV Layer |  <- Range 분할, 자동 샤딩, 복제 관리
++-----------------------+
++----------------------+
+|     Storage Layer    |  <- RocksDB 기반 로컬 스토리지
++----------------------+
+```
+
+##### DuckDB
+
+OLAP(Online Analytical Processing)에 최적화된 경량 컬럼 지향 데이터베이스. 주로 분석 쿼리를 빠르게 처리하는 데 사용되며, 다음과 같은 특징이 있음
+
+- 컬럼 지향 저장 (Columnar Storage): 각 컬럼을 별도로 저장하여, 필요한 컬럼만 읽을 수 있음. 대용량 데이터에서 분석 쿼리 속도가 빠름. `SELECT avg(salary) FROM employees` 같은 쿼리에 유리
+- 임베디드 데이터베이스: SQLite처럼 라이브러리로 직접 애플리케이션에 임베딩 가능 (서버 없이도 실행 가능). Python, C++, R 등 다양한 언어에서 import 해서 바로 사용 가능
+- 인메모리 + 디스크 저장: 메모리에서 빠르게 연산하되, 필요한 경우 디스크에 저장하거나 읽어오는 하이브리드 모델
+- Parquet, CSV 등 다양한 포맷 지원: 특히 Parquet과의 연동이 좋아서, 데이터를 굳이 DuckDB로 import하지 않고도 바로 쿼리 가능
+- Vectorized Execution Engine: SIMD 등을 활용해 다수의 값을 한 번에 처리 → 매우 빠른 쿼리 성능
+- 멀티스레드 지원: 쿼리를 병렬로 실행해서 더 빠르게 처리
+
+| 특징           | DuckDB     | SQLite    | Postgres  | BigQuery   |
+| -------------- | ---------- | --------- | --------- | ---------- |
+| 저장 구조      | Columnar   | Row       | Row       | Columnar   |
+| 실행 엔진      | Vectorized | Row-based | Row-based | Vectorized |
+| 분석 쿼리 성능 | 매우 빠름  | 느림      | 보통      | 매우 빠름  |
+| 설치 및 실행   | 매우 간단  | 매우 간단 | 복잡      | 클라우드   |
+| 서버 필요      | 없음       | 없음      | 있음      | 있음       |
+| 병렬 처리      | 있음       | 없음      | 있음      | 있음       |
+
 ### Message Broker
 
 ##### RabbitMQ
@@ -363,4 +422,15 @@ ArgoCD는 Kubernetes 환경에서 GitOps 방식으로 애플리케이션 배포 
 - Dex: 인증 서비스로, ArgoCD는 외부 인증 시스템(Google, GitHub, LDAP 등)과 통합하여 사용자 인증 및 권한을 관리
 
 롤백이 필요한 경우엔 ArgoCD UI에서 배포된 애플리케이션의 상태를 확인하고, 특정 히스토리(배포 이력)를 선택하여 해당 버전으로 롤백할 수 있습니다.
+
+### Supabase
+
+Supabase는 오픈소스 백엔드 서비스 플랫폼(BaaS, Backend as a Service)으로, Firebase의 오픈소스 대안으로 자주 언급됩니다. Supabase는 특히 PostgreSQL을 기반으로 하며, 빠르게 현대적인 웹·모바일 앱의 백엔드를 구축할 수 있도록 도와줍니다. 주요 구성 요소는 아래와 같습니다.
+
+- PostgreSQL: 강력한 관계형 데이터베이스, 확장성과 정합성 제공
+- Realtime: 데이터베이스의 변화 사항을 실시간으로 스트리밍
+- Authentication: OAuth, email/password, magic link 등을 통한 인증
+- Storage: 파일 스토리지 (이미지, 동영상 등) 지원
+- Edge Functions: 서버리스 함수, Vercel의 Edge Functions처럼 사용 가능
+- 자동 API 생성: 데이터베이스 스키마를 기반으로 RESTful + GraphQL API 자동 생성
 
