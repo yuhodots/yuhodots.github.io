@@ -113,6 +113,8 @@ Inference stage에서는 image prompt의 강도를 조절 가능합니다.
 $$
 \mathbf{Z}^{\text {new }}=\operatorname{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V})+\lambda \cdot \operatorname{Attention}\left(\mathbf{Q}, \mathbf{K}^{\prime}, \mathbf{V}^{\prime}\right)
 $$
+IP-Adapter의 학습 로직은 추론 로직과는 조금 다릅니다. 비록 추론시에는 레퍼런스 이미지를 넣는 방식으로 동작하지만, 학습시에는 따로 레퍼런스 이미지를 새로 만들지는 않고, **기존의 (텍스트, 이미지) 페어를 그대로 사용**하여, **IP-Adapter의 입력 값으로 이미지를 주고, 해당 이미지를 그대로 잘 복원하는 것을 목표**로 합니다.
+
 IP-Adapter는 특정 포즈를 자유롭게 정의하면서 전반적인 색상 구성과 스타일을 잡아내는 데 유용한데 반해, ControlNet은 특정 포즈를 강제하는 데 적합합니다. 따라서 IP-Adapter와 ControlNet을 함께 사용하면 아래 예시처럼 세부적인 이미지 디테일이나 스타일을 보존하면서도 구조적 특징도 제어 가능합니다 (ex. ControlNet으로 구도를 설정한 뒤, IP-Adapter로 스타일을 세부적으로 조정).
 
 ![img](../img/25-01-28-5.png)
@@ -120,6 +122,23 @@ IP-Adapter는 특정 포즈를 자유롭게 정의하면서 전반적인 색상 
 IP-Adapter와 관련된 좋은 실습 예시 자료가 있어 아래에 공유합니다.
 
 - https://www.internetmap.kr/entry/IP-Adapter-too-many
+
+만약에 (1) 특정 레퍼런스 이미지의 특징을 반영하면서, (2) 특정 구조/형태로 제어한, 특정 스타일의 이미지를 생성하고 싶다면, **IP-Adapter를 통해 레퍼런스 이미지의 특징을 반영**하고, **ControlNet으로 구조를 제어**하면서, **원하는 스타일로 학습된 LoRA를 적용**해볼 수 있습니다. 
+
+하지만 단순 IP-Adapter는 때로 세부 스타일이나 레퍼런스 이미지의 디테일이 결과 이미지에 충분히 반영되지 않는 경우가 자주 있습니다. 따라서 이런 경우에는 IP-Adapter Plus를 사용해볼 수 있습니다. 
+
+### IP-Adapter Plus
+
+IP-Adapter Plus는 IP-Adapter의 확장 버전으로, 레퍼런스 이미지의 세부적인 스타일과 레이아웃을 더 정밀하게 반영하는 모델입니다. 해당 모델은 별도 논문이 존재하는 것은 아니고 동일한 저자들이 논문을 업데이트하면서 새로 추가한 모델입니다.
+
+단순한 이미지 개념 뿐만 아니라 세밀한 디테일까지 반영할 수 있어서, IP-Adapter를 활용해보실 생각이 있으시다면 IP-Adapter Plus 또한 함께 테스트 해보시는 것을 추천드립니다.
+
+IP-Adapter Plus가 IP-Adapter에 비해 디테일을 잘 반영할 수 있는 원리는 다음과 같습니다.
+
+1. Global embedding (cls token)과 local patch embedding을 모두 추출합니다. (기존 IP-Adapter는 global embedding만 사용)
+2. 이를 IP-Adapter의 MLP에 통과시켜 이를 가공하고, 가공된 벡터를 cross-attention으로 전달합니다.
+
+즉, IP-Adapter는 이미지 전체를 대표하는 축약벡터 하나만을 사용하는 것에 비해, IP-Adapter Plus는 이미지의 각 patch별 local vector까지 모두 사용하기 때문에 더 디테일하고 세밀한 이미지 정보를 반영 가능합니다.
 
 ### InstantID
 
