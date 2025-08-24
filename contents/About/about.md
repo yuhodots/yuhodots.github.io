@@ -37,9 +37,12 @@ category: "about"
 
 - ML Engineer at [Devsisters](https://www.devsisters.com/en) (2024.10 ~ current)
   - Research topics: *Image Captioning, Multi-Modal to Image Generation (Image Editing), Generative Models, MLOps, LLM, Retrieval-Augmented Generation, etc.*
-  - Researched, fine-tuned, and developed generative models, focusing on image editing tasks.
-  - Improved dataset quality and usability by implementing image captioning with VLMs.
-  - Designed and optimized a deployment pipeline to seamlessly integrate AI models into production, ensuring scalability and reliability.
+  - Researched and developed an auto-labeling pipeline for art resources w. VLMs, and designed augmentation, pre-processing, and post-processing pipeline to enhance data quality.
+  - Built an unified art resource management tool for searching, organizing, and constructing datasets from various game studuios.
+  - Developed a full-stack AI art generation WebUI enabling rapid prototyping of game asset ideas.
+  - Developed image generation models tailored for game domain needs, including Text-to-Image, Image-to-Image, Sketch-to-Image, etc.
+  - Researched and fine-tuned generative models for image editing tasks (e.g., facial expression and skin editing), achieving performance surpassing Gemini Flash 2.5 and gpt-image-1 on specific domain.
+  - Developed LLM workflow for internal business process optimization, including evaluation, tracing, and MLOps for LLM-based systems.
 - AI Engineer at [Nuvilab Inc.](https://www.nuvilab.com) (2023.02 ~ 2024.10)
   - Research topics: *Active Learning, Outlier Detection, Data Labeling Pipeline, MLOps, Multi-Modal Learning, Instance Segmentation, and Object Detection.*
   - Developed AI models for instance segmentation and zero-shot classification tasks, improving AP by 0.13 and AR by 0.12 for segmentation, and achieving a 10% performance increase for zero-shot classification
@@ -50,7 +53,6 @@ category: "about"
   - Designed and trained dense prediction models with limited data samples (e.g., hospital foods) [[link](https://medium.com/nuvilab/alexandra-hospital-track-patient-nutrition-intake-733f78209203)]
   - Performed various data engineering tasks, including batch data processing, with Apache Airflow
   - Developed both front-end and back-end components for customizing a data annotation tool
-  
 - Language AI Internship at Semantic Knowledge Team, [NAVER Corp.](https://www.navercorp.com) (2021.12 ~ 2022.03)
   - Developed a web-based analyzing/testing tool for the Korean Entity Linking(NED) engine
   - Analyzed existing methods and proposing a suitable model for the Korean Named-Entity Recognition(NER)
