@@ -18,6 +18,7 @@ import k8s from "./k8s.png"
 import flutter from "./flutter.png"
 import supabase from "./supabase.png"
 import temporal from "./temporal.png"
+import postgres from "./postgres.png"
 
 export default {
     aws,
@@ -40,4 +41,5 @@ export default {
     flutter,
     supabase,
     temporal,
+    postgres,
 };
