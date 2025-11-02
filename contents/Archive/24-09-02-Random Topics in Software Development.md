@@ -434,3 +434,35 @@ Supabase는 오픈소스 백엔드 서비스 플랫폼(BaaS, Backend as a Servic
 - Edge Functions: 서버리스 함수, Vercel의 Edge Functions처럼 사용 가능
 - 자동 API 생성: 데이터베이스 스키마를 기반으로 RESTful + GraphQL API 자동 생성
 
+### Layered Architecture
+
+> 이 부분은 인프런 강의 '[제미니의 개발실무](https://www.inflearn.com/course/지속-성장-가능한-소프트웨어)' 무료 강의를 참고한 내용입니다. 짧고 유익한 내용이 있으니 들어보시는 것을 추천드립니다.
+
+- Presentation Layer: 사용자의 요청을 받아 API로 응답하는 영역. 즉, Controller와 같이 API의 노출을 담당하는 영역
+- Business Layer: 애플리케이션의 핵심 비즈니스 로직을 처리하는 영역
+- Implementation Layer: 비즈니스 로직에 사용하는 도메인 객체와 유틸리티 클래스가 포함된 영역
+- Data Access Layer: DB, 캐시 등 외부 데이터 저장소와 통신하는 영역
+
+```mermaid
+graph TD
+    A["Presentation Layer"] --> B["Business Layer"]
+    B --> C["Implementation Layer"]
+    C --> D["Data Access Layer<br>(DB, Cache, Storage)"]
+```
+
+이러한 레이어드 아키텍쳐에서 지켜야 할 규칙은 다음과 같습니다. 
+
+1. 레이어는 위에서 아래로 순방향으로만 참조
+2. 레이어의 참조 방향이 역류되지 않음
+3. 레이어의 참조가 하위 레이어를 건너 뛰지 않음
+4. 동일 레이어 간에는 서로 참조하지 않아야 한다. (다만 implement layer는 예외)
+   - 비즈니스 레이어가 오염되지 않으면서도 구현채의 재사용성 높일 수 있음
+
+### Domain-Driven Development
+
+관련한 개발 방법론으로는 DDD가 있으며 이와 관련해서는 [카카오페이 테크 블로그](https://tech.kakaopay.com/post/backend-domain-driven-design/)에 잘 나와있으니 참고하시면 좋습니다. 
+
+- Layered Architecture: 소프트웨어를 여러 역할(레이어, 계층)로 나누어 각 계층이 특정 책임만을 갖고 동작하도록 하는 설계 패턴
+- Domain-Driven Development(DDD): '비즈니스 도메인(핵심업무)'에 집중하여 소프트웨어를 설계·구현하는 방법론
+- DDD는 Layered Architecture를 권장하며, 이를 바탕으로 도메인 모델을 최대한 명확하게 유지. 즉, DDD에서는 실제로 Layered Architecture 구조를 따라 소프트웨어를 설계하는 경우가 많음
+- DDD는 Layered Architecture를 사용해 도메인(비즈니스 규칙)과 기술 세부사항, 입출력 등을 명확히 구분하여, 복잡한 비즈니스 로직을 효과적으로 구현하는 방법론
