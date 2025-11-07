@@ -19,6 +19,7 @@ import flutter from "./flutter.png"
 import supabase from "./supabase.png"
 import temporal from "./temporal.png"
 import postgres from "./postgres.png"
+import openai from "./openai.png"
 
 export default {
     aws,
@@ -42,4 +43,5 @@ export default {
     supabase,
     temporal,
     postgres,
+    openai,
 };

@@ -4,8 +4,9 @@ date: "2025-09-04"
 template: "post"
 draft: false
 path: "/cheatsheet/25-09-04/"
-description: "Agent를 개발하기 위한 도구로 이전에는 langchain, langgraph가 자주 사용되어 왔지만, 최근 들어서는 OpenAI Agent SDK가 자주 사용 및 언급되고 있습니다. OpenAI Agent SDK는 langgraph에 비해 다른 의존성이 적고, 사용 방법이 복잡하지 않으며, 기존 파이썬 문법에서 벗어나지 않는 특징을 가지고 있습니다."
+description: "Agent를 개발하기 위한 도구로 이전에는 langchain, langgraph가 자주 사용되어 왔지만, 최근 들어서는 OpenAI Agent SDK가 자주 사용 및 언급되고 있습니다. OpenAI Agent SDK는 langgraph에 비해 다른 의존성이 적고, 사용 방법이 복잡하지 않으며, 기존 파이썬 문법에서..."
 category: "Cheat Sheet"
+thumbnail: "openai"
 ---
 
 > OpenAI Agent SDK documentation을 읽고 핵심 내용과 사용 예제에 대해서 정리합니다.
