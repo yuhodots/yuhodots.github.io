@@ -1,4 +1,4 @@
-@import "../../stylesheets/variables";
+@use "../../stylesheets/variables" as *;
 
 @media all and (max-width: 768px) {
     .layout {

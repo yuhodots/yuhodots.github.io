@@ -4,14 +4,14 @@ import '../../node_modules/katex/dist/katex.min.css';
 
 import Layout from "components/layout";
 import Post from "components/Post";
-import SEO from "components/seo";
+import Seo from "components/seo";
 
 const PostTemplate = ({ data }) => {
     const { markdownRemark: { frontmatter, html } } = data;
     const tocItems = data.markdownRemark.tableOfContents;
     return (
         <Layout type="post">
-            <SEO title={frontmatter.title} />
+            <Seo title={frontmatter.title} />
             <Post {...frontmatter} html={html} tocItems={tocItems}/>
         </Layout>
     );

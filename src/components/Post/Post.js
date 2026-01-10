@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Comment from "./Comment";
 import PostInfo from "./PostInfo";
-import TableOfContents from "./TableOfContents";
 
 import "./Post.scss";
 

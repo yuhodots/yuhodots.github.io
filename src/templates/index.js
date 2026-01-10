@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "components/layout";
-import SEO from "components/seo";
+import Seo from "components/seo";
 import Home from "components/Home";
 
 const IndexTemplate = () => {
@@ -17,7 +17,7 @@ const IndexTemplate = () => {
                         template: { eq: "post" }
                     }
                 }
-                sort: { order: DESC, fields: [frontmatter___date] }
+                sort: {frontmatter: {date: DESC}}
             ) {
                 edges {
                     node {
@@ -37,7 +37,7 @@ const IndexTemplate = () => {
 
     return (
         <Layout type="main">
-            <SEO title="Home" />
+            <Seo title="Home" />
             <Home posts={data} />
         </Layout>
     );

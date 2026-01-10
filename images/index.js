@@ -21,7 +21,7 @@ import temporal from "./temporal.png"
 import postgres from "./postgres.png"
 import openai from "./openai.png"
 
-export default {
+const images = {
     aws,
     mathematics,
     deeplearning,
@@ -45,3 +45,5 @@ export default {
     postgres,
     openai,
 };
+
+export default images;

@@ -14,14 +14,14 @@ exports.createPages = ({ actions, graphql }) => {
     const PostTemplate = path.resolve("src/templates/post.js");
     const CategoryTemplate = path.resolve("src/templates/category.js");
     const AboutTemplate = path.resolve("src/templates/about.js");
-    
+
 
     createPage({
         path: "/",
         component: IndexTemplate,
         context: {}
     });
-    
+
     // Category
     createPage({
         path: "/category",
@@ -45,7 +45,7 @@ exports.createPages = ({ actions, graphql }) => {
                         template: { eq: "post" }
                     }
                 }
-                sort: { order: DESC, fields: [frontmatter___date] }
+                sort: {frontmatter: {date: DESC}}
                 limit: 1000
             ) {
                 edges {
@@ -73,7 +73,7 @@ exports.createPages = ({ actions, graphql }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
     const { createNodeField } = actions;
-  
+
     if (node.internal.type === `MarkdownRemark`) {
       const value = createFilePath({ node, getNode });
       createNodeField({

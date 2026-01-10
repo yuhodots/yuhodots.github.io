@@ -2,8 +2,6 @@ import React, { useMemo } from 'react';
 import './TableOfContents.scss';
 
 export default function TableOfContents({ items, currentHeaderUrl }) {
-    console.log(currentHeaderUrl)
-    console.log(items)
     const replaceItems = useMemo(() => {
       if (currentHeaderUrl) {
         return items.replace(
@@ -13,7 +11,7 @@ export default function TableOfContents({ items, currentHeaderUrl }) {
       } else {
         return items;
       }
-    }, [currentHeaderUrl]);
+    }, [currentHeaderUrl, items]);
     return items ? (
       <nav className="table-of-contents">
         <h3 className="title">TABLE OF CONTENTS</h3>

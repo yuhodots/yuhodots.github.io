@@ -1,4 +1,5 @@
-@import "../../../stylesheets/variables";
+@use "../../../stylesheets/variables" as *;
+
 header {
     text-align: center;
     background: var(--primary-color);

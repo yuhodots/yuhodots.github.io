@@ -1,6 +1,9 @@
+@use "sass:meta";
+@use "default";
+@use "variables" as *;
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Noto+Sans+KR|Source+Code+Pro|Ubuntu&display=swap');
-@import "./_default.scss";
-@import "./_variables.scss";
+
 html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;

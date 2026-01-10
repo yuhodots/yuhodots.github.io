@@ -12,7 +12,6 @@ const useSiteMetaData = () => {
                         author
                         description
                         disqusShortname
-                        url
                     }
                 }
             }
@@ -22,8 +21,8 @@ const useSiteMetaData = () => {
 };
 
 const Comment = ({ title, path }) => {
-    const { disqusShortname, url } = useSiteMetaData();
-    if (!disqusShortname) return;
+    const { disqusShortname } = useSiteMetaData();
+    if (!disqusShortname) return null;
     return (
         <div style={{ marginTop: 20 }}>
             <Utterances repo='yuhodots/yuhodots.github.io' theme='github-light' />

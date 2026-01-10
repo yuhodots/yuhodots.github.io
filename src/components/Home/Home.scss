@@ -1,4 +1,4 @@
-@import "../../../stylesheets/variables";
+@use "../../../stylesheets/variables" as *;
 
 .post-list-container {
     max-width: $app-max-width;

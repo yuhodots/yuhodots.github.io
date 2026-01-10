@@ -1,4 +1,4 @@
-@import "../../../stylesheets/variables";
+@use "../../../stylesheets/variables" as *;
 
 .about-container {
     max-width: $app-max-width;
