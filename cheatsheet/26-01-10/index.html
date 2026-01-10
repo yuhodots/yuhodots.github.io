@@ -361,7 +361,7 @@ err <span class="token operator">:=</span> errors<span class="token punctuation"
 min <span class="token operator">:=</span> <span class="token function">Min</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>       <span class="token comment">// int</span>
 minF <span class="token operator">:=</span> <span class="token function">Min</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">,</span> <span class="token number">2.7</span><span class="token punctuation">)</span> <span class="token comment">// float64</span></code></pre></div>
 <p>Go의 제네릭 구현은 <strong>GCShape Stenciling</strong>이라는 방식을 사용합니다. C++ 템플릿처럼 모든 타입별로 코드를 생성하여 바이너리가 비대해지는 것을 방지하면서도, Java 제네릭보다는 빠른 실행 속도를 제공합니다.</p>
-<h3 id="6-backend-development" style="position:relative;"><a href="#6-backend-development" aria-label="6 backend development permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Backend Development</h3>
+<h3 id="6-backend-dev-basics" style="position:relative;"><a href="#6-backend-dev-basics" aria-label="6 backend dev basics permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Backend Dev: Basics</h3>
 <p>Go는 클라우드 네이티브 개발의 표준 언어입니다. 백엔드 개발을 위해 알아야 할 핵심 개념과 도구를 살펴봅니다.</p>
 <h5 id="nethttp--context" style="position:relative;"><a href="#nethttp--context" aria-label="nethttp  context permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>net/http &#x26; Context</h5>
 <p>Go의 표준 라이브러리인 <code class="language-text">net/http</code>는 그 자체로 프로덕션 레벨의 HTTP/2 서버를 구현할 수 있을 만큼 강력합니다.</p>
@@ -474,7 +474,88 @@ http<span class="token punctuation">.</span><span class="token function">ListenA
 │   │   └── out/postgres/user_repo.go # outbound adapter (DB)
 │   └── domain/user.go
 ...</code></pre></div>
-<h3 id="7-conclusion" style="position:relative;"><a href="#7-conclusion" aria-label="7 conclusion permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7. Conclusion</h3>
+<h3 id="7-backend-dev-advanced" style="position:relative;"><a href="#7-backend-dev-advanced" aria-label="7 backend dev advanced permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7. Backend Dev: Advanced</h3>
+<h5 id="nethttp를-활용한-서버-개발" style="position:relative;"><a href="#nethttp%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%84%9C%EB%B2%84-%EA%B0%9C%EB%B0%9C" aria-label="nethttp를 활용한 서버 개발 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>net/http를 활용한 서버 개발</h5>
+<p>Gin과 같은 외장 프레임워크를 쓰기 전, Go의 표준 라이브러리 인터페이스를 이해하는 단계입니다.</p>
+<ul>
+<li><strong>핸들러 구조</strong>: <code class="language-text">http.ResponseWriter</code>와 <code class="language-text">*http.Request</code>를 인자로 받는 핸들러 함수를 정의합니다.</li>
+<li><strong>서버 구동</strong>: <code class="language-text">http.HandleFunc</code>로 라우팅을 설정하고 <code class="language-text">http.ListenAndServe</code>를 호출합니다.</li>
+<li><strong>특징</strong>: <code class="language-text">ListenAndServe</code>는 호출 시 프로세스를 점유하는 <strong>블로킹(Blocking)</strong> 함수입니다. 실무에서는 서버의 안전한 종료를 위해 <code class="language-text">context</code>와 <code class="language-text">signal</code> 패키지를 활용한 <strong>Graceful Shutdown</strong>을 구현하는 것이 중요합니다.</li>
+</ul>
+<h5 id="config--flag" style="position:relative;"><a href="#config--flag" aria-label="config  flag permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Config &#x26; Flag</h5>
+<ul>
+<li>환경 변수를 직접 관리하는 대신 <strong>TOML 또는 YAML</strong> 파일을 사용하여 구조화된 설정을 관리합니다.</li>
+<li><code class="language-text">os.Open</code>으로 파일을 읽고, <code class="language-text">BurntSushi/toml</code> 같은 패키지로 <code class="language-text">Decode</code>하여 <strong>Type-Safe</strong>한 구조체에 담아 사용합니다.</li>
+<li><code class="language-text">flag</code> 패키지를 사용하면 실행 시점에 <code class="language-text">-config=./config.toml</code>과 같이 동적으로 설정 파일 경로를 지정할 수 있어 환경별(Dev/Prod) 대응이 쉬워집니다.</li>
+</ul>
+<h5 id="gin-framework" style="position:relative;"><a href="#gin-framework" aria-label="gin framework permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Gin Framework</h5>
+<p>실무에서 가장 선호되는 가볍고 빠른 <code class="language-text">Gin</code> 프레임워크의 특징입니다.</p>
+<ul>
+<li><strong>설치</strong>: <code class="language-text">go get -u github.com/gin-gonic/gin</code></li>
+<li><strong>서버 구동 전략</strong>: 로그와 복구 미들웨어가 포함된 <code class="language-text">gin.Default()</code>를 주로 사용합니다.</li>
+<li><strong>중요</strong>: <code class="language-text">Run</code> 메소드는 블로킹 호출이므로, 서버 시작 로그는 <code class="language-text">Run</code> 직전에 출력하거나, 별도의 백그라운드 작업(Consumer 등)이 필요하다면 고루틴(<code class="language-text">go</code>)을 활용해 서버를 띄우는 구조를 설계해야 합니다.</li>
+</ul>
+<h5 id="api" style="position:relative;"><a href="#api" aria-label="api permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>API</h5>
+<ul>
+<li><strong>효율적인 초기화 (<code class="language-text">sync.Once</code>)</strong>: 라우터나 싱글톤 서비스 객체가 단 한 번만 생성되도록 보장하여 불필요한 리소스 낭비와 경합 상태(Race Condition)를 방지합니다.</li>
+<li><strong>접근 제어자</strong>: 첫 글자가 <strong>대문자</strong>면 외부 노출(Public), <strong>소문자</strong>면 패키지 내부(Private)로 제한됩니다. 인터페이스를 통해 필요한 기능만 노출하는 캡슐화가 핵심입니다.</li>
+<li><strong>응답 구조화</strong>: 응답 규격의 일관성을 위해 공통 구조체를 정의합니다. Go 1.18부터는 <code class="language-text">interface{}</code> 대신 <strong><code class="language-text">any</code></strong> 키워드를 사용하는 것이 최신 관례입니다.</li>
+</ul>
+<div class="gatsby-highlight" data-language="go"><pre class="language-go"><code class="language-go"><span class="token keyword">type</span> APIResponse <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Result      <span class="token builtin">int</span>    <span class="token string">`json:"result"`</span>
+    Description <span class="token builtin">string</span> <span class="token string">`json:"description"`</span>
+    Data        any    <span class="token string">`json:"data,omitempty"`</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h5 id="service--repository" style="position:relative;"><a href="#service--repository" aria-label="service  repository permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Service &#x26; Repository</h5>
+<p>계층화된 아키텍처를 통해 유지보수성을 높입니다.</p>
+<ol>
+<li><strong>Network (Controller)</strong>: Request 바인딩 및 최종 Response 반환.</li>
+<li><strong>Service</strong>: 비즈니스 로직 수행 및 데이터 검증. (인터페이스를 통해 Repository와 연결하여 결합도를 낮춤)</li>
+<li><strong>Repository</strong>: 실제 데이터(DB 또는 메모리) 조작.</li>
+</ol>
+<p>아래는 데이터 조작 시 주의점입니다.</p>
+<ul>
+<li><strong>Update</strong>: 슬라이스를 순회할 때 <strong>포인터 타입</strong>을 사용해야 원본 데이터가 수정됩니다.</li>
+<li><strong>Delete</strong>: <code class="language-text">append(s[:i], s[i+1:]...)</code> 방식으로 요소를 제거하며, 포인터 슬라이스인 경우 제거된 인덱스에 <code class="language-text">nil</code>을 할당해 **메모리 누수(GC 지연)**를 방지하는 것이 좋습니다.</li>
+<li><strong>Validation</strong>: <code class="language-text">binding:"required"</code> 태그를 활용하면 <code class="language-text">ShouldBindJSON</code> 단계에서 필수 필드 누락을 자동으로 검증할 수 있습니다.</li>
+</ul>
+<h5 id="error-handling-1" style="position:relative;"><a href="#error-handling-1" aria-label="error handling 1 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Error Handling</h5>
+<p>단순 문자열이 아닌, 의미 있는 에러 처리가 필요합니다.</p>
+<ul>
+<li><code class="language-text">errors</code> 패키지를 활용해 <code class="language-text">ErrNotFound</code>, <code class="language-text">ErrInvalidInput</code> 등 공통 에러 변수를 정의합니다.</li>
+<li>Go 1.13 이후 도입된 **<code class="language-text">errors.Is</code>**와 **<code class="language-text">errors.As</code>**를 사용하여 래핑된 에러의 타입을 명확하게 판별하고 처리합니다.</li>
+<li>비즈니스 로직에서 발생하는 에러와 인프라(DB) 에러를 구분하여 클라이언트에게는 적절한 HTTP 상태 코드와 메시지를 전달합니다.</li>
+</ul>
+<h5 id="rpc" style="position:relative;"><a href="#rpc" aria-label="rpc permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RPC</h5>
+<p>이 파트는 Go와 관련없이 단순 서버 개발과 관련된 지식을 정리합니다.</p>
+<p>RPC는 원격에 있는 함수(프로시저)를 로컬 함수 호출처럼 호출하게 해주는 통신 방식입니다. HTTP REST처럼 “리소스(URI)를 조작”하기보다, “<strong>동작(함수)을 호출</strong>”하는 모델에 가깝습니다. RPC의 핵심 구성 요소는 다음과 같습니다.</p>
+<ul>
+<li><strong>IDL(Interface Definition Language)</strong>: 함수 시그니처/메시지 스키마를 정의 (gRPC는 <code class="language-text">.proto</code>)</li>
+<li><strong>Stub(클라이언트 프록시)</strong>: 클라이언트 코드에서 로컬 함수처럼 보이게 해주는 래퍼</li>
+<li><strong>Skeleton(서버 핸들러)</strong>: 서버에서 실제 구현체로 연결되는 라우팅 계층</li>
+<li><strong>Serialization(직렬화)</strong>: 요청/응답 객체를 바이트로 변환 (JSON, Protobuf 등)</li>
+<li><strong>Transport(전송)</strong>: TCP/HTTP 등으로 전송</li>
+</ul>
+<p>REST와 RPC 관점 차이는 다음과 같습니다.</p>
+<ul>
+<li>REST: <code class="language-text">POST /users</code>, <code class="language-text">GET /users/{id}</code> 처럼 <strong>리소스 중심</strong></li>
+<li>RPC: <code class="language-text">CreateUser</code>, <code class="language-text">GetUser</code> 처럼 <strong>행위 중심</strong></li>
+<li>둘 다 HTTP 위에서 동작할 수 있지만, 설계 철학과 인터페이스 스타일이 다름</li>
+</ul>
+<p>gRPC는 Google이 공개한 고성능 RPC 프레임워크로, 보통 다음 조합으로 이해하면 됩니다.</p>
+<ul>
+<li><strong>HTTP/2</strong> 기반 전송</li>
+<li><strong>Protocol Buffers(Protobuf)</strong> 기반 메시지 직렬화(기본)</li>
+<li><strong>강타입(Strongly typed)</strong> 서비스/메시지 정의(IDL)</li>
+<li>다양한 언어 간 상호운용(Go/Java/Python/Node 등)</li>
+</ul>
+<p>gRPC는 Protobuf+HTTP/2 기반이라 메시지가 작고 빠르며, <code class="language-text">.proto</code> 계약과 코드 생성으로 타입 안정성과 멀티언어 간 일관성이 좋고, Unary뿐 아니라 서버/클라이언트/양방향 스트리밍과 표준화된 타임아웃·에러 처리가 강점입니다. 반면 브라우저에서 직접 쓰기 어렵고(gRPC-Web/게이트웨이 필요), JSON/REST 대비 디버깅이 덜 직관적이며, HTTP/2를 지원하는 로드밸런서/프록시 등 인프라 제약이 있고 외부 공개 API에는 도입 부담이 생길 수 있습니다.</p>
+<ul>
+<li><strong>Unary RPC</strong>: 클라이언트가 요청 1번을 보내면 서버가 응답 1번을 반환하는 기본 호출 방식입니다.</li>
+<li><strong>Streaming RPC</strong>: 한쪽(클라이언트 또는 서버)에서 여러 메시지를 스트림으로 연속 전송하고, 반대쪽은 이를 순차적으로 받는 방식입니다.</li>
+<li><strong>Bidirectional Streaming RPC</strong>: 클라이언트와 서버가 동시에 양방향 스트림으로 여러 메시지를 주고받는 방식입니다.</li>
+</ul>
+<h3 id="8-conclusion" style="position:relative;"><a href="#8-conclusion" aria-label="8 conclusion permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8. Conclusion</h3>
 <p>지금까지 Go 언어의 탄생 배경부터 백엔드 개발 실무까지 살펴보았습니다. Go의 설계 철학, 타입 시스템과 메모리 구조, 고루틴과 GMP 스케줄러를 통한 동시성 모델, 그리고 실제 백엔드 개발에서 활용되는 프레임워크와 아키텍처 패턴까지 다루었습니다.</p>
 <p>Go는 "지루한(Boring)" 언어를 지향합니다. Rust와 같은 화려한 패턴 매칭도, Python과 같은 마법 같은 메타 프로그래밍도 없습니다. 그러나 엔터프라이즈 환경에서 이 지루함은 예측 가능성(Predictability)이라는 가장 큰 자산이 됩니다. 100명의 개발자가 협업하더라도, 주니어 개발자가 작성한 코드를 시니어 아키텍트가 즉시 이해할 수 있는 언어는 Go가 유일합니다.</p>
 <p>직접 사용해보면서 느끼는 Go의 가장 큰 매력은 복잡한 추상화 없이 친숙한 문법으로 고성능 시스템을 구축할 수 있다는 점입니다. 가비지 컬렉터는 대기 시간을 최소화하여 웹 서비스의 Tail Latency 문제를 해결하고, 고루틴은 하드웨어의 멀티코어 성능을 민주화했습니다.</p>
