@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import CategoryList from "./CategoryList";
 import SelectedCategory from "./SelectedCategory";
 
-const Category = ({ categories, posts }) => {
+const Category = ({ categories, posts, language = "kor" }) => {
     const sortedCategories = Object.keys(categories).sort();
     const [selectedCategory, setSelectedCategory] = useState(
         sortedCategories[0]
@@ -24,6 +24,7 @@ const Category = ({ categories, posts }) => {
             <SelectedCategory
                 posts={posts}
                 selectedCategory={selectedCategory}
+                language={language}
             />
         </div>
     );

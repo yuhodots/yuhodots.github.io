@@ -43,8 +43,22 @@ module.exports = {
         {
             resolve: "gatsby-source-filesystem",
             options: {
-                name: "markdown-components",
-                path: `${__dirname}/contents`
+                name: "markdown-kor",
+                path: `${__dirname}/contents/kor`
+            }
+        },
+        {
+            resolve: "gatsby-source-filesystem",
+            options: {
+                name: "markdown-eng",
+                path: `${__dirname}/contents/eng`
+            }
+        },
+        {
+            resolve: "gatsby-source-filesystem",
+            options: {
+                name: "content-images",
+                path: `${__dirname}/contents/img`
             }
         },
         {
@@ -105,7 +119,10 @@ module.exports = {
               allMarkdownRemark(
                 limit: 1000
                 sort: {frontmatter: {date: DESC}}
-                filter: {frontmatter: {template: {eq: "post"}, draft: {ne: true}}}
+                filter: {
+                  frontmatter: {template: {eq: "post"}, draft: {ne: true}}
+                  fileAbsolutePath: {regex: "/contents/kor/"}
+                }
               ) {
                 nodes {
                   html

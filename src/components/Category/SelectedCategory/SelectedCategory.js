@@ -5,7 +5,7 @@ import PostInfo from "../../Post/PostInfo";
 
 import "./SelectedCategory.css";
 
-const SelectedCategory = ({ selectedCategory, posts }) => {
+const SelectedCategory = ({ selectedCategory, posts, language = "kor" }) => {
     if (!selectedCategory) {
         return null;
     }
@@ -18,7 +18,7 @@ const SelectedCategory = ({ selectedCategory, posts }) => {
                     <div>
                         <PostInfo {...post} />
                         <p className="category-post-name">
-                            <Link to={post.path}>{post.title}</Link>
+                            <Link to={language === "eng" ? "/eng" + post.path : post.path}>{post.title}</Link>
                         </p>
                         <p className="category-post-description">
                             {post.description}

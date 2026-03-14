@@ -3,27 +3,60 @@ import { Link } from "gatsby";
 
 import "./Header.scss";
 
-const Header = ({ siteTitle, siteDescription, type }) => {
+const Header = ({ siteTitle, siteDescription, type, language = "kor" }) => {
     const isMain = type === "main";
-    console.log(type);
+    const prefix = language === "eng" ? "/eng" : "";
+
+    const switchLanguage = (targetLang) => {
+        if (typeof window === "undefined") return;
+        const pathname = window.location.pathname;
+        if (targetLang === "eng") {
+            window.location.href = "/eng" + pathname;
+        } else {
+            window.location.href = pathname.replace(/^\/eng/, "") || "/";
+        }
+    };
+
     return (
         <header className={!isMain ? "simple" : null}>
             <div className="header-inner">
                 <h1>
-                    <Link to="/">{siteTitle}</Link>
+                    <Link to={prefix + "/"}>{siteTitle}</Link>
                 </h1>
                 <ul>
                     <li>
-                        <a href="/">Home</a>
+                        <a href={prefix + "/"}>Home</a>
                     </li>
                     <li>
-                        <a href="/category">Category</a>
+                        <a href={prefix + "/category"}>Category</a>
                     </li>
                     <li>
-                        <a href="/about">About</a>
+                        <a href={prefix + "/about"}>About</a>
                     </li>
                     <li>
                         <a href="https://github.com/yuhodots">GitHub</a>
+                    </li>
+                    <li className="lang-divider"></li>
+                    <li className="lang-toggle">
+                        <span
+                            className={language === "kor" ? "active" : ""}
+                            onClick={() => switchLanguage("kor")}
+                            onKeyDown={(e) => e.key === "Enter" && switchLanguage("kor")}
+                            role="button"
+                            tabIndex={0}
+                        >
+                            KR
+                        </span>
+                        <span className="lang-dot">&middot;</span>
+                        <span
+                            className={language === "eng" ? "active" : ""}
+                            onClick={() => switchLanguage("eng")}
+                            onKeyDown={(e) => e.key === "Enter" && switchLanguage("eng")}
+                            role="button"
+                            tabIndex={0}
+                        >
+                            EN
+                        </span>
                     </li>
                 </ul>
             </div>

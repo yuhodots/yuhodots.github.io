@@ -15,7 +15,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "../../stylesheets/asset.scss";
 import "./layout.scss";
 
-const Layout = ({ children, type }) => {
+const Layout = ({ children, type, language = "kor" }) => {
     const data = useStaticQuery(
         graphql`
             query SiteTitleQuery {
@@ -35,6 +35,7 @@ const Layout = ({ children, type }) => {
                 siteTitle={title}
                 siteDescription={description}
                 type={type}
+                language={language}
             />
             <div className={`layout layout_${type}`}>
                 <main>{children}</main>

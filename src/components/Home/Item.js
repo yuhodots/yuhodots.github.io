@@ -6,12 +6,13 @@ import PostInfo from "../Post/PostInfo";
 import "./Item.scss";
 import images from "../../../images";
 
-const Item = ({ item }) => {
+const Item = ({ item, language = "kor" }) => {
     const { title, description, path, date, category, thumbnail } = item;
     const thumbnail_path = images[thumbnail];
+    const linkPath = language === "eng" ? "/eng" + path : path;
     return (
         <li className="post-item">
-            <Link to={path}>
+            <Link to={linkPath}>
                 <div>
                     <PostInfo category={category} date={date} />
                     <h2>{title}</h2>

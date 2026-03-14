@@ -3,7 +3,7 @@ import Item from "./Item";
 
 import "./Home.scss";
 
-const Home = ({ posts }) => {
+const Home = ({ posts, language = "kor" }) => {
     return (
         <div className="post-list-container">
             <ul className="post-list">
@@ -11,6 +11,7 @@ const Home = ({ posts }) => {
                     <Item
                         item={post.node.frontmatter}
                         key={`post-list-${idx}`}
+                        language={language}
                     />
                 ))}
             </ul>

@@ -6,12 +6,13 @@ import Layout from "components/layout";
 import Post from "components/Post";
 import Seo from "components/seo";
 
-const PostTemplate = ({ data }) => {
+const PostTemplate = ({ data, pageContext }) => {
+    const { language } = pageContext;
     const { markdownRemark: { frontmatter, html } } = data;
     const tocItems = data.markdownRemark.tableOfContents;
     return (
-        <Layout type="post">
-            <Seo title={frontmatter.title} />
+        <Layout type="post" language={language}>
+            <Seo title={frontmatter.title} lang={language === "eng" ? "en" : "ko"} />
             <Post {...frontmatter} html={html} tocItems={tocItems}/>
         </Layout>
     );
@@ -20,8 +21,11 @@ const PostTemplate = ({ data }) => {
 export default PostTemplate;
 
 export const pageQuery = graphql`
-    query($path: String!) {
-        markdownRemark(frontmatter: { path: { eq: $path } }) {
+    query($postPath: String!, $langRegex: String) {
+        markdownRemark(
+            frontmatter: { path: { eq: $postPath } }
+            fileAbsolutePath: { regex: $langRegex }
+        ) {
             html
             tableOfContents
             frontmatter {

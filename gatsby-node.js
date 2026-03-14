@@ -1,10 +1,3 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
-
-// You can delete this file if you're not using it
 const path = require("path");
 const { createFilePath } = require('gatsby-source-filesystem');
 
@@ -15,44 +8,56 @@ exports.createPages = ({ actions, graphql }) => {
     const CategoryTemplate = path.resolve("src/templates/category.js");
     const AboutTemplate = path.resolve("src/templates/about.js");
 
+    const languages = [
+        { code: "kor", prefix: "", regex: "/contents/kor/" },
+        { code: "eng", prefix: "/eng", regex: "/contents/eng/" },
+    ];
 
-    createPage({
-        path: "/",
-        component: IndexTemplate,
-        context: {}
-    });
-
-    // Category
-    createPage({
-        path: "/category",
-        component: CategoryTemplate,
-        context: {}
-    });
-
-    // About
-    createPage({
-        path: "/about",
-        component: AboutTemplate,
-        context: {}
+    languages.forEach(({ code, prefix, regex }) => {
+        createPage({
+            path: prefix + "/",
+            component: IndexTemplate,
+            context: { language: code, langRegex: regex }
+        });
+        createPage({
+            path: prefix + "/category",
+            component: CategoryTemplate,
+            context: { language: code, langRegex: regex }
+        });
+        createPage({
+            path: prefix + "/about",
+            component: AboutTemplate,
+            context: { language: code, langRegex: regex }
+        });
     });
 
     return graphql(`
         {
-            allMarkdownRemark(
+            kor: allMarkdownRemark(
                 filter: {
-                    frontmatter: {
-                        draft: { ne: true }
-                        template: { eq: "post" }
-                    }
+                    frontmatter: { draft: { ne: true }, template: { eq: "post" } }
+                    fileAbsolutePath: { regex: "/contents/kor/" }
                 }
                 sort: {frontmatter: {date: DESC}}
                 limit: 1000
             ) {
                 edges {
                     node {
-                        frontmatter {
-                            path
-                        }
+                        frontmatter { path }
+                    }
+                }
+            }
+            eng: allMarkdownRemark(
+                filter: {
+                    frontmatter: { draft: { ne: true }, template: { eq: "post" } }
+                    fileAbsolutePath: { regex: "/contents/eng/" }
+                }
+                sort: {frontmatter: {date: DESC}}
+                limit: 1000
+            ) {
+                edges {
+                    node {
+                        frontmatter { path }
                     }
                 }
             }
@@ -61,11 +66,26 @@ exports.createPages = ({ actions, graphql }) => {
         if (result.errors) {
             return Promise.reject(result.errors);
         }
-        result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        result.data.kor.edges.forEach(({ node }) => {
             createPage({
                 path: node.frontmatter.path,
                 component: PostTemplate,
-                context: {}
+                context: {
+                    postPath: node.frontmatter.path,
+                    language: "kor",
+                    langRegex: "/contents/kor/"
+                }
+            });
+        });
+        result.data.eng.edges.forEach(({ node }) => {
+            createPage({
+                path: "/eng" + node.frontmatter.path,
+                component: PostTemplate,
+                context: {
+                    postPath: node.frontmatter.path,
+                    language: "eng",
+                    langRegex: "/contents/eng/"
+                }
             });
         });
     });

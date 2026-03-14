@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(rm:*)",
+      "Bash(yarn install)",
+      "Bash(yarn add:*)",
+      "Bash(gatsby clean:*)",
+      "Bash(gatsby develop:*)",
+      "Bash(git config:*)",
+      "Bash(ls:*)",
+      "Bash(ssh:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(ssh-add:*)",
+      "Bash(cat:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(yarn deploy)",
+      "WebSearch",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(find:*)",
+      "Bash(source:*)",
+      "Bash(yarn clean:*)",
+      "Bash(yarn develop:*)",
+      "Bash(pkill:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(yarn build:*)"
+    ]
+  }
+}

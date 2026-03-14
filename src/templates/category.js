@@ -1,32 +1,14 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import Category from "../components/Category";
 
-const CategoryTemplate = () => {
-  const { allMarkdownRemark: { edges: data }} = useStaticQuery(graphql`
-    query CategoryListQuery($category: String) {
-      allMarkdownRemark(
-        filter: { frontmatter: { draft: { ne: true }, template: { eq: "post" }, category: { eq: $category } } }
-        sort: {frontmatter: {date: DESC}}
-      ) {
-        edges {
-          node {
-            frontmatter {
-              category
-              title
-              date
-              description
-              path
-            }
-          }
-        }
-      }
-    }
-  `);
+const CategoryTemplate = ({ data, pageContext }) => {
+  const { language } = pageContext;
+  const { allMarkdownRemark: { edges: posts } } = data;
 
-  const categories = data
+  const categories = posts
     .map(item => item.node.frontmatter.category)
     .reduce((acc, category) => {
       if (acc[category]) {
@@ -38,10 +20,34 @@ const CategoryTemplate = () => {
     }, {});
 
   return (
-    <Layout type="category">
-      <Category categories={categories} posts={data.map(item => item.node.frontmatter)} />
+    <Layout type="category" language={language}>
+      <Category categories={categories} posts={posts.map(item => item.node.frontmatter)} language={language} />
     </Layout>
   )
 };
 
 export default CategoryTemplate;
+
+export const pageQuery = graphql`
+  query CategoryListQuery($langRegex: String) {
+    allMarkdownRemark(
+      filter: {
+        frontmatter: { draft: { ne: true }, template: { eq: "post" } }
+        fileAbsolutePath: { regex: $langRegex }
+      }
+      sort: {frontmatter: {date: DESC}}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            category
+            title
+            date
+            description
+            path
+          }
+        }
+      }
+    }
+  }
+`;
