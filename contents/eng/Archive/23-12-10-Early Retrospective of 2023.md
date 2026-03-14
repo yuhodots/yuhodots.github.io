@@ -1,0 +1,65 @@
+---
+title: "An Early Retrospective of 2023"
+date: "2023-12-10"
+template: "post"
+draft: false
+path: "/essay/23-12-10/"
+description: "I have been consistently recording my thoughts and emotions in a journal and revisiting them from time to time. But I don't think I've had many occasions where I actually expressed those thoughts and feelings outwardly. It's not that I carry particularly profound thoughts or complicated emotions, but I felt embarrassed to reveal them and was afraid of exposing my vulnerabilities and weaknesses."
+category: "Essay"
+---
+
+I have been consistently recording my thoughts and emotions in a journal and revisiting them from time to time. But I don't think I've had many occasions where I actually expressed those thoughts and feelings outwardly. It's not that I carry particularly profound thoughts or complicated emotions, but expressing my inner thoughts felt embarrassing, and I was afraid of exposing my vulnerabilities and weaknesses, so I simply kept them to myself. However, if I never express them, I end up ignoring my shortcomings or eventually forgetting them entirely. I felt the need for some change, and posting a retrospective in a public space seemed like a good starting point for opening up -- so here it is.
+
+### Reflections and Thoughts of This Year
+
+##### A New Environment
+
+This year, I finally left school and took my first step into the working world. At the time, I wasn't particularly worried. I simply thought, "I've gotten by just fine so far, so working life shouldn't be much different." In the early days after joining, I remember struggling just to sit in one place for extended periods. Even in graduate school, I couldn't stay seated in one spot and would study while wandering around, so having to sit at one desk for eight hours a day felt stifling, and my focus at work wasn't great.
+
+After some time passed and I started adapting to company life, work-related concerns gradually increased. There were many things I wanted to do and many things I needed to do, but I couldn't seem to pick up the pace, which was frustrating. I would comfort myself with the thought, "It's my first time, so this is expected," while simultaneously wondering, "Am I not trying hard enough?"
+
+##### Familiarity and Adaptation
+
+As time went on, I naturally learned how to handle tasks more quickly and how to pick up speed. I think it was more a matter of familiarity than effort. As work became more routine and life in Seoul more familiar, I started spending each day the same way without much worry or thought. Even though it hadn't been long since my environment changed, I was struck by how quickly people adapt -- how quickly things become familiar. Nothing particularly unusual was happening, yet during this period, I felt an inexplicable unease. Work increasingly felt like just work. On weekends, I would play games, watch YouTube, or sleep in. I didn't give it much thought, figuring it was perfectly normal for work to feel like work and for weekends to be spent relaxing.
+
+Then one day, while having lunch with someone, I was asked, "What kind of person do you want to grow into in the future?" At the time, I gave a vague, off-the-cuff answer. But even as I kept mulling over that question on my own afterward, I couldn't clearly answer what kind of person I wanted to be or what kind of life I wanted to live. I used to be someone who could readily answer questions like that. It was then that I realized I had lost my sense of direction and was drifting.
+
+##### The Importance of Writing
+
+Up until then, I had always held a long-term belief that my future self -- tomorrow, next month, next year -- would be a more developed version of who I am now. And I had built that long-term belief by not trusting myself in the short term. I would frequently question whether I was heading in the right direction and think about what a better path might be. But because this process itself requires effort and is quite tedious, I had become lazy about questioning myself. As my short-term self-doubt faded, my long-term self-belief naturally weakened as well. It was a time when I wasn't spending enough time reflecting on myself.
+
+So one day, I set aside an entire day just to write in my journal. On a weekend afternoon, after a quick lunch, I went to a cafe near Seoul Forest and started writing. After spending several hours organizing my journal entries, I was able to think again, "Ah, this is who I am, this is the mindset I've grown with, and this is the kind of adult I truly hope to become." After that, the weight on my chest lifted, and I found the strength to move forward quickly. I still have a warm memory of walking alone through Seoul Forest as the sun was setting that day.
+
+Around the same time, I was reading "Man's Search for Meaning," and I remember deeply resonating with the line: "An emotion, a suffering, ceases to be a suffering the moment we form a clear and precise picture of it."
+
+##### The Good Things
+
+One of the best parts of this year was getting to meet many people. In particular, I was able to frequently see high school friends I hadn't been in touch with and college friends who were now working. When I lived in Ulsan, it was so far away that meeting even once was difficult, but living in Seoul meant I could make plans and meet up on the same day, which was wonderful. I also had many opportunities to meet new people. I met people who had great perspectives and were working hard, people who shared similar concerns as mine, and people who were currently going through dilemmas I had already faced. I appreciated having so many opportunities to talk with such a diverse range of people.
+
+Looking back on the year, there's one thing I'm proud of about myself. Moving into a new environment meant that this year was filled with many moments of choice. I didn't know what the best choice would be, but the direction and pace of my growth could change significantly depending on those choices, so every decision came with a lot of deliberation. Even after making a decision, there were days when I'd regret it -- "Did I really make the right choice? Should I have chosen differently? Why did I choose this?" -- and my emotions would swing wildly, with my mood suddenly dropping multiple times a day.
+
+But each time, I would think, "In most cases, the best choice can't be known at the time, and my twenties are too precious to spend regretting and suffering over things I can't control that have already passed." So I held myself together, believing that what matters more than the choice itself is the attitude and response that follow. Looking back now, whether the choice was bad or good, my subsequent attitude and responses eventually ensured that bad choices didn't significantly affect me, and good choices were made even better. I want to commend myself for that.
+
+##### Changes in Thinking
+
+Until last year, I was someone who naturally thought, "Do colleagues really need to be close? Isn't it enough to just deliver good results?" I think I carried this mindset through graduate school too. This year, I reflected deeply on this way of thinking. Relationships are incredibly important -- they lead to better outcomes and creativity, and they build healthier teams. Of course, even a healthy team can fail to produce results and dissolve, but the good relationships with those people remain. Everything is done by people and for people, so I deeply felt the importance of approaching even passing relationships with sincerity.
+
+### Areas for Improvement
+
+There are still so many areas where I need to improve. First and foremost, "I need to be more open about myself." As I mentioned earlier, this is exactly why I started writing this retrospective. I'm afraid of people around me -- especially the talented ones -- discovering that I don't know or can't do even the most basic things. So I end up hiding, trying to appear less inadequate. Yet I still need to be more open. By nature, I'm someone who doesn't reveal much about myself and tends to be cautious, so shedding that armor is truly difficult. I've improved compared to last year, but not by that much, and honestly, I don't have much faith that I'll be different by next year. I figure that if I write it down, I'll see it often and think about it at least one more time, so I'll have to keep watching until next year's retrospective.
+
+I need to produce more visible results. I believe that visible outputs don't really matter much, and that career credentials and accomplishments don't carry much significance. I believe that a person's inner thinking and actual abilities matter more than visible career and credentials. But right now, I take this belief too far. Producing visible results actually requires considerable effort and skill. I might just be consoling myself by pretending to focus on inner ability when I'm really just being lazy or lacking capability. And strong credentials genuinely serve as a weapon that opens doors to new opportunities and experiences. So now I need to start producing more visible results.
+
+I need to listen more attentively to what others have to say. I think I'm still someone who only pretends to listen. In various conversations, I do make an effort to listen carefully. But after the conversation ends, rather than truly taking in the other person's opinion, I tend to just think, "Ah, so that's what they think," and leave it at that. It's never intentional, but when something doesn't directly concern me, I sometimes forget without giving it further thought, and this is something I need to improve.
+
+It's time to stop thinking of myself as a junior. While I did build experience by leading research in graduate school, this year I occasionally thought, "I'm still a junior and this is my first time doing real work, so maybe this level is acceptable." But in the professional world, there are no juniors -- everyone needs to be a professional. It's time for me to think and act more like a pro.
+
+Lastly, I need to actively seek out and meet a more diverse range of people who are different from me. The experiences that helped me move forward without wavering during tough times, the experiences that made me realize my shortcomings and arrogance, and the pivotal moments that brought about big changes in my life -- none of them came from within me alone. They all came through conversations with good people around me. I hope I always remember this. Instead of waiting for someone to approach me first, I should be the one who reaches out. This is a resolution I seem to think about every year but never actually follow through on.
+
+### Closing Thoughts
+
+If I were to sum up this year in one sentence, it would be "a year where I thought more deeply about people." This carries multiple meanings. It was a year where I left school and met many new people, learning a great deal about how others think differently from me. It was a year of many realizations about the importance of relationships. And it was a year where I came to feel that I, as a person, can be of help -- even in small ways -- to others.
+
+Whenever a year draws to a close, I'm usually filled with various worries about the next year. But this year, there's a lot of lightness mixed in. If asked whether I grew enough technically over the past year, I honestly can't say -- I can't quite judge, at my level, how much and in what direction I should have grown to consider it sufficient. But if asked whether I've developed on a personal, human level, I think I can answer yes right away.
+
+It might be nostalgia painting things in a better light, but this was the year I laughed the most in recent memory. I have no idea why I'm surrounded by so many wonderful friends and inspiring people I can learn from. People sometimes tell me, "You seem to have a sense of inner calm." Whenever I hear that, I think to myself, "I have so many good people I can lean on when things get tough, and friends who would believe in me even if I were nobody -- what is there to be anxious about?" When a close friend says something like that, I want to reply, "It's all thanks to you," but I've never actually expressed that, which makes me feel a little guilty. Next year, I want to be better at expressing myself, and I want to work toward being someone who provides as much strength and trust to the people around me as they've given to me.
