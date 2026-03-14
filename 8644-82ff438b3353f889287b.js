@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyuhodots_github_io=self.webpackChunkyuhodots_github_io||[]).push([[8644],{8644:function(e,t,u){u.d(t,{createArchitectureServices:function(){return c.S}});var c=u(5877);u(830)}}]);

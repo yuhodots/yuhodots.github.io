@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyuhodots_github_io=self.webpackChunkyuhodots_github_io||[]).push([[6235],{6235:function(u,e,t){t.d(e,{createInfoServices:function(){return o.v}});var o=t(1009);t(830)}}]);
