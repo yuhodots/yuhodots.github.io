@@ -8,15 +8,15 @@ description: "none"
 category: "about"
 ---
 
-## 안녕하세요 🙋‍♂️
+## Hello 🙋‍♂️
 
-안녕하세요! 블로그에 방문해주셔서 감사합니다. AI Engineer 정유호라고 합니다.
+Hello! Thank you for visiting my blog. I'm Yuho Jeong, an AI Engineer.
 
-저는 대학원에서 `Meta-Learning`, `Continual Learning`, `Open-World Learning`과 같이, 한정된 데이터를 사용한 학습을 통해 그 외의 데이터까지 일반화가 가능한 알고리즘들에 대해 연구했습니다. 이 과정에서 real-world에 AI 기술을 서비스할 때 겪을 수 있는 문제 상황들과 한계점, 그리고 이를 극복할 수 있는 방법에 대해서 자주 고민하곤 했습니다. 이런 경험을 바탕으로 현재는 산업계에서 실제 서비스를 위한 AI 기술을 개발하고 있습니다.
+In graduate school, I researched algorithms capable of generalizing to unseen data through learning with limited data, such as `Meta-Learning`, `Continual Learning`, and `Open-World Learning`. During this journey, I often contemplated the challenges and limitations encountered when deploying AI technologies in real-world services, as well as ways to overcome them. Based on this experience, I currently develop AI technologies for real-world services in industry.
 
-문제 정의를 중요하게 여기고, 문제 상황에 대한 해결 방법을 모델링에 한정짓지 않고 다양한 지점에서 찾으려 노력하고 있습니다. 연구적 성과에서 그치는 것이 아니라 실제로 세상에 영향을 줄 수 있는 기술들에 관심이 많으며, 여러 AI 파이프라인 설계에 관심을 가지고 공부하고 있습니다. 궁금한 점이나 조언해주실 내용에 대해, 이메일이나 LinkedIn을 통해 연락주시는 것은 언제든지 환영합니다.
+I value problem definition and strive to find solutions from various perspectives rather than limiting them to modeling alone. I'm deeply interested in technologies that can actually make an impact in the real world, not just produce research results, and I'm studying various AI pipeline designs. Feel free to reach out via email or LinkedIn with any questions or advice—you are always welcome.
 
-마지막으로, 요즘엔 제가 직접 공부하고 정리한 글 보다 AI에게 위임한 글이 훨씬 기술적 퀄리티가 높다고 느끼고 있습니다. 따라서 2026년 이후의 글들은 상당수가 AI에게 작성 위임한 글로 구성되어있으며 관련해서 각 포스팅 내에도 간단히 언급해두었으니 참고 부탁드립니다.
+Lastly, I've been noticing that articles delegated to AI tend to have much higher technical quality than those I study and write myself. Therefore, many posts from 2026 onward have been delegated to AI for writing, and I've noted this briefly within each respective post for your reference. Additionally, all posts on this site are translated into English using AI.
 
 ---
 
@@ -72,10 +72,10 @@ category: "about"
 
 - CoreAI Seminar, "Generalized Category Discovery." (2022.10.07) [[video](https://youtu.be/pNoYt0bzG-s?t=450)] [[slides](https://drive.google.com/file/d/1QRFtVonBzZiiba73F-vYVPRib1Z1avOb/view?usp=sharing)] [[post](https://yuhodots.github.io/deeplearning/22-10-07/)]
 - CoreAI Seminar, "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections." (2022.03.04) [[video](https://www.youtube.com/watch?v=HDwkXyQjecQ)] [[slides](https://drive.google.com/file/d/1O4Af9vq_q_1BRdYxZBCw-PKEq0cqYSNM/view)] [[post](https://yuhodots.github.io/deeplearning/22-03-05/)]
-- 해군교육사령부, 교관양성 교육: 합성곱 신경망 파트 실습 강의 (2021.06.05)
+- ROK Naval Education Command, Instructor Training: Convolutional Neural Network Hands-on Lecture (2021.06.05)
 - CoreAI Seminar, "Bootstrap Your Own Latent." (2021.04.02) [[slides](https://slack-files.com/T017E9YJDU0-F01TUCCPNV6-54c6e3fb59)] [[post](https://yuhodots.github.io/deeplearning/21-04-04/)]
 - CoreAI Seminar, "Learning to Propagate Labels: Transductive Propagation Network for Few-shot Learning." (2021.03.06) [[slides](https://slack-files.com/T017E9YJDU0-F01PZ1RKUQP-9675e49bb9)] [[post](https://yuhodots.github.io/deeplearning/21-03-04/)]
-- UNIST AI Innovation Park, AI 노바투스 아카데미아: 인공지능 기초 파트 실습 강의 (2021.02, 2021.07)
+- UNIST AI Innovation Park, AI Novatus Academia: AI Fundamentals Hands-on Lecture (2021.02, 2021.07)
 
 ### Projects
 

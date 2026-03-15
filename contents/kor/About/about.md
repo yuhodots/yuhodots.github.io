@@ -16,12 +16,14 @@ category: "about"
 
 문제 정의를 중요하게 여기고, 문제 상황에 대한 해결 방법을 모델링에 한정짓지 않고 다양한 지점에서 찾으려 노력하고 있습니다. 연구적 성과에서 그치는 것이 아니라 실제로 세상에 영향을 줄 수 있는 기술들에 관심이 많으며, 여러 AI 파이프라인 설계에 관심을 가지고 공부하고 있습니다. 궁금한 점이나 조언해주실 내용에 대해, 이메일이나 LinkedIn을 통해 연락주시는 것은 언제든지 환영합니다.
 
+마지막으로, 요즘엔 제가 직접 공부하고 정리한 글 보다 AI에게 위임한 글이 훨씬 기술적 퀄리티가 높다고 느끼고 있습니다. 따라서 2026년 이후의 글들은 상당수가 AI에게 작성 위임한 글로 구성되어있으며 관련해서 각 포스팅 내에도 간단히 언급해두었으니 참고 부탁드립니다.
+
 ---
 
 ### Contact
 
-- Email: yuho8437@gmail.com
-- LinkedIn: https://www.linkedin.com/in/yuho-jeong-b9423a19b/
+- Email: <yuho8437@gmail.com>
+- LinkedIn: <https://www.linkedin.com/in/yuho-jeong-b9423a19b/>
 
 ### Education
 
@@ -36,15 +38,17 @@ category: "about"
 ### Experience
 
 - ML Engineer at [Devsisters](https://www.devsisters.com/en) (2024.10 ~ current)
-  - Research topics: *Image Captioning, Multi-Modal to Image Generation (Image Editing), Generative Models, MLOps, LLM, Retrieval-Augmented Generation, etc.*
-  - Researched and developed an auto-labeling pipeline for art resources w. VLMs, and designed augmentation, pre-processing, and post-processing pipeline to enhance data quality.
-  - Built an unified art resource management tool for searching, organizing, and constructing datasets from various game studuios.
-  - Developed a full-stack AI art generation WebUI enabling rapid prototyping of game asset ideas.
+  - Research topics: _Image Captioning, Multi-Modal to Image Generation (Image Editing), Generative Models, MLOps, LLM, etc._
+  - Designed and implemented an auto-labeling pipeline for art assets using VLMs, including data augmentation, preprocessing, and postprocessing to improve dataset quality
+  - Built a unified art resource management platform integrating hybrid search (Postgres FTS, vector retrieval, and metadata filtering) to enable scalable asset discovery and dataset construction across multiple game studios
+  - Developed a full-stack AI art generation WebUI for rapid prototyping of in-game asset concepts
   - Developed image generation models tailored for game domain needs, including Text-to-Image, Image-to-Image, Sketch-to-Image, etc.
-  - Researched and fine-tuned generative models for image editing tasks (e.g., facial expression and skin editing), achieving performance surpassing Gemini Flash 2.5 and gpt-image-1 on specific domain.
-  - Developed LLM workflow for internal business process optimization, including evaluation, tracing, and MLOps for LLM-based systems.
+  - Researched and fine-tuned generative models for image editing tasks (e.g., facial expression and skin editing), achieving performance surpassing Gemini Flash 2.5 and gpt-image-1 on specific domain
+  - Built LLM-based workflows for internal process automation, including evaluation, tracing, and LLMOps infrastructure
+  - Architected a Talos-based multi-cloud GPU cluster enabling dynamic cross-vendor GPU utilization and highly available infrastructure for AI workloads
+  - Built a distributed GPU-accelerated ETL pipeline processing 1M+ assets with CDC-based incremental sync and parallel caption/embedding extraction via Triton Inference Server
 - AI Engineer at [Nuvilab Inc.](https://www.nuvilab.com) (2023.02 ~ 2024.10)
-  - Research topics: *Active Learning, Outlier Detection, Data Labeling Pipeline, MLOps, Multi-Modal Learning, Instance Segmentation, and Object Detection.*
+  - Research topics: _Active Learning, Outlier Detection, Data Labeling Pipeline, MLOps, Multi-Modal Learning, Instance Segmentation, and Object Detection._
   - Developed AI models for instance segmentation and zero-shot classification tasks, improving AP by 0.13 and AR by 0.12 for segmentation, and achieving a 10% performance increase for zero-shot classification
   - Deployed and operated AI microservices using NVIDIA Triton, VectorDB, GitHub Actions, Gitflow, and ArgoCD
   - Designed a data pipeline using active learning to address class-imbalance in fine-grained datasets, reducing labeling costs by 50% compared to previous methods
@@ -62,8 +66,7 @@ category: "about"
 ### Publications
 
 - Solang Kim, Yuho Jeong, Joon Sung Park and Sung Whan Yoon, "MICS: Midpoint Interpolation to Learn Compact and Separated Representations for Few-Shot Class-Incremental Learning," accepted to IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), Hawaii, U.S., 2024.
-  - *Master's Thesis in UNIST AI Graduate School*
-
+  - _Master's Thesis in UNIST AI Graduate School_
 
 ### Presentation
 
@@ -79,4 +82,4 @@ category: "about"
 - Personal project - Web: BackEnd development at the online thrift store, [Uitda](https://github.com/yuhodots/uitda) (2019.02 ~ 2020.06)
 - Course project: [pacman](https://github.com/yuhodots/pacman), [handpose](https://github.com/yuhodots/handpose), [covid-correlation](https://yuhodots.github.io/covid-correlation/), [mav-simulation](https://github.com/yuhodots/mav-simulation), [pintos](https://github.com/yuhodots/pintos), [uav-control](https://github.com/yuhodots/uav-control)
 - Research repositories: [cl-research](https://github.com/cl-research), [ncd-research](https://github.com/ncd-research), [ner-research](https://github.com/ner-research), [toolkits](https://github.com/yuhodots/toolkits)
-- Study group: https://cse-study.github.io/home/
+- Study group: <https://cse-study.github.io/home/>

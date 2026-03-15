@@ -38,7 +38,7 @@ thumbnail: "Operations"
 
 ### Git Hooks
 
-- Official docs: [Customizing Git - Git Hooks](https://git-scm.com/book/ko/v2/Git맞춤-Git-Hooks)
+- Official docs: [Customizing Git - Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 - GitHub Actions execute tasks on the remote based on triggers, but locally you can also automatically run specific scripts for specific actions through git hooks. Additionally, a module called **husky** exists that makes applying Git Hooks easier
 - Simply write scripts at the path `.git/hooks/{hook_name}`
 - Commit workflow hooks
@@ -164,7 +164,7 @@ volumes:
   logvolume01: {}
 ```
 
-- `version`: The compose file format version written on the first line. Writing just 3 uses the latest version among version 3. See [here](첫 줄에 적는) for details
+- `version`: The compose file format version written on the first line. Writing just 3 uses the latest version among version 3.
 - `services`: Defines the containers to run. The example above has two services: web and redis
 - `build`: The directory path where docker build command is executed
 - `ports`: Ports to use (HOST:CONTAINER)
