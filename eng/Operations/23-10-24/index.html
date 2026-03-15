@@ -161,13 +161,13 @@ output [
 </ul>
 <p>The following is an example config.pbtxt for model warmup.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">name: "resnet_classification"
-platform: "tensorrt_plan"  # 또는 "tensorflow_graphdef", "onnxruntime_onnx", "pytorch_libtorch" 등 사용 중인 모델의 플랫폼에 맞게 변경
+platform: "tensorrt_plan"  # Change to match your model's platform (e.g., "tensorflow_graphdef", "onnxruntime_onnx", "pytorch_libtorch")
 
 input [
   {
     name: "input_tensor"
     data_type: TYPE_FP32
-    dims: [3, 224, 224]  # 일반적인 ResNet 입력 크기
+    dims: [3, 224, 224]  # Typical ResNet input size
   }
 ]
 
@@ -175,7 +175,7 @@ output [
   {
     name: "output_tensor"
     data_type: TYPE_FP32
-    dims: [1000]  # 일반적인 ResNet 출력 크기 (ImageNet 기준)
+    dims: [1000]  # Typical ResNet output size (based on ImageNet)
   }
 ]
 
@@ -186,7 +186,7 @@ instance_group [
   }
 ]
 
-# Model Warmup 설정 추가
+# Add Model Warmup configuration
 model_warmup [
   {
     name: "resnet_warmup"
@@ -197,7 +197,7 @@ model_warmup [
       value: {
         data_type: TYPE_FP32
         dims: [3, 224, 224]
-        random_data: true  # 무작위 데이터를 사용하여 워밍업
+        random_data: true  # Warmup using random data
       }
     }
   }
