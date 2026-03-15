@@ -1,0 +1,85 @@
+---
+title: "2024 Year in Review"
+date: "2024-12-26"
+template: "post"
+draft: false
+path: "/essay/24-12-26/"
+description: "Following last year, I'm writing another retrospective this year. When I wrote my first retrospective, expressing my thoughts outwardly felt quite unfamiliar. I remember hesitating over whether to publish it or keep it to myself. But looking back now, that timidity feels a little silly, and I realize how much I've changed in just one year."
+category: "Essay"
+---
+
+Following last year, I'm writing another retrospective this year. When I first wrote my [retrospective](https://yuhodots.github.io/essay/23-12-10/), expressing my thoughts outwardly felt quite unfamiliar. I remember hesitating over whether to publish it or keep it to myself. But looking back now, that timidity feels a little silly, and I realize how much I've changed in just one year.
+
+I often revisited last year's retrospective. There was no particular reason -- I mostly read it out of boredom. But the process turned out to be surprisingly helpful for reflecting on myself. It also served as an opportunity to check whether the commitments I made last year were being kept. So this year, I'm writing another retrospective to record who I am right now, hoping that when I read this again in a year, I can recall how I was, improve what was lacking, and continue what was good.
+
+### Looking Back on This Year
+
+I started keeping a journal in 2018, which means I've been journaling for seven years now. Rather than writing about events, I mostly write when my mind is cluttered or something is weighing on me, as a way to sort out my thoughts and emotions. Later, when similar situations arise, I revisit those entries to gain insights or make better decisions. That's why my journal entries tend to be longer and more numerous during particularly difficult periods.
+
+This year, however, I didn't write much in my journal -- perhaps because there were many good things happening. So now that I'm trying to reflect on the year, I'm a bit disappointed that I don't have much material to look back on regarding what emotions I felt and what thoughts and concerns I had. Still, listing the major events that come to mind in chronological order:
+
+- January: I helped run our company booth at CES in Las Vegas. In a short period, I got to meet a truly diverse range of people, which was a completely new experience.
+- February-March: I spent busy days applying our company's new AI pipeline to the service. It was the first time I directly deployed an AI algorithm I built to an external service, and I also remember learning various tech stacks while simultaneously handling some deployment/operations work.
+- April-June: A project where I served as the key person was successfully completed. It was a fairly long-term, important project, so finishing it with good results was rewarding. On a personal note, I attempted a half-marathon but it was physically brutal, and I also took my first trip to Southeast Asia -- Da Nang. The destination was great, but what made it especially memorable was being there with someone precious.
+- July-September: When I first joined the company, I had a vague goal of replacing all the AI models (segmentation, classification) in the service with models I developed. During this period, I achieved that goal, which was deeply satisfying. I also started preparing for a job change.
+- October-December: I decided to leave, wrapped up my existing work, and spent time joining and adapting to a new company.
+
+### Reflections and Thoughts of This Year
+
+##### Last Year's Commitments
+
+One of the areas for improvement I mentioned in last year's retrospective was "be more open about myself." I feel I've improved significantly in this regard this year. In particular, I've gained more confidence in saying "I don't know" when I genuinely don't. I don't think this change came from a conscious effort on my part. The willingness to admit what you don't know seems to develop naturally as your knowledge grows. Thanks to significant technical growth this year, I had a certain confidence that saying "I don't know" doesn't mean I lack skill. That confidence, in turn, led to a more honest attitude about the things I don't know.
+
+Another improvement I noted was "produce more visible results." I feel I've also become better at this. Whether inside the company or outside of it, I've had more experiences where I could clearly articulate what I'd done and have it translate into recognized outcomes. Rather than creating results that only hold meaning for myself, I've become more accustomed to producing results that can be recognized by others. Again, this wasn't something I achieved through conscious effort, but rather something that naturally improved as experiences accumulated.
+
+##### Thoughts on Technology
+
+If last year was a year where I had many thoughts about people, this year was a year filled with reflections on technology. To be honest, with AI advancing at such a breakneck pace, I think it was a year where not just I, but most AI/ML engineers, had plenty to ponder.
+
+On a personal level, I've grown to like the developer profession even more. Previously, I preferred research and studying new knowledge over development. Development sometimes gave me headaches, felt daunting, and there were times when I seemed to invest a lot of time without getting satisfying results, which was frustrating. But this year, as I developed more and more technologies and products that were delivered to real users, watching someone actually use what I built was genuinely fun, and I have many memories of being deeply immersed.
+
+Regarding AI technology, I could feel that significantly more AI technologies were being commercialized into actual services this year. Of course, many AI technologies were already being deployed before, but this year the volume felt overwhelming. I began to think that how to address the uncertainty of AI when building real businesses, and how to operate services stably without issues, would become increasingly important.
+
+I also pondered whether my work could truly have a positive impact on the society I belong to. Of course, my top priority is to earn a good living for myself first. But if I ever reach a comfortable enough position, I wondered what kind of contribution I could make to society as I grow into the adult I want to be. While using AI to increase operational efficiency is certainly important economically, does it really help build a better world where you look forward to tomorrow? Might it actually have negative effects? I worried that my work might be eliminating someone's job. Of course, I'm not that important as an individual, so I didn't dwell on it too seriously. And for now, I believe AI has more positive effects -- enabling people to create more remarkable and creative things in less time -- than job displacement. Still, I felt especially strongly this year that we should maintain a serious sense of vigilance.
+
+So, in a somewhat unexpected conclusion, I decided that I should start writing regularly, even if just as a hobby. I believe that what gives people profound insights and reminds them of important values is not technology but great content. Among the various types of content, writing is something I'm relatively interested in and capable of, so I thought maybe I should start honing my writing skills now. In about two or three years, I'd like to create written content that shares the values I hold important with others. But for now, this is just one of those fleeting thoughts passing through my mind.
+
+##### Moving to a New Company
+
+From early summer, I was busy building my portfolio and going to interviews to prepare for a job change. Up until the first half of the year, I hadn't seriously considered leaving. Most of the work I did at the company this year was deeply meaningful and helped me grow tremendously. But by June or July, I had largely solved the problems I'd been eager to tackle since joining, and my role within the company had shifted from taking on new challenges to maintaining existing technologies without issues. It was a stage where other roles mattered more than the AI engineer role, and I felt that my potential contribution to the company wasn't as significant. Combined with several other internal factors, I began preparing for a change.
+
+The job search process started in July and ended in September. I thought it would be wrapped up in a month, but the job market apparently wasn't that favorable, and it took a long time. Most companies seemed to be very thorough in evaluating candidates, and the entire process took quite a while. During this time, I took many coding tests and assignments, and went through many interviews. The whole process was nerve-wracking, but it was also fun to discuss technology with various new people.
+
+After receiving an offer from the new company, I actually agonized a lot over whether to make the move. Of course, I had applied in the first place, but once I got in, the drastically different domain made me worry about derailing my career, and I even considered just staying at my current company. Then I started giving myself ample time to think about which choice I would regret less in the future.
+
+Vaguely, I just want to be a good person. And I want to be a good colleague to those around me. But I don't think becoming a "good person" or "good colleague" comes easily. To get there, I want to spend my twenties filled with deep thought and rich experience. I figured that if I decided to change jobs, there would be many moments where I'd have to prove my worth from scratch in a new domain. I expected many challenges and many trials and errors.
+
+My experience joining my previous company was actually similar. The domain was completely new to me, and it was a company I'd never heard of before, so there was a lot to prove and many mistakes along the way. But in return, I was able to accumulate a wealth of experience and gain invaluable lessons both technically and personally. It was such a good experience that even now, I would make the same choice without hesitation. And it was precisely these good memories that ultimately led me to decide to make the move.
+
+Whether this was the right choice will probably become clear in next year's retrospective. But still, as I said in last year's retrospective, I hold the belief that what matters more than the choice itself is the attitude and response that follow. I hope that "whether it was a bad choice or a good one, my subsequent attitude and response will ensure that bad choices don't significantly affect me, and good choices are made even better."
+
+### Good Memories
+
+The memories that were simply joyful and novel seem to be the ones from traveling abroad. In January, I helped run a CES booth in Las Vegas. What I remember now includes shivering without a padded jacket, exploring Las Vegas at night, spending all day introducing our company's product to various people in a frenzy, and peeking at other booths whenever I had a moment. I felt the bittersweet realization that speaking English was manageable but listening was so difficult, and also a sense of camaraderie knowing that startups from other countries were grappling with similar concerns as domestic ones.
+
+The next trip abroad was a vacation to Da Nang with my precious partner. It was my first time visiting Southeast Asia, and it was better than I expected. As soon as we arrived, there was so much Korean everywhere that I immediately understood why people jokingly call it "Gyeonggi Province, Da Nang City." That vibe wasn't bad at all, honestly. I remember the distinctly hot Southeast Asian air, but also the wonderful hotel, delicious food and street scenery, and getting a daily massage. Most of all, being there with someone precious made it the best.
+
+There were two work-related tasks that I found particularly rewarding. The first was successfully completing a fairly long project where I served as the key person. To summarize briefly, it was an effort to improve data quality by enhancing the data labeling pipeline. Despite being a six-month-long project, we were able to finish it well because every team member took strong ownership. I was especially proud because it was a project I had initially proposed. I had a lot of anxiety about whether model performance would actually improve as I'd expected once the project was done, so it was a relief when performance genuinely did improve.
+
+The second rewarding work memory was deploying models I built directly to the main service pipeline and operating them. When I first joined, I had the vague goal of replacing all AI models in the company's service with ones I developed, and I was glad to achieve that goal before leaving. Beyond that, I was able to get hands-on experience with everything from CI/CD to parts of the operations for a fairly large service pipeline, end-to-end. It was such a precious experience that I wondered where else I could ever have it. Of course, there were days when I worried intensely about whether someone at my career level should really be handling such large and critical work, and the psychological burden was heavy. But in return, I was able to grow by that much.
+
+I also appreciated being able to spend a lot of time with the precious people around me. I went on trips with close colleagues and met up regularly, and I consistently saw my high school and college friends. Among them, some got married this year, and others are planning to soon. It felt novel to see everyone gradually growing into adults. I often think that the people around me are the reason my life has meaning, and that love for the people around me is an important value to me. In that sense, there were many days when I felt truly lucky.
+
+### Looking Forward to Next Year
+
+As the years of experience pile up, the anticipation for the future seems to grow in proportion with anxiety and worry. Right now, the most important task is adapting well to the new environment, but once some time has passed, I want to fully try everything this environment has to offer. I want to quickly build not just one but three or four products end-to-end, going through plenty of trial and error along the way to improve and grow. A small goal of mine is to develop at least one product that reaches external users before next year ends.
+
+Additionally, I plan to deepen my infrastructure knowledge next year. While AI/ML engineers don't directly handle infrastructure that often, I believe understanding infrastructure becomes increasingly important as you dig deeper technically, and I'd like to gain more experience operating AI services myself in the future. I feel that there aren't many people who deeply understand AI/ML infrastructure yet, so I want to carve out time to study and build expertise in this area. I'm thinking of starting with something as simple as certifications. Honestly, this year I resolved to study for certifications but never actually started, so I wonder if next year will be any different.
+
+This year, I developed several good habits. I read a lot of books during my commute, and I started going to bed and waking up earlier, which gave me more relaxed evenings. The extra free time allowed me to do a greater variety of things. If these habits carry into next year, I expect there will be even more opportunities to try new experiences.
+
+### Closing Thoughts
+
+If I were to sum up this year in one sentence, it would be "a year where I can confidently say I grew significantly in my technical skills." Last year, I couldn't answer with confidence when asked whether I had grown enough technically, but this year, I gained enough experience to answer with some assurance. On the other hand, I still carry the worry of whether I can discover my own sharp strengths, refine them, and truly become a skilled engineer. These concerns seem to accumulate alongside the years of experience.
+
+Last year, I described the year as "the year I laughed the most in recent memory." This year, I think it will be remembered as "a year I spent happily, without deep worries or concerns." Of course, it's not that worries and concerns were truly absent, but this year, instead of keeping those issues bottled up inside, I let them out by talking about them or expressing them, which prevented them from turning into deep rumination and allowed them to dissipate quickly. If next year is anything like this year, I think it will be remembered as another truly great year.
