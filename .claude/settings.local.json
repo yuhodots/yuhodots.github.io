@@ -25,7 +25,18 @@
       "Bash(pkill:*)",
       "mcp__context7__resolve-library-id",
       "mcp__context7__query-docs",
-      "Bash(yarn build:*)"
+      "Bash(yarn build:*)",
+      "Bash(git checkout:*)",
+      "Bash(grep:*)",
+      "Bash(gh api *)",
+      "Bash(wait)",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:engineering.linkedin.com)",
+      "Bash(curl -s \"https://arxiv.org/abs/2404.16130\")",
+      "Bash(curl -sL \"https://microsoft.github.io/graphrag/\")",
+      "Bash(curl -sL \"https://microsoft.github.io/graphrag/index/default_dataflow/\")",
+      "Bash(curl -sL \"https://arxiv.org/abs/1810.08473\")",
+      "Bash(curl -sL \"https://arxiv.org/pdf/2404.16130\" -o /tmp/graphrag.pdf)"
     ]
   }
 }

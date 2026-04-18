@@ -4,6 +4,10 @@
   "description": "Yuho Jeong's blog",
   "version": "0.1.0",
   "author": "yuho <yuho8437@unist.ac.kr>",
+  "engines": {
+    "node": "20.x",
+    "yarn": "1.x"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.0",
     "gatsby": "^5.13.0",
@@ -42,15 +46,15 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "build": "node scripts/check-node-version.js && gatsby build",
     "develop": "gatsby develop",
     "lint": "node_modules/.bin/eslint *.js src/**/*.js --fix",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\" && npm run lint",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "clean": "node scripts/check-node-version.js && gatsby clean",
     "test": "echo \"Write tests! -> https://gatsbyjs.dev/unit-testing\" && exit 1",
-    "deploy": "npm run clean && gatsby build && cd public && rm *.map && cd .. && gh-pages -b master -d public"
+    "deploy": "npm run clean && npm run build && cd public && rm *.map && cd .. && gh-pages -b master -d public"
   },
   "repository": {
     "type": "git",
