@@ -460,7 +460,6 @@ Example: /goal improve benchmark coverage</code></pre></div>
 <thead>
 <tr>
 <th>비교 축</th>
-<th>ghuntley 원형 Ralph</th>
 <th>snarktank/ralph</th>
 <th>Claude Plugin Ralph Loop</th>
 <th>Codex <code class="language-text">/goal</code></th>
@@ -469,28 +468,24 @@ Example: /goal improve benchmark coverage</code></pre></div>
 <tbody>
 <tr>
 <td><strong>계통</strong></td>
-<td>bash 한 줄 패턴</td>
 <td>PRD 기반 외부 Bash 루프</td>
 <td>Anthropic 공식 Claude Code 플러그인</td>
 <td>OpenAI Codex 목표 lifecycle</td>
 </tr>
 <tr>
 <td><strong>구동 환경</strong></td>
-<td>로컬 터미널 + bash</td>
 <td>로컬 Git repo + bash</td>
 <td>Claude Code 단일 세션 내부</td>
 <td>Codex CLI 세션 / 실행 환경</td>
 </tr>
 <tr>
 <td><strong>트리거</strong></td>
-<td><code class="language-text">./loop.sh</code> (수동 실행)</td>
 <td><code class="language-text">./scripts/ralph/ralph.sh --tool claude N</code></td>
 <td>슬래시 <code class="language-text">/ralph-loop "&lt;prompt>"</code></td>
 <td>슬래시 <code class="language-text">/goal &lt;objective></code></td>
 </tr>
 <tr>
 <td><strong>루프 제어</strong></td>
-<td>외부 <code class="language-text">while</code> 루프</td>
 <td>외부 <code class="language-text">for</code> 루프, 자식 프로세스 강제 리셋</td>
 <td>Stop Hook + exit code 2 (세션 가로채기)</td>
 <td>매 턴 <code class="language-text">continuation.md</code> / <code class="language-text">budget_limit.md</code> 자동 주입</td>
@@ -498,48 +493,41 @@ Example: /goal improve benchmark coverage</code></pre></div>
 <tr>
 <td><strong>컨텍스트 모델</strong></td>
 <td><strong>Fresh Context</strong> (매 iter 백지)</td>
-<td><strong>Fresh Context</strong> (매 iter 백지)</td>
 <td><strong>Single Context 누적</strong> (Dumb Zone 위험)</td>
 <td><strong>Persistent Goal</strong> (긴 윈도우 + self-audit)</td>
 </tr>
 <tr>
 <td><strong>상태 보존</strong></td>
-<td>git + 단일 PROMPT.md</td>
 <td>git + <code class="language-text">prd.json</code> + <code class="language-text">progress.txt</code></td>
 <td>세션 내부 컨텍스트 + 상태 파일</td>
 <td>thread goal state + token/time accounting</td>
 </tr>
 <tr>
 <td><strong>종료 조건</strong></td>
-<td>사람이 Ctrl+C / 사양 충족 판단</td>
 <td><code class="language-text">&lt;promise>COMPLETE&lt;/promise></code> grep</td>
 <td><code class="language-text">--completion-promise</code> 매칭 또는 max-iterations</td>
 <td><code class="language-text">update_goal(status="complete")</code> 호출 또는 토큰 예산 한계</td>
 </tr>
 <tr>
 <td><strong>종료 판정 권한</strong></td>
-<td>사람</td>
 <td>외부 셸</td>
 <td>세션 내 Stop Hook</td>
 <td>모델 자신의 도구 호출</td>
 </tr>
 <tr>
 <td><strong>안전장치</strong></td>
-<td>사람 감시</td>
 <td>max iterations, CI 스크립트</td>
 <td>max-iterations</td>
 <td><strong>토큰 예산 강제 중단</strong>, 실행 환경 격리</td>
 </tr>
 <tr>
 <td><strong>잘 맞는 작업</strong></td>
-<td>Ralph 패턴 학습/시연</td>
 <td>PRD로 쪼갠 다단계 정형 프로젝트</td>
 <td>작은 반복 수정, 명확한 성공 문자열</td>
 <td>며칠짜리 비동기 마이그레이션, 인프라 전환</td>
 </tr>
 <tr>
 <td><strong>약점</strong></td>
-<td>UI 없음, 사람 종료 의존</td>
 <td>모니터링 UI 부족, 텍스트 가시성만</td>
 <td><strong>Dumb Zone 조기 진입</strong> — 컨텍스트 누적</td>
 <td>메타프롬프팅 작성 능력 요구, 공식 docs 미비</td>

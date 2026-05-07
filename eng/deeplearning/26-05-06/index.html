@@ -460,7 +460,6 @@ Example: /goal improve benchmark coverage</code></pre></div>
 <thead>
 <tr>
 <th>Comparison axis</th>
-<th>ghuntley original Ralph</th>
 <th>snarktank/ralph</th>
 <th>Claude Plugin Ralph Loop</th>
 <th>Codex <code class="language-text">/goal</code></th>
@@ -469,28 +468,24 @@ Example: /goal improve benchmark coverage</code></pre></div>
 <tbody>
 <tr>
 <td><strong>Lineage</strong></td>
-<td>one-line bash pattern</td>
 <td>PRD-based external bash loop</td>
 <td>Anthropic official Claude Code plugin</td>
 <td>OpenAI Codex goal lifecycle</td>
 </tr>
 <tr>
 <td><strong>Runtime environment</strong></td>
-<td>local terminal + bash</td>
 <td>local Git repo + bash</td>
 <td>inside a single Claude Code session</td>
 <td>Codex CLI session / execution environment</td>
 </tr>
 <tr>
 <td><strong>Trigger</strong></td>
-<td><code class="language-text">./loop.sh</code> (manual run)</td>
 <td><code class="language-text">./scripts/ralph/ralph.sh --tool claude N</code></td>
 <td>slash <code class="language-text">/ralph-loop "&lt;prompt>"</code></td>
 <td>slash <code class="language-text">/goal &lt;objective></code></td>
 </tr>
 <tr>
 <td><strong>Loop control</strong></td>
-<td>external <code class="language-text">while</code> loop</td>
 <td>external <code class="language-text">for</code> loop, child process forced reset</td>
 <td>Stop Hook + exit code 2 (session interception)</td>
 <td>per-turn auto injection of <code class="language-text">continuation.md</code> / <code class="language-text">budget_limit.md</code></td>
@@ -498,48 +493,41 @@ Example: /goal improve benchmark coverage</code></pre></div>
 <tr>
 <td><strong>Context model</strong></td>
 <td><strong>Fresh Context</strong> (blank slate per iter)</td>
-<td><strong>Fresh Context</strong> (blank slate per iter)</td>
 <td><strong>Single Context accumulation</strong> (Dumb Zone risk)</td>
 <td><strong>Persistent Goal</strong> (long window + self-audit)</td>
 </tr>
 <tr>
 <td><strong>State persistence</strong></td>
-<td>git + single PROMPT.md</td>
 <td>git + <code class="language-text">prd.json</code> + <code class="language-text">progress.txt</code></td>
 <td>in-session context + state file</td>
 <td>thread goal state + token/time accounting</td>
 </tr>
 <tr>
 <td><strong>Termination condition</strong></td>
-<td>human Ctrl+C / spec satisfaction judgment</td>
 <td><code class="language-text">&lt;promise>COMPLETE&lt;/promise></code> grep</td>
 <td><code class="language-text">--completion-promise</code> match or max-iterations</td>
 <td><code class="language-text">update_goal(status="complete")</code> call or token budget limit</td>
 </tr>
 <tr>
 <td><strong>Termination authority</strong></td>
-<td>human</td>
 <td>external shell</td>
 <td>in-session Stop Hook</td>
 <td>model's own tool call</td>
 </tr>
 <tr>
 <td><strong>Safeguards</strong></td>
-<td>human supervision</td>
 <td>max iterations, CI scripts</td>
 <td>max-iterations</td>
 <td><strong>forced token-budget abort</strong>, execution environment isolation</td>
 </tr>
 <tr>
 <td><strong>Best-fit work</strong></td>
-<td>learning/demonstrating the Ralph pattern</td>
 <td>multi-stage structured projects sliced via PRD</td>
 <td>small repeated edits, clear success strings</td>
 <td>multi-day async migrations, infra transitions</td>
 </tr>
 <tr>
 <td><strong>Weakness</strong></td>
-<td>no UI, depends on human termination</td>
 <td>lacks monitoring UI, only text visibility</td>
 <td><strong>early entry to Dumb Zone</strong> — context accumulation</td>
 <td>requires meta-prompting writing skills, lacking official docs</td>
