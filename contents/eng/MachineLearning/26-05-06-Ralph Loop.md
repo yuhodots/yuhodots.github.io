@@ -496,19 +496,19 @@ Codex `/goal`, conversely, accumulates context within a single thread but, at th
 
 When you put the tools we've seen so far into a single table, the differences become clear. Where the authority for termination judgment lies is the biggest dividing line.
 
-| Comparison axis | ghuntley original Ralph | snarktank/ralph | Claude Plugin Ralph Loop | Codex `/goal` |
-| --- | --- | --- | --- | --- |
-| **Lineage** | one-line bash pattern | PRD-based external bash loop | Anthropic official Claude Code plugin | OpenAI Codex goal lifecycle |
-| **Runtime environment** | local terminal + bash | local Git repo + bash | inside a single Claude Code session | Codex CLI session / execution environment |
-| **Trigger** | `./loop.sh` (manual run) | `./scripts/ralph/ralph.sh --tool claude N` | slash `/ralph-loop "<prompt>"` | slash `/goal <objective>` |
-| **Loop control** | external `while` loop | external `for` loop, child process forced reset | Stop Hook + exit code 2 (session interception) | per-turn auto injection of `continuation.md` / `budget_limit.md` |
-| **Context model** | **Fresh Context** (blank slate per iter) | **Fresh Context** (blank slate per iter) | **Single Context accumulation** (Dumb Zone risk) | **Persistent Goal** (long window + self-audit) |
-| **State persistence** | git + single PROMPT.md | git + `prd.json` + `progress.txt` | in-session context + state file | thread goal state + token/time accounting |
-| **Termination condition** | human Ctrl+C / spec satisfaction judgment | `<promise>COMPLETE</promise>` grep | `--completion-promise` match or max-iterations | `update_goal(status="complete")` call or token budget limit |
-| **Termination authority** | human | external shell | in-session Stop Hook | model's own tool call |
-| **Safeguards** | human supervision | max iterations, CI scripts | max-iterations | **forced token-budget abort**, execution environment isolation |
-| **Best-fit work** | learning/demonstrating the Ralph pattern | multi-stage structured projects sliced via PRD | small repeated edits, clear success strings | multi-day async migrations, infra transitions |
-| **Weakness** | no UI, depends on human termination | lacks monitoring UI, only text visibility | **early entry to Dumb Zone** — context accumulation | requires meta-prompting writing skills, lacking official docs |
+| Comparison axis | snarktank/ralph | Claude Plugin Ralph Loop | Codex `/goal` |
+| --- | --- | --- | --- |
+| **Lineage** | PRD-based external bash loop | Anthropic official Claude Code plugin | OpenAI Codex goal lifecycle |
+| **Runtime environment** | local Git repo + bash | inside a single Claude Code session | Codex CLI session / execution environment |
+| **Trigger** | `./scripts/ralph/ralph.sh --tool claude N` | slash `/ralph-loop "<prompt>"` | slash `/goal <objective>` |
+| **Loop control** | external `for` loop, child process forced reset | Stop Hook + exit code 2 (session interception) | per-turn auto injection of `continuation.md` / `budget_limit.md` |
+| **Context model** | **Fresh Context** (blank slate per iter) | **Single Context accumulation** (Dumb Zone risk) | **Persistent Goal** (long window + self-audit) |
+| **State persistence** | git + `prd.json` + `progress.txt` | in-session context + state file | thread goal state + token/time accounting |
+| **Termination condition** | `<promise>COMPLETE</promise>` grep | `--completion-promise` match or max-iterations | `update_goal(status="complete")` call or token budget limit |
+| **Termination authority** | external shell | in-session Stop Hook | model's own tool call |
+| **Safeguards** | max iterations, CI scripts | max-iterations | **forced token-budget abort**, execution environment isolation |
+| **Best-fit work** | multi-stage structured projects sliced via PRD | small repeated edits, clear success strings | multi-day async migrations, infra transitions |
+| **Weakness** | lacks monitoring UI, only text visibility | **early entry to Dumb Zone** — context accumulation | requires meta-prompting writing skills, lacking official docs |
 
 ### Conclusion
 

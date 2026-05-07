@@ -4,7 +4,7 @@ date: "2026-05-06"
 template: "post"
 draft: false
 path: "/deeplearning/26-05-06/"
-description: "Geoffrey Huntley의 원형 Ralph 패턴부터 snarktank/ralph, Claude Code Ralph Loop 플러그인, OpenAI Codex goal까지 — 장시간 실행 코딩 에이전트가 컨텍스트 부패를 어떻게 우회하고 종료를 어떻게 정의하는지 정리합니다. 본 포스팅은 서로 다른 에이전트가 ralph loop 방식으로 작성한 초안들을 병합한 결과물입니다."
+description: "Geoffrey Huntley의 원형 Ralph 패턴부터 snarktank/ralph, Claude Code Ralph Loop 플러그인, OpenAI Codex goal까지 — 장시간 실행 코딩 에이전트가 컨텍스트 부패를 어떻게 우회하고 종료를 어떻게 정의하는지 정리합니다. 본 포스팅은 서로 다른 에이전트가 ralph loop 방식..."
 category: "Deep Learning"
 thumbnail: "deeplearning"
 ---
@@ -496,19 +496,19 @@ Codex `/goal`은 반대로 한 thread 안에서 컨텍스트를 누적시키되 
 
 여기까지 본 도구들을 한 표에 정리하면 차이가 또렷해집니다. 종료 판정의 권한이 어디 있는가가 가장 큰 분기점입니다.
 
-| 비교 축 | ghuntley 원형 Ralph | snarktank/ralph | Claude Plugin Ralph Loop | Codex `/goal` |
-| --- | --- | --- | --- | --- |
-| **계통** | bash 한 줄 패턴 | PRD 기반 외부 Bash 루프 | Anthropic 공식 Claude Code 플러그인 | OpenAI Codex 목표 lifecycle |
-| **구동 환경** | 로컬 터미널 + bash | 로컬 Git repo + bash | Claude Code 단일 세션 내부 | Codex CLI 세션 / 실행 환경 |
-| **트리거** | `./loop.sh` (수동 실행) | `./scripts/ralph/ralph.sh --tool claude N` | 슬래시 `/ralph-loop "<prompt>"` | 슬래시 `/goal <objective>` |
-| **루프 제어** | 외부 `while` 루프 | 외부 `for` 루프, 자식 프로세스 강제 리셋 | Stop Hook + exit code 2 (세션 가로채기) | 매 턴 `continuation.md` / `budget_limit.md` 자동 주입 |
-| **컨텍스트 모델** | **Fresh Context** (매 iter 백지) | **Fresh Context** (매 iter 백지) | **Single Context 누적** (Dumb Zone 위험) | **Persistent Goal** (긴 윈도우 + self-audit) |
-| **상태 보존** | git + 단일 PROMPT.md | git + `prd.json` + `progress.txt` | 세션 내부 컨텍스트 + 상태 파일 | thread goal state + token/time accounting |
-| **종료 조건** | 사람이 Ctrl+C / 사양 충족 판단 | `<promise>COMPLETE</promise>` grep | `--completion-promise` 매칭 또는 max-iterations | `update_goal(status="complete")` 호출 또는 토큰 예산 한계 |
-| **종료 판정 권한** | 사람 | 외부 셸 | 세션 내 Stop Hook | 모델 자신의 도구 호출 |
-| **안전장치** | 사람 감시 | max iterations, CI 스크립트 | max-iterations | **토큰 예산 강제 중단**, 실행 환경 격리 |
-| **잘 맞는 작업** | Ralph 패턴 학습/시연 | PRD로 쪼갠 다단계 정형 프로젝트 | 작은 반복 수정, 명확한 성공 문자열 | 며칠짜리 비동기 마이그레이션, 인프라 전환 |
-| **약점** | UI 없음, 사람 종료 의존 | 모니터링 UI 부족, 텍스트 가시성만 | **Dumb Zone 조기 진입** — 컨텍스트 누적 | 메타프롬프팅 작성 능력 요구, 공식 docs 미비 |
+| 비교 축 | snarktank/ralph | Claude Plugin Ralph Loop | Codex `/goal` |
+| --- | --- | --- | --- |
+| **계통** | PRD 기반 외부 Bash 루프 | Anthropic 공식 Claude Code 플러그인 | OpenAI Codex 목표 lifecycle |
+| **구동 환경** | 로컬 Git repo + bash | Claude Code 단일 세션 내부 | Codex CLI 세션 / 실행 환경 |
+| **트리거** | `./scripts/ralph/ralph.sh --tool claude N` | 슬래시 `/ralph-loop "<prompt>"` | 슬래시 `/goal <objective>` |
+| **루프 제어** | 외부 `for` 루프, 자식 프로세스 강제 리셋 | Stop Hook + exit code 2 (세션 가로채기) | 매 턴 `continuation.md` / `budget_limit.md` 자동 주입 |
+| **컨텍스트 모델** | **Fresh Context** (매 iter 백지) | **Single Context 누적** (Dumb Zone 위험) | **Persistent Goal** (긴 윈도우 + self-audit) |
+| **상태 보존** | git + `prd.json` + `progress.txt` | 세션 내부 컨텍스트 + 상태 파일 | thread goal state + token/time accounting |
+| **종료 조건** | `<promise>COMPLETE</promise>` grep | `--completion-promise` 매칭 또는 max-iterations | `update_goal(status="complete")` 호출 또는 토큰 예산 한계 |
+| **종료 판정 권한** | 외부 셸 | 세션 내 Stop Hook | 모델 자신의 도구 호출 |
+| **안전장치** | max iterations, CI 스크립트 | max-iterations | **토큰 예산 강제 중단**, 실행 환경 격리 |
+| **잘 맞는 작업** | PRD로 쪼갠 다단계 정형 프로젝트 | 작은 반복 수정, 명확한 성공 문자열 | 며칠짜리 비동기 마이그레이션, 인프라 전환 |
+| **약점** | 모니터링 UI 부족, 텍스트 가시성만 | **Dumb Zone 조기 진입** — 컨텍스트 누적 | 메타프롬프팅 작성 능력 요구, 공식 docs 미비 |
 
 ### Conclusion
 
