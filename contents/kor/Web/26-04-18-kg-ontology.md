@@ -221,7 +221,7 @@ Ontology 엔지니어링 방법론으로는 **METHONTOLOGY**와 그 후계인 **
 4. **Evaluation** — CQ 응답성 검증, SHACL로 무결성 검증
 5. **Maintenance** — 도메인 변화에 따라 지속 업데이트
 
-**Competency Question**은 설계의 핵심 산출물입니다.[^20] "우리 회사 지식을 ontology로 만들자" 같은 추상적 요구를 "2024년 Q3에 한국 리전에서 발생한 결제 실패 중 가맹점 계정 문제 케이스 목록"처럼 **검증 가능한 질문**으로 구체화합니다. 서베이 기준 참여자의 85%가 CQ를 실제로 사용하며, 품질 평가의 사실상 표준입니다.[^20]
+**Competency Question**은 설계의 핵심 산출물입니다.[^20] "우리 회사 지식을 ontology로 만들자" 같은 추상적 요구를 "2024년 Q3에 한국 리전에서 발생한 결제 실패 중 가맹점 계정 문제 케이스 목록"처럼 **검증 가능한 질문**으로 구체화합니다.
 
 ##### Top-down vs. Bottom-up vs. Hybrid
 
@@ -419,16 +419,6 @@ flowchart LR
 ```
 
 다만 사용할 tool이 수백 개가 넘어가면 "어떤 tool을 언제 쓸지" 자체가 검색/추론 문제가 되는데, KG가 이 선택 문제에 구조적 힌트를 줄 수 있습니다.[^29] Agent 오케스트레이션 프레임워크 측면에서는 **LangGraph**가 상태 머신 기반 그래프로 agent 흐름을 정의하고 순환(cycles)을 허용해, "Cypher 쿼리 결과가 빈약하면 스스로 교정해 재시도"하는 self-correction 루프를 자연스럽게 구현할 수 있습니다.[^39]
-
-##### KG Embedding
-
-전통 KGE 기법도 LLM과 결합하는 맥락에서 다시 유용해지고 있습니다.[^30][^31]
-
-- **TransE**[^30]: triple $(h, r, t)$의 임베딩이 $\mathbf{h} + \mathbf{r} \approx \mathbf{t}$를 만족하도록 학습. 관계를 "벡터 공간의 이동(translation)"으로 모델링. 간단하지만 1:N 관계 표현에 한계.
-- **Node2Vec**[^31]: 그래프 위의 편향된 random walk로 노드 근방 구조를 보존하는 임베딩 학습. link prediction, KG completion에 여전히 강한 baseline.
-- **ComplEx, RotatE, ULTRA** 등: 대칭·비대칭 관계를 더 잘 표현하도록 복소수·회전·multi-relational 구조로 확장.
-
-LLM 시대에도 KGE가 여전히 가치 있는 이유는, **LLM 임베딩은 자연어 의미를 인코딩하지만 그래프의 구조적 관계를 직접 반영하지 못하기 때문**입니다.[^31] 두 임베딩을 결합해 retrieval에 활용하거나, KGE를 사용해 **링크 예측으로 ontology의 공백을 자동으로 채우는(link prediction as KG completion)** 용도로도 여전히 쓰입니다.[^31]
 
 ### Conclusion
 
