@@ -67,11 +67,12 @@
 <p>AI Agent 시대에 다시 주목받는 Knowledge Graph와 Ontology의 개념, 내부 구성 요소, 구축 방법론, 그리고 LLM·Agent와 결합된 최신 기술까지 실전 관점에서 정리합니다. 본 글은 footnote에 명시된 공개 자료들을 AI(Gemini Deep Research + Claude Code) 보조로 재구성·재해석한 정리 글입니다.</p>
 </blockquote>
 <h3 id="introduction" style="position:relative;"><a href="#introduction" aria-label="introduction permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h3>
-<p>Knowledge Graph(KG)와 Ontology는 결코 새로운 개념이 아닙니다. Semantic Web이 태동하던 2000년대 초반부터 존재해 왔으며, 2012년 Google이 <em>Knowledge Graph</em><sup id="fnref-1"><a href="#fn-1" class="footnote-ref">1</a></sup>를 공개하면서 검색 산업에 본격 적용된 이후로는 엔터프라이즈 데이터 통합 영역의 단골 기술로 쓰여 왔습니다. 그러다 최근 LLM 기반 Agent가 확산되면서, 단순 벡터 검색(Vector RAG)의 한계를 보완하고 <strong>구조화된 지식</strong>을 agent에게 공급하는 수단으로 KG와 Ontology가 다시 주목받고 있습니다.<sup id="fnref-2"><a href="#fn-2" class="footnote-ref">2</a></sup><sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup></p>
+<p>Knowledge Graph(KG)와 Ontology는 결코 새로운 개념이 아닙니다. Semantic Web이 태동하던 2000년대 초반부터 존재해 왔고, 2012년 Google이 <em>Knowledge Graph</em> 를 공개하면서 검색 산업에 본격 적용된 이후 엔터프라이즈 데이터 통합 영역의 단골 기술로 쓰여 왔습니다.</p>
+<p>최근 LLM 기반 Agent가 확산되면서, 단순 벡터 검색(Vector RAG)의 한계를 보완하고 <strong>구조화된 지식</strong>을 agent에게 공급하는 수단으로 KG와 Ontology가 다시 주목받고 있습니다.</p>
 <ul>
-<li><strong>Knowledge Base (KB)</strong>: FAQ·위키·Confluence처럼 주제별로 그룹화된 지식 저장소. 키워드 검색 기반.<sup id="fnref-5"><a href="#fn-5" class="footnote-ref">5</a></sup></li>
-<li><strong>Knowledge Graph (KG)</strong>: 엔티티를 노드로, 관계를 엣지로 표현하는 <strong>그래프 기반 데이터</strong>. 인스턴스 중심.<sup id="fnref-4"><a href="#fn-4" class="footnote-ref">4</a></sup><sup id="fnref-6"><a href="#fn-6" class="footnote-ref">6</a></sup></li>
-<li><strong>Ontology</strong>: 도메인의 개념·관계·제약을 <strong>형식적으로 명세한 스키마</strong>. 모델 중심적이며 상대적으로 안정적.<sup id="fnref-4"><a href="#fn-4" class="footnote-ref">4</a></sup><sup id="fnref-7"><a href="#fn-7" class="footnote-ref">7</a></sup></li>
+<li><strong>Knowledge Base (KB)</strong>: FAQ·위키·Confluence처럼 주제별로 그룹화된 지식 저장소. 키워드 검색 기반.</li>
+<li><strong>Knowledge Graph (KG)</strong>: 엔티티를 노드로, 관계를 엣지로 표현하는 <strong>그래프 기반 데이터</strong>. 인스턴스 중심.</li>
+<li><strong>Ontology</strong>: 도메인의 개념·관계·제약을 <strong>형식적으로 명세한 스키마</strong>. 모델 중심적이며 상대적으로 안정적.</li>
 </ul>
 <blockquote>
 <p><strong>Ontology는 스키마, Knowledge Graph는 그 스키마를 실제 데이터에 적용한 결과</strong></p>
@@ -107,16 +108,16 @@
 <li><strong>KG</strong>는 그 안에서 <strong>그래프 구조로 구현된 KB</strong>입니다.</li>
 <li><strong>Ontology</strong>는 KG의 스키마(TBox)에 해당하며, KG 바깥에서도 독립 파일로 존재할 수 있습니다.</li>
 </ul>
-<p>Vector RAG가 "의미적으로 유사한 문서 조각"을 찾아 prompt에 주입하는 방식이라면, KG+Ontology 기반 접근은 "명시적 관계를 따라 다단계로 정확한 사실"을 조회하는 방식입니다.<sup id="fnref-8"><a href="#fn-8" class="footnote-ref">8</a></sup><sup id="fnref-9"><a href="#fn-9" class="footnote-ref">9</a></sup> 전자는 구현이 쉽고 unstructured 데이터에 강하지만, <strong>관계 추론(multi-hop reasoning)과 설명 가능성(explainability)에서 구조적 한계</strong>가 있습니다.<sup id="fnref-9"><a href="#fn-9" class="footnote-ref">9</a></sup></p>
-<p>Agent 관점에서 KG+Ontology가 제공하는 역량은 크게 세 가지로 정리할 수 있습니다.<sup id="fnref-2"><a href="#fn-2" class="footnote-ref">2</a></sup><sup id="fnref-32"><a href="#fn-32" class="footnote-ref">32</a></sup></p>
+<p>Vector RAG가 "의미적으로 유사한 문서 조각"을 찾아 prompt에 주입하는 방식이라면, KG+Ontology 기반 접근은 "명시적 관계를 따라 다단계로 정확한 사실"을 조회하는 방식입니다. 전자는 구현이 쉽고 unstructured 데이터에 강하지만, <strong>관계 추론(multi-hop reasoning)과 설명 가능성(explainability)에서 구조적 한계</strong>가 있습니다.</p>
+<p>Agent 관점에서 KG+Ontology가 제공하는 역량은 크게 세 가지로 정리할 수 있습니다.</p>
 <ol>
-<li><strong>Persistent Memory(영속 메모리)</strong>: 상태 없는(stateless) LLM 호출을 넘어, 과거 워크플로우 결과·사용자 설정·시스템 변화 이력을 노드와 엣지로 구조화해 저장/조회. 수주~수개월 단위로 상태를 유지하는 stateful agent가 가능해짐.<sup id="fnref-32"><a href="#fn-32" class="footnote-ref">32</a></sup></li>
-<li><strong>환각 통제와 설명 가능한 추론</strong>: 모든 응답이 특정 그래프 관계에 <strong>앵커</strong>되므로, "왜 이 답이 나왔는가"를 노드·엣지 시퀀스로 추적(audit trail) 가능.<sup id="fnref-2"><a href="#fn-2" class="footnote-ref">2</a></sup><sup id="fnref-32"><a href="#fn-32" class="footnote-ref">32</a></sup> 금융·의료·법률처럼 정확성과 규제 준수가 핵심인 도메인에서 결정적 차이.</li>
-<li><strong>다단계 추론 + 세분화된 접근 제어</strong>: 여러 조각을 연결해야 답이 나오는 질의를 그래프 순회로 풀면서, <strong>fine-grained access control</strong>을 그래프 계층에서 강제 가능. 기업 신원 시스템과 연동해 "agent가 사용자 권한 범위 내 데이터만 참조"를 구조적으로 보장.<sup id="fnref-9"><a href="#fn-9" class="footnote-ref">9</a></sup><sup id="fnref-32"><a href="#fn-32" class="footnote-ref">32</a></sup></li>
+<li><strong>Persistent Memory(영속 메모리)</strong>: 상태 없는(stateless) LLM 호출을 넘어, 과거 워크플로우 결과·사용자 설정·시스템 변화 이력을 노드와 엣지로 구조화해 저장/조회. 수주~수개월 단위로 상태를 유지하는 stateful agent가 가능해짐.</li>
+<li><strong>환각 통제와 설명 가능한 추론</strong>: 모든 응답이 특정 그래프 관계에 <strong>앵커</strong>되므로, "왜 이 답이 나왔는가"를 노드·엣지 시퀀스로 추적(audit trail) 가능. 금융·의료·법률처럼 정확성과 규제 준수가 핵심인 도메인에서 결정적 차이.</li>
+<li><strong>다단계 추론 + 세분화된 접근 제어</strong>: 여러 조각을 연결해야 답이 나오는 질의를 그래프 순회로 풀면서, <strong>fine-grained access control</strong>을 그래프 계층에서 강제 가능. 기업 신원 시스템과 연동해 "agent가 사용자 권한 범위 내 데이터만 참조"를 구조적으로 보장.</li>
 </ol>
 <p>이 글에서는 아래 내용을 다룹니다.</p>
 <ul>
-<li>KG와 Ontology를 이해하기 위해 필요한 <strong>배경 용어</strong>와 표준(RDF/OWL/SPARQL, Property Graph)</li>
+<li>KG와 Ontology를 이해하기 위해 필요한 <strong>배경 용어</strong>와 표준(RDF/RDFS/OWL/SPARQL, Property Graph)</li>
 <li><strong>구축 방법론</strong>(METHONTOLOGY, NeOn, competency question)과 실제 사례(Google, LinkedIn, Uber, Amazon)</li>
 <li><strong>LLM 기반 자동 구축</strong>(GraphRAG, OntoGPT)과 <strong>Agent 메모리로서의 KG</strong>(Zep/Graphiti)</li>
 </ul>
@@ -149,8 +150,8 @@
 <li><strong>SPARQL</strong>: RDF 질의 언어 (재귀 약자)</li>
 <li><strong>SHACL / SKOS / GQL</strong>: shape 검증 / 분류체계 어휘 / Property Graph용 ISO 질의 언어</li>
 </ul>
-<h5 id="entity-relation-triple" style="position:relative;"><a href="#entity-relation-triple" aria-label="entity relation triple permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Entity, Relation, Triple</h5>
-<p>KG의 기본 단위는 <strong>triple</strong>, 즉 <code class="language-text">&lt;subject, predicate, object></code> 형태의 이진 명제입니다.<sup id="fnref-10"><a href="#fn-10" class="footnote-ref">10</a></sup><sup id="fnref-11"><a href="#fn-11" class="footnote-ref">11</a></sup> 예: "Ada Lovelace는 프로그래머이고 London에서 태어났다"는 다음처럼 표현됩니다.</p>
+<h5 id="triple" style="position:relative;"><a href="#triple" aria-label="triple permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Triple</h5>
+<p>KG의 기본 단위는 <strong>triple</strong>, 즉 <code class="language-text">&lt;subject, predicate, object></code> 형태의 이진 명제입니다. 예: "Ada Lovelace는 프로그래머이고 London에서 태어났다"는 다음처럼 표현됩니다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;:AdaLovelace, rdf:type, :Programmer>
 &lt;:AdaLovelace, :bornIn, :London>
 &lt;:London, :locatedIn, :UK></code></pre></div>
@@ -168,9 +169,12 @@
     <span class="token keyword">classDef</span> cls <span class="token style"><span class="token property">fill</span><span class="token operator">:</span>#E3F2FD<span class="token punctuation">,</span><span class="token property">stroke</span><span class="token operator">:</span>#1565C0<span class="token punctuation">,</span><span class="token property">stroke-width</span><span class="token operator">:</span>2px<span class="token punctuation">,</span><span class="token property">color</span><span class="token operator">:</span>#0D47A1</span>
     <span class="token keyword">class</span> AL,LN,UK inst
     <span class="token keyword">class</span> PR cls</code></pre></div>
-<p>subject·predicate는 전역 식별자(URI), object는 URI 또는 리터럴입니다.<sup id="fnref-11"><a href="#fn-11" class="footnote-ref">11</a></sup> triple들이 모이면 하나의 <strong>RDF 그래프</strong>가 되며, 같은 형태를 공유하기만 하면 <strong>도메인·출처가 다른 데이터도 하나의 그래프로 통합</strong>됩니다 — Semantic Web이 "web of linked data"를 지향한 이유입니다.<sup id="fnref-11"><a href="#fn-11" class="footnote-ref">11</a></sup></p>
+<p>subject·predicate는 전역 식별자(URI), object는 URI 또는 리터럴입니다. triple들이 모이면 하나의 <strong>RDF 그래프</strong>가 되며, 같은 형태를 공유하기만 하면 <strong>도메인·출처가 다른 데이터도 하나의 그래프로 통합</strong>됩니다 — Semantic Web이 "web of linked data"를 지향한 이유입니다.</p>
+<blockquote>
+<p><strong>함정</strong>: "사람이 코딩을 한다"처럼 자연스러운 한국어 문장도 그대로는 triple로 적을 수 없습니다. triple은 항상 <code class="language-text">주어-술어-목적어</code> 세 자리가 필요하므로, "사람은 코딩이라는 능력을 가지고 있다"처럼 <strong>목적어를 명시한 형태로 변환</strong>해야 합니다.</p>
+</blockquote>
 <h5 id="rdf-rdfs-owl-sparql" style="position:relative;"><a href="#rdf-rdfs-owl-sparql" aria-label="rdf rdfs owl sparql permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RDF, RDFS, OWL, SPARQL</h5>
-<p>RDF를 둘러싸고 W3C가 표준화한 기술 스택을 <strong>Semantic Web stack</strong> 이라고 부릅니다. 각 계층은 표현력(expressiveness)이 점점 올라가는 구조입니다.<sup id="fnref-11"><a href="#fn-11" class="footnote-ref">11</a></sup><sup id="fnref-12"><a href="#fn-12" class="footnote-ref">12</a></sup></p>
+<p>RDF를 둘러싸고 W3C가 표준화한 기술 스택을 <strong>Semantic Web stack</strong>이라고 부릅니다. 각 계층은 표현력(expressiveness)이 점점 올라가는 구조입니다.</p>
 <table>
 <thead>
 <tr>
@@ -207,8 +211,22 @@
 </tr>
 </tbody>
 </table>
-<p><strong>RDFS</strong>는 기본 타입 시스템(class·subClassOf·domain·range)을 제공하고,<sup id="fnref-12"><a href="#fn-12" class="footnote-ref">12</a></sup> <strong>OWL</strong>은 description logic 기반으로 cardinality·disjointness·inverse 같은 공리를 추가합니다.<sup id="fnref-7"><a href="#fn-7" class="footnote-ref">7</a></sup> 이 공리 덕분에 reasoner가 명시되지 않은 사실까지 추론할 수 있습니다. 예를 들어 "<code class="language-text">:hasMother</code>의 inverse는 <code class="language-text">:hasChild</code>다" 라는 공리가 있으면, "Alice가 Bob의 어머니다" 라는 사실로부터 "Bob이 Alice의 자식이다" 가 자동으로 도출됩니다.<sup id="fnref-7"><a href="#fn-7" class="footnote-ref">7</a></sup></p>
-<p><strong>SPARQL</strong>은 RDF 그래프를 질의하는 SQL-like 언어입니다.<sup id="fnref-13"><a href="#fn-13" class="footnote-ref">13</a></sup></p>
+<p><strong>RDFS</strong>는 기본 타입 시스템(class·subClassOf·domain·range)을 제공하고, <strong>OWL</strong>은 description logic 기반으로 cardinality·disjointness·inverse 같은 공리를 추가합니다. 실무에서는 보통 <strong>RDFS로 시작해 필요할 때 OWL로 확장</strong>하는 흐름이 자연스럽습니다.</p>
+<p><code class="language-text">domain</code>과 <code class="language-text">range</code>는 "이 술어의 주어/목적어는 어떤 클래스에 속해야 하는가"를 한 줄로 묶어 주는 강력한 도구입니다.</p>
+<div class="gatsby-highlight" data-language="turtle"><pre class="language-turtle"><code class="language-turtle"><span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">worksFor</span></span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span><span class="token local-name">type</span></span>     <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span><span class="token local-name">Property</span></span> <span class="token punctuation">;</span>
+          <span class="token function"><span class="token prefix">rdfs<span class="token punctuation">:</span></span><span class="token local-name">domain</span></span>  <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">Person</span></span> <span class="token punctuation">;</span>
+          <span class="token function"><span class="token prefix">rdfs<span class="token punctuation">:</span></span><span class="token local-name">range</span></span>   <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">Company</span></span> <span class="token punctuation">.</span></code></pre></div>
+<p>위 정의가 있으면 <code class="language-text">:john :worksFor :AWS</code> 라는 triple이 들어오는 순간 추론 엔진이 자동으로 <code class="language-text">:john rdf:type :Person</code>, <code class="language-text">:AWS rdf:type :Company</code>까지 도출합니다.</p>
+<p><strong>Reasoning — 안 적은 사실까지 끌어내기.</strong> RDFS/OWL 공리가 빛나는 순간은 <strong>추론(reasoning)</strong> 입니다. 예를 들어 <code class="language-text">:Employee rdfs:subClassOf :Person</code> 정의가 있으면, 데이터에 <code class="language-text">:john rdf:type :Employee</code> 만 있어도 추론 엔진은 <code class="language-text">:john rdf:type :Person</code> 한 줄을 더 도출합니다.</p>
+<p><code class="language-text">subPropertyOf</code> 합성은 더 강력합니다. 한 술어를 <strong>두 개의 상위 술어</strong>의 subProperty로 정의해 두면, 한 줄의 사실이 자동으로 두 줄로 늘어납니다.</p>
+<div class="gatsby-highlight" data-language="turtle"><pre class="language-turtle"><code class="language-turtle"><span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">workForAWSinSA</span></span> <span class="token function"><span class="token prefix">rdfs<span class="token punctuation">:</span></span><span class="token local-name">subPropertyOf</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">doSalesWork</span></span> <span class="token punctuation">;</span>
+                <span class="token function"><span class="token prefix">rdfs<span class="token punctuation">:</span></span><span class="token local-name">subPropertyOf</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">doTechWork</span></span> <span class="token punctuation">.</span>
+<span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">john</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">workForAWSinSA</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">AWS</span></span> <span class="token punctuation">.</span>
+<span class="token comment"># 추론 엔진이 자동 도출:</span>
+<span class="token comment"># :john :doSalesWork :AWS .</span>
+<span class="token comment"># :john :doTechWork  :AWS .</span></code></pre></div>
+<p>결과적으로 "Tech 업무와 Sales 업무를 둘 다 수행하는 직원" 질의에 john이 잡힙니다. <strong>데이터를 한 줄도 더 적지 않았는데도</strong> 그렇습니다. OWL의 <code class="language-text">inverseOf</code>(예: "Alice가 Bob의 어머니다 → Bob이 Alice의 자식이다")도 같은 원리입니다.</p>
+<p><strong>SPARQL</strong>은 RDF 그래프를 질의하는 SQL-like 언어입니다.</p>
 <div class="gatsby-highlight" data-language="sparql"><pre class="language-sparql"><code class="language-sparql"><span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&lt;</span>http://example.org/<span class="token punctuation">></span></span>
 <span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&lt;</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">></span></span>
 
@@ -218,17 +236,47 @@
   <span class="token variable">?person</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">bornIn</span></span> <span class="token variable">?city</span> <span class="token punctuation">.</span>
   <span class="token variable">?city</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">locatedIn</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">UK</span></span> <span class="token punctuation">.</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>패턴 매칭 방식이라 여러 triple 조건을 한번에 걸어 다단계 관계를 탐색할 수 있습니다.<sup id="fnref-13"><a href="#fn-13" class="footnote-ref">13</a></sup> Ontology 기반 <strong>entailment regime</strong>(RDFS/OWL reasoner)을 켜면 명시적으로 저장되지 않은 사실까지 포함해 질의 결과가 반환됩니다.<sup id="fnref-12"><a href="#fn-12" class="footnote-ref">12</a></sup></p>
-<h5 id="tbox-vs-abox" style="position:relative;"><a href="#tbox-vs-abox" aria-label="tbox vs abox permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TBox vs ABox</h5>
+<p>패턴 매칭 방식이라 여러 triple 조건을 한번에 걸어 다단계 관계를 탐색할 수 있습니다. Ontology 기반 <strong>entailment regime</strong>(RDFS/OWL reasoner)을 켜면 명시적으로 저장되지 않은 사실까지 포함해 질의 결과가 반환됩니다.</p>
+<h5 id="tbox-vs-abox" style="position:relative;"><a href="#tbox-vs-abox" aria-label="tbox vs abox permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TBox vs. ABox</h5>
+<p>Description Logic에서 온 용어로, 지식을 두 층으로 나누는 표준 개념입니다.</p>
 <ul>
-<li><strong>TBox</strong>: class 계층·property 제약·공리 등 <strong>스키마 레벨</strong> 지식</li>
-<li><strong>ABox</strong>: "Alice는 Programmer다" 같은 구체 인스턴스에 대한 <strong>데이터 레벨</strong> 사실</li>
+<li><strong>TBox (Terminological Box, "용어 상자")</strong>: 스키마/규칙 레벨. "어떤 클래스가 있고, 어떤 관계가 가능하며, 무슨 제약이 걸리는가" — 예: <code class="language-text">:Employee rdfs:subClassOf :Person</code>, <code class="language-text">:worksFor rdfs:domain :Person ; rdfs:range :Company</code></li>
+<li><strong>ABox (Assertional Box, "단언 상자")</strong>: 구체 인스턴스 사실. "실제로 누가 누구인지, 무엇을 했는지" — 예: <code class="language-text">:john rdf:type :Employee</code>, <code class="language-text">:john :worksFor :AWS</code></li>
 </ul>
-<blockquote>
-<p>Ontology는 주로 TBox, Knowledge Graph는 TBox + ABox를 함께 가리킵니다.<sup id="fnref-4"><a href="#fn-4" class="footnote-ref">4</a></sup><sup id="fnref-7"><a href="#fn-7" class="footnote-ref">7</a></sup> TBox는 상대적으로 안정적, ABox는 ETL·LLM 추출로 지속 업데이트되는 구조가 일반적입니다.<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup><sup id="fnref-14"><a href="#fn-14" class="footnote-ref">14</a></sup></p>
-</blockquote>
+<table>
+<thead>
+<tr>
+<th>비유</th>
+<th>TBox</th>
+<th>ABox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RDB</td>
+<td>테이블 스키마 (CREATE TABLE)</td>
+<td>실제 행(row) 데이터</td>
+</tr>
+<tr>
+<td>OOP</td>
+<td>Class 정의</td>
+<td>Instance</td>
+</tr>
+<tr>
+<td>사전</td>
+<td>"사람: 직업을 가질 수 있다" 같은 정의</td>
+<td>"John은 AWS에 다닌다" 같은 사실</td>
+</tr>
+</tbody>
+</table>
+<p>그래서 두 자산을 다음처럼 정리할 수 있습니다.</p>
+<ul>
+<li><strong>Ontology ≈ TBox</strong> (스키마만 따로 떼어 공유 가능 — FIBO, schema.org)</li>
+<li><strong>Knowledge Graph ≈ TBox + ABox</strong> (스키마 위에 실제 인스턴스까지 채운 것)</li>
+</ul>
+<p>TBox는 한번 잘 설계하면 거의 안 바뀌고, ABox는 ETL/LLM 추출로 계속 늘어나는 구조가 일반적입니다.</p>
 <h5 id="rdf-graph-vs-property-graph" style="position:relative;"><a href="#rdf-graph-vs-property-graph" aria-label="rdf graph vs property graph permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RDF Graph vs. Property Graph</h5>
-<p>실무에서 "그래프 데이터베이스"를 고를 때 RDF 계열과 <strong>Property Graph</strong> 계열을 나눕니다.<sup id="fnref-15"><a href="#fn-15" class="footnote-ref">15</a></sup><sup id="fnref-16"><a href="#fn-16" class="footnote-ref">16</a></sup></p>
+<p>실무에서 "그래프 데이터베이스"를 고를 때 RDF 계열과 <strong>Property Graph(PG)</strong> 계열을 나눕니다.</p>
 <table>
 <thead>
 <tr>
@@ -238,6 +286,16 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong>데이터 단위</strong></td>
+<td><strong>Triple</strong> <code class="language-text">S–P–O</code></td>
+<td><strong>노드 + 관계 + 속성(key-value)</strong></td>
+</tr>
+<tr>
+<td><strong>속성 표현</strong></td>
+<td>속성도 별도 트리플로 분해 (<code class="language-text">:john :age 30</code>)</td>
+<td>노드/관계가 속성을 직접 보유 (<code class="language-text">{name:'john', age:30}</code>)</td>
+</tr>
 <tr>
 <td><strong>엣지에 속성</strong></td>
 <td>기본 불가 (reification 필요)</td>
@@ -270,8 +328,18 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Property Graph</strong>는 <code class="language-text">(:User)-[:FOLLOWS {since: 2024}]->(:User)</code>처럼 엣지에 속성을 직접 붙일 수 있어 애플리케이션 모델링에 편리합니다.<sup id="fnref-15"><a href="#fn-15" class="footnote-ref">15</a></sup> 반면 <strong>RDF</strong>는 엣지 속성을 표현하려면 reification(관계를 노드로 승격)이 필요해 다소 번거롭습니다. 대신 URI 기반 전역 식별자 덕분에 <strong>상호운용성</strong>이 뛰어나고, OWL reasoner·FIBO 같은 표준 ontology 생태계도 풍부합니다.<sup id="fnref-15"><a href="#fn-15" class="footnote-ref">15</a></sup><sup id="fnref-17"><a href="#fn-17" class="footnote-ref">17</a></sup> 그래서 제약·금융처럼 다기관 통합이 중요한 영역에서는 "RDF를 지식 표현 계층, Property Graph를 알고리즘 실행 계층"으로 쓰는 하이브리드 패턴도 자리잡고 있습니다.<sup id="fnref-15"><a href="#fn-15" class="footnote-ref">15</a></sup></p>
-<p>엣지 속성의 차이를 그림으로 보면 다음과 같습니다. 같은 사실("UserA가 2024년부터 weight 0.9로 UserB를 팔로우")을 표현하는데 <strong>PG는 엣지 하나</strong>, <strong>RDF는 추가 노드 + triple 3개</strong>가 필요합니다.</p>
+<p>가장 본질적인 차이는 "속성을 어디까지 관계로 분해할 것인가"입니다. 같은 직원 <code class="language-text">john</code>을 두 모델로 표현해 보면 차이가 분명히 드러납니다.</p>
+<div class="gatsby-highlight" data-language="turtle"><pre class="language-turtle"><code class="language-turtle"><span class="token comment"># RDF — name도 age도 별도 관계로 분해</span>
+<span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">john</span></span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span><span class="token local-name">type</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">Employee</span></span> <span class="token punctuation">.</span>
+<span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">john</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">name</span></span>  <span class="token string">"john"</span> <span class="token punctuation">.</span>
+<span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">john</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">age</span></span>   <span class="token number">30</span> <span class="token punctuation">.</span>
+<span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">john</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">worksAt</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">AWS</span></span> <span class="token punctuation">.</span></code></pre></div>
+<div class="gatsby-highlight" data-language="cypher"><pre class="language-cypher"><code class="language-cypher"><span class="token comment">// Property Graph — 노드 자체가 속성 묶음을 가짐</span>
+<span class="token keyword">CREATE</span> <span class="token punctuation">(</span>john<span class="token operator">:</span><span class="token class-name">Employee</span> <span class="token punctuation">{</span>name<span class="token operator">:</span><span class="token string">'john'</span><span class="token punctuation">,</span> age<span class="token operator">:</span><span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">CREATE</span> <span class="token punctuation">(</span>aws<span class="token operator">:</span><span class="token class-name">Company</span> <span class="token punctuation">{</span>name<span class="token operator">:</span><span class="token string">'AWS'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">CREATE</span> <span class="token punctuation">(</span>john<span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span><span class="token operator">:</span><span class="token class-name">WORKS_AT</span> <span class="token punctuation">{</span>since<span class="token operator">:</span><span class="token number">2020</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token punctuation">(</span>aws<span class="token punctuation">)</span></code></pre></div>
+<p>RDF는 모든 사실을 triple로 환원하므로 일관성이 높고 외부와 합치거나 추론 엔진에 태우기 쉽습니다. 반면 Property Graph는 의미적으로 중요한 연결만 관계로 두고 나머지는 노드 속성에 묶어, 시각적으로 더 간결합니다.</p>
+<p>엣지에 속성을 붙이는 경우의 차이는 그림으로 보면 더 분명합니다. 같은 사실("UserA가 2024년부터 weight 0.9로 UserB를 팔로우")을 표현하는데 <strong>PG는 엣지 하나</strong>, <strong>RDF는 추가 노드 + triple 3개</strong>가 필요합니다.</p>
 <div class="gatsby-highlight" data-language="mermaid"><pre class="language-mermaid"><code class="language-mermaid"><span class="token keyword">flowchart</span> TB
     <span class="token keyword">subgraph</span> PG<span class="token text string">["Property Graph : 엣지 속성 네이티브"]</span>
         <span class="token keyword">direction</span> LR
@@ -296,8 +364,26 @@
     <span class="token keyword">class</span> Y,W,PRED lit
     <span class="token keyword">class</span> PG pgBox
     <span class="token keyword">class</span> RDFG rdfBox</code></pre></div>
+<p>쿼리 언어의 결도 다릅니다. "john이 일하는 회사의 파트너 회사 이름을 알려달라"는 동일한 질의를 두 언어로 비교해 보면 다음과 같습니다.</p>
+<div class="gatsby-highlight" data-language="cypher"><pre class="language-cypher"><code class="language-cypher"><span class="token comment">// Cypher — 화살표로 패턴을 한 줄에 표현</span>
+<span class="token keyword">MATCH</span> <span class="token punctuation">(</span>e<span class="token operator">:</span><span class="token class-name">Employee</span> <span class="token punctuation">{</span>name<span class="token operator">:</span><span class="token string">'john'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span><span class="token operator">:</span><span class="token relationship property">WORKS_AT</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token punctuation">(</span>c<span class="token operator">:</span><span class="token class-name">Company</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">[</span><span class="token operator">:</span><span class="token relationship property">PARTNERS</span><span class="token punctuation">]</span><span class="token operator">-></span><span class="token punctuation">(</span>p<span class="token operator">:</span><span class="token class-name">Company</span><span class="token punctuation">)</span>
+<span class="token keyword">RETURN</span> e<span class="token punctuation">.</span>name<span class="token punctuation">,</span> c<span class="token punctuation">.</span>name<span class="token punctuation">,</span> p<span class="token punctuation">.</span>name</code></pre></div>
+<div class="gatsby-highlight" data-language="sparql"><pre class="language-sparql"><code class="language-sparql"><span class="token comment"># SPARQL — 같은 패턴을 트리플 단위로 풀어 적음</span>
+<span class="token keyword">SELECT</span> <span class="token variable">?eName</span> <span class="token variable">?cName</span> <span class="token variable">?pName</span> <span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+  <span class="token variable">?e</span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span><span class="token local-name">type</span></span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">Employee</span></span> <span class="token punctuation">;</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?eName</span> <span class="token punctuation">;</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">worksAt</span></span> <span class="token variable">?c</span> <span class="token punctuation">.</span>
+  <span class="token variable">?c</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?cName</span> <span class="token punctuation">;</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">partnersWith</span></span> <span class="token variable">?p</span> <span class="token punctuation">.</span>
+  <span class="token variable">?p</span> <span class="token function"><span class="token prefix"><span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?pName</span> <span class="token punctuation">.</span>
+  <span class="token keyword">FILTER</span><span class="token punctuation">(</span><span class="token variable">?eName</span> = <span class="token string">"john"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>Cypher가 더 직관적으로 읽히는 대신, SPARQL은 W3C 표준이라 외부 ontology·도구 생태계와의 호환성이 강합니다.</p>
+<p>선택 기준은 다음과 같이 정리할 수 있습니다.</p>
+<ul>
+<li><strong>RDF가 유리한 경우</strong>: 표준 준수가 요구되는 환경(공공·금융·생명과학), 도메인 규칙 기반 <strong>추론</strong>이 핵심 가치인 경우, 외부 ontology(FIBO, SNOMED CT 등)나 LOD 어휘 재사용</li>
+<li><strong>Property Graph가 유리한 경우</strong>: 빠른 패턴 매칭·트래버설(친구의 친구, 최단 경로), 자유로운 스키마 진화, 관계 자체의 속성(가중치·시간)이 많은 도메인</li>
+</ul>
+<p>제약·금융처럼 다기관 통합이 중요한 영역에서는 "RDF를 지식 표현 계층, Property Graph를 알고리즘 실행 계층"으로 쓰는 하이브리드 패턴도 자리잡고 있습니다. Amazon Neptune은 같은 서비스 안에서 RDF와 Property Graph를 모두 지원해 이 패턴을 한 인프라로 묶기 좋은 선택지입니다.</p>
 <h3 id="common-practice" style="position:relative;"><a href="#common-practice" aria-label="common practice permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Common Practice</h3>
-<p>Ontology 엔지니어링 방법론으로는 <strong>METHONTOLOGY</strong>와 그 후계인 <strong>NeOn</strong>이 대표적입니다.<sup id="fnref-18"><a href="#fn-18" class="footnote-ref">18</a></sup><sup id="fnref-19"><a href="#fn-19" class="footnote-ref">19</a></sup> NeOn은 9가지 시나리오(ontology 재사용, 협업 개발 등)를 조합하는 시나리오 기반 방법론이며, 공통 단계는 다음과 같습니다.<sup id="fnref-18"><a href="#fn-18" class="footnote-ref">18</a></sup><sup id="fnref-19"><a href="#fn-19" class="footnote-ref">19</a></sup></p>
+<p>Ontology 엔지니어링 방법론으로는 <strong>METHONTOLOGY</strong>와 그 후계인 <strong>NeOn</strong>이 대표적입니다. NeOn은 9가지 시나리오(ontology 재사용, 협업 개발 등)를 조합하는 시나리오 기반 방법론이며, 공통 단계는 다음과 같습니다.</p>
 <ol>
 <li><strong>Requirements specification</strong> — 목적과 범위 정의</li>
 <li><strong>Competency Question(CQ) 정의</strong> — ontology가 답해야 할 자연어 질문 목록</li>
@@ -305,9 +391,9 @@
 <li><strong>Evaluation</strong> — CQ 응답성 검증, SHACL로 무결성 검증</li>
 <li><strong>Maintenance</strong> — 도메인 변화에 따라 지속 업데이트</li>
 </ol>
-<p><strong>Competency Question</strong>은 설계의 핵심 산출물입니다.<sup id="fnref-20"><a href="#fn-20" class="footnote-ref">20</a></sup> "우리 회사 지식을 ontology로 만들자" 같은 추상적 요구를 "2024년 Q3에 한국 리전에서 발생한 결제 실패 중 가맹점 계정 문제 케이스 목록"처럼 <strong>검증 가능한 질문</strong>으로 구체화합니다.</p>
+<p><strong>Competency Question</strong>은 설계의 핵심 산출물입니다. "우리 회사 지식을 ontology로 만들자" 같은 추상적 요구를 "2024년 Q3에 한국 리전에서 발생한 결제 실패 중 가맹점 계정 문제 케이스 목록"처럼 <strong>검증 가능한 질문</strong>으로 구체화합니다.</p>
 <h5 id="top-down-vs-bottom-up-vs-hybrid" style="position:relative;"><a href="#top-down-vs-bottom-up-vs-hybrid" aria-label="top down vs bottom up vs hybrid permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Top-down vs. Bottom-up vs. Hybrid</h5>
-<p>실제 KG/Ontology를 구축할 때 접근 전략은 크게 세 가지입니다.<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup><sup id="fnref-14"><a href="#fn-14" class="footnote-ref">14</a></sup></p>
+<p>실제 KG/Ontology를 구축할 때 접근 전략은 크게 세 가지입니다.</p>
 <table>
 <thead>
 <tr>
@@ -338,7 +424,7 @@
 </tr>
 </tbody>
 </table>
-<p>대부분의 성공 사례는 <strong>hybrid</strong>입니다.<sup id="fnref-14"><a href="#fn-14" class="footnote-ref">14</a></sup> 예컨대 금융 도메인이면 <strong>FIBO</strong>(Financial Industry Business Ontology)<sup id="fnref-17"><a href="#fn-17" class="footnote-ref">17</a></sup>의 관련 부분을 서브셋으로 가져오고, 검색·커머스 도메인이면 <strong>schema.org</strong><sup id="fnref-21"><a href="#fn-21" class="footnote-ref">21</a></sup>의 제품·리뷰 타입을 시작점으로 삼아 도메인 특화 class를 추가하는 식입니다.</p>
+<p>대부분의 성공 사례는 <strong>hybrid</strong>입니다. 금융 도메인이면 <strong>FIBO</strong>(Financial Industry Business Ontology)의 관련 부분을 서브셋으로 가져오고, 검색·커머스 도메인이면 <strong>schema.org</strong>의 제품·리뷰 타입을 시작점으로 삼아 도메인 특화 class를 추가하는 식입니다.</p>
 <div class="gatsby-highlight" data-language="mermaid"><pre class="language-mermaid"><code class="language-mermaid"><span class="token keyword">flowchart</span> TB
     <span class="token keyword">subgraph</span> TD<span class="token text string">["Top-down : 스키마 우선 (도메인 전문가)"]</span>
         <span class="token keyword">direction</span> TB
@@ -364,14 +450,14 @@
     <span class="token keyword">class</span> BU buBox
     <span class="token keyword">class</span> MERGE,DEPLOY mergeBox
     <span class="token keyword">class</span> CQ,STD,TBOX,DOC,EXT,CAN,VAL step</code></pre></div>
-<h5 id="실제-사례" style="position:relative;"><a href="#%EC%8B%A4%EC%A0%9C-%EC%82%AC%EB%A1%80" aria-label="실제 사례 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>실제 사례</h5>
+<h5 id="examples" style="position:relative;"><a href="#examples" aria-label="examples permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h5>
 <ul>
-<li><strong>Google Knowledge Graph</strong><sup id="fnref-1"><a href="#fn-1" class="footnote-ref">1</a></sup><sup id="fnref-22"><a href="#fn-22" class="footnote-ref">22</a></sup>: 2012년 공개. 500B+ 개의 사실(fact)을 담은 그래프로 검색 결과에 "엔티티 카드"를 제공하고, Google Assistant의 질의응답 백본으로도 사용됨.</li>
-<li><strong>LinkedIn Economic Graph + LIquid</strong><sup id="fnref-22"><a href="#fn-22" class="footnote-ref">22</a></sup><sup id="fnref-33"><a href="#fn-33" class="footnote-ref">33</a></sup>: 글로벌 경제의 구성 요소(직장인, 스킬, 회사, 학교, 채용공고)를 네트워크로 형상화한 초대형 그래프로 <strong>2,700억 엣지</strong> 규모. 초기 RDBMS 기반에서는 수백 개 JOIN의 cross-product 폭발로 성능 한계에 부딪힘. 이를 해결하기 위해 <strong>LIquid</strong> 라는 자체 분산 인메모리 그래프 DB를 4세대에 걸쳐 개발. <strong>Datalog 기반 단일 선언적 쿼리</strong>로 <strong>2M QPS</strong> 처리를 달성하고, PYMK(알 수도 있는 사람) 같은 실시간 연결 분석을 기존 시스템 대비 크게 개선.<sup id="fnref-33"><a href="#fn-33" class="footnote-ref">33</a></sup> 엣지를 1급 시민으로 승격하고 live schema extension을 지원하는 설계가 핵심.</li>
-<li><strong>Amazon Product Graph</strong><sup id="fnref-22"><a href="#fn-22" class="footnote-ref">22</a></sup>: 제품을 단순 카테고리 트리가 아닌 그래프로 표현해 "호환 부품", "대체품", "자주 함께 구매되는 항목" 같은 관계를 직접 모델링. 추천·검색 품질에 직접 기여.</li>
-<li><strong>Uber Databook + CRISP</strong><sup id="fnref-22"><a href="#fn-22" class="footnote-ref">22</a></sup><sup id="fnref-23"><a href="#fn-23" class="footnote-ref">23</a></sup><sup id="fnref-34"><a href="#fn-34" class="footnote-ref">34</a></sup>: 수천 개 마이크로서비스·이기종 데이터 스택(Hive, Kafka, Cassandra 등)의 사일로 문제를 풀기 위해 <strong>Databook</strong>이라는 KG 기반 메타데이터 카탈로그를 구축. 단순 Wiki가 아니라 KB 모델을 채택해 데이터 자산 소유권·품질 검증을 자동화.<sup id="fnref-34"><a href="#fn-34" class="footnote-ref">34</a></sup> 여기에 Jaeger 분산 추적의 RPC 로그에서 서비스 호출 종속성 그래프를 생성하고, <strong>CRISP</strong> 도구로 end-to-end 요청 지연의 <strong>critical path</strong>를 시각화하여 성능 병목을 진단.<sup id="fnref-34"><a href="#fn-34" class="footnote-ref">34</a></sup> KG가 단순 지식 저장이 아니라 <strong>분산 아키텍처 관측성(observability)</strong> 도구로도 활용됨을 보여주는 사례.</li>
-<li><strong>Uber Eats Food KG</strong><sup id="fnref-23"><a href="#fn-23" class="footnote-ref">23</a></sup>: restaurant–cuisine–menu item–ingredient 를 잇는 식품 그래프로 사용자 의도(intent)를 정교하게 포착해 검색·추천을 개선.</li>
-<li><strong>Airbnb, eBay, Facebook 등</strong>도 커머스·소셜 도메인에서 KG를 핵심 인프라로 운영.<sup id="fnref-22"><a href="#fn-22" class="footnote-ref">22</a></sup></li>
+<li><strong>Google Knowledge Graph</strong>: 2012년 공개. 500B+ 개의 사실(fact)을 담은 그래프로 검색 결과에 "엔티티 카드"를 제공하고, Google Assistant의 질의응답 백본으로도 사용됨.</li>
+<li><strong>LinkedIn Economic Graph + LIquid</strong>: 글로벌 경제 구성 요소(직장인·스킬·회사·학교·채용공고)를 네트워크로 형상화한 초대형 그래프로 <strong>2,700억 엣지</strong> 규모. 초기 RDBMS 기반에서는 수백 개 JOIN의 cross-product 폭발로 성능 한계에 부딪혀, <strong>LIquid</strong>라는 자체 분산 인메모리 그래프 DB를 4세대에 걸쳐 개발. <strong>Datalog 기반 단일 선언적 쿼리</strong>로 <strong>2M QPS</strong> 처리를 달성하고, PYMK(알 수도 있는 사람) 같은 실시간 연결 분석을 크게 개선.</li>
+<li><strong>Amazon Product Graph</strong>: 제품을 단순 카테고리 트리가 아닌 그래프로 표현해 "호환 부품", "대체품", "자주 함께 구매되는 항목" 같은 관계를 직접 모델링. 추천·검색 품질에 직접 기여.</li>
+<li><strong>Uber Databook + CRISP</strong>: 수천 개 마이크로서비스·이기종 데이터 스택(Hive, Kafka, Cassandra 등)의 사일로 문제를 풀기 위해 KG 기반 메타데이터 카탈로그 <strong>Databook</strong>을 구축. Jaeger 분산 추적 RPC 로그에서 서비스 호출 종속성 그래프를 생성하고, <strong>CRISP</strong>로 end-to-end 요청 지연의 <strong>critical path</strong>를 시각화해 성능 병목을 진단. KG가 단순 지식 저장이 아니라 <strong>분산 아키텍처 관측성(observability)</strong> 도구로도 활용된 사례.</li>
+<li><strong>Uber Eats Food KG</strong>: restaurant–cuisine–menu item–ingredient를 잇는 식품 그래프로 사용자 의도(intent)를 정교하게 포착해 검색·추천을 개선.</li>
+<li><strong>Airbnb, eBay, Facebook 등</strong>도 커머스·소셜 도메인에서 KG를 핵심 인프라로 운영.</li>
 </ul>
 <p>공통 교훈은 <strong>구체 KPI로 시작</strong>, <strong>표준 ontology 재사용</strong>, <strong>SHACL 기반 거버넌스 조기 도입</strong> 세 가지로 수렴됩니다.</p>
 <h5 id="kg-vs-ontology" style="position:relative;"><a href="#kg-vs-ontology" aria-label="kg vs ontology permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>KG vs. Ontology</h5>
@@ -418,55 +504,35 @@
 </table>
 <h3 id="recent-techs" style="position:relative;"><a href="#recent-techs" aria-label="recent techs permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recent Techs</h3>
 <h5 id="llm-based-kg" style="position:relative;"><a href="#llm-based-kg" aria-label="llm based kg permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>LLM-based KG</h5>
-<p>과거 KG 구축의 가장 큰 걸림돌은 엔티티·관계 추출(information extraction)의 비용이었습니다. 규칙 기반 파서, 스팬 분류기, 관계 분류기를 도메인마다 직접 학습시켜야 했죠. LLM은 이 비용 구조를 근본적으로 바꿨습니다.<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup><sup id="fnref-14"><a href="#fn-14" class="footnote-ref">14</a></sup></p>
-<p><strong>GraphRAG (Microsoft Research)</strong><sup id="fnref-24"><a href="#fn-24" class="footnote-ref">24</a></sup><sup id="fnref-25"><a href="#fn-25" class="footnote-ref">25</a></sup>는 2024년 공개되어 빠르게 표준처럼 자리잡은 오픈소스 시스템입니다. 동작 원리를 단순화하면 다음과 같습니다.</p>
+<p>과거 KG 구축의 가장 큰 걸림돌은 엔티티·관계 추출(information extraction)의 비용이었습니다. 규칙 기반 파서, 스팬 분류기, 관계 분류기를 도메인마다 직접 학습시켜야 했죠. LLM은 이 비용 구조를 근본적으로 바꿨습니다.</p>
+<p><strong>GraphRAG (Microsoft Research)</strong> 는 2024년 공개되어 빠르게 표준처럼 자리잡은 오픈소스 시스템입니다. 동작 원리를 단순화하면 다음과 같습니다.</p>
 <div class="gatsby-highlight" data-language="mermaid"><pre class="language-mermaid"><code class="language-mermaid"><span class="token keyword">flowchart</span> LR
-    A<span class="token text string">["원문 Corpus"]</span> <span class="token arrow operator">--></span> B<span class="token text string">["Chunk (TextUnit)"]</span>
-    B <span class="token arrow operator">--></span> C<span class="token text string">["LLM: 엔티티·관계·claim 추출"]</span>
+    A<span class="token text string">["원문 Corpus"]</span> <span class="token arrow operator">--></span> B<span class="token text string">["Chunk"]</span>
+    B <span class="token arrow operator">--></span> C<span class="token text string">["LLM: 엔티티·관계 추출"]</span>
     C <span class="token arrow operator">--></span> D<span class="token text string">["Graph 구성"]</span>
-    D <span class="token arrow operator">--></span> E<span class="token text string">["Leiden 기반&lt;br>community detection"]</span>
-    E <span class="token arrow operator">--></span> F<span class="token text string">["Community 요약 생성&lt;br>(hierarchical)"]</span>
+    D <span class="token arrow operator">--></span> E<span class="token text string">["Community detection"]</span>
+    E <span class="token arrow operator">--></span> F<span class="token text string">["Community 요약 생성"]</span>
     F <span class="token arrow operator">--></span> G<span class="token text string">["Global / Local&lt;br>Query"]</span></code></pre></div>
 <ol>
-<li>입력 문서를 일정 크기 청크(공식 용어로 <strong>TextUnit</strong>)로 분할</li>
-<li>LLM prompt로 각 TextUnit에서 <strong>엔티티(Entity)·관계(Relationship)</strong> 를 추출. 이때 "주장(claim)"에 해당하는 정보는 GraphRAG 공식 지식 모델에서 <strong>Covariate</strong> 라는 이름의 <strong>선택적(optional) 추출 단계</strong>로 제공됨</li>
-<li>이렇게 쌓인 그래프에 <strong>Leiden community detection</strong>을 돌려 계층적 클러스터를 만들고, 각 커뮤니티에 대한 요약을 LLM으로 생성. Leiden은 기존 Louvain의 disconnected community 문제를 해결해 그래프 모듈성을 더 안정적으로 최적화<sup id="fnref-36"><a href="#fn-36" class="footnote-ref">36</a></sup></li>
+<li>입력 문서를 일정 크기 청크로 분할</li>
+<li>LLM prompt로 각 청크에서 <strong>엔티티·관계</strong>를 추출</li>
+<li>그래프에 <strong>community detection</strong>을 돌려 계층적 클러스터를 만들고, 각 커뮤니티에 대한 요약을 LLM으로 생성</li>
 <li>질의 시에는 기존 벡터 RAG가 잡아내기 어려운 <strong>global sensemaking</strong>(전체를 조망해야 답이 나오는 질문)에 커뮤니티 요약을 활용</li>
 </ol>
-<p>추출 품질을 더 끌어올리는 최근 표준 패턴은 <strong>DSPy·TextGrad</strong> 같은 자동 prompt 최적화 도구를 쓰는 것입니다. 수작업으로 prompt를 다듬는 대신, 몇 개의 few-shot 예제만 주면 시스템이 최적 prompt를 스스로 학습해 줍니다.<sup id="fnref-14"><a href="#fn-14" class="footnote-ref">14</a></sup></p>
-<p>벤치마크(원 논문은 Podcast transcripts·News articles 각각 약 1M 토큰 규모로 평가)에서 GraphRAG는 <strong>Comprehensiveness·Diversity</strong> 측면으로 일반 RAG보다 72~83% win rate로 크게 우세합니다.<sup id="fnref-24"><a href="#fn-24" class="footnote-ref">24</a></sup> 다만 후속 서베이<sup id="fnref-40"><a href="#fn-40" class="footnote-ref">40</a></sup>는 <strong>실시간 업데이트가 필요한 시계열 질의</strong>에서 baseline RAG 대비 ~16.6% 정확도가 낮게 나온다고 보고하며, 커뮤니티 재계산·재요약 비용이 높아 <strong>프로덕션 도입 시 토큰·지연 비용</strong>이 큰 병목임을 지적합니다.</p>
-<p>이 비용 문제를 해결하기 위해 등장한 후속 아키텍처가 <strong>LightRAG</strong><sup id="fnref-37"><a href="#fn-37" class="footnote-ref">37</a></sup>입니다. 전체 그래프를 매번 재구성하지 않고 <strong>two-level retrieval</strong>(엔티티 수준의 low-level + 주제 영역의 high-level)을 동시에 수행하며, 새 문서가 들어오면 관련된 노드만 갱신하는 <strong>증분 업데이트</strong>로 처리합니다. 논문에 따르면 쿼리당 토큰 소비가 GraphRAG 대비 수천 배(예: 100 tokens vs 600K+ tokens) 수준으로 줄고, 비용도 <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.15</mn><mi>v</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">0.15 vs </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.15</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">s</span></span></span></span></span>4~7 정도로 낮아졌습니다.<sup id="fnref-37"><a href="#fn-37" class="footnote-ref">37</a></sup> 그래서 데이터가 자주 바뀌는 운영 환경에서는 GraphRAG의 대안으로 빠르게 자리잡고 있습니다.</p>
-<p><strong>Ontology-guided 추출</strong> 흐름도 활발합니다. 대표적으로 <strong>OntoGPT</strong><sup id="fnref-26"><a href="#fn-26" class="footnote-ref">26</a></sup>가 제안한 <strong>SPIRES</strong>(Structured Prompt Interrogation and Recursive Extraction of Semantics) 방식은, LLM이 엔티티를 자유롭게 뽑도록 놔두지 않습니다. 대신 <strong>기존 ontology의 class와 property를 prompt에 미리 주입</strong>해, "정의된 class의 인스턴스만 추출하고, 정의된 property로만 관계를 엮도록" 제약을 겁니다.<sup id="fnref-26"><a href="#fn-26" class="footnote-ref">26</a></sup> 일반 GraphRAG가 LLM이 적절하다고 판단한 관계를 그대로 받는다면, ontology-guided 방식은 도메인 표준을 지키는 결과물이 나옵니다.<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup></p>
-<p>금융처럼 이미 FIBO 같은 표준이 정립된 도메인에서는 ontology-guided 추출이 특히 유효합니다.<sup id="fnref-17"><a href="#fn-17" class="footnote-ref">17</a></sup><sup id="fnref-26"><a href="#fn-26" class="footnote-ref">26</a></sup> 반대로 도메인 ontology가 전혀 없는 영역에서는 <strong>이원적 루프</strong>(LLM으로 먼저 bottom-up 추출 → 클러스터링으로 후보 ontology 제안 → 사람이 검토/정제 → 다시 ontology-guided 추출)로 가는 것이 현실적입니다.<sup id="fnref-3"><a href="#fn-3" class="footnote-ref">3</a></sup><sup id="fnref-14"><a href="#fn-14" class="footnote-ref">14</a></sup></p>
+<p>추출 품질을 더 끌어올리는 최근 표준 패턴은 <strong>DSPy·TextGrad</strong> 같은 자동 prompt 최적화 도구를 쓰는 것입니다. 수작업으로 prompt를 다듬는 대신 몇 개의 few-shot 예제만 주면 시스템이 최적 prompt를 스스로 학습해 줍니다.</p>
+<p>벤치마크에서 GraphRAG는 <strong>Comprehensiveness·Diversity</strong> 측면으로 일반 RAG보다 72~83% win rate로 우세합니다. 다만 후속 서베이는 <strong>실시간 업데이트가 필요한 시계열 질의</strong>에서 baseline RAG 대비 ~16.6% 정확도가 낮게 나온다고 보고하며, 커뮤니티 재계산·재요약 비용이 높아 <strong>프로덕션 도입 시 토큰·지연 비용</strong>이 큰 병목임을 지적합니다.</p>
+<p>이 비용 문제를 해결하기 위해 등장한 후속 아키텍처가 <strong>LightRAG</strong>입니다. 전체 그래프를 매번 재구성하지 않고 <strong>two-level retrieval</strong>(엔티티 수준의 low-level + 주제 영역의 high-level)을 동시에 수행하며, 새 문서가 들어오면 관련된 노드만 갱신하는 <strong>증분 업데이트</strong>로 처리합니다. 논문에 따르면 쿼리당 토큰 소비가 GraphRAG 대비 수천 배 수준으로 줄고, 비용도 <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.15</mn><mi>v</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">0.15 vs </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.15</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">s</span></span></span></span></span>4~7로 낮아졌습니다. 데이터가 자주 바뀌는 운영 환경에서는 GraphRAG의 대안으로 빠르게 자리잡고 있습니다.</p>
+<p><strong>Ontology-guided 추출</strong> 흐름도 활발합니다. 대표적으로 <strong>OntoGPT</strong>가 제안한 <strong>SPIRES</strong>(Structured Prompt Interrogation and Recursive Extraction of Semantics) 방식은, LLM이 엔티티를 자유롭게 뽑도록 놔두지 않습니다. 대신 <strong>기존 ontology의 class와 property를 prompt에 미리 주입</strong>해, "정의된 class의 인스턴스만 추출하고, 정의된 property로만 관계를 엮도록" 제약을 겁니다. 일반 GraphRAG가 LLM이 적절하다고 판단한 관계를 그대로 받는다면, ontology-guided 방식은 도메인 표준을 지키는 결과물이 나옵니다.</p>
+<p>금융처럼 이미 FIBO 같은 표준이 정립된 도메인에서는 ontology-guided 추출이 특히 유효합니다. 반대로 도메인 ontology가 전혀 없는 영역에서는 <strong>이원적 루프</strong>(LLM으로 먼저 bottom-up 추출 → 클러스터링으로 후보 ontology 제안 → 사람이 검토/정제 → 다시 ontology-guided 추출)로 가는 것이 현실적입니다.</p>
 <h5 id="kg-as-agent-memory" style="position:relative;"><a href="#kg-as-agent-memory" aria-label="kg as agent memory permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>KG as Agent Memory</h5>
-<p>Agent에게 긴 대화·장기 사용자 프로필·사용자별 사실을 유지시키는 "메모리" 구현은 2024~2025년 큰 주제였습니다. 이전에는 주로 vector store에 대화 로그를 임베딩해 retrieval하는 방식이 기본이었지만, <strong>사실이 시간에 따라 바뀌는 문제</strong>(예: "사용자 Alice는 서울 → 2025년 도쿄로 이사")와 <strong>관계 기반 질의</strong>에서 한계가 드러났습니다.<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup></p>
-<p><strong>Zep (getzep)과 그 코어 엔진 Graphiti</strong><sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup><sup id="fnref-28"><a href="#fn-28" class="footnote-ref">28</a></sup>는 이 문제를 <strong>Temporal Knowledge Graph</strong>로 풉니다. 핵심 설계는 <strong>bi-temporal modeling</strong>입니다.<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup></p>
+<p>Agent에게 긴 대화·장기 사용자 프로필·사용자별 사실을 유지시키는 "메모리" 구현은 2024~2025년 큰 주제였습니다. 이전에는 주로 vector store에 대화 로그를 임베딩해 retrieval하는 방식이 기본이었지만, <strong>사실이 시간에 따라 바뀌는 문제</strong>(예: "사용자 Alice는 서울 → 2025년 도쿄로 이사")와 <strong>관계 기반 질의</strong>에서 한계가 드러났습니다.</p>
+<p><strong>Zep (getzep)과 그 코어 엔진 Graphiti</strong>는 이 문제를 <strong>Temporal Knowledge Graph</strong>로 풉니다. 핵심 설계는 <strong>bi-temporal modeling</strong>입니다.</p>
 <ul>
 <li><strong>Event Time (T)</strong>: 사실이 실제로 발생/성립한 시점</li>
 <li><strong>Ingestion Time (T′)</strong>: 시스템이 그 사실을 관찰/기록한 시점</li>
 </ul>
-<p>모든 노드와 엣지가 두 시간축을 가지므로, "2025-06-30 기준으로 알려진 Alice의 거주지"와 "현재 시점 기준 Alice의 거주지"를 구분해서 조회할 수 있습니다.<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup> 새 사실이 들어오면 충돌하는 기존 사실을 <strong>무효화(invalidate)</strong> 하면서도 이력은 보존합니다.<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup><sup id="fnref-28"><a href="#fn-28" class="footnote-ref">28</a></sup></p>
-<div class="gatsby-highlight" data-language="mermaid"><pre class="language-mermaid"><code class="language-mermaid"><span class="token keyword">sequenceDiagram</span>
-    <span class="token keyword">autonumber</span>
-    <span class="token keyword">participant</span> U as User
-    <span class="token keyword">participant</span> G as Graphiti KG
-
-    <span class="token keyword">rect</span> rgb<span class="token text string">(232, 245, 233)</span>
-        <span class="token keyword">Note over</span> G<span class="token operator">:</span> &lt;b<span class="token text string">>초기 상태&lt;/b>&lt;br/>:Alice :livesIn :Seoul&lt;br/></span>Event Time <span class="token text string">(T)</span> = 2024-01-01&lt;br/>Ingestion Time <span class="token text string">(T')</span> = 2024-01-01
-    <span class="token keyword">end</span>
-
-    U<span class="token arrow operator">->></span>G<span class="token operator">:</span> <span class="token string">"Alice가 2025-09-01에 Tokyo로 이사했다"</span>
-    <span class="token keyword">rect</span> rgb<span class="token text string">(227, 242, 253)</span>
-        <span class="token keyword">Note over</span> G<span class="token operator">:</span> &lt;b<span class="token text string">>기록&lt;/b>&lt;br/></span>T  <span class="token text string">(발생 시점)</span> = 2025-09-01&lt;br/>T' <span class="token text string">(관찰 시점)</span> = 2025-10-15
-    <span class="token keyword">end</span>
-    G<span class="token arrow operator">->></span>G<span class="token operator">:</span> 기존 <span class="token operator">:</span>livesIn <span class="token operator">:</span>Seoul 을&lt;br/>invalidate <span class="token text string">(이력은 보존)</span>
-    G<span class="token arrow operator">-->></span>U<span class="token operator">:</span> <span class="token text string">[신규]</span> <span class="token operator">:</span>livesIn <span class="token operator">:</span>Tokyo 추가
-
-    U<span class="token arrow operator">->></span>G<span class="token operator">:</span> Q<span class="token operator">:</span> <span class="token string">"현재 Alice 거주지?"</span>
-    G<span class="token arrow operator">-->></span>U<span class="token operator">:</span> &lt;b<span class="token text string">>Tokyo&lt;/b></span> <span class="token text string">(활성 사실)</span>
-    U<span class="token arrow operator">->></span>G<span class="token operator">:</span> Q<span class="token operator">:</span> <span class="token string">"2025-06 시점 거주지?"</span>
-    G<span class="token arrow operator">-->></span>U<span class="token operator">:</span> &lt;b<span class="token text string">>Seoul&lt;/b></span> <span class="token text string">(당시엔 invalidate 전)</span></code></pre></div>
-<p>논문에 따르면 Zep은 <strong>Deep Memory Retrieval(DMR)</strong> 벤치마크에서 MemGPT 대비 94.8% vs 93.4%로 근소하게 우위이고, <strong>LongMemEval</strong> 벤치마크에서는 기존 baseline 대비 정확도 최대 +18.5%, 응답 지연 -90%를 보고합니다.<sup id="fnref-27"><a href="#fn-27" class="footnote-ref">27</a></sup> 실제 구현인 Graphiti는 semantic embedding + BM25 키워드 + graph traversal을 <strong>하이브리드 검색</strong>으로 결합해 P95 300ms 수준의 retrieval 지연을 달성합니다.<sup id="fnref-28"><a href="#fn-28" class="footnote-ref">28</a></sup></p>
+<p>모든 노드와 엣지가 두 시간축을 가지므로, "2025-06-30 기준으로 알려진 Alice의 거주지"와 "현재 시점 기준 Alice의 거주지"를 구분해서 조회할 수 있습니다. 새 사실이 들어오면 충돌하는 기존 사실을 <strong>무효화(invalidate)</strong> 하면서도 이력은 보존합니다.</p>
+<p>논문에 따르면 Zep은 <strong>Deep Memory Retrieval(DMR)</strong> 벤치마크에서 MemGPT 대비 94.8% vs 93.4%로 근소 우위이고, <strong>LongMemEval</strong> 벤치마크에서는 기존 baseline 대비 정확도 최대 +18.5%, 응답 지연 -90%를 보고합니다. 실제 구현인 Graphiti는 semantic embedding + BM25 키워드 + graph traversal을 <strong>하이브리드 검색</strong>으로 결합해 P95 300ms 수준의 retrieval 지연을 달성합니다.</p>
 <table>
 <thead>
 <tr>
@@ -508,16 +574,16 @@
 </tr>
 </tbody>
 </table>
-<p>Graphiti는 <strong>MCP(Model Context Protocol) 서버 구현체도 제공</strong>하여, MCP를 지원하는 agent(Claude Desktop, Cursor 등)에 바로 메모리 백엔드로 붙일 수 있습니다.<sup id="fnref-28"><a href="#fn-28" class="footnote-ref">28</a></sup> LLM agent에게 "구조화된 장기 메모리"를 붙이는 실용적 선택지로 자리잡고 있습니다.</p>
+<p>Graphiti는 <strong>MCP(Model Context Protocol) 서버 구현체도 제공</strong>하여, MCP를 지원하는 agent(Claude Desktop, Cursor 등)에 바로 메모리 백엔드로 붙일 수 있습니다.</p>
 <h5 id="agentkg-연동-패턴" style="position:relative;"><a href="#agentkg-%EC%97%B0%EB%8F%99-%ED%8C%A8%ED%84%B4" aria-label="agentkg 연동 패턴 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Agent–KG 연동 패턴</h5>
-<p>Agent와 KG를 연결하는 접근은 크게 세 가지 패턴으로 수렴되고 있습니다.<sup id="fnref-29"><a href="#fn-29" class="footnote-ref">29</a></sup></p>
+<p>Agent와 KG를 연결하는 접근은 크게 세 가지 패턴으로 수렴되고 있습니다.</p>
 <ol>
 <li><strong>Tool-based access</strong>: KG 위에 <code class="language-text">query_graph(cypher | sparql)</code> 같은 tool을 노출하고 agent가 필요 시 호출. 가장 직관적이지만 agent가 질의 언어를 직접 다뤄야 함.</li>
 <li><strong>Retrieval-augmented</strong>: 질의를 받아 관련 서브그래프(subgraph)를 추출해 prompt context로 주입. GraphRAG의 local search가 이 패턴에 해당.</li>
-<li><strong>Graph-based tool/agent routing</strong>: 사용 가능한 tool·sub-agent 자체를 그래프로 구성해, 질의에서 요구되는 capability 경로를 추적하여 적절한 tool을 선택. <strong>Agent-as-a-Graph</strong> 논문<sup id="fnref-29"><a href="#fn-29" class="footnote-ref">29</a></sup>은 LiveMCPBench에서 기존 SOTA 대비 <strong>Recall@5 +14.9%p, nDCG@5 +14.6%p</strong> 향상을 보고.</li>
+<li><strong>Graph-based tool/agent routing</strong>: 사용 가능한 tool·sub-agent 자체를 그래프로 구성해, 질의에서 요구되는 capability 경로를 추적하여 적절한 tool을 선택. <strong>Agent-as-a-Graph</strong> 논문은 LiveMCPBench에서 기존 SOTA 대비 <strong>Recall@5 +14.9%p, nDCG@5 +14.6%p</strong> 향상을 보고.</li>
 </ol>
-<p>특히 <strong>MCP(Model Context Protocol)</strong><sup id="fnref-38"><a href="#fn-38" class="footnote-ref">38</a></sup> 생태계가 성장하면서 세 번째 패턴이 주목받고 있습니다. MCP는 JSON-RPC 2.0 기반 오픈 표준으로 host(AI 애플리케이션) ↔ client ↔ MCP server 구조를 따릅니다. <strong>서버 측</strong>이 외부에 노출하는 primitive는 크게 세 가지입니다 — <strong>Tools</strong>(실행 가능한 액션, 예: <code class="language-text">query_graph(cypher)</code>), <strong>Resources</strong>(ontology 파일·메타데이터 같은 컨텍스트), <strong>Prompts</strong>(재사용 가능한 지침 템플릿).<sup id="fnref-38"><a href="#fn-38" class="footnote-ref">38</a></sup> (클라이언트 측 primitive로는 Sampling·Roots·Elicitation 등이 별도로 존재.)</p>
-<p>기업이 내부 KG 위에 MCP 서버 하나만 구현해 두면, Claude Desktop·Cursor 같은 어떤 호스트에서도 동일한 방식으로 발견·연결할 수 있습니다. 이렇게 해서 "N×M 통합 폭발" 문제를 구조적으로 해소해 줍니다.</p>
+<p>특히 <strong>MCP(Model Context Protocol)</strong> 생태계가 성장하면서 세 번째 패턴이 주목받고 있습니다. MCP는 JSON-RPC 2.0 기반 오픈 표준으로 host(AI 애플리케이션) ↔ client ↔ MCP server 구조를 따릅니다. 서버 측이 외부에 노출하는 primitive는 크게 세 가지입니다 — <strong>Tools</strong>(실행 가능한 액션, 예: <code class="language-text">query_graph(cypher)</code>), <strong>Resources</strong>(ontology 파일·메타데이터 같은 컨텍스트), <strong>Prompts</strong>(재사용 가능한 지침 템플릿).</p>
+<p>기업이 내부 KG 위에 MCP 서버 하나만 구현해 두면, Claude Desktop·Cursor 같은 어떤 호스트에서도 동일한 방식으로 발견·연결할 수 있어 "N×M 통합 폭발" 문제를 구조적으로 해소해 줍니다.</p>
 <div class="gatsby-highlight" data-language="mermaid"><pre class="language-mermaid"><code class="language-mermaid"><span class="token keyword">flowchart</span> LR
     <span class="token keyword">subgraph</span> HOST<span class="token text string">["Host : AI 애플리케이션"]</span>
         <span class="token keyword">direction</span> TB
@@ -556,7 +622,8 @@
     <span class="token keyword">class</span> SERVER serverBox
     <span class="token keyword">class</span> BACK backBox
     <span class="token keyword">class</span> H1,H2,H3,C,T,R,P,KG leaf</code></pre></div>
-<p>다만 사용할 tool이 수백 개가 넘어가면 "어떤 tool을 언제 쓸지" 자체가 검색/추론 문제가 되는데, KG가 이 선택 문제에 구조적 힌트를 줄 수 있습니다.<sup id="fnref-29"><a href="#fn-29" class="footnote-ref">29</a></sup> Agent 오케스트레이션 프레임워크 측면에서는 <strong>LangGraph</strong>가 상태 머신 기반 그래프로 agent 흐름을 정의하고 순환(cycles)을 허용해, "Cypher 쿼리 결과가 빈약하면 스스로 교정해 재시도"하는 self-correction 루프를 자연스럽게 구현할 수 있습니다.<sup id="fnref-39"><a href="#fn-39" class="footnote-ref">39</a></sup></p>
+<p>다만 사용할 tool이 수백 개가 넘어가면 "어떤 tool을 언제 쓸지" 자체가 검색/추론 문제가 되는데, KG가 이 선택 문제에 구조적 힌트를 줄 수 있습니다. Agent 오케스트레이션 측면에서는 <strong>LangGraph</strong>가 상태 머신 기반 그래프로 agent 흐름을 정의하고 순환(cycles)을 허용해, "Cypher 쿼리 결과가 빈약하면 스스로 교정해 재시도"하는 self-correction 루프를 자연스럽게 구현할 수 있습니다.</p>
+<p>KG 노드를 <em>단순 데이터</em>가 아니라 <em>동작하는 에이전트</em>로 격상하는 <strong>Entity as Agent</strong> 접근도 있습니다. 예를 들어 영화 도메인 KG의 <code class="language-text">:Actor</code> 노드에 <code class="language-text">Prompt</code> 속성을 달아 두면, 탐색이 해당 노드에 도달했을 때 그 prompt로 외부 도구(웹 검색·시세 API 등)를 호출할 수 있습니다. <strong>변동성 큰 사실은 외부에 두고 안정적인 사실만 KG에 적재</strong>하는 분담이 가능해집니다.</p>
 <h3 id="conclusion" style="position:relative;"><a href="#conclusion" aria-label="conclusion permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h3>
 <p>프로덕션에서 KG·Ontology를 도입할 때 권장 순서입니다.</p>
 <ol>
@@ -580,7 +647,7 @@
 <p>Vector RAG가 "유사성 기반 기억", KG가 "관계 기반 기억"이라면, 실전 표준은 둘의 <strong>하이브리드</strong>가 될 가능성이 높습니다. "무엇을 알고 있는가"만큼 "그 지식이 어떻게 연결되어 있는가"가 중요해지고 있기 때문입니다.</p>
 <h3 id="example" style="position:relative;"><a href="#example" aria-label="example permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p>여기서는 구체 예시로 마블 Avengers IP 세계관을 KG/Ontology로 설계한다고 가정하고, agent가 참조하는 지식사전 형태로 구축하는 방법을 스케치해봅니다. 수많은 캐릭터·장소·아이템·사건이 얽혀 있고, 원작·영화·드라마 등 여러 source가 존재하며, Civil War·Snap·멀티버스처럼 사실이 시간·우주축을 따라 변하는 도메인이라 KG가 특히 잘 맞습니다.</p>
-<h5 id="ontology-sketch-tbox" style="position:relative;"><a href="#ontology-sketch-tbox" aria-label="ontology sketch tbox permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ontology Sketch (TBox)</h5>
+<h5 id="tbox-예시" style="position:relative;"><a href="#tbox-%EC%98%88%EC%8B%9C" aria-label="tbox 예시 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TBox 예시</h5>
 <p>핵심 class와 property를 먼저 정의합니다. 20~30개 수준으로 시작하는 것이 실용적입니다.</p>
 <div class="gatsby-highlight" data-language="mermaid"><pre class="language-mermaid"><code class="language-mermaid"><span class="token keyword">flowchart</span> TB
     Thing<span class="token text string">(((":Thing")))</span>
@@ -702,59 +769,11 @@ Axiom 예:
 <ul>
 <li><strong>Neo4j (Property Graph)</strong>: <code class="language-text">(c:Character)-[:WIELDS {since:"IronMan1", movie:"M001"}]->(i:Item)</code> 처럼 <strong>엣지 속성</strong>으로 맥락을 붙이기 쉬워 팬 앱·게임 개발에 적합</li>
 <li><strong>Triple Store + SPARQL</strong>: Wikidata 연합 질의와 OWL reasoning이 필요하면 이쪽. <code class="language-text">wd:Q7747</code> 같은 외부 URI를 그대로 흡수</li>
+<li><strong>Amazon Neptune</strong>: 같은 서비스 안에서 RDF + Property Graph를 동시 지원해 "RDF로 표현 계층, PG로 알고리즘 실행 계층" 하이브리드를 한 인프라에 묶기 수월</li>
 <li><strong>MCP 서버로 노출</strong>: 그래프 위에 <code class="language-text">lookup_character</code>, <code class="language-text">find_shared_events</code> 같은 tool을 정의한 MCP 서버를 구현하면 Claude Desktop·Cursor 등 호스트에서 그대로 호출 가능</li>
 </ul>
 <p>참고할 만한 실제 사례로는 Meta AI의 <strong>LIGHT</strong>(판타지 세계를 KG로 모델링한 agent 학습 환경), <strong>Wikidata의 MCU 서브그래프</strong>, 팬 커뮤니티 기반 <strong>Fandom/Marvel Database</strong>가 있습니다. 어느 하나도 완전하지 않으므로, 자체 KG는 "여러 source를 공통 canonical URI로 흡수 → 도메인 특화 관계·시간축 추가" 패턴이 현실적입니다.</p>
-<h5 id="예상-agent-활용-시나리오" style="position:relative;"><a href="#%EC%98%88%EC%83%81-agent-%ED%99%9C%EC%9A%A9-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4" aria-label="예상 agent 활용 시나리오 permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>예상 Agent 활용 시나리오</h5>
-<ul>
-<li><strong>팬 Q&#x26;A 봇</strong>: "Tony Stark Mark 슈트 버전 몇 개야?" → <code class="language-text">:TonyStark</code> → <code class="language-text">:wields</code> → <code class="language-text">rdf:type :IronManArmor</code>인 노드 count</li>
-<li><strong>스포일러 인지 응답</strong>: 사용자의 "최근 시청 시점"을 graph에 기록 → <code class="language-text">:appearedIn</code> + 개봉 순서로 그 이후 사실은 숨기고 답변</li>
-<li><strong>작품 추천</strong>: 특정 캐릭터 선호 벡터 + KG의 <code class="language-text">:appearedIn</code> 다단계 탐색으로 "해당 캐릭터가 핵심 역할인 미시청 작품" 추천</li>
-<li><strong>시나리오 작가 보조</strong>: "이 두 캐릭터의 공통 과거 사건"을 multi-hop으로 즉시 조회</li>
-</ul>
-<h3 id="reference" style="position:relative;"><a href="#reference" aria-label="reference permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h3>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn-1"><a href="https://blog.google/products/search/introducing-knowledge-graph-things-not/">Introducing the Knowledge Graph: things, not strings (Google, 2012)</a><a href="#fnref-1" class="footnote-backref">↩</a></li>
-<li id="fn-2"><a href="https://dev.to/sreeni5018/from-rag-to-knowledge-graphs-why-the-agent-era-is-redefining-ai-architecture-3fgc">From RAG to Knowledge Graphs: Why the Agent Era Is Redefining AI Architecture</a><a href="#fnref-2" class="footnote-backref">↩</a></li>
-<li id="fn-3"><a href="https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a">From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025</a><a href="#fnref-3" class="footnote-backref">↩</a></li>
-<li id="fn-5"><a href="https://blog.tomsawyer.com/knowledge-base-vs-knowledge-graph">Knowledge Base vs Knowledge Graph (Tom Sawyer Software)</a><a href="#fnref-5" class="footnote-backref">↩</a></li>
-<li id="fn-4"><a href="https://enterprise-knowledge.com/whats-the-difference-between-an-ontology-and-a-knowledge-graph/">What's the Difference Between an Ontology and a Knowledge Graph? (Enterprise Knowledge)</a><a href="#fnref-4" class="footnote-backref">↩</a></li>
-<li id="fn-6"><a href="https://www.ibm.com/think/topics/knowledge-graph">What Is a Knowledge Graph? (IBM)</a><a href="#fnref-6" class="footnote-backref">↩</a></li>
-<li id="fn-7"><a href="https://www.w3.org/TR/owl2-primer/">OWL 2 Web Ontology Language Primer (W3C)</a><a href="#fnref-7" class="footnote-backref">↩</a></li>
-<li id="fn-8"><a href="https://www.instaclustr.com/education/retrieval-augmented-generation/graph-rag-vs-vector-rag-3-differences-pros-and-cons-and-how-to-choose/">Graph RAG vs Vector RAG: 3 differences, pros and cons, and how to choose (Instaclustr)</a><a href="#fnref-8" class="footnote-backref">↩</a></li>
-<li id="fn-9"><a href="https://neo4j.com/blog/developer/knowledge-graph-vs-vector-rag/">Knowledge Graph vs. Vector RAG: Benchmarking &#x26; Optimization (Neo4j)</a><a href="#fnref-9" class="footnote-backref">↩</a></li>
-<li id="fn-32"><a href="https://www.glean.com/blog/knowledge-graph-agentic-engine">How knowledge graphs work and why they are key to context for enterprise AI (Glean)</a><a href="#fnref-32" class="footnote-backref">↩</a></li>
-<li id="fn-10"><a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework (Wikipedia)</a><a href="#fnref-10" class="footnote-backref">↩</a></li>
-<li id="fn-11"><a href="https://www.w3.org/TR/rdf11-primer/">RDF 1.1 Primer (W3C)</a><a href="#fnref-11" class="footnote-backref">↩</a></li>
-<li id="fn-12"><a href="https://www.w3.org/TR/rdf-schema/">RDF Schema 1.1 (W3C)</a><a href="#fnref-12" class="footnote-backref">↩</a></li>
-<li id="fn-13"><a href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language (W3C)</a><a href="#fnref-13" class="footnote-backref">↩</a></li>
-<li id="fn-14"><a href="https://arxiv.org/html/2510.20345v1">LLM-empowered knowledge graph construction: A survey (2025)</a><a href="#fnref-14" class="footnote-backref">↩</a></li>
-<li id="fn-15"><a href="https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/">RDF vs. Property Graphs: Choosing the Right Approach for Knowledge Graphs (Neo4j)</a><a href="#fnref-15" class="footnote-backref">↩</a></li>
-<li id="fn-16"><a href="https://medium.com/@visrow/graph-databases-query-languages-in-2025-a-practical-guide-39cb7a767aed">Graph Databases &#x26; Query Languages in 2025 — A Practical Guide</a><a href="#fnref-16" class="footnote-backref">↩</a></li>
-<li id="fn-17"><a href="https://spec.edmcouncil.org/fibo/">FIBO — Financial Industry Business Ontology (EDM Council)</a><a href="#fnref-17" class="footnote-backref">↩</a></li>
-<li id="fn-18"><a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&#x26;pid=S0186-10422019000500015">Methodology for ontology design and construction (SciELO, 2019)</a><a href="#fnref-18" class="footnote-backref">↩</a></li>
-<li id="fn-19"><a href="https://oa.upm.es/5475/1/INVE_MEM_2009_64399.pdf">NeOn Methodology for Building Ontology Networks</a><a href="#fnref-19" class="footnote-backref">↩</a></li>
-<li id="fn-20"><a href="https://www.inf.ufes.br/~monalessa/wp-content/papercite-data/pdf/use_of_competency_questions_in_ontology_engineering__a_survey_2023.pdf">Use of Competency Questions in Ontology Engineering: A Survey (2023)</a><a href="#fnref-20" class="footnote-backref">↩</a></li>
-<li id="fn-21"><a href="https://schema.org/">schema.org</a><a href="#fnref-21" class="footnote-backref">↩</a></li>
-<li id="fn-22"><a href="https://www.puppygraph.com/blog/knowledge-graph-examples">7 Knowledge Graph Examples (PuppyGraph)</a><a href="#fnref-22" class="footnote-backref">↩</a></li>
-<li id="fn-33"><a href="https://engineering.linkedin.com/teams/data/data-infrastructure/graph">LIquid: A Large-Scale Relational Graph Database (LinkedIn Engineering / QCon)</a><a href="#fnref-33" class="footnote-backref">↩</a></li>
-<li id="fn-23"><a href="https://www.slideshare.net/joshsh/building-an-enterprise-knowledge-graph-uber-lessons-from-reality">Building an Enterprise Knowledge Graph @Uber: Lessons from Reality</a><a href="#fnref-23" class="footnote-backref">↩</a></li>
-<li id="fn-34"><a href="https://www.uber.com/us/en/blog/metadata-insights-databook/">Turning Metadata Into Insights with Databook &#x26; CRISP Critical Path Analysis (Uber)</a><a href="#fnref-34" class="footnote-backref">↩</a></li>
-<li id="fn-24"><a href="https://arxiv.org/abs/2404.16130">From Local to Global: A Graph RAG Approach to Query-Focused Summarization (Microsoft, 2024)</a><a href="#fnref-24" class="footnote-backref">↩</a></li>
-<li id="fn-25"><a href="https://github.com/microsoft/graphrag">GraphRAG GitHub (Microsoft)</a><a href="#fnref-25" class="footnote-backref">↩</a></li>
-<li id="fn-36"><a href="https://mintlify.com/microsoft/graphrag/concepts/community-detection">Community detection — GraphRAG docs (Leiden)</a><a href="#fnref-36" class="footnote-backref">↩</a></li>
-<li id="fn-40"><a href="https://arxiv.org/abs/2506.05690">When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation (arXiv 2506.05690)</a><a href="#fnref-40" class="footnote-backref">↩</a></li>
-<li id="fn-37"><a href="https://lightrag.github.io/">LightRAG: Simple and Fast Retrieval-Augmented Generation</a><a href="#fnref-37" class="footnote-backref">↩</a></li>
-<li id="fn-26"><a href="https://github.com/monarch-initiative/ontogpt">OntoGPT: LLM-based ontological extraction tools (Monarch Initiative)</a><a href="#fnref-26" class="footnote-backref">↩</a></li>
-<li id="fn-27"><a href="https://arxiv.org/abs/2501.13956">Zep: A Temporal Knowledge Graph Architecture for Agent Memory (2025)</a><a href="#fnref-27" class="footnote-backref">↩</a></li>
-<li id="fn-28"><a href="https://neo4j.com/blog/developer/graphiti-knowledge-graph-memory/">Graphiti: Knowledge Graph Memory for an Agentic World (Neo4j Blog)</a><a href="#fnref-28" class="footnote-backref">↩</a></li>
-<li id="fn-29"><a href="https://arxiv.org/html/2511.18194">Agent-as-a-Graph: Knowledge Graph-Based Tool and Agent Retrieval (2025)</a><a href="#fnref-29" class="footnote-backref">↩</a></li>
-<li id="fn-38"><a href="https://modelcontextprotocol.io/docs/learn/architecture">Model Context Protocol — Architecture Overview</a><a href="#fnref-38" class="footnote-backref">↩</a></li>
-<li id="fn-39"><a href="https://langchain-ai.github.io/langgraph/">LangGraph: Stateful, Cyclic Orchestration for LLM Agents</a><a href="#fnref-39" class="footnote-backref">↩</a></li>
-</ol>
-</div></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2026<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/backend/26-04-18/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<h3 id="reference" style="position:relative;"><a href="#reference" aria-label="reference permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h3></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2026<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/backend/26-04-18/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
