@@ -315,10 +315,10 @@ Ontology 엔지니어링 방법론으로는 **METHONTOLOGY**와 그 후계인 **
 
 실제 KG/Ontology를 구축할 때 접근 전략은 크게 세 가지입니다.
 
-| 전략          | 설명                                                         | 장점                            | 단점                                 |
-| ------------- | ------------------------------------------------------------ | ------------------------------- | ------------------------------------ |
-| **Top-down**  | 도메인 전문가가 ontology(TBox) 먼저 설계 후 데이터 매핑      | 정교한 스키마, reasoning 품질 ↑ | 초기 비용 ↑, 현장 데이터와 괴리 위험 |
-| **Bottom-up** | 데이터/문서에서 엔티티·관계를 추출해 쌓고 사후 정규화        | 빠른 시작, 실제 데이터 반영     | 스키마 중복/불일치, 거버넌스 어려움  |
+| 전략          | 설명                                                          | 장점                            | 단점                                 |
+| ------------- | ------------------------------------------------------------- | ------------------------------- | ------------------------------------ |
+| **Top-down**  | 도메인 전문가가 ontology(TBox) 먼저 설계 후 데이터 매핑       | 정교한 스키마, reasoning 품질 ↑ | 초기 비용 ↑, 현장 데이터와 괴리 위험 |
+| **Bottom-up** | 데이터/문서에서 엔티티·관계를 추출해 쌓고 사후 정규화         | 빠른 시작, 실제 데이터 반영     | 스키마 중복/불일치, 거버넌스 어려움  |
 | **Hybrid**    | 표준 ontology(FIBO, schema.org)를 기반으로 가져와 도메인 확장 | 표준 준수 + 속도 균형           | 표준 학습 비용                       |
 
 대부분의 성공 사례는 **hybrid**입니다. 금융 도메인이면 **FIBO**(Financial Industry Business Ontology)의 관련 부분을 서브셋으로 가져오고, 검색·커머스 도메인이면 **schema.org**의 제품·리뷰 타입을 시작점으로 삼아 도메인 특화 class를 추가하는 식입니다.
@@ -485,7 +485,7 @@ flowchart LR
 
 다만 사용할 tool이 수백 개가 넘어가면 "어떤 tool을 언제 쓸지" 자체가 검색/추론 문제가 되는데, KG가 이 선택 문제에 구조적 힌트를 줄 수 있습니다. Agent 오케스트레이션 측면에서는 **LangGraph**가 상태 머신 기반 그래프로 agent 흐름을 정의하고 순환(cycles)을 허용해, "Cypher 쿼리 결과가 빈약하면 스스로 교정해 재시도"하는 self-correction 루프를 자연스럽게 구현할 수 있습니다.
 
-KG 노드를 *단순 데이터*가 아니라 *동작하는 에이전트*로 격상하는 **Entity as Agent** 접근도 있습니다. 예를 들어 영화 도메인 KG의 `:Actor` 노드에 `Prompt` 속성을 달아 두면, 탐색이 해당 노드에 도달했을 때 그 prompt로 외부 도구(웹 검색·시세 API 등)를 호출할 수 있습니다. **변동성 큰 사실은 외부에 두고 안정적인 사실만 KG에 적재**하는 분담이 가능해집니다.
+KG 노드를 _단순 데이터_가 아니라 _동작하는 에이전트_로 격상하는 **Entity as Agent** 접근도 있습니다. 예를 들어 영화 도메인 KG의 `:Actor` 노드에 `Prompt` 속성을 달아 두면, 탐색이 해당 노드에 도달했을 때 그 prompt로 외부 도구(웹 검색·시세 API 등)를 호출할 수 있습니다. **변동성 큰 사실은 외부에 두고 안정적인 사실만 KG에 적재**하는 분담이 가능해집니다.
 
 ### Conclusion
 
@@ -658,43 +658,41 @@ IP 세계관 고유의 어려움은 **시간·우주 분기**입니다. 죽었�
 
 ### Reference
 
-[^1]: [Introducing the Knowledge Graph: things, not strings (Google, 2012)](https://blog.google/products/search/introducing-knowledge-graph-things-not/)
-[^2]: [From RAG to Knowledge Graphs: Why the Agent Era Is Redefining AI Architecture](https://dev.to/sreeni5018/from-rag-to-knowledge-graphs-why-the-agent-era-is-redefining-ai-architecture-3fgc)
-[^3]: [From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025](https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a)
-[^4]: [What's the Difference Between an Ontology and a Knowledge Graph? (Enterprise Knowledge)](https://enterprise-knowledge.com/whats-the-difference-between-an-ontology-and-a-knowledge-graph/)
-[^5]: [Knowledge Base vs Knowledge Graph (Tom Sawyer Software)](https://blog.tomsawyer.com/knowledge-base-vs-knowledge-graph)
-[^6]: [What Is a Knowledge Graph? (IBM)](https://www.ibm.com/think/topics/knowledge-graph)
-[^7]: [OWL 2 Web Ontology Language Primer (W3C)](https://www.w3.org/TR/owl2-primer/)
-[^8]: [Graph RAG vs Vector RAG: 3 differences, pros and cons, and how to choose (Instaclustr)](https://www.instaclustr.com/education/retrieval-augmented-generation/graph-rag-vs-vector-rag-3-differences-pros-and-cons-and-how-to-choose/)
-[^9]: [Knowledge Graph vs. Vector RAG: Benchmarking & Optimization (Neo4j)](https://neo4j.com/blog/developer/knowledge-graph-vs-vector-rag/)
-[^10]: [Resource Description Framework (Wikipedia)](https://en.wikipedia.org/wiki/Resource_Description_Framework)
-[^11]: [RDF 1.1 Primer (W3C)](https://www.w3.org/TR/rdf11-primer/)
-[^12]: [RDF Schema 1.1 (W3C)](https://www.w3.org/TR/rdf-schema/)
-[^13]: [SPARQL 1.1 Query Language (W3C)](https://www.w3.org/TR/sparql11-query/)
-[^14]: [LLM-empowered knowledge graph construction: A survey (2025)](https://arxiv.org/html/2510.20345v1)
-[^15]: [RDF vs. Property Graphs: Choosing the Right Approach for Knowledge Graphs (Neo4j)](https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/)
-[^16]: [Graph Databases & Query Languages in 2025 — A Practical Guide](https://medium.com/@visrow/graph-databases-query-languages-in-2025-a-practical-guide-39cb7a767aed)
-[^17]: [FIBO — Financial Industry Business Ontology (EDM Council)](https://spec.edmcouncil.org/fibo/)
-[^18]: [Methodology for ontology design and construction (SciELO, 2019)](https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0186-10422019000500015)
-[^19]: [NeOn Methodology for Building Ontology Networks](https://oa.upm.es/5475/1/INVE_MEM_2009_64399.pdf)
-[^20]: [Use of Competency Questions in Ontology Engineering: A Survey (2023)](https://www.inf.ufes.br/~monalessa/wp-content/papercite-data/pdf/use_of_competency_questions_in_ontology_engineering__a_survey_2023.pdf)
-[^21]: [schema.org](https://schema.org/)
-[^22]: [7 Knowledge Graph Examples (PuppyGraph)](https://www.puppygraph.com/blog/knowledge-graph-examples)
-[^23]: [Building an Enterprise Knowledge Graph @Uber: Lessons from Reality](https://www.slideshare.net/joshsh/building-an-enterprise-knowledge-graph-uber-lessons-from-reality)
-[^24]: [From Local to Global: A Graph RAG Approach to Query-Focused Summarization (Microsoft, 2024)](https://arxiv.org/abs/2404.16130)
-[^25]: [GraphRAG GitHub (Microsoft)](https://github.com/microsoft/graphrag)
-[^26]: [OntoGPT: LLM-based ontological extraction tools (Monarch Initiative)](https://github.com/monarch-initiative/ontogpt)
-[^27]: [Zep: A Temporal Knowledge Graph Architecture for Agent Memory (2025)](https://arxiv.org/abs/2501.13956)
-[^28]: [Graphiti: Knowledge Graph Memory for an Agentic World (Neo4j Blog)](https://neo4j.com/blog/developer/graphiti-knowledge-graph-memory/)
-[^29]: [Agent-as-a-Graph: Knowledge Graph-Based Tool and Agent Retrieval (2025)](https://arxiv.org/html/2511.18194)
-[^30]: [Translating Embeddings for Modeling Multi-relational Data (TransE, Bordes et al., 2013)](https://proceedings.neurips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d2f9-Abstract.html)
-[^31]: [node2vec: Scalable Feature Learning for Networks (Grover & Leskovec, 2016)](https://arxiv.org/abs/1607.00653)
-[^32]: [How knowledge graphs work and why they are key to context for enterprise AI (Glean)](https://www.glean.com/blog/knowledge-graph-agentic-engine)
-[^33]: [LIquid: A Large-Scale Relational Graph Database (LinkedIn Engineering / QCon)](https://engineering.linkedin.com/teams/data/data-infrastructure/graph)
-[^34]: [Turning Metadata Into Insights with Databook & CRISP Critical Path Analysis (Uber)](https://www.uber.com/us/en/blog/metadata-insights-databook/)
-[^35]: [Automated Knowledge Graph Construction with LLMs and Sentence Complexity (CoDe-KG, 2025)](https://arxiv.org/html/2509.17289v1)
-[^36]: [Community detection — GraphRAG docs (Leiden)](https://mintlify.com/microsoft/graphrag/concepts/community-detection)
-[^37]: [LightRAG: Simple and Fast Retrieval-Augmented Generation](https://lightrag.github.io/)
-[^38]: [Model Context Protocol — Architecture Overview](https://modelcontextprotocol.io/docs/learn/architecture)
-[^39]: [LangGraph: Stateful, Cyclic Orchestration for LLM Agents](https://langchain-ai.github.io/langgraph/)
-[^40]: [When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation (arXiv 2506.05690)](https://arxiv.org/abs/2506.05690)
+- [Introducing the Knowledge Graph: things, not strings (Google, 2012)](https://blog.google/products/search/introducing-knowledge-graph-things-not/)
+- [From RAG to Knowledge Graphs: Why the Agent Era Is Redefining AI Architecture](https://dev.to/sreeni5018/from-rag-to-knowledge-graphs-why-the-agent-era-is-redefining-ai-architecture-3fgc)
+- [From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025](https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a)
+- [What's the Difference Between an Ontology and a Knowledge Graph? (Enterprise Knowledge)](https://enterprise-knowledge.com/whats-the-difference-between-an-ontology-and-a-knowledge-graph/)
+- [Knowledge Base vs Knowledge Graph (Tom Sawyer Software)](https://blog.tomsawyer.com/knowledge-base-vs-knowledge-graph)- [What Is a Knowledge Graph? (IBM)](https://www.ibm.com/think/topics/knowledge-graph)
+- [OWL 2 Web Ontology Language Primer (W3C)](https://www.w3.org/TR/owl2-primer/)- [Graph RAG vs Vector RAG: 3 differences, pros and cons, and how to choose (Instaclustr)](https://www.instaclustr.com/education/retrieval-augmented-generation/graph-rag-vs-vector-rag-3-differences-pros-and-cons-and-how-to-choose/)
+- [Knowledge Graph vs. Vector RAG: Benchmarking & Optimization (Neo4j)](https://neo4j.com/blog/developer/knowledge-graph-vs-vector-rag/)
+- [Resource Description Framework (Wikipedia)](https://en.wikipedia.org/wiki/Resource_Description_Framework)
+- [RDF 1.1 Primer (W3C)](https://www.w3.org/TR/rdf11-primer/)
+- [RDF Schema 1.1 (W3C)](https://www.w3.org/TR/rdf-schema/)
+- [SPARQL 1.1 Query Language (W3C)](https://www.w3.org/TR/sparql11-query/)
+- [LLM-empowered knowledge graph construction: A survey (2025)](https://arxiv.org/html/2510.20345v1)
+- [RDF vs. Property Graphs: Choosing the Right Approach for Knowledge Graphs (Neo4j)](https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/)
+- [Graph Databases & Query Languages in 2025 — A Practical Guide](https://medium.com/@visrow/graph-databases-query-languages-in-2025-a-practical-guide-39cb7a767aed)
+- [FIBO — Financial Industry Business Ontology (EDM Council)](https://spec.edmcouncil.org/fibo/)
+- [Methodology for ontology design and construction (SciELO, 2019)](https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0186-10422019000500015)
+- [NeOn Methodology for Building Ontology Networks](https://oa.upm.es/5475/1/INVE_MEM_2009_64399.pdf)
+- [Use of Competency Questions in Ontology Engineering: A Survey (2023)](https://www.inf.ufes.br/~monalessa/wp-content/papercite-data/pdf/use_of_competency_questions_in_ontology_engineering__a_survey_2023.pdf)
+- [schema.org](https://schema.org/)
+- [7 Knowledge Graph Examples (PuppyGraph)](https://www.puppygraph.com/blog/knowledge-graph-examples)
+- [Building an Enterprise Knowledge Graph @Uber: Lessons from Reality](https://www.slideshare.net/joshsh/building-an-enterprise-knowledge-graph-uber-lessons-from-reality)
+- [From Local to Global: A Graph RAG Approach to Query-Focused Summarization (Microsoft, 2024)](https://arxiv.org/abs/2404.16130)
+- [GraphRAG GitHub (Microsoft)](https://github.com/microsoft/graphrag)
+- [OntoGPT: LLM-based ontological extraction tools (Monarch Initiative)](https://github.com/monarch-initiative/ontogpt)
+- [Zep: A Temporal Knowledge Graph Architecture for Agent Memory (2025)](https://arxiv.org/abs/2501.13956)
+- [Graphiti: Knowledge Graph Memory for an Agentic World (Neo4j Blog)](https://neo4j.com/blog/developer/graphiti-knowledge-graph-memory/)
+- [Agent-as-a-Graph: Knowledge Graph-Based Tool and Agent Retrieval (2025)](https://arxiv.org/html/2511.18194)
+- [Translating Embeddings for Modeling Multi-relational Data (TransE, Bordes et al., 2013)](https://proceedings.neurips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d2f9-Abstract.html)
+- [node2vec: Scalable Feature Learning for Networks (Grover & Leskovec, 2016)](https://arxiv.org/abs/1607.00653)
+- [How knowledge graphs work and why they are key to context for enterprise AI (Glean)](https://www.glean.com/blog/knowledge-graph-agentic-engine)
+- [LIquid: A Large-Scale Relational Graph Database (LinkedIn Engineering / QCon)](https://engineering.linkedin.com/teams/data/data-infrastructure/graph)
+- [Turning Metadata Into Insights with Databook & CRISP Critical Path Analysis (Uber)](https://www.uber.com/us/en/blog/metadata-insights-databook/)
+- [Automated Knowledge Graph Construction with LLMs and Sentence Complexity (CoDe-KG, 2025)](https://arxiv.org/html/2509.17289v1)
+- [Community detection — GraphRAG docs (Leiden)](https://mintlify.com/microsoft/graphrag/concepts/community-detection)
+- [LightRAG: Simple and Fast Retrieval-Augmented Generation](https://lightrag.github.io/)
+- [Model Context Protocol — Architecture Overview](https://modelcontextprotocol.io/docs/learn/architecture)
+- [LangGraph: Stateful, Cyclic Orchestration for LLM Agents](https://langchain-ai.github.io/langgraph/)
+- [When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation (arXiv 2506.05690)](https://arxiv.org/abs/2506.05690)
