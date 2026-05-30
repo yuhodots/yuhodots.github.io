@@ -623,7 +623,7 @@
     <span class="token keyword">class</span> BACK backBox
     <span class="token keyword">class</span> H1,H2,H3,C,T,R,P,KG leaf</code></pre></div>
 <p>다만 사용할 tool이 수백 개가 넘어가면 "어떤 tool을 언제 쓸지" 자체가 검색/추론 문제가 되는데, KG가 이 선택 문제에 구조적 힌트를 줄 수 있습니다. Agent 오케스트레이션 측면에서는 <strong>LangGraph</strong>가 상태 머신 기반 그래프로 agent 흐름을 정의하고 순환(cycles)을 허용해, "Cypher 쿼리 결과가 빈약하면 스스로 교정해 재시도"하는 self-correction 루프를 자연스럽게 구현할 수 있습니다.</p>
-<p>KG 노드를 <em>단순 데이터</em>가 아니라 <em>동작하는 에이전트</em>로 격상하는 <strong>Entity as Agent</strong> 접근도 있습니다. 예를 들어 영화 도메인 KG의 <code class="language-text">:Actor</code> 노드에 <code class="language-text">Prompt</code> 속성을 달아 두면, 탐색이 해당 노드에 도달했을 때 그 prompt로 외부 도구(웹 검색·시세 API 등)를 호출할 수 있습니다. <strong>변동성 큰 사실은 외부에 두고 안정적인 사실만 KG에 적재</strong>하는 분담이 가능해집니다.</p>
+<p>KG 노드를 _단순 데이터_가 아니라 _동작하는 에이전트_로 격상하는 <strong>Entity as Agent</strong> 접근도 있습니다. 예를 들어 영화 도메인 KG의 <code class="language-text">:Actor</code> 노드에 <code class="language-text">Prompt</code> 속성을 달아 두면, 탐색이 해당 노드에 도달했을 때 그 prompt로 외부 도구(웹 검색·시세 API 등)를 호출할 수 있습니다. <strong>변동성 큰 사실은 외부에 두고 안정적인 사실만 KG에 적재</strong>하는 분담이 가능해집니다.</p>
 <h3 id="conclusion" style="position:relative;"><a href="#conclusion" aria-label="conclusion permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h3>
 <p>프로덕션에서 KG·Ontology를 도입할 때 권장 순서입니다.</p>
 <ol>
@@ -773,7 +773,47 @@ Axiom 예:
 <li><strong>MCP 서버로 노출</strong>: 그래프 위에 <code class="language-text">lookup_character</code>, <code class="language-text">find_shared_events</code> 같은 tool을 정의한 MCP 서버를 구현하면 Claude Desktop·Cursor 등 호스트에서 그대로 호출 가능</li>
 </ul>
 <p>참고할 만한 실제 사례로는 Meta AI의 <strong>LIGHT</strong>(판타지 세계를 KG로 모델링한 agent 학습 환경), <strong>Wikidata의 MCU 서브그래프</strong>, 팬 커뮤니티 기반 <strong>Fandom/Marvel Database</strong>가 있습니다. 어느 하나도 완전하지 않으므로, 자체 KG는 "여러 source를 공통 canonical URI로 흡수 → 도메인 특화 관계·시간축 추가" 패턴이 현실적입니다.</p>
-<h3 id="reference" style="position:relative;"><a href="#reference" aria-label="reference permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h3></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2026<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/backend/26-04-18/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<h3 id="reference" style="position:relative;"><a href="#reference" aria-label="reference permalink" class="anchor-header before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Reference</h3>
+<ul>
+<li><a href="https://blog.google/products/search/introducing-knowledge-graph-things-not/">Introducing the Knowledge Graph: things, not strings (Google, 2012)</a></li>
+<li><a href="https://dev.to/sreeni5018/from-rag-to-knowledge-graphs-why-the-agent-era-is-redefining-ai-architecture-3fgc">From RAG to Knowledge Graphs: Why the Agent Era Is Redefining AI Architecture</a></li>
+<li><a href="https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a">From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025</a></li>
+<li><a href="https://enterprise-knowledge.com/whats-the-difference-between-an-ontology-and-a-knowledge-graph/">What's the Difference Between an Ontology and a Knowledge Graph? (Enterprise Knowledge)</a></li>
+<li><a href="https://blog.tomsawyer.com/knowledge-base-vs-knowledge-graph">Knowledge Base vs Knowledge Graph (Tom Sawyer Software)</a>- <a href="https://www.ibm.com/think/topics/knowledge-graph">What Is a Knowledge Graph? (IBM)</a></li>
+<li><a href="https://www.w3.org/TR/owl2-primer/">OWL 2 Web Ontology Language Primer (W3C)</a>- <a href="https://www.instaclustr.com/education/retrieval-augmented-generation/graph-rag-vs-vector-rag-3-differences-pros-and-cons-and-how-to-choose/">Graph RAG vs Vector RAG: 3 differences, pros and cons, and how to choose (Instaclustr)</a></li>
+<li><a href="https://neo4j.com/blog/developer/knowledge-graph-vs-vector-rag/">Knowledge Graph vs. Vector RAG: Benchmarking &#x26; Optimization (Neo4j)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework (Wikipedia)</a></li>
+<li><a href="https://www.w3.org/TR/rdf11-primer/">RDF 1.1 Primer (W3C)</a></li>
+<li><a href="https://www.w3.org/TR/rdf-schema/">RDF Schema 1.1 (W3C)</a></li>
+<li><a href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 Query Language (W3C)</a></li>
+<li><a href="https://arxiv.org/html/2510.20345v1">LLM-empowered knowledge graph construction: A survey (2025)</a></li>
+<li><a href="https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/">RDF vs. Property Graphs: Choosing the Right Approach for Knowledge Graphs (Neo4j)</a></li>
+<li><a href="https://medium.com/@visrow/graph-databases-query-languages-in-2025-a-practical-guide-39cb7a767aed">Graph Databases &#x26; Query Languages in 2025 — A Practical Guide</a></li>
+<li><a href="https://spec.edmcouncil.org/fibo/">FIBO — Financial Industry Business Ontology (EDM Council)</a></li>
+<li><a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&#x26;pid=S0186-10422019000500015">Methodology for ontology design and construction (SciELO, 2019)</a></li>
+<li><a href="https://oa.upm.es/5475/1/INVE_MEM_2009_64399.pdf">NeOn Methodology for Building Ontology Networks</a></li>
+<li><a href="https://www.inf.ufes.br/~monalessa/wp-content/papercite-data/pdf/use_of_competency_questions_in_ontology_engineering__a_survey_2023.pdf">Use of Competency Questions in Ontology Engineering: A Survey (2023)</a></li>
+<li><a href="https://schema.org/">schema.org</a></li>
+<li><a href="https://www.puppygraph.com/blog/knowledge-graph-examples">7 Knowledge Graph Examples (PuppyGraph)</a></li>
+<li><a href="https://www.slideshare.net/joshsh/building-an-enterprise-knowledge-graph-uber-lessons-from-reality">Building an Enterprise Knowledge Graph @Uber: Lessons from Reality</a></li>
+<li><a href="https://arxiv.org/abs/2404.16130">From Local to Global: A Graph RAG Approach to Query-Focused Summarization (Microsoft, 2024)</a></li>
+<li><a href="https://github.com/microsoft/graphrag">GraphRAG GitHub (Microsoft)</a></li>
+<li><a href="https://github.com/monarch-initiative/ontogpt">OntoGPT: LLM-based ontological extraction tools (Monarch Initiative)</a></li>
+<li><a href="https://arxiv.org/abs/2501.13956">Zep: A Temporal Knowledge Graph Architecture for Agent Memory (2025)</a></li>
+<li><a href="https://neo4j.com/blog/developer/graphiti-knowledge-graph-memory/">Graphiti: Knowledge Graph Memory for an Agentic World (Neo4j Blog)</a></li>
+<li><a href="https://arxiv.org/html/2511.18194">Agent-as-a-Graph: Knowledge Graph-Based Tool and Agent Retrieval (2025)</a></li>
+<li><a href="https://proceedings.neurips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d2f9-Abstract.html">Translating Embeddings for Modeling Multi-relational Data (TransE, Bordes et al., 2013)</a></li>
+<li><a href="https://arxiv.org/abs/1607.00653">node2vec: Scalable Feature Learning for Networks (Grover &#x26; Leskovec, 2016)</a></li>
+<li><a href="https://www.glean.com/blog/knowledge-graph-agentic-engine">How knowledge graphs work and why they are key to context for enterprise AI (Glean)</a></li>
+<li><a href="https://engineering.linkedin.com/teams/data/data-infrastructure/graph">LIquid: A Large-Scale Relational Graph Database (LinkedIn Engineering / QCon)</a></li>
+<li><a href="https://www.uber.com/us/en/blog/metadata-insights-databook/">Turning Metadata Into Insights with Databook &#x26; CRISP Critical Path Analysis (Uber)</a></li>
+<li><a href="https://arxiv.org/html/2509.17289v1">Automated Knowledge Graph Construction with LLMs and Sentence Complexity (CoDe-KG, 2025)</a></li>
+<li><a href="https://mintlify.com/microsoft/graphrag/concepts/community-detection">Community detection — GraphRAG docs (Leiden)</a></li>
+<li><a href="https://lightrag.github.io/">LightRAG: Simple and Fast Retrieval-Augmented Generation</a></li>
+<li><a href="https://modelcontextprotocol.io/docs/learn/architecture">Model Context Protocol — Architecture Overview</a></li>
+<li><a href="https://langchain-ai.github.io/langgraph/">LangGraph: Stateful, Cyclic Orchestration for LLM Agents</a></li>
+<li><a href="https://arxiv.org/abs/2506.05690">When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation (arXiv 2506.05690)</a></li>
+</ul></div><div style="margin-top:20px"><div></div></div></div></main><footer>© <!-- -->2026<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/backend/26-04-18/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
