@@ -63,7 +63,7 @@ blog-develop/
 - `CLAUDE.md`가 정확히 `@AGENTS.md`를 가져오는지 확인합니다.
 - `.claude/skills/writing-blog-posts`가 존재하는 상대 링크이며 `.agents/skills/writing-blog-posts`를 가리키는지 확인합니다.
 - 두 도구의 경로에서 읽은 `SKILL.md` 내용이 동일한지 확인합니다.
-- `AGENTS.md`와 스킬의 필수 YAML frontmatter가 비어 있지 않은지 확인합니다.
+- `AGENTS.md`가 비어 있지 않고 스킬의 필수 YAML frontmatter가 존재하는지 확인합니다.
 - Git diff에서 `.claude/settings.local.json`과 사용자 스킬 내용에 의도하지 않은 변경이 없는지 확인합니다.
 
 ## Non-Goals
