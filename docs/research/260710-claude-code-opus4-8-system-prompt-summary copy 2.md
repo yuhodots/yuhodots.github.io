@@ -2,7 +2,7 @@
 
 ### Document Scope
 
-이 문서는 `system_prompts_leaks` 저장소에 공개된 **Claude Code Opus 4.8 시스템 프롬프트 수집본**을 분석한 연구 노트입니다. 분석 대상은 일반적인 Claude Opus 4.8 대화 모델이 아니라, 파일을 읽고 수정하며 명령을 실행하는 **Claude Code 코딩 에이전트 환경**입니다.
+이 문서는 `system_prompts_leaks` 저장소에 공개된 **Claude Code Opus 4.8 시스템 프롬프트 수집본**을 분석한 연구 노트입니다.[1] 분석 대상은 일반적인 Claude Opus 4.8 대화 모델이 아니라, 파일을 읽고 수정하며 명령을 실행하는 **Claude Code 코딩 에이전트 환경**입니다.
 
 먼저 자료의 성격을 분명히 할 필요가 있습니다. 이 파일은 Anthropic이 공식 문서로 배포한 시스템 프롬프트가 아니라 제3자 저장소에 게시된 비공식 수집본입니다. 진위, 완전성, 수집 방식은 이 문서만으로 독립 검증할 수 없으며, 실제 서비스의 모든 사용자에게 동일하게 적용되는 최신 프롬프트라고 단정할 수도 없습니다.
 
@@ -390,4 +390,4 @@ Claude Code Opus 4.8 수집본에서 확인되는 핵심은 다음과 같습니�
 
 ### References
 
-- [Claude Code Opus 4.8 system prompt collection (system_prompts_leaks)](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/Claude%20Code/claude-code-opus-4.8.md)
+- [1] [Claude Code Opus 4.8 system prompt collection](https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/Claude%20Code/claude-code-opus-4.8.md) — `system_prompts_leaks` GitHub 비공식 수집본, 2026년 7월 10일 접근.
